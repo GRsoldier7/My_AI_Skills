@@ -1,0 +1,75 @@
+# Biohacking Platform — Cursor Rules
+
+## Stack
+Python 3.12+ | FastAPI | Pydantic v2 | SQLAlchemy 2.0 | PostgreSQL | Docker | GCP Cloud Run
+
+## Python Style
+- snake_case for everything. Google-style docstrings.
+- Type hints on ALL function signatures — no exceptions.
+- Explicit exception types. Never `except Exception` or bare `except`.
+- Use `ruff` for linting and formatting (not black/isort/flake8).
+- Use `structlog` for logging (never `print()`).
+- Config via `pydantic-settings` + env vars. No hardcoded values.
+- Async-first for I/O: `httpx` for HTTP, `asyncpg` for database.
+
+## FastAPI Patterns
+```python
+# Always use Pydantic models for request/response
+from pydantic import BaseModel, Field
+
+class SupplementRequest(BaseModel):
+    name: str = Field(..., min_length=1, max_length=200)
+    dosage_mg: float = Field(..., gt=0)
+
+# Dependency injection for database sessions
+from fastapi import Depends
+async def get_db() -> AsyncGenerator[AsyncSession, None]:
+    async with async_session() as session:
+        yield session
+
+# Consistent error responses
+from fastapi import HTTPException
+raise HTTPException(status_code=404, detail="Supplement not found")
+```
+
+## Database Patterns
+```python
+# Always parameterized queries
+result = await session.execute(
+    select(Supplement).where(Supplement.name == name)
+)
+
+# Every table gets provenance tracking
+class BaseModel(DeclarativeBase):
+    created_at: Mapped[datetime] = mapped_column(default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(onupdate=func.now())
+    source_id: Mapped[int | None] = mapped_column(ForeignKey("data_sources.id"))
+```
+
+## Testing
+- pytest with fixtures. Tests alongside implementation.
+- Property-based testing (hypothesis) for data validation logic.
+- Name tests descriptively: `test_supplement_creation_rejects_negative_dosage`
+- 80%+ coverage on critical paths.
+
+## File Organization
+```
+src/api/         → Route handlers (thin, delegate to services)
+src/models/      → SQLAlchemy ORM models
+src/schemas/     → Pydantic request/response schemas
+src/services/    → Business logic (testable, no HTTP deps)
+src/pipelines/   → Data ingestion ETL scripts
+src/lib/         → Shared utilities
+tests/unit/      → Unit tests
+tests/integration/ → Integration tests
+```
+
+## Do NOT
+- Use Django, Flask, or MongoDB
+- Use AWS services (we use GCP)
+- Skip type hints or docstrings
+- Use print() for logging
+- Put secrets in code
+- Write bare except blocks
+- Use string concatenation in SQL
+- Create God functions (>50 lines → split it)

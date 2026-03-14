@@ -1,0 +1,122 @@
+# Aaron DeYoung — Codex Project Instructions
+
+## Overview
+AI consultant and entrepreneur building a biohacking data platform (personalized health protocols from bloodwork, supplements, biomarkers). Solo founder bootstrapping with AI as force multiplier.
+
+## Tech Stack
+- Python 3.12+, FastAPI, SQLAlchemy, Pydantic v2
+- PostgreSQL (migrating from local Proxmox → GCP Cloud SQL)
+- Docker → Cloud Run (GCP)
+- Terraform for infrastructure-as-code
+- GitHub Actions for CI/CD
+- Next.js + Tailwind CSS + shadcn/ui for frontend
+
+## Coding Standards
+
+### Python
+- snake_case everywhere. Google-style docstrings.
+- Type hints on ALL function signatures. Use `pyright` for checking.
+- Lint/format with `ruff` (replaces black + isort + flake8).
+- Error handling: explicit exception types, never bare `except`.
+- Config via env vars with pydantic-settings. Secrets NEVER in code.
+- Logging: structlog with structured JSON output.
+- Async-first for I/O-bound operations (httpx, asyncpg).
+
+### Testing
+- pytest with fixtures and parametrize. Property-based testing with hypothesis for critical logic.
+- Tests written alongside implementation, never after.
+- Test pyramid: many unit, fewer integration, minimal e2e.
+- Target: 80%+ coverage on critical paths, 60%+ on utility code.
+
+### Database
+- PostgreSQL with normalized core + materialized views for performance.
+- Every table tracks data provenance (source_id, ingested_at).
+- Temporal versioning for health data (effective_date / superseded_date).
+- JSONB for semi-structured data with GIN indexes on queried fields.
+- Parameterized queries only — never string concatenation.
+
+### API Design
+- FastAPI with Pydantic v2 models for request/response validation.
+- Consistent error response envelope with proper HTTP status codes.
+- Rate limiting on all public endpoints.
+- Auth: JWT with refresh tokens, least-privilege service accounts.
+- OpenAPI spec auto-generated, kept current.
+
+## Commands
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run tests
+pytest -v --cov=src --cov-report=term-missing
+
+# Lint and format
+ruff check . --fix
+ruff format .
+
+# Type check
+pyright
+
+# Run locally
+uvicorn src.main:app --reload --port 8080
+
+# Build Docker image
+docker build -t biohacking-api .
+
+# Deploy to Cloud Run
+gcloud run deploy biohacking-api --source . --region us-central1
+```
+
+## Project Structure
+```
+├── src/
+│   ├── main.py              # FastAPI app entry point
+│   ├── api/                 # Route handlers
+│   ├── models/              # SQLAlchemy models
+│   ├── schemas/             # Pydantic request/response schemas
+│   ├── services/            # Business logic
+│   ├── pipelines/           # Data ingestion pipelines
+│   └── lib/                 # Shared utilities
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── conftest.py
+├── terraform/               # Infrastructure-as-code
+├── architecture/            # Architecture docs and ADRs
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+└── pyproject.toml
+```
+
+## Key Architectural Decisions
+- **FastAPI over Flask/Django:** Async-native, auto-generated OpenAPI docs, Pydantic integration.
+- **Raw PostgreSQL over ORMs for pipelines:** Performance matters for bulk data ingestion. SQLAlchemy for API queries.
+- **Cloud Run over GKE:** Simpler, auto-scales to zero, pay-per-request. Sufficient until we need persistent connections.
+- **Terraform over console:** All infrastructure reproducible from code. State in GCS backend.
+- **Monorepo for now:** API + pipelines + frontend in one repo until complexity demands splitting.
+
+## What NOT To Do
+- Don't use Django (we use FastAPI).
+- Don't use MongoDB (we use PostgreSQL).
+- Don't use AWS services (we use GCP).
+- Don't create .env files with real credentials (use placeholder values).
+- Don't skip type hints — every function gets them.
+- Don't write tests after the fact — write them alongside implementation.
+- Don't use print() for logging — use structlog.
+- Don't hardcode configuration values — use environment variables.
+
+## B.L.A.S.T. Protocol
+For multi-step tasks, follow this sequence:
+1. **Blueprint:** Ask discovery questions. Define schemas before code. Don't code until requirements are confirmed.
+2. **Link:** Verify integrations/credentials with minimal tests before full logic.
+3. **Architect:** Design before implementing. Document the architecture first.
+4. **Stylize:** Polish for production quality. Code review. Documentation.
+5. **Trigger:** Deploy and verify. Monitoring and runbooks.
+
+## Sandbox Permissions
+- You may install Python packages with pip
+- You may run pytest, ruff, pyright
+- You may create and modify files in the project directory
+- You may run Docker commands
+- Do NOT push to git, deploy to cloud, or modify .env without asking

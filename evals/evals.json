@@ -1,0 +1,40 @@
+{
+  "skill_name": "aaron-skill-library",
+  "evals": [
+    {
+      "id": 1,
+      "skill": "biohacking-data-pipeline",
+      "prompt": "I found this API called PubChem that has supplement compound data. I want to build a pipeline that pulls all the data for the top 50 supplements (vitamin D, magnesium, zinc, etc.) every night at 2am and stores it in my PostgreSQL database on the proxmox server. Can you help me set up the schema and the pipeline script?",
+      "expected_output": "Complete PostgreSQL CREATE TABLE statements with provenance tracking, a full Python pipeline script following the extract-validate-transform-load pattern, and scheduling configuration (cron or Prefect/Dagster)",
+      "files": []
+    },
+    {
+      "id": 2,
+      "skill": "cloud-migration-playbook",
+      "prompt": "ok so I've got my biohacking database and python pipelines running on my proxmox box and it's working well locally. I want to start moving this to GCP but I'm nervous about the cost and about breaking things. where do I even start? I don't want to spend more than like $30/month to start",
+      "expected_output": "Step-by-step migration plan starting with containerization, GCP service recommendations (Cloud SQL, Cloud Run), cost estimate showing it fits within $30/month, and risk mitigation strategies including parallel running",
+      "files": []
+    },
+    {
+      "id": 3,
+      "skill": "market-intelligence",
+      "prompt": "I keep hearing about personalized health and longevity being huge markets right now. I want to understand if building this biohacking AI tool is actually a good business or if I should be doing something else with my AI skills. Can you do a deep analysis of the opportunity and also suggest what other businesses I could build that might make even more money?",
+      "expected_output": "TAM/SAM/SOM analysis of personalized health market, competitive landscape mapping with named competitors, profit mechanics analysis, 5-10 alternative business ideas scored against the opportunity framework, clear recommendation with reasoning",
+      "files": []
+    },
+    {
+      "id": 4,
+      "skill": "brand-website-strategy",
+      "prompt": "I need to get my website up and running. Right now I have nothing live. I do AI consulting AND I'm building this biohacking product. Should these be one website or two? What should the site look like? I want it to look professional and cutting-edge but not corporate. Help me figure out the whole brand and site plan.",
+      "expected_output": "One-brand-vs-two analysis with recommendation, complete visual identity (hex codes, font pairings, logo direction), full site architecture with page-by-page content outline, tech stack recommendation, and SEO strategy",
+      "files": []
+    },
+    {
+      "id": 5,
+      "skill": "portable-ai-instructions",
+      "prompt": "I'm starting a new Python project for my biohacking API. It's going to be FastAPI + PostgreSQL + Docker, deploying to Cloud Run. I use Claude Code, Cursor, and sometimes Codex. Can you generate all the project instruction files I need so every AI tool knows how to work with this codebase?",
+      "expected_output": "Complete, ready-to-use CLAUDE.md, AGENTS.md, GEMINI.md, .cursorrules, and .github/copilot-instructions.md files, all consistent with each other but tailored to each tool's strengths",
+      "files": []
+    }
+  ]
+}
