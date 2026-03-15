@@ -1,12 +1,24 @@
 ---
 name: business-genius
 description: |
-  Genius-level entrepreneurial and business specialist who combines deep market intelligence, startup methodology, and future-focused trend analysis to help identify, validate, and build high-profit businesses from scratch. This specialist excels at finding niche opportunities with massive profit potential but low barriers to entry, especially those that can be accelerated exponentially with AI and agentic automation. Expert in: market research and niche identification, competitive moat building that big players can't easily replicate, bootstrapping strategies for solo founders, revenue model design, go-to-market strategy, and leveraging technology (especially AI) as a force multiplier to move 10x faster than traditional businesses. Use this skill whenever the user asks about business ideas, starting a business, finding profitable niches, market opportunities, revenue strategies, business models, competitive advantages, bootstrapping, scaling, go-to-market, or building wealth through entrepreneurship. Also trigger when the user says "where can I make money," "what business should I build," "is this a good idea," "how do I compete with big players," "help me find a niche," or when any conversation touches on business strategy, market analysis, or entrepreneurial decision-making.
+  Master orchestrator for the complete business-building skill suite. Combines market intelligence,
+  startup methodology, and AI-amplified strategy to identify, validate, and build high-profit
+  businesses — then routes to the right specialist skill for execution depth. This skill is the
+  top-level intelligence layer; it diagnoses the user's situation, identifies the highest-leverage
+  intervention, and hands off to the appropriate sub-skill (entrepreneurial-os, business-plan-architect,
+  pricing-strategist, financial-model-architect, go-to-market-engine, marketing-strategist,
+  copywriting-conversion, content-marketing-machine, social-media-architect, growth-hacking-engine,
+  sales-closer, personal-brand-builder, community-builder, micro-saas-builder, ai-business-optimizer).
+  Use this skill whenever the user asks about business ideas, starting a business, finding profitable
+  niches, market opportunities, revenue strategies, business models, competitive advantages,
+  bootstrapping, scaling, or building wealth through entrepreneurship. Also trigger for "where can
+  I make money," "what should I build next," "how do I grow faster," "is this a good idea," or any
+  high-level business strategy question. This skill will answer directly OR route to the specialist.
 metadata:
   author: aaron-deyoung
-  version: "1.0"
+  version: "2.0"
   domain-category: strategy
-  adjacent-skills: market-intelligence, ai-agentic-specialist, brand-website-strategy
+  adjacent-skills: market-intelligence, ai-agentic-specialist, brand-website-strategy, entrepreneurial-os, go-to-market-engine
   last-reviewed: "2026-03-15"
   review-trigger: "Major market shift in AI consulting, new high-leverage business model emerges, significant regulatory change"
 ---
@@ -234,12 +246,79 @@ two-week sprints. If none convert, question whether the pain point is urgent eno
 
 ---
 
+## Skill Routing Guide (Orchestrator Logic)
+
+When a business question arrives, route to the specialist skill that best addresses it:
+
+```
+"I don't know what stage I'm in or what to focus on"
+  → entrepreneurial-os (founder operating system, stage-gate model)
+
+"I need to write a business plan / pitch deck / investor memo"
+  → business-plan-architect
+
+"How should I price this? / Am I charging enough?"
+  → pricing-strategist
+
+"I need to model my financials / understand my runway / build projections"
+  → financial-model-architect
+
+"How do I get my first customers? / Launch strategy?"
+  → go-to-market-engine
+
+"What marketing channels should I use? / How do I position this?"
+  → marketing-strategist
+
+"My website/emails/ads aren't converting"
+  → copywriting-conversion
+
+"I want to grow organic traffic / start a newsletter / build a content engine"
+  → content-marketing-machine
+
+"How do I grow on LinkedIn / X / YouTube / TikTok?"
+  → social-media-architect
+
+"How do I grow faster? PLG? Viral loop? Referral program?"
+  → growth-hacking-engine
+
+"I need to close more deals / build a sales process"
+  → sales-closer
+
+"I want to build my personal brand / become known as an expert"
+  → personal-brand-builder
+
+"I want to build a community around my product / brand"
+  → community-builder
+
+"I want to build a SaaS product / micro-SaaS"
+  → micro-saas-builder
+
+"I want to automate my business with AI / build an AI ops stack"
+  → ai-business-optimizer
+
+"I need to find a profitable market / validate a business idea"
+  → market-intelligence (existing skill)
+```
+
 ## Composability
 
-**Hands off to:**
-- `market-intelligence` — for deep TAM/SAM/SOM analysis and competitive landscape mapping
-- `brand-website-strategy` — once a business direction is chosen and needs to be communicated
-- `ai-agentic-specialist` — to design the AI-amplified operations that will make the business viable as a solo founder
+**Hands off to (by use case):**
+- `entrepreneurial-os` — founder operating decisions, stage-gate, weekly rhythm
+- `business-plan-architect` — formal business plan, investor pitch, executive summary
+- `pricing-strategist` — pricing model design, packaging, WTP research
+- `financial-model-architect` — unit economics, runway, 3-scenario financial model
+- `go-to-market-engine` — ICP definition, channel selection, launch sequencing
+- `marketing-strategist` — positioning, messaging hierarchy, full-funnel strategy
+- `copywriting-conversion` — landing pages, email sequences, conversion copy
+- `content-marketing-machine` — SEO, newsletter, content repurposing system
+- `social-media-architect` — LinkedIn, X, YouTube, TikTok platform strategy
+- `growth-hacking-engine` — PLG, viral loops, activation, retention, A/B testing
+- `sales-closer` — MEDDIC, Challenger Sale, objection handling, deal closing
+- `personal-brand-builder` — thought leadership, LinkedIn domination, monetization ladder
+- `community-builder` — platform selection, flywheel design, community monetization
+- `micro-saas-builder` — niche validation, MVP, $0 to $10K MRR playbook
+- `ai-business-optimizer` — AI operations audit, agentic workflows, ROI measurement
+- `market-intelligence` — TAM/SAM/SOM analysis, competitive landscape
 
 **Receives from:**
 - `market-intelligence` — validated market data and opportunity scores feed back into business strategy
