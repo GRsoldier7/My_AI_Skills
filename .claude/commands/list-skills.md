@@ -5,48 +5,76 @@ description: Show the complete skill inventory with categories, descriptions, an
 
 # Skill Library Inventory
 
-List all available skills from the skill library. For each skill, show: name, category, one-line description, and how to activate it.
+**36 skills across 6 categories.** Use any skill with its slash command (e.g., `/polychronos-team`).
 
-## Core Orchestration (3 skills)
+## Core Orchestration (`skills/core/`) — 4 skills
 
 | Skill | Command | Description |
 |-------|---------|-------------|
+| skill-builder | `/skill-builder` | Meta-skill: creates, audits, and improves skills using a 5-module pipeline + 10-dimension quality rubric |
 | polychronos-team | `/polychronos-team` | Multi-agent orchestration with B.L.A.S.T. protocol deploying 13 specialist roles |
-| prompt-amplifier | `/prompt-amplifier` | Transforms prompts into precision-engineered instructions for maximum AI output |
-| portable-ai-instructions | `/portable-ai-instructions` | Generates project instruction files (CLAUDE.md, AGENTS.md, GEMINI.md, etc.) |
+| prompt-amplifier | `/prompt-amplifier` | Transforms any prompt into precision-engineered instructions for maximum AI output |
+| portable-ai-instructions | `/portable-ai-instructions` | Generates CLAUDE.md, AGENTS.md, GEMINI.md, .cursorrules tailored to each AI tool |
 
-## AI & Strategy (3 skills)
-
-| Skill | Command | Description |
-|-------|---------|-------------|
-| ai-agentic-specialist | `/ai-agentic-specialist` | Bleeding-edge AI/LLM landscape intelligence, tool evaluation, and agentic team design |
-| business-genius | `/business-genius` | Entrepreneurial strategy, niche identification, and AI-amplified moat building |
-| market-intelligence | `/market-intelligence` | Market research with TAM/SAM/SOM analysis, competitive landscaping, opportunity scoring |
-
-## Product & Infrastructure (3 skills)
+## Strategy & Business (`skills/strategy/`) — 8 skills
 
 | Skill | Command | Description |
 |-------|---------|-------------|
-| biohacking-data-pipeline | `/biohacking-data-pipeline` | Data pipeline architecture for health/supplement/biomarker data with provenance tracking |
-| brand-website-strategy | `/brand-website-strategy` | Brand positioning, visual identity, website architecture, SEO, conversion optimization |
-| cloud-migration-playbook | `/cloud-migration-playbook` | Proxmox homelab to GCP migration: Docker, Cloud Run, Cloud SQL, Terraform, security |
+| business-genius | `/business-genius` | Master orchestrator for the full business-building suite; routes to specialist sub-skills |
+| entrepreneurial-os | `/entrepreneurial-os` | Founder operating system: stage-gate model, weekly rhythm, pivot/persist framework |
+| ai-agentic-specialist | `/ai-agentic-specialist` | Bleeding-edge AI/LLM landscape intelligence, tool evaluation, agentic team design |
+| market-intelligence | `/market-intelligence` | TAM/SAM/SOM analysis, competitive landscaping, opportunity scoring |
+| business-plan-architect | `/business-plan-architect` | Business plans, investor decks, executive summaries, 7 Powers framework |
+| pricing-strategist | `/pricing-strategist` | Value-based pricing, packaging psychology, WTP research, SaaS pricing models |
+| financial-model-architect | `/financial-model-architect` | Unit economics, runway, 3-scenario modeling, SaaS metrics, investor-ready financials |
+| go-to-market-engine | `/go-to-market-engine` | ICP definition, channel selection, launch sequencing, PMF measurement |
 
-## Microsoft Power Platform (8 skills)
+## Growth & Marketing (`skills/growth/`) — 8 skills
 
 | Skill | Command | Description |
 |-------|---------|-------------|
-| power-bi | `/power-bi` | Data modeling, DAX mastery, Power Query, star schema, RLS, deployment |
+| marketing-strategist | `/marketing-strategist` | Positioning (April Dunford), messaging hierarchy, full-funnel strategy, channel ROI |
+| copywriting-conversion | `/copywriting-conversion` | PAS/AIDA/BAB/FAB/STAR frameworks, landing pages, email sequences, ad copy |
+| content-marketing-machine | `/content-marketing-machine` | SEO pillar/cluster, newsletter systems, one-to-many content repurposing |
+| social-media-architect | `/social-media-architect` | LinkedIn, X/Twitter, YouTube, TikTok platform-specific strategy and consistency systems |
+| growth-hacking-engine | `/growth-hacking-engine` | PLG design, viral loops, activation, retention, ICE scoring, A/B testing |
+| personal-brand-builder | `/personal-brand-builder` | LinkedIn domination, thought leadership positioning, authority monetization ladder |
+| sales-closer | `/sales-closer` | SPIN Selling, Challenger Sale, MEDDIC/MEDDPICC, discovery calls, objection handling |
+| community-builder | `/community-builder` | Platform selection, flywheel design, engagement mechanics, community monetization |
+
+## Product & Infrastructure (`skills/product/`) — 5 skills
+
+| Skill | Command | Description |
+|-------|---------|-------------|
+| micro-saas-builder | `/micro-saas-builder` | Niche validation, concierge MVP, $0→$10K MRR playbook, churn prevention |
+| ai-business-optimizer | `/ai-business-optimizer` | AI business audit, agentic workflow design, tool stack ROI, process automation |
+| biohacking-data-pipeline | `/biohacking-data-pipeline` | Health/supplement/biomarker data pipelines, schema design, ETL, API integrations |
+| brand-website-strategy | `/brand-website-strategy` | Brand identity, visual systems, website architecture, SEO, conversion optimization |
+| cloud-migration-playbook | `/cloud-migration-playbook` | Proxmox homelab → GCP: Docker, Cloud Run, Cloud SQL, Terraform, security hardening |
+
+## Engineering (`skills/engineering/`) — 3 skills
+
+| Skill | Command | Description |
+|-------|---------|-------------|
+| code-review | `/code-review` | Expert code reviewer: correctness, security, failure handling, performance |
+| database-design | `/database-design` | PostgreSQL schema architect: normalization, indexes, JSONB, provenance patterns |
+| testing-strategy | `/testing-strategy` | pytest expert: fixture design, transaction isolation, hypothesis, async testing |
+
+## Microsoft Power Platform (`skills/microsoft/`) — 8 skills
+
+| Skill | Command | Description |
+|-------|---------|-------------|
+| power-bi | `/power-bi` | Data modeling, DAX mastery, Power Query, star schema, RLS, deployment pipelines |
 | power-apps | `/power-apps` | Canvas/Model-driven apps, Power Fx, delegation, components, ALM |
 | power-automate | `/power-automate` | Cloud flows, desktop RPA, expressions, error handling, approvals |
 | sharepoint | `/sharepoint` | Site architecture, lists, PnP PowerShell, search, permissions, migration |
-| copilot-studio | `/copilot-studio` | Bot design, topics, generative AI, plugin actions, adaptive cards |
+| copilot-studio | `/copilot-studio` | Bot design, topics, generative AI orchestration, plugin actions, adaptive cards |
 | power-platform-admin | `/power-platform-admin` | Environments, DLP, CoE Starter Kit, governance, licensing |
-| microsoft-dataverse | `/microsoft-dataverse` | Table design, security model, Web API, FetchXML, plugins |
-| m365-integration | `/m365-integration` | Microsoft Graph API, Teams dev, MSAL auth, webhooks |
+| microsoft-dataverse | `/microsoft-dataverse` | Table design, security model, Web API, FetchXML, solution management |
+| m365-integration | `/m365-integration` | Microsoft Graph API, Teams development, MSAL auth, M365 cross-service integration |
 
 ---
 
-**Total: 17 skills across 4 categories**
+**Total: 36 skills across 6 categories**
 
-To activate any skill, use its slash command (e.g., `/polychronos-team`).
-Skills are stored in the skill library at: `skills/`
+Skills are stored in `skills/` within the skill library repo. To add a new skill, use `/skill-builder`.

@@ -36,14 +36,15 @@ I'm Aaron DeYoung — AI consultant, entrepreneur, and builder. I help companies
 
 ## The Skill Library
 
-This CLAUDE.md works in concert with a library of **30 specialist skills** organized in `skills/`. Each skill is a deep-domain expert that activates on demand via slash commands (e.g., `/polychronos-team`). Use `/list-skills` to see the full inventory. Skills are designed to compose — `business-genius` orchestrates the full business-building suite; `polychronos-team` orchestrates everything.
+This CLAUDE.md works in concert with a library of **36 specialist skills** organized in `skills/`. Each skill is a deep-domain expert that activates on demand via slash commands (e.g., `/polychronos-team`). Use `/list-skills` to see the full inventory. Skills are designed to compose — `business-genius` orchestrates the full business-building suite; `polychronos-team` orchestrates everything.
 
-### Core Orchestration (`skills/core/`)
+### Core Orchestration (`skills/core/`) — 4 skills
+- **skill-builder** — Meta-skill for creating, auditing, and improving other skills. 5-module pipeline + 10-dimension quality rubric. Use whenever adding a new skill or auditing an existing one.
 - **polychronos-team** — Multi-agent orchestration with the B.L.A.S.T. protocol. Deploys 13 genius-level specialists with structured handoffs and quality gates. Use for any non-trivial project work.
 - **prompt-amplifier** — Transforms any prompt into a precision-engineered instruction that extracts maximum capability from any AI model.
 - **portable-ai-instructions** — Generates project instruction files (CLAUDE.md, AGENTS.md, GEMINI.md, .cursorrules) tailored to each AI tool's strengths.
 
-### Strategy (`skills/strategy/`)
+### Strategy & Business (`skills/strategy/`) — 8 skills
 - **business-genius** — Master orchestrator for the full business-building suite. Routes to specialist sub-skills. Use as the entry point for any business strategy question.
 - **ai-agentic-specialist** — Bleeding-edge AI landscape intelligence. LLM evaluation, agentic team design, cost-saving strategies.
 - **market-intelligence** — Deep market research: TAM/SAM/SOM analysis, competitive landscapes, opportunity scoring.
@@ -53,7 +54,7 @@ This CLAUDE.md works in concert with a library of **30 specialist skills** organ
 - **financial-model-architect** — Unit economics, runway, 3-scenario modeling, SaaS metrics, investor-ready financials.
 - **go-to-market-engine** — ICP definition, channel selection matrix, launch sequencing, PMF measurement, founder-led sales.
 
-### Growth (`skills/growth/`)
+### Growth & Marketing (`skills/growth/`) — 8 skills
 - **marketing-strategist** — Brand positioning (April Dunford), messaging hierarchy, full-funnel strategy, channel ROI.
 - **copywriting-conversion** — PAS/AIDA/BAB/FAB/STAR frameworks, landing pages, email sequences, ad copy.
 - **content-marketing-machine** — SEO topical authority, pillar/cluster architecture, newsletter systems, repurposing workflows.
@@ -63,15 +64,20 @@ This CLAUDE.md works in concert with a library of **30 specialist skills** organ
 - **personal-brand-builder** — LinkedIn domination, thought leadership positioning, authority monetization ladder.
 - **community-builder** — Platform selection, flywheel design, engagement mechanics, community monetization.
 
-### Product & Infrastructure (`skills/product/`)
+### Engineering (`skills/engineering/`) — 3 skills
+- **code-review** — Expert code reviewer: correctness, security, failure handling, data integrity, performance.
+- **database-design** — PostgreSQL schema architect: normalization, indexes, constraints, JSONB, provenance patterns.
+- **testing-strategy** — pytest expert: fixture design, transaction-rollback isolation, hypothesis, async testing.
+
+### Product & Infrastructure (`skills/product/`) — 5 skills
 - **micro-saas-builder** — Niche validation, concierge MVP, $0→$10K MRR playbook, churn prevention.
 - **ai-business-optimizer** — AI business audit, agentic workflow design, tool stack ROI, process automation.
 - **brand-website-strategy** — Brand identity, visual systems, website architecture, SEO, conversion optimization.
 - **biohacking-data-pipeline** — Data pipeline architect for health/supplement data. Schema design, ETL pipelines, API integrations.
 - **cloud-migration-playbook** — Proxmox homelab → GCP production. Docker, Terraform, Cloud Run, Cloud SQL, security hardening.
 
-### Microsoft Power Platform (`skills/microsoft/`)
-- 8 skills: **power-bi**, **power-apps**, **power-automate**, **sharepoint**, **copilot-studio**, **power-platform-admin**, **microsoft-dataverse**, **m365-integration**
+### Microsoft Power Platform (`skills/microsoft/`) — 8 skills
+- **power-bi**, **power-apps**, **power-automate**, **sharepoint**, **copilot-studio**, **power-platform-admin**, **microsoft-dataverse**, **m365-integration**
 
 ## BLAST Protocol (For All Non-Trivial Work)
 
