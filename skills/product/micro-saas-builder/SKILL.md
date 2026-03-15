@@ -162,23 +162,28 @@ MVP minimum to ship:
 
 ### Tech Stack Choices for Speed (Solo Founder)
 ```
-SaaS starter stack (2025):
-  Frontend:   Next.js (React) with Tailwind CSS + shadcn/ui
-  Backend:    Next.js API routes (simple) OR FastAPI (Python if ML involved)
-  Database:   Supabase (Postgres + auth + storage + realtime in one)
-  Auth:       Clerk or Supabase Auth (never build custom auth for v1)
-  Payments:   Lemon Squeezy (simpler than Stripe; handles EU VAT)
-              OR Stripe Billing (more powerful, more setup)
-  Deployment: Vercel (frontend) + Railway or Render (backend)
-  AI/LLM:     Anthropic SDK / OpenAI SDK (direct) or Vercel AI SDK
+// The solo-founder stack optimizes for: fast MVP, minimal ops burden, lowest cost.
+// Specific tools change; the CAPABILITIES you need don't.
+// Validate current ecosystem options (pricing, feature gaps) before committing.
 
-No-code SaaS stack (for non-developers):
-  UI:         Bubble or WeWeb
-  Backend:    Xano or Supabase
-  Auth:       Clerk
-  Automations: Zapier or Make
-  Payments:   Lemon Squeezy
-  AI:         Make + Claude API (via webhook)
+Code-first stack — select by capability need:
+  Frontend:   React meta-framework (Next.js is current default; validate for RSC stability)
+  Styling:    Utility-first CSS + headless component library (eliminates design decisions)
+  Backend:    Framework API routes for simple CRUD OR Python framework if ML/data-heavy
+  Database:   Managed Postgres with auth + storage bundled (reduces infra surface area)
+  Auth:       Never build custom auth for v1. Use managed auth service (e.g., Clerk, Auth0)
+  Payments:   Prefer payment processors handling EU VAT automatically; compare Stripe vs
+              simpler alternatives for your customer geography
+  Deployment: Edge/serverless platform for frontend + managed container service for backend
+  AI/LLM:     SDK for your chosen LLM provider OR unified AI SDK (abstracts provider)
+
+No-code/low-code stack (for non-developers or fastest possible validation):
+  UI:         Visual app builder with database connectivity (e.g., Bubble, WeWeb)
+  Backend:    BaaS platform (e.g., Xano, Supabase, Firebase)
+  Auth:       Managed auth service
+  Automations: Workflow automation platform (e.g., Make, Zapier)
+  Payments:   Stripe or equivalent with hosted checkout
+  AI:         Automation platform + LLM API via HTTP webhook
 
 Rule: If it's been done before, use a tool. Build only your unique core.
 If auth took 2 weeks, that's 2 weeks not building the core product.

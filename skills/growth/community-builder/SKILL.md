@@ -15,7 +15,7 @@ metadata:
   domain-category: growth
   adjacent-skills: personal-brand-builder, growth-hacking-engine, social-media-architect, micro-saas-builder
   last-reviewed: "2026-03-15"
-  review-trigger: "Discord major feature change, Skool platform shift, Circle feature update, new community platform reaches critical mass"
+  review-trigger: "Discord major feature change, Skool platform shift, Circle feature update, new community platform reaches critical mass — review platform pricing and feature matrix quarterly"
 ---
 
 # Community Builder — Savant-Level Skill
@@ -28,40 +28,59 @@ Community mastery = **transformation over information** (members stay for who th
 
 ## 1. Platform Selection
 
-### Platform Comparison Matrix
+> **Note:** Community platform pricing and features change frequently. The criteria and trade-offs below are durable; specific prices and feature availability should be validated against current platform documentation before choosing.
+
+### Platform Selection Criteria
 ```
-Skool (2025 recommendation for monetized communities):
-  Best for: Paid communities with courses + forum
-  Pros: Built-in course player, gamification (points/levels), clean UX
-        Integrated payments, affiliate program built-in
-        Algorithm: All new posts visible to all members (no feed algorithm)
-  Cons: Less customizable, no free tier for creators, newer platform
-  Price: $99/mo for host. Members pay what you set.
+Select your platform by answering these questions first:
+
+1. Is monetization built into the platform, or will you bolt it on?
+   → Native monetization (e.g., Skool, Circle): simpler setup; less flexibility
+   → External payments (e.g., Memberful + Discord): more control; more complexity
+
+2. Is the primary format chat (real-time) or forum (async, discoverable)?
+   → Real-time chat (Discord-style): high energy; higher noise; requires moderation
+   → Forum/posts (Skool/Circle-style): lower noise; content is searchable and persistent
+
+3. What's your audience's existing platform habit?
+   → Developers/creators/gamers: Discord has massive existing user base
+   → Professionals/B2B: Slack familiarity; or dedicated platform for separation from work
+   → Course + community bundle: platforms with native course player (Skool, Circle, Kajabi)
+
+4. What does your monetization model require?
+   → Paid membership with tiers: needs native payment gating or Memberful integration
+   → Community as product add-on (e.g., SaaS user community): Discord or Slack is fine
+   → High-ticket mastermind: private Slack or Circle with video rooms
+```
+
+### Platform Comparison Matrix (Validate Current Pricing)
+```
+Course-integrated community platforms (e.g., Skool):
+  Best for: Paid communities bundling curriculum + discussion
+  Key strengths: Built-in course player, gamification, chronological feed (no algorithm)
+  Key weaknesses: Less customizable; platform lock-in risk
+  Pricing model: Flat monthly fee for host; you set member pricing
   Sweet spot: $49-197/mo membership with course curriculum + community
 
-Circle:
-  Best for: Mid-to-large paid communities, white-label look
-  Pros: Custom domain, spaces (sub-communities), livestreaming, events
-        Rich member profiles, most customizable
-  Cons: Can feel fragmented with too many spaces; more setup required
-  Price: $89-$399/mo. Member pricing you control.
+Feature-rich community platforms (e.g., Circle):
+  Best for: Mid-to-large paid communities wanting white-label look
+  Key strengths: Custom domain, spaces, livestreaming, events, rich member profiles
+  Key weaknesses: More setup required; can feel fragmented with too many spaces
+  Pricing model: Tiered by features; you control member pricing
   Sweet spot: $49-297/mo for professional communities with events
 
-Discord:
-  Best for: Free or low-cost communities; developer/gaming/creator audiences
-  Pros: Free, extremely flexible, best real-time chat, massive existing user base
-        Bots and automation ecosystem, voice channels
-  Cons: Noisy, notifications overwhelm members, discovery is hard
-        Difficult to monetize within Discord itself
-  Price: Free. Paywalled roles via Stripe/Memberful integration.
-  Sweet spot: Free + $5-15/mo supporter tier OR gateway to paid Skool/Circle
+Chat-first platforms (e.g., Discord):
+  Best for: Free or low-cost communities; developer/creator/gaming audiences
+  Key strengths: Free, real-time chat, voice channels, automation/bot ecosystem
+  Key weaknesses: Noisy; notifications overwhelm; hard to monetize natively
+  Pricing model: Free for host; gate paid roles via external payment integration
+  Sweet spot: Free community with paid tier gateway, or pipeline to paid platform
 
-Slack:
-  Best for: Professional B2B communities, companies with existing Slack users
-  Pros: Familiar UX for professionals, great integrations
-  Cons: Expensive at scale, channels get cluttered, no native monetization
-  Price: Free tier limited; paid starts $8.75/user/mo
-  Sweet spot: Internal team communities; not ideal for public paid communities
+Professional async platforms (e.g., Slack):
+  Best for: Professional B2B communities; orgs with existing Slack adoption
+  Key strengths: Familiar UX for professionals; strong integrations
+  Key weaknesses: Expensive at scale; channels get cluttered; no native monetization
+  Sweet spot: Internal team or customer success communities; not ideal for public paid
 ```
 
 ---

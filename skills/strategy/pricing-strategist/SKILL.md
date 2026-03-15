@@ -114,9 +114,9 @@ Outcome-Based:
   Pros: Perfectly aligned incentives
   Cons: Hard to measure; customers dispute attribution
 
-// 2026 recommendation: Usage-based with commitment discounts
+// Current trend: Usage-based with commitment discounts
 // (annual commitment at seat/usage floor → discounts → no ceiling)
-// The model that's eating pure per-seat and pure flat-rate.
+// Validate whether this remains the dominant model in your segment.
 ```
 
 ---

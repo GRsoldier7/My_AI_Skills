@@ -71,6 +71,10 @@ Map yours:
 
 ### LinkedIn Profile Optimization
 ```
+// LinkedIn changes its UI, character limits, and available profile features periodically.
+// Verify current specs (headline character count, section availability, Creator Mode options)
+// in LinkedIn's current help documentation before optimizing.
+
 Headline (220 characters — the most important real estate):
   ❌ Weak: "CEO at Acme Inc | Entrepreneur | Speaker"
   ✅ Strong: "I help solo founders build $1M ARR SaaS without a sales team | 10K+ makers helped | Writes on PLG + AI"

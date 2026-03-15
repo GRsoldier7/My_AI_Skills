@@ -192,11 +192,14 @@ Cold Email | $1,000 |   60  |  3%   |     2     | $500  |  2.4x ⚠️
 ## 4. B2B vs B2C Marketing Differences
 
 ```
+// Channel examples are representative; validate which specific platforms are dominant
+// in your segment — platform market share shifts over time.
+
 B2B Marketing:
   Buying cycle:    Weeks to months
   Decision makers: 3-7 people typically involved
   Content focus:   ROI, case studies, technical credibility
-  Channels:        LinkedIn, email, direct outreach, events, partnerships
+  Channels:        Professional social (LinkedIn-class), email, direct outreach, events, partnerships
   Hook:            Professional outcomes and risk reduction
   Proof:           Named customer logos, specific metrics, analyst coverage
 
@@ -204,7 +207,7 @@ B2C Marketing:
   Buying cycle:    Seconds to days
   Decision makers: One person (emotion-driven)
   Content focus:   Desire, identity, FOMO, community belonging
-  Channels:        TikTok, Instagram, YouTube, Pinterest, paid social
+  Channels:        Short-form video, visual social, YouTube, paid social (current: TikTok, Instagram, Reels)
   Hook:            Identity and aspiration ("be the person who...")
   Proof:           Social proof quantity (reviews, UGC, before/afters)
 
@@ -212,7 +215,7 @@ SMB (hybrid):
   Buying cycle:    Days to 2 weeks
   Decision makers: 1-2 (owner/CEO decides fast)
   Content focus:   Time savings + money savings (practical ROI)
-  Channels:        LinkedIn, Google Search, email, podcasts
+  Channels:        Professional social, search (Google/Bing), email, podcasts
   Hook:            "Do more with fewer people"
   Proof:           Specific time/money saved, peer testimonials
 ```

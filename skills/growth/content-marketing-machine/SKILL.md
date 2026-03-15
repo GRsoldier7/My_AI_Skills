@@ -133,9 +133,11 @@ Behind-the-Scenes: "Here's what I'm building and what I'm learning"
 
 ### Newsletter System Architecture
 ```
-Platform: Beehiiv (recommended) or ConvertKit
-  Beehiiv: Built-in referral program, best monetization, modern UX
-  ConvertKit: Best automations, best for digital product creators
+// Platform selection criteria (validate current tools — this market shifts):
+//   → Needs built-in referral program? Look for platforms with native referral mechanics
+//   → Heavy automation/segmentation needed? Look for platforms optimized for sequences
+//   → Want to monetize directly? Look for platforms with paid subscription features
+// Current representative options: Beehiiv, ConvertKit/Kit, Ghost, Substack, Mailchimp
 
 Metrics to track (weekly):
   - Subscribers (count + weekly growth)
@@ -146,16 +148,16 @@ Metrics to track (weekly):
 
 Growth tactics:
   1. Lead magnets: Gated resource that requires email (templates, calculators)
-  2. Referral program: Beehiiv built-in: "Share this newsletter, get [reward]"
+  2. Referral program: "Share this newsletter, get [reward]" — use platform's native feature
   3. Cross-promotions: Newsletter swap with similar-size, non-competing newsletters
   4. Content upgrades: "Get the full checklist / template at bottom of this article"
   5. Podcast guesting: Mention newsletter at end of every interview
 
-Monetization ladder:
+Monetization ladder (price ranges are current market estimates — validate):
   0-1K subscribers: Build and learn. Zero monetization pressure.
-  1K-5K: Sponsored content ($200-500/mention), affiliate links
+  1K-5K: Sponsored content (~$200-500/mention), affiliate links
   5K-15K: Course launch, digital product, community access
-  15K+: Premium tier, sponsorships ($2K-10K/send), paid community
+  15K+: Premium tier, sponsorships (~$2K-10K/send), paid community
 ```
 
 ---

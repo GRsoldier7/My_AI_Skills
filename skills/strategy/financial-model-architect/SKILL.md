@@ -361,7 +361,7 @@ Fallback: Rebuild the model with a single-page summary tab. The summary shows th
 
 **Failure: AI product COGS blow up unit economics**
 Detection: As usage scales, infrastructure and LLM API costs grow faster than revenue. Gross margin compresses below 50%.
-Fallback: AI inference cost management: (1) Cache aggressively — repeat queries cost $0 on cache hit; (2) Right-size models — use Claude Haiku for simple tasks, Opus only when needed; (3) Batch non-real-time requests at off-peak pricing; (4) Build pricing with usage floors — minimum commit per month means low-usage customers are profitable.
+Fallback: AI inference cost management: (1) Cache aggressively — repeat queries hit the cache at minimal cost; (2) Right-size models — use the smallest model capable of the task, reserve flagship models only where quality requires it; (3) Batch non-real-time requests at off-peak pricing; (4) Build pricing with usage floors — minimum commit per month means low-usage customers are profitable.
 
 ---
 

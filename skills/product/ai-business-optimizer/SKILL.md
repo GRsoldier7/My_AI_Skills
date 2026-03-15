@@ -16,7 +16,7 @@ metadata:
   domain-category: product
   adjacent-skills: ai-agentic-specialist, entrepreneurial-os, micro-saas-builder, cloud-migration-playbook
   last-reviewed: "2026-03-15"
-  review-trigger: "Claude/GPT major capability update, new agentic framework release, AI tool pricing shift, new automation platform breakthrough"
+  review-trigger: "Major LLM capability release, new agentic framework reaches production-readiness, AI tool pricing shift, new automation platform emerges — review tool stack section every 3-6 months"
 ---
 
 # AI Business Optimizer — Savant-Level Skill
@@ -93,76 +93,76 @@ Product & Engineering:
 
 ---
 
-## 2. The 2025 AI Tool Stack
+## 2. Current AI Tool Landscape
+
+> **Note:** AI tools, pricing, and capabilities change rapidly. The categories and selection criteria below are durable; specific tool names and prices are representative examples — validate against current offerings before committing. Review this section every 3-6 months.
 
 ### Recommended Stack by Function
 ```
 Thinking & Strategy:
-  Claude Opus 4.6 (claude.ai/claude.ai Teams)
+  Reasoning-optimized LLM (e.g., frontier model from Anthropic, OpenAI, or Google)
     → Deep reasoning, long documents, strategic analysis
-  Perplexity Pro
-    → Real-time research with citations
-  NotebookLM (Google, free)
+  Real-time research tool with citations (e.g., Perplexity)
+    → Up-to-date information retrieval beyond training cutoff
+  Document-grounded research tool (e.g., NotebookLM or equivalent)
     → Deep research on uploaded documents (books, papers, transcripts)
 
 Coding & Building:
-  Claude Code (this system)
+  AI-native coding CLI or agent (e.g., Claude Code, Codex)
     → Full-stack development, architecture, debugging
-  Cursor IDE
-    → IDE-integrated coding with context-aware suggestions
-  v0 (Vercel)
-    → UI prototyping from natural language
+  IDE with AI integration (e.g., Cursor, GitHub Copilot)
+    → In-editor context-aware suggestions and completions
+  UI prototyping tool (e.g., v0, Bolt)
+    → Rapid UI from natural language before writing component code
 
 Content & Writing:
-  Claude (claude.ai) for long-form drafts and editing
-  Copy.ai or Jasper for structured content workflows
-  Descript for audio/video content (AI transcription + editing)
-  Opus Clip for short-form video repurposing
+  Frontier LLM (e.g., claude.ai) for long-form drafts and editing
+  Structured content workflow tool for repeatable content pipelines
+  Audio/video transcription + editing tool (e.g., Descript or equivalent)
+  Short-form video repurposing tool for multi-platform distribution
 
 Automation & Orchestration:
-  Make (formerly Integromat)
-    → Visual workflow automation; better than Zapier for complex flows
-  n8n (self-hosted option)
-    → Open-source, runs on your infrastructure
-  Clay
-    → Data enrichment + personalized outreach at scale
+  Visual workflow automation platform (e.g., Make, Zapier)
+    → No-code/low-code trigger-action automation across apps
+  Self-hosted open-source automation (e.g., n8n)
+    → Runs on your infrastructure; no per-operation pricing
+  Data enrichment + personalized outreach platform (e.g., Clay)
+    → Lead enrichment + AI-personalized messaging at scale
 
 Research & Intelligence:
-  Perplexity Pro (real-time)
-  Claude Projects (persistent context)
-  Exa.ai (semantic web search API)
+  Real-time web search with LLM synthesis
+  LLM with persistent project/context management
+  Semantic web search API for programmatic research
 
 Voice & Meeting:
-  Otter.ai or Fireflies.ai
-    → Meeting transcription + summary + action items
-  ElevenLabs
-    → Voice synthesis for content/demos
+  AI transcription + meeting summary tool (e.g., Otter.ai, Fireflies)
+    → Meeting notes, action items, searchable transcripts
+  Voice synthesis tool for demos and content
 ```
 
 ### AI Stack Budget Tiers
 ```
-Bootstrapper ($50-100/month):
-  Claude.ai Pro ($20/mo)
-  Perplexity Pro ($20/mo)
-  Make (starter $10/mo)
-  Total: ~$50/mo
+// Prices below are representative ranges — validate current pricing before committing.
+
+Bootstrapper (~$50-150/month):
+  Frontier LLM subscription tier (~$15-25/mo)
+  Real-time research tool (~$15-25/mo)
+  Workflow automation starter plan (~$10-20/mo)
   ROI: 20-30 hours/week recovered if used systematically
 
-Growth Stage ($200-500/month):
+Growth Stage (~$200-500/month):
   All bootstrapper tools +
-  Claude Code (session-based) or Cursor Pro ($20/mo)
-  Clay (starter $149/mo)
-  Descript (creator $24/mo)
-  Total: ~$250/mo
+  AI coding tool subscription (~$15-25/mo)
+  Data enrichment + outreach platform starter tier (~$100-200/mo)
+  Content/media production tool (~$20-50/mo)
   ROI: 40-60 hours/week recovered; 3x content output
 
-Scale ($500-2K/month):
+Scale (~$500-2K/month):
   All growth tools +
-  Claude Teams or API access
-  n8n (self-hosted for complex automations)
-  Custom agentic workflows via Claude API
-  Total: ~$800-1,500/mo
-  ROI: Entire departments automated; new leverage impossible without AI
+  LLM Teams/API access for custom workflows
+  Self-hosted automation (infrastructure cost only)
+  Custom agentic workflows via LLM API
+  ROI: Entire departments automated; leverage impossible without AI
 ```
 
 ---
@@ -187,10 +187,15 @@ Fully automated (set and forget):
   Examples: Data sync, scheduled reports, form routing, monitoring alerts
 ```
 
-### Building an Agentic Workflow (Claude API)
+### Building an Agentic Workflow (LLM API — Anthropic SDK Pattern)
 ```python
 # Pattern: Multi-step agent with tools
+# Note: Replace MODEL_NAME with current flagship model from your chosen provider.
+# For Anthropic, check https://docs.anthropic.com/en/docs/about-claude/models
+# for the latest recommended model ID before deploying.
 from anthropic import Anthropic
+
+MODEL_NAME = "claude-opus-4-6"  # Replace with current recommended model
 
 client = Anthropic()
 
@@ -208,8 +213,8 @@ tools = [
         }
     },
     {
-        "name": "write_to_notion",
-        "description": "Write structured content to Notion database",
+        "name": "write_to_storage",
+        "description": "Write structured content to your data store",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -230,13 +235,13 @@ def run_competitive_intelligence(competitor_name: str):
             "content": f"""Research {competitor_name} and produce a competitive
             intelligence briefing covering: recent news, product updates,
             pricing changes, customer sentiment, and strategic positioning.
-            Save the briefing to Notion."""
+            Save the briefing to storage."""
         }
     ]
 
     while True:
         response = client.messages.create(
-            model="claude-opus-4-6",
+            model=MODEL_NAME,
             max_tokens=4096,
             tools=tools,
             messages=messages
@@ -289,17 +294,18 @@ Pattern 3: Weekly Business Intelligence Report
 
 ### AI Investment Tracking
 ```
-Monthly AI ROI report:
+Monthly AI ROI report (fill in your actual tool costs — prices change; validate current pricing):
 
-Tool/Workflow        | Monthly Cost | Hours Saved | Hourly Rate | Annual Value | ROI
-─────────────────────────────────────────────────────────────────────────────────────
-Claude Pro           | $20          | 25h         | $150        | $45,000      | 2,250x
-Perplexity Pro       | $20          | 5h          | $150        | $9,000       | 450x
-Make (automation)    | $30          | 15h         | $150        | $27,000      | 900x
-Clay (outreach)      | $149         | 8h          | $150        | $14,400      | 97x
-─────────────────────────────────────────────────────────────────────────────────────
-Total                | $219/mo      | 53h         |             | $95,400      | 436x
+Tool/Workflow           | Monthly Cost | Hours Saved | Hourly Rate | Annual Value | ROI
+──────────────────────────────────────────────────────────────────────────────────────
+LLM subscription        | $_____       | ____h       | $150        | $_______     | ___x
+Research tool           | $_____       | ____h       | $150        | $_______     | ___x
+Workflow automation     | $_____       | ____h       | $150        | $_______     | ___x
+Outreach/enrichment     | $_____       | ____h       | $150        | $_______     | ___x
+──────────────────────────────────────────────────────────────────────────────────────
+Total                   | $_____/mo    | ____h       |             | $_______     | ___x
 
+// Illustrative example at $150/hr: A $20/mo tool saving 25h/week = $45,000 annual value = 2,250x ROI.
 // Rule: Any tool with ROI < 10x should be replaced or eliminated.
 // Any workflow saving >10h/week that isn't automated yet should be.
 ```

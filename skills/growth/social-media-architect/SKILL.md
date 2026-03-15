@@ -15,7 +15,7 @@ metadata:
   domain-category: growth
   adjacent-skills: content-marketing-machine, personal-brand-builder, copywriting-conversion, marketing-strategist
   last-reviewed: "2026-03-15"
-  review-trigger: "Major platform algorithm update (LinkedIn feed change, X algorithm shift), new platform feature changes content format strategy, emerging platform reaches critical mass"
+  review-trigger: "Major platform algorithm update (LinkedIn feed change, X algorithm shift), new platform feature changes content format strategy, emerging platform reaches critical mass — review algorithm mechanics sections quarterly"
 ---
 
 # Social Media Architect — Savant-Level Skill
@@ -26,9 +26,11 @@ Social media mastery = **native content, not reposts** (each platform has its ow
 
 ---
 
+> **Note:** Platform algorithms change frequently. The patterns below reflect currently observed mechanics — validate against platform-specific creator documentation and industry reports quarterly. When in doubt, test on your own account for 4 weeks before drawing conclusions.
+
 ## 1. LinkedIn (Primary B2B & Founder Platform)
 
-### LinkedIn Algorithm Mechanics (2025)
+### LinkedIn Algorithm Mechanics (Current Observed Patterns)
 ```
 What LinkedIn rewards:
   ✅ Content that generates comments (comments > likes > reactions)
@@ -110,7 +112,7 @@ Pattern 5: "Most X do Y. The best X do Z."
 
 ## 2. X / Twitter (Thought Leadership + Tech Audience)
 
-### X Algorithm & Strategy (2025)
+### X Algorithm & Strategy (Current Observed Patterns)
 ```
 Algorithm rewards:
   ✅ Replies (conversation > passive consumption)
@@ -252,10 +254,10 @@ Friday (20 min):
 
 Total: ~95 minutes/week = 10 pieces of content across 3 platforms
 
-Stack:
-  Scheduling: Typefully (LinkedIn + Twitter) + Later (TikTok + IG)
-  Templates:  Canva (carousel slides) with locked brand kit
-  Recording:  iPhone + ring light + CapCut for quick mobile edits
+Stack (validate current tool offerings):
+  Scheduling: Social scheduling tool supporting LinkedIn + X (e.g., Typefully, Buffer, Publer)
+  Templates:  Design tool with brand kit lock (e.g., Canva Pro or Figma)
+  Recording:  Smartphone + ring light + mobile video editor for quick edits
 ```
 
 ### The Content Batch Day

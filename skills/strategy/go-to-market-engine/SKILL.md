@@ -81,7 +81,7 @@ Example — Productivity SaaS for Engineers:
 0 → First 10 customers:
   Method: Direct outreach to YOUR network
   Why: Fastest feedback loop, zero CAC, maximum signal
-  How: LinkedIn DMs, email, Slack communities you're in
+  How: Direct messages on professional networks, email, communities you're already part of
   Goal: Not to scale — to learn whether you have a real problem
 
 10 → First 100 customers:

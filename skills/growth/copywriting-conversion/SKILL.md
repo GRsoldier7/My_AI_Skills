@@ -246,6 +246,8 @@ Email 3: The breakup email
 
 ## 4. Ad Copy Principles
 
+> **Note:** Platform-specific ad formats (character limits, aspect ratios, video length windows) change with algorithm updates. The principles below are durable; platform-specific specs should be validated in each platform's current ad documentation before launching campaigns.
+
 ### Direct Response Ad Formula
 ```
 Hook (first 3 seconds or first line):

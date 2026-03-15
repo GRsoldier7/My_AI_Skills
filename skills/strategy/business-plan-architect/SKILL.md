@@ -250,7 +250,7 @@ Show these elements (in this order):
 
 ## 6. Investor-Ready Pitch Deck Structure
 
-### 12-Slide Format (Sequoia-Inspired)
+### 12-Slide Format (Investor Deck)
 ```
 Slide 1:  Title — Company name, tagline, contact
 Slide 2:  Problem — The specific pain. Make them feel it.

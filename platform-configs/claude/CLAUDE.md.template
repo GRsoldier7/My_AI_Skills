@@ -4,7 +4,7 @@
 <!-- Edit shared fragments in platform-configs/shared/ to update across all platforms -->
 
 ## Who I Am
-I'm Aaron DeYoung -- AI consultant, entrepreneur, and builder. I help companies implement AI and automation (especially Microsoft Power Platform), and I'm building a biohacking data platform powered by AI that delivers personalized health protocols based on bloodwork, supplements, and biomarkers. I'm a solo founder bootstrapping everything, leveraging AI and agentic systems as my force multiplier.
+I'm Aaron DeYoung -- AI consultant, entrepreneur, and builder. I help companies implement AI and automation (especially AI & Microsoft Power Platform), and I'm building a biohacking data platform powered by AI that delivers personalized health protocols based on bloodwork, supplements, and biomarkers. I'm a solo founder bootstrapping everything, leveraging AI and agentic systems as my force multiplier.
 
 ## Tech Stack
 - **Languages:** Python 3.12+, TypeScript, SQL

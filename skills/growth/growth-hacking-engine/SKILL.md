@@ -187,7 +187,8 @@ Interpretation:
   If Day 7-30 drop is steep: Onboarding failure; users can't find value
   If plateau is high (>40% at Day 90): Strong PMF
 
-Target benchmarks by product type:
+Target benchmarks by product type (industry averages — validate against current benchmarks
+  for your specific category; these shift as product categories mature):
   Consumer: 40% Day 1, 20% Day 7, 10% Day 30
   B2B SaaS: 60% Day 7, 50% Day 30, 40% Day 90
   Mobile: 30% Day 1, 10% Day 7, 5% Day 30 (high churn expected)
@@ -281,10 +282,10 @@ Timing:
   ❌ Don't ask for referrals after support tickets (bad timing)
   ✅ Ask after: NPS 9-10 response, milestone achieved, renewal, feature adoption
 
-Referral benchmarks:
+Referral benchmarks (validate against current studies — these vary significantly by category):
   K contribution from referral: 0.1-0.3 for well-designed programs
   Referral-to-paid conversion: Typically 2-4x higher than paid acquisition
-  (Referred users convert better, churn less, and LTV is 16% higher on average)
+  (Referred users generally convert better, churn less, and carry higher LTV)
 ```
 
 ---
