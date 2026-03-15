@@ -9,6 +9,13 @@ description: >
   Power Platform. Also trigger for questions about maker onboarding, environment strategy, connector
   policies, analytics at the tenant level, or Power Platform security. Even casual mentions of "governance"
   or "admin" in a Power Platform context should trigger this skill.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: microsoft
+  adjacent-skills: power-apps, power-automate, microsoft-dataverse
+  last-reviewed: "2026-03-15"
+  review-trigger: "DLP policy schema change, new Power Platform licensing tier, CoE Starter Kit major update"
 ---
 
 # Power Platform Admin — Savant-Level Skill
@@ -336,3 +343,73 @@ Weekly:  New apps/flows created, DLP violations, maker activity
 Monthly: License utilization, environment sprawl, security review
 Quarterly: Full governance review, CoE metrics presentation to leadership
 ```
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: The Default Environment as a Catch-All**
+Allowing makers to build production solutions in the Default environment because no other environments
+have been provisioned. The Default environment is accessible to all users in the tenant and has the
+loosest controls — production data in the Default environment is ungovernable.
+Fix: Restrict the Default environment to personal productivity only (strict DLP, no premium connectors).
+Provision dedicated Dev/Test/Prod environments for every project of any significance. Deploy CoE
+Starter Kit to discover what's already been built in Default.
+
+**Anti-Pattern 2: DLP as a Wall, Not Guardrails**
+Blocking all non-Microsoft connectors across the entire tenant because "security." This prevents
+legitimate business automation, drives makers to workarounds (downloading data, emailing spreadsheets),
+and creates shadow IT that is worse than governed connectors would have been.
+Fix: DLP should enable the business safely, not prevent it. Use tiered policies: strict for Default,
+standard for project environments, permissive for a dedicated Integration Hub environment. Enable
+connectors in the business tier when there's a legitimate use case.
+
+**Anti-Pattern 3: Environments Without Lifecycle Management**
+Provisioning environments for every project and never decommissioning them. Over time, the tenant
+accumulates dozens of stale environments with orphaned apps, expired trials, and forgotten service
+accounts — all posing security and compliance risk.
+Fix: Implement an environment lifecycle policy: sandbox environments auto-reset every 90 days.
+Trial environments expire and are not renewed. The CoE Starter Kit governance module automates
+decommission workflows: notify app owners, request business justification, then archive and delete.
+
+---
+
+## Quality Gates
+
+- [ ] Default environment has strict DLP policy (no premium connectors)
+- [ ] All production solutions built in dedicated environments (not Default)
+- [ ] CoE Starter Kit Core module deployed and providing tenant visibility
+- [ ] Managed environments enabled for all production environments
+- [ ] Environment lifecycle policy documented with auto-reset/decommission procedures
+- [ ] License utilization reviewed monthly — no unused premium licenses
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: DLP policy change breaks existing production flows**
+Detection: Production flows fail immediately after a DLP policy update with "connector blocked by DLP"
+errors.
+Fallback: DLP policy changes should always be tested in a non-production environment first. If a
+production break occurs, temporarily re-add the connector to the Business tier while the maker
+creates a compliant alternative. Use the "Impact analysis" view in the DLP policy editor before
+saving — it shows how many flows and apps will be affected.
+
+**Failure: Dataverse storage capacity exceeded**
+Detection: Admin center capacity dashboard shows >90% database storage utilization; new record
+creation starts failing.
+Fallback: Run bulk delete system jobs for audit logs and activity logs (the largest consumers).
+Identify the fastest-growing tables using the CoE inventory. Implement archival processes for
+old records. Purchase additional capacity as a bridge while permanent solutions are implemented.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `power-apps` — environment and DLP strategy governs what connectors apps can use
+- `power-automate` — flow governance policies are set at the admin level
+
+**Receives from:**
+- All Power Platform skills — admin governance is the foundation layer that all other skills operate within
+- `m365-integration` — Entra ID security groups and conditional access policies integrate with Power Platform governance

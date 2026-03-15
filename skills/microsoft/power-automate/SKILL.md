@@ -10,6 +10,13 @@ description: >
   questions about flow performance, throttling limits, retry policies, pagination, concurrency control,
   or flow error handling. Even casual mentions of "automating" or "workflow" in a Power Platform context
   should trigger this skill.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: microsoft
+  adjacent-skills: power-apps, sharepoint, microsoft-dataverse
+  last-reviewed: "2026-03-15"
+  review-trigger: "Power Automate major feature release, new connector tiers, expression language breaking change"
 ---
 
 # Power Automate — Savant-Level Skill
@@ -382,3 +389,68 @@ Prod: Import managed → Smoke test → Monitor
 | "Expression evaluation failed" | Null reference | Add null-safe `?` operators |
 | Apply to Each slow | Sequential processing | Enable concurrency |
 | Flow runs but no trigger | Trigger conditions not met | Check trigger conditions/filters |
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: No Error Handling**
+Building flows with no Scope + Configure Run After error handling. A single failed action silently
+fails the entire flow with no notification to anyone. Days of failed processing go unnoticed until
+a business process breaks.
+Fix: Every production flow gets a Try/Catch/Finally scope structure. The Catch scope always sends
+a notification (Teams or email) with the flow name, run ID, timestamp, and error details.
+
+**Anti-Pattern 2: Personal Account Connections**
+Building flows that connect to SharePoint, Outlook, or Dataverse using the maker's personal credentials.
+When that person leaves the organization, every flow they built breaks simultaneously.
+Fix: Use service accounts for all production flow connections. Service accounts should have the
+minimum permissions needed and should never expire. Document ownership in the flow description.
+
+**Anti-Pattern 3: Monolithic Flows with Hundreds of Actions**
+Building one massive flow that handles every edge case, every branch, and every notification in a
+single run. When it fails, diagnosing which of 200 actions failed is a nightmare. Editing any
+part risks breaking other parts.
+Fix: Decompose into child flows. Each child flow is a named, testable unit of work. The parent flow
+orchestrates by calling child flows. Child flows can be reused across multiple parent flows.
+
+---
+
+## Quality Gates
+
+- [ ] Every production flow has Try/Catch/Finally scope structure
+- [ ] Catch scope sends notification with flow name, run ID, and error details
+- [ ] All connections use service accounts, not personal accounts
+- [ ] All flows are solution-aware (inside a solution with connection references)
+- [ ] Apply to Each concurrency explicitly configured (not left at default sequential)
+- [ ] Retry policy configured on all HTTP and external connector actions
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: Flow runs reach the 30-day auto-cancel timeout**
+Detection: Long-running approval flows (waiting for human input) are cancelled after 30 days with no
+resolution.
+Fallback: Redesign the approval to send reminders before the timeout. At day 25, send a reminder.
+At day 28, escalate to the approver's manager. Consider splitting long-running flows into multiple
+flows that restart via a scheduled trigger checking for pending approvals.
+
+**Failure: Connector throttling causes mass flow failures**
+Detection: Multiple flows fail simultaneously with "429 Too Many Requests" errors.
+Fallback: Implement a queue-based pattern: instead of all flows calling the connector directly,
+have them write requests to a SharePoint list or Service Bus queue. A single scheduled flow processes
+the queue with explicit rate limiting and delays between calls.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `power-apps` — when a flow output needs to be surfaced in an app UI
+- `microsoft-dataverse` — when the flow needs to read/write complex Dataverse data
+
+**Receives from:**
+- `power-apps` — app button clicks and form submissions trigger instant cloud flows
+- `sharepoint` — SharePoint list item events are the most common automation trigger
+- `power-platform-admin` — DLP policies constrain which connectors flows can use

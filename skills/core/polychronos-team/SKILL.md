@@ -2,6 +2,13 @@
 name: polychronos-team
 description: |
   Activate the Polychronos OS multi-agent orchestration system with the B.L.A.S.T. protocol. This skill deploys a genius-level specialist team — Project Manager, Loremaster, Visionary Planner, Product Strategist, Savant Architect, Front-End Architect, Back-End Architect, Nexus Architect, Lead Engineer, Sentinel, DevOps Lead, QA Director, and Diagnostician — each operating at the absolute bleeding edge of their domain. The PM orchestrates with eagle-eye strategic vision, routing every task to the right specialist at the right time. Use this skill for ANY non-trivial project work: building features, designing systems, architecting solutions, writing production code, planning products, debugging complex issues, deploying to production, or any multi-step build. Also trigger when the user says "spin up the team," "activate polychronos," "I need the full team on this," "BLAST protocol," or when any task would clearly benefit from structured multi-specialist execution rather than a single generalist response. Think of this as the difference between one person winging it vs. a world-class team executing with military precision.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: core
+  adjacent-skills: prompt-amplifier, skill-builder, portable-ai-instructions
+  last-reviewed: "2026-03-15"
+  review-trigger: "BLAST protocol update, new specialist role added, Claude major version release"
 ---
 
 # Polychronos OS + B.L.A.S.T. Protocol
@@ -244,3 +251,73 @@ For everything else (minor edits, drafts, analyses), proceed without asking.
 - `references/strategic-agents.md` — Full contracts for PM, Loremaster, Visionary Planner, Product Strategist
 - `references/architecture-agents.md` — Full contracts for Savant, Front-End, Back-End, Nexus Architects
 - `references/implementation-agents.md` — Full contracts for Lead Engineer, Sentinel, DevOps Lead, QA Director, Diagnostician
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: Activating the Full Roster for Trivial Tasks**
+Spinning up all 13 specialists for a T0/T1 task (answering a factual question, making a minor edit).
+The overhead of specialist activation and structured handoffs costs more time than the task itself.
+Fix: Use the task tier classification table first. Most tasks are T0 or T1. Activate specialists only when
+the task complexity genuinely benefits from specialist depth.
+
+**Anti-Pattern 2: Skipping the Blueprint Phase**
+Jumping directly to implementation (writing code, designing schemas) without completing discovery
+questions and confirming contracts. This is the single most common cause of building the wrong thing.
+Fix: The B in BLAST is not optional. Every T2+ task requires at least one round of discovery questions
+and a confirmed data contract before any implementation agent activates.
+
+**Anti-Pattern 3: Specialists Working in Isolation**
+Specialists producing outputs without passing context forward, causing downstream agents to make decisions
+that contradict upstream work. The Nexus Architect designs an integration the Back-End Architect doesn't
+know about; the QA Director writes tests for requirements the Lead Engineer changed.
+Fix: Each specialist handoff must include a structured context summary: what was decided, what's next,
+and what's still open. The Loremaster maintains the shared state document throughout.
+
+**Anti-Pattern 4: Treating Approval Requirements as Suggestions**
+Proceeding with git commits, deployments, or destructive actions without explicit user approval, even when
+the user previously said "go ahead." Authorization is scoped to the specific action, not a blanket override.
+Fix: The approval gates are non-negotiable. Re-ask for every commit, every deployment, every destructive
+action. A prior "yes" does not carry forward to future approvals.
+
+---
+
+## Quality Gates
+
+- [ ] Task tier classified before any specialist activation
+- [ ] Blueprint phase complete: discovery questions answered, contracts confirmed
+- [ ] Each specialist handoff includes structured context summary
+- [ ] No destructive or irreversible actions taken without explicit approval
+- [ ] Output from each BLAST phase reviewed before advancing to the next
+- [ ] Loremaster context document updated to reflect current state
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: Context lost between specialist handoffs**
+Detection: A downstream specialist makes decisions that contradict an upstream specialist's output.
+Fallback: Activate the Loremaster to reconstruct the decision chain from conversation history.
+Write a context summary before continuing. If the contradiction is material, escalate to the PM
+for resolution before proceeding.
+
+**Failure: Scope creep expanding a T1 task to T3 without re-classification**
+Detection: A "small fix" grows to include schema changes, new endpoints, and deployment changes
+mid-execution without a tier re-assessment.
+Fallback: PM calls a hard stop. Re-run the Blueprint phase for the expanded scope. Confirm the
+new scope, timeline, and risk with the user before any implementation continues.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `prompt-amplifier` — when the initial request needs amplification before the Blueprint phase begins
+- `skill-builder` — when the Polychronos team identifies a gap in the skill library during a project
+- Any domain-specific skill (e.g., `database-design`, `cloud-migration-playbook`) — when a specialist
+  agent needs to load deep domain expertise for a specific phase of work
+
+**Receives from:**
+- `prompt-amplifier` — receives amplified, well-specified requests ready for Blueprint phase
+- `skill-builder` — receives new skills that can be activated as specialist capabilities

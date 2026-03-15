@@ -9,6 +9,13 @@ description: >
   multi-channel bots, adaptive cards in bots, or any conversational AI development in the Microsoft
   ecosystem. Also trigger for questions about bot analytics, escalation to live agents, knowledge sources,
   custom GPTs in Copilot Studio, or Microsoft 365 Copilot extensibility.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: microsoft
+  adjacent-skills: power-automate, m365-integration, microsoft-dataverse
+  last-reviewed: "2026-03-15"
+  review-trigger: "Copilot Studio major feature release, generative AI capability update, Teams platform change"
 ---
 
 # Copilot Studio — Savant-Level Skill
@@ -369,3 +376,73 @@ Security:
   - Conversation logging: Enable for compliance
   - Content moderation: Configure sensitivity thresholds
 ```
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: Generative AI for Everything**
+Configuring Copilot Studio to rely entirely on generative answers with no classic topics for
+business-critical paths. Generative AI can hallucinate, give inconsistent answers, and change
+behavior as the underlying model updates. Processes like "reset password" or "submit expense"
+cannot have variable or incorrect instructions.
+Fix: Use the hybrid approach. Classic topics for any path where consistency and correctness are
+required. Generative answers only for knowledge base lookup where approximate answers are acceptable.
+
+**Anti-Pattern 2: Vague Trigger Phrases**
+Defining topics with generic trigger phrases like "help", "yes", "I need something", or "okay"
+that conflict with other topics and produce unreliable triggering. The NLU model cannot distinguish
+between topics with overlapping, vague triggers.
+Fix: Each topic needs 8-12 specific, varied trigger phrases. Phrases should reflect actual user
+language patterns. Test with the "Test your bot" panel using varied phrasings. Monitor the
+"Unmatched utterances" dashboard to identify and fix classification failures.
+
+**Anti-Pattern 3: No Escalation Path**
+Building a bot with no graceful path to a human agent or fallback when the bot cannot help.
+Users who get stuck in a bot loop with no escape route create negative brand experiences and
+higher frustration levels than if no bot existed.
+Fix: Every bot must have a clear escalation topic that triggers when: (1) the bot can't understand
+after 2 attempts, (2) the user explicitly asks for a human, (3) the topic fails to resolve in 3
+turns. Escalation must hand off context to the agent (conversation summary, user info).
+
+---
+
+## Quality Gates
+
+- [ ] Business-critical paths implemented as classic topics (not generative only)
+- [ ] Every topic has 8-12 varied trigger phrases tested with NLU classifier
+- [ ] Escalation topic present and tested: triggers on confusion, explicit request, and resolution failure
+- [ ] Bot is solution-aware with environment variables for all environment-specific config
+- [ ] Content moderation sensitivity level configured for the deployment context
+- [ ] Analytics dashboard reviewed after 1 week: resolution rate, escalation rate, unmatched utterances
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: Generative answers providing incorrect or hallucinated information**
+Detection: Analytics show low CSAT on sessions resolved by generative answers, or users report
+incorrect responses.
+Fallback: Tighten the knowledge source content — remove ambiguous or outdated documents. Increase
+content moderation sensitivity. Add a system instruction explicitly stating "If you are not certain,
+say so and offer to connect the user with a human." For high-stakes topics, convert to classic topics
+with curated responses rather than generative answers.
+
+**Failure: Bot resolution rate below 50%**
+Detection: Analytics show >50% of sessions escalating or abandoning.
+Fallback: Export unmatched utterances and identify the top 10 most common. These are missing topics.
+Create classic topics for the top 5 and add trigger phrases for the remaining. A resolution rate
+below 50% typically means the bot was launched before enough topics were built for the actual
+traffic patterns.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `power-automate` — bot plugin actions call Power Automate flows to create records, trigger approvals
+- `microsoft-dataverse` — bot reads/writes Dataverse for dynamic data retrieval and record creation
+
+**Receives from:**
+- `m365-integration` — Teams SSO and Graph API integration for user context and identity
+- `power-platform-admin` — DLP policies govern which connectors bot plugin actions can use

@@ -10,6 +10,13 @@ description: >
   ecosystem. Also trigger for questions about information architecture, retention policies, sensitivity
   labels, compliance, Teams-connected sites, or SharePoint Embedded. Even casual mentions of
   "document management", "intranet", or "team site" in a Microsoft context should trigger this skill.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: microsoft
+  adjacent-skills: power-automate, m365-integration, power-apps
+  last-reviewed: "2026-03-15"
+  review-trigger: "SharePoint major feature release, Graph API for SharePoint breaking change, SPFx version update"
 ---
 
 # SharePoint — Savant-Level Skill
@@ -442,3 +449,68 @@ SharePoint list → Customize forms → Opens Power Apps
   - Rich validation beyond column validation
   - Signature capture, barcode scanning
 ```
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: Deep Folder Hierarchies for Document Organization**
+Replacing the file-share folder mentality with deep nested folders in SharePoint document libraries.
+Folders break search (metadata can't filter across folder boundaries without KQL), prevent retention
+policy targeting, and force users to know where something lives rather than filtering by what it is.
+Fix: Use metadata (site columns, content types) for organization. Documents live in a flat library
+organized by metadata. Views filter and group by metadata instead of folder structure.
+
+**Anti-Pattern 2: Breaking Inheritance at the Item Level**
+Setting unique permissions on individual items or folders within a library. Every unique permission
+assignment creates a new "security scope" that SharePoint must check on every access request. Libraries
+with thousands of uniquely-permissioned items perform poorly and are impossible to audit.
+Fix: Break inheritance at the site level, almost never below. If item-level access control is required,
+use Dataverse (which handles row-level security natively) rather than SharePoint.
+
+**Anti-Pattern 3: Lists Growing Past 5,000 Items Without Index Strategy**
+Allowing SharePoint lists to grow without creating indexes on the columns used in views and filters.
+Past 5,000 items, SharePoint blocks queries on un-indexed columns entirely — views stop loading.
+Fix: Add indexes proactively on every column used in a default view, a filter, a sort, or a group-by.
+This is not optional maintenance — it must be done before list reaches 3,000 items as a buffer.
+
+---
+
+## Quality Gates
+
+- [ ] Information architecture uses metadata (site columns + content types), not folders
+- [ ] Permission inheritance broken only at site level (not library, folder, or item)
+- [ ] Indexes created on all columns used in views, filters, sorts, and group-bys
+- [ ] Lists >1,000 items have threshold management strategy documented
+- [ ] Hub site association configured for all sites belonging to a department/portfolio
+- [ ] Retention policies configured for any content type with compliance requirements
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: List view threshold exceeded — views fail to load**
+Detection: Users see "This view cannot be displayed because it exceeds the list view threshold
+of 5,000 items" error.
+Fallback: Add indexes on the columns used in the failing view filters immediately. Create an
+indexed view that filters to a subset of items (e.g., only active items, only current year). For
+very large lists, consider migrating to Dataverse which has no arbitrary row threshold for querying.
+
+**Failure: Managed metadata term store mismatch after site migration**
+Detection: Managed metadata columns show "Invalid" or term IDs don't resolve to display values after
+migration.
+Fallback: This occurs when the term store GUID in the source doesn't match the target. Export the
+term store from source, import to target, then use PnP PowerShell to remap the site column to the
+new term set GUID. Never manually edit term store GUIDs.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `power-automate` — SharePoint events are the most common Power Automate trigger; approval workflows built on top
+- `m365-integration` — Graph API provides the preferred programmatic access path for SharePoint
+
+**Receives from:**
+- `m365-integration` — Graph API authentication patterns for SharePoint REST/Graph access
+- `power-platform-admin` — governance policies for site creation, sharing, and external access

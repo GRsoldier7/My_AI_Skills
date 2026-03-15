@@ -2,6 +2,13 @@
 name: portable-ai-instructions
 description: |
   Generate project instruction files (CLAUDE.md, AGENTS.md, GEMINI.md, .cursorrules, copilot-instructions.md) tailored to any AI coding tool. This meta-skill understands the conventions, capabilities, and quirks of each tool and produces optimized instruction files that maximize the AI's effectiveness on your projects. Use this skill whenever the user mentions creating project instructions, setting up AI tool configs, writing CLAUDE.md, AGENTS.md, GEMINI.md, .cursorrules, copilot instructions, or wants to "set up a new project" for AI-assisted development. Also trigger when the user asks about making AI tools work better on their codebase, porting instructions between tools, or wants a consistent AI experience across multiple tools.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: core
+  adjacent-skills: prompt-amplifier, polychronos-team, skill-builder
+  last-reviewed: "2026-03-15"
+  review-trigger: "New AI tool releases, Claude Code instruction format changes, AGENTS.md spec updates"
 ---
 
 # Portable AI Instructions Generator
@@ -247,3 +254,68 @@ Always generate complete, ready-to-use files — not templates or fragments. The
 📄 .cursorrules → project root
 📄 .github/copilot-instructions.md → .github/ directory
 ```
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: Copy-Paste Across All Files**
+Generating CLAUDE.md, AGENTS.md, GEMINI.md, and .cursorrules with identical content because "they
+all need the same conventions." Each tool has distinct strengths and optimal file structures.
+Fix: Use the tool-specific additions table. CLAUDE.md gets skill references and MCP config.
+.cursorrules stays concise and coding-pattern-focused. AGENTS.md gets detailed sandbox commands.
+
+**Anti-Pattern 2: One-Time Generation, Never Updated**
+Creating project instruction files once at project start and never updating them as the project
+evolves. Instruction files that don't reflect current reality confuse AI tools and produce worse output.
+Fix: Treat instruction files as living documents. Update CLAUDE.md in the same session as any
+significant architectural decision, convention change, or new tech stack addition.
+
+**Anti-Pattern 3: Overcrowding CLAUDE.md With Workflow**
+Cramming complex multi-step workflows, full agent rosters, and domain-specific protocols directly
+into CLAUDE.md instead of using the skill system. Results in a bloated file that loads 5,000 tokens
+of context on every session, most of it irrelevant to the current task.
+Fix: CLAUDE.md should reference skills, not contain their content. Keep CLAUDE.md focused on project
+context and conventions. Complex workflows belong in SKILL.md files.
+
+---
+
+## Quality Gates
+
+- [ ] Each generated file is complete and ready-to-use (no placeholders requiring manual fill-in)
+- [ ] CLAUDE.md references skills instead of inlining their full content
+- [ ] .cursorrules and copilot-instructions are concise (≤100 lines) and coding-pattern-focused
+- [ ] All files share consistent conventions with no contradictions between them
+- [ ] Tool-specific features are leveraged (MCP config in CLAUDE.md, sandbox commands in AGENTS.md)
+- [ ] Cross-tool consistency check is completed before delivering files
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: Generated instructions contradict each other across tools**
+Detection: CLAUDE.md says use `black` for formatting, .cursorrules says use `ruff`.
+Fallback: Run the cross-tool consistency check (Step 4) explicitly. Pick the authoritative source
+(usually CLAUDE.md for Python projects) and propagate to all other files. Flag any deliberate
+differences with comments explaining the tool-specific rationale.
+
+**Failure: Instruction file is too long and loads irrelevant context**
+Detection: CLAUDE.md exceeds 500 lines, or the user reports that every Claude session starts with
+heavy context that slows responses.
+Fallback: Apply the DRY principle. Move reusable domain knowledge to SKILL.md files. Move
+project-specific history to memory files. CLAUDE.md should only contain what needs to be present
+in every session for this project.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `polychronos-team` — once instruction files are generated, the Polychronos team operates within
+  the context those files establish
+- `skill-builder` — when reviewing CLAUDE.md reveals gaps in the skill library that should be filled
+
+**Receives from:**
+- `prompt-amplifier` — when the user's request to generate instruction files needs more specificity
+  before generation can begin
+- `polychronos-team` — when the PM identifies that a new project needs instruction files set up

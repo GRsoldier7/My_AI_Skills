@@ -2,6 +2,13 @@
 name: prompt-amplifier
 description: |
   Intercept and exponentially enhance any user prompt before execution to maximize output quality from any AI model. This skill transforms vague, incomplete, or good-enough prompts into precision-engineered instructions that extract the absolute best response possible. It identifies missing context, ambiguities, and optimization opportunities — asks 1-2 surgical clarifying questions if truly needed — then rewrites the prompt with crystal clarity, explicit success criteria, structural scaffolding, and domain-specific context. Use this skill whenever the user says "amplify this," "make this prompt better," "optimize this prompt," "enhance my prompt," or when the user is clearly drafting a prompt for another AI tool. Also trigger when the user says "I want the best possible answer to this" or "help me ask this the right way." This skill should also self-activate when you detect a prompt that's significantly underspecified and could produce a 10x better result with enhancement.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: core
+  adjacent-skills: polychronos-team, skill-builder, portable-ai-instructions
+  last-reviewed: "2026-03-15"
+  review-trigger: "New Claude capabilities affecting prompt engineering, model-specific optimization changes"
 ---
 
 # Exponential Genius Prompt Amplifier
@@ -138,3 +145,66 @@ Sometimes the user's prompt is already excellent, or the task is simple enough t
 ## Self-activation protocol
 
 When you detect that a user's request to any other skill or task could produce dramatically better results with prompt enhancement, proactively offer: "I can amplify this request to get you a significantly better result. Want me to optimize it before we proceed?" If the user has previously expressed they always want amplification, apply it automatically.
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: Amplifying Already-Good Prompts**
+Adding layers of context, role framing, and structural scaffolding to a prompt that is already clear,
+specific, and complete. This produces bloated prompts that slow the model down and introduce noise.
+Fix: Apply the "When NOT to amplify" test first. If the prompt already has a specific role, constraints,
+output format, and success criteria, say so and add only what's genuinely missing.
+
+**Anti-Pattern 2: The Interrogation Anti-Pattern**
+Asking 5+ clarifying questions before amplifying, making the user answer a survey instead of getting help.
+Most clarifying questions can be answered with smart assumptions.
+Fix: Ask at most 1-2 questions, only when the answer fundamentally changes the output. For everything
+else, make the best assumption, note it explicitly ("I'm assuming this is for a technical audience"),
+and proceed.
+
+**Anti-Pattern 3: Amplifying Without Changing the Core Request**
+Adding verbose framing, role definitions, and output instructions that don't actually change what the
+model will produce. The result is a longer prompt with the same output quality.
+Fix: After amplifying, ask: "Would a different AI model produce meaningfully better output with this
+prompt than with the original?" If the honest answer is no, the amplification added no value.
+
+---
+
+## Quality Gates
+
+- [ ] Amplified prompt contains a specific role/expertise framing (not generic "you are an expert")
+- [ ] All critical context the AI needs but the user didn't provide has been injected
+- [ ] Output format and success criteria are explicit and concrete
+- [ ] At least one anti-pattern prevention instruction is included
+- [ ] Prompt length is proportional to task complexity — not padded
+- [ ] Clarifying questions asked are ≤2 and are genuinely decision-changing
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: Amplified prompt is longer but produces the same output quality**
+Detection: The amplified prompt added role framing and context but the AI's response is substantively
+identical to what the original prompt would have produced.
+Fallback: Diagnose which layer actually changed the output. Often only one of the six layers adds
+real signal for a given prompt type. Strip everything else and keep only what matters.
+
+**Failure: Amplification changes the user's intent**
+Detection: The user reviews the amplified prompt and says "that's not what I meant" — the amplification
+interpreted the goal incorrectly.
+Fallback: Return to the original prompt. Ask the one clarifying question that would have prevented
+the misinterpretation. Do not re-amplify until the true goal is confirmed.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `polychronos-team` — amplified, well-specified requests are ideal inputs for the Blueprint phase
+- Any domain skill — an amplified prompt loads the domain skill with maximum clarity and precision
+
+**Receives from:**
+- Any user prompt or skill request — this skill wraps any input, not just standalone prompts
+- `polychronos-team` PM — when the PM identifies that the user's initial request needs better specification
+  before routing to a specialist

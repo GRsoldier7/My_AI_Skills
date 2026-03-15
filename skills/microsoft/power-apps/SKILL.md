@@ -9,6 +9,13 @@ description: >
   in the Microsoft ecosystem. Also trigger for questions about delegation limits, SharePoint list apps,
   PCF controls, ALM for Power Apps, or solution-aware development. Even casual mentions of "building an app"
   in a Microsoft/Power Platform context should trigger this skill.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: microsoft
+  adjacent-skills: microsoft-dataverse, power-automate, power-platform-admin
+  last-reviewed: "2026-03-15"
+  review-trigger: "Power Apps major feature release, Power Fx language update, Dataverse schema model changes"
 ---
 
 # Power Apps — Savant-Level Skill
@@ -351,3 +358,66 @@ galAllRecords.Items = If(
     Filter(AllRecords, AssignedTo.Email = User().Email)
 );
 ```
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: Ignoring Delegation Warnings**
+Dismissing the delegation warning (the yellow triangle) on a Filter function over a large SharePoint
+list or Dataverse table. The app will silently return only 500 or 2000 records and the user will
+never know data is missing — until a critical decision is made on incomplete information.
+Fix: Every delegation warning in a production app must be resolved. Either make the filter delegable
+(use StartsWith instead of Text.Contains, use indexed columns) or explicitly load data into a
+collection after documenting the size constraint.
+
+**Anti-Pattern 2: Heavy App.OnStart**
+Loading all collections, checking permissions, and making multiple API calls in App.OnStart, causing
+a 5-10 second blank screen before the app loads. Users abandon apps that take too long.
+Fix: Move data loading to screen-level OnVisible for the screens that need it. Use Concurrent() for
+parallel calls. Load only the minimum data needed for the first screen at OnStart.
+
+**Anti-Pattern 3: Hardcoded Connections and Unsolution-Aware Development**
+Building apps with hardcoded connections that can't be migrated between environments, and keeping apps
+outside of solutions. When the app needs to go to production, there's no clean promotion path.
+Fix: Every app that matters goes into a solution from day one. Use Connection References, never
+hardcoded connections. Use Environment Variables for URLs, endpoints, and configuration values.
+
+---
+
+## Quality Gates
+
+- [ ] Zero unresolved delegation warnings in production apps (or each documented with explicit size constraint)
+- [ ] App.OnStart calls ≤3 data sources; remaining loads on screen OnVisible
+- [ ] All apps built in solutions with connection references (no hardcoded connections)
+- [ ] Offline-capable apps tested with network disabled before deployment
+- [ ] Components used for any UI element appearing in 2+ screens
+- [ ] Solution checker run with zero Critical or High issues before export
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: Gallery performance degrades with more than 200 items**
+Detection: Gallery scrolling becomes choppy; loading takes >3 seconds.
+Fallback: Check gallery template complexity — simplify to <8 controls per item. Enable `DelayOutput`
+on search inputs to prevent re-query on every keystroke. Use `ShowColumns()` to limit data payload.
+If the source has >2000 items, implement server-side filtering so the gallery only loads what's visible.
+
+**Failure: App breaks after environment migration**
+Detection: App loads in the new environment but connector actions fail with 401 or "resource not found."
+Fallback: This almost always means connections weren't set up via Connection References, or Environment
+Variables weren't configured in the target environment. Use the solution's Connection Reference
+configuration and Environment Variable values panels. Set them before running the app for the first time.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `microsoft-dataverse` — for designing the data model the app will interact with
+- `power-automate` — when the app needs to trigger complex workflows or approval processes
+
+**Receives from:**
+- `microsoft-dataverse` — Dataverse table structure informs form design, gallery columns, and security
+- `power-platform-admin` — environment topology and DLP policies constrain what connectors can be used

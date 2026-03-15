@@ -2,6 +2,13 @@
 name: market-intelligence
 description: |
   Research and analyze business opportunities, market niches, and competitive landscapes to identify the highest-profit ventures. This skill provides structured frameworks for market sizing (TAM/SAM/SOM), competitive analysis, trend identification, and opportunity scoring. Use this skill whenever the user mentions business ideas, market research, finding niches, competitive analysis, profit potential, revenue opportunities, market sizing, business model validation, or wants to brainstorm what businesses to build. Also trigger when the user asks about industry trends, emerging markets, monetization strategies, pricing analysis, or says anything like "where's the money" or "what should I build next" — even if they don't explicitly say "market research."
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: strategy
+  adjacent-skills: business-genius, brand-website-strategy, ai-agentic-specialist
+  last-reviewed: "2026-03-15"
+  review-trigger: "Significant market change in target niches, new research methodology or data source becomes available"
 ---
 
 # Market Intelligence & Business Opportunity Analyzer
@@ -118,3 +125,68 @@ Based on the user's profile, these adjacent niches are worth keeping on the rada
 - **Corporate wellness AI** (B2B play — companies paying for employee health optimization)
 - **Biohacker community / membership platform** (content + community + data)
 - **Lab work interpretation SaaS** (simpler than full biohacking platform, faster to market)
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: The Single-Source Market Report**
+Citing one market research report as the authoritative TAM number without cross-referencing.
+Market reports are often produced by research firms with an incentive to produce large numbers that
+justify their clients' investments. A single report cited as fact is misinformation.
+Fix: Cross-reference at least 2-3 sources for any market size claim. If sources diverge significantly,
+dig into the methodology difference. Present a range with confidence levels, not a single number.
+
+**Anti-Pattern 2: Conflating Addressable Market with Reachable Market**
+Using the TAM as if it represents the opportunity size for a solo founder. A $50B market is not a
+$50B opportunity — it's a market where capturing 0.01% requires fierce competition for $5M/year.
+Fix: Always decompose to SOM. For a bootstrapped solo founder, the SOM in year 1-2 is typically
+$100K-$1M at best. Make this concrete, not aspirational.
+
+**Anti-Pattern 3: Analysis Paralysis Instead of Actionable Output**
+Producing an exhaustive 20-page market analysis with dozens of variables that leaves the user more
+confused than when they started.
+Fix: Every market intelligence output must end with a ranked recommendation and clear next steps.
+The analysis supports the decision — it doesn't replace it.
+
+---
+
+## Quality Gates
+
+- [ ] TAM/SAM/SOM all present with sources cited and confidence levels stated
+- [ ] At least 3 named direct competitors with specific data (revenue, funding, user base, reviews)
+- [ ] Profit mechanics analyzed: unit economics, gross margins, scalability curve
+- [ ] Opportunity scoring table completed with weighted composite score
+- [ ] Clear recommendation with "pursue" / "deprioritize" / "monitor" verdict
+- [ ] Specific next steps for top opportunities defined
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: Market data is too thin to produce reliable analysis**
+Detection: Web searches return few recent sources, market reports are years old, no funded competitors
+can be found.
+Fallback: Thin data signals a very early-stage market or a niche that hasn't attracted research
+attention — both can be opportunities. Switch to bottom-up sizing: estimate the number of potential
+customers × willingness to pay × realistic conversion rate. Validate directly by finding and talking
+to 5 potential customers rather than relying on secondary research.
+
+**Failure: Highly scored opportunity doesn't survive the stress-test**
+Detection: A well-scored opportunity fails the "can Amazon replicate this in 6 months?" test or
+the "10 paying customers in 2 weeks" validation experiment.
+Fallback: Don't rescue the analysis — update it. The stress-test revealed a moat weakness or a
+demand assumption failure. Lower the defensibility or timing score, and let the composite score
+reflect reality. Find what would need to be true for the opportunity to still be viable.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `business-genius` — validated market data feeds into business strategy, revenue model design, and go-to-market
+- `brand-website-strategy` — competitive landscape informs positioning and differentiation strategy
+
+**Receives from:**
+- `business-genius` — business hypotheses to validate with market data
+- `ai-agentic-specialist` — AI market landscape intelligence for sizing technology-enabled opportunities

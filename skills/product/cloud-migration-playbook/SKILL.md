@@ -2,6 +2,13 @@
 name: cloud-migration-playbook
 description: |
   Guide the migration of applications, databases, and services from a self-hosted homelab (Proxmox) to Google Cloud Platform for production deployment. This skill covers containerization with Docker, GCP service selection (Cloud Run, Cloud SQL, GKE, Cloud Functions), database migration from local PostgreSQL to Cloud SQL, CI/CD pipeline setup, infrastructure-as-code with Terraform, cost optimization, security hardening, and production monitoring. Use this skill whenever the user mentions cloud migration, moving to production, deploying to GCP, containerizing applications, Docker, Kubernetes, Cloud Run, Cloud SQL, Terraform, production infrastructure, scaling, DevOps, CI/CD, or taking something from "homelab to cloud" — even if they just say "I need to get this running for real users" or "how do I scale this."
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: product
+  adjacent-skills: biohacking-data-pipeline, database-design, testing-strategy
+  last-reviewed: "2026-03-15"
+  review-trigger: "GCP service pricing or feature change, Docker major version, Terraform breaking change"
 ---
 
 # Cloud Migration Playbook: Proxmox Homelab → Google Cloud
@@ -227,3 +234,69 @@ When writing Terraform for this project, follow these patterns:
 
 - `references/terraform-templates.md` — Ready-to-use Terraform templates for common GCP patterns (read when setting up infrastructure)
 - `references/cost-optimization.md` — Detailed cost optimization strategies for GCP (read when the user asks about costs or bills)
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: Migrating Before Containerizing**
+Attempting to migrate a non-containerized application directly to GCP by running it on a Compute
+Engine VM, bypassing Docker and Cloud Run. This creates the same maintenance burden in the cloud
+that existed in the homelab, without any of the managed service benefits.
+Fix: Phase 1 is always "containerize locally first." If it doesn't run in Docker on the homelab,
+don't touch GCP. Prove containerization works before cloud credentials are touched.
+
+**Anti-Pattern 2: Decommissioning the Homelab Prematurely**
+Shutting down local PostgreSQL and pipelines before the cloud version has been running correctly
+for at least a week with verified data integrity.
+Fix: Run parallel infrastructure for a minimum of 7 days after cloud migration. Compare row counts,
+spot-check critical records, run validation queries against both databases. Only decommission the
+homelab after explicit confirmation that the cloud version is producing identical results.
+
+**Anti-Pattern 3: Manual Deployment Forever**
+Setting up GCP services manually once and never building CI/CD. Every subsequent deployment requires
+remembering the exact gcloud commands, configurations, and secrets. One wrong step corrupts production.
+Fix: Terraform from day one for infrastructure. GitHub Actions (or Cloud Build) for application
+deployments. The rule: if you can't deploy with a single `git push`, the infrastructure is not done.
+
+---
+
+## Quality Gates
+
+- [ ] Application runs successfully in Docker locally before any GCP work begins
+- [ ] All infrastructure defined in Terraform (no manually-provisioned resources)
+- [ ] Terraform state stored in GCS backend (never local)
+- [ ] All secrets in Secret Manager (no .env files or environment variables in container definitions)
+- [ ] Cloud SQL connection uses private IP only (no public IP enabled)
+- [ ] Budget alert configured at $30/month to catch runaway costs early
+- [ ] Parallel run period of ≥7 days before homelab decommission
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: Cloud SQL migration produces data integrity issues**
+Detection: Row counts mismatch between local and Cloud SQL after pg_dump/restore, or application
+queries return incorrect results.
+Fallback: Never delete the homelab database until this is resolved. Re-run the pg_dump with
+`--data-only` and check for encoding issues or collation mismatches. Run the full data validation
+query suite against both databases and compare output row-by-row for discrepancies.
+
+**Failure: GCP costs spike unexpectedly**
+Detection: Budget alert fires above $30/month threshold during early stage.
+Fallback: Check Cloud Monitoring cost breakdown immediately. The most common culprits:
+Cloud SQL instance left running at wrong tier (db-f1-micro → db-n1-standard-1 accidentally),
+Cloud Run min-instances set too high, or Artifact Registry storing too many large images.
+Set Cloud SQL auto-delete for old backups and implement image cleanup in CI/CD pipeline.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `database-design` — when the Cloud SQL schema needs optimization for production query patterns
+- `testing-strategy` — for integration testing against Cloud SQL before decommissioning homelab
+
+**Receives from:**
+- `biohacking-data-pipeline` — the application being migrated; pipeline architecture informs Cloud Run Jobs setup
+- `database-design` — finalized schema design is the input to the Cloud SQL setup phase

@@ -9,6 +9,13 @@ description: >
   Exchange Online, Microsoft 365 admin, or any integration across the Microsoft 365 ecosystem.
   Also trigger for questions about SSO, token management, delegated vs application permissions,
   or building apps that span multiple M365 services.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: microsoft
+  adjacent-skills: sharepoint, copilot-studio, microsoft-dataverse
+  last-reviewed: "2026-03-15"
+  review-trigger: "Graph API breaking change, new M365 service added, MSAL SDK major version release"
 ---
 
 # Microsoft 365 Integration — Savant-Level Skill
@@ -299,10 +306,77 @@ Permissions:
   ✅ Prefer delegated over application permissions
   ✅ Use app-only for daemon scenarios, never for user-facing apps
   ❌ Never request Directory.ReadWrite.All "just in case"
-  
+
 API Security:
   ✅ Validate tokens on your backend (issuer, audience, signature)
   ✅ Use $select to minimize data exposure
   ✅ Rate limit your calls (Graph throttles at 429)
   ✅ Handle 429 with Retry-After header
 ```
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: Application Permissions for User-Facing Apps**
+Using Application (daemon) permissions for an app that end users interact with. Application
+permissions grant access to ALL users' data — a user browsing their own mail in an app built
+with Application permissions can also (via the API) access every other user's mail.
+Fix: User-facing apps must use Delegated permissions. The token is scoped to what the signed-in
+user can access. Application permissions are exclusively for daemon/service scenarios with no
+interactive user.
+
+**Anti-Pattern 2: Polling Instead of Change Notifications**
+Calling `GET /users` or `GET /messages` on a 5-minute schedule to check for changes. At scale,
+polling consumes API quota rapidly, adds latency (up to 5 minutes to detect a change), and is a
+primary cause of Graph throttling.
+Fix: Use Graph change notifications (webhooks) to receive push notifications when resources change.
+Use delta queries for incremental sync when webhooks aren't appropriate. Polling should be a
+last resort for resources that don't support notifications.
+
+**Anti-Pattern 3: Storing Client Secrets in Application Code or Config Files**
+Hardcoding client secrets in source code, appsettings.json, or environment variables that get
+committed to source control. A leaked client secret gives an attacker full access to everything
+the app is permissioned to access.
+Fix: Store secrets in Azure Key Vault. For Azure-hosted apps, use Managed Identity to access
+Key Vault (no secrets needed at all). For local development, use `az login` with developer
+credentials rather than service principal secrets.
+
+---
+
+## Quality Gates
+
+- [ ] All user-facing apps use Delegated permissions (no Application permissions)
+- [ ] All production apps use certificate auth or Managed Identity (no client secrets in config)
+- [ ] All API responses use `$select` to minimize data retrieved and exposed
+- [ ] Graph 429 responses handled with Retry-After header respect
+- [ ] Change notifications used for reactive patterns (no polling on <30-minute intervals)
+- [ ] Token validation implemented on backend for apps that accept tokens from clients
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: Graph change notification subscription expires**
+Detection: Events stop triggering in the integration; notification URL stops receiving POST requests.
+Fallback: Graph webhook subscriptions expire (maximum 3 days for some resources, up to 4230 minutes
+for others). Implement a renewal job that runs every 24 hours to extend active subscriptions.
+If a subscription has already expired, re-subscribe and use a delta query to catch up on missed changes.
+
+**Failure: Graph throttling (429) causing integration failures**
+Detection: Burst of API calls triggers 429 responses; Retry-After header indicates a wait period.
+Fallback: Implement the Retry-After header pattern — do not retry until the specified time has
+elapsed. For sustained throttling, implement exponential backoff with jitter. Re-architect batch
+operations to use the `$batch` endpoint (up to 20 requests per batch call).
+
+---
+
+## Composability
+
+**Hands off to:**
+- `sharepoint` — when the integration specifically needs SharePoint content management patterns
+- `copilot-studio` — when building Teams-integrated bots that need Graph API for user context
+
+**Receives from:**
+- `power-platform-admin` — Entra ID app registrations and conditional access policies are governed at the admin level
+- `microsoft-dataverse` — external M365 data pulled via Graph is often synced into Dataverse as the system of record

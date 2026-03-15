@@ -2,6 +2,13 @@
 name: biohacking-data-pipeline
 description: |
   Architect and build automated data pipelines for biohacking, health, and supplement data using Python + PostgreSQL. This skill guides the full pipeline lifecycle: finding and evaluating data sources (APIs, web scraping, public datasets), designing normalized database schemas, writing ingestion scripts with scheduling and error handling, and building data validation/quality checks. Use this skill whenever the user mentions biohacking data, health databases, supplement databases, blood work data, biomarker tracking, automated data collection, ETL pipelines for health data, API integrations for health/wellness services, or building a data-driven health product. Also trigger when the user wants to ingest data on a schedule (daily runs, cron jobs), scrape health-related websites, integrate lab/bloodwork APIs, or design a database schema for health and wellness data — even if they don't say "pipeline" explicitly.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: product
+  adjacent-skills: database-design, cloud-migration-playbook, testing-strategy
+  last-reviewed: "2026-03-15"
+  review-trigger: "New health data API launches or deprecates, PostgreSQL major version, Python 3.x breaking change"
 ---
 
 # Biohacking Data Pipeline Architect
@@ -203,3 +210,67 @@ Always provide complete, runnable code — not pseudocode or fragments. The user
 
 - `references/api-catalog.md` — Catalog of health/biohacking data APIs and their capabilities (read when researching data sources)
 - `references/schema-patterns.md` — Detailed PostgreSQL schema patterns for health data (read when designing schemas)
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: Loading Data Without Provenance**
+Inserting supplement or biomarker data into PostgreSQL without tracking where it came from, when it
+was ingested, or which version of the source it reflects. This makes it impossible to audit, update,
+or retract data when sources change or errors are discovered — critical for health data.
+Fix: Every external data table gets source_id, source_name, ingested_at, and source_record_id as
+non-negotiable columns. Use the data_sources reference table. Never load data without provenance.
+
+**Anti-Pattern 2: Skipping the Validate Step**
+Going straight from Extract to Transform without data quality checks. Health data from external APIs
+can contain physiologically impossible values, unit inconsistencies, or missing required fields.
+Fix: The Validate step is not optional for health data. Build a SupplementValidator / BiomarkerValidator
+class that runs every batch through plausibility checks (e.g., Vitamin D dosage > 100,000 IU is
+likely a unit error, not a real value). Log all rejections with reasons.
+
+**Anti-Pattern 3: Pipelines That Can't Be Rerun**
+Writing pipelines that break or produce duplicate data when run twice on the same day. This is a
+non-idempotent pipeline — it works once but breaks on retry, making debugging a nightmare.
+Fix: Use `ON CONFLICT DO UPDATE` (upsert) with the source record ID as the conflict key. Every
+pipeline must be safely re-runnable: run it twice, get the same database state both times.
+
+---
+
+## Quality Gates
+
+- [ ] Every external data table has source_id, source_name, ingested_at provenance columns
+- [ ] Pipeline follows Extract → Validate → Transform → Load → Verify → Log pattern completely
+- [ ] Pipeline is idempotent: re-running produces same result without duplicates
+- [ ] Rate limiting implemented with exponential backoff for all API integrations
+- [ ] Validation step catches physiologically implausible values with logging of rejections
+- [ ] Schedule configured and tested for daily execution
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: External API changes schema or authentication**
+Detection: Pipeline exits with 401/403/400 errors or KeyError on fields that previously existed.
+Fallback: Raw API responses are stored before transformation, so re-processing is possible once
+the API change is understood. The extract stage should always save raw responses to a staging table
+or file before any transformation begins. Implement a dead-letter queue for failed extractions.
+
+**Failure: Database grows unbounded with no data lifecycle management**
+Detection: PostgreSQL storage usage grows >10% per week; performance degrades on analytical queries.
+Fallback: Implement a data retention policy: archive data older than 2 years to cold storage (GCS).
+Use temporal versioning patterns — keep the current record active, archive superseded versions.
+Partition large tables by ingestion date for faster query performance and easier archiving.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `database-design` — for deep normalization decisions, index strategy, and constraint design
+- `cloud-migration-playbook` — when pipelines are stable and ready for GCP Cloud Run Jobs deployment
+- `testing-strategy` — for building test suites that validate pipeline correctness without mocking the DB
+
+**Receives from:**
+- `database-design` — schema designs for health data tables feed directly into pipeline load stage
+- `cloud-migration-playbook` — cloud infrastructure context needed for production pipeline scheduling

@@ -9,6 +9,13 @@ description: >
   involving Microsoft's analytics stack. Also trigger for questions about data modeling best practices,
   slowly changing dimensions, many-to-many relationships, calculation groups, field parameters, or
   XMLA endpoints. Even if the user just says "dashboard" or "report" in a Microsoft context, use this skill.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: microsoft
+  adjacent-skills: microsoft-dataverse, power-platform-admin, sharepoint
+  last-reviewed: "2026-03-15"
+  review-trigger: "Power BI major feature release, DAX language update, Microsoft Fabric Direct Lake changes"
 ---
 
 # Power BI — Savant-Level Skill
@@ -350,3 +357,71 @@ For extended patterns, read these files from `references/`:
 - `references/dax-patterns-advanced.md` — Complex DAX scenarios (basket analysis, ABC, budget allocation, parent-child hierarchies)
 - `references/power-query-patterns.md` — M code recipes for common ETL scenarios
 - `references/fabric-integration.md` — Fabric lakehouse, Direct Lake, notebooks + PBI integration
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: Fixing Performance With DAX Before Fixing the Model**
+Writing ever-more-complex DAX expressions to work around a poorly designed data model. A snowflake
+schema with 6 hops, mixed granularities in fact tables, and bi-directional filters cannot be
+performance-optimized with DAX — it must be fixed at the model level.
+Fix: Follow the optimization hierarchy: model first, DAX second, visuals third. Before touching
+any DAX for performance, check the model: remove unused columns, ensure integer keys on relationships,
+disable Auto Date/Time, and verify one-way single-direction filters.
+
+**Anti-Pattern 2: Calculated Columns on Fact Tables for Aggregation**
+Adding calculated columns to large fact tables for values that should be measures. A calculated
+column materializes on every row — on a 10M-row fact table, that's 10M computed values stored in
+memory. Measures compute only for the cells visible in the current visual.
+Fix: If it will be aggregated (summed, averaged, counted), it must be a measure. Calculated columns
+are for lookup values, groupings, and categorizations — not aggregations.
+
+**Anti-Pattern 3: Shared Datasets Copied Instead of Referenced**
+Each report creating its own copy of a semantic model by importing the same data source instead of
+connecting to a shared, centrally managed semantic model. This creates data inconsistency between
+reports and multiplies refresh resource consumption.
+Fix: Build one certified semantic model per data domain. Reports connect to it via live connection
+or DirectQuery. Use Build permission on the semantic model to allow report authors to connect without
+owning it.
+
+---
+
+## Quality Gates
+
+- [ ] Data model uses star schema: one fact table per subject area, dimension tables on the "one" side
+- [ ] Auto Date/Time disabled; custom Date table created and marked as Date Table
+- [ ] All relationship filters are single-direction (bi-directional only with documented justification)
+- [ ] No calculated columns on fact tables for values that will be aggregated
+- [ ] RLS roles tested with specific user accounts before report is shared
+- [ ] Performance Analyzer run on all visuals; no single DAX query >500ms
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: Report is slow to load and visuals are unresponsive**
+Detection: Performance Analyzer shows DAX query times >2s or visual render >500ms.
+Fallback: Export the slow DAX query to DAX Studio. Run with Server Timings enabled. If Storage
+Engine (SE) time dominates, the model has too many rows or high-cardinality columns that need
+reduction. If Formula Engine (FE) time dominates, the DAX has too much iteration. Address the
+dominant time source first.
+
+**Failure: RLS is not working as expected — users see data they shouldn't**
+Detection: Testing with "View as role" shows incorrect filtering, or a user reports seeing records
+that should be restricted.
+Fallback: Check relationship filter direction — RLS propagates through relationships, but only
+in the filter direction. Verify the security table has correct email mappings (case-sensitive).
+Test each role in isolation with a known test user before deploying.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `microsoft-dataverse` — when the data source for the semantic model is Dataverse
+- `power-platform-admin` — for deployment pipeline setup and workspace governance
+
+**Receives from:**
+- `microsoft-dataverse` — Dataverse schema and security model inform Power BI RLS design
+- `sharepoint` — SharePoint list data sources feed into Power Query transformation patterns

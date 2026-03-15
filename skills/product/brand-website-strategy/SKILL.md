@@ -2,6 +2,13 @@
 name: brand-website-strategy
 description: |
   Build and refine brand identity, website strategy, and digital presence for a tech/health startup. This skill covers brand positioning, visual identity systems (colors, typography, logo direction), website architecture and content strategy, SEO fundamentals, conversion optimization, and competitive positioning in the health tech and AI consulting space. Use this skill whenever the user mentions branding, website, logo, colors, fonts, brand voice, brand guidelines, landing pages, SEO, website copy, content strategy, marketing materials, visual identity, or wants to "get the website together" or "build out branding." Also trigger when the user asks about positioning, messaging, taglines, or how to present their business to the world — even if they frame it as "how do I look professional" or "what should my site say."
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: product
+  adjacent-skills: business-genius, market-intelligence, portable-ai-instructions
+  last-reviewed: "2026-03-15"
+  review-trigger: "Significant brand pivot, target audience change, major shift in web tech stack landscape"
 ---
 
 # Brand Identity & Website Strategy
@@ -184,3 +191,69 @@ When this skill triggers, depending on what the user needs:
 - **Competitive positioning:** Research competitors' websites and brands, identify gaps, recommend differentiation strategies
 
 Always be specific and actionable. "Your brand should feel premium" is useless. "Use a dark teal (#0D4F4F) primary with warm cream (#FFF8F0) backgrounds, Space Grotesk headings at 700 weight, and keep sentence length under 20 words in hero copy" is useful.
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: Building Before Positioning**
+Designing logos, choosing colors, and building the website before the positioning and value proposition
+are locked down. Visual decisions made without a strategic foundation have to be redone when the brand
+positioning clarifies.
+Fix: Always nail the answers to the four positioning framework questions first. Only start visual
+identity work after "what makes this different" has a crisp, specific answer.
+
+**Anti-Pattern 2: Appealing to Everyone**
+Writing brand copy and designing visuals that are "professional" but bland — trying not to alienate
+anyone and ending up not resonating with anyone. This is especially tempting for a founder who spans
+two audiences (consulting clients and biohacking consumers).
+Fix: Pick a primary audience for each brand touchpoint and speak directly to them. Accept that the
+brand will repel some people — that's evidence it's connecting with the right people.
+
+**Anti-Pattern 3: Launching Without a Clear CTA**
+Building a beautiful website with no dominant call to action, or multiple competing CTAs of equal
+visual weight. Visitors don't know what to do, so they leave.
+Fix: Every page has exactly one primary CTA. Everything else is secondary. For a pre-launch product
+site, the CTA is always "join waitlist" or "book a call" — never "learn more" (which goes nowhere).
+
+---
+
+## Quality Gates
+
+- [ ] Four positioning framework questions answered before any visual work begins
+- [ ] One-brand vs. two-brand decision made explicitly with documented rationale
+- [ ] Color palette has specific hex codes and passes WCAG AA contrast ratio (4.5:1 for text)
+- [ ] Every page has exactly one dominant CTA
+- [ ] Tech stack recommendation matches founder's technical skill level and launch timeline
+- [ ] Content pillars defined and at least 3 blog post topics identified per pillar
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: Brand identity doesn't convert visitors to leads/signups**
+Detection: Website traffic is reasonable but conversion to newsletter signups, waitlist joins, or
+consultation bookings is <2%.
+Fallback: The problem is almost always one of three things: unclear value proposition (visitor
+doesn't understand what they get), weak CTA (visitor doesn't know what to do), or wrong audience
+(traffic doesn't match ideal customer profile). Run a 5-second test: show the homepage to someone
+unfamiliar with the business and ask "what does this company do and who is it for?"
+
+**Failure: Consulting and product brands confuse each other's audiences**
+Detection: Consulting prospects ask about the biohacking product before engaging on the consulting
+work. Product users reach out to the consulting page.
+Fallback: If one brand is consistently cannibalizing the other, separate them more clearly.
+The hybrid approach still works but needs cleaner routing: the homepage nav should have "For businesses"
+(consulting) and "For individuals" (product) as top-level paths with distinct visual language.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `market-intelligence` — when competitive positioning requires deep competitor brand analysis
+- `portable-ai-instructions` — when the website is being built and AI tool configs need to be set up for the project
+
+**Receives from:**
+- `business-genius` — business strategy decisions (one brand vs. two, target audience) inform brand positioning
+- `market-intelligence` — competitive landscape analysis informs differentiation strategy and messaging

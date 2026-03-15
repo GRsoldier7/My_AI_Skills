@@ -9,6 +9,13 @@ description: >
   (option sets), polymorphic lookups, alternate keys, or any data platform work underlying the Power
   Platform. Also trigger for Dynamics 365 data layer questions. Even mentions of "tables" or "data model"
   in a Power Platform context should trigger this skill.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: microsoft
+  adjacent-skills: power-apps, power-platform-admin, power-automate
+  last-reviewed: "2026-03-15"
+  review-trigger: "Dataverse schema API change, new table type available, Web API version update"
 ---
 
 # Microsoft Dataverse — Savant-Level Skill
@@ -344,7 +351,7 @@ public class ValidateDiscount : IPlugin
 ### Dataverse as Integration Hub
 ```
 External System → Dataverse → Power Platform Apps/Flows
-  
+
 Inbound:
   - Web API (direct CRUD)
   - Azure Synapse Link (bulk sync from Dataverse to lake)
@@ -361,3 +368,74 @@ Outbound:
 Event-driven architecture:
   Table event → Plugin/Webhook/Service Bus → External processor
 ```
+
+---
+
+## Anti-Patterns
+
+**Anti-Pattern 1: Organization-Scope Read on All Tables**
+Assigning Organization-level read access to every table in a security role as a quick fix to make
+the app work. This grants every user with that role visibility into all records across all business
+units — a data exposure violation in most compliance frameworks.
+Fix: Start with User-scope access and expand only where business requirements explicitly justify it.
+Document each Organization-scope privilege with the business justification. Audit security roles
+quarterly.
+
+**Anti-Pattern 2: Synchronous Plugins for Heavy Processing**
+Writing synchronous (pre/post-operation) plugins that perform external API calls, complex calculations,
+or database queries. Synchronous plugins execute in the user's transaction thread — a slow plugin
+causes the user's save operation to timeout, corrupting the user experience and sometimes the record.
+Fix: Synchronous plugins should only perform lightweight validation and field manipulation (< 2 seconds).
+Anything that calls external services or requires significant processing must be asynchronous
+(post-operation async) or implemented as a Power Automate flow.
+
+**Anti-Pattern 3: Ignoring Cascade Behaviors**
+Accepting default cascade behaviors on relationships without understanding their implications. The
+default Cascade behavior on Delete means deleting a parent record silently deletes all child records.
+In a CRM scenario, deleting a test Account could cascade-delete all Contacts, Opportunities, and
+Cases associated with it.
+Fix: Explicitly review and configure cascade behaviors for every relationship. For most business
+data, "Referential, Restrict Delete" is safer — block the delete if children exist. Only use Cascade
+when child records are truly owned by the parent and have no independent value.
+
+---
+
+## Quality Gates
+
+- [ ] No security roles grant Organization-scope access without documented business justification
+- [ ] All synchronous plugins complete in <2 seconds (measured under load)
+- [ ] Cascade behaviors explicitly configured on all relationships (no default-and-forget)
+- [ ] Column security profiles applied to all PII columns (SSN, salary, health data)
+- [ ] All Web API integrations use alternate keys for upsert operations (not GUID lookups)
+- [ ] Business rules set to Entity scope for validation rules (not Form scope)
+
+---
+
+## Failure Modes and Fallbacks
+
+**Failure: Plugin causes cascade of failures when called at scale**
+Detection: Multiple users experience save errors simultaneously; System Job queue shows plugin
+failures; database log shows timeouts.
+Fallback: Deactivate the plugin via the Plugin Registration Tool immediately to restore service.
+Identify the performance bottleneck (external call, complex query, large data operation). Move
+the processing to an async plugin or a Power Automate flow. Re-enable only after load testing.
+
+**Failure: Dataverse API returns 429 (throttling) under bulk load**
+Detection: Integration scripts or Power Automate flows fail with 429 errors when processing
+large batches.
+Fallback: Implement exponential backoff with Retry-After header respect. Switch from individual
+record operations to batch API calls (`$batch` endpoint — up to 1000 operations per request).
+Reduce concurrent API threads. For very large data loads, use the Data Import Wizard or SSIS
++ KingswaySoft which are designed for bulk operations.
+
+---
+
+## Composability
+
+**Hands off to:**
+- `power-apps` — Dataverse table design directly informs canvas and model-driven app form structure
+- `power-automate` — Dataverse events are primary triggers for automation flows
+
+**Receives from:**
+- `power-platform-admin` — environment topology and security model (business units) are prerequisites for Dataverse design
+- `m365-integration` — Entra ID user/group data synced into Dataverse for security role assignments
