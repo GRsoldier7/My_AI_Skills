@@ -1,40 +1,245 @@
 {
-  "skill_name": "aaron-skill-library",
+  "skill_library": "aaron-skill-library",
+  "version": "2.0",
+  "eval_protocol": {
+    "activation_test": "10 prompts that should activate the skill; target ≥9/10 activation",
+    "rejection_test": "5 prompts that should NOT activate the skill; target 0/5 activation",
+    "output_quality_test": "1 representative prompt with expected output criteria"
+  },
   "evals": [
     {
       "id": 1,
       "skill": "biohacking-data-pipeline",
+      "category": "product",
       "prompt": "I found this API called PubChem that has supplement compound data. I want to build a pipeline that pulls all the data for the top 50 supplements (vitamin D, magnesium, zinc, etc.) every night at 2am and stores it in my PostgreSQL database on the proxmox server. Can you help me set up the schema and the pipeline script?",
-      "expected_output": "Complete PostgreSQL CREATE TABLE statements with provenance tracking, a full Python pipeline script following the extract-validate-transform-load pattern, and scheduling configuration (cron or Prefect/Dagster)",
-      "files": []
+      "expected_output": "Complete PostgreSQL CREATE TABLE statements with provenance tracking (source_id, source_name, ingested_at), a full Python pipeline script following the extract-validate-transform-load-verify-log pattern with error handling and retry logic, and scheduling configuration (cron or Prefect/Dagster)",
+      "activation_phrases": [
+        "build a pipeline for health data",
+        "store supplement data in postgres",
+        "ingest biomarker values",
+        "bloodwork database schema",
+        "API for supplement information",
+        "automate data collection for biohacking",
+        "design schema for health protocols",
+        "PubChem ingestion script",
+        "wearable device data pipeline",
+        "how do I store lab results"
+      ],
+      "rejection_phrases": [
+        "design a general ETL pipeline",
+        "store product inventory in postgres",
+        "financial data pipeline",
+        "build a web scraper for news",
+        "track user behavior data"
+      ]
     },
     {
       "id": 2,
       "skill": "cloud-migration-playbook",
-      "prompt": "ok so I've got my biohacking database and python pipelines running on my proxmox box and it's working well locally. I want to start moving this to GCP but I'm nervous about the cost and about breaking things. where do I even start? I don't want to spend more than like $30/month to start",
+      "category": "product",
+      "prompt": "I've got my biohacking database and python pipelines running on my proxmox box and it's working well locally. I want to start moving this to GCP but I'm nervous about the cost and about breaking things. Where do I even start? I don't want to spend more than $30/month to start.",
       "expected_output": "Step-by-step migration plan starting with containerization, GCP service recommendations (Cloud SQL, Cloud Run), cost estimate showing it fits within $30/month, and risk mitigation strategies including parallel running",
-      "files": []
+      "activation_phrases": [
+        "move from homelab to GCP",
+        "deploy to Cloud Run",
+        "PostgreSQL to Cloud SQL migration",
+        "containerize my Python app",
+        "GCP Terraform setup",
+        "Docker to production",
+        "cloud migration cost estimate",
+        "production deployment strategy",
+        "how do I get this running for real users",
+        "scale my homelab app"
+      ],
+      "rejection_phrases": [
+        "AWS migration",
+        "Azure deployment",
+        "migrate to MongoDB",
+        "deploy to Heroku",
+        "Kubernetes cluster setup"
+      ]
     },
     {
       "id": 3,
       "skill": "market-intelligence",
-      "prompt": "I keep hearing about personalized health and longevity being huge markets right now. I want to understand if building this biohacking AI tool is actually a good business or if I should be doing something else with my AI skills. Can you do a deep analysis of the opportunity and also suggest what other businesses I could build that might make even more money?",
+      "category": "strategy",
+      "prompt": "I keep hearing about personalized health and longevity being huge markets. I want to understand if building this biohacking AI tool is actually a good business or if I should be doing something else. Can you do a deep analysis of the opportunity and suggest alternative businesses I could build?",
       "expected_output": "TAM/SAM/SOM analysis of personalized health market, competitive landscape mapping with named competitors, profit mechanics analysis, 5-10 alternative business ideas scored against the opportunity framework, clear recommendation with reasoning",
-      "files": []
+      "activation_phrases": [
+        "is this a good business to build",
+        "TAM for personalized health",
+        "competitive analysis of biohacking market",
+        "what business should I start",
+        "market sizing for health tech",
+        "where is the money in AI",
+        "analyze this business opportunity",
+        "best niches for AI consulting",
+        "is the longevity market saturated",
+        "revenue potential of my idea"
+      ],
+      "rejection_phrases": [
+        "design a market research survey",
+        "build a competitor monitoring tool",
+        "how do I do keyword research",
+        "SEO strategy for my website",
+        "pricing strategy for my product"
+      ]
     },
     {
       "id": 4,
       "skill": "brand-website-strategy",
-      "prompt": "I need to get my website up and running. Right now I have nothing live. I do AI consulting AND I'm building this biohacking product. Should these be one website or two? What should the site look like? I want it to look professional and cutting-edge but not corporate. Help me figure out the whole brand and site plan.",
+      "category": "product",
+      "prompt": "I need to get my website up. I do AI consulting AND I'm building a biohacking product. Should these be one website or two? What should the site look like? I want it to look professional and cutting-edge but not corporate.",
       "expected_output": "One-brand-vs-two analysis with recommendation, complete visual identity (hex codes, font pairings, logo direction), full site architecture with page-by-page content outline, tech stack recommendation, and SEO strategy",
-      "files": []
+      "activation_phrases": [
+        "help me build my website",
+        "brand identity for my startup",
+        "what colors should my site use",
+        "logo direction for tech company",
+        "website architecture for consulting",
+        "should I have one site or two",
+        "content strategy for landing page",
+        "how to look professional online",
+        "conversion optimization for my site",
+        "SEO for my consulting business"
+      ],
+      "rejection_phrases": [
+        "build a React component",
+        "how do I set up Next.js",
+        "deploy my website to Vercel",
+        "write copy for my newsletter",
+        "how do I rank on Google"
+      ]
     },
     {
       "id": 5,
       "skill": "portable-ai-instructions",
-      "prompt": "I'm starting a new Python project for my biohacking API. It's going to be FastAPI + PostgreSQL + Docker, deploying to Cloud Run. I use Claude Code, Cursor, and sometimes Codex. Can you generate all the project instruction files I need so every AI tool knows how to work with this codebase?",
+      "category": "core",
+      "prompt": "I'm starting a new Python project for my biohacking API — FastAPI + PostgreSQL + Docker, deploying to Cloud Run. I use Claude Code, Cursor, and sometimes Codex. Can you generate all the project instruction files I need?",
       "expected_output": "Complete, ready-to-use CLAUDE.md, AGENTS.md, GEMINI.md, .cursorrules, and .github/copilot-instructions.md files, all consistent with each other but tailored to each tool's strengths",
-      "files": []
+      "activation_phrases": [
+        "generate CLAUDE.md for my project",
+        "create AGENTS.md",
+        "set up AI tool configs",
+        "write .cursorrules for Python",
+        "create project instructions for Claude Code",
+        "generate GEMINI.md",
+        "how do I configure Codex for my project",
+        "make AI tools work better with my codebase",
+        "create project instruction files",
+        "AI tool setup for new project"
+      ],
+      "rejection_phrases": [
+        "how do I use Claude Code",
+        "what is CLAUDE.md",
+        "explain how AI tools work",
+        "compare Claude and Codex",
+        "debug my CLAUDE.md"
+      ]
+    },
+    {
+      "id": 6,
+      "skill": "skill-builder",
+      "category": "core",
+      "prompt": "I need a new skill for working with the Anthropic Claude API — specifically for building production apps that use tool use, streaming responses, and prompt caching. I want a SKILL.md file that can be used with Claude Code. Can you build it using the skill-builder methodology?",
+      "expected_output": "A complete SKILL.md following the 9-section canonical template, with: engineered description field, metadata block with all required fields, anti-patterns section with ≥3 named anti-patterns, failure modes with detection signals and fallbacks, composability section naming adjacent skills, quality gates, and SKILL.md body ≤500 lines.",
+      "activation_phrases": [
+        "build a skill for X",
+        "create a SKILL.md file",
+        "I need a new skill",
+        "write a skill for this domain",
+        "audit this skill",
+        "what skills am I missing",
+        "score this SKILL.md",
+        "improve this skill",
+        "skill library gap analysis",
+        "build skills for the engineering category"
+      ],
+      "rejection_phrases": [
+        "use the polychronos team",
+        "amplify my prompt",
+        "how do I use slash commands",
+        "activate the business genius skill",
+        "what is a SKILL.md"
+      ]
+    },
+    {
+      "id": 7,
+      "skill": "code-review",
+      "category": "engineering",
+      "prompt": "Can you review this Python function? It's a FastAPI endpoint that takes a user_id, fetches their supplement stack from the database, checks for interactions, and returns a safety report.\n\n```python\ndef get_interaction_report(user_id, db):\n    try:\n        supplements = db.execute(f'SELECT * FROM user_supplements WHERE user_id = {user_id}').fetchall()\n        interactions = []\n        for s in supplements:\n            result = check_interactions(s['supplement_id'])\n            interactions.append(result)\n        return {'status': 'ok', 'interactions': interactions}\n    except:\n        return {'status': 'error'}\n```",
+      "expected_output": "Structured findings by severity: CRITICAL for SQL injection via f-string, HIGH for bare except swallowing all errors and returning a vague error response, HIGH for missing return type hint and sync database call in what should be an async endpoint, MEDIUM for SELECT * instead of specific columns, with specific corrected code for each finding and a summary verdict of REQUEST CHANGES.",
+      "activation_phrases": [
+        "review this code",
+        "is this production-ready",
+        "check this function for issues",
+        "code review this PR",
+        "what's wrong with this code",
+        "security review this endpoint",
+        "are there any bugs here",
+        "does this code look right",
+        "audit this Python function",
+        "review before I commit"
+      ],
+      "rejection_phrases": [
+        "write tests for this code",
+        "how do I refactor this",
+        "explain what this code does",
+        "run this code for me",
+        "how do I make this faster"
+      ]
+    },
+    {
+      "id": 8,
+      "skill": "testing-strategy",
+      "category": "engineering",
+      "prompt": "I have a FastAPI endpoint that reads supplement data from PostgreSQL and returns interaction warnings. How should I test it? I'm using pytest. I want to make sure I'm testing it correctly and not just mocking everything.",
+      "expected_output": "Specific pytest strategy: use AsyncClient with ASGITransport for endpoint tests, use a real test database with the transaction-rollback fixture pattern (not mocks), at least one integration test against real DB, parametrize for multiple supplement combinations, hypothesis strategy for edge cases, and explicit guidance on NOT mocking SQLAlchemy.",
+      "activation_phrases": [
+        "how should I test this",
+        "write tests for this function",
+        "pytest fixtures for database",
+        "how do I test async code",
+        "test coverage strategy",
+        "unit test vs integration test for this",
+        "flaky test help",
+        "hypothesis testing",
+        "tests keep breaking",
+        "mock vs real database in tests"
+      ],
+      "rejection_phrases": [
+        "review this test code",
+        "is my test correct",
+        "how do I run pytest",
+        "what is test coverage",
+        "debug this test failure"
+      ]
+    },
+    {
+      "id": 9,
+      "skill": "database-design",
+      "category": "engineering",
+      "prompt": "I need to design a schema for storing supplement interaction data. Each supplement can interact with many other supplements (the interaction is bidirectional), and each interaction has a severity (low/medium/high), a mechanism, and links to research papers. I also need to track where the data came from and when it was ingested. What's the right schema?",
+      "expected_output": "Normalized schema DDL with: supplements table, supplement_interactions junction table (handling bidirectionality via ordered pair or explicit both-directions rows with justification), research_papers table, interaction_evidence join table, provenance columns (source_id, source_name, ingested_at) on external-data tables, indexes on all foreign keys, a CHECK constraint on severity enum, and COMMENT ON TABLE/COLUMN documentation for non-obvious design decisions.",
+      "activation_phrases": [
+        "design a schema for",
+        "how should I model this in postgres",
+        "database design for",
+        "is this schema right",
+        "normalize this data model",
+        "slow query help",
+        "should I use JSONB here",
+        "index strategy for this query",
+        "EXPLAIN ANALYZE this query",
+        "how do I store temporal data in postgres"
+      ],
+      "rejection_phrases": [
+        "write a migration for this schema",
+        "how do I set up Cloud SQL",
+        "SQLAlchemy model for this",
+        "how do I connect to postgres",
+        "write tests for my database code"
+      ]
     }
   ]
 }

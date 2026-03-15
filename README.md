@@ -1,6 +1,8 @@
 # Aaron's AI Skill Library
 
-A library of 17 AI specialist skills and cross-platform configuration files for AI-assisted development. Each skill is a deep-domain expert that activates on demand, designed to work across Claude Code, Google Antigravity (Gemini CLI), OpenAI Codex, and Cursor.
+A library of **21 AI specialist skills** and cross-platform configuration files for AI-assisted development. Each skill is a deep-domain expert that activates on demand, designed to work across Claude Code, Google Antigravity (Gemini CLI), OpenAI Codex, and Cursor.
+
+Includes a **`skill-builder` meta-skill** for creating, auditing, and continuously improving skills using a 5-module creation pipeline and a 10-dimension quality rubric.
 
 ## Quick Start
 
@@ -20,10 +22,11 @@ After registration, use any skill in Claude Code with its slash command (e.g., `
 
 ## Skill Catalog
 
-### Core Orchestration (`skills/core/`) -- 3 skills
+### Core Orchestration (`skills/core/`) -- 4 skills
 
 | Skill | Description |
 |-------|-------------|
+| `skill-builder` | **Meta-skill.** Creates, audits, and improves other skills using a 5-module pipeline + 10-dimension rubric |
 | `polychronos-team` | Multi-agent orchestration with B.L.A.S.T. protocol deploying 13 specialist roles |
 | `prompt-amplifier` | Transforms prompts into precision-engineered instructions for maximum AI output |
 | `portable-ai-instructions` | Generates project instruction files (CLAUDE.md, AGENTS.md, GEMINI.md, etc.) |
@@ -43,6 +46,14 @@ After registration, use any skill in Claude Code with its slash command (e.g., `
 | `biohacking-data-pipeline` | Data pipeline architecture for health/supplement/biomarker data with provenance tracking |
 | `brand-website-strategy` | Brand positioning, visual identity, website architecture, SEO, conversion optimization |
 | `cloud-migration-playbook` | Proxmox homelab to GCP migration: Docker, Cloud Run, Cloud SQL, Terraform, security |
+
+### Engineering (`skills/engineering/`) -- 3 skills
+
+| Skill | Description |
+|-------|-------------|
+| `code-review` | Expert code reviewer: correctness, security, failure handling, data integrity, performance |
+| `testing-strategy` | pytest expert: fixture design, transaction-rollback isolation, hypothesis, async testing |
+| `database-design` | PostgreSQL schema architect: normalization, indexes, constraints, JSONB, provenance patterns |
 
 ### Microsoft Power Platform (`skills/microsoft/`) -- 8 skills
 
@@ -65,10 +76,11 @@ aaron-skill-library/
 |-- README.md                      # This file
 |-- .gitignore
 |
-|-- skills/                        # All 17 skills, organized by category
-|   |-- core/                      # Orchestration & meta-skills
-|   |-- strategy/                  # Business & market advisory
-|   |-- product/                   # Product-specific domain skills
+|-- skills/                        # All 21 skills, organized by category
+|   |-- core/                      # Orchestration & meta-skills (4 skills, incl. skill-builder)
+|   |-- strategy/                  # Business & market advisory (3 skills)
+|   |-- product/                   # Product-specific domain skills (3 skills)
+|   |-- engineering/               # Software engineering skills (3 skills, NEW)
 |   |-- microsoft/                 # MS Power Platform (8 skills)
 |
 |-- platform-configs/              # Per-tool instruction file templates
@@ -82,6 +94,7 @@ aaron-skill-library/
 |-- scripts/                       # Tooling
 |   |-- register-commands.sh       # Register skills as Claude Code commands
 |   |-- deploy.sh                  # Deploy configs & skills to projects
+|   |-- validate-skills.sh         # Validate SKILL.md files against naming + quality rules
 |
 |-- evals/                         # Skill evaluation test cases
 |-- .claude/commands/              # Project-level slash commands
