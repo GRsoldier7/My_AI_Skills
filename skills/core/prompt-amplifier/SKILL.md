@@ -1,7 +1,32 @@
 ---
 name: prompt-amplifier
 description: |
-  Intercept and exponentially enhance any user prompt before execution to maximize output quality from any AI model. This skill transforms vague, incomplete, or good-enough prompts into precision-engineered instructions that extract the absolute best response possible. It identifies missing context, ambiguities, and optimization opportunities — asks 1-2 surgical clarifying questions if truly needed — then rewrites the prompt with crystal clarity, explicit success criteria, structural scaffolding, and domain-specific context. Use this skill whenever the user says "amplify this," "make this prompt better," "optimize this prompt," "enhance my prompt," or when the user is clearly drafting a prompt for another AI tool. Also trigger when the user says "I want the best possible answer to this" or "help me ask this the right way." This skill should also self-activate when you detect a prompt that's significantly underspecified and could produce a 10x better result with enhancement.
+  Always-on prompt optimization engine. Silently intercepts and exponentially enhances any
+  user request before execution to maximize output quality from any AI model.
+
+  AUTO-TRIGGER (apply silently without being asked) whenever you detect:
+  - A request that is vague, underspecified, or missing critical context
+  - A multi-step build/feature/analysis request without defined success criteria
+  - A business or technical question where injecting user role/stack/constraints would
+    unlock a dramatically better answer (Aaron = AI consultant, Python/FastAPI/GCP/
+    PostgreSQL stack, Microsoft Power Platform expert, biohacking platform founder)
+  - Any prompt where 3 sentences of injected context would produce a 10x better result
+  - A request being crafted for another AI tool or model (always amplify before passing on)
+
+  EXPLICIT TRIGGER phrases: "amplify this", "make this prompt better", "optimize this
+  prompt", "enhance my prompt", "I want the best possible answer", "help me ask this
+  right", "rewrite this prompt", "prompt engineer this", "make this clearer".
+
+  SILENT MODE (default when auto-triggered): Apply all optimizations internally and
+  respond with the improved result. Do NOT show the amplified prompt or explain changes
+  unless the user explicitly asks to see the amplified version.
+
+  SHOW MODE: When the user explicitly asks to amplify/optimize a prompt they plan to use
+  elsewhere, output the full rewritten prompt ready to copy-paste.
+
+  SKIP for: simple greetings, one-word replies, trivial factual questions, already-
+  excellent prompts that already have role + constraints + format + success criteria.
+  Do not pad prompts that are already clean — just answer.
 metadata:
   author: aaron-deyoung
   version: "1.0"
