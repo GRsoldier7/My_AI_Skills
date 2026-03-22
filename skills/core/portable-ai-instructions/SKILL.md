@@ -9,6 +9,11 @@ metadata:
   adjacent-skills: prompt-amplifier, polychronos-team, skill-builder
   last-reviewed: "2026-03-15"
   review-trigger: "New AI tool releases, Claude Code instruction format changes, AGENTS.md spec updates"
+  capability-assumptions:
+    - "No external tools required beyond standard Claude Code tools"
+  fallback-patterns:
+    - "If tools unavailable: provide text-based guidance"
+  degradation-mode: "graceful"
 ---
 
 # Portable AI Instructions Generator

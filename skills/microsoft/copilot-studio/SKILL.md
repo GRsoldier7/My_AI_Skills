@@ -16,6 +16,13 @@ metadata:
   adjacent-skills: power-automate, m365-integration, microsoft-dataverse
   last-reviewed: "2026-03-15"
   review-trigger: "Copilot Studio major feature release, generative AI capability update, Teams platform change"
+  capability-assumptions:
+    - "Microsoft 365 tenant with appropriate licenses"
+    - "Power Platform environment access"
+  fallback-patterns:
+    - "If no tenant access: provide configuration guidance as text"
+    - "If license tier unclear: ask before generating premium-tier guidance"
+  degradation-mode: "graceful"
 ---
 
 # Copilot Studio — Savant-Level Skill

@@ -16,6 +16,13 @@ metadata:
   adjacent-skills: microsoft-dataverse, power-platform-admin, sharepoint
   last-reviewed: "2026-03-15"
   review-trigger: "Power BI major feature release, DAX language update, Microsoft Fabric Direct Lake changes"
+  capability-assumptions:
+    - "Microsoft 365 tenant with appropriate licenses"
+    - "Power Platform environment access"
+  fallback-patterns:
+    - "If no tenant access: provide configuration guidance as text"
+    - "If license tier unclear: ask before generating premium-tier guidance"
+  degradation-mode: "graceful"
 ---
 
 # Power BI — Savant-Level Skill

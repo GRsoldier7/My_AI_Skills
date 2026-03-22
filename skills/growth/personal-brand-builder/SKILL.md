@@ -16,6 +16,11 @@ metadata:
   adjacent-skills: social-media-architect, content-marketing-machine, copywriting-conversion, community-builder
   last-reviewed: "2026-03-15"
   review-trigger: "LinkedIn algorithm major change, thought leadership landscape shifts, new format dominates (audio, video, AI-native content)"
+  capability-assumptions:
+    - "No external tools required — text-based guidance"
+  fallback-patterns:
+    - "If specific platform needed: recommend platform-specific resources"
+  degradation-mode: "graceful"
 ---
 
 # Personal Brand Builder — Savant-Level Skill

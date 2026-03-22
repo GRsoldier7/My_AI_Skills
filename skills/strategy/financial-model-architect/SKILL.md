@@ -15,6 +15,11 @@ metadata:
   adjacent-skills: business-plan-architect, pricing-strategist, entrepreneurial-os
   last-reviewed: "2026-03-15"
   review-trigger: "SaaS benchmarks update (OpenView, Bessemer), interest rate environment shift, major bootstrap financial tool released"
+  capability-assumptions:
+    - "No external tools required — text-based frameworks and guidance"
+  fallback-patterns:
+    - "If financial specifics needed: recommend CPA or financial advisor verification"
+  degradation-mode: "graceful"
 ---
 
 # Financial Model Architect — Savant-Level Skill

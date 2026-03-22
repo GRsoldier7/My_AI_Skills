@@ -15,6 +15,11 @@ metadata:
   adjacent-skills: business-plan-architect, go-to-market-engine, financial-model-architect, ai-business-optimizer
   last-reviewed: "2026-03-15"
   review-trigger: "New founder framework published, major shift in solo-founder tooling, AI agent capability breakthrough changes solo founder leverage"
+  capability-assumptions:
+    - "No external tools required — text-based frameworks and guidance"
+  fallback-patterns:
+    - "If financial specifics needed: recommend CPA or financial advisor verification"
+  degradation-mode: "graceful"
 ---
 
 # Entrepreneurial OS — Savant-Level Skill

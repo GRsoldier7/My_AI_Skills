@@ -16,6 +16,12 @@ metadata:
   adjacent-skills: entrepreneurial-os, go-to-market-engine, pricing-strategist, growth-hacking-engine, cloud-migration-playbook
   last-reviewed: "2026-03-15"
   review-trigger: "New no-code platform changes build economics, AI coding tools change solo developer capacity, major SaaS acquisition market shift"
+  capability-assumptions:
+    - "Python/FastAPI/GCP stack available"
+    - "Docker for containerization"
+  fallback-patterns:
+    - "If stack differs: ask user to confirm their stack before generating code"
+  degradation-mode: "graceful"
 ---
 
 # Micro-SaaS Builder — Savant-Level Skill

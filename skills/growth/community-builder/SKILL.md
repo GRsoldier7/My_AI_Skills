@@ -16,6 +16,11 @@ metadata:
   adjacent-skills: personal-brand-builder, growth-hacking-engine, social-media-architect, micro-saas-builder
   last-reviewed: "2026-03-15"
   review-trigger: "Discord major feature change, Skool platform shift, Circle feature update, new community platform reaches critical mass — review platform pricing and feature matrix quarterly"
+  capability-assumptions:
+    - "No external tools required — text-based guidance"
+  fallback-patterns:
+    - "If specific platform needed: recommend platform-specific resources"
+  degradation-mode: "graceful"
 ---
 
 # Community Builder — Savant-Level Skill

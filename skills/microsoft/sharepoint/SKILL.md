@@ -17,6 +17,13 @@ metadata:
   adjacent-skills: power-automate, m365-integration, power-apps
   last-reviewed: "2026-03-15"
   review-trigger: "SharePoint major feature release, Graph API for SharePoint breaking change, SPFx version update"
+  capability-assumptions:
+    - "Microsoft 365 tenant with appropriate licenses"
+    - "Power Platform environment access"
+  fallback-patterns:
+    - "If no tenant access: provide configuration guidance as text"
+    - "If license tier unclear: ask before generating premium-tier guidance"
+  degradation-mode: "graceful"
 ---
 
 # SharePoint — Savant-Level Skill

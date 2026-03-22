@@ -16,6 +16,11 @@ metadata:
   adjacent-skills: prompt-amplifier, portable-ai-instructions, polychronos-team
   last-reviewed: "2026-03-15"
   review-trigger: "Agent Skills spec update, new Claude major version, 3+ user-reported quality failures"
+  capability-assumptions:
+    - "No external tools required beyond standard Claude Code tools"
+  fallback-patterns:
+    - "If tools unavailable: provide text-based guidance"
+  degradation-mode: "graceful"
 ---
 
 ## Purpose and Scope

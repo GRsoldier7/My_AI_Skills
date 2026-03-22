@@ -16,6 +16,13 @@ metadata:
   adjacent-skills: sharepoint, copilot-studio, microsoft-dataverse
   last-reviewed: "2026-03-15"
   review-trigger: "Graph API breaking change, new M365 service added, MSAL SDK major version release"
+  capability-assumptions:
+    - "Microsoft 365 tenant with appropriate licenses"
+    - "Power Platform environment access"
+  fallback-patterns:
+    - "If no tenant access: provide configuration guidance as text"
+    - "If license tier unclear: ask before generating premium-tier guidance"
+  degradation-mode: "graceful"
 ---
 
 # Microsoft 365 Integration — Savant-Level Skill

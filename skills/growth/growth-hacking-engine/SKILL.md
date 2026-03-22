@@ -16,6 +16,11 @@ metadata:
   adjacent-skills: go-to-market-engine, marketing-strategist, micro-saas-builder, financial-model-architect
   last-reviewed: "2026-03-15"
   review-trigger: "New PLG pattern emerges, major growth tool platform change, AI-powered growth tooling breakthrough"
+  capability-assumptions:
+    - "No external tools required — text-based guidance"
+  fallback-patterns:
+    - "If specific platform needed: recommend platform-specific resources"
+  degradation-mode: "graceful"
 ---
 
 # Growth Hacking Engine — Savant-Level Skill

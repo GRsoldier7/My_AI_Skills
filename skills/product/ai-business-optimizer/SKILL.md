@@ -17,6 +17,12 @@ metadata:
   adjacent-skills: ai-agentic-specialist, entrepreneurial-os, micro-saas-builder, cloud-migration-playbook
   last-reviewed: "2026-03-15"
   review-trigger: "Major LLM capability release, new agentic framework reaches production-readiness, AI tool pricing shift, new automation platform emerges — review tool stack section every 3-6 months"
+  capability-assumptions:
+    - "Python/FastAPI/GCP stack available"
+    - "Docker for containerization"
+  fallback-patterns:
+    - "If stack differs: ask user to confirm their stack before generating code"
+  degradation-mode: "graceful"
 ---
 
 # AI Business Optimizer — Savant-Level Skill

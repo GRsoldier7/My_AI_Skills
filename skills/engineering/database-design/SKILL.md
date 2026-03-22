@@ -18,6 +18,12 @@ metadata:
   adjacent-skills: testing-strategy, biohacking-data-pipeline, cloud-migration-playbook
   last-reviewed: "2026-03-15"
   review-trigger: "PostgreSQL major version release, new JSONB operator availability"
+  capability-assumptions:
+    - "Python 3.12+, FastAPI, SQLAlchemy 2.0, PostgreSQL"
+    - "Bash tool for running commands"
+  fallback-patterns:
+    - "If no code execution: provide code as text for user to run"
+  degradation-mode: "graceful"
 ---
 
 ## Purpose and Scope

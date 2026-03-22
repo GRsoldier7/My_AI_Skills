@@ -15,6 +15,11 @@ metadata:
   adjacent-skills: financial-model-architect, market-intelligence, entrepreneurial-os, go-to-market-engine
   last-reviewed: "2026-03-15"
   review-trigger: "Investor landscape shift, new fundraising format popularized, Y Combinator application format changes"
+  capability-assumptions:
+    - "No external tools required — text-based frameworks and guidance"
+  fallback-patterns:
+    - "If financial specifics needed: recommend CPA or financial advisor verification"
+  degradation-mode: "graceful"
 ---
 
 # Business Plan Architect — Savant-Level Skill

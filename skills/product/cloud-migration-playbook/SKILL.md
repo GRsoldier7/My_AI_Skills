@@ -9,6 +9,12 @@ metadata:
   adjacent-skills: biohacking-data-pipeline, database-design, testing-strategy
   last-reviewed: "2026-03-15"
   review-trigger: "GCP service pricing or feature change, Docker major version, Terraform breaking change"
+  capability-assumptions:
+    - "Python/FastAPI/GCP stack available"
+    - "Docker for containerization"
+  fallback-patterns:
+    - "If stack differs: ask user to confirm their stack before generating code"
+  degradation-mode: "graceful"
 ---
 
 # Cloud Migration Playbook: Proxmox Homelab → Google Cloud

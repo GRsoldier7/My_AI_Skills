@@ -9,6 +9,11 @@ metadata:
   adjacent-skills: prompt-amplifier, skill-builder, portable-ai-instructions
   last-reviewed: "2026-03-15"
   review-trigger: "BLAST protocol update, new specialist role added, Claude major version release"
+  capability-assumptions:
+    - "No external tools required beyond standard Claude Code tools"
+  fallback-patterns:
+    - "If tools unavailable: provide text-based guidance"
+  degradation-mode: "graceful"
 ---
 
 # Polychronos OS + B.L.A.S.T. Protocol

@@ -9,6 +9,11 @@ metadata:
   adjacent-skills: polychronos-team, business-genius, market-intelligence
   last-reviewed: "2026-03-15"
   review-trigger: "Major LLM release, new agentic framework gains significant adoption, frontier lab pricing change"
+  capability-assumptions:
+    - "No external tools required — text-based frameworks and guidance"
+  fallback-patterns:
+    - "If financial specifics needed: recommend CPA or financial advisor verification"
+  degradation-mode: "graceful"
 ---
 
 # AI & Agentic Genius Specialist

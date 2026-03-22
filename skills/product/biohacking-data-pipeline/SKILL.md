@@ -9,6 +9,12 @@ metadata:
   adjacent-skills: database-design, cloud-migration-playbook, testing-strategy
   last-reviewed: "2026-03-15"
   review-trigger: "New health data API launches or deprecates, PostgreSQL major version, Python 3.x breaking change"
+  capability-assumptions:
+    - "Python/FastAPI/GCP stack available"
+    - "Docker for containerization"
+  fallback-patterns:
+    - "If stack differs: ask user to confirm their stack before generating code"
+  degradation-mode: "graceful"
 ---
 
 # Biohacking Data Pipeline Architect

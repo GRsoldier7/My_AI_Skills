@@ -16,6 +16,11 @@ metadata:
   adjacent-skills: marketing-strategist, entrepreneurial-os, business-plan-architect, growth-hacking-engine
   last-reviewed: "2026-03-15"
   review-trigger: "Major distribution platform change (LinkedIn algorithm shift, Google search update), new PLG pattern emerges, AI outreach tools change cold email economics"
+  capability-assumptions:
+    - "No external tools required — text-based frameworks and guidance"
+  fallback-patterns:
+    - "If financial specifics needed: recommend CPA or financial advisor verification"
+  degradation-mode: "graceful"
 ---
 
 # Go-to-Market Engine — Savant-Level Skill

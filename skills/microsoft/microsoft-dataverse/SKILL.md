@@ -16,6 +16,13 @@ metadata:
   adjacent-skills: power-apps, power-platform-admin, power-automate
   last-reviewed: "2026-03-15"
   review-trigger: "Dataverse schema API change, new table type available, Web API version update"
+  capability-assumptions:
+    - "Microsoft 365 tenant with appropriate licenses"
+    - "Power Platform environment access"
+  fallback-patterns:
+    - "If no tenant access: provide configuration guidance as text"
+    - "If license tier unclear: ask before generating premium-tier guidance"
+  degradation-mode: "graceful"
 ---
 
 # Microsoft Dataverse — Savant-Level Skill

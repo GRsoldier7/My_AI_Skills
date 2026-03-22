@@ -1,6 +1,6 @@
 # Aaron's AI Skill Library
 
-A library of **36 AI specialist skills** and cross-platform configuration files for AI-assisted development and business strategy. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation.
+A library of **55 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. A **master-orchestrator** skill routes every request to the optimal skill chain automatically.
 
 The library supports **five AI platforms**: Claude Code (slash commands), Google Antigravity / Gemini CLI, OpenAI Codex, Cursor, and ChatGPT. A dedicated **`skill-builder` meta-skill** manages the creation, auditing, and continuous improvement of all skills using a 5-module pipeline and a 10-dimension quality rubric.
 
@@ -97,76 +97,111 @@ Skills are designed to **compose** — `business-genius` routes to specialist su
 
 ## Skill Catalog
 
-### Core Orchestration (`skills/core/`) — 4 skills
+### Core (`skills/core/`) — 11 skills
 
-These skills manage orchestration, meta-operations, and cross-platform configuration. Use these for complex multi-step work, prompt engineering, and setting up new projects.
+Meta-layer skills that make everything else run better. `master-orchestrator` routes every request; `anti-hallucination` and `prompt-amplifier` run in the background on every response.
 
 | Skill | When to Use |
 |-------|-------------|
-| `skill-builder` | Creating a new skill, auditing an existing skill for quality, improving a skill that isn't performing well. The meta-skill that governs the library itself. Uses a 5-module pipeline (Brief → Draft → Review → Audit → Deploy) and a 10-dimension rubric. |
-| `polychronos-team` | Any non-trivial project work. Activates the full 13-specialist team (PM, Architect, Engineer, QA, DevOps, etc.) with the B.L.A.S.T. protocol for structured, high-quality output. |
-| `prompt-amplifier` | Improving a prompt before sending it to any AI. Transforms vague or incomplete prompts into precision-engineered instructions with explicit success criteria, missing context filled in, and structural scaffolding. |
-| `portable-ai-instructions` | Setting up a new project for AI-assisted development. Generates optimized CLAUDE.md, AGENTS.md, GEMINI.md, and .cursorrules tailored to each tool's specific strengths and conventions. |
+| `master-orchestrator` | **Auto-invoked on every non-trivial request.** Routes to optimal skill chain, ensures no relevant skill is missed. The brain of the library. |
+| `skill-amplifier` | Optimizing any SKILL.md to peak performance via 8 amplification passes. On-demand, pre-commit, or batch mode. |
+| `anti-hallucination` | **Always active.** Prevents context drift, enforces confidence tiers (VERIFIED→UNKNOWN), re-grounding protocol. Escalates automatically past 40% context. |
+| `prompt-amplifier` | **Always active (silent mode).** Optimizes every prompt internally. Show mode available on explicit request. |
+| `parallel-execution-strategist` | Decomposing work into parallel agents, fan-out patterns, worktree isolation, token optimization. Activates when 3+ independent tasks identified. |
+| `session-optimizer` | Context window management, compaction strategy, hook patterns, permission optimization. Activates at 40%+ context. |
+| `knowledge-management` | Organizing information across projects, PARA method, documentation standards, cross-system sync, Claude memory integration. |
+| `personal-productivity` | Time architecture, Eisenhower matrix, deep work, energy-based scheduling, multi-domain life management, burnout prevention. |
+| `polychronos-team` | Multi-agent orchestration with B.L.A.S.T. protocol. 13-specialist team with structured handoffs. |
+| `skill-builder` | Creating, auditing, and improving skills. 5-module pipeline + 10-dimension quality rubric. |
+| `portable-ai-instructions` | Cross-platform AI instruction files (CLAUDE.md, AGENTS.md, GEMINI.md, .cursorrules). |
 
 ---
 
-### Strategy & Business (`skills/strategy/`) — 8 skills
+### Engineering (`skills/engineering/`) — 8 skills
 
-Business strategy, market intelligence, financial modeling, and go-to-market execution. `business-genius` is the orchestrator that routes to specialist sub-skills.
+Full-stack engineering: security, automation, data, containers, MCP servers, code quality, databases, and testing.
 
 | Skill | When to Use |
 |-------|-------------|
-| `business-genius` | High-level business strategy, niche identification, evaluating new opportunities, deciding what to build next. The orchestrator — it diagnoses the situation and routes to the right specialist. |
-| `entrepreneurial-os` | Deciding what stage you're in as a founder, building a weekly operating rhythm, running a pivot/persist analysis, designing leverage systems for a solo founder. Stage-gate model, OODA loop, priority stack. |
-| `ai-agentic-specialist` | Evaluating AI tools and frameworks, designing agentic systems, staying current on the LLM landscape, comparing model capabilities and costs. Bleeding-edge AI intelligence. |
-| `market-intelligence` | Market sizing (TAM/SAM/SOM), competitive landscaping, validating whether a market exists, scoring business opportunities. Research and data-driven analysis. |
-| `business-plan-architect` | Writing a business plan, building an investor pitch deck, creating an executive summary or investor memo. Covers the 7 Powers framework, unit economics, traction hierarchy. |
-| `pricing-strategist` | Designing or redesigning your pricing model, running a willingness-to-pay analysis, choosing between pricing models, packaging tiers, building a price increase playbook. Van Westendorp, $100M Offers value equation. |
-| `financial-model-architect` | Building a financial model, calculating runway, stress-testing unit economics, creating 3-scenario projections, building an investor metrics dashboard. SaaS metrics, cohort revenue model, default-alive test. |
-| `go-to-market-engine` | Getting first customers, planning a product launch, choosing acquisition channels, building ICP profiles, sequencing a GTM motion from 0 to 1,000 customers. Sean Ellis PMF test. |
+| `app-security-architect` | Security review, OWASP Top 10, LLM security, GCP hardening, auth flows, secrets management, security code review. |
+| `n8n-workflow-architect` | n8n workflow design, node selection, webhook patterns, error handling, Docker/GCP/Power Platform integration. |
+| `docker-infrastructure` | Dockerfiles, Compose patterns, networking, volumes, reverse proxy, security hardening, self-hosted services. |
+| `data-analytics-engine` | SQL queries, Python/pandas analysis, visualization, dashboards, statistical testing, executive reporting. |
+| `mcp-server-builder` | Building MCP servers (TypeScript/Python), tool/resource/prompt design, security, testing with Inspector. |
+| `code-review` | Code review for correctness, security, failure handling, data integrity, performance. |
+| `database-design` | PostgreSQL schema design, normalization, indexes, JSONB, provenance tracking, constraints. |
+| `testing-strategy` | pytest fixtures, transaction-rollback isolation, hypothesis, async testing, coverage strategy. |
 
 ---
 
-### Growth & Marketing (`skills/growth/`) — 8 skills
+### Faith (`skills/faith/`) — 3 skills
 
-Full-funnel growth: marketing strategy, content, social media, copywriting, sales, community, and personal brand.
+Biblical study, life application, and teaching ministry.
 
 | Skill | When to Use |
 |-------|-------------|
-| `marketing-strategist` | Defining your positioning, building a messaging hierarchy, planning full-funnel strategy, comparing B2B vs B2C vs SMB marketing approaches. April Dunford 6-step positioning process. |
-| `copywriting-conversion` | Writing landing pages, email sequences, ad copy. Improving conversion rates on existing copy. Uses PAS, AIDA, BAB, FAB, and STAR frameworks with full templates. |
-| `content-marketing-machine` | Building a content strategy, SEO pillar/cluster model, starting a newsletter, creating a one-to-many content repurposing system. |
-| `social-media-architect` | Platform-specific growth strategy for LinkedIn, X/Twitter, YouTube, TikTok/Reels/Shorts. Hook formulas, algorithm patterns, consistency systems. |
-| `growth-hacking-engine` | Viral loop design, PLG strategy, activation funnel optimization, retention improvement, A/B test design, referral program mechanics. K-factor math, ICE scoring. |
-| `personal-brand-builder` | Building a LinkedIn presence, becoming known as a thought leader, positioning yourself as an expert, creating an authority monetization ladder. |
-| `sales-closer` | Improving close rates, qualifying deals with MEDDIC/MEDDPICC, running discovery calls with SPIN Selling, applying the Challenger Sale method, handling objections, writing proposals. |
-| `community-builder` | Building a paid or free community, choosing between Discord/Circle/Skool/Slack, designing the engagement flywheel, monetizing an audience, preventing community decay. |
+| `bible-study-theologian` | Deep scripture study, historical-grammatical hermeneutics, word studies, doctrinal research, sermon prep. |
+| `faith-life-integration` | Applying biblical wisdom to real business, financial, and relationship decisions. 6-lens framework. |
+| `sunday-school-teacher` | Age-appropriate lesson plans (preschool–high school), curriculum design, object lessons, series planning. |
 
 ---
 
-### Product & Infrastructure (`skills/product/`) — 5 skills
+### Strategy & Business (`skills/strategy/`) — 9 skills
 
-Product strategy, data pipelines, cloud infrastructure, brand, and SaaS building.
+Business strategy, consulting operations, market intelligence, financial modeling, and go-to-market execution.
 
 | Skill | When to Use |
 |-------|-------------|
-| `micro-saas-builder` | Validating a SaaS idea before writing code, scoping an MVP, choosing a tech stack for speed, planning the path from $0 to $10K MRR, diagnosing a revenue plateau. |
-| `ai-business-optimizer` | Auditing your business processes for AI automation opportunities, designing agentic workflows, calculating ROI on AI tools, building an AI-native operations stack. |
-| `biohacking-data-pipeline` | Designing data pipelines for health/supplement/biomarker data, building ingestion scripts, designing normalized schemas, integrating health data APIs. |
-| `brand-website-strategy` | Building a brand identity system, website architecture, SEO strategy, conversion optimization, competitive positioning in health tech or AI consulting. |
-| `cloud-migration-playbook` | Migrating from Proxmox homelab to GCP production. Docker, Cloud Run, Cloud SQL, Terraform, CI/CD, security hardening. |
+| `consulting-operations` | Client engagements, proposals, SOWs, pricing, scope creep prevention, change orders, consulting business ops. |
+| `business-genius` | High-level business strategy orchestrator. Routes to specialist sub-skills. |
+| `entrepreneurial-os` | Founder operating system, stage gates, weekly rhythm, pivot/persist analysis. |
+| `ai-agentic-specialist` | AI landscape intelligence, agentic team design, LLM evaluation, cost strategies. |
+| `business-plan-architect` | Business plans, investor pitch decks, executive summaries, unit economics. |
+| `pricing-strategist` | Value-based pricing, SaaS models, WTP research, rate-setting frameworks. |
+| `financial-model-architect` | Unit economics, runway, 3-scenario modeling, investor-ready financials. |
+| `go-to-market-engine` | ICP definition, channel selection, launch sequencing, PMF measurement. |
+| `market-intelligence` | TAM/SAM/SOM, competitive landscapes, opportunity scoring. |
 
 ---
 
-### Engineering (`skills/engineering/`) — 3 skills
-
-Software engineering quality, database architecture, and testing. Use these for any code-focused work.
+### Legal-Financial (`skills/legal-financial/`) — 1 skill
 
 | Skill | When to Use |
 |-------|-------------|
-| `code-review` | Reviewing code for correctness, security vulnerabilities, failure handling, data integrity, performance. Expert-level analysis with actionable fix recommendations. |
-| `database-design` | Designing PostgreSQL schemas, normalization decisions, index strategy, JSONB patterns, provenance tracking, constraint design, query performance. |
-| `testing-strategy` | Building a pytest test suite, fixture design, transaction-rollback isolation, property-based testing with hypothesis, async test patterns, coverage strategy. |
+| `startup-tax-strategist` | Business taxes, S-Corp election, deductions, quarterly estimates, entity structure, tax planning calendar. |
+
+---
+
+### Growth & Marketing (`skills/growth/`) — 9 skills
+
+Full-funnel growth: professional communication, marketing, content, social media, copywriting, sales, community, and personal brand.
+
+| Skill | When to Use |
+|-------|-------------|
+| `professional-communicator` | Emails, presentations, executive summaries, client communication, tone calibration, meeting agendas. |
+| `marketing-strategist` | Brand positioning (April Dunford), messaging hierarchy, full-funnel strategy, channel ROI. |
+| `copywriting-conversion` | PAS/AIDA/BAB frameworks, landing pages, email sequences, ad copy, conversion optimization. |
+| `content-marketing-machine` | SEO topical authority, pillar/cluster architecture, newsletter systems, repurposing workflows. |
+| `social-media-architect` | Platform-specific strategy for LinkedIn, X/Twitter, YouTube, TikTok. Hooks, algorithms, consistency. |
+| `growth-hacking-engine` | PLG design, viral loops, activation optimization, retention, A/B testing, K-factor math. |
+| `sales-closer` | SPIN Selling, Challenger Sale, MEDDIC/MEDDPICC, discovery calls, objection handling, closing. |
+| `personal-brand-builder` | LinkedIn domination, thought leadership positioning, authority monetization ladder. |
+| `community-builder` | Platform selection, flywheel design, engagement mechanics, community monetization. |
+
+---
+
+### Product (`skills/product/`) — 6 skills
+
+Product strategy, health optimization, data pipelines, cloud infrastructure, brand, and SaaS building.
+
+| Skill | When to Use |
+|-------|-------------|
+| `health-biohacking-protocol` | Evidence-based health protocols, supplement stacks, biomarker interpretation, N=1 experiments, sleep/nutrition/exercise optimization. |
+| `micro-saas-builder` | SaaS validation, MVP scoping, $0→$10K MRR playbook, churn prevention. |
+| `ai-business-optimizer` | AI business audit, agentic workflow design, tool stack ROI, process automation. |
+| `biohacking-data-pipeline` | Data pipelines for health/supplement data, schema design, ETL, API integrations. |
+| `brand-website-strategy` | Brand identity, website architecture, SEO, conversion optimization. |
+| `cloud-migration-playbook` | Homelab → GCP production. Docker, Terraform, Cloud Run, Cloud SQL, security hardening. |
 
 ---
 
@@ -176,14 +211,14 @@ The complete Power Platform suite. See also [skills/microsoft/README.md](skills/
 
 | Skill | When to Use |
 |-------|-------------|
-| `power-bi` | Data modeling (star schema, relationships), DAX measures, Power Query transformations, report design, RLS, deployment pipelines, performance optimization. |
-| `power-apps` | Canvas app or model-driven app development, Power Fx formulas, gallery/form patterns, Dataverse integration, delegation management, component libraries, ALM. |
-| `power-automate` | Cloud flow design, desktop RPA, expression writing, error handling/retry patterns, approval workflows, solution packaging, performance and throttling. |
-| `sharepoint` | Site architecture, list and library design, PnP PowerShell, SharePoint search (KQL), permissions, content types, migration, SPFx, governance. |
-| `copilot-studio` | Bot design, topic/entity configuration, generative AI orchestration, plugin actions, adaptive cards, multi-channel deployment, analytics. |
-| `power-platform-admin` | Environment strategy, DLP policies, CoE Starter Kit, licensing, managed environments, ALM pipelines, governance at scale, tenant settings. |
-| `microsoft-dataverse` | Table and relationship design, business rules, security roles, column types, Web API, FetchXML, OData queries, virtual tables, solution management. |
-| `m365-integration` | Microsoft Graph API, Teams app development (tabs, bots, message extensions), MSAL authentication, delegated/application permissions, M365 cross-service integration. |
+| `power-bi` | Data modeling (star schema), DAX measures, Power Query, report design, RLS, deployment pipelines. |
+| `power-apps` | Canvas/model-driven apps, Power Fx, gallery/form patterns, Dataverse integration, delegation, ALM. |
+| `power-automate` | Cloud flows, desktop RPA, expressions, error handling/retry, approvals, solution packaging. |
+| `sharepoint` | Site architecture, lists/libraries, PnP PowerShell, search (KQL), permissions, SPFx, governance. |
+| `copilot-studio` | Bot design, generative AI orchestration, plugin actions, adaptive cards, multi-channel deployment. |
+| `power-platform-admin` | Environment strategy, DLP policies, CoE Starter Kit, licensing, managed environments, governance. |
+| `microsoft-dataverse` | Table design, relationships, security roles, Web API, FetchXML, OData, virtual tables. |
+| `m365-integration` | Microsoft Graph API, Teams apps, MSAL auth, delegated/application permissions. |
 
 ---
 

@@ -9,6 +9,11 @@ metadata:
   adjacent-skills: business-genius, brand-website-strategy, ai-agentic-specialist
   last-reviewed: "2026-03-15"
   review-trigger: "Significant market change in target niches, new research methodology or data source becomes available"
+  capability-assumptions:
+    - "No external tools required — text-based frameworks and guidance"
+  fallback-patterns:
+    - "If financial specifics needed: recommend CPA or financial advisor verification"
+  degradation-mode: "graceful"
 ---
 
 # Market Intelligence & Business Opportunity Analyzer

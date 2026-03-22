@@ -16,6 +16,13 @@ metadata:
   adjacent-skills: power-apps, power-automate, microsoft-dataverse
   last-reviewed: "2026-03-15"
   review-trigger: "DLP policy schema change, new Power Platform licensing tier, CoE Starter Kit major update"
+  capability-assumptions:
+    - "Microsoft 365 tenant with appropriate licenses"
+    - "Power Platform environment access"
+  fallback-patterns:
+    - "If no tenant access: provide configuration guidance as text"
+    - "If license tier unclear: ask before generating premium-tier guidance"
+  degradation-mode: "graceful"
 ---
 
 # Power Platform Admin — Savant-Level Skill

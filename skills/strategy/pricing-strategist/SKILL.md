@@ -15,6 +15,11 @@ metadata:
   adjacent-skills: financial-model-architect, go-to-market-engine, business-plan-architect, micro-saas-builder
   last-reviewed: "2026-03-15"
   review-trigger: "Major SaaS pricing shift, new pricing model popularized (usage-based surge), inflation impact on B2B pricing"
+  capability-assumptions:
+    - "No external tools required — text-based frameworks and guidance"
+  fallback-patterns:
+    - "If financial specifics needed: recommend CPA or financial advisor verification"
+  degradation-mode: "graceful"
 ---
 
 # Pricing Strategist — Savant-Level Skill

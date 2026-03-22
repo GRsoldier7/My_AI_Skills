@@ -17,6 +17,13 @@ metadata:
   adjacent-skills: power-apps, sharepoint, microsoft-dataverse
   last-reviewed: "2026-03-15"
   review-trigger: "Power Automate major feature release, new connector tiers, expression language breaking change"
+  capability-assumptions:
+    - "Microsoft 365 tenant with appropriate licenses"
+    - "Power Platform environment access"
+  fallback-patterns:
+    - "If no tenant access: provide configuration guidance as text"
+    - "If license tier unclear: ask before generating premium-tier guidance"
+  degradation-mode: "graceful"
 ---
 
 # Power Automate — Savant-Level Skill

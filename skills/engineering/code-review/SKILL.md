@@ -16,6 +16,12 @@ metadata:
   adjacent-skills: testing-strategy, database-design, security-hardening
   last-reviewed: "2026-03-15"
   review-trigger: "New OWASP Top 10 release, major Python/TypeScript version change"
+  capability-assumptions:
+    - "Python 3.12+, FastAPI, SQLAlchemy 2.0, PostgreSQL"
+    - "Bash tool for running commands"
+  fallback-patterns:
+    - "If no code execution: provide code as text for user to run"
+  degradation-mode: "graceful"
 ---
 
 ## Purpose and Scope

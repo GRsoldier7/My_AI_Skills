@@ -16,6 +16,11 @@ metadata:
   adjacent-skills: copywriting-conversion, content-marketing-machine, social-media-architect, go-to-market-engine
   last-reviewed: "2026-03-15"
   review-trigger: "Major platform algorithm change, AI-generated content saturation changes SEO economics, new B2B buying behavior research published"
+  capability-assumptions:
+    - "No external tools required — text-based guidance"
+  fallback-patterns:
+    - "If specific platform needed: recommend platform-specific resources"
+  degradation-mode: "graceful"
 ---
 
 # Marketing Strategist — Savant-Level Skill

@@ -9,6 +9,12 @@ metadata:
   adjacent-skills: business-genius, market-intelligence, portable-ai-instructions
   last-reviewed: "2026-03-15"
   review-trigger: "Significant brand pivot, target audience change, major shift in web tech stack landscape"
+  capability-assumptions:
+    - "Python/FastAPI/GCP stack available"
+    - "Docker for containerization"
+  fallback-patterns:
+    - "If stack differs: ask user to confirm their stack before generating code"
+  degradation-mode: "graceful"
 ---
 
 # Brand Identity & Website Strategy

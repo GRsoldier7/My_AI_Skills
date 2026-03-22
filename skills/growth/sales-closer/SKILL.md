@@ -16,6 +16,11 @@ metadata:
   adjacent-skills: go-to-market-engine, marketing-strategist, copywriting-conversion, entrepreneurial-os
   last-reviewed: "2026-03-15"
   review-trigger: "AI sales tools change cold outreach economics, new enterprise buying behavior research, LinkedIn cold outreach policy change"
+  capability-assumptions:
+    - "No external tools required — text-based guidance"
+  fallback-patterns:
+    - "If specific platform needed: recommend platform-specific resources"
+  degradation-mode: "graceful"
 ---
 
 # Sales Closer — Savant-Level Skill

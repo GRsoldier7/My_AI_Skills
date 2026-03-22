@@ -14,6 +14,11 @@ metadata:
   adjacent-skills: marketing-strategist, social-media-architect, personal-brand-builder, go-to-market-engine
   last-reviewed: "2026-03-15"
   review-trigger: "Platform ad policy change, AI-generated copy saturation shifts human-written premium, major CRO research published"
+  capability-assumptions:
+    - "No external tools required — text-based guidance"
+  fallback-patterns:
+    - "If specific platform needed: recommend platform-specific resources"
+  degradation-mode: "graceful"
 ---
 
 # Copywriting & Conversion — Savant-Level Skill

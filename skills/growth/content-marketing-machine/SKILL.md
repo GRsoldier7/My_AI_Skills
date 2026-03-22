@@ -16,6 +16,11 @@ metadata:
   adjacent-skills: marketing-strategist, seo, social-media-architect, copywriting-conversion
   last-reviewed: "2026-03-15"
   review-trigger: "Google core algorithm update affecting topical authority, AI content saturation changes SEO dynamics, newsletter platform major change"
+  capability-assumptions:
+    - "No external tools required — text-based guidance"
+  fallback-patterns:
+    - "If specific platform needed: recommend platform-specific resources"
+  degradation-mode: "graceful"
 ---
 
 # Content Marketing Machine — Savant-Level Skill

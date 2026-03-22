@@ -16,6 +16,11 @@ metadata:
   adjacent-skills: content-marketing-machine, personal-brand-builder, copywriting-conversion, marketing-strategist
   last-reviewed: "2026-03-15"
   review-trigger: "Major platform algorithm update (LinkedIn feed change, X algorithm shift), new platform feature changes content format strategy, emerging platform reaches critical mass — review algorithm mechanics sections quarterly"
+  capability-assumptions:
+    - "No external tools required — text-based guidance"
+  fallback-patterns:
+    - "If specific platform needed: recommend platform-specific resources"
+  degradation-mode: "graceful"
 ---
 
 # Social Media Architect — Savant-Level Skill

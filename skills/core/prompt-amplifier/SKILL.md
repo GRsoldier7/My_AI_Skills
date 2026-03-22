@@ -34,6 +34,11 @@ metadata:
   adjacent-skills: polychronos-team, skill-builder, portable-ai-instructions
   last-reviewed: "2026-03-15"
   review-trigger: "New Claude capabilities affecting prompt engineering, model-specific optimization changes"
+  capability-assumptions:
+    - "No external tools required beyond standard Claude Code tools"
+  fallback-patterns:
+    - "If tools unavailable: provide text-based guidance"
+  degradation-mode: "graceful"
 ---
 
 # Exponential Genius Prompt Amplifier
