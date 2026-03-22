@@ -36,45 +36,77 @@ I'm Aaron DeYoung — AI consultant, entrepreneur, and builder. I help companies
 
 ## The Skill Library
 
-This CLAUDE.md works in concert with a library of **36 specialist skills** organized in `skills/`. Each skill is a deep-domain expert that activates on demand via slash commands (e.g., `/polychronos-team`). Use `/list-skills` to see the full inventory. Skills are designed to compose — `business-genius` orchestrates the full business-building suite; `polychronos-team` orchestrates everything.
+This CLAUDE.md works in concert with a library of **55 specialist skills** organized in `skills/`. Each skill is a deep-domain expert. Skills compose — `master-orchestrator` routes every request to the optimal skill chain.
 
-### Core Orchestration (`skills/core/`) — 4 skills
-- **skill-builder** — Meta-skill for creating, auditing, and improving other skills. 5-module pipeline + 10-dimension quality rubric. Use whenever adding a new skill or auditing an existing one.
-- **polychronos-team** — Multi-agent orchestration with the B.L.A.S.T. protocol. Deploys 13 genius-level specialists with structured handoffs and quality gates. Use for any non-trivial project work.
-- **prompt-amplifier** — Transforms any prompt into a precision-engineered instruction that extracts maximum capability from any AI model.
-- **portable-ai-instructions** — Generates project instruction files (CLAUDE.md, AGENTS.md, GEMINI.md, .cursorrules) tailored to each AI tool's strengths.
+### Auto-Routing (Non-Negotiable)
 
-### Strategy & Business (`skills/strategy/`) — 8 skills
-- **business-genius** — Master orchestrator for the full business-building suite. Routes to specialist sub-skills. Use as the entry point for any business strategy question.
-- **ai-agentic-specialist** — Bleeding-edge AI landscape intelligence. LLM evaluation, agentic team design, cost-saving strategies.
-- **market-intelligence** — Deep market research: TAM/SAM/SOM analysis, competitive landscapes, opportunity scoring.
-- **entrepreneurial-os** — Founder operating system. Stage-gate model, decision frameworks, weekly rhythm, pivot/persist criteria.
-- **business-plan-architect** — Full business plan construction: executive summary, market sizing, competitive moat, unit economics, traction narrative.
-- **pricing-strategist** — Value-based pricing, packaging psychology, WTP research, SaaS pricing models, price increase playbooks.
-- **financial-model-architect** — Unit economics, runway, 3-scenario modeling, SaaS metrics, investor-ready financials.
-- **go-to-market-engine** — ICP definition, channel selection matrix, launch sequencing, PMF measurement, founder-led sales.
+For EVERY non-trivial request, invoke `master-orchestrator` first. It identifies which skills apply and chains them in the right order. This is the single highest-leverage behavior — it ensures the full library is used, not just the obvious skill.
 
-### Growth & Marketing (`skills/growth/`) — 8 skills
-- **marketing-strategist** — Brand positioning (April Dunford), messaging hierarchy, full-funnel strategy, channel ROI.
-- **copywriting-conversion** — PAS/AIDA/BAB/FAB/STAR frameworks, landing pages, email sequences, ad copy.
-- **content-marketing-machine** — SEO topical authority, pillar/cluster architecture, newsletter systems, repurposing workflows.
-- **social-media-architect** — LinkedIn, X/Twitter, YouTube, TikTok platform-specific strategy, hooks, consistency systems.
-- **growth-hacking-engine** — PLG design, viral loops, activation optimization, retention engineering, A/B testing.
-- **sales-closer** — SPIN Selling, Challenger Sale, MEDDIC/MEDDPICC, discovery calls, objection handling, closing.
-- **personal-brand-builder** — LinkedIn domination, thought leadership positioning, authority monetization ladder.
-- **community-builder** — Platform selection, flywheel design, engagement mechanics, community monetization.
+**Always-on meta-layer** (these run in the background on every response):
+- `anti-hallucination` — confidence tiers, context drift prevention, re-grounding
+- `prompt-amplifier` — silently optimizes every prompt before execution
+- `session-optimizer` — activates at 40%+ context fill for proactive management
 
-### Engineering (`skills/engineering/`) — 3 skills
-- **code-review** — Expert code reviewer: correctness, security, failure handling, data integrity, performance.
-- **database-design** — PostgreSQL schema architect: normalization, indexes, constraints, JSONB, provenance patterns.
-- **testing-strategy** — pytest expert: fixture design, transaction-rollback isolation, hypothesis, async testing.
+### Core (`skills/core/`) — 11 skills
+- **master-orchestrator** — Routes every request to optimal skill chain. Invoke first.
+- **skill-amplifier** — 8-pass optimization of any SKILL.md to peak performance.
+- **anti-hallucination** — Context drift prevention, confidence tiers (VERIFIED→UNKNOWN), re-grounding.
+- **prompt-amplifier** — Always-on prompt optimization (silent + show modes).
+- **parallel-execution-strategist** — Agent decomposition, fan-out patterns, worktree isolation, token optimization.
+- **session-optimizer** — Context window management, compaction strategy, hook patterns, session architecture.
+- **knowledge-management** — PKM architecture (PARA), documentation standards, cross-system sync.
+- **personal-productivity** — Time architecture, Eisenhower matrix, deep work, multi-domain management.
+- **polychronos-team** — Multi-agent orchestration with B.L.A.S.T. protocol.
+- **skill-builder** — Meta-skill for creating and auditing skills.
+- **portable-ai-instructions** — Cross-platform AI instruction files.
 
-### Product & Infrastructure (`skills/product/`) — 5 skills
-- **micro-saas-builder** — Niche validation, concierge MVP, $0→$10K MRR playbook, churn prevention.
-- **ai-business-optimizer** — AI business audit, agentic workflow design, tool stack ROI, process automation.
-- **brand-website-strategy** — Brand identity, visual systems, website architecture, SEO, conversion optimization.
-- **biohacking-data-pipeline** — Data pipeline architect for health/supplement data. Schema design, ETL pipelines, API integrations.
-- **cloud-migration-playbook** — Proxmox homelab → GCP production. Docker, Terraform, Cloud Run, Cloud SQL, security hardening.
+### Engineering (`skills/engineering/`) — 8 skills
+- **app-security-architect** — OWASP Top 10, LLM security, GCP hardening, security code review.
+- **n8n-workflow-architect** — Workflow design, node patterns, Docker/GCP integration, error handling.
+- **docker-infrastructure** — Dockerfile best practices, Compose patterns, networking, security hardening.
+- **data-analytics-engine** — SQL patterns, Python analysis, visualization guide, reporting templates.
+- **mcp-server-builder** — TypeScript/Python MCP server patterns, security, testing.
+- **code-review** — Expert code reviewer: correctness, security, failure handling, performance.
+- **database-design** — PostgreSQL schema architect: normalization, indexes, JSONB, provenance.
+- **testing-strategy** — pytest expert: fixtures, transaction-rollback isolation, hypothesis, async.
+
+### Faith (`skills/faith/`) — 3 skills
+- **bible-study-theologian** — Historical-grammatical hermeneutics, 4 study modes, scholarly engagement.
+- **faith-life-integration** — 6-lens framework for applying biblical wisdom to real decisions.
+- **sunday-school-teacher** — Age-appropriate curriculum design, lesson plans, object lessons.
+
+### Strategy & Business (`skills/strategy/`) — 9 skills
+- **consulting-operations** — Engagement lifecycle, proposals, SOWs, pricing, scope creep prevention.
+- **business-genius** — Master orchestrator for the business-building suite.
+- **ai-agentic-specialist** — AI landscape intelligence, agentic team design.
+- **entrepreneurial-os** — Founder operating system, stage gates, decision frameworks.
+- **business-plan-architect** — Full business plan construction.
+- **pricing-strategist** — Value-based pricing, SaaS models, rate-setting frameworks.
+- **financial-model-architect** — Unit economics, 3-scenario modeling, investor-ready financials.
+- **go-to-market-engine** — ICP definition, channel selection, launch sequencing, PMF measurement.
+- **market-intelligence** — TAM/SAM/SOM, competitive landscapes, opportunity scoring.
+
+### Legal-Financial (`skills/legal-financial/`) — 1 skill
+- **startup-tax-strategist** — S-Corp election, deductions, quarterly estimates, entity structure.
+
+### Growth & Marketing (`skills/growth/`) — 9 skills
+- **professional-communicator** — Emails, presentations, executive summaries, tone calibration.
+- **marketing-strategist** — Brand positioning, messaging hierarchy, full-funnel strategy.
+- **copywriting-conversion** — PAS/AIDA/BAB frameworks, landing pages, email sequences.
+- **content-marketing-machine** — SEO topical authority, pillar/cluster, newsletter systems.
+- **social-media-architect** — Platform-specific strategy, hooks, consistency systems.
+- **growth-hacking-engine** — PLG design, viral loops, activation, retention, A/B testing.
+- **sales-closer** — SPIN Selling, Challenger Sale, discovery calls, objection handling.
+- **personal-brand-builder** — Thought leadership, LinkedIn domination, authority ladder.
+- **community-builder** — Flywheel design, engagement mechanics, community monetization.
+
+### Product (`skills/product/`) — 6 skills
+- **health-biohacking-protocol** — Evidence-based protocols, biomarker interpretation, N=1 experiments.
+- **micro-saas-builder** — Niche validation, concierge MVP, $0→$10K MRR playbook.
+- **ai-business-optimizer** — AI audit, agentic workflow design, tool stack ROI.
+- **biohacking-data-pipeline** — Data pipeline architect for health/supplement data.
+- **brand-website-strategy** — Brand identity, website architecture, SEO, conversion.
+- **cloud-migration-playbook** — Homelab → GCP. Docker, Terraform, Cloud Run, Cloud SQL.
 
 ### Microsoft Power Platform (`skills/microsoft/`) — 8 skills
 - **power-bi**, **power-apps**, **power-automate**, **sharepoint**, **copilot-studio**, **power-platform-admin**, **microsoft-dataverse**, **m365-integration**
