@@ -42,10 +42,13 @@ This skill sits ABOVE `master-orchestrator` (which routes custom skills in `skil
 | 4. ORM Layer (TypeScript) | `prisma-cli` + `prisma-client-api` + `prisma-database-setup` | Prisma schema, queries, setup |
 | 5. Migrations | `database-migration` | Zero-downtime, rollback, data transforms |
 | 6. Query Optimization | `sql-optimization-patterns` | EXPLAIN analysis, indexing strategy |
-| 7. Data Quality | `data-quality-frameworks` | Great Expectations, dbt tests, contracts |
-| 8. Transformations | `dbt-transformation-patterns` | dbt models, testing, incremental |
-| 9. Orchestration | `airflow-dag-patterns` | Production DAGs, operators, sensors |
-| 10. Reporting | `data-storytelling` | Visualization, narrative, executive decks |
+| 6b. Advanced Performance | `postgresql-performance-patterns` | JSONB, pgbouncer, partitioning, BRIN, auto_explain |
+| 7. Async Migrations | `alembic-async-migrations` | Alembic + async SQLAlchemy, autogenerate, batch ops |
+| 8. Data Quality | `data-quality-frameworks` | Great Expectations, dbt tests, contracts |
+| 9. Python Pipelines | `python-data-pipeline-patterns` | Polars, pandas, pandera, async ETL, streaming |
+| 10. Transformations | `dbt-transformation-patterns` | dbt models, testing, incremental |
+| 11. Orchestration | `airflow-dag-patterns` | Production DAGs, operators, sensors |
+| 12. Reporting | `data-storytelling` | Visualization, narrative, executive decks |
 
 ### Frontend Premium ($100k Website Suite)
 | Phase | Skill | What It Does |
@@ -88,11 +91,13 @@ User Request
 │
 ├─ "Design a database/schema" ────────► Database chain
 │   → postgresql-table-design → fastapi-async-postgres-architecture
-│   → database-migration → sql-optimization-patterns
+│   → alembic-async-migrations → sql-optimization-patterns
+│   → postgresql-performance-patterns (JSONB/partitioning/pgbouncer)
 │
 ├─ "Build a data pipeline/ETL" ───────► Data Engineering chain
-│   → senior-data-engineer → dbt-transformation-patterns
-│   → airflow-dag-patterns → data-quality-frameworks
+│   → senior-data-engineer → python-data-pipeline-patterns
+│   → dbt-transformation-patterns → airflow-dag-patterns
+│   → data-quality-frameworks
 │
 ├─ "Deploy to production" ────────────► Infrastructure chain
 │   → docker-compose-production → terraform-gcp-cloud-run
@@ -107,7 +112,7 @@ User Request
 │   → design-critique (if frontend)
 │
 └─ "Full project from scratch" ───────► Complete chain
-    → Database: postgresql-table-design → database-migration
+    → Database: postgresql-table-design → alembic-async-migrations → postgresql-performance-patterns
     → API: fastapi-async-postgres-architecture → app-security-architect
     → Frontend: frontend-design → nextjs-react-tailwind-shadcn → animate
     → Infra: docker-compose-production → terraform-gcp-cloud-run → cloudflare
@@ -121,5 +126,7 @@ Before marking ANY task complete, verify:
 - [ ] Was the discover-* skill for this domain invoked?
 - [ ] Was the primary domain skill used (not just general knowledge)?
 - [ ] For frontend: did the design-polish pass run?
-- [ ] For database: was sql-optimization-patterns consulted?
+- [ ] For database: was sql-optimization-patterns + postgresql-performance-patterns consulted?
+- [ ] For migrations: was alembic-async-migrations used (not just database-migration)?
+- [ ] For data pipelines: was python-data-pipeline-patterns used?
 - [ ] For deploy: was security reviewed (app-security-architect)?
