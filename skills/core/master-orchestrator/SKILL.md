@@ -52,6 +52,7 @@ metadata:
 |-------|------------|----------|
 | `anti-hallucination` | Every response with factual claims | Background — always active |
 | `prompt-amplifier` | Every user prompt (silent mode) | Background — always active |
+| `token-optimizer` | Every call — lean, efficient token usage | Background — always active |
 | `master-orchestrator` | Every request (routing) | Background — always active |
 | `session-optimizer` | Session start, context management | Background at 40%+ context |
 | `skill-amplifier` | Skill creation or optimization | On-demand |

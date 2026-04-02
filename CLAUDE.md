@@ -45,6 +45,7 @@ For EVERY non-trivial request, invoke `master-orchestrator` first. It identifies
 **Always-on meta-layer** (these run in the background on every response):
 - `anti-hallucination` — confidence tiers, context drift prevention, re-grounding
 - `prompt-amplifier` — silently optimizes every prompt before execution
+- `token-optimizer` — maximizes token efficiency on every call (lean, zero waste)
 - `session-optimizer` — activates at 40%+ context fill for proactive management
 
 ### Core (`skills/core/`) — 11 skills
