@@ -19,7 +19,7 @@ metadata:
   version: "1.0"
   domain-category: engineering
   adjacent-skills: ai-agentic-specialist, power-automate, cloud-migration-playbook, app-security-architect
-  last-reviewed: "2026-03-21"
+  last-reviewed: "2026-04-04"
   review-trigger: "New n8n major version, new node types, user reports workflow pattern failure"
   capability-assumptions:
     - "n8n self-hosted in Docker on home server (192.168.1.240)"
@@ -223,6 +223,67 @@ Main workflow fails → Error Trigger → PostgreSQL (store failed payload in de
   Never bake secrets into docker-compose.yml.
 - **Least privilege:** Each n8n credential should have minimum required permissions.
   Read-only where possible, scoped API keys over admin keys.
+
+---
+
+## MinIO / S3-Compatible Storage Integration
+
+### CRITICAL: n8n awsS3 V2 Node Bug (as of n8n 2.13.4)
+
+The `n8n-nodes-base.awsS3` V2 node has a **SigV4 signing bug** that sends upload (PUT) requests
+to real AWS S3 instead of your custom endpoint (MinIO, DigitalOcean Spaces, etc.).
+
+**Root cause:** The V2 node constructs `servicePath = "${bucketName}.s3"`. The credential signing
+checks `if (service === 's3')` to use the custom endpoint — but since service is `"mybucket.s3"`
+(not `"s3"`), the custom endpoint is silently ignored. The request goes to
+`mybucket.s3.us-east-1.amazonaws.com` and AWS returns `InvalidAccessKeyId`.
+
+**Read operations partially work** because some code paths use `service = 's3'` correctly.
+
+**Do NOT use `awsS3` V2 for writes to S3-compatible storage.** (n8n issues #10459, #14623, #14037)
+
+### Workaround: Presigned URL Upload Pattern
+
+Use a **Code node** to generate presigned PUT URLs, then an **HTTP Request node** to upload:
+
+```
+[Trigger] → [Code: build content + presignUrl()] → [HTTP Request: PUT to presigned URL]
+```
+
+The Code node must implement SHA-256 and HMAC-SHA256 in **pure JavaScript** because n8n's Code
+node sandbox blocks `require('crypto')`. A ~30-line minified implementation works.
+
+**Key points:**
+- presignUrl() generates a URL with the signature embedded — no auth headers needed
+- HTTP Request node does a plain PUT with `sendBody: true, contentType: raw`
+- Sign only `host` header (not `content-type`) to avoid signature mismatch
+- Use `UNSIGNED-PAYLOAD` as the content hash in the canonical request
+- URLs expire (default 1 hour) — generate fresh for each upload
+
+### Generic S3 Node (`n8n-nodes-base.s3`)
+The generic S3 node signs correctly but calls `GetBucketLocation` before every operation.
+MinIO restricts this to admin users. Unless your service account has `s3:*` permissions
+(including admin operations), this node will fail with `AccessDenied`.
+
+### n8n REST API Patterns (v2.13.4)
+
+| Operation | Endpoint | Notes |
+|-----------|----------|-------|
+| Login | `POST /rest/login` | Cookie auth, NOT token-based |
+| List workflows | `GET /rest/workflows` | |
+| Create workflow | `POST /rest/workflows` | Full workflow JSON in body |
+| Update workflow | `PATCH /rest/workflows/{id}` | Partial fields |
+| Archive workflow | `POST /rest/workflows/{id}/archive` | Required before delete |
+| Delete workflow | `DELETE /rest/workflows/{id}` | Must archive first |
+| Create credential | `POST /rest/credentials` | `name` + `type` + `data` required |
+
+**Gotchas:**
+- Auth uses session cookies (`n8n-auth`), not bearer tokens. Save with `-c` and send with `-b`.
+- Sessions expire. Always re-login at the start of each script.
+- Workflows must be archived before deletion (400 error otherwise).
+- API-created workflows may not activate via API — may need UI toggle for schedule triggers.
+- On Windows: use `encoding='utf-8'` in subprocess and write large payloads to temp files
+  (Windows has a 32K command length limit).
 
 ---
 
