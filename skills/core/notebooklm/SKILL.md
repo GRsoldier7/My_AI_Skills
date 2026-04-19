@@ -48,17 +48,44 @@ NLM="source $HOME/.notebooklm-venv/bin/activate && notebooklm"
 
 ## Working Memory Backup System
 
-### ⚠️ ONE NOTEBOOK RULE
-There is exactly **one** NotebookLM notebook for ALL projects and ALL memory tiers.
-Never create a second notebook. Never create per-project notebooks.
-All sources are distinguished by their timestamped title (e.g. "Gmail Lessons — 2026-04-19 12:27").
+### ⚠️ PER-PROJECT NOTEBOOK RULE
+Every Claude Code project gets **its own dedicated NotebookLM notebook**.
+Never mix projects into a single notebook. Each notebook is the single source
+of truth for that project's working memory.
 
-**Notebook ID** (the single source of truth):
-```bash
-# ~/.claude/nlm-notebook-ids.env
-NLM_WORKING_MEMORY_NOTEBOOK_ID="283d88be-c73d-4b3f-bb22-4af6f7437dd9"
+**Naming convention (always follow exactly):**
 ```
-Name: **"AI Working Memory — Claude Projects"**
+[Project Name] — Working Memory | Aaron DeYoung
+```
+
+**Examples:**
+- `Gmail Inbox Automation — Working Memory | Aaron DeYoung`
+- `n8n Workflow Builder — Working Memory | Aaron DeYoung`
+- `Foundation AddOn — Working Memory | Aaron DeYoung`
+- `Biohacking Dashboard — Working Memory | Aaron DeYoung`
+
+**Notebook ID storage:**
+```bash
+# Project-level: $PROJECT_DIR/.claude/nlm-notebook-ids.env
+NLM_PROJECT_NOTEBOOK_ID="<uuid>"
+
+# Global fallback: ~/.claude/nlm-notebook-ids.env
+NLM_WORKING_MEMORY_NOTEBOOK_ID="283d88be-..."   # cross-project / meta only
+```
+
+**Known project notebooks:**
+| Project | Notebook ID | Name |
+|---------|-------------|------|
+| Gmail | `bf0a62ee-060e-4f67-945d-97d8c6615669` | Gmail Inbox Automation — Working Memory \| Aaron DeYoung |
+| Global/Meta | `283d88be-c73d-4b3f-bb22-4af6f7437dd9` | AI Working Memory — Claude Projects |
+
+**Creating a notebook for a new project:**
+```bash
+source ~/.notebooklm-venv/bin/activate
+notebooklm create "[Project Name] — Working Memory | Aaron DeYoung"
+# Then save the returned UUID to $PROJECT_DIR/.claude/nlm-notebook-ids.env
+echo 'NLM_PROJECT_NOTEBOOK_ID="<uuid>"' > .claude/nlm-notebook-ids.env
+```
 
 ### Four Memory Tiers + Source Naming Convention
 
