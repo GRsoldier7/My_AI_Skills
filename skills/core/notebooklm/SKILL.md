@@ -87,29 +87,32 @@ notebooklm create "[Project Name] — Working Memory | Aaron DeYoung"
 echo 'NLM_PROJECT_NOTEBOOK_ID="<uuid>"' > .claude/nlm-notebook-ids.env
 ```
 
-### Four Memory Tiers + Source Naming Convention
+### Memory Tiers + Source Naming Convention
 
-**Every source title MUST follow this format:**
+**Every source title MUST follow this exact format:**
 ```
-YYYY-MM-DD HH:MM | [TYPE] [Project] — [Topic]
+YYYY-MM-DD - [Project Name] — [Type]: [Topic]
 ```
 
-Examples:
-- `2026-04-19 12:27 | LT-Memory Gmail — Inbox System Architecture`
-- `2026-04-19 12:27 | Session Gmail — Backfill 3100 Emails Completed`
-- `2026-04-19 12:27 | Lesson Gmail — Gmail Filter API 1-Label Limit`
-- `2026-04-19 12:27 | Error n8n — Article Processor S3 Queue Failure`
-- `2026-04-19 12:27 | ST-Memory Global — Session Wrapup`
-- `2026-04-19 12:27 | Ref Global — NotebookLM Auth Expiry Pattern`
+**Types — use these exact labels:**
+| Type | When to use | Frequency |
+|------|-------------|-----------|
+| `Working Memory (Short Term)` | Current session context, in-flight state, conversation notes | Every Stop |
+| `Working Memory (Long Term)` | Persistent `memory/*.md` files, architecture docs | Every Stop |
+| `Lesson Learned` | Something discovered that changes future behavior | Every Stop |
+| `Problem Faced` | Errors, failures, blockers (even unsolved ones) | Every Stop |
+| `Problem Overcome` | A solved problem — include the fix | Every Stop |
+| `Session Summary` | End-of-session accomplishments and decisions | Every Stop |
+| `Reference` | Stable configs, filter maps, system-state snapshots | On change |
 
-| Tier | Prefix | Source | Frequency |
-|------|--------|--------|-----------|
-| Short-term | `ST-Memory` | `/tmp/claude-session-*.md` + conversation summary | Every session Stop |
-| Long-term | `LT-Memory` | `~/.claude/projects/*/memory/*.md` | Every session Stop |
-| Lessons Learned | `Lesson` | `lessons-*.md`, `feedback_*.md`, error patterns | Every session Stop |
-| Errors | `Error` | `~/.claude/scripts/nlm-error.log` + hook failures | Every session Stop |
-| Reference | `Ref` | Architecture docs, system configs | On change |
-| Session Summary | `Session` | End-of-session accomplishment summaries | Every session Stop |
+**Examples:**
+- `2026-04-19 - Gmail — Working Memory (Long Term): Inbox System Architecture`
+- `2026-04-19 - Gmail — Session Summary: Built 120 Filters + Backfilled 3100 Emails`
+- `2026-04-19 - Gmail — Lesson Learned: Gmail Filter API Only Allows 1 User Label`
+- `2026-04-19 - Gmail — Problem Faced: batch_modify Throttles at ~50 IDs`
+- `2026-04-19 - Gmail — Problem Overcome: Sequential Retry Clears Concurrency Errors`
+- `2026-04-19 - n8n — Working Memory (Short Term): Article Processor Debug State`
+- `2026-04-19 - Global — Reference: NotebookLM Per-Project Notebook Registry`
 
 ### 60% Context Trigger
 The Stop hook fires after EVERY Claude response. This is the 60% proxy — the backup runs
