@@ -60,15 +60,16 @@ emit_container_json() {
 JSON
 }
 
-# Build container list
-declare -a entries
+# Build container list (track IDs by type as we go — avoids regex parsing later)
+declare -a entries lxc_ids vm_ids
 if have pct; then
   while read -r line; do
     [[ -z "$line" ]] && continue
     [[ "$line" == VMID* ]] && continue
     id=$(awk '{print $1}' <<<"$line")
-    [[ -z "$id" ]] && continue
+    [[ "$id" =~ ^[0-9]+$ ]] || continue
     entries+=("$(emit_container_json "$id" lxc)")
+    lxc_ids+=("$id")
   done < <(pct list 2>/dev/null)
 fi
 if have qm; then
@@ -76,26 +77,43 @@ if have qm; then
     [[ -z "$line" ]] && continue
     [[ "$line" == *VMID* ]] && continue
     id=$(awk '{print $1}' <<<"$line")
-    [[ -z "$id" ]] && continue
+    [[ "$id" =~ ^[0-9]+$ ]] || continue
     entries+=("$(emit_container_json "$id" vm)")
+    vm_ids+=("$id")
   done < <(qm list 2>/dev/null)
 fi
 
 # Drift detection — compare to docs
-declare -a undocumented orphaned naming_mismatch
+# Primary signal: folder-name convention `<id>-<name>` in /root/homelab/lxc/
+# Secondary signal: explicit "CT N" / "VM N" mentions in doc content
+declare -a undocumented_lxc undocumented_vm orphaned naming_mismatch
+documented_ids=""
 if [[ -d "$HOMELAB_LXC_DOC" ]]; then
-  documented_ids=$(find "$HOMELAB_LXC_DOC" "$HOMELAB_CT_DOC" -maxdepth 2 -type f \( -name '*.md' -o -name '*.yaml' \) 2>/dev/null \
-    | xargs -r grep -hoE '(CT|VM)[[:space:]]?#?[0-9]{2,3}|^id:[[:space:]]*[0-9]{2,3}' 2>/dev/null \
+  # Folder convention — primary
+  folder_ids=$(ls -d "$HOMELAB_LXC_DOC"/*/ 2>/dev/null | xargs -n1 -r basename | grep -oE '^[0-9]{2,3}' | sort -u)
+  # Content grep — secondary; require explicit prefix to avoid matching "100MB" etc
+  content_ids=$(find "$HOMELAB_LXC_DOC" "$HOMELAB_CT_DOC" -maxdepth 3 -type f \( -name '*.md' -o -name '*.yaml' \) 2>/dev/null \
+    | xargs -r grep -hoE '(CT|VM|VMID)[[:space:]]+#?[0-9]{2,3}|^id:[[:space:]]*[0-9]{2,3}' 2>/dev/null \
     | grep -oE '[0-9]{2,3}' | sort -u)
+  documented_ids=$(printf '%s\n%s\n' "$folder_ids" "$content_ids" | sort -u)
 fi
-real_ids=$(echo "${entries[*]}" | grep -oE '"id": "[0-9]+"' | grep -oE '[0-9]+' | sort -u)
+# Real IDs split by type
+real_ids=$(printf '%s\n' "${lxc_ids[@]:-}" "${vm_ids[@]:-}" | grep -E '^[0-9]+$' | sort -u)
 
-for id in $real_ids; do
+for id in "${lxc_ids[@]:-}"; do
+  [[ -z "$id" ]] && continue
   if ! grep -qx "$id" <<<"$documented_ids" 2>/dev/null; then
-    undocumented+=("$id")
+    undocumented_lxc+=("$id")
+  fi
+done
+for id in "${vm_ids[@]:-}"; do
+  [[ -z "$id" ]] && continue
+  if ! grep -qx "$id" <<<"$documented_ids" 2>/dev/null; then
+    undocumented_vm+=("$id")
   fi
 done
 for id in $documented_ids; do
+  [[ -z "$id" ]] && continue
   if ! grep -qx "$id" <<<"$real_ids" 2>/dev/null; then
     orphaned+=("$id")
   fi
@@ -112,8 +130,9 @@ done
   done
   echo '  ],'
   echo '  "drift_summary": {'
-  echo '    "undocumented": ['"$(printf '"%s",' "${undocumented[@]}" | sed 's/,$//')"'],'
-  echo '    "orphaned_docs": ['"$(printf '"%s",' "${orphaned[@]}" | sed 's/,$//')"'],'
+  echo '    "undocumented_lxc": ['"$(printf '"%s",' "${undocumented_lxc[@]:-}" | sed 's/^,//;s/,$//')"'],'
+  echo '    "undocumented_vm": ['"$(printf '"%s",' "${undocumented_vm[@]:-}" | sed 's/^,//;s/,$//')"'],'
+  echo '    "orphaned_docs": ['"$(printf '"%s",' "${orphaned[@]:-}" | sed 's/^,//;s/,$//')"'],'
   echo '    "naming_mismatches": []'
   echo '  }'
   echo '}'
