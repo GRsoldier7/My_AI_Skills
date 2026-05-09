@@ -1,0 +1,56 @@
+# homelab-organizer state — example
+# Copy to /root/homelab/docs/organizer/state.yaml and edit as needed.
+# This file is human-readable and hand-editable. The skill respects manual edits.
+
+# Paths or globs the user has marked "leave alone forever".
+# Format: glob followed by a comment with confirmation date.
+allow_list: []
+  # - /root/homelab/docs/runbooks/maintenance/*  # confirmed 2026-05-09
+  # - /root/nlm_login_v2.sh
+
+# Paths or globs to flag aggressively even when other criteria don't trigger.
+block_list: []
+
+# Learned generalizations — proposed by the skill after 3+ consistent approvals,
+# graduate to active rules only after user sign-off.
+pattern_rules: []
+  # - match: "OPTIMIZATION_SUMMARY_2026-01-*.md"
+  #   action: auto-quarantine    # auto-quarantine | always-watchlist | always-skip
+  #   learned_from: 3 prior approvals
+  #   confirmed: 2026-04-12
+
+# Per-container snapshots from last full audit. Used for delta detection
+# in the next Phase A run.
+container_baselines: {}
+  # "203":
+  #   last_audit: 2026-05-09
+  #   rss_mb: 412
+  #   disk_gb: 2.1
+  #   services_up: [postgres, redis-server]
+  #   pkgs_outdated: 4
+  #   key_files_present: []
+
+# Inbound-reference graph cache. Built on first full audit, incrementally
+# updated thereafter (only changed files re-indexed).
+reference_graph:
+  built_at: null
+  files_indexed: 0
+  inbound_edges: 0
+  cache_path: ".organizer-cache/refgraph.json"
+
+# Decision log — every approve/decline writes here. Patterns with 3+ consistent
+# approvals are eligible for graduation to pattern_rules (still requires sign-off).
+decision_log: []
+  # - date: 2026-05-09
+  #   pattern: "OPTIMIZATION_SUMMARY_*"
+  #   decision: approved
+  #   audit: AUDIT-2026-05-09
+
+# Tail of last 12 audits — used for trend reporting in Phase D.
+audit_history: []
+  # - date: 2026-05-09
+  #   stale_found: 12
+  #   broken_links: 3
+  #   drift_items: 1
+  #   actions_approved: 8
+  #   elapsed_seconds: 142
