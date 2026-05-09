@@ -7,6 +7,7 @@ AUDIT_DIR="${AUDIT_DIR:-/root/homelab/docs/organizer/AUDIT-$(date +%Y-%m-%d)}"
 STATE_FILE="${STATE_FILE:-/root/homelab/docs/organizer/state.yaml}"
 HOMELAB_LXC_DOC="${HOMELAB_LXC_DOC:-/root/homelab/lxc}"
 HOMELAB_CT_DOC="${HOMELAB_CT_DOC:-/root/homelab/containers}"
+HOMELAB_VM_DOC="${HOMELAB_VM_DOC:-/root/homelab/vms}"
 
 have() { command -v "$1" >/dev/null 2>&1; }
 
@@ -88,33 +89,50 @@ fi
 # Secondary signal: explicit "CT N" / "VM N" mentions in doc content
 declare -a undocumented_lxc undocumented_vm orphaned naming_mismatch
 documented_ids=""
-if [[ -d "$HOMELAB_LXC_DOC" ]]; then
-  # Folder convention — primary
-  folder_ids=$(ls -d "$HOMELAB_LXC_DOC"/*/ 2>/dev/null | xargs -n1 -r basename | grep -oE '^[0-9]{2,3}' | sort -u)
+if [[ -d "$HOMELAB_LXC_DOC" || -d "$HOMELAB_VM_DOC" ]]; then
+  # Folder convention — primary signal. Track LXC and VM separately for accurate drift.
+  documented_lxc_ids=$(ls -d "$HOMELAB_LXC_DOC"/*/ 2>/dev/null | xargs -n1 -r basename | grep -oE '^[0-9]{2,3}' | sort -u)
+  documented_vm_ids=$(ls -d "$HOMELAB_VM_DOC"/*/ 2>/dev/null | xargs -n1 -r basename | grep -oE '^[0-9]{2,3}' | sort -u)
   # Content grep — secondary; require explicit prefix to avoid matching "100MB" etc
-  content_ids=$(find "$HOMELAB_LXC_DOC" "$HOMELAB_CT_DOC" -maxdepth 3 -type f \( -name '*.md' -o -name '*.yaml' \) 2>/dev/null \
+  content_ids=$(find "$HOMELAB_LXC_DOC" "$HOMELAB_CT_DOC" "$HOMELAB_VM_DOC" -maxdepth 3 -type f \( -name '*.md' -o -name '*.yaml' \) 2>/dev/null \
     | xargs -r grep -hoE '(CT|VM|VMID)[[:space:]]+#?[0-9]{2,3}|^id:[[:space:]]*[0-9]{2,3}' 2>/dev/null \
     | grep -oE '[0-9]{2,3}' | sort -u)
-  documented_ids=$(printf '%s\n%s\n' "$folder_ids" "$content_ids" | sort -u)
+  documented_ids=$(printf '%s\n%s\n%s\n' "$documented_lxc_ids" "$documented_vm_ids" "$content_ids" | sort -u)
 fi
 # Real IDs split by type
 real_ids=$(printf '%s\n' "${lxc_ids[@]:-}" "${vm_ids[@]:-}" | grep -E '^[0-9]+$' | sort -u)
 
 for id in "${lxc_ids[@]:-}"; do
   [[ -z "$id" ]] && continue
-  if ! grep -qx "$id" <<<"$documented_ids" 2>/dev/null; then
+  # An LXC is documented if it has a folder in lxc/ OR a content reference (anywhere)
+  if ! { grep -qx "$id" <<<"$documented_lxc_ids" 2>/dev/null || grep -qx "$id" <<<"$content_ids" 2>/dev/null; }; then
     undocumented_lxc+=("$id")
   fi
 done
 for id in "${vm_ids[@]:-}"; do
   [[ -z "$id" ]] && continue
-  if ! grep -qx "$id" <<<"$documented_ids" 2>/dev/null; then
+  # A VM is documented if it has a folder in vms/ OR a content reference (anywhere)
+  if ! { grep -qx "$id" <<<"$documented_vm_ids" 2>/dev/null || grep -qx "$id" <<<"$content_ids" 2>/dev/null; }; then
     undocumented_vm+=("$id")
   fi
 done
-for id in $documented_ids; do
+# Orphaned docs: track by source location, not just ID — an LXC folder for an ID that's actually a VM is "misfiled", not orphaned
+for id in $documented_lxc_ids; do
   [[ -z "$id" ]] && continue
-  if ! grep -qx "$id" <<<"$real_ids" 2>/dev/null; then
+  if grep -qx "$id" <<<"$(printf '%s\n' "${lxc_ids[@]:-}")" 2>/dev/null; then continue; fi
+  # ID has an lxc/ folder doc but no matching LXC. Could be: (a) deleted CT, (b) misfiled VM doc.
+  if grep -qx "$id" <<<"$(printf '%s\n' "${vm_ids[@]:-}")" 2>/dev/null; then
+    naming_mismatch+=("lxc/${id}-* but ID is a VM (should be in vms/)")
+  else
+    orphaned+=("$id")
+  fi
+done
+for id in $documented_vm_ids; do
+  [[ -z "$id" ]] && continue
+  if grep -qx "$id" <<<"$(printf '%s\n' "${vm_ids[@]:-}")" 2>/dev/null; then continue; fi
+  if grep -qx "$id" <<<"$(printf '%s\n' "${lxc_ids[@]:-}")" 2>/dev/null; then
+    naming_mismatch+=("vms/${id}-* but ID is an LXC (should be in lxc/)")
+  else
     orphaned+=("$id")
   fi
 done
