@@ -176,7 +176,7 @@ notebooklm generate slide-deck --format presenter
 ## Anti-Patterns
 
 1. **Running `notebooklm login` directly** — requires interactive input. Use nlm_login.py.
-2. **Missing PYTHONIOENCODING on Windows** — causes UnicodeEncodeError. Always prefix.
+2. **Missing PYTHONIOENCODING on Windows** — causes UnicodeEncodeError. Always prefix on Windows; not needed on Linux/macOS.
 3. **Generating before sources are READY** — silently produces incomplete output.
 4. **Parallel generations** — both fail with 429. Always sequential.
 5. **Embedding full storage_state.json in Co-work** — wastes ~1,700 tokens. Strip to 3 domains.

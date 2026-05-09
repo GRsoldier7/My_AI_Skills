@@ -7,9 +7,9 @@ description: |
   AUTO-TRIGGER (apply silently without being asked) whenever you detect:
   - A request that is vague, underspecified, or missing critical context
   - A multi-step build/feature/analysis request without defined success criteria
-  - A business or technical question where injecting user role/stack/constraints would
-    unlock a dramatically better answer (Aaron = AI consultant, Python/FastAPI/GCP/
-    PostgreSQL stack, Microsoft Power Platform expert, biohacking platform founder)
+  - A business or technical question where injecting the user's role/stack/constraints would
+    unlock a dramatically better answer (read these from CLAUDE.md / project context, not
+    from this skill description — keeps the skill portable across users)
   - Any prompt where 3 sentences of injected context would produce a 10x better result
   - A request being crafted for another AI tool or model (always amplify before passing on)
 
