@@ -43,14 +43,15 @@ INDEX_FILE="$TMP/refs.txt"
 walk_file_list() {
   for root in "${ROOTS[@]}"; do
     [[ -d "$root" ]] || continue
-    find "$root" -type f \
-      \( -name '.git' -o -name '.planning' -o -name '.venv' -o -name 'venv' -o -name 'node_modules' -o -name '__pycache__' -o -name 'target' -o -name 'dist' -o -name 'build' -o -name '.archive' -o -name 'backups' \) -prune \
-      -o -type f \
-      \( -name '*.md' -o -name '*.sh' -o -name '*.py' -o -name '*.yaml' -o -name '*.yml' -o -name '*.json' -o -name '*.tf' -o -name '*.toml' -o -name '*.ini' -o -name '*.cfg' -o -name '*.conf' -o -name '*.service' \) \
-      -print 2>/dev/null
+    # Prune by directory name (NOT -type f — that breaks descent prevention)
+    find "$root" \
+      \( -type d \( -name '.git' -o -name '.planning' -o -name '.venv' -o -name 'venv' -o -name 'node_modules' -o -name '__pycache__' -o -name 'target' -o -name 'dist' -o -name 'build' -o -name '.archive' -o -name 'backups' -o -name '.cache' -o -name '.local' -o -name '.config' -o -name '.gnupg' \) -prune \) \
+      -o \( -type f \
+        \( -name '*.md' -o -name '*.sh' -o -name '*.py' -o -name '*.yaml' -o -name '*.yml' -o -name '*.json' -o -name '*.tf' -o -name '*.toml' -o -name '*.ini' -o -name '*.cfg' -o -name '*.conf' -o -name '*.service' -o -name '*.socket' -o -name '*.timer' \) \
+        -print \) 2>/dev/null
   done
-  # /root top-level scratch (depth-1 only)
-  find /root -maxdepth 1 -type f 2>/dev/null
+  # /root top-level scratch (depth-1 only) — exclude /root dotfiles by mindepth
+  find /root -mindepth 1 -maxdepth 1 -type f ! -name '.*' 2>/dev/null
 }
 
 # Build reference index: filename -> list of files mentioning it
@@ -92,6 +93,17 @@ count_refs() {
 check_inuse() {
   local path="$1" base
   base=$(basename "$path")
+  # Systemd units anywhere — referenced via systemctl, not by other files
+  case "$base" in
+    *.service|*.socket|*.timer|*.target|*.path|*.mount) echo "systemd_unit"; return ;;
+  esac
+  # Passive infrastructure configs — referenced by daemons, not by other files
+  case "$base" in
+    Caddyfile|nginx.conf|httpd.conf|postgresql.conf|redis.conf|crontab) echo "passive_infrastructure_config"; return ;;
+  esac
+  case "$path" in
+    */cron.d/*|*/cron.daily/*|*/cron.hourly/*|*/cron.weekly/*|*/cron.monthly/*) echo "cron_job"; return ;;
+  esac
   for f in "${INUSE_FILES[@]}"; do
     [[ -f "$f" ]] || continue
     grep -qF "$base" "$f" 2>/dev/null && { echo "mentioned_in_$(basename "$f")"; return; }
@@ -103,6 +115,21 @@ check_inuse() {
   echo ""
 }
 
+# Hard-skip floor for individual paths (applied per-file, not in find -prune)
+floor_skip() {
+  local p="$1"
+  # Credentials class — never propose action, even duplicates
+  case "$p" in
+    */credentials/*|*/secrets/*|*/keys/*) return 0 ;;
+  esac
+  # /root/ dotfiles with system meaning
+  case "$p" in
+    /root/.forward|/root/.lesshst|/root/.selected_editor|/root/.bash_history|/root/.Xauthority|/root/.viminfo|/root/.python_history|/root/.profile|/root/.bashrc|/root/.bash_logout|/root/.zshrc|/root/.zsh_history|/root/.gitconfig|/root/.gitignore_global|/root/.npmrc|/root/.wget-hsts|/root/.sudo_as_admin_successful) return 0 ;;
+    /root/.cache/*|/root/.local/*|/root/.config/*|/root/.gnupg/*) return 0 ;;
+  esac
+  return 1
+}
+
 # Build candidate list
 declare -a safe_q watchlist dated_hist duplicates
 declare -A hash_seen
@@ -112,6 +139,11 @@ total_skipped_floor=0
 while IFS= read -r f; do
   [[ -f "$f" ]] || continue
   total_scanned=$((total_scanned+1))
+  # Floor: per-path hard-skip (credentials, /root dotfiles)
+  if floor_skip "$f"; then
+    total_skipped_floor=$((total_skipped_floor+1))
+    continue
+  fi
   # Floor: modified within SAFE_DAYS
   mtime_days=$(( ( $(date +%s) - $(stat -c %Y "$f" 2>/dev/null || echo 0) ) / 86400 ))
   if (( mtime_days < SAFE_DAYS )); then

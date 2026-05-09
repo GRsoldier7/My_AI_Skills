@@ -14,6 +14,8 @@ Never read, write, move, or quarantine anything matching these:
 - Anything inside `.archive/` (already quarantined — we don't quarantine the quarantine)
 - Anything matching `pattern_rules: always-skip` in `state.yaml`
 - Any path in `allow_list` in `state.yaml`
+- **Any path containing `/credentials/`, `/secrets/`, `/keys/`** — credentials class. Even duplicates may be intentional copies for different services. Never propose action.
+- **`/root/` dotfiles with system meaning**: `/root/.forward`, `/root/.lesshst`, `/root/.selected_editor`, `/root/.bash_history`, `/root/.Xauthority`, `/root/.viminfo`, `/root/.python_history`, `/root/.cache/*`, `/root/.local/*`. Old mtime is normal — these are passive system files.
 
 ## Hard-skip default (skipped without `--unsafe`, but overridable)
 
@@ -36,7 +38,8 @@ If any of these are true, the file is in-use even if mtime+ref criteria say othe
 - File path appears in any active runbook under `/root/homelab/docs/runbooks/`
 - File path referenced from a systemd unit, cron entry, or container service definition (LXC `pct config` mount points, included scripts)
 - File is the target of any symlink in tracked roots
-- File extension is `.service`, `.socket`, `.timer`, `.target` and lives in a `systemd/` path
+- **File extension is `.service`, `.socket`, `.timer`, `.target`, `.path`, `.mount` — anywhere.** Systemd units are referenced via `systemctl enable`, not by other files. Old mtime is the norm; old systemd unit ≠ stale.
+- File is on the "passive infrastructure" list: `Caddyfile`, `nginx.conf`, `httpd.conf`, `postgresql.conf`, `redis.conf`, `crontab`, `cron.d/*`, `cron.daily/*` — referenced by daemons, not by other files.
 
 ## Reversibility contract
 
