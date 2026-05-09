@@ -13,6 +13,8 @@ description: |
 
   Also trigger when the user wants Claude to interact with an external system that
   doesn't have an existing MCP server — the answer may be to build one.
+
+  Plugin overlap: this skill emphasizes vendor-agnostic MCP server design (Python/TypeScript SDK patterns, security, testing, schema design, transport choice). For Cloudflare Workers-hosted MCP servers specifically (Wrangler config, Workers runtime constraints, Durable Objects state, Cloudflare deployment), route instead to the `cloudflare:build-mcp` and `cloudflare:building-mcp-server-on-cloudflare` plugin skills — they cover the Cloudflare-specific hosting and runtime patterns.
 metadata:
   author: aaron-deyoung
   version: "1.0"

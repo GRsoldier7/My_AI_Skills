@@ -14,6 +14,8 @@ description: |
 
   Also trigger when discussing infrastructure on Aaron's home server (192.0.2.10)
   or any self-hosted service deployment.
+
+  Plugin overlap: this skill emphasizes self-hosted Docker on Aaron's Proxmox homelab — multi-service compose stacks, networking with Traefik / Nginx Proxy Manager, volume/backup strategy, and security hardening for home infrastructure. For FastAPI-specific multi-stage Dockerfiles, health-check patterns, secret management, and Compose patterns tuned for production Python services, route instead to the `docker-compose-production` plugin skill — it covers the FastAPI/Python container production recipe.
 metadata:
   author: aaron-deyoung
   version: "1.0"

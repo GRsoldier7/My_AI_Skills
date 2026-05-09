@@ -9,6 +9,8 @@ description: |
   "check this for issues", "is this production-ready", "what's wrong with this", "code review",
   "PR review", "audit this function", "security review", "are there any bugs here".
   Also activates when user pastes code and asks if it looks right, or says "does this look okay".
+
+  Plugin overlap: this skill emphasizes opinionated production-readiness review with security, correctness, performance, and API contract checks against the active codebase. For the workflow of *requesting* a peer review (preparing materials, framing the ask), route instead to the `superpowers:requesting-code-review` plugin skill — it covers the request-side protocol. For pre-write discipline (grounding, scope control, assumption surfacing before code is generated), route to `karpathy-guidelines` — this skill is post-write findings, not pre-write guardrails.
 metadata:
   author: aaron-deyoung
   version: "1.0"

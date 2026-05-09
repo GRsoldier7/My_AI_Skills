@@ -342,6 +342,9 @@ SKILL_REF_ALLOWLIST = {
     # common phrases used in code blocks
     "best-practices", "domain-category", "last-reviewed", "review-trigger",
     "adjacent-skills", "auto-trigger", "explicit-trigger",
+    # external plugin skills + user-level skills referenced for plugin-overlap routing
+    "karpathy-guidelines", "pytest-async-testing-patterns",
+    "docker-compose-production", "n8n-mcp",
 }
 
 

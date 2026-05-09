@@ -14,6 +14,8 @@ description: |
 
   Also trigger when the user describes a process that should be automated, even without
   mentioning n8n — assess whether n8n is the right tool and recommend accordingly.
+
+  Plugin overlap: this skill emphasizes workflow architecture and design patterns, the oho-runner sidecar pattern for n8n 2.x shell-out, and Aaron's homelab-specific integrations (PostgreSQL, FastAPI, Docker, Power Platform). For operational workflow CRUD (creating, updating, listing, deleting, executing, validating workflows programmatically), route instead to the `n8n-mcp` plugin — it provides 19 `n8n_*` tools that talk directly to the n8n REST API and replace hand-rolled curl scripts.
 metadata:
   author: aaron-deyoung
   version: "1.0"

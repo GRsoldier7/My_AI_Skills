@@ -10,6 +10,8 @@ description: |
   "how should I test this", "test coverage", "pytest fixtures", "hypothesis testing",
   "flaky test", "integration test vs unit test", "how do I test async code", "mock vs real".
   Also activates when user says "I need to test this" or "tests keep breaking".
+
+  Plugin overlap: this skill emphasizes opinionated test *strategy* — what to test, at what level, integration-vs-unit decisions, hypothesis property-based testing strategy, and the test value hierarchy. For syntax/recipe lookups (fixture pattern boilerplate, parametrize syntax, async testing setup, transaction-rollback recipes), route instead to the `pytest-async-testing-patterns` plugin skill — it covers the how-to-write reference patterns.
 metadata:
   author: aaron-deyoung
   version: "1.0"
