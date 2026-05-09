@@ -1,6 +1,21 @@
 ---
 name: homelab-organizer
 description: Organization expert for Aaron's Proxmox homelab. Use after creating or moving files in /root/homelab/, /opt/echelon/, /root/.claude/, or any tracked project — runs a fast 5-check that flags naming, location, or duplication issues. Use full audit (manual /homelab-organizer) for stale-file cleanup, container drift detection, broken-link validation, and learned-pattern review. Read-only by default; only acts after explicit user approval per finding. Never deletes — quarantines to .archive/ with a written restore manifest. Self-learning via persistent state at /root/homelab/docs/organizer/state.yaml.
+metadata:
+  author: aaron-deyoung
+  version: "1.0"
+  domain-category: homelab
+  adjacent-skills: knowledge-management, session-optimizer
+  last-reviewed: "2026-05-09"
+  review-trigger: "New tracked root added, container roster changes, organizer state schema bump"
+  capability-assumptions:
+    - "Linux host with read access to /root/homelab/, /opt/echelon/, /root/.claude/, /root/My_AI_Skills/"
+    - "Bash + standard POSIX tools (find, grep, awk)"
+    - "State file at /root/homelab/docs/organizer/state.yaml is writable"
+  fallback-patterns:
+    - "If state file missing: bootstrap with empty schema and continue advisory-only"
+    - "If quarantine dir not creatable: report finding only, do not move files"
+  degradation-mode: "strict"
 ---
 
 # homelab-organizer

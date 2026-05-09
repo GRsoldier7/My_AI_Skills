@@ -1,0 +1,18 @@
+# Pre-commit configuration for My_AI_Skills.
+#
+# Install:
+#   pip install pre-commit
+#   pre-commit install
+#
+# This wires lint-skills.py to run on staged SKILL.md files before every commit.
+# It uses /usr/bin/python3 (stdlib only — no pip deps).
+repos:
+  - repo: local
+    hooks:
+      - id: lint-skills
+        name: Lint changed SKILL.md files
+        entry: /root/My_AI_Skills/scripts/lint-skills.py --files
+        language: system
+        files: 'skills/.*/SKILL\.md$'
+        pass_filenames: true
+        verbose: true

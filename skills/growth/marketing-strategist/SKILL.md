@@ -8,7 +8,16 @@ description: >
   channels to invest in, needs to define their brand positioning, wants to build a demand
   generation engine, or is asking why their marketing isn't converting. Also trigger for
   content strategy, marketing funnel design, top-of-funnel vs bottom-of-funnel investment,
-  B2B vs B2C marketing differences, or any request to "build out the marketing."
+  B2B vs B2C marketing differences.
+
+  STAGE-GATE — this skill owns POSITIONING and MESSAGING only. Hand off:
+  - Pre-PMF launch / channel selection → go-to-market-engine
+  - Post-PMF compounding loops / activation / retention → growth-hacking-engine
+  - Content execution (blog, SEO, newsletter) → content-marketing-machine
+  - Sales copy (landing pages, ads, email) → copywriting-conversion
+  - Platform-native social tactics → social-media-architect
+
+  Do NOT trigger on the generic phrase "build out the marketing" — start with positioning here, then route to the specialist for execution.
 metadata:
   author: aaron-deyoung
   version: "1.0"

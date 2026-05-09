@@ -9,6 +9,10 @@ description: >
   Exchange Online, Microsoft 365 admin, or any integration across the Microsoft 365 ecosystem.
   Also trigger for questions about SSO, token management, delegated vs application permissions,
   or building apps that span multiple M365 services.
+
+  Routing precedence: this skill owns Graph API, MSAL, Entra ID, and cross-service M365 workflows.
+  For SharePoint IA / permissions / SPFx specifically, use `sharepoint`. For Teams bots and
+  conversational agents, use `copilot-studio`.
 metadata:
   author: aaron-deyoung
   version: "1.0"

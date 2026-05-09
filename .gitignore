@@ -6,3 +6,10 @@ __pycache__/
 node_modules/
 *.log
 .claude/settings.local.json
+.bundle-cache/
+.notebooklm-sync-state.json
+.backup/
+# MCP settings contain API keys / tokens — never commit
+platform-configs/claude/mcp/
+mcp_settings.json
+mcp_settings.*.json

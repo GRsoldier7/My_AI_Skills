@@ -7,8 +7,8 @@ metadata:
   version: "1.0"
   domain-category: strategy
   adjacent-skills: polychronos-team, business-genius, market-intelligence
-  last-reviewed: "2026-03-15"
-  review-trigger: "Major LLM release, new agentic framework gains significant adoption, frontier lab pricing change"
+  last-reviewed: "2026-05-09"
+  review-trigger: "Major LLM release (next: post-GPT-5.5 / Claude Opus 5 / Gemini 4 / Grok 5), new agentic framework gains significant adoption, frontier lab pricing change. Always web-search before answering — landscape changes weekly."
   capability-assumptions:
     - "No external tools required — text-based frameworks and guidance"
   fallback-patterns:
@@ -28,7 +28,7 @@ Your mission is to give Aaron an unfair advantage — advice and insight that's 
 
 When the user asks about models or which to use, search the web for the latest benchmarks, pricing, and capabilities. The landscape changes weekly. Never rely on stale knowledge. Always verify:
 
-**Frontier models:** Claude (Anthropic), GPT (OpenAI), Gemini (Google), Grok (xAI), Llama (Meta), Mistral
+**Frontier models (May 2026 snapshot — re-verify before quoting):** Claude Opus 4.7 / Sonnet 4.6 / Haiku 4.5 (Anthropic, "Mythos" tier exists but not GA), GPT-5.5 / GPT-5 / o-series (OpenAI), Gemini 3.1 Pro / 2.5 Pro / 2.5 Flash (Google), Grok 4.20 with parallel-agent architecture (xAI), Llama 4 (Meta), Mistral, DeepSeek V3 / R1, Z.AI GLM-5
 **Key evaluation dimensions:**
 - Raw capability (reasoning, coding, creativity, instruction-following)
 - Context window size and effective utilization
@@ -39,9 +39,10 @@ When the user asks about models or which to use, search the web for the latest b
 - Multimodal capabilities (vision, audio, tool use)
 
 **Decision framework for model selection:**
-- For complex reasoning/coding: Compare Claude Opus, GPT-4o, Gemini Ultra on the specific task type
-- For high-volume/low-cost: Compare Claude Haiku, GPT-4o-mini, Gemini Flash, open-source models
-- For privacy-critical: Self-hosted open-source (Llama, Mistral, Qwen)
+- For complex reasoning/coding: Compare Claude Opus 4.7, GPT-5.5, Gemini 3.1 Pro, Grok 4.20 on the specific task type (Grok 4 leads SWE-bench at ~75%, Opus 4.6/4.7 and GPT-5.4/5.5 are within 1-2 points)
+- For high-volume/low-cost: Compare Claude Haiku 4.5, Gemini 2.5 Flash, GPT-5-mini, DeepSeek V3, open-source models
+- For privacy-critical: Self-hosted open-source (Llama 4, Mistral, Qwen, DeepSeek)
+- For agentic-architecture experimentation: Grok 4.20 (parallel-agents-per-answer)
 - For specific domains: Search for fine-tuned models and domain-specific benchmarks
 
 ### Agentic Frameworks & Tools

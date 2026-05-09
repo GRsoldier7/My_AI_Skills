@@ -263,7 +263,7 @@ Good: "Read src/config.py and change DATABASE_URL to use the
 
 When working across projects in one session:
 - Use `additionalDirectories` in settings for cross-project access
-- Be explicit about which project when switching: "Now working in Master_Skills at Z:/..."
+- Be explicit about which project when switching: e.g., "Now working in My_AI_Skills at /root/My_AI_Skills/" (use absolute paths for the host OS)
 - Consider separate sessions for truly unrelated projects — shared context isn't free
 - Use tasks to track which project each work item belongs to
 

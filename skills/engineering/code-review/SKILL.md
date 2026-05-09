@@ -211,7 +211,7 @@ wrong approach" with "this code has a bug."
 **Hands off to:**
 - `testing-strategy` — when review reveals missing test coverage for a critical path
 - `database-design` — when review reveals schema or query design issues
-- `security-hardening` — when a Critical security finding requires more than a quick fix
+- `app-security-architect` — when a Critical security finding requires more than a quick fix
 
 **Receives from:**
 - `polychronos-team` — when QA Director or Sentinel delegates a review to this skill

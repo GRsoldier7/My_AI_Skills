@@ -7,11 +7,19 @@ metadata:
   version: "1.0"
   domain-category: product
   adjacent-skills: database-design, cloud-migration-playbook, testing-strategy
-  last-reviewed: "2026-03-15"
-  review-trigger: "New health data API launches or deprecates, PostgreSQL major version, Python 3.x breaking change"
+  last-reviewed: "2026-05-09"
+  review-trigger: "New health data API launches or deprecates, PostgreSQL major version, Python 3.x breaking change, supplement DB licensing change"
   capability-assumptions:
     - "Python/FastAPI/GCP stack available"
     - "Docker for containerization"
+  data-sources-currency-2026-05:
+    - "Examine.com — full database is membership/license-gated (https://examine.com/api-requests/); free tier limited. Treat as licensed source, not open API."
+    - "PubMed (NLM) — open E-utilities API, authoritative for primary literature. Always reachable."
+    - "ClinicalTrials.gov — open API v2, authoritative for trial data."
+    - "USDA FoodData Central — open API, food + nutrient reference data."
+    - "NIH Dietary Supplement Label Database (DSLD) — open API, US-marketed supplement labels (~150K products)."
+    - "Open Targets / DrugBank — compound/drug-target data; DrugBank requires academic or commercial license for full access."
+    - "Manufacturer / ConsumerLab data — licensed, scrape with explicit permission only."
   fallback-patterns:
     - "If stack differs: ask user to confirm their stack before generating code"
   degradation-mode: "graceful"
@@ -41,7 +49,7 @@ When building pipelines, organize around these domains:
 - Supplement profiles (ingredients, dosages, bioavailability, forms)
 - Interaction data (supplement-supplement, supplement-drug)
 - Efficacy evidence (clinical trials, meta-analyses, quality ratings)
-- Sourcing: examine-com API, PubMed/PubChem, ConsumerLab, manufacturer databases
+- Sourcing: PubMed/PubChem (open), ClinicalTrials.gov (open), USDA FoodData Central (open), NIH DSLD (open, ~150K supplement labels), Examine+ (license/membership-gated as of 2024+ — see frontmatter), ConsumerLab + manufacturer databases (licensed, scrape only with permission)
 
 ### Biomarkers & Lab Work
 - Reference ranges (age/sex-adjusted, optimal vs. standard)

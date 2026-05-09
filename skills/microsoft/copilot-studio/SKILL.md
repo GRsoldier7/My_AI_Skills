@@ -9,6 +9,10 @@ description: >
   multi-channel bots, adaptive cards in bots, or any conversational AI development in the Microsoft
   ecosystem. Also trigger for questions about bot analytics, escalation to live agents, knowledge sources,
   custom GPTs in Copilot Studio, or Microsoft 365 Copilot extensibility.
+
+  Routing precedence: this skill owns Copilot Studio agents (formerly PVA) and bot topics.
+  For flow-triggered automation, use `power-automate`. For M365 Copilot extensibility, use
+  `m365-integration`.
 metadata:
   author: aaron-deyoung
   version: "1.0"

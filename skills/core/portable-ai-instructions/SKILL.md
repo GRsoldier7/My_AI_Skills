@@ -26,7 +26,7 @@ An AI coding tool with good project context produces dramatically better output 
 
 ## File format reference
 
-### CLAUDE.md (Claude Code / Cowork)
+### CLAUDE.md (Claude Code)
 
 **Location:** Project root, or `~/.claude/CLAUDE.md` for global preferences
 **Loaded:** Automatically when Claude Code starts in the directory

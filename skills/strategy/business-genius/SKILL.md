@@ -9,11 +9,24 @@ description: |
   pricing-strategist, financial-model-architect, go-to-market-engine, marketing-strategist,
   copywriting-conversion, content-marketing-machine, social-media-architect, growth-hacking-engine,
   sales-closer, personal-brand-builder, community-builder, micro-saas-builder, ai-business-optimizer).
-  Use this skill whenever the user asks about business ideas, starting a business, finding profitable
-  niches, market opportunities, revenue strategies, business models, competitive advantages,
-  bootstrapping, scaling, or building wealth through entrepreneurship. Also trigger for "where can
-  I make money," "what should I build next," "how do I grow faster," "is this a good idea," or any
-  high-level business strategy question. This skill will answer directly OR route to the specialist.
+  Use this skill ONLY when a request needs strategic diagnosis BEFORE specialist execution — e.g.,
+  "I have an idea, where do I start?" / "what's the highest-leverage move right now?" / "is this
+  a good business?" Output is always a 1-3 sentence diagnosis + a handoff to the right specialist.
+
+  Do NOT use this skill (route directly to the specialist instead) for:
+  - Pricing questions → pricing-strategist
+  - GTM / channel selection → go-to-market-engine
+  - Post-PMF growth loops → growth-hacking-engine
+  - Positioning / messaging → marketing-strategist
+  - Written plan or pitch deck → business-plan-architect
+  - Founder ops / decision cadence → entrepreneurial-os
+  - Market sizing / TAM / competitive landscape → market-intelligence
+  - Productizing a workflow → micro-saas-builder
+  - AI tool stack / automation ROI → ai-business-optimizer
+  - Sales calls / objection handling → sales-closer
+  - Personal brand / thought leadership → personal-brand-builder
+  - Community design / monetization → community-builder
+  - Financial modeling → financial-model-architect
 metadata:
   author: aaron-deyoung
   version: "2.0"

@@ -182,11 +182,11 @@ metadata:
   capability-assumptions:
     - "Requires Bash tool for script execution"
     - "Requires file read/write access"
-    - "Optimized for Claude Sonnet 4+ (extended context)"
+    - "Optimized for Claude 4.x family (Sonnet/Opus 4+, extended context)"
   fallback-patterns:
     - "If Bash unavailable: output script as artifact for user to run manually"
     - "If file access unavailable: request user paste content directly"
-  version-notes: "Reviewed for Claude Sonnet 4.6. Re-review on next major Claude version."
+  version-notes: "Reviewed for Claude 4.x family (Sonnet 4.6 / Opus 4.7). Re-review on next major Claude version."
   degradation-mode: "graceful" # or "strict" — graceful means attempt with reduced capability
 ```
 

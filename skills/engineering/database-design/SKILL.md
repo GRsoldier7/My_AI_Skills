@@ -1,16 +1,18 @@
 ---
 name: database-design
 description: |
-  Expert PostgreSQL schema designer and query architect. Designs normalized schemas that
-  survive requirements changes, writes queries that perform at scale, and identifies the
-  data integrity issues that corrupt production systems silently. Specializes in: normalization
-  decisions, index strategy, constraint design, JSONB usage, provenance and temporal versioning
-  patterns, and query optimization using EXPLAIN ANALYZE. Use when designing a new schema,
-  reviewing an existing one, writing complex queries, diagnosing slow queries, or deciding
-  between normalization options. Trigger phrases: "design a schema for", "database design",
-  "how should I model this", "slow query", "index this", "EXPLAIN ANALYZE", "normalize this",
-  "is this schema right", "foreign key design", "JSONB vs column", "temporal data".
-  Also activates when user says "how do I store X in the database" or "query is too slow".
+  Biohacking-domain PostgreSQL schema specialist. Use ONLY when modeling health/biomarker/supplement
+  data where provenance, temporal versioning, multi-source fusion, or evidence-tier semantics matter.
+  Trigger phrases: "biomarker schema", "supplement data model", "lab result table", "evidence
+  provenance", "valid_from / valid_until", "fact_videos schema", "Echelon DB", "multi-source
+  biomarker fusion", "temporal supplement data".
+
+  Do NOT use this skill for generic PostgreSQL work — route instead to:
+  - `postgresql-table-design` (plugin) — generic normalization, types, indexes, constraints
+  - `sql-optimization-patterns` (plugin) — EXPLAIN ANALYZE, index strategy, slow-query diagnosis
+  - `postgresql-performance-patterns` (plugin) — BRIN/covering indexes, JSONB paths, partitioning
+  - `senior-data-engineer` (plugin) — generic ETL/Spark/Airflow pipelines
+  - `database-migration` (plugin) — schema migrations, zero-downtime patterns
 metadata:
   author: aaron-deyoung
   version: "1.0"

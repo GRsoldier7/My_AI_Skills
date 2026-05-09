@@ -10,6 +10,10 @@ description: >
   ecosystem. Also trigger for questions about information architecture, retention policies, sensitivity
   labels, compliance, Teams-connected sites, or SharePoint Embedded. Even casual mentions of
   "document management", "intranet", or "team site" in a Microsoft context should trigger this skill.
+
+  Routing precedence: this skill owns SharePoint IA, SPFx, search, document management, and PnP.
+  For Graph-for-SharePoint cross-service queries, use `m365-integration`. For SP-triggered automation
+  (list events, document approval flows), use `power-automate`.
 metadata:
   author: aaron-deyoung
   version: "1.0"

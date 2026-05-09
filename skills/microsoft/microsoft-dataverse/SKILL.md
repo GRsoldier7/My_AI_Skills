@@ -9,6 +9,9 @@ description: >
   (option sets), polymorphic lookups, alternate keys, or any data platform work underlying the Power
   Platform. Also trigger for Dynamics 365 data layer questions. Even mentions of "tables" or "data model"
   in a Power Platform context should trigger this skill.
+
+  Routing precedence: this skill owns the Dataverse storage layer (tables, security, plugins).
+  For model-driven app design, use `power-apps`. For semantic models or reporting, use `power-bi`.
 metadata:
   author: aaron-deyoung
   version: "1.0"
@@ -171,7 +174,7 @@ Layer 2: Security Roles (CRUD permissions per table)
 Layer 3: Teams (cross-BU access)
   - Owner teams: Own records, share across BUs
   - Access teams: Auto-created, grant access to specific records
-  - AAD Group teams: Sync from Entra ID security groups
+  - Entra ID Group teams (formerly AAD): Sync from Entra ID security groups
 
 Layer 4: Column Security Profiles
   - Restrict read/write on sensitive columns (SSN, Salary)

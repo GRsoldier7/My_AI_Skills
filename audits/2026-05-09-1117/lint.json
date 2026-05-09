@@ -1,0 +1,17 @@
+{
+  "scanned": 57,
+  "max_age_days": 90,
+  "findings": [
+    {
+      "severity": "FAIL",
+      "skill": "homelab-organizer",
+      "file": "/root/My_AI_Skills/skills/homelab-organizer/SKILL.md",
+      "line": 1,
+      "rule": "metadata-missing",
+      "message": "metadata block missing.",
+      "fix": "Add `metadata:` block with version, domain-category, last-reviewed."
+    }
+  ],
+  "fail_count": 1,
+  "warn_count": 0
+}

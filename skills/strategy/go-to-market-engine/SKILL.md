@@ -8,7 +8,14 @@ description: >
   customer profile, asking how to get their first 100 or 1,000 customers, figuring out what
   channel is working, or asking whether they have product-market fit. Also trigger for
   cold outreach strategy, content-led growth, product-led growth, community-led growth,
-  partnership strategy, or any question about how to grow from $0 to $1M ARR.
+  partnership strategy, founder-led sales transition.
+
+  STAGE-GATE — this skill owns PRE-PMF LAUNCH and CHANNEL SELECTION only. Hand off:
+  - Positioning / messaging foundation → marketing-strategist (do this FIRST)
+  - Post-PMF compounding growth, activation, retention, viral loops → growth-hacking-engine
+  - Written GTM section inside a plan or pitch deck → business-plan-architect
+
+  Do NOT trigger on generic "how do I grow faster" — that's growth-hacking-engine post-PMF, or marketing-strategist for messaging.
 metadata:
   author: aaron-deyoung
   version: "1.0"

@@ -1,19 +1,22 @@
 ---
 name: data-analytics-engine
 description: |
-  Data analytics and business intelligence expert. Use when analyzing data, building reports,
-  creating visualizations, designing dashboards, writing SQL queries, performing statistical
-  analysis, or making data-driven business decisions.
+  Business intelligence and reporting expert. Use ONLY for analysis, dashboards, visualizations,
+  executive summaries, statistical interpretation, and turning data into stakeholder-facing
+  artifacts. Output is insight + visual, not infrastructure.
 
-  EXPLICIT TRIGGER on: "analyze data", "data analysis", "SQL query", "dashboard", "report",
-  "visualization", "chart", "graph", "metrics", "KPIs", "business intelligence", "BI",
-  "Power BI", "pandas", "dataframe", "pivot table", "trend analysis", "cohort analysis",
-  "funnel analysis", "A/B test", "statistical significance", "correlation", "regression",
-  "data cleaning", "ETL", "data pipeline", "BigQuery", "data warehouse",
-  "executive summary from data", "what does this data tell us".
+  EXPLICIT TRIGGER on: "analyze this data", "executive summary from data", "dashboard design",
+  "visualization", "chart", "trend analysis", "cohort analysis", "funnel analysis", "A/B test
+  result", "statistical significance", "correlation", "regression interpretation",
+  "what does this data tell us", "build a report".
 
-  Also trigger when the user shares a dataset or asks questions that require quantitative
-  reasoning, even without explicitly saying "analytics."
+  Do NOT use this skill for data infrastructure work — route instead to:
+  - `senior-data-engineer` (plugin) — ETL/ELT pipelines, Spark, Kafka, generic data architecture
+  - `python-data-pipeline-patterns` (plugin) — Polars, Pandera, async pipelines, Parquet/Arrow
+  - `dbt-transformation-patterns` (plugin) — analytics engineering, dbt model design
+  - `airflow-dag-patterns` (plugin) — workflow orchestration, DAG patterns
+  - `biohacking-data-pipeline` — health-domain ingestion (lab APIs, supplement scraping)
+  - `power-bi` — Power BI enterprise dashboard work specifically
 metadata:
   author: aaron-deyoung
   version: "1.0"

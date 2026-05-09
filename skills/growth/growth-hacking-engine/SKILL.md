@@ -7,8 +7,14 @@ description: >
   grow faster, increase activation rates, reduce churn, build a referral program, implement
   PLG, design a viral loop, run growth experiments, or understand the metrics that drive
   compounding growth. Also trigger for onboarding optimization, feature adoption, re-engagement
-  campaigns, growth model math, CAC reduction, or any question about how to grow from 100
-  to 10,000 users efficiently.
+  campaigns, growth model math, CAC reduction.
+
+  STAGE-GATE — this skill owns POST-PMF COMPOUNDING LOOPS only. Hand off:
+  - Pre-PMF launch / first 100 customers / channel selection → go-to-market-engine
+  - Positioning / messaging foundation → marketing-strategist
+  - Sales copy for activation / re-engagement emails → copywriting-conversion
+
+  Do NOT trigger before the user has product-market fit. If unclear whether PMF is reached, route to entrepreneurial-os for stage-gate diagnosis first.
 metadata:
   author: aaron-deyoung
   version: "1.0"

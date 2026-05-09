@@ -1,0 +1,10 @@
+Scanned 57 SKILL.md files. 1 findings.
+
+── homelab-organizer
+  [FAIL] metadata-missing: metadata block missing.
+        at /root/My_AI_Skills/skills/homelab-organizer/SKILL.md:1
+        fix: Add `metadata:` block with version, domain-category, last-reviewed.
+
+════════════════════════════════
+  FAIL: 1    WARN: 0    SCANNED: 57
+════════════════════════════════

@@ -10,6 +10,10 @@ description: >
   questions about flow performance, throttling limits, retry policies, pagination, concurrency control,
   or flow error handling. Even casual mentions of "automating" or "workflow" in a Power Platform context
   should trigger this skill.
+
+  Routing precedence: this skill owns cloud flows, desktop flows/RPA, and BPF. For Copilot Studio plugin
+  actions, use `copilot-studio`. For SharePoint list workflows, use `sharepoint`. For Graph webhooks,
+  use `m365-integration`. Note: desktop-flow runtime requires Windows.
 metadata:
   author: aaron-deyoung
   version: "1.0"

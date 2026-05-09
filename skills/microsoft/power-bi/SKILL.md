@@ -9,6 +9,11 @@ description: >
   involving Microsoft's analytics stack. Also trigger for questions about data modeling best practices,
   slowly changing dimensions, many-to-many relationships, calculation groups, field parameters, or
   XMLA endpoints. Even if the user just says "dashboard" or "report" in a Microsoft context, use this skill.
+
+  Routing precedence: this skill owns DAX, M, semantic models, and Fabric Direct Lake. For workspace
+  governance, use `power-platform-admin`. For Dataverse-sourced reports, use `microsoft-dataverse` for
+  the data layer first. Note: PBI Desktop authoring is Windows-only; on Linux use Service + Tabular
+  Editor web.
 metadata:
   author: aaron-deyoung
   version: "1.0"

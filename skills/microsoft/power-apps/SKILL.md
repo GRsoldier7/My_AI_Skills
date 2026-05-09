@@ -9,6 +9,10 @@ description: >
   in the Microsoft ecosystem. Also trigger for questions about delegation limits, SharePoint list apps,
   PCF controls, ALM for Power Apps, or solution-aware development. Even casual mentions of "building an app"
   in a Microsoft/Power Platform context should trigger this skill.
+
+  Routing precedence: this skill owns Canvas and Model-Driven app design, Power Fx, and PCF.
+  For bot/conversational apps, use `copilot-studio`. For data model design, use `microsoft-dataverse`.
+  For ALM strategy, use `power-platform-admin`.
 metadata:
   author: aaron-deyoung
   version: "1.0"

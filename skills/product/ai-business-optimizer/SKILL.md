@@ -201,7 +201,7 @@ Fully automated (set and forget):
 # for the latest recommended model ID before deploying.
 from anthropic import Anthropic
 
-MODEL_NAME = "claude-opus-4-6"  # Replace with current recommended model
+MODEL_NAME = "claude-opus-4-7"  # Replace with current recommended model
 
 client = Anthropic()
 

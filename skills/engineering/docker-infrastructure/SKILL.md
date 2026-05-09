@@ -12,7 +12,7 @@ description: |
   "bridge network", "reverse proxy", "Traefik", "nginx proxy", "Portainer",
   "Docker security", "resource limits", "Docker backup".
 
-  Also trigger when discussing infrastructure on Aaron's home server (192.168.1.240)
+  Also trigger when discussing infrastructure on Aaron's home server (192.0.2.10)
   or any self-hosted service deployment.
 metadata:
   author: aaron-deyoung
@@ -23,7 +23,7 @@ metadata:
   review-trigger: "Docker major version, Compose spec changes, new self-hosted service added"
   capability-assumptions:
     - "Docker Engine and Docker Compose v2 on Linux host"
-    - "Home server at 192.168.1.240 running multiple services"
+    - "Home server at 192.0.2.10 running multiple services"
     - "Bash tool for running Docker commands"
   fallback-patterns:
     - "If no Docker access: provide compose files and Dockerfiles as text"

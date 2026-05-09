@@ -19,10 +19,10 @@ metadata:
   version: "1.0"
   domain-category: engineering
   adjacent-skills: ai-agentic-specialist, power-automate, cloud-migration-playbook, app-security-architect
-  last-reviewed: "2026-04-04"
+  last-reviewed: "2026-05-09"
   review-trigger: "New n8n major version, new node types, user reports workflow pattern failure"
   capability-assumptions:
-    - "n8n self-hosted in Docker on home server (192.168.1.240)"
+    - "n8n self-hosted in Docker on home server (192.0.2.10)"
     - "HTTP Request node, Code node (JS), PostgreSQL node available"
     - "No external tools required — outputs workflow architecture as text"
   fallback-patterns:
@@ -223,6 +223,43 @@ Main workflow fails → Error Trigger → PostgreSQL (store failed payload in de
   Never bake secrets into docker-compose.yml.
 - **Least privilege:** Each n8n credential should have minimum required permissions.
   Read-only where possible, scoped API keys over admin keys.
+
+---
+
+## Shell-out via HTTP Sidecar (n8n 2.x replacement for executeCommand)
+
+n8n 2.x **removed the `executeCommand` node** — workflows can no longer shell out directly. The
+production-proven replacement is a dedicated HTTP sidecar service that n8n calls via the standard
+HTTP Request node. Aaron's reference implementation is **`oho-runner`** (Obsidian Home Orchestrator
+runner) at `/root/homelab/projects/ObsidianHomeOrchestrator/` — running alongside n8n, not inside it.
+
+**Pattern:**
+```
+[n8n trigger] → [HTTP Request → oho-runner] → [parse stdout/exit code] → [downstream]
+```
+
+**Why a sidecar (not a generic command runner):**
+- **Explicit allowlist** — oho-runner accepts only pre-registered command IDs, not arbitrary shell strings.
+  Eliminates command injection risk.
+- **Structured response** — returns JSON `{stdout, stderr, exit_code, duration_ms}`. n8n parses it like
+  any API response, with the exit code driving IF / Error branches.
+- **Reusable shell-out shape** — once one workflow is wired, additional workflows reuse the same
+  endpoint. The sidecar is the contract.
+- **Service boundary** — n8n stays a workflow tool; the runner owns process lifecycle, timeouts, and logs.
+
+**n8n HTTP Request node config (sketch):**
+```
+Method:     POST
+URL:        http://oho-runner:8090/run
+Auth:       Header → X-Runner-Token (n8n credential)
+Body JSON:  { "command_id": "process_braindump", "args": {"path": "{{$json.path}}"} }
+Options:    Timeout 60000ms, Retry on Fail (3, exponential), error output → Error workflow
+```
+
+**Operational notes:** the sidecar is the right shape for any scripted side effect from n8n —
+file processing, ffmpeg invocations, Python entry points, system maintenance. Avoid SSH-into-host
+patterns; they are harder to audit and test. Pin the allowlist in version control alongside n8n
+workflow JSON.
 
 ---
 

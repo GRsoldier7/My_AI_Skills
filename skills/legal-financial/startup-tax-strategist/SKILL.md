@@ -216,6 +216,5 @@ If any check fails, revise before presenting.
 
 ## Read references/ for:
 - Extended S-Corp vs LLC comparison scenarios
-- State tax considerations by state (coming soon)
 - Contractor vs employee classification guide (1099 vs W-2)
 - Consulting business deduction checklist (print-and-use)

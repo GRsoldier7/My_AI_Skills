@@ -36,17 +36,22 @@ I'm Aaron DeYoung — AI consultant, entrepreneur, and builder. I help companies
 
 ## The Skill Library
 
-This CLAUDE.md works in concert with a library of **55 specialist skills** organized in `skills/`. Each skill is a deep-domain expert. Skills compose — `master-orchestrator` routes every request to the optimal skill chain.
+This CLAUDE.md works in concert with a library of **57 specialist skills** organized in `skills/`. Each skill is a deep-domain expert. Skills compose — `master-orchestrator` routes every request to the optimal skill chain.
 
 ### Auto-Routing (Non-Negotiable)
 
 For EVERY non-trivial request, invoke `master-orchestrator` first. It identifies which skills apply and chains them in the right order. This is the single highest-leverage behavior — it ensures the full library is used, not just the obvious skill.
 
-**Always-on meta-layer** (these run in the background on every response):
-- `anti-hallucination` — confidence tiers, context drift prevention, re-grounding
-- `prompt-amplifier` — silently optimizes every prompt before execution
-- `token-optimizer` — maximizes token efficiency on every call (lean, zero waste)
-- `session-optimizer` — activates at 40%+ context fill for proactive management
+**Always-on meta-layer with explicit precedence chain** (resolves the "always-on pile-up"):
+
+1. **`prompt-amplifier`** — wraps INPUT silently before routing
+2. **`master-orchestrator`** — routes to domain skills
+3. **`best-practice-router`** (plugin) — defers to or augments master-orchestrator's chain
+4. **`polychronos-team`** — invoked BY master-orchestrator only when task is T2+ multi-specialist
+5. **`anti-hallucination`** — always-on quality gate at OUTPUT (confidence tiers, re-grounding)
+6. **`session-optimizer`** — activates at 40%+ context fill for proactive management
+
+Do NOT auto-invoke `polychronos-team` directly — it is a sub-router that master-orchestrator decides to engage. Avoids the four-router collision where prompt-amplifier, master-orchestrator, polychronos-team, and best-practice-router all claim "every request".
 
 ### Core (`skills/core/`) — 11 skills
 - **master-orchestrator** — Routes every request to optimal skill chain. Invoke first.

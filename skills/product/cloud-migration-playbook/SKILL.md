@@ -7,11 +7,13 @@ metadata:
   version: "1.0"
   domain-category: product
   adjacent-skills: biohacking-data-pipeline, database-design, testing-strategy
-  last-reviewed: "2026-03-15"
-  review-trigger: "GCP service pricing or feature change, Docker major version, Terraform breaking change"
+  last-reviewed: "2026-05-09"
+  review-trigger: "GCP service pricing or feature change, Docker major version, Terraform breaking change, AlloyDB/Cloud SQL feature parity shift"
   capability-assumptions:
-    - "Python/FastAPI/GCP stack available"
+    - "Python 3.13 (3.12 still supported), FastAPI, GCP stack available"
     - "Docker for containerization"
+    - "GCP options as of 2026-05: Cloud Run (serverless containers), Cloud SQL (managed Postgres), AlloyDB for PostgreSQL (higher-perf option, ~2x storage cost vs Cloud SQL SSD), Cloud SQL IAM authentication (avoids password rotation), Workload Identity Federation (for cross-account/k8s auth without service-account keys)"
+    - "Committed-use discounts available: 1yr -25%, 3yr -52% on both Cloud SQL and AlloyDB"
   fallback-patterns:
     - "If stack differs: ask user to confirm their stack before generating code"
   degradation-mode: "graceful"
@@ -41,7 +43,7 @@ Before migrating anything, get everything running in Docker on the homelab first
 
 ```dockerfile
 # Example: Python data pipeline service
-FROM python:3.12-slim
+FROM python:3.13-slim  # 3.13 is GA as of 2026; 3.12 still supported
 
 WORKDIR /app
 

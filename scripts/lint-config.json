@@ -1,0 +1,77 @@
+{
+  "_comment": "Configuration for lint-skills.py. Edit to add/remove tokens. Tokens are matched as plain substrings unless 'regex': true.",
+  "max_age_days": 90,
+  "stale_tokens": [
+    {
+      "token": "claude-opus-4-6",
+      "severity": "FAIL",
+      "reason": "Stale model name. Current model is claude-opus-4-7.",
+      "fix": "s/claude-opus-4-6/claude-opus-4-7/g"
+    },
+    {
+      "token": "claude-3-5-sonnet",
+      "severity": "WARN",
+      "reason": "Older Sonnet model — confirm intentional.",
+      "fix": "Verify the model is intentional; latest is Sonnet 4.5+."
+    },
+    {
+      "token": "claude-3-opus",
+      "severity": "WARN",
+      "reason": "Legacy Opus model — confirm intentional.",
+      "fix": "Update to claude-opus-4-7 unless legacy reference."
+    },
+    {
+      "token": "192.168.1.240",
+      "severity": "FAIL",
+      "reason": "Stale homelab IP. Real Proxmox host is 192.0.2.10.",
+      "fix": "s/192\\.168\\.1\\.240/192.0.2.10/g"
+    },
+    {
+      "token": "Cowork",
+      "severity": "WARN",
+      "reason": "'Cowork' was renamed — confirm correct branding.",
+      "fix": "Replace with the current product name if applicable."
+    },
+    {
+      "token": "(coming soon)",
+      "severity": "WARN",
+      "reason": "Stale 'coming soon' promise text.",
+      "fix": "Either ship the feature or remove the promise."
+    }
+  ],
+  "windows_only_paths": [
+    {
+      "token": "Scripts/activate",
+      "reason": "Windows-only venv path. Linux uses bin/activate.",
+      "fix": "Replace with `bin/activate` or document both."
+    },
+    {
+      "token": "%USERPROFILE%",
+      "reason": "Windows-only env var.",
+      "fix": "Use $HOME or document both."
+    },
+    {
+      "token": "Z:/",
+      "reason": "Windows-only drive letter.",
+      "fix": "Use a POSIX path."
+    },
+    {
+      "token": "C:\\",
+      "reason": "Windows-only drive letter.",
+      "fix": "Use a POSIX path."
+    }
+  ],
+  "deprecated_apis": [
+    {
+      "token": "datetime.utcnow()",
+      "severity": "WARN",
+      "reason": "Deprecated in Python 3.12+. Use datetime.now(timezone.utc).",
+      "fix": "s/datetime\\.utcnow()/datetime.now(timezone.utc)/g"
+    }
+  ],
+  "required_metadata_fields": [
+    "version",
+    "domain-category",
+    "last-reviewed"
+  ]
+}

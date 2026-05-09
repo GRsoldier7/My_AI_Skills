@@ -255,8 +255,8 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 15  # short-lived — use refresh tokens for longe
 REFRESH_TOKEN_EXPIRE_DAYS = 7
 
 def create_access_token(data: dict) -> str:
-    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    to_encode = {**data, "exp": expire, "iat": datetime.utcnow(), "jti": str(uuid4())}
+    expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    to_encode = {**data, "exp": expire, "iat": datetime.now(timezone.utc), "jti": str(uuid4())}
     return jwt.encode(to_encode, settings.PRIVATE_KEY, algorithm=ALGORITHM)
 ```
 

@@ -9,6 +9,10 @@ description: >
   Power Platform. Also trigger for questions about maker onboarding, environment strategy, connector
   policies, analytics at the tenant level, or Power Platform security. Even casual mentions of "governance"
   or "admin" in a Power Platform context should trigger this skill.
+
+  Routing precedence: this skill owns cross-product tenant and environment governance, DLP, and CoE.
+  For single-product governance, defer to that product's skill (`power-bi`, `power-apps`,
+  `power-automate`, `microsoft-dataverse`, `sharepoint`, `copilot-studio`).
 metadata:
   author: aaron-deyoung
   version: "1.0"

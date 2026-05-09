@@ -40,13 +40,18 @@ allowed-tools: Bash
 3. **Sources must be READY** — Wait with `source wait <id>` before generating.
 4. **Generation is async** — Audio 10–20 min, video 15–45 min. Use `artifact wait`.
 5. **No parallel generation** — Google rate-limits per notebook. Sequential only.
-6. **Windows encoding** — Prefix ALL commands with `PYTHONIOENCODING=utf-8 PYTHONUTF8=1`.
+6. **Platform paths differ** — Linux/macOS use `bin/activate`; Windows uses `Scripts/activate` and the `PYTHONIOENCODING=utf-8 PYTHONUTF8=1` prefix.
 
 ---
 
 ## Environment Setup
 
-**CRITICAL on Windows:** Every `notebooklm` command MUST be prefixed:
+**Linux / macOS (primary):**
+```bash
+source "$HOME/.notebooklm-venv/bin/activate" && notebooklm <command>
+```
+
+**Windows only** — also requires the encoding prefix:
 ```bash
 source "$HOME/.notebooklm-venv/Scripts/activate" && PYTHONIOENCODING=utf-8 PYTHONUTF8=1 notebooklm <command>
 ```
@@ -54,7 +59,10 @@ source "$HOME/.notebooklm-venv/Scripts/activate" && PYTHONIOENCODING=utf-8 PYTHO
 ### First-Time Install
 ```bash
 python3 -m venv ~/.notebooklm-venv
-source ~/.notebooklm-venv/Scripts/activate  # or bin/activate on Linux/Mac
+# Linux/macOS:
+source ~/.notebooklm-venv/bin/activate
+# Windows:
+# source ~/.notebooklm-venv/Scripts/activate
 pip install "notebooklm-py[browser]" && playwright install chromium
 ```
 
