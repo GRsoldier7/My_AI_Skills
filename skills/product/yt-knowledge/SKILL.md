@@ -16,11 +16,11 @@ description: |
   YouTube content, or Temple Protocol needs citation evidence from videos.
 metadata:
   author: aaron-deyoung
-  version: "0.9"
+  version: "1.0"
   domain-category: product
   adjacent-skills: biohacking-data-pipeline, database-design, yt-pipeline-ops
-  last-reviewed: "2026-07-04"
-  review-trigger: "P1 chunks land (add moments), P4 views land (v1: swap raw joins for v_knowledge_*)"
+  last-reviewed: "2026-07-12"
+  review-trigger: "P1 chunks + P4 verbs LANDED 2026-07-12 (see 'P4 Agent Verbs' section). Next: de-stale row-count anchors + swap Q1/Q3/Q4 'post-P4' notes for find_moments/search_moments recipes"
   capability-assumptions:
     - "MCP postgres-echelon-db2-ro (read-only) registered in Claude Code"
     - "DB2 = 192.0.2.12:5433/postgres (Supabase CT105)"
@@ -177,6 +177,37 @@ JOIN public.extracted_claims ec ON ec.embedding IS NOT NULL AND ec.id <> s.id
 JOIN public.fact_videos fv ON fv.video_id = ec.video_id
 ORDER BY ec.embedding <=> s.embedding LIMIT 15;
 ```
+
+## P4 Agent Verbs — anchored-entity spine (LIVE 2026-07-12)
+
+Schema-pinned SQL fns over `core.anchored_entities` (LIST-partitioned faith/biz/dev/trade, one `is_current` row per video+chunk entity). The three GRAPH verbs need NO embedding → call directly via the RO MCP. The two SEMANTIC verbs need a query embedding → LAN API. All are ALIAS-AWARE (`core.entity_aliases`, `match_kind='alias'` when a surface variant converged) and carry a derived `confidence` (0–1, grounding tightness of the entity to its source chunk).
+
+**resolve_entity(p_name, p_domain=NULL)** — disambiguate a surface string → canonical entities (exact → alias → prefix):
+```sql
+SELECT domain, entity_type, name, mention_count, video_count, match_kind
+FROM core.resolve_entity('GoHighLevel', 'biz');
+-- match_kind: exact | alias | prefix. Alias folds variants: resolve_entity('GHL' or 'GoHighLevel CRM') → GoHighLevel.
+```
+
+**find_moments(p_name, p_domain=NULL, p_entity_type=NULL, p_limit=20)** — an entity's transcript moments with `&t=` deep-links, best-grounded first:
+```sql
+SELECT name, video_id, start_seconds, deep_link, round(confidence::numeric,2) AS conf, match_kind
+FROM core.find_moments('GoHighLevel', 'biz', NULL, 10);
+-- ordered by confidence DESC; alias-aware; deep_link is ready to cite (never fabricate offsets).
+```
+
+**entity_neighbors(p_name, p_domain=NULL, p_relation=NULL, p_limit=20)** — connected entities via `core.entity_relations`:
+```sql
+SELECT neighbor_name, neighbor_type, relation_type, direction, edge_count
+FROM core.entity_neighbors('GoHighLevel', 'biz', NULL, 20);
+-- direction: outgoing | incoming. Matches the concept across current+superseded rows (edges hold extraction-time ids).
+```
+
+**Semantic verbs (need a query embedding — agents cannot embed via MCP → LAN API):**
+- `core.search_moments(query_embedding vector(1536), p_domain, p_entity_type, p_limit)` — KNN over spine entities → moments (deep_link, distance, confidence).
+- `core.search_chunks_hybrid(p_query text, query_embedding vector, p_video_id, p_limit)` — dense + FTS RRF fusion over `core.transcript_chunks` (chunk HNSW is valid as of 2026-07-12).
+- `core.v_knowledge_moments` — pre-joined browse view (entity + chunk + deep_link + confidence + needs_review).
+Invoke via LAN API `POST http://192.0.2.10/moments` (embeds server-side, mirrors `/search`).
 
 ## Do-Nots
 
