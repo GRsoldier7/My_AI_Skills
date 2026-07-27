@@ -19,8 +19,8 @@ metadata:
   version: "1.0"
   domain-category: product
   adjacent-skills: biohacking-data-pipeline, database-design, yt-pipeline-ops
-  last-reviewed: "2026-07-12"
-  review-trigger: "P1 chunks + P4 verbs LANDED 2026-07-12 (see 'P4 Agent Verbs' section). Next: de-stale row-count anchors + swap Q1/Q3/Q4 'post-P4' notes for find_moments/search_moments recipes"
+  last-reviewed: "2026-07-17"
+  review-trigger: "P4 verbs LIVE + row-counts de-staled 2026-07-17 (spine 131k entities / 6.4k videos; long-form >3500w windowing adds deep-timestamp moments). Next: refresh when canonicalization merges land (entity_aliases grows past 544) or a health domain joins the spine"
   capability-assumptions:
     - "MCP postgres-echelon-db2-ro (read-only) registered in Claude Code"
     - "DB2 = 192.0.2.12:5433/postgres (Supabase CT105)"
@@ -48,8 +48,8 @@ metadata:
 | Admin MCP | `postgres-echelon-db2` (unrestricted R/W) — ops sessions only, never for agent Q&A |
 | Physical DB | `192.0.2.12:5433/postgres` — ONE database, four schemas that matter |
 | Schema map | `public` = extraction entities + masters + marts + scraped_videos/fact_videos · `core` = transcripts/chunks + evidence (pubmed/trials/safety/scores) · `ops` = pipeline state (extraction_status) · `analytics` = (reserved) |
-| Row-count anchors (2026-07-04) | extracted_supplements 10.9k · extracted_claims 31.9k · master_supplements 3.2k · core.video_transcripts 11.1k (100% embedded, vector 1536) · comment_insights 11.6k |
-| Coverage caveat | Biohacking topic ≈86% transcribed; ALL other topics <35%. Extraction ≈5.7k distinct videos. Absence of rows ≠ absence of mentions. |
+| Row-count anchors (2026-07-17) | anchored-entity spine 131k current entities / 6.4k videos (faith/biz/dev/trade) · core.transcript_chunks 486k (HNSW + FTS valid) · core.video_transcripts 25.5k · extracted_supplements 12.0k · extracted_claims 43.1k · entity_aliases 544 |
+| Coverage caveat | Spine covers ≈6.4k videos across faith/biz/dev/trade; health/biohacking stays in legacy `extracted_*` (no spine partition). Long-form >3500-word videos now included (windowing pass = deep-timestamp moments). Absence of rows ≠ absence of mentions. |
 
 ## Data-Trust Legend
 
@@ -66,7 +66,7 @@ metadata:
 
 ## Canonical Query Patterns
 
-Q1/Q3/Q4 need P1/P3 (chunks + anchors). Q2 and Q5–Q10 work TODAY.
+All work TODAY. Q1/Q3/Q4 (moments/timestamps): use the P4 verbs for spine domains (faith/biz/dev/trade) or `source_chunk_id` for legacy health; Q2, Q5–Q10 direct.
 
 **Q5 — Guest appearances + authority** ("every Rhonda Patrick appearance"; DISTINCT — multiple aliases/rows per video otherwise duplicate):
 ```sql
@@ -155,8 +155,8 @@ WHERE sa.master_id = (SELECT id FROM public.master_supplements WHERE canonical_n
   AND es.specific_form ILIKE '%glycinate%';   -- validated: 22 distinct dosage/form rows
 ```
 
-**Q1 — "Every protocol <person> recommended for <goal>, with timestamps"** (post-P3/P4; pattern):
-protocols via `extracted_protocols` + channel via `scraped_videos.channel_name` (host) or Q5 join (guest) + timestamp via `source_chunk_id → core.transcript_chunks.start_seconds`.
+**Q1 — "Every protocol <person> recommended for <goal>, with timestamps"** (LIVE):
+spine domains (faith/biz/dev/trade) → `find_moments(<entity>, <domain>)` returns `&t=` deep-links directly (see P4 Agent Verbs). Legacy health → protocols via `extracted_protocols` + channel via `scraped_videos.channel_name` (host) or Q5 join (guest) + timestamp via `source_chunk_id → core.transcript_chunks.start_seconds`.
 
 **Q3 — Moment lookup / Q4 — cross-video claim comparison** (semantic, see below).
 
