@@ -1,15 +1,15 @@
 ---
 name: notebooklm
 description: |
-  Complete programmatic access to Google NotebookLM via the notebooklm-py CLI.
-  Creates notebooks, adds sources (URLs, YouTube, PDFs, audio, video, images, text),
-  generates all artifact types (podcast, video, quiz, flashcards, slide deck, infographic,
-  mind map, report), downloads results, and supports web research and chat.
+  Human-artifact generation via Google NotebookLM, on explicit request ONLY — NotebookLM is
+  NOT a memory backend, NOT a recall source, and has NO automatic triggers.
 
-  CORE USE: Human-artifact generation ONLY (podcasts, briefings, decks, study guides) on
-  explicit request. NotebookLM is NOT a memory backend and has no automatic triggers —
-  memory-of-record is the Hermes internal stack (pgvector on pg-prime + Graphiti graph)
-  plus operator file memory. Never call reflexively at session end or on context fill.
+  Memory-of-record is the Hermes internal stack (pgvector on pg-prime + Graphiti graph) plus
+  operator file memory. Never call this reflexively at session end or on context fill.
+
+  Capabilities: creates notebooks, adds sources (URLs, YouTube, PDFs, audio, video, images,
+  text), generates all artifact types (podcast, video, quiz, flashcards, slide deck,
+  infographic, mind map, report), downloads results, and supports web research and chat.
 
   EXPLICIT TRIGGER on: "/notebooklm", "create a podcast about",
   "audio overview", "generate a quiz from", "summarize these URLs", "NotebookLM",
@@ -24,16 +24,16 @@ metadata:
   version: "4.0"
   domain-category: core
   adjacent-skills: knowledge-management, data-storytelling, session-optimizer
-  last-reviewed: "2026-04-19"
-  review-trigger: "notebooklm-py version bump, auth flow changes, new artifact type, memory workflow updates"
+  last-reviewed: "2026-07-28"
+  review-trigger: "notebooklm-py version bump, auth flow changes, new artifact type"
 allowed-tools: Bash
 ---
 
 ## Composability Contract
-- Input expects: topic, URLs, files, research query, OR memory backup trigger
-- Output produces: notebooks, sources, generated artifacts (audio, quiz, slides, etc.), memory backups
+- Input expects: topic, URLs, files, research query
+- Output produces: notebooks, sources, generated artifacts (audio, quiz, slides, etc.)
 - Hands off to: knowledge-management (vault organization), data-storytelling (artifact framing)
-- Receives from: any skill needing content → audio/visual/study material, or session end hooks
+- Receives from: an explicit user request for a human artifact — never a hook, schedule, or session-end trigger
 
 ---
 
@@ -46,78 +46,24 @@ NLM="source $HOME/.notebooklm-venv/bin/activate && notebooklm"
 
 ---
 
-## Working Memory Backup System
+## NotebookLM is not memory
 
-### ⚠️ PER-PROJECT NOTEBOOK RULE
-Every Claude Code project gets **its own dedicated NotebookLM notebook**.
-Never mix projects into a single notebook. Each notebook is the single source
-of truth for that project's working memory.
+Memory-of-record is the internal Hermes stack — Postgres/pgvector `memory_vectors`
+on pg-prime (CT 252), the Graphiti graph on graph-prime (CT 253), Redis L0 — plus
+operator file memory under `/root/.claude/projects/-root/memory/` indexed by
+`MEMORY.md`. Session state, lessons learned and problems solved go THERE.
 
-**Naming convention (always follow exactly):**
-```
-[Project Name] — Working Memory | Aaron DeYoung
-```
+This skill produces human artifacts — podcasts, briefings, decks, quizzes, study
+guides — and only when Aaron asks for one. It is never a backup target, never a
+recall source, and has no automatic triggers: no Stop hook, no session-end push,
+no context-fill threshold.
 
-**Examples:**
-- `Gmail Inbox Automation — Working Memory | Aaron DeYoung`
-- `n8n Workflow Builder — Working Memory | Aaron DeYoung`
-- `Foundation AddOn — Working Memory | Aaron DeYoung`
-- `Biohacking Dashboard — Working Memory | Aaron DeYoung`
+Retired 2026-07-28, along with the per-project "Working Memory" notebook scheme,
+the six `Every Stop` memory tiers, and the nightly bundle cron. A notebook that is
+written on a schedule becomes a second source of truth that silently drifts from
+the first — and the drift is invisible until you trust the wrong copy.
 
-**Notebook ID storage:**
-```bash
-# Project-level: $PROJECT_DIR/.claude/nlm-notebook-ids.env
-NLM_PROJECT_NOTEBOOK_ID="<uuid>"
-
-# Global fallback: ~/.claude/nlm-notebook-ids.env
-NLM_WORKING_MEMORY_NOTEBOOK_ID="283d88be-..."   # cross-project / meta only
-```
-
-**Known project notebooks:**
-| Project | Notebook ID | Name |
-|---------|-------------|------|
-| Gmail | `bf0a62ee-060e-4f67-945d-97d8c6615669` | Gmail Inbox Automation — Working Memory \| Aaron DeYoung |
-| Global/Meta | `283d88be-c73d-4b3f-bb22-4af6f7437dd9` | AI Working Memory — Claude Projects |
-
-**Creating a notebook for a new project:**
-```bash
-source ~/.notebooklm-venv/bin/activate
-notebooklm create "[Project Name] — Working Memory | Aaron DeYoung"
-# Then save the returned UUID to $PROJECT_DIR/.claude/nlm-notebook-ids.env
-echo 'NLM_PROJECT_NOTEBOOK_ID="<uuid>"' > .claude/nlm-notebook-ids.env
-```
-
-### Memory Tiers + Source Naming Convention
-
-**Every source title MUST follow this exact format:**
-```
-YYYY-MM-DD - [Project Name] — [Type]: [Topic]
-```
-
-**Types — use these exact labels:**
-| Type | When to use | Frequency |
-|------|-------------|-----------|
-| `Working Memory (Short Term)` | Current session context, in-flight state, conversation notes | Every Stop |
-| `Working Memory (Long Term)` | Persistent `memory/*.md` files, architecture docs | Every Stop |
-| `Lesson Learned` | Something discovered that changes future behavior | Every Stop |
-| `Problem Faced` | Errors, failures, blockers (even unsolved ones) | Every Stop |
-| `Problem Overcome` | A solved problem — include the fix | Every Stop |
-| `Session Summary` | End-of-session accomplishments and decisions | Every Stop |
-| `Reference` | Stable configs, filter maps, system-state snapshots | On change |
-
-**Examples:**
-- `2026-04-19 - Gmail — Working Memory (Long Term): Inbox System Architecture`
-- `2026-04-19 - Gmail — Session Summary: Built 120 Filters + Backfilled 3100 Emails`
-- `2026-04-19 - Gmail — Lesson Learned: Gmail Filter API Only Allows 1 User Label`
-- `2026-04-19 - Gmail — Problem Faced: batch_modify Throttles at ~50 IDs`
-- `2026-04-19 - Gmail — Problem Overcome: Sequential Retry Clears Concurrency Errors`
-- `2026-04-19 - n8n — Working Memory (Short Term): Article Processor Debug State`
-- `2026-04-19 - Global — Reference: NotebookLM Per-Project Notebook Registry`
-
-### 60% Context Trigger
-The Stop hook fires after EVERY Claude response. This is the 60% proxy — the backup runs
-before context is lost to compaction. The `nlm-backup.sh` script uses file timestamps to
-only upload CHANGED files (deduplication via SHA256 hash tracking).
+**Source titles** for artifact material follow: `YYYY-MM-DD - [Project] — [Topic]`.
 
 ---
 
@@ -131,7 +77,7 @@ only upload CHANGED files (deduplication via SHA256 hash tracking).
 
 ---
 
-## NotebookLM Memory Lifecycle
+## Artifact Workflow
 
 ### 1. Capture
 - Topic, objective, audience, and success criteria.
@@ -141,13 +87,12 @@ only upload CHANGED files (deduplication via SHA256 hash tracking).
 - Artifact outputs (podcast, slides, quiz) with one-line usefulness summary.
 - Key claims needing citation or follow-up verification.
 
-### 3. Store
-- Save compact session summary in `.ai-memory/` or linked run log.
-- Keep only durable facts/decisions, not raw transcript dumps.
-
-### 4. Rehydrate
-- Before next run, read prior memory and reuse notebook where continuity helps.
-- If context diverged, create new notebook and link to previous one.
+### 3. Report the outcome
+- Tell the user what was produced and where it was downloaded. Reporting is this
+  skill's last step — it holds `allowed-tools: Bash` and deliberately writes no
+  memory of its own.
+- If the outcome is worth keeping, `wrapup` persists it to operator file memory.
+  Nothing is ever written back into the notebook.
 
 ---
 
@@ -160,7 +105,7 @@ only upload CHANGED files (deduplication via SHA256 hash tracking).
 5. **No parallel generation** — Google rate-limits per notebook. Sequential only.
 6. **Platform paths differ** — Linux/macOS use `bin/activate`; Windows uses `Scripts/activate` and the `PYTHONIOENCODING=utf-8 PYTHONUTF8=1` prefix.
 7. **Deduplication** — Hash-check files before upload. Never re-upload unchanged content.
-8. **Graceful degradation** — If auth fails, write backup to local file; alert user.
+8. **Fail loudly** — If auth fails, report it and stop. There is nothing to fall back to: no artifact was generated, and no memory depends on this running.
 
 ---
 
@@ -218,17 +163,10 @@ Claude writes and runs the Playwright login script — user only signs in to Goo
 | Generate FAQ | `notebooklm generate faq --wait` |
 | Wait for artifact | `notebooklm artifact wait <id>` |
 | Download artifact | `notebooklm download audio ./out.mp3` |
-| Backup memory | `~/.claude/scripts/nlm-backup.sh` |
 
 ---
 
 ## Standard Workflows
-
-### Working Memory Backup (automated)
-```bash
-~/.claude/scripts/nlm-backup.sh [project_dir]
-# Runs automatically via Stop hook. Backs up all memory tiers.
-```
 
 ### Research-to-Podcast (recommended — blocking, agent-safe)
 ```bash
@@ -262,7 +200,6 @@ notebooklm source add "/path/to/session-summary.md"
 | CLI not found | `command not found` | Activate venv: `source ~/.notebooklm-venv/bin/activate` |
 | RPC error on `use` | "RPC returned null" | Notebook may not exist; run `notebooklm list` |
 | Source add fails | "Failed to get SOURCE_ID" | Create new notebook with `-n <id>` flag |
-| Backup hook fails | Auth expired at session end | Write fallback to `~/.claude/nlm-backup-pending/` |
 
 ---
 
@@ -273,9 +210,10 @@ notebooklm source add "/path/to/session-summary.md"
 3. **Generating before sources are READY** — silently produces incomplete output.
 4. **Parallel generations** — both fail with 429. Always sequential.
 5. **Re-uploading unchanged files** — wastes quota. Always hash-check first.
-5. **Embedding full storage_state.json in Co-work** — wastes ~1,700 tokens. Strip to 3 domains.
-6. **Asking user to run commands** — skill must be fully automated. User only signs in to Google.
-7. **Ignoring graceful degradation** — if backup fails, always log error + write local fallback.
+6. **Embedding full storage_state.json in Co-work** — wastes ~1,700 tokens. Strip to 3 domains.
+7. **Asking user to run commands** — skill must be fully automated. User only signs in to Google.
+8. **Treating a notebook as memory** — no session state, lessons, or working memory goes here. It is an artifact target only; memory-of-record is the Hermes stack plus operator file memory.
+9. **Firing without being asked** — no Stop hook, no schedule, no context-fill threshold. If Aaron did not request an artifact, this skill does not run.
 
 ---
 
@@ -287,9 +225,9 @@ notebooklm source add "/path/to/session-summary.md"
 - [ ] Artifact confirmed COMPLETED before downloading
 - [ ] Download file exists and is non-zero bytes
 - [ ] Operator state tracked (notebook_id, source_ids, artifact_ids, output paths)
-- [ ] Memory lifecycle completed (capture → distill → store → rehydrate)
+- [ ] Artifact downloaded, verified non-zero, and its location reported to the user
 - [ ] Hash deduplication prevents re-uploading unchanged files
-- [ ] Graceful degradation: local fallback written if NLM unavailable
+- [ ] Auth/API failure reported to the user, not silently written somewhere else
 - [ ] Auth flow was fully automated — user only signed in to Google
 
 ---
@@ -303,4 +241,4 @@ Before any NotebookLM workflow:
 - [ ] Generating sequentially, not in parallel?
 - [ ] Hash-checking before re-upload?
 - [ ] RPC error handling in place?
-- [ ] Local fallback configured?
+- [ ] Failure path reports and stops (no fallback write)?

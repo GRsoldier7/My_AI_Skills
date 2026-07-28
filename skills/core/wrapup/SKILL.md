@@ -1,9 +1,9 @@
 ---
 name: wrapup
 description: |
-  End-of-session wrap-up: summarizes the session, saves key memories to persistent memory
-  files, and pushes a session log to the user's AI Brain NotebookLM notebook for long-term
-  searchable history.
+  End-of-session wrap-up: summarizes the session, saves key memories to the operator file
+  memory at /root/.claude/projects/-root/memory/, and updates the MEMORY.md index so a future
+  session can find them.
 
   EXPLICIT TRIGGER on: "/wrapup", "wrap up", "end of session", "save this session",
   "session summary", "commit this to memory", "save what we did", "wrap this up",
@@ -15,16 +15,17 @@ metadata:
   author: aaron-deyoung
   version: "2.0"
   domain-category: core
-  adjacent-skills: notebooklm, knowledge-management, project-memory-bootstrap
-  last-reviewed: "2026-04-03"
-  review-trigger: "Memory system format change, NotebookLM CLI auth flow changes, MEMORY.md index structure update"
+  adjacent-skills: knowledge-management, project-memory-bootstrap
+  last-reviewed: "2026-07-28"
+  review-trigger: "Memory system format change, MEMORY.md index structure update"
 allowed-tools: Bash Write Read Glob
 ---
 
 ## Purpose and Scope
 
 Closes a session with four actions: review what happened, save memories (new and updated),
-write a session summary document, and push that summary to the AI Brain NotebookLM notebook.
+write a session summary document, and file the durable slice of that summary into the operator
+file memory at `/root/.claude/projects/-root/memory/`.
 
 Does NOT: write code, answer questions, or continue active work. This skill runs AFTER the
 session's substantive work is complete. If there is more work to do, finish it first.
@@ -41,12 +42,13 @@ session's substantive work is complete. If there is more work to do, finish it f
    Update an existing memory if it covers the same topic; create new only if genuinely new.
 3. **Feedback memories are the most valuable** — User corrections and confirmed approaches
    prevent repeated mistakes. Capture both directions: what to avoid AND what worked.
-4. **AI Brain notebook is the long-term archive** — Local memory files are the fast-access
-   layer; NotebookLM is the searchable, queryable, generatable archive. Both matter.
+4. **File memory plus the Hermes stack is the archive** — Operator memory files under
+   `/root/.claude/projects/-root/memory/` (indexed by `MEMORY.md`) are the fast-access layer;
+   the internal Hermes stack — Postgres/pgvector `memory_vectors` on pg-prime CT252,
+   FalkorDB/Graphiti graph on CT253, Redis L0 — is the durable, searchable backbone.
+   NotebookLM is not a memory layer, not a backup target, and not a recall source.
 5. **Dates must be absolute** — Relative dates ("next Thursday") are meaningless in a week.
    Always convert to `YYYY-MM-DD` before saving.
-6. **NotebookLM failure is non-fatal** — If auth is expired or CLI is unavailable, save
-   memories locally and skip the push. Never block the wrap-up on NotebookLM.
 
 ### Memory Type Decision Framework
 
@@ -63,16 +65,7 @@ session's substantive work is complete. If there is more work to do, finish it f
 
 ## Section 2 — Advanced Patterns
 
-### Pattern 1: AI Brain Notebook Discovery Without Saved ID
-If no `reference_brain_notebook.md` memory exists:
-```bash
-notebooklm list --json
-```
-Parse output for a notebook titled "AI Brain" or "[Name]'s AI Brain". If found, save the ID
-as a reference memory. If not found, ask user permission, then create it. Always save the ID
-to memory — this check should only run once.
-
-### Pattern 2: High-Signal Memory Extraction
+### Pattern 1: High-Signal Memory Extraction
 Don't save everything. Ask: "Would this help a future Claude session in a non-obvious way?"
 - User corrected an assumption → `feedback` memory (high value)
 - Project decision with a "why" → `project` memory (high value)
@@ -80,9 +73,9 @@ Don't save everything. Ask: "Would this help a future Claude session in a non-ob
 - User said "good job" → not a memory
 - We wrote Python code → not a memory (code is in the repo)
 
-### Pattern 3: Session Summary Structure
-Keep summaries concise but complete. The AI Brain notebook query interface works best with
-well-structured content. Use consistent headers so future queries can target specific sections:
+### Pattern 2: Session Summary Structure
+Keep summaries concise but complete. Future sessions grep these files, so consistent headers
+are what let a search land on the exact section that matters:
 ```
 # Session Summary — YYYY-MM-DD
 ## What We Did (bullet list)
@@ -92,7 +85,7 @@ well-structured content. Use consistent headers so future queries can target spe
 ## Tools & Systems Touched (list)
 ```
 
-### Pattern 4: Memory Deduplication
+### Pattern 3: Memory Deduplication
 Before writing any memory file, search MEMORY.md for overlap. If an entry covers the same
 topic, read the existing file and update it — don't create a new one. Version bump the memory
 file's content when significant new information is added.
@@ -101,66 +94,54 @@ file's content when significant new information is added.
 
 ## Section 3 — Standard Workflow
 
-1. **Ensure AI Brain notebook exists:**
-   - Check memory index for `reference_brain_notebook.md`
-   - If missing: `notebooklm list --json` → find or create AI Brain notebook → save ID to memory
-   - If notebook ID saved: verify with `notebooklm list --json` (notebook may have been deleted)
-
-2. **Review the session:**
+1. **Review the session:**
    - Read back through the full conversation
    - Identify: decisions made, work completed, user corrections, new preferences, open threads
 
-3. **Save/update memories:**
+2. **Save/update memories:**
    - Read `MEMORY.md` to check for existing entries to update
    - For each insight: choose type (user/feedback/project/reference), write file, update MEMORY.md index
    - Skip anything derivable from code, git, or external docs
 
-4. **Write session summary:**
+3. **Write session summary:**
    ```bash
    # Check for same-day collision
    ls /tmp/session-summary-$(date +%Y-%m-%d)*.md 2>/dev/null
    # Write (append counter if collision: -2, -3, etc.)
    ```
-   Use the 5-section format from Section 2 Pattern 3.
+   Use the 5-section format from Section 2 Pattern 2.
 
-5. **Push to AI Brain:**
-   ```bash
-   export PATH="$HOME/bin:$PATH"
-   notebooklm use <BRAIN_NOTEBOOK_ID>
-   notebooklm source add /tmp/session-summary-YYYY-MM-DD.md
-   ```
-   If CLI unavailable: `~/.notebooklm-venv/bin/notebooklm source add ...`
+4. **File the durable slice into operator memory:**
+   - Write one markdown file per fact into `/root/.claude/projects/-root/memory/`, named
+     `<type>_<topic>.md` where `<type>` is one of `user`, `feedback`, `project`, `reference`
+   - Frontmatter is YAML: `name`, `description`, and `metadata.type` (same four values),
+     plus `created` / `updated` ISO stamps and `host` / `node` provenance
+   - One fact per file — never bundle unrelated insights into a single memory
+   - Append a one-line pointer to `MEMORY.md`:
+     `- [Short Title](project_topic.md) — one-line gist of the fact`
 
-6. **Confirm to user:**
+5. **Confirm to user:**
    - N memories saved/updated (list which types)
-   - Session summary pushed to AI Brain (or skipped with reason)
+   - Session summary written to `/tmp/session-summary-YYYY-MM-DD.md`
    - Open threads to pick up next time (1-3 bullets max)
 
 ---
 
 ## Section 4 — Edge Cases
 
-**Edge Case 1: NotebookLM auth expired mid-session**
-Detection: `notebooklm auth check` shows SID missing.
-Mitigation: Skip the push entirely. Save memories locally. Tell user auth has expired and
-to run `notebooklm login` before the next session. Don't block wrap-up on this.
-
-**Edge Case 2: AI Brain notebook was deleted**
-Detection: `notebooklm list --json` shows the saved ID no longer exists.
-Mitigation: Create a new notebook (`notebooklm create "[Name]'s AI Brain" --json`), save
-the new ID to `reference_brain_notebook.md`, update MEMORY.md index.
-
-**Edge Case 3: Multiple sessions same day**
+**Edge Case 1: Multiple sessions same day**
 Detection: `/tmp/session-summary-YYYY-MM-DD.md` already exists.
-Mitigation: Append `-2`, `-3` suffix. Each gets its own NotebookLM source addition.
+Mitigation: Append `-2`, `-3` to the summary filename. Durable facts still go to
+`/root/.claude/projects/-root/memory/` one fact per file, as in every other run —
+the suffix applies only to the `/tmp` summary.
 Don't overwrite — earlier sessions are valid history.
 
-**Edge Case 4: Session had nothing worth saving**
+**Edge Case 2: Session had nothing worth saving**
 Detection: No decisions made, no corrections, no new preferences, trivial Q&A only.
-Mitigation: Say so clearly. Don't manufacture memories. Skip the NotebookLM push.
-A short "nothing to save" message is better than low-signal noise in the AI Brain.
+Mitigation: Say so clearly. Don't manufacture memories. A short "nothing to save" message is
+better than low-signal noise in the memory index.
 
-**Edge Case 5: MEMORY.md index is near 200-line limit**
+**Edge Case 3: MEMORY.md index is near 200-line limit**
 Detection: MEMORY.md has >180 lines.
 Mitigation: Before adding new entries, prune stale project memories (completed projects,
 outdated status). Consolidate related small memories into one file where possible.
@@ -181,11 +162,15 @@ Failure: Two files covering the same topic produce conflicting signals. Future s
 both and don't know which is current.
 Instead: Read MEMORY.md first. If an entry covers the same topic, update the existing file.
 
-**Anti-Pattern 3: Skipping the NotebookLM push "for now"**
-Temptation: Auth is finicky, skip it and do it later.
-Failure: "Later" never happens. The session summary accumulates in /tmp and gets lost.
-The AI Brain notebook diverges from reality. Long-term queryability is the entire point.
-Instead: Push or explicitly inform the user that auth needs renewal before next session.
+**Anti-Pattern 3: Sending session state to NotebookLM**
+Temptation: NotebookLM is searchable and generates nice summaries — push the session log there
+so it's "archived."
+Failure: NotebookLM is not memory. Nothing in the stack reads from it, it carries no provenance
+stamps, it does not dedup against MEMORY.md, and no future session recalls from it. State
+written only to NotebookLM is state that quietly stops existing.
+Instead: Write memory files under `/root/.claude/projects/-root/memory/` and update the
+MEMORY.md index. NotebookLM produces human artifacts (podcast, briefing, deck) on explicit
+request only — never as a persistence step.
 
 **Anti-Pattern 4: Relative dates in memories**
 Temptation: "Next Thursday" is clear right now.
@@ -197,28 +182,22 @@ Instead: Always convert: "next Thursday" → "2026-04-09". Include context if he
 ## Section 6 — Quality Gates
 
 - [ ] MEMORY.md checked for duplicates before any new file is created
-- [ ] Every memory file has correct frontmatter: `name`, `description`, `type` fields
+- [ ] Every memory file has correct frontmatter: `name`, `description`, `metadata.type` fields
 - [ ] All relative dates in memories converted to `YYYY-MM-DD` absolute dates
 - [ ] Session summary has all 5 sections and is saved to `/tmp/session-summary-YYYY-MM-DD.md`
-- [ ] NotebookLM: `notebooklm auth check` run before attempting push
-- [ ] User confirmation message includes memory count, push status, and open threads
+- [ ] Every new memory file has a one-line pointer appended to `MEMORY.md`
+- [ ] User confirmation message includes memory count and open threads
 
 ---
 
 ## Section 7 — Failure Modes and Fallbacks
 
-**Failure 1: `notebooklm` CLI not on PATH**
-Detection: `command not found: notebooklm`
-Fallback: Try `~/.notebooklm-venv/bin/notebooklm source add ...`. If that also fails,
-inform user the push was skipped and to run `pip install notebooklm-py` + re-authenticate.
-Memories are still saved locally — that part succeeded.
-
-**Failure 2: Memory write permission denied**
+**Failure 1: Memory write permission denied**
 Detection: Write tool returns permission error on MEMORY.md or memory file.
 Fallback: Write session summary to `/tmp/session-summary-YYYY-MM-DD.md` and print the
 memory content as plain text in the response so the user can save it manually.
 
-**Failure 3: Session was too large to review accurately**
+**Failure 2: Session was too large to review accurately**
 Detection: Context window was compressed during session; early conversation is unavailable.
 Fallback: Review from the most recent messages. Explicitly note in the session summary that
 "earlier session context was unavailable due to compression." Focus on what is visible.
@@ -228,7 +207,6 @@ Fallback: Review from the most recent messages. Explicitly note in the session s
 ## Section 8 — Composability
 
 **Hands off to:**
-- `notebooklm` — for all NotebookLM CLI operations (source add, list, auth check)
 - `knowledge-management` — when the session produced content worth archiving in the vault
 
 **Receives from:**
@@ -239,9 +217,5 @@ Fallback: Review from the most recent messages. Explicitly note in the session s
 
 ## Section 9 — Improvement Candidates
 
-- Auto-detect session end from conversation patterns (user says "thanks", signs off) to
-  prompt wrap-up without explicit invocation
-- Deduplicate AI Brain sources: before pushing, check if a same-day summary already exists
-  in the notebook to prevent duplicate source accumulation
 - Memory health score: count memories by type and age, flag stale project memories
   (>30 days old) for review at wrap-up time

@@ -125,4 +125,4 @@ Categories awaiting approval:
 - `decline` — skip this audit's actions, keep Watchlist + report on file
 - `per-item` — walk through proposals individually
 
-After approval: `quarantine.sh` runs, `state.yaml` updates, memory layers refresh, NotebookLM sources push.
+After approval: `quarantine.sh` runs, `state.yaml` updates, memory layers refresh.

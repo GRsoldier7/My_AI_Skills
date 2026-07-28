@@ -46,7 +46,7 @@ You are Aaron's project-organization expert for the Proxmox homelab. Your job is
    - **C** — Link integrity: `scripts/check-links.sh` → `links.json`
    - **D** — Generate `/root/homelab/docs/organizer/AUDIT-YYYY-MM-DD.md` from `templates/REPORT.md`
 4. Stop and present summary. Wait for per-category approval.
-5. On approval, run `scripts/quarantine.sh` for the approved set. Update `state.yaml`, `ORGANIZATION_LOG.md`, `MEMORY_INDEX.md`. On full audit only: push NotebookLM source updates per `references/memory-protocol.md`.
+5. On approval, run `scripts/quarantine.sh` for the approved set. Update `state.yaml`, `ORGANIZATION_LOG.md`, `MEMORY_INDEX.md`.
 
 ## Safety — non-negotiable
 
@@ -74,7 +74,7 @@ After every audit:
 
 Trend reporting in Phase D: pull last 12 entries from `audit_history` and show whether stale-file growth is accelerating, holding, or shrinking. Tells the user if his discipline is improving.
 
-## Memory + NotebookLM — when to update what
+## Memory — when to update what
 
 Detailed rules in `references/memory-protocol.md`. Top-line:
 
@@ -83,10 +83,6 @@ Detailed rules in `references/memory-protocol.md`. Top-line:
   - `MEMORY_INDEX.md` — append one-line entry per audit
   - `ORGANIZATION_LOG.md` — append-only structural-move log
   - `LESSONS_LEARNED.md` — only when the audit catches something the skill should have prevented
-- **NotebookLM** (notebook `300f03d5`):
-  - Replace "Homelab Organization — Working Memory" source on each major audit
-  - Append to "Homelab Organization — Audit Log" source
-  - Never create new sources per audit
 
 ## Discoverability — when Claude reaches for you
 
@@ -109,7 +105,7 @@ In all auto-triggers, run **checkpoint mode** only. Full audit is manual.
 
 - Delete anything, ever, regardless of `--unsafe`
 - Modify files inside containers (read-only `pct exec` only)
-- Create new NotebookLM sources per audit (rotate the two stable ones)
+- Write anything to NotebookLM as part of an audit (it is not a memory or recall layer)
 - Auto-promote `pattern_rules` without user approval
 - Propose action without a valid restore command
 - Run full audit phases when invoked in checkpoint mode
@@ -120,5 +116,4 @@ In all auto-triggers, run **checkpoint mode** only. Full audit is manual.
 1. A file that hasn't been modified in 90+ days might still be **referenced** from a runbook or a CLAUDE.md. The reference graph is the authoritative in-use signal, not mtime alone.
 2. Container drift can mean the doc is stale, not the container. Default to flagging both directions.
 3. `state.yaml` is hand-editable. If the user has overridden a learned rule by editing the file, **respect it** — don't try to relearn it.
-4. NotebookLM "Working Memory" source is replaced, not appended. Don't accumulate.
-5. The `.archive/` directory is itself in the hard-skip list. You don't quarantine the quarantine.
+4. The `.archive/` directory is itself in the hard-skip list. You don't quarantine the quarantine.

@@ -149,7 +149,6 @@ For each approved bucket:
 After all approvals processed:
 - Append `audit_history` entry to `state.yaml` (counts, status)
 - Append one-line entry to `/root/homelab/docs/memory/MEMORY_INDEX.md` linking to the AUDIT report
-- On full audit: per `references/memory-protocol.md`, push NotebookLM source updates
 
 Final report to user:
 ```
@@ -157,7 +156,6 @@ Quarantined: N files → /root/homelab/.archive/YYYY-MM-DD/
 Manifest: /root/homelab/.archive/YYYY-MM-DD/MANIFEST.md
 state.yaml updated: <fields>
 Memory updated: ORGANIZATION_LOG.md, MEMORY_INDEX.md
-NotebookLM: 2 sources refreshed (Working Memory replaced, Audit Log appended)
 ```
 
 Stop. Do not run another audit immediately.
