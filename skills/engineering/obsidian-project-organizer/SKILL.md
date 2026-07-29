@@ -8,6 +8,7 @@ metadata:
   domain-category: core
   adjacent-skills: obsidian-vault-architect, life-os-designer, portable-ai-instructions
   source-repo: GRsoldier7/My_AI_Skills
+  last-reviewed: "2026-04-08"
 ---
 
 # Obsidian & Project Organizer — Expert Skill

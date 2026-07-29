@@ -175,7 +175,12 @@ def is_vendored(skill_path: Path, patterns: list[str]) -> bool:
         rel = skill_path.relative_to(REPO_DIR).as_posix()
     except ValueError:
         return False
-    return any(fnmatch.fnmatch(rel, pat) for pat in patterns)
+    # Match the skill DIRECTORY as well as the SKILL.md path. A prefix glob like
+    # "skills/engineering/ce-*" only ever matched because fnmatch's `*` spans `/`;
+    # an exact directory entry — the natural way to vendor one skill that shares no
+    # name prefix with a pack — would otherwise silently never match.
+    candidates = (rel, rel.rsplit("/", 1)[0])
+    return any(fnmatch.fnmatch(c, pat) for c in candidates for pat in patterns)
 
 
 def build_skill_index() -> tuple[set[str], dict[str, list[str]]]:
@@ -379,6 +384,60 @@ SKILL_REF_ALLOWLIST = {
 }
 
 
+# Token-local context patterns for phantom-ref detection. Each is anchored to the
+# token's edge ($ for text before it, ^ for text after) so it can only ever describe
+# the token being tested — never a neighbour that happens to share the line.
+INVOKE_BEFORE_RE = re.compile(
+    r"(?:\b(?:invoke|invokes|load|loads|run|runs|call|calls|use|uses|using|see|"
+    r"route|redirect|delegate|handoff|hand\s*off|compose|chain|escalate|defer|"
+    r"apply|applies|execute|executes|trigger|triggers|launch|launches|"
+    r"dispatch|dispatches)"
+    r"(?:\s+(?:to|with|on|off))?"
+    r"|\brequires?|\bdepends\s+on|\b(?:adjacent[-\s])?skills?)"
+    r"\s*[:=|,-]?\s*(?:the\s+|a\s+|to\s+)?$"
+)
+# "the `todo-triage` skill handles X". Singular only, and not "`x` skill names …":
+# plural and descriptive-noun continuations are prose ABOUT skills, not invocations.
+INVOKE_AFTER_RE = re.compile(
+    r"^\s*skill\b(?!\s+(?:name|names|file|files|director(?:y|ies)|id|ids|author|authors"
+    r"|description|descriptions|instruction|instructions|trigger|triggers|metadata"
+    r"|frontmatter|prompt|prompts|registry|version|versions)\b)"
+)
+# A noun immediately after the token names what the token IS, and none of these are
+# skills: "`project-standards` persona", "`review-fixer` reviewer". This has to beat
+# the invocation patterns, because "Pass the path list to the `x` persona" is a real
+# verb-object-preposition shape aimed at something that is not a skill.
+EXCLUDE_AFTER_RE = re.compile(
+    r"^\s*(?:persona|personas|reviewer|reviewers|sub-?agent|sub-?agents|agent|agents"
+    r"|role|roles|owner|owners|label|labels|verdict|verdicts|enum|value|values"
+    r"|server|servers|endpoint|endpoints|namespace|namespaces|column|columns"
+    r"|table|tables|field|fields|key|keys|block|blocks|persona's)\b"
+)
+# "Route image tasks to `x`" — an object sits between the verb and the preposition,
+# so the verb is not adjacent to the token and INVOKE_BEFORE_RE alone would miss it.
+INVOKE_BEFORE_OBJ_RE = re.compile(
+    r"\b(?:route|routes|delegate|delegates|hand\s*offs?|handoffs?|escalate|escalates"
+    r"|defer|defers|pass|passes|forward|forwards|send|sends|dispatch|dispatches"
+    r"|hand)\b[^`]{0,40}?"
+    r"\s(?:to|with)\s+(?:the\s+|a\s+)?$"
+)
+# A guard must be opened by a conditional, either immediately before the token
+# ("If the `x` skill is available") or immediately after it ("`x` if available").
+# Bare availability wording is a statement, not a guard: "Use `x` skill is available"
+# still fails, because nothing there makes the reference conditional.
+GUARD_BEFORE_RE = re.compile(r"\b(?:if|when|where|unless)\s+(?:the\s+|a\s+)?$")
+GUARD_AFTER_RE = re.compile(
+    r"^\s*(?:skills?\s+)?(?:only\s+)?(?:if|when|unless|where)\s+"
+    r"(?:it\s+|they\s+|the\s+skill\s+)?(?:is\s+|are\s+)?"
+    r"(?:available|present|installed|enabled)\b"
+)
+# "e.g. `x`" marks x hypothetical; "such as package.json ... invoke `x`" does not.
+EXAMPLE_BEFORE_RE = re.compile(
+    r"\b(?:e\.g\.|eg\.|for\s+example|such\s+as|hypothetical|imagined|would-be|"
+    r"split\s+into|would\s+create)\s*[,:]?\s*(?:the\s+|a\s+)?$"
+)
+
+
 def lint_phantom_refs(skill_path: Path, lines: list[str], known_skills: set[str]) -> list[Finding]:
     findings: list[Finding] = []
     skill_name = skill_path.parent.name
@@ -392,30 +451,36 @@ def lint_phantom_refs(skill_path: Path, lines: list[str], known_skills: set[str]
                 continue
             if not SKILL_SHAPE_RE.match(tok):
                 continue
-            # Heuristic: only flag tokens that look like skill names AND appear in
-            # a "skill-y" context — namely, the line mentions skill/route/chain/handoff/adjacent
-            # OR the token appears in the frontmatter (description/metadata).
-            ctx = line.lower()
-            looks_skilly = any(
-                kw in ctx for kw in (
-                    "skill", "route", "chain", "handoff", "adjacent",
-                    "compose", "delegate", "invoke", "use ", "see ",
-                    "trigger", "redirect",
-                )
-            )
-            if not looks_skilly:
+            # Every test below is TOKEN-LOCAL: it reads only the text hugging this
+            # token, never the whole line. Line-level tests are what made this rule
+            # both noisy and blind — noisy because a routing-owner label or a "Supply
+            # Chain" table row counted as an invocation, blind because an unrelated
+            # "(e.g. ...)" later in the sentence suppressed a real dangling ref. With
+            # a line-level guard, a valid "if available" on ONE token would also
+            # excuse a genuinely broken DIFFERENT token on the same line.
+            before = line[:m.start()].lower()
+            after = line[m.end():].lower()
+            before_tail, after_head = before[-48:], after[:48]
+
+            if EXCLUDE_AFTER_RE.match(after_head):
                 continue
-            # Skip hypothetical/example contexts — these are not real refs.
-            if any(marker in ctx for marker in (
-                "e.g.,", "e.g. ", "for example", "such as", "hypothetical",
-                "imagined", "would-be", "split into", "would create",
-            )):
+            if not (
+                INVOKE_BEFORE_RE.search(before_tail)
+                or INVOKE_BEFORE_OBJ_RE.search(before_tail)
+                or INVOKE_AFTER_RE.match(after_head)
+                or f"/{tok}" in line
+            ):
                 continue
-            # Skip hypothetical/example contexts — these are not real refs.
-            if any(marker in ctx for marker in (
-                "e.g.,", "e.g. ", "for example", "such as", "hypothetical",
-                "imagined", "would-be", "split into", "would create",
-            )):
+            # A guarded reference is a contract, not a defect: the skill documents its
+            # own fallback for when the target is absent ("If the `ralph-loop` skill is
+            # available..."), so a missing target is the documented path, not a break.
+            # The guard must grammatically wrap THIS token to count.
+            if GUARD_BEFORE_RE.search(before_tail) or GUARD_AFTER_RE.match(after_head):
+                continue
+            # Hypothetical/example contexts are not real refs, but only when the marker
+            # introduces THIS token ("e.g. `foo`"). "When files such as package.json
+            # change, invoke `missing-skill`" is a real invocation and must still fail.
+            if EXAMPLE_BEFORE_RE.search(before_tail):
                 continue
             key = (tok, i)
             if key in seen:

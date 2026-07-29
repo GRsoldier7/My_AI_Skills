@@ -8,6 +8,7 @@ metadata:
   domain-category: engineering
   adjacent-skills: obsidian-automation-architect, ai-business-optimizer, biohacking-data-pipeline
   source-repo: GRsoldier7/My_AI_Skills
+  last-reviewed: "2026-04-08"
 ---
 
 # Homelab Life Stack — Expert Skill

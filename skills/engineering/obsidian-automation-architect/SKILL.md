@@ -8,6 +8,7 @@ metadata:
   domain-category: product
   adjacent-skills: obsidian-vault-architect, ai-business-optimizer, biohacking-data-pipeline
   source-repo: GRsoldier7/My_AI_Skills
+  last-reviewed: "2026-04-08"
 ---
 
 # Obsidian Automation Architect — Expert Skill

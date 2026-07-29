@@ -8,6 +8,7 @@ metadata:
   domain-category: product
   adjacent-skills: life-os-designer, obsidian-automation-architect, obsidian-project-organizer, database-design
   source-repo: GRsoldier7/My_AI_Skills
+  last-reviewed: "2026-04-08"
 ---
 
 # Obsidian Vault Architect — Expert Skill

@@ -7,6 +7,7 @@ metadata:
   version: "1.0"
   domain-category: core
   source-repo: EvolutionUnleashed/skill-sentinel
+  last-reviewed: "2026-04-08"
 ---
 
 # Skill Sentinel — Security Scanner

@@ -18,6 +18,7 @@ metadata:
   version: "2.0"
   domain-category: meta
   adjacent-skills: autoplan, superpowers:writing-plans, health, learn, investigate, knowledge-management
+  last-reviewed: "2026-04-26"
 ---
 
 # Organize Project

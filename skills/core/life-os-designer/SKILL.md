@@ -8,6 +8,7 @@ metadata:
   domain-category: strategy
   adjacent-skills: obsidian-vault-architect, personal-productivity-os, entrepreneurial-os
   source-repo: GRsoldier7/My_AI_Skills
+  last-reviewed: "2026-04-08"
 ---
 
 # Life OS Designer — Expert Skill
