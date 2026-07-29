@@ -1,5 +1,10 @@
 {
   "_comment": "Configuration for lint-skills.py. Edit to add/remove tokens. Tokens are matched as plain substrings unless 'regex': true.",
+  "_vendored_comment": "Upstream skill packs vendored by 6c58ff3 (EveryInc, phuryn). They name and structure themselves, so this repo's naming and metadata conventions are not theirs to satisfy — name-mismatch and metadata-missing are skipped here. Every other rule still applies, so a genuine defect in vendored code still fails.",
+  "vendored_paths": [
+    "skills/product/pm-*",
+    "skills/engineering/ce-*"
+  ],
   "max_age_days": 90,
   "stale_tokens": [
     {

@@ -31,6 +31,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import json
 import re
 import sys
@@ -168,19 +169,47 @@ def discover_skills(category: str | None = None) -> list[Path]:
     return sorted(p for p in root.rglob("SKILL.md") if p.is_file())
 
 
-def all_skill_names() -> set[str]:
-    """Set of every skill directory name (= every valid skill reference token)."""
-    names: set[str] = set()
+def is_vendored(skill_path: Path, patterns: list[str]) -> bool:
+    """True if this skill came from an upstream pack we re-sync rather than author."""
+    try:
+        rel = skill_path.relative_to(REPO_DIR).as_posix()
+    except ValueError:
+        return False
+    return any(fnmatch.fnmatch(rel, pat) for pat in patterns)
+
+
+def build_skill_index() -> tuple[set[str], dict[str, list[str]]]:
+    """Every valid skill reference token, plus any token claimed by two skills.
+
+    A reference resolves against either the directory name or the frontmatter
+    `name:`. Both are real identifiers: generate-skill-registry.py writes the
+    frontmatter name into the registry, so directory-only matching reported
+    every aliased skill as a phantom reference.
+
+    Accepting aliases can mask a genuine collision, so callers get the
+    collision map back and surface it as its own finding.
+    """
+    owners: dict[str, list[str]] = {}
     for p in SKILLS_DIR.rglob("SKILL.md"):
-        names.add(p.parent.name)
-    return names
+        tokens = {p.parent.name}
+        fm_text, _ = extract_frontmatter(p.read_text(encoding="utf-8", errors="replace"))
+        if fm_text:
+            fm_name = (parse_simple_yaml(fm_text).get("name") or "").strip()
+            if fm_name:
+                tokens.add(fm_name)
+        for tok in tokens:
+            owners.setdefault(tok, []).append(p.parent.name)
+
+    collisions = {tok: sorted(set(dirs)) for tok, dirs in owners.items() if len(set(dirs)) > 1}
+    return set(owners), collisions
 
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Linters
 # ──────────────────────────────────────────────────────────────────────────────
 
-def lint_frontmatter(skill_path: Path, fm: dict, required_meta: list[str]) -> list[Finding]:
+def lint_frontmatter(skill_path: Path, fm: dict, required_meta: list[str],
+                     vendored: bool = False) -> list[Finding]:
     findings: list[Finding] = []
     skill_name = skill_path.parent.name
 
@@ -192,9 +221,10 @@ def lint_frontmatter(skill_path: Path, fm: dict, required_meta: list[str]) -> li
         ))
         return findings
 
-    # name must equal directory
+    # name must equal directory — upstream packs name themselves, so this and the
+    # metadata requirements below are ours to enforce only on skills we author.
     fm_name = fm.get("name", "").strip()
-    if fm_name != skill_name:
+    if fm_name != skill_name and not vendored:
         findings.append(Finding(
             "FAIL", skill_name, str(skill_path), 1, "name-mismatch",
             f"name field '{fm_name}' does not match directory '{skill_name}'.",
@@ -216,19 +246,20 @@ def lint_frontmatter(skill_path: Path, fm: dict, required_meta: list[str]) -> li
 
     # metadata block + required fields
     meta = fm.get("metadata") or {}
-    if not meta:
-        findings.append(Finding(
-            "FAIL", skill_name, str(skill_path), 1, "metadata-missing",
-            "metadata block missing.",
-            fix="Add `metadata:` block with version, domain-category, last-reviewed.",
-        ))
-    else:
-        for fld in required_meta:
-            if not str(meta.get(fld, "")).strip():
-                findings.append(Finding(
-                    "FAIL", skill_name, str(skill_path), 1, f"metadata-missing-{fld}",
-                    f"metadata.{fld} missing or empty.",
-                ))
+    if not vendored:
+        if not meta:
+            findings.append(Finding(
+                "FAIL", skill_name, str(skill_path), 1, "metadata-missing",
+                "metadata block missing.",
+                fix="Add `metadata:` block with version, domain-category, last-reviewed.",
+            ))
+        else:
+            for fld in required_meta:
+                if not str(meta.get(fld, "")).strip():
+                    findings.append(Finding(
+                        "FAIL", skill_name, str(skill_path), 1, f"metadata-missing-{fld}",
+                        f"metadata.{fld} missing or empty.",
+                    ))
 
     return findings
 
@@ -412,8 +443,10 @@ def lint_one(skill_path: Path, cfg: dict, known_skills: set[str], today: date,
     fm_text, fm_end = extract_frontmatter(text)
     fm = parse_simple_yaml(fm_text) if fm_text else {}
 
+    vendored = is_vendored(skill_path, cfg.get("vendored_paths", []))
+
     findings: list[Finding] = []
-    findings.extend(lint_frontmatter(skill_path, fm, cfg.get("required_metadata_fields", [])))
+    findings.extend(lint_frontmatter(skill_path, fm, cfg.get("required_metadata_fields", []), vendored))
     findings.extend(lint_last_reviewed(skill_path, fm, max_age_days, today))
     findings.extend(lint_stale_tokens(skill_path, lines, cfg))
     findings.extend(lint_deprecated_apis(skill_path, lines, cfg))
@@ -483,7 +516,7 @@ def main(argv: list[str] | None = None) -> int:
 
     max_age_days = args.max_age if args.max_age is not None else int(cfg.get("max_age_days", 90))
     today = date.today()
-    known_skills = all_skill_names()
+    known_skills, alias_collisions = build_skill_index()
 
     if args.files:
         skill_paths = [Path(p) for p in args.files if Path(p).name == "SKILL.md" and Path(p).is_file()]
@@ -495,6 +528,12 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     all_findings: list[Finding] = []
+    for tok, dirs in sorted(alias_collisions.items()):
+        all_findings.append(Finding(
+            "FAIL", dirs[0], str(SKILLS_DIR), 1, f"alias-collision:{tok}",
+            f"Reference `{tok}` is claimed by {len(dirs)} skills: {', '.join(dirs)}.",
+            fix="Rename one skill's directory or frontmatter `name:` so the token is unique.",
+        ))
     for sp in skill_paths:
         all_findings.extend(lint_one(sp, cfg, known_skills, today, max_age_days))
 
