@@ -59,6 +59,7 @@ TRIGGER_HINT_PATTERNS = [
 
 # Friendly category display names — fallback to title-case of the dirname
 CATEGORY_DISPLAY = {
+    "aarons-latest": "Aaron's Latest Skills",
     "core": "Core (Meta-Layer)",
     "engineering": "Engineering",
     "faith": "Faith",

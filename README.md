@@ -97,6 +97,16 @@ Skills are designed to **compose** — `business-genius` routes to specialist su
 
 ## Skill Catalog
 
+### Aaron's Latest Skills (`skills/aarons-latest/`) — 1 skill
+
+Aaron's newest skills, kept in their own section so recent additions are easy to find.
+
+| Skill | When to Use |
+|-------|-------------|
+| `continuing-alm-work` | Resuming an interrupted plan, roadmap, implementation, ALM workflow, or delivery phase. Rebuilds the last verified state from evidence, executes the next safe high-leverage unit, verifies it, and leaves an exact `RESUME FROM` checkpoint. Modes: `resume` (default), `reconcile`, `checkpoint`. |
+
+---
+
 ### Core (`skills/core/`) — 11 skills
 
 Meta-layer skills that make everything else run better. `master-orchestrator` routes every request; `anti-hallucination` and `prompt-amplifier` run in the background on every response.
@@ -469,6 +479,9 @@ aaron-skill-library/
 ├── .gitignore
 │
 ├── skills/                            # All 36 skills, organized by category
+│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (1)
+│   │   └── continuing-alm-work/       # Resume interrupted plans from last verified state
+│   │
 │   ├── core/                          # Orchestration & meta-skills (4)
 │   │   ├── skill-builder/             # Meta-skill: creates + audits all other skills
 │   │   │   ├── SKILL.md
@@ -621,6 +634,7 @@ cp skills/core/skill-builder/references/skill-template.md skills/strategy/new-sk
 ```
 
 **Category selection guide:**
+- `aarons-latest` — Aaron's newest skills (the "Aaron's Latest Skills" catalog section)
 - `core` — Orchestration, meta-operations, cross-platform configuration
 - `strategy` — Business strategy, market analysis, financial modeling, GTM
 - `growth` — Marketing, sales, content, social, community, personal brand
