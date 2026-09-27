@@ -17,7 +17,7 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
   - NotebookLM-as-memory lines are dropped from `homelab-organizer`, `ai-business-optimizer` and `entrepreneurial-os`.
   - Registry regenerated (176 → 180). README "Aaron's Latest Skills" now lists all 4 skills in that category.
 - Tuned SkillSpector: branch `aaron/fp-tuning` (`69b2256` + `316ebdd`) in `~/.claude/tools/skillspector` **and** in the host gate engine `/root/.cache/agent-repos/SkillSpector`, which is used by `/root/bin/skill-scan`.
-  - On 319 installed third-party skills, stock BLOCKs 84 and tuned BLOCKs 0 (274 ALLOW, 45 NOTIFY). No skill scores higher than stock.
+  - On 314 installed third-party skills, stock BLOCKs 84 and tuned BLOCKs 0 (269 ALLOW, 45 NOTIFY). No skill scores higher than stock.
   - The `/skillspector` skill (v1.2.0) documents the rules.
 - Correction to the 2026-09-26 entry: the host has no `/root/My_AI_Skills` clone any more, so there is nothing to pull there.
 
