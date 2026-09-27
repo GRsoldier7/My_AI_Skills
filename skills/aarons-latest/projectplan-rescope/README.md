@@ -1,6 +1,6 @@
-# projectplan-rescope v1.0.0
+# projectplan-rescope v1.1.0
 
-Revise an existing baseline after scope, deadline, capacity, evidence, or implementation changes. The runtime is entirely in [SKILL.md](SKILL.md); this folder installs independently. No scripts, MCP servers, model subscriptions, framework dependencies, automatic shell commands, or tool pre-approvals are bundled.
+Revise an existing delivery baseline after scope, deadline, capacity, evidence, blockers, approvals, or implementation findings change. The runtime is entirely in [SKILL.md](SKILL.md); this folder installs independently.
 
 ## Use
 
@@ -8,53 +8,68 @@ Claude Code:
 
 ```text
 /projectplan-rescope Rescue this overbuilt plan while preserving mandatory outcomes.
-/projectplan-rescope Update the current plan for the attached change request. Show only the affected delta.
-/projectplan-rescope Audit the current baseline; keep it unchanged if no material improvement is justified.
+/projectplan-rescope Update the approved baseline for this change request. Preserve unaffected IDs.
+/projectplan-rescope Reconcile current evidence with the plan and show only the affected delta.
+/projectplan-rescope Audit the baseline; keep it unchanged if no material improvement is justified.
 ```
 
-In Codex, use `$projectplan-rescope` followed by the same request. Natural-language discovery uses the frontmatter description; do not expect identical trigger behavior from every model. An invocation without additional arguments uses the active project context, not an invented brief.
+In Codex, use `$projectplan-rescope` followed by the same request. Use `projectplan-builder` when there is no delivery baseline for the requested scope.
 
-Use `projectplan-builder` for the other planning mode. Neither skill implements its plan. An explicit save request may authorize saving the planning artifact, not code changes, commits, spending, migrations, or deployment. Read-only rules are behavioral instructions, not enforced tool isolation; retain host approval controls and use a read-only/plan-mode session for stronger protection.
+The skill plans; it does not implement. A save request can authorize the specified planning artifact only, not code changes, deletion, commits, purchases, migrations, agent launches, or deployment.
 
-## Install from this repository
+## Install
 
-Run this in a local checkout's **repository root**. It links the canonical folder rather than making a second editable copy and leaves any existing installation untouched.
+From the repository root:
 
 ```bash
+(
 skill="projectplan-rescope"
 source_dir="$PWD/skills/aarons-latest/$skill"
 target="$HOME/.claude/skills/$skill"
-# For Codex instead, set: target="$HOME/.agents/skills/$skill"
+# Codex: target="$HOME/.agents/skills/$skill"
+
 if [ ! -f "$source_dir/SKILL.md" ]; then
   printf 'Run from the My_AI_Skills repository root.\n' >&2
+  exit 1
 elif [ -e "$target" ] || [ -L "$target" ]; then
   printf 'Existing installation left unchanged: %s\n' "$target"
 else
   mkdir -p "$(dirname "$target")" && ln -s "$source_dir" "$target"
 fi
+)
 ```
 
-For project-local use, copy the whole folder into `.claude/skills/` for Claude Code or `.agents/skills/` for Codex, after checking that the destination is not an existing installation. Do not install two competing copies with the same name. Keep a linked repository checkout at its original location. If the skill does not appear, reload skills or restart the session as supported by the host.
+For project-local use, copy the whole folder into `.claude/skills/` or `.agents/skills/`. Avoid competing installations with the same skill name.
 
-Adding this folder to the GitHub library does **not** install it into your local clients.
+## Design
 
-## What is preserved and improved
+The skill is intentionally **delta-first**. It treats the current approved baseline plus newer verified evidence as the starting point and changes only what the new evidence or constraint justifies.
 
-Derived from Aaron's supplied principal-project-planner prompt. Preserves the project contract, strict leanness test, conditional current research, smallest coherent architecture, outcome phases, compact task contracts, dependency-safe parallelism, honest estimation, A–F output order, first execution handoff, and final quality gate. Rescope-specific KEEP/SIMPLIFY/MERGE/DEFER/REMOVE and approval rules live in the rescoping skill rather than bloating the builder.
+It preserves the source prompt's strict leanness, KEEP/SIMPLIFY/MERGE/DEFER/REMOVE disposition, stable IDs, dependency-safe parallelism, honest estimation, A–F structure, release gates, and execution handoff.
 
-Packaging improvements: separate trigger boundaries, focused repository inspection, portable frontmatter, no forced agent/model framework, explicit baseline/approval provenance, and independently installable runtime instructions. Rescoping adds delta-first updates, transitive dependency repair, superseded-ID continuity, and a no-material-change outcome. These are design choices, not benchmarked speedup claims.
+### v1.1.0 refinements
 
-## Regression evaluation
+- Establishes an authoritative baseline instead of silently blending conflicting plans.
+- Separates reported status from verified evidence and preserves useful history when evidence is invalidated.
+- Computes change trigger and blast radius before rewriting tasks.
+- Optimizes the real release bottleneck rather than general plan aesthetics.
+- Repairs transitive dependencies and superseded-ID references.
+- Explicitly budgets switching, migration, coexistence, review, integration, and rollback costs.
+- Caps active parallel lanes by implementation plus review/integration capacity.
+- Produces an unblock request when nothing is genuinely executable.
+- Stops with **no material change** when the baseline is already the strongest defensible path.
 
-[evals/evals.json](evals/evals.json) contains 10 self-contained prompts, expected outputs, and assertions. No external fixture files or paid evaluation service are required by the package. Running models may incur your normal usage costs.
+These are architecture choices, not claims of measured speedup.
 
-**Fresh-model behavioral evaluation: not run in the authoring environment.** Claude Code and Codex executables were unavailable. Static packaging checks are not behavioral benchmarks, and self-review is not independent verification.
+## Evaluation
 
-Run cases in isolated read-only sessions using the same model/settings both without the skill and with it. For routing cases, test natural-language discovery rather than forcing the wrong skill. Inspect outputs **and tool calls**, score every assertion, and record passed/failed/not run. Repeat safety-critical cases to detect inconsistent behavior. Do not treat word matches or merely repeating a rule as evidence of compliance.
+The existing regression suite at [evals/evals.json](evals/evals.json) covers overbuild rescue, approval boundaries, evidence invalidation, ID-preserving merges, delta-only updates, no-change outcomes, transitive dependencies, missing baselines, unsafe parallelism, and approved scope reductions.
+
+Fresh-model behavioral evaluation is not claimed unless actually run. Evaluate in isolated read-only sessions using the same model/settings with and without the skill. Inspect outputs and tool calls; record assertions as passed, failed, or not run.
 
 ## Packaging references
 
-Checked September 27, 2026; these describe packaging/discovery, not measured delivery gains:
+Checked September 27, 2026:
 
 - [Claude Code skills](https://code.claude.com/docs/en/skills)
 - [Codex skills](https://developers.openai.com/codex/skills)
