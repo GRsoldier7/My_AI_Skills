@@ -197,7 +197,6 @@ Output: 3 quarterly boulders (big rocks, not todos)
 Cognitive leverage (thinking):
   Claude Opus    → Strategy, writing, analysis, code review
   Perplexity     → Real-time research, market signals
-  NotebookLM     → Deep research synthesis from uploaded docs
 
 Build leverage (making):
   Claude Code    → Full-stack development, debugging, architecture

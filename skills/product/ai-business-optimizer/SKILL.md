@@ -86,7 +86,7 @@ Operations & Admin:
   ✅ Document summarization → upload to Claude, get briefing
   ✅ Email triage → AI labels + draft responses for approval
   ✅ Invoice and contract review → AI flags unusual clauses
-  ✅ Research synthesis → NotebookLM for uploaded documents
+  ✅ Research synthesis → document-grounded research tool for uploaded documents
   ROI target: 10 hours/week recovered from administrative work
 
 Product & Engineering:
@@ -110,7 +110,7 @@ Thinking & Strategy:
     → Deep reasoning, long documents, strategic analysis
   Real-time research tool with citations (e.g., Perplexity)
     → Up-to-date information retrieval beyond training cutoff
-  Document-grounded research tool (e.g., NotebookLM or equivalent)
+  Document-grounded research tool
     → Deep research on uploaded documents (books, papers, transcripts)
 
 Coding & Building:

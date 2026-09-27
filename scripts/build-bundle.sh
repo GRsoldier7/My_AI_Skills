@@ -1,5 +1,6 @@
 #!/bin/bash
-# Build packed markdown bundles of all SKILL.md files for NotebookLM upload.
+# Build packed markdown bundles of all SKILL.md files (for uploading the library
+# as reference material to an LLM workspace; not a memory layer).
 #
 # Produces 3 files in OUT_DIR:
 #   01_skills_core_engineering_faith_homelab_legal.md  (~280K)

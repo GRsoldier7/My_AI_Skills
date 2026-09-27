@@ -105,7 +105,6 @@ In all auto-triggers, run **checkpoint mode** only. Full audit is manual.
 
 - Delete anything, ever, regardless of `--unsafe`
 - Modify files inside containers (read-only `pct exec` only)
-- Write anything to NotebookLM as part of an audit (it is not a memory or recall layer)
 - Auto-promote `pattern_rules` without user approval
 - Propose action without a valid restore command
 - Run full audit phases when invoked in checkpoint mode
