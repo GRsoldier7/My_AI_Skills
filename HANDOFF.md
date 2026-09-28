@@ -4,6 +4,31 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 
 ## Log
 
+### 2026-09-27 (later) — Gate doc per Fable, stricter tuning invariant, scan time limit; caw zip still missing
+
+**Done**
+- The owner ordered "follow Fable's recommendations" for the host gate doc, and Fable (read-only review) wrote the text. Applied verbatim to `/root/workspace/claude-skills/skill-scan/SKILL.md`:
+  - a provenance-scoped **Scope** section: owner-authored means his repo remote **and** not in `vendored_paths`, or his own in-session hand-over; vendored third-party packs stay scanned; the wrapper keeps no exemption path;
+  - a fail-closed time-limit bullet and paragraph;
+  - an engine-branch section.
+  - Only measured figures were filled in. Backup: `/root/.cache/skill-scan-SKILL.md.bak-20260927`.
+- SkillSpector round 3 (`27afe8d` Windows, `e20c601` host) adopts Fable's invariant. In SKILL.md and the files it names, only agency-language rules can be discounted as negated, never attack syntax, which closes the "Do not skip: `rm -rf ~`" evasion. Tool-misuse rules on one line now count once.
+- `/root/bin/skill-scan` gained a scan time limit: `SKILL_SCAN_TIMEOUT_SECS`, default 600, 1-7200, invalid values fall back to the default, and rc 124 means BLOCK. 5 new gate tests. Backups: `/root/.cache/skill-scan.bak-20260927` and `test_skill_scan.sh.bak-20260927`.
+- The Windows `/skillspector` skill (v1.3.0) carries Fable's scope note and the current figures; the literal payload strings were removed from its own text.
+
+**Verified**
+- On 313 third-party skills, stock BLOCKed 83 and tuned BLOCKs 1: plugin-dev `hook-development`, where a linked reference feeds a destructive-command string to a validator test; that is left for operator review. Tuned: 269 ALLOW, 43 NOTIFY, none higher than stock.
+- `pytest -q`: 689 passed on Windows and on the host. `test_skill_scan.sh`: 31/31.
+- The production gate on the host, run on the fixtures:
+  - 17/17 red-team → BLOCK (rc 2); the unlinked-README payload → NOTIFY by design.
+  - 15 benign → 10 ALLOW, 5 NOTIFY, 0 BLOCK.
+
+**Open**
+- `continuing-alm-work-v2.0.0.zip` (SHA-256 `97bced21…`, 36,588 bytes) is not on disk. Searched `%TEMP%`, `C:\temp`, `C:\tmp`, OneDriveTemp, Downloads, Desktop, `Z:`/NAS, `G:`, `S:` and the host's `/root/.cache/TEMP` (which holds only `context-checkpoint`). The build report shows it was made in a remote sandbox (`/mnt/data/...`). The owner needs to download it again or give the path.
+- Fable's follow-ups for the owner (not applied):
+  - add "(scope: `skill-scan` §Scope)" to `/root/.claude/agents/security-auditor.md` lines 27/37 and to `/root/.claude/CLAUDE.md` §5;
+  - supersede the stale host memory row `skillspector-fp-tuning-2026-09-27.md`, which still says no live change was made.
+
 ### 2026-09-27 — Library synced to the Windows global skill dir; NotebookLM artifacts-only; SkillSpector gate tuned
 
 **Done**
