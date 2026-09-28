@@ -2,7 +2,46 @@
 
 Running session log for this repo. Newest entry first. Append; never rewrite history. No secrets.
 
+## Current state (2026-09-28)
+
+- Library: 180 skills. Repo and Windows global copies were identical on 2026-09-27.
+- `continuing-alm-work` has 4 of its 17 files. It is blocked on `continuing-alm-work-v2.0.0.zip`, which is not on any reachable disk.
+- SkillSpector gate (host `/root/bin/skill-scan`): the engine runs **stock `main`**. Tuning round 4 (`a0917a4`) is validated but not deployed; three review bypasses must be fixed first (see the 2026-09-28 entry).
+
 ## Log
+
+### 2026-09-28 — Round 3 overfit and rolled back; round 4 built and reviewed, not deployed; Fable follow-ups applied
+
+**Done**
+- Applied Fable's follow-ups on the host (owner: "apply them"). Backups are in `/root/.cache/*.bak-20260927` and `*.bak-20260928`.
+  - `agents/security-auditor.md` lines 27 and 37 now say "(scope: `skill-scan` §Scope)".
+  - `CLAUDE.md` §DELEGATE now says "(third-party; scope in `skill-scan` §Scope)".
+  - Superseded the stale host memory notes: `skillspector-fp-tuning-2026-09-27.md`, `feedback-owner-authored-skills-skip-security-scan.md`, and index lines 7 and 28. Ingest reported `failed=0`.
+  - `standing-directive.md` is unchanged. It only routes installs to security-auditor, which now carries the scope.
+- Found a security regression in the tuning and rolled the gate back.
+  - An independent red team showed that round 3 let 7 attacks that stock BLOCKs fall to NOTIFY or ALLOW. The red team is 45 inert fixtures that the rev-1–3 session left on tmpfs.
+  - Cause: counting each rule once caps a single blatant HIGH at 25 points. Examples: `rm -rf --no-preserve-root /` in an executed script, hidden zero-width text, `curl http://… | sh`.
+  - The host engine went back to stock `main` at about 21:00 CDT on 2026-09-27. `test_skill_scan.sh` passed 31/31 on stock.
+- Built round 4: commit `a0917a4`, local branch `aaron/fp-tuning` in `~/.claude/tools/skillspector`.
+  - Blatant attack syntax in live files (code, SKILL.md, files it names) is escalated to CRITICAL.
+  - Detection fixes: hidden files, PE3 inside code fences, deletes of credential stores, bidi and tag characters, a secrets-to-remote phrase, exec role for `package.json`/`hooks.json`/`.mcp.json`, and example hosts anchored to the end of the host.
+  - The 45 fixtures are now `tests/fixtures/redteam_ext`, with a test that none scores below stock.
+- Corrected the docs to the true state: the host gate doc's engine section (status: stock) and the Windows `/skillspector` doc (v1.4.0). Corrected DB row `decision:hermes:skillspector-fp-tuning`, which had claimed the tuned branch was live.
+
+**Verified**
+- `pytest -q`: 762 passed (Windows). Ruff clean. Secret scan of the diff: clean.
+- `redteam_ext`: none below stock; stock BLOCKs 12, round 4 BLOCKs 21. `redteam`: 17/17 BLOCK. `benign_noisy`: 0 BLOCK.
+- 313 third-party skills: stock BLOCKs 83, round 4 BLOCKs 1 (268 ALLOW, 44 NOTIFY). No escalation fires on any of them.
+- The round-4 patch applies cleanly to the host's `aaron/fp-tuning` (checked in a throwaway worktree). The live engine is untouched: `main @ a5092dd`, clean.
+
+**Open**
+- Fable's round-4 review (`/root/.cache/skillspector-r4-review-20260928.md`) found three bypasses of the new exemptions. None scores below stock, but each defeats the escalation:
+  1. a closed quote or `#` earlier on the line;
+  2. a U+1F3F4 prefix that hides a tag-character run;
+  3. GET or httpx sends that the send check misses.
+- Next: fix all three as round 5 (item 1 has exact code in the review). Rerun the suite and the corpus. Then deploy both patches with `bash /root/.cache/skillspector-deploy-tuning.sh <r4.patch> <r5.patch>`.
+- 13 of the 45 fixtures score ALLOW on both stock and tuned, which static rules cannot see. Whether to add an LLM triage pass is back with the owner.
+- `continuing-alm-work-v2.0.0.zip` is still missing. This time also searched all of `C:\Users\Admin` and `agents/TEMP`, which holds only `context-checkpoint-skill-v1.0.0.zip`.
 
 ### 2026-09-27 (later) — Gate doc per Fable, stricter tuning invariant, scan time limit; caw zip still missing
 
