@@ -6,9 +6,27 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 
 - Library: 180 skills. Repo and Windows global copies were identical on 2026-09-27.
 - `continuing-alm-work` has 4 of its 17 files. It is blocked on `continuing-alm-work-v2.0.0.zip`, which is not on any reachable disk.
-- SkillSpector gate (host `/root/bin/skill-scan`): the engine runs **stock `main`**. Tuning round 4 (`a0917a4`) is validated but not deployed; three review bypasses must be fixed first (see the 2026-09-28 entry).
+- SkillSpector gate (host `/root/bin/skill-scan`): the engine runs tuning **rounds 1-5** (`aaron/fp-tuning` @ `7293f4c`) since 20:41 CDT on 2026-09-28. Rollback: `git -C /root/.cache/agent-repos/SkillSpector checkout main`.
 
 ## Log
+
+### 2026-09-28 (evening) — SkillSpector tuning round 5 built, reviewed, deployed to the gate
+
+**Done**
+- Round 5, Windows commit `f19e121` on `aaron/fp-tuning` in `~/.claude/tools/skillspector`. It closes the three bypasses from Fable's round-4 review and adds that review's follow-ups. Each bypass line is now a regression test that fails on round 4.
+- A second Fable review of round 5 said deploy. Its three small consistency items were taken before the commit.
+- Deployed rounds 4+5 to the host gate engine with `/root/.cache/skillspector-deploy-tuning.sh`, after a dry run in a detached worktree. Do not re-run the script: its patches are already on the branch.
+- Updated the gate doc status (`/root/.claude/skills/skill-scan/SKILL.md`, uncommitted in `/root` like the earlier edits), `/skillspector` v1.5.0, DB row `decision:hermes:skillspector-fp-tuning`, and a new lesson `lesson:hermes:census-exemption-before-tightening`.
+
+**Verified**
+- `pytest -q`: 777 passed on Windows and on the host. Ruff clean.
+- 313 third-party skills: identical to round 4 on every skill (stock BLOCK 83, round 5 BLOCK 1); no escalation fires.
+- `redteam_ext` (45 independent): none below stock; stock BLOCK 12, round 5 BLOCK 21. The same numbers through the real `skill-scan` wrapper before and after the switch.
+- Deploy script gates: own red team and `benign_noisy` ok; `test_skill_scan.sh` 31/31 on the live engine.
+
+**Open**
+- 13 of the 45 still score ALLOW on stock and tuned; static rules do not see them. Adding an LLM triage pass is an owner decision. Measure it together with the other session's re-score before stacking them.
+- `continuing-alm-work-v2.0.0.zip` is still missing (see Current state).
 
 ### 2026-09-28 — Round 3 overfit and rolled back; round 4 built and reviewed, not deployed; Fable follow-ups applied
 
