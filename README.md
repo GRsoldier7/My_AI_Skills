@@ -97,7 +97,7 @@ Skills are designed to **compose** — `business-genius` routes to specialist su
 
 ## Skill Catalog
 
-### Aaron's Latest Skills (`skills/aarons-latest/`) — 4 skills
+### Aaron's Latest Skills (`skills/aarons-latest/`) — 5 skills
 
 Aaron's newest skills, kept in their own section so recent additions are easy to find.
 
@@ -107,6 +107,7 @@ Aaron's newest skills, kept in their own section so recent additions are easy to
 | `directory-cleanup` | Project cleanup, directory reorganization, safe archiving of outdated code, documents or plans, and ongoing repository-structure maintenance. |
 | `projectplan-builder` | A first project plan, delivery roadmap, implementation phases, or task breakdown for an idea, feature, or codebase that has no delivery baseline yet. Not for rescoping or executing an existing plan. |
 | `projectplan-rescope` | Rescoping, rescuing, simplifying, or reprioritizing an existing plan after changed requirements, deadlines, capacity, completed work, blockers, or new evidence. Not for a first plan or routine status reporting. |
+| `workbetter` | Executing or resuming a multi-step project plan: grounded sequencing, task-specific tool selection, proportional verification, drift checks, and reusable workflow improvements. Use when asked to WorkBetter, work through a plan efficiently, recover from drift, or improve a recurring execution workflow. |
 
 ---
 
@@ -482,11 +483,12 @@ aaron-skill-library/
 ├── .gitignore
 │
 ├── skills/                            # All 36 skills, organized by category
-│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (4)
+│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (5)
 │   │   ├── continuing-alm-work/       # Resume interrupted plans from last verified state
 │   │   ├── directory-cleanup/         # Safe cleanup, archiving and structure maintenance
 │   │   ├── projectplan-builder/       # First delivery plan for an idea, feature or codebase
-│   │   └── projectplan-rescope/       # Rescope or rescue an existing plan
+│   │   ├── projectplan-rescope/       # Rescope or rescue an existing plan
+│   │   └── workbetter/                # Execute or resume a plan with verification and drift checks
 │   │
 │   ├── core/                          # Orchestration & meta-skills (4)
 │   │   ├── skill-builder/             # Meta-skill: creates + audits all other skills
