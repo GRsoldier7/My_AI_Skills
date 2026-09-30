@@ -1,106 +1,109 @@
 ---
 name: continuing-alm-work
-description: Reconstructs the last verified project state, resumes the next safe high-leverage task, verifies progress, and leaves a precise checkpoint. Use when continuing an existing plan, roadmap, implementation, ALM workflow, delivery phase, or interrupted multi-step project.
-compatibility: Optimized for Claude Code; automatic state capture uses Python 3 and CLAUDE_PROJECT_DIR support; git is optional; manual fallback works when scripts or capabilities are unavailable.
-allowed-tools: "Bash(python3 ${CLAUDE_SKILL_DIR}/scripts/capture_project_state.py *)"
-argument-hint: "[resume|reconcile|checkpoint] [scope]"
-arguments:
-  - mode
-  - scope
+description: Use when resuming or continuing an existing multi-step project, implementation plan, roadmap, backlog, or interrupted Claude Code session where the verified checkpoint, active task, blockers, and next executable action must be reconstructed.
+compatibility: Designed for Claude Code projects with access to project files and verification tools; degrades safely when repositories, trackers, CI, deployments, or connected services are unavailable.
 metadata:
-  author: Aaron
   version: "2.0.0"
-  category: workflow-orchestration
+  updated: "2026-09-30"
+  owner: "Aaron DeYoung"
   domain-category: aarons-latest
-  last-reviewed: "2026-09-26"
+  last-reviewed: "2026-09-30"
+  adjacent-skills: workbetter, projectplan-rescope
+  review-trigger: "Project checkpoint conventions or Claude Code skill loading change."
 ---
 
 # Continuing ALM Work
 
-Resume from evidence, create verified progress, and leave the project easier to resume than you found it.
+## Outcome
 
-Invocation inputs: mode=`$mode`, scope=`$scope`. Default mode is **resume**; blank scope means the current project. Interpret **ALM** from project evidence and state the interpretation only when ambiguity remains material.
+Resume an established project from verified evidence, continue the highest-value safe work, and leave an exact continuation marker. Interpret "ALM" from the project context. State the interpretation only when ambiguity could change the next action.
 
-## Modes
+## Do not use
 
-- **resume**: reconstruct state, then execute the next safe high-leverage unit.
-- **reconcile**: determine state and improve the execution map without changing implementation.
-- **checkpoint**: persist an exact handoff without starting new work.
+- New-project ideation before an approved plan or current implementation exists.
+- Isolated one-off questions with no project continuity requirement.
+- Context-limit shutdown alone. If `context-checkpoint` or a host context warning activates, finish only the smallest safe atomic step and follow that protocol first.
 
 ## Non-negotiables
 
-1. Latest explicit user direction controls intent and scope; direct repository, test, CI, deployment, and source-of-truth evidence controls implementation status.
-2. Discussion, plans, generated files, and prior completion claims are not proof. A task is **Verified complete** only after its definition of done is evidenced.
-3. Preserve unknown work. Inspect dirty files and ownership before editing; never reset, clean, overwrite, or discard uncertain changes silently.
-4. Execute by default in resume mode. Do not stop at a better plan when a safe executable action exists.
-5. Use the smallest sufficient orchestration. Add agents, skills, tools, or connectors only for material specialization, isolation, authoritative access, independent review, or genuine concurrency.
-6. Parallelize only independent or safely isolated work; preserve an explicit integration step.
-7. Ask one focused question only when the answer materially changes correctness, safety, scope, or the next action. Continue every non-blocked workstream.
-8. Report only work, tools, agents, checks, and results actually performed or observed.
-9. Do not build or materially modify another reusable skill without explicit approval.
+- Latest explicit user direction controls intent, scope, priority, and approvals. Direct artifacts and fresh tool output control technical status.
+- Never promote a narrative claim, old handoff, or agent report to completion without corroborating evidence.
+- Never fabricate files, commands, tests, deployments, tool access, agents, or results.
+- Preserve approved decisions and unknown work. Do not reset, clean, overwrite, or delete unowned changes.
+- Continue executable work after reconstructing state. Do not return plan-only advice unless the runtime is plan-only, a permission boundary is reached, or all work is blocked.
+- Ask one precise question at a time, and only when its answer materially changes the safe next action. Continue every independent, non-blocked workstream.
+- Use the smallest capable orchestration, authoritative live sources, and least-privileged access. Batch related retrieval and checks when practical.
+- Match every completion claim to the scope of fresh evidence. Not run means not passed.
+- If an action repeats without new evidence or progress, stop the loop, identify the blocker or failed assumption, and change approach.
 
 ## Workflow
 
-### 1. Capture the live baseline
+### 1. Discover authority and state
 
-When available, run this read-only snapshot first:
+Inspect the smallest sufficient set of available sources:
 
-```bash
-python3 ${CLAUDE_SKILL_DIR}/scripts/capture_project_state.py \
-  --root "${CLAUDE_PROJECT_DIR}" --format markdown --max-items 30
-```
+1. Latest user instructions and approval boundaries.
+2. Project instructions, accepted specifications, decisions, and plan.
+3. Repository, branch, status, diff, commits, artifacts, and deployed state.
+4. Fresh command, test, build, CI/CD, monitoring, and validation output.
+5. Current tracker, backlog, roadmap, or issue state.
+6. Recent checkpoints and handoffs, corroborated before use.
 
-Use the snapshot to target inspection; it is discovery evidence, not proof of completion. If the script or substitutions are unavailable, inspect the equivalent sources manually. Read [state and evidence](references/state-and-evidence.md) when state is unclear, stale, or conflicting.
+Identify the project objective, active phase, last verified completed task, interrupted task, blockers, discrepancies, and exact next action. Do not confuse the most recently discussed task with the most recently completed task.
 
-### 2. Reconstruct the exact checkpoint
+### 2. Reconcile evidence
 
-Determine the objective, approved phase structure, last **Verified complete** task, interrupted task, active phase, exact stop point, blockers, dependencies, unresolved decisions, and plan-versus-reality discrepancies.
+Use only these statuses: `Verified complete`, `In progress`, `Blocked`, `Not started`, `Superseded`, or `Unknown`.
 
-Classify relevant tasks as **Verified complete**, **In progress**, **Blocked**, **Not started**, **Superseded**, or **Unknown / insufficient evidence**. For material conclusions, retain evidence, confidence, conflicts, and the next verification action. Most recently discussed does not mean most recently completed.
+For each material state decision, retain the conclusion, evidence, confidence (`High`, `Medium`, or `Low`), and unresolved conflict. Resolve intent from explicit user direction; resolve implementation status from direct current evidence. When evidence conflicts, expose the conflict instead of silently choosing the convenient version.
 
-### 3. Normalize only what affects execution
+### 3. Rebase only what execution needs
 
-Identify the critical path, safe parallel work, integration points, missing quality gates, duplicated work, unnecessary handoffs, and tasks to remove, defer, combine, or reorder. Preserve the approved objective and constraints; improve the route rather than silently expanding scope.
+Normalize remaining work just enough to act. For each relevant task, identify outcome, prerequisites, dependencies, deliverable, definition of done, verification, risk, approval need, and best-fit capability. Remove, defer, combine, or reorder low-value work while preserving the approved objective and constraints.
 
-For the next candidate task, establish: outcome, prerequisites, dependencies, deliverable, definition of done, verification, risk, reversibility, best-fit capability, and approval requirement. Use [execution routing](references/execution-routing.md) for delegation or complex dependencies.
+Create a dependency map only when two or more workstreams interact. Mark the critical path. Parallelize only independent or safely isolated work and reserve an explicit integration and cross-check step. Scan the full lifecycle only for material gaps in requirements, architecture, implementation, testing, security, release, deployment, observability, documentation, feedback, or retirement. Eliminate, simplify, automate, standardize, instrument, or document recurring weakness before adding complexity.
 
-### 4. Select and execute the next unit
+### 4. Execute the highest-leverage ready task
 
-Choose the smallest unit that creates meaningful, verifiable progress. Prefer, in order: critical-path unlock, dangerous-uncertainty reduction, completion of started work, then highest reversible user value.
+Choose work that advances the objective, unlocks dependencies, reduces material risk, eliminates recurring effort, or shortens the critical path. Work in coherent atomic units:
 
-Use installed specialist skills for planning, TDD, debugging, code review, deployment, or domain work instead of duplicating them here. Perform the work; do not merely narrate it. Reassess only when evidence changes priorities.
+1. Confirm prerequisites.
+2. Produce the artifact or change.
+3. Verify it.
+4. Integrate related work.
+5. Update status, evidence, risks, and exact next action.
 
-### 5. Integrate and verify
+Continue until the objective is complete, all remaining work is genuinely blocked, or an approval boundary is reached. Verify the current phase exit criteria before entering a new phase, or explicitly rebaseline the plan.
 
-Integrate concurrent outputs, resolve conflicts, remove duplication, and run the checks appropriate to the claim. Never infer a broad completion claim from narrow evidence. Use [verification and safety](references/verification-and-safety.md) before claiming success.
+Use subagents only when specialization, isolation, independent review, or real concurrency provides a material advantage. Read [references/delegation-contract.md](references/delegation-contract.md) before delegating.
 
-If verification fails, return the task to **In progress** or **Blocked**, preserve the failure evidence, diagnose before repeating, and continue independent safe work.
+### 5. Verify before advancing
 
-### 6. Persist continuity and continue
+Apply the checks appropriate to the claim: requirements traceability, focused tests, full relevant suite, build, type check, lint, security, data quality, architecture consistency, deployment health, monitoring, or artifact inspection.
 
-Update the existing canonical plan, issue, checkpoint, or state record after each meaningful execution unit. If none exists and persistence is useful, create `docs/alm/execution-state.md` from [the template](assets/execution-state-template.md).
+A task is `Verified complete` only when its deliverable exists, acceptance criteria are satisfied, relevant verification passed or an exception is recorded, state documentation is current, and the next dependent task can safely begin. A failed gate returns the task to `In progress` or `Blocked`.
 
-Record credible recurring-workflow candidates without interrupting execution; surface them only when ready for a proposal or at a checkpoint.
+### 6. Preserve continuity
 
-Continue until the requested scope is complete, genuinely blocked, reaches an approval boundary, or requires a checkpoint because context pressure makes further work unreliable.
+Reuse the project’s existing canonical state record. Do not create competing plan, state, or handoff files. Update that record after each meaningful execution unit when writes are allowed. If no canonical record exists, do not invent one merely for ceremony; report `Checkpoint: conversation-only` unless project convention or the user authorizes a file.
 
-## Output Contract
+Read [references/checkpoint-contract.md](references/checkpoint-contract.md) when a persistent checkpoint or session handoff is required.
 
-### Normal iteration
+## Approval boundaries
 
-Keep routine updates compact:
+Routine, reversible, in-scope work may proceed. Before destructive, difficult-to-reverse, production, externally consequential, paid, credential-sensitive, privacy-sensitive, or materially scope-changing action, read [references/approval-boundaries.md](references/approval-boundaries.md) and obtain the required explicit decision. Continue unrelated safe work while approval is pending.
 
-- **State delta:** what changed or was learned.
-- **Work completed:** artifact or action actually produced.
-- **Verification:** passed, failed, and not run.
-- **Exact next action:** the next executable step or required decision.
+## Skill-candidate rule
 
-Do not repeat the full project history or execution map every turn.
+When a stable, recurring, reusable workflow is detected, do not build or materially scaffold it automatically. Read [references/skill-proposal.md](references/skill-proposal.md), present the proposal, request explicit approval, and continue current non-blocked work.
 
-### Full checkpoint
+## Response contract
 
-Use a full checkpoint only when requested, stopping, finishing a phase, blocked, seeking approval, or protecting continuity before compaction. Follow [checkpoints and skill candidates](references/checkpoints-and-skill-candidates.md), including an exact `RESUME FROM` marker.
+Keep execution updates brief. At the end of each meaningful cycle, report:
 
-## Approval Boundary
+1. **State** - objective, phase, last verified task, current task, exact next action, blockers, discrepancies, confidence.
+2. **Performed** - only actions actually completed and artifacts actually changed.
+3. **Verification** - checks run, results, failures, unverified areas, residual risk.
+4. **Resume marker** - use the exact block in [references/checkpoint-contract.md](references/checkpoint-contract.md).
 
-Proceed with routine, reversible, in-scope work under existing permissions. Obtain explicit approval before destructive or difficult-to-reverse changes, unauthorized production deployment, material-risk migration, external publication or communication, financial commitment, credential or sensitive-data change, material scope or architecture change, or reusable-skill creation/modification. Continue unrelated safe work while approval is pending.
+Include an execution-map table only when multiple workstreams require coordination. Include a skill-candidate section only when a credible candidate exists. If execution is impossible, name the exact blocking evidence and the first executable action once the blocker clears.

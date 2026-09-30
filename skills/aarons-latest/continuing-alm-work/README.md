@@ -1,118 +1,66 @@
-# Continuing ALM Work v2.0.0
+# continuing-alm-work v2.0.0
 
-A Claude Code skill for resuming interrupted plans from the last verified state, executing the next safe high-leverage unit, verifying progress, and preserving an exact handoff.
+A Claude Code skill for safely resuming and advancing an established multi-step project from verified evidence. It reconstructs the real checkpoint, reconciles the plan with implementation state, executes the next safe high-leverage task, verifies claims, and leaves a precise resume marker.
 
-## Why v2
+## Why this version is leaner
 
-The original directive was strong but too expensive to load and repeat every cycle. v2 keeps the evidence-first and execution-first behavior while reducing the main runtime instructions from 1,786 to under 900 words (about 50% smaller), moving deep rules into on-demand references, and replacing seven-section routine reporting with a four-item delta update.
-
-The package also adds:
-
-- Read-only deterministic project-state capture
-- Resume, reconcile, and checkpoint modes
-- Explicit specialist-skill routing instead of duplicated workflows
-- Official `evals/evals.json` compatibility
-- Standard-library validation and unit tests
-- A canonical execution-state template
-- Strict dirty-worktree, destructive-action, prompt-injection, secret-path, and no-fabrication protections
-- Requirements traceability back to the full source directive
+The original 553-line directive has been reduced to a compact operating contract. Detailed approval, delegation, checkpoint, and skill-proposal rules load only when relevant. The skill grants no broad tool permissions and does not force a large status table for simple continuations.
 
 ## Install
 
 ### Personal skill
 
+macOS or Linux:
+
 ```bash
 mkdir -p ~/.claude/skills
-unzip continuing-alm-work-v2.0.0.zip -d ~/.claude/skills
+cp -R continuing-alm-work ~/.claude/skills/
+```
+
+Windows PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force "$HOME/.claude/skills" | Out-Null
+Copy-Item -Recurse -Force ".\continuing-alm-work" "$HOME/.claude/skills/continuing-alm-work"
 ```
 
 ### Project skill
 
-```bash
-mkdir -p .claude/skills
-unzip continuing-alm-work-v2.0.0.zip -d .claude/skills
-```
-
-If the skills directory was created after the session began, run `/reload-skills`.
-
-## Use
+Copy the folder to:
 
 ```text
-/continuing-alm-work
-/continuing-alm-work resume "current approved plan"
-/continuing-alm-work reconcile "phase 2 only"
-/continuing-alm-work checkpoint "end this session"
+<project>/.claude/skills/continuing-alm-work/
 ```
 
-With no arguments, mode defaults to `resume` and scope defaults to the current project. Claude may also invoke the skill automatically when a request matches its description.
+Commit it when the team should share the workflow. Avoid installing duplicate copies at personal and project scopes unless you intentionally want the personal copy to take precedence.
 
-### Optional manual-only mode
-
-To prevent automatic invocation without editing the shared skill, add this to `.claude/settings.local.json` or the applicable Claude Code settings file:
-
-```json
-{
-  "skillOverrides": {
-    "continuing-alm-work": "user-invocable-only"
-  }
-}
-```
-
-## State Capture
-
-The skill can run:
-
-```bash
-python3 ${CLAUDE_SKILL_DIR}/scripts/capture_project_state.py \
-  --root ${CLAUDE_PROJECT_DIR} --format markdown --max-items 30
-```
-
-The utility is offline, read-only, timeout-bounded for Git commands, and scan-bounded for state-file discovery. It reports Git-status completeness, secret-path omissions, candidate plan/checkpoint files, recognized manifests, and likely verification commands. It excludes secret-like filenames and reads only recognized manifests such as `package.json` when command inference requires it.
-
-If Python, git, Claude substitutions, or the bundled script are unavailable, the skill falls back to manual source inspection. The script works most predictably from a local personal or project skill; synced and non-Claude runtimes may not support Claude Code substitutions or bundled-script permissions.
-
-## Package Layout
+## Invoke
 
 ```text
-continuing-alm-work/
-├── SKILL.md
-├── README.md
-├── CHANGELOG.md
-├── MAINTENANCE.md
-├── TRACEABILITY.md
-├── assets/
-│   └── execution-state-template.md
-├── references/
-│   ├── state-and-evidence.md
-│   ├── execution-routing.md
-│   ├── verification-and-safety.md
-│   └── checkpoints-and-skill-candidates.md
-├── scripts/
-│   ├── capture_project_state.py
-│   └── validate_package.py
-├── evals/
-│   ├── README.md
-│   └── evals.json
-└── tests/
-    ├── test_capture_project_state.py
-    ├── test_skill_contract.py
-    └── test_validate_package.py
+/continuing-alm-work Resume this project from the last verified checkpoint and continue the next safe task.
 ```
 
-## Verify Locally
+Claude may also load the skill automatically for clear project-resumption requests that match its description.
+
+## Companion boundary
+
+- `continuing-alm-work`: reconstructs state and continues execution.
+- `context-checkpoint`: freezes new work under context pressure, audits integrity, writes the handoff, and stops.
+
+When both apply, `context-checkpoint` takes priority. The next fresh session can then invoke `continuing-alm-work` to resume.
+
+## Validate
 
 ```bash
-python3 scripts/validate_package.py .
-python3 -m unittest discover -s tests -v
-python3 -m compileall -q scripts tests
+python scripts/validate_skill.py .
 ```
 
-## Behavioral Evaluation
+The validator uses only Python's standard library. It checks frontmatter, naming, description quality, referenced files, line count, eval schema, and obvious placeholders.
 
-The package ships 16 official-format cases covering evidence conflicts, missing inputs, ambiguous ALM meaning, unsafe parallelism, destructive production changes, blocked workstreams, dirty trees, skill-creation approval, verification scope, checkpoint quality, negative activation, compact reporting, capability unavailability, prompt injection, and plan optimization.
+## Evaluate
 
-Run them with the official Claude Code skill-creator plugin as described in `evals/README.md`. This build environment does not include Claude Code or a clean-context model runner, so generated behavioral benchmarks are intentionally not fabricated.
+`evals/evals.json` follows Anthropic skill-creator's current schema. Run behavior comparisons in fresh sessions with and without the skill, then grade the listed expectations. Trigger accuracy should also be tested with realistic resume requests and unrelated one-off tasks.
 
-## Recommended Operating Model
+## Maintenance rule
 
-Use this skill as the continuity and orchestration layer. Let focused skills own planning, TDD, debugging, review, security, deployment, and domain work. That separation avoids giant overlapping prompts and keeps the coordinator small enough to remain useful after many turns.
+Keep `SKILL.md` focused. Add detailed conditional guidance to `references/`, not to the always-loaded core. Change behavior only with a version bump, updated evals, and fresh verification.

@@ -103,7 +103,7 @@ Aaron's newest skills, kept in their own section so recent additions are easy to
 
 | Skill | When to Use |
 |-------|-------------|
-| `continuing-alm-work` | Resuming an interrupted plan, roadmap, implementation, ALM workflow, or delivery phase. Rebuilds the last verified state from evidence, executes the next safe high-leverage unit, verifies it, and leaves an exact `RESUME FROM` checkpoint. Modes: `resume` (default), `reconcile`, `checkpoint`. |
+| `continuing-alm-work` | Resuming or continuing an established project, plan, roadmap, backlog, or interrupted session. Reconciles the verified state, executes the next safe task, checks the result, and leaves a precise resume marker. |
 | `directory-cleanup` | Project cleanup, directory reorganization, safe archiving of outdated code, documents or plans, and ongoing repository-structure maintenance. |
 | `projectplan-builder` | A first project plan, delivery roadmap, implementation phases, or task breakdown for an idea, feature, or codebase that has no delivery baseline yet. Not for rescoping or executing an existing plan. |
 | `projectplan-rescope` | Rescoping, rescuing, simplifying, or reprioritizing an existing plan after changed requirements, deadlines, capacity, completed work, blockers, or new evidence. Not for a first plan or routine status reporting. |
