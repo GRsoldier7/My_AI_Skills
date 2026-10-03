@@ -5,7 +5,8 @@ generate-skill-registry.py
 Auto-generates the skill registry table inside
 `/root/My_AI_Skills/skills/core/master-orchestrator/SKILL.md`
 from the frontmatter of every `SKILL.md` under
-`/root/My_AI_Skills/skills/`.
+`/root/My_AI_Skills/skills/` (plus each skill's `agents/openai.yaml`
+invocation policy, which marks manual-only rows).
 
 Idempotent: replaces only the content between
 `<!-- AUTO-GENERATED-REGISTRY:START -->` and
@@ -302,9 +303,36 @@ def load_skill(path: Path) -> dict[str, Any]:
         "version": str(version),
         "last-reviewed": str(last_reviewed),
         "adjacent-skills": adjacent_value(meta or {}),
+        "manual-only": is_manual_only(path, fm),
         "summary": first_sentence(str(description)),
         "triggers": extract_triggers(str(description)),
     }
+
+
+def _yaml_scalar(value: str) -> str:
+    """Normalize a YAML scalar: drop an inline comment and quotes, lower-case."""
+    return re.split(r"[ \t]#", value, maxsplit=1)[0].strip().strip("\"'").lower()
+
+
+def is_manual_only(path: Path, fm: dict[str, Any]) -> bool:
+    """True when Claude (`disable-model-invocation: true`) or Codex
+    (`agents/openai.yaml` `policy.allow_implicit_invocation: false`) blocks model
+    invocation. Host-local overrides (settings.json `skillOverrides`) are not read:
+    mirror such a choice into the skill's agents/openai.yaml."""
+    if _yaml_scalar(str(fm.get("disable-model-invocation", ""))) == "true":
+        return True
+    codex = path.parent / "agents" / "openai.yaml"
+    if not codex.is_file():
+        return False
+    in_policy = False  # line scan, linear time: only `policy:`'s indented block counts
+    for line in codex.read_text(encoding="utf-8", errors="replace").splitlines():
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        if not line[0].isspace():
+            in_policy = line.split("#", 1)[0].strip() == "policy:"
+        elif in_policy and line.strip().startswith("allow_implicit_invocation:"):
+            return _yaml_scalar(line.split(":", 1)[1]) == "false"
+    return False
 
 
 def _infer_category_from_path(path: Path) -> str:
@@ -378,8 +406,9 @@ def render_registry_block(skills: list[dict[str, Any]], generated_at: str) -> st
         out.append("|-------|--------|-------------|---------------|----------|")
         for s in rows:
             out.append(
-                "| `{name}` | {domain} | {summary} | {last_reviewed} | {triggers} |".format(
+                "| `{name}`{flag} | {domain} | {summary} | {last_reviewed} | {triggers} |".format(
                     name=_md_escape(s["name"]),
+                    flag=" (manual-only)" if s["manual-only"] else "",
                     domain=_md_escape(s["domain-category"]),
                     summary=_md_escape(s["summary"]) or "_(no description)_",
                     last_reviewed=_md_escape(s["last-reviewed"]) or "—",
