@@ -4,7 +4,7 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 
 ## Current state (2026-09-30)
 
-- Library: 181 skills in the regenerated registry. The Windows global copies were last verified against the repository on 2026-09-27.
+- Library: 187 skills in the registry regenerated on 2026-10-03. The Windows global copies were last verified against the repository on 2026-09-27.
 - `continuing-alm-work` now uses the owner's nine-file replacement v2.0.0 package. The earlier 17-file build described below was not recovered; the new archive has a different SHA-256 and supersedes it.
 - SkillSpector gate (host `/root/bin/skill-scan`): rounds 1-5 were last verified on 2026-09-28 (`aaron/fp-tuning` @ `7293f4c`). Current host state has not been rechecked.
 - 2026-10-03: cross-tool skill sets. `scripts/install-skills.sh` links `platform-configs/skill-sets/global.txt` into Claude Code and Codex; four mattpocock skills vendored. Guide and index: `platform-configs/skill-sets/README.md`.
@@ -26,7 +26,7 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 
 **Open**
 - Committed and merged to `main` on Aaron's homelab clone; **push to origin pending** (that host has no GitHub push credentials). Applied there on 2026-10-03: Claude Code lists all four skills in a fresh session; Codex lists `domain-modeling` (the three manual-only skills are not in its implicit list by design; explicit `$name` use not yet tested). Other devices: run the setup in `platform-configs/skill-sets/README.md` after the push.
-- The master-orchestrator registry was not regenerated (per `AGENTS.md`, do that in a library-wide refresh). Windows junction steps are untested. Claude Code distribution of `skills/aarons-latest/*` is still per-device.
+- The master-orchestrator registry was regenerated on 2026-10-03 (187 skills, library-wide refresh per `AGENTS.md`). Windows junction steps are untested. Claude Code distribution of `skills/aarons-latest/*` is still per-device.
 
 ### 2026-09-30 — Replace the incomplete continuing-alm-work package
 
