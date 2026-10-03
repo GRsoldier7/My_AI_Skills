@@ -1,0 +1,14 @@
+# Skills installed at user scope for Claude Code (~/.claude/skills) and Codex (~/.agents/skills)
+# by scripts/install-skills.sh. One repo-relative skill directory per line; '#' starts a comment.
+# Keep this list small: every model-invocable skill here costs context in every session.
+# Anything else in skills/ stays available on demand: ./scripts/install-skills.sh <name>
+#
+# Do not list skills/aarons-latest/* here. Codex and ChatGPT get those from
+# scripts/project-router.py (copies; it refuses symlinked targets), and two installers
+# must never manage the same skill name. See platform-configs/skill-sets/README.md.
+
+# Third-party, vendored byte-identical at a pinned commit (provenance: platform-configs/skill-sets/README.md)
+skills/engineering/setup-matt-pocock-skills
+skills/engineering/to-spec
+skills/engineering/to-tickets
+skills/engineering/domain-modeling

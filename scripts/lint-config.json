@@ -31,7 +31,11 @@
     "skills/engineering/mcp-builder",
     "skills/engineering/resolve-pr-feedback",
     "skills/engineering/test-browser",
-    "skills/tech/audio-transcriber"
+    "skills/tech/audio-transcriber",
+    "skills/engineering/to-spec",
+    "skills/engineering/to-tickets",
+    "skills/engineering/setup-matt-pocock-skills",
+    "skills/engineering/domain-modeling"
   ],
   "max_age_days": 90,
   "stale_tokens": [

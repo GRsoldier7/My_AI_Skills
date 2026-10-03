@@ -381,6 +381,8 @@ SKILL_REF_ALLOWLIST = {
     # external plugin skills + user-level skills referenced for plugin-overlap routing
     "karpathy-guidelines", "pytest-async-testing-patterns",
     "docker-compose-production", "n8n-mcp",
+    # issue-tracker triage labels used by the vendored mattpocock engineering skills
+    "needs-triage", "needs-info", "ready-for-agent", "ready-for-human",
 }
 
 

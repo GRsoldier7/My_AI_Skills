@@ -7,8 +7,26 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 - Library: 181 skills in the regenerated registry. The Windows global copies were last verified against the repository on 2026-09-27.
 - `continuing-alm-work` now uses the owner's nine-file replacement v2.0.0 package. The earlier 17-file build described below was not recovered; the new archive has a different SHA-256 and supersedes it.
 - SkillSpector gate (host `/root/bin/skill-scan`): rounds 1-5 were last verified on 2026-09-28 (`aaron/fp-tuning` @ `7293f4c`). Current host state has not been rechecked.
+- 2026-10-03: cross-tool skill sets. `scripts/install-skills.sh` links `platform-configs/skill-sets/global.txt` into Claude Code and Codex; four mattpocock skills vendored. Guide and index: `platform-configs/skill-sets/README.md`.
 
 ## Log
+
+### 2026-10-03 — Cross-tool skill sets and four vendored third-party skills
+
+**Done**
+- Accounted for every candidate in the two 2026-09-26 skill-rating reports (about 60 skills and agents from mattpocock/skills, davidondrej/skills, affaan-m/ECC and msitarzewski/agency-agents): 4 vendored, the rest listed as reference or excluded with reasons in `platform-configs/skill-sets/README.md`.
+- Vendored `to-spec`, `to-tickets`, `setup-matt-pocock-skills` and `domain-modeling` byte-identical from mattpocock/skills @ `c55ee46073ed923f86ce59a5eb3b6d895095d1b7`, each with the upstream MIT `LICENSE`; added them to `vendored_paths`.
+- Added `scripts/install-skills.sh` (dry run by default; symlinks a set into `~/.claude/skills` and `~/.agents/skills`; never replaces real directories or foreign links; skips `skills/aarons-latest/*` on the Codex side) with `scripts/test-install-skills.sh`, and the global set `platform-configs/skill-sets/global.txt`. It does not list `skills/aarons-latest/*`, which `scripts/project-router.py` installs for Codex.
+- `scripts/validate-skills.sh` now skips house-convention checks for `vendored_paths`; `scripts/lint-skills.py` allowlists the tracker's triage labels. README's Quick Start and Claude Code section now use `install-skills.sh` (the old "register all skills" path is labelled legacy, and the misspelled clone URL is fixed); its Codex section no longer says Codex has no native skills.
+
+**Verified**
+- 15/15 vendored files match upstream sha256. Security scan: ALLOW ×3 (2/100); `to-tickets` NOTIFY 27/100, findings reviewed as false positives (details in the guide).
+- Installer tests 55/55 (after Gate 1 and Gate 2 fixes); sabotaging any guard (no-clobber, Codex owner-skill skip, skip count, argument checks, `..`, `skills/` prefix, `./` normalisation, unset HOME, dangling and stale-link notes) fails its test. Both installers coexist in a temp home (each skips the other's skills; re-runs are idempotent).
+- Validator FAIL 177 → 1 after exempting the 110 `vendored_paths` skills from house-style checks (a narrower gate, not a quality gain; all 110 trace to third-party import commits). The remaining FAIL is `clean-project`'s missing metadata, owner-authored, correctly not exempted. Lint findings identical to the `b9446a0` baseline (FAIL 5, WARN 73). `test-phantom-refs.py` 25/17/0.
+
+**Open**
+- Committed and merged to `main` on Aaron's homelab clone; **push to origin pending** (that host has no GitHub push credentials). Applied there on 2026-10-03: Claude Code lists all four skills in a fresh session; Codex lists `domain-modeling` (the three manual-only skills are not in its implicit list by design; explicit `$name` use not yet tested). Other devices: run the setup in `platform-configs/skill-sets/README.md` after the push.
+- The master-orchestrator registry was not regenerated (per `AGENTS.md`, do that in a library-wide refresh). Windows junction steps are untested. Claude Code distribution of `skills/aarons-latest/*` is still per-device.
 
 ### 2026-09-30 — Replace the incomplete continuing-alm-work package
 

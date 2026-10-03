@@ -29,17 +29,20 @@ The library supports **five AI platforms**: Claude Code (slash commands), Google
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/GRsoldier7/My_AI_Slills.git
-cd My_AI_Slills
+git clone https://github.com/GRsoldier7/My_AI_Skills.git ~/My_AI_Skills
+cd ~/My_AI_Skills
 
-# 2. Register all 36 skills as Claude Code global slash commands
-./scripts/register-commands.sh
+# 2. Install the global skill set into Claude Code and Codex (preview, then apply)
+./scripts/install-skills.sh
+./scripts/install-skills.sh --apply
 
-# 3. Verify registration
-./scripts/register-commands.sh --list
+# 3. Verify: prints "In sync."
+./scripts/install-skills.sh
 ```
 
-After registration, type any slash command in Claude Code to activate that skill:
+Any other skill installs on demand with `./scripts/install-skills.sh --apply <skill-dir-name>`; then type its
+slash command in Claude Code to activate it. Full guide: [platform-configs/skill-sets/README.md](platform-configs/skill-sets/README.md).
+Examples:
 
 ```
 /polychronos-team    → Activate the full multi-agent team
@@ -238,13 +241,22 @@ The complete Power Platform suite. See also [skills/microsoft/README.md](skills/
 
 ## Platform Guides
 
+> **Native skills in Claude Code and Codex, on every device:** `./scripts/install-skills.sh` links the
+> skills listed in `platform-configs/skill-sets/global.txt` into `~/.claude/skills` and `~/.agents/skills`;
+> everything else stays on demand. Index, setup, update, and the default workflow:
+> [platform-configs/skill-sets/README.md](platform-configs/skill-sets/README.md).
+
 ### Claude Code
 
-**How skills activate:** Skills are registered as slash commands in `~/.claude/commands/`. Typing `/skill-name` in any Claude Code conversation loads the full `SKILL.md` content as context for that conversation. Claude reads the YAML `description` field to determine when to auto-suggest a skill.
+**How skills activate:** Claude Code loads native skills from `~/.claude/skills/<name>/SKILL.md`. It lists each skill's name and YAML `description` to Claude, which uses them to decide when a skill applies; typing `/skill-name` invokes one and loads the full `SKILL.md`. Install the global set with `./scripts/install-skills.sh --apply`. The older `register-commands.sh` instead links every `SKILL.md` into `~/.claude/commands/`, which puts all skills in every session; do not combine the two (run `./scripts/register-commands.sh --clean` before switching).
 
 **Setup:**
 ```bash
-# Register all 36 skills globally (run once)
+# Recommended: the small global set (also installs for Codex), then any extra skill on demand
+./scripts/install-skills.sh --apply
+./scripts/install-skills.sh --apply <skill-dir-name>
+
+# Legacy: register every skill as a slash command in ~/.claude/commands
 ./scripts/register-commands.sh
 
 # Register only one category
@@ -326,7 +338,7 @@ Read the file at skills/strategy/pricing-strategist/SKILL.md and then help me de
 
 ### OpenAI Codex
 
-**How skills activate:** Codex CLI reads `AGENTS.md` at the project root as its instruction file. Like Antigravity, Codex has **no native skill/slash command system** — all context must be in `AGENTS.md` or pasted directly.
+**How skills activate:** Codex CLI reads `AGENTS.md` at the project root as its instruction file, and it also discovers native skills: user scope `~/.agents/skills/`, repo scope `.agents/skills/` (verified on codex-cli 0.145.0). Install the global set with `./scripts/install-skills.sh` and Aaron's latest project skills with `scripts/project-router.py` — see [platform-configs/skill-sets/README.md](platform-configs/skill-sets/README.md). The options below still work for skills you have not installed.
 
 **Setup for a project:**
 ```bash
@@ -634,12 +646,17 @@ cp skills/core/skill-builder/references/skill-template.md skills/strategy/new-sk
 # 4. Audit the skill before deploying
 # /skill-builder → Module 4: Quality Audit on new-skill-name
 
-# 5. Register the new skill as a Claude Code command
-./scripts/register-commands.sh
+# 5. Install it where you need it (add it to platform-configs/skill-sets/global.txt only if every device needs it)
+./scripts/install-skills.sh --apply new-skill-name
 
 # 6. Validate the full library
 ./scripts/validate-skills.sh
 ```
+
+Third-party skills are vendored, not authored: copy them byte-identical from a pinned upstream commit,
+add the upstream `LICENSE`, list the directory in `scripts/lint-config.json` `vendored_paths`, record
+provenance, and pass the security scan before installing. The full procedure is in
+[platform-configs/skill-sets/README.md](platform-configs/skill-sets/README.md#add-or-update-a-third-party-skill).
 
 **Category selection guide:**
 - `aarons-latest` — Aaron's newest skills (the "Aaron's Latest Skills" catalog section)

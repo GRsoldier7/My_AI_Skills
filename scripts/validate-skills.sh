@@ -14,6 +14,21 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 SKILLS_DIR="$REPO_DIR/skills"
 
+# Third-party skills listed in lint-config.json `vendored_paths` keep their upstream frontmatter,
+# so the house-convention checks (name = dir, metadata block and fields, house sections) are
+# skipped for them. Broader than lint-skills.py, which skips only name and metadata checks; the
+# extra skips are WARN-only house-style rules. Patterns use fnmatch semantics: `*` spans `/`.
+VENDORED_PATTERNS="$(python3 -c 'import json, sys; print("\n".join(json.load(open(sys.argv[1])).get("vendored_paths", [])))' "$SCRIPT_DIR/lint-config.json")"
+is_vendored() {
+    local rel="${1#"$REPO_DIR"/}" pat
+    while IFS= read -r pat; do
+        [[ -n "$pat" ]] || continue
+        # shellcheck disable=SC2053  # unquoted on purpose: glob match
+        if [[ "$rel" == $pat || "$rel/SKILL.md" == $pat ]]; then return 0; fi
+    done <<< "$VENDORED_PATTERNS"
+    return 1
+}
+
 CATEGORY=""
 FIX_MODE=false
 PASS=0
@@ -43,6 +58,8 @@ validate_skill() {
     local skill_dir="$(dirname "$skill_file")"
     local skill_name="$(basename "$skill_dir")"
     local issues=0
+    local vendored=false
+    if is_vendored "$skill_dir"; then vendored=true; fi
 
     echo ""
     echo "── $skill_name"
@@ -52,6 +69,8 @@ validate_skill() {
     name_field="$(grep -m1 '^name:' "$skill_file" | sed 's/name: *//' | tr -d '"' | tr -d "'" | tr -d ' ' || true)"
     if [[ "$name_field" == "$skill_name" ]]; then
         pass "name field matches directory ($skill_name)"
+    elif [[ "$vendored" == true ]]; then
+        pass "vendored skill keeps its upstream name ($name_field)"
     else
         fail "name field '$name_field' does not match directory '$skill_name'"
         issues=$((issues+1))
@@ -80,6 +99,20 @@ validate_skill() {
         warn "description may be too short (<100 chars) — should be 200-1024 chars"
     else
         pass "description length looks adequate"
+    fi
+
+    # Rule 10: line count (warn if >500)
+    local line_count
+    line_count="$(wc -l < "$skill_file")"
+    if [[ "$line_count" -le 500 ]]; then
+        pass "SKILL.md body within 500 lines ($line_count lines)"
+    else
+        warn "SKILL.md is $line_count lines — consider moving heavy content to references/"
+    fi
+
+    if [[ "$vendored" == true ]]; then
+        pass "vendored (lint-config.json vendored_paths): house metadata and section checks skipped"
+        return 0
     fi
 
     # Rule 5: metadata block should exist
@@ -116,15 +149,6 @@ validate_skill() {
         pass "adjacent-skills field present"
     else
         warn "adjacent-skills field missing"
-    fi
-
-    # Rule 10: line count (warn if >500)
-    local line_count
-    line_count="$(wc -l < "$skill_file")"
-    if [[ "$line_count" -le 500 ]]; then
-        pass "SKILL.md body within 500 lines ($line_count lines)"
-    else
-        warn "SKILL.md is $line_count lines — consider moving heavy content to references/"
     fi
 
     # Rule 11: anti-patterns section
