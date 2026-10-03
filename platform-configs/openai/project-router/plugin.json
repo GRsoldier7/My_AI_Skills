@@ -1,0 +1,23 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "project-router",
+  "version": "1.0.0",
+  "description": "Route project work by verified phase, maturity, exposure, and permissions. Includes Aaron's planning, rescoping, continuity, execution, and cleanup skills.",
+  "author": {"name": "Aaron DeYoung"},
+  "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Project Router | by AARON",
+        "shortDescription": "Right workflow. Right stage.",
+        "longDescription": "One project-lifecycle dispatcher with six companion workflows: projectplan-builder, projectplan-rescope, continuing-alm-work, workbetter, clean-project, and directory-cleanup. Evidence-led maturity assessment, bounded execution, explicit cleanup modes, and preserved approval boundaries. Uses tools already available in the host; no new server or credentials.",
+        "developerName": "Aaron DeYoung",
+        "category": "Productivity",
+        "defaultPrompt": [
+          "Use project-router in assess mode. Read the available project context, identify its phase and maturity, and select the next justified workflow. Do not change files.",
+          "Use project-router in continue mode for the next ready task in the approved plan. Preserve scope and unrelated work; stop at a verified task boundary or missing approval."
+        ]
+      }
+    }
+  }
+}

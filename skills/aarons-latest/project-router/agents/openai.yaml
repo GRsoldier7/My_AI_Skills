@@ -1,0 +1,6 @@
+interface:
+  display_name: "Project Router"
+  short_description: "Choose the right project workflow by stage and evidence"
+  default_prompt: "Use $project-router in assess mode to identify the next justified workflow from the current project evidence. Do not change files."
+policy:
+  allow_implicit_invocation: true
