@@ -534,6 +534,14 @@ class RestoreTest(unittest.TestCase):
         self.assertEqual(proc.returncode, 1)
         self.assertEqual(live.read_text(), 'live\n')
 
+    def test_repeated_slash_after_date_dir_is_not_an_entry(self) -> None:
+        # "d1//" slipped past the <date>/<path> guard and was stopped only because "//" (root) exists
+        copy = self.archived('d1', self.tmp / 'src' / 'zq-slashes.md')
+        proc = self.restore(str(self.archive / 'd1') + '//')
+        self.assertEqual(proc.returncode, 1)
+        self.assertIn('Not an archived entry', proc.stderr)
+        self.assertTrue(copy.exists())
+
 
 if __name__ == '__main__':
     unittest.main()

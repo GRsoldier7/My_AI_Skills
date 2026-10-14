@@ -62,7 +62,7 @@ case "${1:-}" in
     rest="${src#"$ARCHIVE_ROOT"/}"
     # An archived entry is <date>/<path>: a bare date dir would move the whole day, and ".." walks out of the archive
     case "/$rest/" in */../*|*/./*) echo "Not an archived entry: $src" >&2; exit 1 ;; esac
-    [[ "$rest" == */?* ]] || { echo "Not an archived entry (need <date>/<path>): $src" >&2; exit 1; }
+    [[ "$rest" =~ ^[^/]+/[^/] ]] || { echo "Not an archived entry (need <date>/<path>): $src" >&2; exit 1; }
     rest="${rest#*/}"
     restore_to "$src" "/$rest"
     ;;
