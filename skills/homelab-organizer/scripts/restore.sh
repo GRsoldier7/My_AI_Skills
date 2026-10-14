@@ -60,6 +60,9 @@ case "${1:-}" in
     [[ "$src" != "$ARCHIVE_ROOT"/* ]] && { echo "Not under archive root: $ARCHIVE_ROOT"; exit 1; }
     # Strip ARCHIVE_ROOT/<date>/ and prepend /. Quoted: the root is a literal path, not a pattern
     rest="${src#"$ARCHIVE_ROOT"/}"
+    # An archived entry is <date>/<path>: a bare date dir would move the whole day, and ".." walks out of the archive
+    case "/$rest/" in */../*|*/./*) echo "Not an archived entry: $src" >&2; exit 1 ;; esac
+    [[ "$rest" == */?* ]] || { echo "Not an archived entry (need <date>/<path>): $src" >&2; exit 1; }
     rest="${rest#*/}"
     restore_to "$src" "/$rest"
     ;;

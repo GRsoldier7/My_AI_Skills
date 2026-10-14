@@ -519,6 +519,21 @@ class RestoreTest(unittest.TestCase):
         self.assertEqual(proc.returncode, 1)
         self.assertIn('Not found in archive', proc.stdout)
 
+    def test_bare_date_dir_is_not_an_entry(self) -> None:
+        # Accepting directories made the date dir itself restorable: the whole day moved to /<date>
+        copy = self.archived('d1', self.tmp / 'src' / 'zq-day.md')
+        proc = self.restore(str(self.archive / 'd1'))
+        self.assertEqual(proc.returncode, 1)
+        self.assertTrue(copy.exists())
+
+    def test_dot_dot_cannot_walk_out_of_the_archive(self) -> None:
+        # "$ARCHIVE_ROOT/../x" passed the prefix check and moved a live file outside the archive to /x
+        live = write(self.tmp / 'zq-live-outside.md', 'live\n')
+        self.archive.mkdir()
+        proc = self.restore(str(self.archive / '..' / live.name))
+        self.assertEqual(proc.returncode, 1)
+        self.assertEqual(live.read_text(), 'live\n')
+
 
 if __name__ == '__main__':
     unittest.main()
