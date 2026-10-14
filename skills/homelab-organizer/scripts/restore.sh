@@ -19,7 +19,7 @@ EOF
 
 # mv onto an existing path would destroy whatever was written there since the quarantine
 restore_to() {
-  local from="$1" to="$2"
+  local from="${1%/}" to="${2%/}"
   if [[ -e "$to" || -L "$to" ]]; then
     echo "REFUSE(exists): $to — move it aside first; the archived copy stays at $from" >&2
     exit 1
@@ -40,6 +40,9 @@ case "${1:-}" in
     ;;
   --by-original)
     orig="${2:?missing original path}"
+    # The original must be absolute and walk nowhere: "/../../x" resolved through the archive to a live file
+    [[ "$orig" == /* ]] || { echo "Not an archived entry (original must be absolute): $orig" >&2; exit 1; }
+    case "$orig/" in */../*|*/./*) echo "Not an archived entry: $orig" >&2; exit 1 ;; esac
     rel="${orig#/}"
     # Literal lookup in each date dir: find -path read the name as a glob, so "zq[1].md" found "zq1.md"
     matches=()

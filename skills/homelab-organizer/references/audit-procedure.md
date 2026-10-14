@@ -142,7 +142,7 @@ Approve all / approve per category / approve per item / decline
 ```
 
 For each approved bucket:
-- Feed the approved paths to `scripts/quarantine.sh` on stdin, one per line, optionally `<path> | <reason>`. It takes no flags; the date comes from the environment: `AUDIT_DATE="$AUDIT_DATE" scripts/quarantine.sh < approved.txt` The separator is ` | ` with a space on each side; a bare `|` is part of the path. A path already archived under the same date is refused, never overwritten.
+- Feed the approved paths to `scripts/quarantine.sh` on stdin, one per line, optionally `<path> | <reason>`. It takes no flags; the date comes from the environment: `AUDIT_DATE="$AUDIT_DATE" scripts/quarantine.sh < approved.txt`. The separator is ` | ` with a space on each side; a bare `|` is part of the path. A path already archived under the same date is refused, never overwritten.
 - It appends each move, with a paste-safe restore command, to `/root/homelab/.archive/$AUDIT_DATE/MANIFEST.md`
 - Update `state.yaml: decision_log`
 - Append to `/root/homelab/docs/memory/ORGANIZATION_LOG.md`

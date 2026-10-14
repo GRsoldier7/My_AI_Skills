@@ -508,10 +508,14 @@ class QuarantineTest(unittest.TestCase):
         self.assertEqual(src.read_text(), 'second\n')
 
     def test_crlf_input_line_still_names_the_file(self) -> None:
-        # Review Focus: an approved list saved with CRLF endings leaves "\r" on every line
-        src = write(self.tmp / 'src' / 'zq-crlf.md')
-        self.quarantine(f'{src} | test\r')
-        self.assertTrue(self.archived(src).exists())
+        # Review Focus: an approved list saved with CRLF endings leaves "\r" on every line — on the path when
+        # there is no reason, on the reason when there is one
+        bare = write(self.tmp / 'src' / 'zq-crlf.md')
+        reasoned = write(self.tmp / 'src' / 'zq-crlf-why.md')
+        manifest = self.quarantine(f'{bare}\r', f'{reasoned} | test\r')
+        self.assertTrue(self.archived(bare).exists())
+        self.assertTrue(self.archived(reasoned).exists())
+        self.assertIn('- reason: test\n', manifest)
 
     def test_reason_may_contain_the_separator(self) -> None:
         # Review Focus: only the FIRST " | " splits, so free-text reasons keep their own pipes
@@ -549,6 +553,26 @@ class RestoreTest(unittest.TestCase):
         self.assertEqual(proc.returncode, 0, proc.stderr)
         self.assertEqual(target.read_text(), 'target\n')
         self.assertTrue(kept.exists())
+
+    def test_by_original_rejects_dot_dot_and_relative_paths(self) -> None:
+        # --by-original had no ".." guard: "/../../live/x" resolved through the archive to a live file outside it
+        self.archived('d1', self.tmp / 'src' / 'zq-any.md')
+        live = write(self.tmp / 'live' / 'zq-decoy.md', 'live\n')
+        for orig in (f'/../../live/{live.name}', 'src/zq-rel.md'):
+            with self.subTest(orig):
+                proc = self.restore('--by-original', orig)
+                self.assertEqual(proc.returncode, 1)
+                self.assertIn('Not an archived entry', proc.stderr)
+        self.assertEqual(live.read_text(), 'live\n')
+
+    def test_trailing_slash_does_not_skip_the_overwrite_guard(self) -> None:
+        # -e "file/" is false, so a trailing slash on a directory entry skipped REFUSE(exists)
+        original = write(self.tmp / 'lxc' / 'zq-dir', 'live file\n')
+        self.archived('d1', original / 'README.md', 'doc\n')
+        proc = self.restore(str(self.archive / 'd1' / str(original).lstrip('/')) + '/')
+        self.assertEqual(proc.returncode, 1)
+        self.assertIn('REFUSE(exists)', proc.stderr)
+        self.assertEqual(original.read_text(), 'live file\n')
 
     def test_restore_never_overwrites_a_live_file(self) -> None:
         # mv replaced whatever had been written at the original path since the quarantine
