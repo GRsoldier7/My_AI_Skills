@@ -29,6 +29,22 @@ def write(path: Path, text: str = 'x\n', old: bool = True) -> Path:
     return path
 
 
+DOC = Path(__file__).resolve().parent.parent / 'references' / 'audit-procedure.md'
+
+
+def doc_schema(output_file: str) -> dict:
+    """The JSON example that follows "Output `<output_file>`" in audit-procedure.md."""
+    found = re.search(rf'Output `{re.escape(output_file)}`[^\n]*\n```json\n(.*?)```', DOC.read_text(), re.DOTALL)
+    if found is None:
+        raise AssertionError(f'no {output_file} schema block in {DOC}')
+    return json.loads(found.group(1))
+
+
+def entry_keys(entries: list) -> list[str]:
+    """Keys of the first non-empty entry; the emitters write "" placeholders into empty arrays."""
+    return sorted(next(e for e in entries if e))
+
+
 class ScannerCase(unittest.TestCase):
     def setUp(self) -> None:
         self._tmp = tempfile.TemporaryDirectory()
@@ -225,6 +241,22 @@ class ScanFilesTest(ScannerCase):
                 self.assertNotEqual(rc, 0)
                 self.assertIsNone(data)
 
+    def test_doc_schema_matches_emit(self) -> None:
+        # Pins the Phase B schema fixed in dbd1bba: the doc said content_hash (8 chars), the scanner emits hash (12)
+        write(self.root / 'zq-safe.md', 'u1\n')
+        write(self.root / 'zq-cited.md', 'u2\n')
+        write(self.root / 'zq-citer.md', 'see zq-cited.md\n')
+        write(self.root / '20250101 - Zq Dated.md', 'u3\n')
+        write(self.root / 'a' / 'zq-d.md', 'same\n')
+        write(self.root / 'b' / 'zq-d.md', 'same\n')
+        data, schema = self.scan(), doc_schema('files.json')
+        self.assertEqual(sorted(data), sorted(schema))
+        self.assertEqual(sorted(data['totals']), sorted(schema['totals']))
+        for bucket, entries in data['categorized'].items():
+            with self.subTest(bucket):
+                documented = schema['categorized'][bucket] or schema['categorized']['SAFE_QUARANTINE']
+                self.assertEqual(entry_keys(entries), entry_keys(documented))
+
 
 class CheckLinksTest(ScannerCase):
     def links(self) -> dict:
@@ -314,6 +346,17 @@ class CheckLinksTest(ScannerCase):
         write(self.root / 'long.sh', ''.join(f'source ./zq-t{i}.sh\n' for i in range(60)))
         self.assertEqual(len([b for b in self.links()['broken_sources'] if b]), 370)
 
+    def test_doc_schema_matches_emit(self) -> None:
+        # The doc listed a "reason" field check-links never emitted; it writes "resolved"
+        write(self.root / 'doc.md', 'see [x](./zq-missing.md)\n```\n')
+        write(self.root / 'run.sh', 'source ./zq-missing.sh\n')
+        (self.root / 'zq-dangling').symlink_to(self.root / 'zq-nowhere')
+        data, schema = self.links(), doc_schema('links.json')
+        self.assertEqual(sorted(data), sorted(schema))
+        for key in ('broken_md_links', 'dangling_symlinks', 'broken_sources', 'unclosed_fences'):
+            with self.subTest(key):
+                self.assertEqual(entry_keys(data[key]), entry_keys(schema[key]))
+
 
 PCT_STUB = """#!/bin/sh
 case "$1" in
@@ -370,6 +413,13 @@ class InventoryContainersTest(unittest.TestCase):
         # Unclustered nodes: a peer node's guest doc folder read as orphaned here, and only a hand check on
         # the peer stopped the archive. The scope has to travel in the data, not only in prose
         self.assertEqual(self.inventory()['drift_summary']['checked_nodes'], ['node-a'])
+
+    def test_doc_schema_matches_emit(self) -> None:
+        # The doc promised current/baseline_delta/drift per guest; the script emits none of them
+        data, schema = self.inventory(), doc_schema('containers.json')
+        self.assertEqual(sorted(data), sorted(schema))
+        self.assertEqual(entry_keys(data['containers']), entry_keys(schema['containers']))
+        self.assertEqual(sorted(data['drift_summary']), sorted(schema['drift_summary']))
 
 
 class AuditOrchestratorTest(unittest.TestCase):

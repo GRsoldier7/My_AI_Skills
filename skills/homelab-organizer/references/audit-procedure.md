@@ -17,34 +17,34 @@ Before any phase:
 Run `scripts/inventory-containers.sh > "$AUDIT_DIR/containers.json"`.
 
 The script does:
-1. `pct list` and `qm list` → CT/VM inventory
-2. For each container in `state.yaml: container_baselines`, capture current state:
-   - `pct config <id>` → resources (RAM, swap, disk allocation)
-   - `pct status <id>` → running/stopped, uptime
-   - Single bundled `pct exec <id> -- bash -c '<bundled probe>'` returning JSON:
-     - `uptime`, `last_login`, `df_root_pct`, `log_files_24h`, `services_up`, `pkgs_outdated`, `key_files_present`
-3. Compare result to `state.yaml: container_baselines.<id>` → emit deltas
-4. Drift detection:
-   - Container exists in `pct list` but no doc in `/root/homelab/lxc/` or `/root/homelab/containers/` → `undocumented_container`
+1. `pct list` and `qm list` → CT/VM inventory of THIS host only
+2. Per guest: `pct status` / `qm status`, plus from `pct config` / `qm config` the memory, rootfs size and hostname (`hostname:` for LXC, `name:` for VMs)
+3. Per running LXC, one bundled read-only `pct exec <id> -- bash -c '<probe>'` returning `uptime`, `disk_root_pct`, `log_files_24h`, `services_up` (first 20 running units, comma-separated) and `pkgs_outdated`. VMs and stopped CTs get `"probe": {}`
+4. Drift detection against the doc folders:
+   - Guest with no `lxc/<id>-*` / `vms/<id>-*` folder and no `CT <id>` / `VM <id>` / `id: <id>` mention in the `lxc/`, `containers/` or `vms/` docs → `undocumented_lxc` / `undocumented_vm`
    - Doc exists but no guest with that ID on any node in `drift_summary.checked_nodes` → `orphaned_doc`. Drift is node-local: the script queries only the host it runs on. Before any D action (archive a doc folder) is proposed, each `orphaned_docs` ID must be shown absent on every node NOT in `checked_nodes`, and that check recorded in the report; an ID found elsewhere is `misfiled`, not orphaned
-   - Naming/tag mismatch (doc says CT 207, but reality has different name) → `naming_mismatch`
+   - An `lxc/` folder for a VM ID, or a `vms/` folder for an LXC ID → `naming_mismatches`
+
+The script does not read `state.yaml`. Baseline deltas against `state.yaml: container_baselines` are worked out in Phase D, by comparing `probe` and the config fields to the stored baseline. Off a Proxmox host it emits `{"audit_date": ..., "error": "pct/qm not available — not on a Proxmox host", "containers": [], "drift_summary": {}}`.
 
 Output `containers.json` schema:
 ```json
 {
-  "audit_date": "2026-05-09",
+  "audit_date": "2026-10-14",
   "containers": [
     {
       "id": "203",
       "type": "lxc",
       "status": "running",
-      "current": {"rss_mb": 412, "disk_gb": 2.1, "services_up": ["postgres"], "pkgs_outdated": 4},
-      "baseline_delta": {"disk_gb_delta": "+0.3", "new_services": [], "removed_services": []},
-      "drift": []
+      "hostname": "postgres",
+      "ram_mb": 2048,
+      "disk_alloc": "32G",
+      "probe": {"uptime": "up 3 days, 2 hours", "disk_root_pct": "41%", "log_files_24h": 12, "services_up": "postgresql.service,ssh.service", "pkgs_outdated": 4}
     }
   ],
   "drift_summary": {
-    "undocumented": [],
+    "undocumented_lxc": [],
+    "undocumented_vm": [],
     "orphaned_docs": [],
     "checked_nodes": ["pve"],
     "naming_mismatches": []
@@ -99,7 +99,7 @@ Output `links.json`:
 ```json
 {
   "audit_date": "2026-05-09",
-  "broken_md_links": [{"in_file": "...", "line": 42, "target": "...", "reason": "target_missing"}],
+  "broken_md_links": [{"in_file": "...", "line": 42, "target": "...", "resolved": "..."}],
   "dangling_symlinks": [{"path": "...", "points_to": "..."}],
   "broken_sources": [{"in_file": "...", "line": 17, "target": "..."}],
   "unclosed_fences": [{"in_file": "...", "line": 12}],
