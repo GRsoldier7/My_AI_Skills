@@ -63,7 +63,11 @@ quarantine_one() {
   local mtime size hash
   mtime=$(stat -c %y "$src" 2>/dev/null)
   size=$(stat -c %s "$src" 2>/dev/null)
-  hash=$(sha256sum "$src" 2>/dev/null | cut -c1-12)
+  # stdin, not a filename arg: sha256sum prefixes its output with "\" when the name holds a backslash
+  hash=$(sha256sum < "$src" 2>/dev/null | cut -c1-12)
+  # %q, not double quotes: the line is pasted into a shell, where "$(...)" in a name would run
+  local restore
+  restore="mkdir -p $(printf '%q' "$(dirname "$src")") && mv $(printf '%q %q' "$dst" "$src")"
 
   # Perform move (atomic on same filesystem)
   if mv "$src" "$dst"; then
@@ -78,7 +82,7 @@ quarantine_one() {
 - size: $size bytes
 - hash: $hash
 - reason: $reason
-- restore: \`mkdir -p "$(dirname "$src")" && mv "$dst" "$src"\`
+- restore: \`$restore\`
 
 EOF
     echo "OK: $src → $dst"
@@ -89,6 +93,10 @@ EOF
   fi
 }
 
+# Trim in bash. xargs, used here before, ate backslashes ("a\b.md" -> "ab.md", a different file),
+# collapsed runs of spaces and aborted on an unmatched quote
+trim() { local s="${1#"${1%%[![:space:]]*}"}"; printf '%s' "${s%"${s##*[![:space:]]}"}"; }
+
 # Read paths from stdin: one path per line, optionally followed by | <reason>
 while IFS= read -r line; do
   [[ -z "$line" ]] && continue
@@ -96,8 +104,8 @@ while IFS= read -r line; do
   src="${line%%|*}"
   reason="${line#*|}"
   [[ "$src" == "$reason" ]] && reason="unspecified"
-  src=$(echo "$src" | xargs)
-  reason=$(echo "$reason" | xargs)
+  src=$(trim "$src")
+  reason=$(trim "$reason")
   quarantine_one "$src" "$reason" || true
 done
 
