@@ -442,5 +442,83 @@ class QuarantineTest(unittest.TestCase):
         self.assertTrue(src.exists())
 
 
+class RestoreTest(unittest.TestCase):
+    """restore.sh must put back exactly the archived entry it was asked for, and never overwrite."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.tmp = Path(self._tmp.name)
+        self.archive = self.tmp / 'archive'
+
+    def tearDown(self) -> None:
+        self._tmp.cleanup()
+
+    def archived(self, date: str, original: Path, text: str = 'archived\n') -> Path:
+        """Place a fixture where quarantine.sh would have archived `original` on `date`."""
+        return write(self.archive / date / str(original).lstrip('/'), text)
+
+    def restore(self, *args: str) -> subprocess.CompletedProcess[str]:
+        return subprocess.run(['bash', str(SCRIPTS / 'restore.sh'), *args], capture_output=True, text=True,
+                              env={**os.environ, 'ARCHIVE_ROOT': str(self.archive)}, timeout=60, check=False)
+
+    def test_by_original_matches_the_name_literally(self) -> None:
+        # find -path read the name as a glob: "zq[1] \b.md" found the archived "zq1 b.md" and restored it
+        target = self.tmp / 'src' / 'zq[1] \\b.md'
+        lookalike = self.tmp / 'src' / 'zq1 b.md'
+        self.archived('d1', target, 'target\n')
+        kept = self.archived('d1', lookalike, 'lookalike\n')
+        proc = self.restore('--by-original', str(target))
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertEqual(target.read_text(), 'target\n')
+        self.assertTrue(kept.exists())
+
+    def test_restore_never_overwrites_a_live_file(self) -> None:
+        # mv replaced whatever had been written at the original path since the quarantine
+        original = write(self.tmp / 'src' / 'zq-live.md', 'newer\n')
+        copy = self.archived('d1', original)
+        for args in (('--by-original', str(original)), (str(copy),)):
+            with self.subTest(args[0]):
+                proc = self.restore(*args)
+                self.assertEqual(proc.returncode, 1)
+                self.assertIn('REFUSE(exists)', proc.stderr)
+                self.assertEqual(original.read_text(), 'newer\n')
+                self.assertTrue(copy.exists())
+
+    def test_by_original_refuses_an_entry_archived_twice(self) -> None:
+        # find | head -1 picked one copy in directory order, so which version came back was luck
+        original = self.tmp / 'src' / 'zq-twice.md'
+        first = self.archived('d1', original, 'first\n')
+        second = self.archived('d2', original, 'second\n')
+        proc = self.restore('--by-original', str(original))
+        self.assertEqual(proc.returncode, 1)
+        self.assertFalse(original.exists())
+        self.assertIn(str(first), proc.stderr)
+        self.assertIn(str(second), proc.stderr)
+
+    def test_archived_directory_is_restorable(self) -> None:
+        # Approved D actions archive whole doc folders; restore.sh accepted regular files only
+        original = self.tmp / 'lxc' / '999-gone'
+        self.archived('d1', original / 'README.md', 'doc\n')
+        proc = self.restore(str(self.archive / 'd1' / str(original).lstrip('/')))
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertEqual((original / 'README.md').read_text(), 'doc\n')
+
+    def test_glob_chars_in_archive_root_still_strip(self) -> None:
+        # ${src#$ARCHIVE_ROOT/} was an unquoted pattern: "[1]" in the root never matched itself
+        self.archive = self.tmp / 'arch[1]'
+        original = self.tmp / 'src' / 'zq-root.md'
+        copy = self.archived('d1', original)
+        proc = self.restore(str(copy))
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertEqual(original.read_text(), 'archived\n')
+
+    def test_by_original_on_empty_archive_is_not_found(self) -> None:
+        # Review Focus: with no date dirs the "$ARCHIVE_ROOT"/*/ glob stays literal and must match nothing
+        self.archive.mkdir()
+        proc = self.restore('--by-original', str(self.tmp / 'src' / 'zq-none.md'))
+        self.assertEqual(proc.returncode, 1)
+        self.assertIn('Not found in archive', proc.stdout)
+
+
 if __name__ == '__main__':
     unittest.main()
