@@ -441,6 +441,34 @@ class QuarantineTest(unittest.TestCase):
         self.assertFalse((self.tmp / 'pwned').exists())
         self.assertTrue(src.exists())
 
+    def test_bare_pipe_in_name_is_part_of_the_path(self) -> None:
+        # The reason split took the first "|" anywhere, so "zq|pipe.md" read as the path ".../zq"
+        src = write(self.tmp / 'src' / 'zq|pipe.md')
+        manifest = self.quarantine(f'{src} | test')
+        self.assertTrue(self.archived(src).exists())
+        self.assertIn('- reason: test\n', manifest)
+
+    def test_existing_archive_entry_is_never_overwritten(self) -> None:
+        # A second same-day quarantine of one path replaced the first archived copy
+        src = write(self.tmp / 'src' / 'zq-again.md', 'first\n')
+        self.quarantine(str(src))
+        write(src, 'second\n')
+        self.quarantine(str(src))
+        self.assertEqual(self.archived(src).read_text(), 'first\n')
+        self.assertEqual(src.read_text(), 'second\n')
+
+    def test_crlf_input_line_still_names_the_file(self) -> None:
+        # Review Focus: an approved list saved with CRLF endings leaves "\r" on every line
+        src = write(self.tmp / 'src' / 'zq-crlf.md')
+        self.quarantine(f'{src} | test\r')
+        self.assertTrue(self.archived(src).exists())
+
+    def test_reason_may_contain_the_separator(self) -> None:
+        # Review Focus: only the FIRST " | " splits, so free-text reasons keep their own pipes
+        src = write(self.tmp / 'src' / 'zq-why.md')
+        manifest = self.quarantine(f'{src} | stale | no refs')
+        self.assertIn('- reason: stale | no refs\n', manifest)
+
 
 class RestoreTest(unittest.TestCase):
     """restore.sh must put back exactly the archived entry it was asked for, and never overwrite."""
