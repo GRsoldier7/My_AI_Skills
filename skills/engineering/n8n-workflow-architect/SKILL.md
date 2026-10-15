@@ -1,21 +1,6 @@
 ---
 name: n8n-workflow-architect
-description: |
-  Expert n8n workflow designer and automation architect. Use whenever building, debugging,
-  optimizing, or planning n8n workflows, automation pipelines, webhook integrations, or
-  scheduled data processing. AUTO-TRIGGER on any automation, workflow, webhook, ETL, or
-  integration architecture discussion.
-
-  EXPLICIT TRIGGER on: "n8n", "workflow", "automation", "webhook", "trigger", "schedule",
-  "cron job", "API orchestration", "data pipeline", "ETL", "integration", "node",
-  "error handling in n8n", "retry logic", "sub-workflow", "n8n credential", "HTTP request node",
-  "Code node", "batch processing", "event-driven", "notification pipeline", "sync data",
-  "n8n Docker", "workflow design", "automate this".
-
-  Also trigger when the user describes a process that should be automated, even without
-  mentioning n8n — assess whether n8n is the right tool and recommend accordingly.
-
-  Plugin overlap: this skill emphasizes workflow architecture and design patterns, the oho-runner sidecar pattern for n8n 2.x shell-out, and Aaron's homelab-specific integrations (PostgreSQL, FastAPI, Docker, Power Platform). For operational workflow CRUD (creating, updating, listing, deleting, executing, validating workflows programmatically), route instead to the `n8n-mcp` plugin — it provides 19 `n8n_*` tools that talk directly to the n8n REST API and replace hand-rolled curl scripts.
+description: Design, debug, and optimize n8n workflows, webhooks, and automation pipelines. n8n 2.x has no executeCommand node — shell work goes through the oho-runner sidecar. Trigger: n8n, workflow, webhook.
 metadata:
   author: aaron-deyoung
   version: "1.0"

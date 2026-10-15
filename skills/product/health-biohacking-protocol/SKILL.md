@@ -1,24 +1,6 @@
 ---
 name: health-biohacking-protocol
-description: |
-  Evidence-based health optimization and biohacking protocol designer. Use when designing
-  wellness protocols, evaluating supplements, interpreting biomarkers, building tracking
-  systems, or optimizing sleep, nutrition, exercise, and cognitive performance.
-
-  EXPLICIT TRIGGER on: "biohacking", "supplement", "protocol", "biomarker", "blood work",
-  "lab results", "sleep optimization", "nutrition", "fasting", "intermittent fasting",
-  "nootropic", "stack", "health optimization", "HRV", "glucose", "testosterone",
-  "vitamin D", "magnesium", "omega-3", "creatine", "workout", "exercise protocol",
-  "recovery", "cold exposure", "sauna", "circadian rhythm", "blue light",
-  "health tracking", "wearable data", "Oura ring", "Whoop", "CGM",
-  "optimize my health", "what supplements should I take".
-
-  Also trigger when the user shares lab results or wearable data and wants interpretation
-  or protocol recommendations.
-
-  IMPORTANT: This skill provides educational frameworks based on published research.
-  Always recommend consulting a physician before implementing protocols, especially
-  regarding supplements, fasting, or significant lifestyle changes.
+description: Design evidence-based health protocols: supplement evaluation, biomarker interpretation, tracking design, protocol sequencing. Trigger: supplement stack, bloodwork, biomarker, wellness protocol.
 metadata:
   author: aaron-deyoung
   version: "1.0"

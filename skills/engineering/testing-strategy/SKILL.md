@@ -1,17 +1,6 @@
 ---
 name: testing-strategy
-description: |
-  Expert testing strategist for Python applications using pytest. Designs test suites that
-  catch real bugs without becoming maintenance burdens. Covers: fixture design, parametrize
-  patterns, property-based testing with hypothesis, integration vs unit test decisions,
-  async testing, database testing patterns, and coverage strategy. Use when writing tests
-  for new code, deciding what to test, debugging a flaky test, improving test coverage,
-  or asking whether an approach is testable. Trigger phrases: "write tests for this",
-  "how should I test this", "test coverage", "pytest fixtures", "hypothesis testing",
-  "flaky test", "integration test vs unit test", "how do I test async code", "mock vs real".
-  Also activates when user says "I need to test this" or "tests keep breaking".
-
-  Plugin overlap: this skill emphasizes opinionated test *strategy* — what to test, at what level, integration-vs-unit decisions, hypothesis property-based testing strategy, and the test value hierarchy. For syntax/recipe lookups (fixture pattern boilerplate, parametrize syntax, async testing setup, transaction-rollback recipes), route instead to the `pytest-async-testing-patterns` plugin skill — it covers the how-to-write reference patterns.
+description: pytest suite design that catches real bugs cheaply: fixtures, parametrize, mocking boundaries, async tests, coverage that means something. Trigger: write tests, test strategy, flaky test, pytest.
 metadata:
   author: aaron-deyoung
   version: "1.0"

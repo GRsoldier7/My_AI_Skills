@@ -1,22 +1,6 @@
 ---
 name: notebooklm
-description: |
-  Human-artifact generation via Google NotebookLM, on explicit request ONLY — podcasts (audio
-  overviews), video, quizzes, flashcards, slide decks, infographics, mind maps, briefing docs,
-  study guides, data tables, plus source-grounded chat and web research over URLs, PDFs, YouTube,
-  audio, images and text. Multi-account (personal / echelonseven / agilepeak).
-
-  NOT a memory or backup layer. Never used to back up, sync, or log session state, memory,
-  lessons, or project progress. No automatic triggers: no hook, schedule, session-end, or
-  context-fill use. Session memory lives in HANDOFF.md + the Agent memory DB (see
-  ~/.claude/CLAUDE.md).
-
-  EXPLICIT TRIGGER on: "/notebooklm", "create a podcast about", "audio overview", "deep dive
-  podcast", "turn this into a podcast", "generate a quiz from", "create flashcards",
-  "flashcards for studying", "generate a slide deck", "make an infographic", "create a mind
-  map", "briefing doc", "study guide from", "summarize these URLs with NotebookLM",
-  "add to notebooklm", "use my work account" (for NotebookLM).
-  SKIP for: saving, backing up, or recalling session/project memory — that is never this skill.
+description: Generate human artifacts via Google NotebookLM on EXPLICIT request only — podcast, briefing, quiz, flashcards, deck, mind map. Never a memory or recall backend. Trigger: /notebooklm, make a podcast of.
 compatibility: notebooklm-py CLI in ~/.notebooklm-venv; Google auth captured per account
 metadata:
   author: aaron-deyoung

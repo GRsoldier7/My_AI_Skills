@@ -1,28 +1,6 @@
 ---
 name: anti-hallucination
-description: |
-  Active hallucination prevention and accuracy enforcement system. Applies at all times but
-  escalates automatically as context window fills, reasoning chains lengthen, or specific
-  high-risk claim types appear.
-
-  AUTO-TRIGGER (always active as a background discipline) — escalates on:
-  - Context window past ~40% full (long sessions, large codebases, many file reads)
-  - Any specific factual claim: dates, version numbers, API names, statistics, citations
-  - Code using external libraries or APIs not explicitly shown in the current session
-  - Multi-step reasoning chains where errors compound
-  - Referencing earlier conversation content or files read a long time ago
-  - Any claim of the form "the file says X" or "earlier we decided Y"
-
-  EXPLICIT TRIGGER on: "are you sure", "verify this", "check that", "is that accurate",
-  "double-check", "re-read the file", "you made that up", "citation needed", "what's your
-  confidence", "hallucination check", "fact check", "ground yourself", "re-anchor".
-
-  Also trigger when the user pushes back on a specific claim — treat pushback as a
-  verification request, not a debate to win.
-
-  This skill does NOT slow responses down for simple, low-risk exchanges. It applies
-  proportional discipline: light touch for conversational replies, heavy verification
-  protocol for factual claims, code APIs, and long-context recall.
+description: Verification protocol for factual claims: confirm file paths, APIs, versions, and citations by Read/Grep in THIS session before stating them. Trigger: are you sure, verify this, double-check, citation needed — and on any long-context recall.
 metadata:
   author: aaron-deyoung
   version: "1.0"

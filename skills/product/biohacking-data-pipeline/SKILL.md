@@ -1,7 +1,6 @@
 ---
 name: biohacking-data-pipeline
-description: |
-  Architect and build automated data pipelines for biohacking, health, and supplement data using Python + PostgreSQL. This skill guides the full pipeline lifecycle: finding and evaluating data sources (APIs, web scraping, public datasets), designing normalized database schemas, writing ingestion scripts with scheduling and error handling, and building data validation/quality checks. Use this skill whenever the user mentions biohacking data, health databases, supplement databases, blood work data, biomarker tracking, automated data collection, ETL pipelines for health data, API integrations for health/wellness services, or building a data-driven health product. Also trigger when the user wants to ingest data on a schedule (daily runs, cron jobs), scrape health-related websites, integrate lab/bloodwork APIs, or design a database schema for health and wellness data — even if they don't say "pipeline" explicitly.
+description: Build Python+PostgreSQL ingestion for health data: lab/biomarker APIs, supplement scraping, schema design, scheduled ETL, data-quality checks. Trigger: health data pipeline, biomarker ingest, supplement DB.
 metadata:
   author: aaron-deyoung
   version: "1.0"

@@ -1,25 +1,6 @@
 ---
 name: app-security-architect
-description: |
-  Bleeding-edge application and web security expert. Use whenever building, reviewing, or
-  auditing apps, APIs, websites, or cloud infrastructure for security. Applies OWASP,
-  zero-trust, defense-in-depth, and AI/LLM-specific threat models.
-
-  AUTO-TRIGGER on: any new API endpoint, auth flow, database schema, file upload, user input
-  handling, third-party integration, secrets/credentials question, or deployment to production.
-
-  EXPLICIT TRIGGER on: "secure this", "security review", "is this safe", "auth/authz",
-  "protect against", "OWASP", "penetration test", "threat model", "security audit",
-  "encrypt", "JWT", "API keys", "CORS", "CSP headers", "SQL injection", "XSS", "CSRF",
-  "secrets management", "zero trust", "vulnerability", "CVE", "rate limiting",
-  "input validation", "LLM security", "prompt injection", "AI security", "Power Platform
-  security", "GCP security", "Docker security", "Cloud Run security", "FastAPI security".
-
-  Also trigger proactively when writing code that handles: user authentication, file uploads,
-  external API calls, database queries, environment variables, or any data from untrusted sources.
-
-  Covers: OWASP Top 10 (2021+), LLM security (OWASP LLM Top 10), cloud-native security,
-  secrets management, secure SDLC, threat modeling, and emerging AI agent security threats.
+description: Security review and secure design for apps, APIs, and cloud infra — OWASP Top 10, LLM/prompt-injection threats, authn/authz, input handling, secrets, uploads, third-party calls. Use when writing or auditing any of those, not as generic effort.
 metadata:
   author: aaron-deyoung
   version: "1.0"

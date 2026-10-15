@@ -1,20 +1,6 @@
 ---
 name: mcp-server-builder
-description: |
-  Expert MCP (Model Context Protocol) server architect and builder. Use when designing,
-  building, debugging, or deploying MCP servers that extend Claude Code and other AI
-  tools with custom capabilities.
-
-  EXPLICIT TRIGGER on: "MCP", "MCP server", "Model Context Protocol", "build an MCP",
-  "custom tool for Claude", "extend Claude", "Claude Code tool", "MCP transport",
-  "stdio server", "SSE server", "MCP resource", "MCP prompt", "tool server",
-  "connect Claude to", "give Claude access to", "MCP client", "mcp.json",
-  ".mcp.json", "MCP configuration", "custom MCP", "MCP TypeScript", "MCP Python".
-
-  Also trigger when the user wants Claude to interact with an external system that
-  doesn't have an existing MCP server — the answer may be to build one.
-
-  Plugin overlap: this skill emphasizes vendor-agnostic MCP server design (Python/TypeScript SDK patterns, security, testing, schema design, transport choice). For Cloudflare Workers-hosted MCP servers specifically (Wrangler config, Workers runtime constraints, Durable Objects state, Cloudflare deployment), route instead to the `cloudflare:build-mcp` and `cloudflare:building-mcp-server-on-cloudflare` plugin skills — they cover the Cloudflare-specific hosting and runtime patterns.
+description: Design, build, debug, and deploy MCP servers (Python/TypeScript SDK): transport choice, tool schema, auth, testing. Trigger: MCP server, Model Context Protocol, give Claude access to X.
 metadata:
   author: aaron-deyoung
   version: "1.0"

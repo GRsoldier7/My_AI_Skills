@@ -1,14 +1,6 @@
 ---
 name: skill-builder
-description: |
-  Genius-level meta-skill for designing, building, auditing, and improving other Agent Skills.
-  Activates when the user wants to create a new skill, improve an existing SKILL.md, identify
-  gaps in a skill library, audit a skill for quality, or produce a batch of skills for a domain.
-  Trigger phrases: "build a skill", "create a skill for", "improve this skill", "audit this skill",
-  "what skills are missing", "skill for X domain", "write a SKILL.md", "skill library gap".
-  Uses a 5-module pipeline: Domain Intelligence → Capability Decomposition → Skill Architecture
-  → Quality Evaluation (10-dimension rubric) → Continuous Improvement Protocol. Every skill
-  produced meets the Agent Skills open standard and passes a minimum quality bar before output.
+description: Design, audit, and improve Agent Skills: SKILL.md structure, trigger wording, progressive disclosure, reference layout. Trigger: create a skill, improve this SKILL.md, why isn't my skill firing.
 metadata:
   author: aaron-deyoung
   version: "1.0"

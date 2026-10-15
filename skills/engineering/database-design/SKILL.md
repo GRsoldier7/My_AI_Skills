@@ -1,18 +1,6 @@
 ---
 name: database-design
-description: |
-  Biohacking-domain PostgreSQL schema specialist. Use ONLY when modeling health/biomarker/supplement
-  data where provenance, temporal versioning, multi-source fusion, or evidence-tier semantics matter.
-  Trigger phrases: "biomarker schema", "supplement data model", "lab result table", "evidence
-  provenance", "valid_from / valid_until", "fact_videos schema", "Echelon DB", "multi-source
-  biomarker fusion", "temporal supplement data".
-
-  Do NOT use this skill for generic PostgreSQL work — route instead to:
-  - `postgresql-table-design` (plugin) — generic normalization, types, indexes, constraints
-  - `sql-optimization-patterns` (plugin) — EXPLAIN ANALYZE, index strategy, slow-query diagnosis
-  - `postgresql-performance-patterns` (plugin) — BRIN/covering indexes, JSONB paths, partitioning
-  - `senior-data-engineer` (plugin) — generic ETL/Spark/Airflow pipelines
-  - `database-migration` (plugin) — schema migrations, zero-downtime patterns
+description: PostgreSQL schema design for health/biomarker/supplement data where provenance, temporal versioning, multi-source fusion, or evidence tiers matter. Generic PG work goes to postgresql-table-design instead.
 metadata:
   author: aaron-deyoung
   version: "1.0"

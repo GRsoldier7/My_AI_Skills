@@ -1,21 +1,6 @@
 ---
 name: session-optimizer
-description: |
-  Maximize Claude Code session efficiency, output quality, and context window longevity.
-  The difference between a frustrating session and a productive one is session architecture —
-  this skill makes that deliberate.
-
-  AUTO-TRIGGER at session start for complex projects and when context window approaches 40%.
-
-  EXPLICIT TRIGGER on: "optimize session", "context management", "compaction", "compact",
-  "session strategy", "how to structure this session", "this is a big project",
-  "long session", "multi-day project", "running out of context", "token usage",
-  "efficiency", "hooks", "permissions", "settings optimization", "session architecture",
-  "how to work faster", "Claude Code tips", "power user", "worktree",
-  "multi-session", "handoff between sessions", "context window", "save context".
-
-  Also trigger when planning work that will clearly exceed a single context window,
-  or when the user seems frustrated with session performance.
+description: Shed stale context and restructure a long session: what to compact, what to carry forward, when to start a fresh thread. Trigger: context is full, /compact, optimize this session.
 metadata:
   author: aaron-deyoung
   version: "1.0"

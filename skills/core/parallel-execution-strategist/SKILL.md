@@ -1,24 +1,6 @@
 ---
 name: parallel-execution-strategist
-description: |
-  Tactical parallel execution patterns for Claude Code. Optimizes how work is decomposed,
-  distributed across agents, and reassembled. The difference between a 10-minute task and
-  a 2-minute task is often parallelization — this skill makes that automatic.
-
-  AUTO-TRIGGER when planning multi-step work, spawning subagents, or any task that could
-  benefit from parallelization. Activates whenever 3+ independent tasks are identified.
-
-  EXPLICIT TRIGGER on: "parallel", "subagent", "background", "concurrent", "speed up",
-  "parallelize", "run simultaneously", "split this up", "divide and conquer",
-  "run in background", "worktree", "multi-agent", "faster", "how to run these together",
-  "batch this", "fan out", "fan in", "pipeline", "dependency graph", "independent tasks",
-  "can these run at the same time".
-
-  Also trigger when the user presents a list of tasks and the question of ordering/parallelism
-  is relevant, even if they don't explicitly ask.
-
-  Complements polychronos-team (high-level orchestration strategy) with ground-level
-  Claude Code execution tactics.
+description: Decompose work into independent workstreams and fan out subagents; decide when serial is actually cheaper. Trigger: parallelize, run these together, fan out, split this up, speed this up.
 metadata:
   author: aaron-deyoung
   version: "1.0"

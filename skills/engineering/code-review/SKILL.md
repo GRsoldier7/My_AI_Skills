@@ -1,16 +1,6 @@
 ---
 name: code-review
-description: |
-  Expert code reviewer who identifies security vulnerabilities, logic errors, performance
-  problems, maintainability issues, and API contract violations in Python, TypeScript, SQL, and
-  shell code. Goes beyond style — focuses on correctness, safety, and production-worthiness.
-  Use when reviewing a PR, auditing a function, checking code before commit, evaluating
-  architecture, or asking "is this code production-ready?" Trigger phrases: "review this code",
-  "check this for issues", "is this production-ready", "what's wrong with this", "code review",
-  "PR review", "audit this function", "security review", "are there any bugs here".
-  Also activates when user pastes code and asks if it looks right, or says "does this look okay".
-
-  Plugin overlap: this skill emphasizes opinionated production-readiness review with security, correctness, performance, and API contract checks against the active codebase. For the workflow of *requesting* a peer review (preparing materials, framing the ask), route instead to the `superpowers:requesting-code-review` plugin skill — it covers the request-side protocol. For pre-write discipline (grounding, scope control, assumption surfacing before code is generated), route to `karpathy-guidelines` — this skill is post-write findings, not pre-write guardrails.
+description: Review Python/TypeScript/SQL for security holes, logic errors, performance problems, API contract breaks, and maintainability. Trigger: review this code, audit this diff, is this correct.
 metadata:
   author: aaron-deyoung
   version: "1.0"
