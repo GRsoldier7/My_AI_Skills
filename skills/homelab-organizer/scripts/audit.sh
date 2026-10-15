@@ -12,20 +12,21 @@ mkdir -p "$AUDIT_DIR"
 
 PHASES="${1:-all}"
 
-run_phase_a() {
-  echo "[A] Container audit → $AUDIT_DIR/containers.json" >&2
-  bash "$SCRIPT_DIR/inventory-containers.sh" > "$AUDIT_DIR/containers.json"
+# A phase that crashes still leaves its output file behind; gate on rc AND parseable JSON
+run_checked() {
+  local label="$1" script="$2" out="$3" rc
+  echo "[$label] → $out" >&2
+  bash "$SCRIPT_DIR/$script" > "$out"
+  rc=$?
+  if (( rc != 0 )) || ! python3 -c 'import json,sys; json.load(open(sys.argv[1]))' "$out" 2>/dev/null; then
+    echo "[$label] FAILED (rc=$rc, or $out is not valid JSON) — audit stopped" >&2
+    exit 1
+  fi
 }
 
-run_phase_b() {
-  echo "[B] File audit → $AUDIT_DIR/files.json" >&2
-  bash "$SCRIPT_DIR/scan-files.sh" > "$AUDIT_DIR/files.json"
-}
-
-run_phase_c() {
-  echo "[C] Link integrity → $AUDIT_DIR/links.json" >&2
-  bash "$SCRIPT_DIR/check-links.sh" > "$AUDIT_DIR/links.json"
-}
+run_phase_a() { run_checked A inventory-containers.sh "$AUDIT_DIR/containers.json"; }
+run_phase_b() { run_checked B scan-files.sh "$AUDIT_DIR/files.json"; }
+run_phase_c() { run_checked C check-links.sh "$AUDIT_DIR/links.json"; }
 
 case "$PHASES" in
   containers|--containers) run_phase_a ;;

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Action executor — moves approved files to .archive/<date>/<rel-path>/ and writes a manifest entry.
-# Never deletes. Idempotent. Refuses any path that hits the hard-skip floor.
+# Never deletes, never overwrites an archived copy. Idempotent. Refuses any path that hits the hard-skip floor.
 set -uo pipefail
 
 ARCHIVE_ROOT="${ARCHIVE_ROOT:-/root/homelab/.archive}"
@@ -55,6 +55,11 @@ quarantine_one() {
   # e.g., /root/homelab/scratch/foo.md → $ARCHIVE_DIR/root/homelab/scratch/foo.md
   local rel="${src#/}"
   local dst="$ARCHIVE_DIR/$rel"
+  # An earlier quarantine of this path on the same date holds the slot; mv would replace that copy
+  if [[ -e "$dst" || -L "$dst" ]]; then
+    echo "REJECT(archived): $dst already exists" >&2
+    return 2
+  fi
   local dst_dir
   dst_dir=$(dirname "$dst")
   mkdir -p "$dst_dir"
@@ -63,7 +68,11 @@ quarantine_one() {
   local mtime size hash
   mtime=$(stat -c %y "$src" 2>/dev/null)
   size=$(stat -c %s "$src" 2>/dev/null)
-  hash=$(sha256sum "$src" 2>/dev/null | cut -c1-12)
+  # stdin, not a filename arg: sha256sum prefixes its output with "\" when the name holds a backslash
+  hash=$(sha256sum < "$src" 2>/dev/null | cut -c1-12)
+  # %q, not double quotes: the line is pasted into a shell, where "$(...)" in a name would run
+  local restore
+  restore="mkdir -p $(printf '%q' "$(dirname "$src")") && mv $(printf '%q %q' "$dst" "$src")"
 
   # Perform move (atomic on same filesystem)
   if mv "$src" "$dst"; then
@@ -78,7 +87,7 @@ quarantine_one() {
 - size: $size bytes
 - hash: $hash
 - reason: $reason
-- restore: \`mkdir -p "$(dirname "$src")" && mv "$dst" "$src"\`
+- restore: \`$restore\`
 
 EOF
     echo "OK: $src → $dst"
@@ -89,15 +98,24 @@ EOF
   fi
 }
 
-# Read paths from stdin: one path per line, optionally followed by | <reason>
+# Trim in bash. xargs, used here before, ate backslashes ("a\b.md" -> "ab.md", a different file),
+# collapsed runs of spaces and aborted on an unmatched quote
+trim() { local s="${1#"${1%%[![:space:]]*}"}"; printf '%s' "${s%"${s##*[![:space:]]}"}"; }
+
+# Read paths from stdin: one path per line, optionally followed by " | <reason>". The separator has a
+# space on each side, so a bare "|" inside a name stays part of the path
 while IFS= read -r line; do
   [[ -z "$line" ]] && continue
   [[ "$line" == \#* ]] && continue
-  src="${line%%|*}"
-  reason="${line#*|}"
-  [[ "$src" == "$reason" ]] && reason="unspecified"
-  src=$(echo "$src" | xargs)
-  reason=$(echo "$reason" | xargs)
+  src="$line"
+  reason=""
+  if [[ "$line" == *" | "* ]]; then
+    src="${line%% | *}"
+    reason="${line#* | }"
+  fi
+  src=$(trim "$src")
+  reason=$(trim "$reason")
+  [[ -n "$reason" ]] || reason="unspecified"
   quarantine_one "$src" "$reason" || true
 done
 

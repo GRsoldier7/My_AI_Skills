@@ -17,35 +17,36 @@ Before any phase:
 Run `scripts/inventory-containers.sh > "$AUDIT_DIR/containers.json"`.
 
 The script does:
-1. `pct list` and `qm list` → CT/VM inventory
-2. For each container in `state.yaml: container_baselines`, capture current state:
-   - `pct config <id>` → resources (RAM, swap, disk allocation)
-   - `pct status <id>` → running/stopped, uptime
-   - Single bundled `pct exec <id> -- bash -c '<bundled probe>'` returning JSON:
-     - `uptime`, `last_login`, `df_root_pct`, `log_files_24h`, `services_up`, `pkgs_outdated`, `key_files_present`
-3. Compare result to `state.yaml: container_baselines.<id>` → emit deltas
-4. Drift detection:
-   - Container exists in `pct list` but no doc in `/root/homelab/lxc/` or `/root/homelab/containers/` → `undocumented_container`
-   - Doc exists but no container with matching ID/hostname → `orphaned_doc`
-   - Naming/tag mismatch (doc says CT 207, but reality has different name) → `naming_mismatch`
+1. `pct list` and `qm list` → CT/VM inventory of THIS host only
+2. Per guest: `pct status` / `qm status`, plus from `pct config` / `qm config` the memory, rootfs size and hostname (`hostname:` for LXC, `name:` for VMs)
+3. Per running LXC, one bundled read-only `pct exec <id> -- bash -c '<probe>'` returning `uptime`, `disk_root_pct`, `log_files_24h`, `services_up` (first 20 running units, comma-separated) and `pkgs_outdated`. VMs and stopped CTs get `"probe": {}`
+4. Drift detection against the doc folders:
+   - Guest with no `lxc/<id>-*` / `vms/<id>-*` folder and no `CT <id>` / `VM <id>` / `id: <id>` mention in the `lxc/`, `containers/` or `vms/` docs → `undocumented_lxc` / `undocumented_vm`
+   - Doc exists but no guest with that ID on any node in `drift_summary.checked_nodes` → `orphaned_doc`. Drift is node-local: the script queries only the host it runs on. Before any D action (archive a doc folder) is proposed, each `orphaned_docs` ID must be shown absent on every node NOT in `checked_nodes`, and that check recorded in the report; an ID found elsewhere is `misfiled`, not orphaned
+   - An `lxc/` folder for a VM ID, or a `vms/` folder for an LXC ID → `naming_mismatches`
+
+The script does not read `state.yaml`. Baseline deltas against `state.yaml: container_baselines` are worked out in Phase D, by comparing `probe` and the config fields to the stored baseline. Off a Proxmox host it emits `{"audit_date": ..., "error": "pct/qm not available — not on a Proxmox host", "containers": [], "drift_summary": {}}`.
 
 Output `containers.json` schema:
 ```json
 {
-  "audit_date": "2026-05-09",
+  "audit_date": "2026-10-14",
   "containers": [
     {
       "id": "203",
       "type": "lxc",
       "status": "running",
-      "current": {"rss_mb": 412, "disk_gb": 2.1, "services_up": ["postgres"], "pkgs_outdated": 4},
-      "baseline_delta": {"disk_gb_delta": "+0.3", "new_services": [], "removed_services": []},
-      "drift": []
+      "hostname": "postgres",
+      "ram_mb": 2048,
+      "disk_alloc": "32G",
+      "probe": {"uptime": "up 3 days, 2 hours", "disk_root_pct": "41%", "log_files_24h": 12, "services_up": "postgresql.service,ssh.service", "pkgs_outdated": 4}
     }
   ],
   "drift_summary": {
-    "undocumented": [],
+    "undocumented_lxc": [],
+    "undocumented_vm": [],
     "orphaned_docs": [],
+    "checked_nodes": ["pve"],
     "naming_mismatches": []
   }
 }
@@ -57,30 +58,29 @@ Run `scripts/scan-files.sh > "$AUDIT_DIR/files.json"`.
 
 The script does:
 
-1. Walk tracked roots (depth-bounded; respect `.gitignore` patterns when present)
+1. Walk tracked roots (depth-bounded; respect `.gitignore` patterns when present). Credential-class dirs/names, generated caches (`.mypy_cache`, `.pytest_cache`, `.next`, …) and `VENDORED_PATHS` are pruned at walk time — before anything reads them
 2. Apply hard-skip floor (drop entries entirely — they don't even appear in output)
 3. For each survivor, compute:
    - `mtime_days` (days since last modification)
-   - `inbound_refs` (count of files mentioning this file's basename or relative path)
-   - `in_use_signals` (list of which in-use signal patterns matched, per `safety-rules.md` §"In-use signals")
-   - `is_dated_artifact` (filename contains `YYYY-MM-DD` and that date is past)
-   - `content_hash` (sha256 first 8 chars, for dedup)
-4. Categorize:
-   - `mtime_days > 90 AND inbound_refs == 0 AND in_use_signals == []` → `SAFE_QUARANTINE`
-   - `mtime_days > 90 AND (inbound_refs > 0 OR in_use_signals != [])` → `WATCHLIST`
-   - `mtime_days > 90 AND is_dated_artifact AND inbound_refs == 0` → `DATED_HISTORICAL` (subtype of SAFE_QUARANTINE)
-   - any pair sharing `content_hash` → `DUPLICATE` (one keeps, others go to QUARANTINE candidates)
+   - `refs` (count of reference-source mentions of this file's basename). Reference sources exclude `docs/organizer/` — a prior `files.json` names every candidate and would hide them all
+   - `in_use_signals` (the first in-use signal that matched, per `safety-rules.md` §"In-use signals"; a string, `""` when none)
+   - dated artifact (basename holds a `YYYY-MM-DD` date anywhere or starts with the house `YYYYMMDD - ` prefix; decides the bucket, not emitted)
+   - `hash` (sha256 of the content, first 12 hex chars, for dedup)
+4. Categorize. Thresholds are `STALE_DAYS` (default 90) and `SAFE_DAYS` (default 7; files modified more recently are floor-skipped). A non-default value is announced on stderr; a non-integer aborts the scan. `quarantine.sh` keeps its own fixed 7-day floor; a lowered `SAFE_DAYS` only widens the scan, never the move:
+   - `mtime_days > STALE_DAYS AND refs == 0 AND in_use_signals == ""` → `SAFE_QUARANTINE` (reason `mtime_gt_<STALE_DAYS>d_no_refs`), or `DATED_HISTORICAL` when dated (reason `dated_artifact_no_refs`)
+   - `mtime_days > STALE_DAYS AND (refs > 0 OR in_use_signals != "")` → `WATCHLIST` (reason lists `has_inbound_refs;` and/or the signal)
+   - a stale file whose `hash` matches one already seen → `DUPLICATE`; the first-seen copy stays in its own bucket. Duplicates carry `refs` + `in_use_signals` — never propose a cited copy
 
 Output `files.json` schema:
 ```json
 {
   "audit_date": "2026-05-09",
-  "totals": {"scanned": 8421, "skipped_floor": 1203, "candidates": 47},
+  "totals": {"scanned": 8421, "skipped_floor": 1203, "candidates_safe_quarantine": 47, "candidates_watchlist": 310, "candidates_dated": 4, "candidates_duplicates": 12},
   "categorized": {
-    "SAFE_QUARANTINE": [{"path": "...", "mtime_days": 120, "size": 1024, "hash": "abc12345", "reason": "mtime+90 no_refs"}],
-    "WATCHLIST": [{"path": "...", "mtime_days": 95, "in_use_signals": ["mentioned_in_runbook"], "reason": "in-use signal blocks action"}],
+    "SAFE_QUARANTINE": [{"path": "...", "mtime_days": 120, "size": 1024, "hash": "abc123def456", "refs": 0, "in_use_signals": "", "reason": "mtime_gt_90d_no_refs"}],
+    "WATCHLIST": [{"path": "...", "mtime_days": 95, "size": 512, "hash": "0f1e2d3c4b5a", "refs": 2, "in_use_signals": "mentioned_in_runbooks", "reason": "has_inbound_refs;mentioned_in_runbooks;"}],
     "DATED_HISTORICAL": [],
-    "DUPLICATE": [{"path": "...", "duplicate_of": "...", "hash": "abc12345"}]
+    "DUPLICATE": [{"path": "...", "duplicate_of": "...", "hash": "abc123def456", "mtime_days": 200, "size": 1024, "refs": 0, "in_use_signals": ""}]
   }
 }
 ```
@@ -90,19 +90,20 @@ Output `files.json` schema:
 Run `scripts/check-links.sh > "$AUDIT_DIR/links.json"`.
 
 The script does:
-1. Markdown link checker — for every `.md` in tracked roots, extract `[text](path)` patterns. For each path that's relative and not a URL, check existence.
+1. Markdown link checker — for every `.md` in tracked roots, extract `[text](path)` patterns. For each path that's relative and not a URL, check existence. Lines inside ``` / ~~~ fences are skipped; a fence still open at end of file hides every later link, so it is listed in `unclosed_fences` (opener line) — review those files by hand.
 2. Symlink checker — `find <tracked roots> -type l ! -exec test -e {} \;` → list dangling symlinks.
 3. Shell source checker — for every `.sh`, grep for `source <path>` and `. <path>`. Verify each.
-4. Python import checker (project-internal only) — for every `.py`, parse `from X import` and `import X`. If `X` looks project-local (not stdlib, not installed package), verify the corresponding file exists.
+4. Python import checker — **not implemented.** `broken_imports` is emitted as `null` so a report never presents it as a clean result.
 
 Output `links.json`:
 ```json
 {
   "audit_date": "2026-05-09",
-  "broken_md_links": [{"in_file": "...", "line": 42, "target": "...", "reason": "target_missing"}],
+  "broken_md_links": [{"in_file": "...", "line": 42, "target": "...", "resolved": "..."}],
   "dangling_symlinks": [{"path": "...", "points_to": "..."}],
   "broken_sources": [{"in_file": "...", "line": 17, "target": "..."}],
-  "broken_imports": [{"in_file": "...", "line": 3, "module": "..."}]
+  "unclosed_fences": [{"in_file": "...", "line": 12}],
+  "broken_imports": null
 }
 ```
 
@@ -115,7 +116,7 @@ Sections in order:
 1. **Header** — date, run flags, time elapsed
 2. **Summary counts** — at-a-glance numbers (stale found, broken links, drift items, watchlist size)
 3. **Trend** — pull last 12 entries from `state.yaml: audit_history`. Show whether stale-file count is accelerating, holding, or shrinking. One-paragraph diagnosis.
-4. **Container drift** — every entry from `containers.json: drift_summary`. Per-container: delta from baseline, services added/removed, disk growth.
+4. **Container drift** — every entry from `containers.json: drift_summary`. Per-container: delta from baseline, services added/removed, disk growth. Render `checked_nodes` beside `orphaned_docs`; while a peer node exists that is not in `checked_nodes`, a D action stays blocked until the Phase A peer check is on record.
 5. **Stale files (proposed action)** — `SAFE_QUARANTINE` + `DATED_HISTORICAL` + `DUPLICATE`. Each row: path, mtime, hash, reason, **proposed quarantine path**, **restore command**.
 6. **Watchlist** — `WATCHLIST` entries. No proposed action. Listed for transparency.
 7. **Broken links** — by category (md, symlinks, sources, imports). Each: file:line, target, suggested fix (when obvious).
@@ -141,8 +142,8 @@ Approve all / approve per category / approve per item / decline
 ```
 
 For each approved bucket:
-- Run `scripts/quarantine.sh --bucket <name> --audit-dir "$AUDIT_DIR"`
-- Append entries to `/root/homelab/.archive/$AUDIT_DATE/MANIFEST.md`
+- Feed the approved paths to `scripts/quarantine.sh` on stdin, one per line, optionally `<path> | <reason>`. It takes no flags; the date comes from the environment: `AUDIT_DATE="$AUDIT_DATE" scripts/quarantine.sh < approved.txt`. The separator is ` | ` with a space on each side; a bare `|` is part of the path. A path already archived under the same date is refused, never overwritten.
+- It appends each move, with a paste-safe restore command, to `/root/homelab/.archive/$AUDIT_DATE/MANIFEST.md`
 - Update `state.yaml: decision_log`
 - Append to `/root/homelab/docs/memory/ORGANIZATION_LOG.md`
 

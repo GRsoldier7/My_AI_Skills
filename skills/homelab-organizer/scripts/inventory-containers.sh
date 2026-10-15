@@ -47,7 +47,8 @@ emit_container_json() {
   local ram disk hostname
   ram=$(grep -oE '^memory:\s*[0-9]+' <<<"$config" | awk '{print $2}')
   disk=$(grep -oE 'rootfs:.*size=[0-9]+G' <<<"$config" | grep -oE '[0-9]+G' | head -1)
-  hostname=$(grep -oE '^hostname:\s*\S+' <<<"$config" | awk '{print $2}')
+  # LXC config says hostname:, qm config says name:
+  hostname=$(grep -oE '^(hostname|name):\s*\S+' <<<"$config" | awk '{print $2}' | head -1)
   cat <<JSON
 {
   "id": "$id",
@@ -137,6 +138,13 @@ for id in $documented_vm_ids; do
   fi
 done
 
+# JSON string array; drops the "" that "${arr[@]:-}" yields for an empty array
+json_arr() {
+  local out="" x
+  for x in "$@"; do [[ -n "$x" ]] && out+="\"$x\","; done
+  echo "[${out%,}]"
+}
+
 # Emit final JSON
 {
   echo '{'
@@ -148,10 +156,12 @@ done
   done
   echo '  ],'
   echo '  "drift_summary": {'
-  echo '    "undocumented_lxc": ['"$(printf '"%s",' "${undocumented_lxc[@]:-}" | sed 's/^,//;s/,$//')"'],'
-  echo '    "undocumented_vm": ['"$(printf '"%s",' "${undocumented_vm[@]:-}" | sed 's/^,//;s/,$//')"'],'
-  echo '    "orphaned_docs": ['"$(printf '"%s",' "${orphaned[@]:-}" | sed 's/^,//;s/,$//')"'],'
-  echo '    "naming_mismatches": []'
+  echo '    "undocumented_lxc": '"$(json_arr "${undocumented_lxc[@]:-}")"','
+  echo '    "undocumented_vm": '"$(json_arr "${undocumented_vm[@]:-}")"','
+  echo '    "orphaned_docs": '"$(json_arr "${orphaned[@]:-}")"','
+  # Guests are listed from this host only (no cluster): an "orphan" may be a peer node's guest
+  echo '    "checked_nodes": '"$(json_arr "$(hostname -s 2>/dev/null || echo "${HOSTNAME%%.*}")")"','
+  echo '    "naming_mismatches": '"$(json_arr "${naming_mismatch[@]:-}")"
   echo '  }'
   echo '}'
 }
