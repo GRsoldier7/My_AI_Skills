@@ -8,8 +8,25 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 - `continuing-alm-work` now uses the owner's nine-file replacement v2.0.0 package. The earlier 17-file build described below was not recovered; the new archive has a different SHA-256 and supersedes it.
 - SkillSpector gate (host `/root/bin/skill-scan`): rounds 1-5 were last verified on 2026-09-28 (`aaron/fp-tuning` @ `7293f4c`). Current host state has not been rechecked.
 - 2026-10-03: cross-tool skill sets. `scripts/install-skills.sh` links `platform-configs/skill-sets/global.txt` into Claude Code and Codex; four mattpocock skills vendored. Guide and index: `platform-configs/skill-sets/README.md`.
+- 2026-10-14: homelab-organizer class-C fixes merged and 14 skill descriptions trimmed on local `main`; push to origin pending.
 
 ## Log
+
+### 2026-10-14 — homelab-organizer class-C fixes merged; 14 skill descriptions trimmed
+
+**Done**
+- Fast-forwarded local `main` to `origin/main` (`418f6f7`), then merged `fix/organizer-class-c` (`e675d1c`; brings in `dbd1bba` plus six class-C commits). The scanners no longer hide stale files, and quarantine moves the right file. `restore.sh` restores the exact entry, never overwrites, validates entry structure, rejects malformed paths and closes the `--by-original` traversal. `quarantine.sh` never overwrites an archived copy. The audit-procedure schemas are pinned to what the scripts emit.
+- Trimmed 14 SKILL.md descriptions to a one-line purpose plus trigger phrases (`af86682`; 13,466 bytes smaller across the 14 files). `notebooklm` keeps upstream's artifacts-only rewrite, and only its description differs. Registry regenerated; exactly the 14 rows changed.
+
+**Verified**
+- `test_scanners.py` 61/61 on merged `main`. The merge tree is identical to a `git merge-tree` dry run taken before merging.
+- Lint: the 14 files FAIL 0 / WARN 13. Full repo FAIL 5 / WARN 73, the same FAIL set as the `418f6f7` baseline.
+- Review: codex returned HTTP 400 (model not available on this account), so no codex review ran. Sonnet and Fable review of the organizer changes is recorded in the owner's 2026-10-14 audit notes.
+
+**Open**
+- Push to origin is pending. It needs the owner's go-ahead after a scan of the unpushed commits for homelab IPs and hostnames.
+- The installed `.git/hooks/pre-commit` only regenerates the registry. The lint hook in `scripts/git-pre-commit-hook.sh` is not installed, so staged SKILL.md files are not linted at commit time.
+- `fix/homelab-organizer-scanners` and `fix/organizer-class-c` are merged but not deleted, and the class-C worktree still exists.
 
 ### 2026-10-03 — Cross-tool skill sets and four vendored third-party skills
 
