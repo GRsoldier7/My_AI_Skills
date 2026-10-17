@@ -38,6 +38,9 @@ cd ~/My_AI_Skills
 
 # 3. Verify: prints "In sync."
 ./scripts/install-skills.sh
+
+# 4. Aaron's project skills (Claude Code by name, Codex via scripts/project-router.py), the per-device
+#    skills and the continuing-alm-work override: platform-configs/skill-sets/README.md, "Set up a new device"
 ```
 
 Any other skill installs on demand with `./scripts/install-skills.sh --apply <skill-dir-name>`; then type its

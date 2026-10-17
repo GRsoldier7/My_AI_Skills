@@ -9,11 +9,14 @@ copies skills between projects by hand.
 | Mechanism | Skills | Claude Code | Codex | Install model |
 |---|---|---|---|---|
 | `scripts/install-skills.sh` + [`global.txt`](global.txt) | the global set below | `~/.claude/skills/` | `~/.agents/skills/` | symlinks into this repo; `git pull` updates them |
-| `scripts/project-router.py` | Aaron's 7 project skills (`skills/aarons-latest/`) | not covered by this script | `~/.agents/skills/` | hash-checked copies; re-run after `git pull` ([guide](../openai/project-router/README.md)) |
-| On demand | any other skill in `skills/` | `./scripts/install-skills.sh --apply <dir-name>` | same command, except `skills/aarons-latest/*` (skipped; `project-router.py` owns those) | symlink |
+| `scripts/project-router.py` | Aaron's 7 project skills (the `SKILLS` list in `scripts/project-router.py`) | not covered by this script: link them by name per device ([Set up a new device](#set-up-a-new-device)) | `~/.agents/skills/` | hash-checked copies; re-run after `git pull` ([guide](../openai/project-router/README.md)) |
+| On demand | any other skill in `skills/` | `./scripts/install-skills.sh --apply <dir-name>` | same command, except Aaron's 7 (skipped; `project-router.py` owns those) | symlink |
 
-Rule: **two installers never manage the same skill name.** That is why `global.txt` does not list
-`skills/aarons-latest/*`, and why `install-skills.sh` skips them on the Codex side even when asked by name.
+Rule: **two installers never manage the same skill name.** That is why `global.txt` does not list the
+project-router skills, and why `install-skills.sh` links them into Claude Code only and skips exactly those
+names on the Codex side, whether from a set file or by name. It reads the names from `scripts/project-router.py`
+(needs python3). Every other skill in `skills/aarons-latest/`, such as `grill-me` or `projectplan-roadmap`,
+installs into both tools like any library skill.
 
 Discovery paths were checked on 2026-10-03: Claude Code 2.1.283 reads personal skills from
 `~/.claude/skills/` and follows symlinked skill directories ([docs](https://code.claude.com/docs/en/skills);
@@ -31,6 +34,12 @@ Aaron's homelab already loads 50+ symlinked skills). Codex 0.145.0 reads `~/.age
 
 All four work in Claude Code and Codex: each ships `agents/openai.yaml`, and the three manual-only
 skills set both `disable-model-invocation: true` and `allow_implicit_invocation: false`.
+
+Aaron's 7 project skills are installed per device, not from `global.txt`: Claude Code by name
+([Set up a new device](#set-up-a-new-device)), Codex from `scripts/project-router.py`. `continuing-alm-work` is manual-only in both tools: Codex
+reads its `agents/openai.yaml`, and Claude Code needs the machine-local override in
+[Set up a new device](#set-up-a-new-device), because the skill's own validator accepts only the open
+Agent Skills frontmatter fields.
 
 ## Provenance (third-party, vendored)
 
@@ -90,21 +99,46 @@ git clone https://github.com/GRsoldier7/My_AI_Skills.git ~/My_AI_Skills
 cd ~/My_AI_Skills
 ./scripts/install-skills.sh                        # preview; writes nothing (exit 3 = changes pending)
 ./scripts/install-skills.sh --apply                # link the global set into Claude Code and Codex
-python3 scripts/project-router.py install          # preview Aaron's project skills for Codex
-python3 scripts/project-router.py install --apply  # details: platform-configs/openai/project-router/README.md
+python3 scripts/project-router.py install --global-guidance          # preview Aaron's 7 for Codex
+python3 scripts/project-router.py install --apply --global-guidance  # details: platform-configs/openai/project-router/README.md
+./scripts/install-skills.sh --tool claude --apply project-router projectplan-builder projectplan-rescope \
+    continuing-alm-work workbetter clean-project directory-cleanup  # Aaron's 7 for Claude Code
 ```
+
+`--global-guidance` appends the project-router routing block to `~/.codex/AGENTS.md` without replacing
+what is there. With a custom `CODEX_HOME`, omit it and merge the block by hand (same README).
+
+Keep `continuing-alm-work` manual-only in Claude Code. If `~/.claude/settings.json` does not exist, create
+it with this content; if it exists, merge the `skillOverrides` key into it:
+
+```json
+{ "skillOverrides": { "continuing-alm-work": "user-invocable-only" } }
+```
+
+Per device, install the interview, tutoring and roadmap skills by name into both tools:
+`./scripts/install-skills.sh --apply grill-me grilling grill-with-docs teach projectplan-roadmap`. Neither
+these nor Aaron's 7 (the last command above) are in `global.txt`, because model-invoked skills cost
+context in every session. `grill-me` and `grill-with-docs` call `grilling`; `grill-with-docs` also needs
+`domain-modeling` (global set). `--prune` removes every by-name link, so re-run both by-name commands after
+any prune.
 
 Then restart Codex. Claude Code picks up new skills without a restart. The installers work from any
 clone path; `lint-skills.py`, `generate-skill-registry.py` and `build-bundle.sh` still assume
 `/root/My_AI_Skills`.
 
-Windows: **untested here (no Windows host).** In PowerShell, directory junctions need no admin rights:
+Windows: Aaron's Windows device ran `install-skills.sh` itself under Git Bash with `MSYS=winsymlinks:nativestrict`
+set (2026-10-17; real symlinks), which is the preferred path. Creating symlinks needs Developer Mode or an
+elevated shell; otherwise `ln -s` fails under `nativestrict`. The PowerShell fallback below is **untested**;
+directory junctions need no admin rights:
 
 ```powershell
 $repo = "$HOME\My_AI_Skills"
+$router = python -I -c "import ast,sys;t=ast.parse(open(sys.argv[1],encoding='utf-8-sig').read()).body;v=[n.value for n in t if isinstance(n,(ast.Assign,ast.AnnAssign)) and n.value and 'SKILLS' in [getattr(x,'id','') for x in getattr(n,'targets',[getattr(n,'target',None)])]];s=ast.literal_eval(v[-1]);assert isinstance(s,tuple) and all(isinstance(x,str) for x in s);print(*s,sep=chr(10))" "$repo\scripts\project-router.py"
+if ($LASTEXITCODE -ne 0 -or -not $router -or @($router | Where-Object { $_ -cnotmatch '^[a-z0-9-]+$' }).Count) { throw "cannot read SKILLS from scripts\project-router.py" }
 Get-Content "$repo\platform-configs\skill-sets\global.txt" | ForEach-Object { ($_ -split '#')[0].Trim() } | Where-Object { $_ } | ForEach-Object {
   $name = Split-Path $_ -Leaf
   foreach ($t in "$HOME\.claude\skills", "$HOME\.agents\skills") {
+    if ($t -like '*\.agents\skills' -and $_ -like 'skills/aarons-latest/*' -and $router -contains $name) { "SKIP $t\$name (Codex copy: project-router.py)"; continue }
     New-Item -ItemType Directory -Force $t | Out-Null
     if (Test-Path "$t\$name") { "SKIP $t\$name (exists)" }
     else { New-Item -ItemType Junction -Path "$t\$name" -Target (Join-Path $repo $_) | Out-Null; "ADD  $t\$name" }
@@ -112,8 +146,16 @@ Get-Content "$repo\platform-configs\skill-sets\global.txt" | ForEach-Object { ($
 }
 ```
 
-**Machine-local, never committed:** Claude Code `skillOverrides` in `~/.claude/settings.json` (for example
-`"continuing-alm-work": "user-invocable-only"`), Codex `[[skills.config]]` in `~/.codex/config.toml`,
+Then run the two `project-router.py` commands above with `python` and add the `skillOverrides` entry. For the
+by-name skills, run the loop again with `'skills/aarons-latest/project-router','skills/aarons-latest/projectplan-builder',
+'skills/aarons-latest/projectplan-rescope','skills/aarons-latest/continuing-alm-work','skills/aarons-latest/workbetter',
+'skills/aarons-latest/clean-project','skills/aarons-latest/directory-cleanup','skills/aarons-latest/grill-me',
+'skills/aarons-latest/grilling','skills/aarons-latest/grill-with-docs','skills/aarons-latest/teach',
+'skills/aarons-latest/projectplan-roadmap'` in place of the `Get-Content … | Where-Object { $_ }` part (its
+`$router` test skips Aaron's 7 on the Codex side).
+
+**Machine-local, never committed:** Claude Code `skillOverrides` in `~/.claude/settings.json` (the
+`continuing-alm-work` entry above), Codex `[[skills.config]]` in `~/.codex/config.toml`,
 and tracker credentials (`gh auth login`, `glab auth login`).
 
 ## Update and sync
@@ -122,8 +164,20 @@ and tracker credentials (`gh auth login`, `glab auth login`).
 cd ~/My_AI_Skills
 git pull --ff-only
 ./scripts/install-skills.sh --apply           # add new entries; repair links to skills moved within this clone
-python3 scripts/project-router.py install      # preview; reconcile reported differences, then --apply
+python3 scripts/project-router.py install --global-guidance   # preview; reconcile reported differences, then --apply --global-guidance
 ```
+
+A clone made before `.gitattributes` existed (2026-10-17) with `core.autocrlf=true`, the Git for Windows
+default, can keep CRLF copies of the scripts (bash then fails with `$'\r': command not found`). Check with
+`git ls-files --eol scripts/install-skills.sh`: `w/lf` is fine; `w/crlf` needs one refresh. Commit or stash
+local work first, then run `git rm -r -q --cached . && git reset --hard` (this refresh is untested here).
+
+With a custom `CODEX_HOME`, drop `--global-guidance` (see setup). A device set up before this guide also
+needs the `skillOverrides` entry from [Set up a new device](#set-up-a-new-device).
+
+If `install-skills.sh` reports a real directory as `SKIP … same content as repo`, move it away and run
+`--apply`. If it reads `DIFFERS from repo`, compare first; a copy that lacks only `agents/openai.yaml` is
+safe to replace the same way.
 
 To remove skills that left `global.txt`, run `./scripts/install-skills.sh --apply --prune` deliberately: it
 removes every absolute symlink into this repo's `skills/` that is not in the set, **including skills you
@@ -135,10 +189,16 @@ are marked) and must be removed by hand.
 
 | Check | Command | Expected |
 |---|---|---|
-| Installed set matches `global.txt` | `./scripts/install-skills.sh` | `In sync.`, exit 0 (a "skipped" note means some entries are not managed by this repo) |
-| Installer behaviour | `./scripts/test-install-skills.sh` | `passed=55 failed=0` |
-| Claude Code sees the skills | `claude -p "Reply OK" --max-turns 1 --output-format stream-json --verbose < /dev/null \| grep '"subtype":"init"'` | the skill names appear in `skills` |
-| Codex sees the skills | in a new Codex session, type `$` or ask it to list its available skills | the four names appear |
+| Installed set matches `global.txt` | `./scripts/install-skills.sh` | `In sync.`, exit 0. `N change(s) pending`, exit 3, means something is missing or needs relinking; a SKIP line means a skill there is not managed by this repo |
+| Installer behaviour | `./scripts/test-install-skills.sh` | `passed=98 failed=0` |
+| Aaron's 7 in Claude Code | `./scripts/install-skills.sh --tool claude project-router projectplan-builder projectplan-rescope continuing-alm-work workbetter clean-project directory-cleanup` | `In sync.`, exit 0 (a skill held back on purpose shows as pending; a hand-installed real directory as SKIP) |
+| Per-device skills | `./scripts/install-skills.sh grill-me grilling grill-with-docs teach projectplan-roadmap` | `In sync.`, exit 0, no SKIP lines (both tools) |
+| Codex has Aaron's 7 | `python3 scripts/project-router.py install` | `0 new skills; 7 already match` |
+| Codex routing block | `grep -c 'project-router:user-guidance:end' ~/.codex/AGENTS.md` | `1` (if `~/.codex/AGENTS.override.md` exists, grep that file instead; with a custom `CODEX_HOME`, grep `$CODEX_HOME/AGENTS.md`; a missing file means the block is missing) |
+| `continuing-alm-work` manual-only in Claude Code | `python3 -c 'import json,os; print(json.load(open(os.path.expanduser("~/.claude/settings.json"))).get("skillOverrides",{}).get("continuing-alm-work"))'` · Windows PowerShell (untested): `(Get-Content -Raw "$HOME\.claude\settings.json" \| ConvertFrom-Json).skillOverrides.'continuing-alm-work'` | `user-invocable-only` (`None` = key missing; `FileNotFoundError` = no settings.json) |
+| Claude Code sees the skills | `claude -p "Reply OK" --max-turns 1 --output-format stream-json --verbose < /dev/null \| grep '"subtype":"init"'` | all 16 names appear in `skills` (4 global, Aaron's 7, grill-me, grilling, grill-with-docs, teach, projectplan-roadmap) |
+| Codex sees the skills | in a new Codex session, type `$` | all 16 names appear |
+| Codex offers only model-invocable skills | in a new Codex session, ask it to list its available skills | `domain-modeling`, Aaron's 6 model-invocable project skills, `grilling` and `projectplan-roadmap`; the 7 manual-only skills are absent (invoke them with `$name`) |
 | Library quality | `./scripts/validate-skills.sh` · `python3 scripts/lint-skills.py --config scripts/lint-config.json` | no new FAIL or WARN |
 
 ## Add or update a third-party skill
@@ -147,6 +207,8 @@ are marked) and must be removed by hand.
 2. Copy byte-identical: `mkdir skills/<category>/<name>`, then
    `git -C <upstream> archive <commit> <path> | tar -x -C skills/<category>/<name> --strip-components=<depth of path>`,
    then copy upstream's `LICENSE` into the directory. Confirm every file's sha256 matches `git -C <upstream> show <commit>:<path>/<file>`.
+   `.gitattributes` commits `*.sh`, `*.py` and `*.txt` with LF endings: if upstream ships one of them with
+   CRLF, the committed copy is not byte-identical, so say so in its provenance row.
 3. Add the directory to `scripts/lint-config.json` `vendored_paths`. That marks it third-party for the
    validator, the linter and the security scan.
 4. Scan the exact bytes before installing anywhere: on Aaron's homelab, `/root/bin/skill-scan <dir>`.
@@ -167,7 +229,7 @@ are marked) and must be removed by hand.
 | 4. Execution | Spec, then tickets, then one ticket per branch or worktree | `/to-spec` → `/to-tickets` → implement (test-first where it fits); `workbetter` or `continuing-alm-work` to execute or resume | ticket acceptance checks pass |
 | 5. Validation and review | Run the project's checks; an independent, read-only reviewer reviews the frozen diff against the ticket | project test/lint commands; a different model or session than the author | findings fixed or answered; a human merges |
 | 6. Reusable improvements | When a pattern repeats, capture it once | propose an owner-authored skill, or vendor a reference skill ([procedure](#add-or-update-a-third-party-skill)); change `global.txt` only for things needed everywhere | the repo has the improvement, scanned and validated |
-| 7. Sync and update | Pull and re-run the installers on each device | [Update and sync](#update-and-sync) | every device reports `In sync.` |
+| 7. Sync and update | Pull and re-run the installers on each device | [Update and sync](#update-and-sync) | every device reports `In sync.`, and both by-name commands report `In sync.` |
 
 ## One agent or a team
 
@@ -183,8 +245,9 @@ are marked) and must be removed by hand.
 
 ## Keeping context lean
 
-- Only the global set loads at session start. Manual-only skills (`to-spec`, `to-tickets`, `setup-…`)
-  add no description to the model's context until invoked.
+- Every installed model-invocable skill loads its description at session start: the global set plus the
+  by-name ones (Aaron's 6, `grilling`, `projectplan-roadmap`). Manual-only skills (`to-spec`, `to-tickets`,
+  `setup-…`, `continuing-alm-work`, `grill-me`, `grill-with-docs`, `teach`) add nothing until invoked.
 - Claude Code: `skillOverrides` per machine in `~/.claude/settings.json`, values `on`, `name-only`,
   `user-invocable-only`, `off` (official docs; this host already uses `user-invocable-only`).
 - Codex: disable a skill per machine with `[[skills.config]]`, `path = "<…>/SKILL.md"`, `enabled = false`
