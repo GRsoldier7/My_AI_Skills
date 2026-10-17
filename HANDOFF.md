@@ -12,6 +12,20 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 
 ## Log
 
+### 2026-10-17 — Vendor mattpocock grill-me + grilling into aarons-latest
+
+**Done**
+- Vendored `grill-me` and `grilling` byte-identical from mattpocock/skills @ `49dd158d1076134a641b33efb035946536778336` (`skills/productivity/*`) into `skills/aarons-latest/`, each with the upstream MIT `LICENSE`. `grill-me` is a one-line wrapper that calls `grilling`, so both are required.
+- Placed in `aarons-latest` at the owner's request (not `engineering/` like the 2026-10-03 vendored set). `scripts/project-router.py` uses a fixed seven-skill list, so the Codex/ChatGPT plugin build is unaffected. Added both to `vendored_paths`; updated the catalog README, the aarons-latest README and the skill-sets provenance table.
+- Installed on the Windows device: `./scripts/install-skills.sh --tool claude --apply grill-me grilling` made real symlinks in `~/.claude/skills` (run under `MSYS=winsymlinks:nativestrict`; PowerShell reports `SymbolicLink`). Claude Code listed `grilling` live in the same session.
+- Fixed two Windows-only gate bugs found while validating: `scripts/validate-skills.sh` now strips CR from the `python3` pattern list (the Store python3 writes CRLF to pipes, so every `vendored_paths` entry but the last carried a `` and never matched); `scripts/lint-skills.py` derives `REPO_DIR` from its own location instead of the hardcoded `/root/My_AI_Skills`, and resolves `--files` paths before `relative_to`. Neither changes results on the homelab.
+
+**Verified**
+- 6/6 vendored files match upstream sha256. SkillSpector static: grill-me SAFE 0/100; grilling SAFE 10/100, one EA2 finding reviewed as a false positive (fact-finding prose; the skill requires user confirmation before acting).
+
+**Open**
+- Not added to `platform-configs/skill-sets/global.txt`; `grilling` is model-invocable and would cost context in every session. Install per device: `./scripts/install-skills.sh --apply grill-me grilling`.
+
 ### 2026-10-14 — homelab-organizer class-C fixes merged; 14 skill descriptions trimmed
 
 **Done**

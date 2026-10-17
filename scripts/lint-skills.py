@@ -39,7 +39,7 @@ from dataclasses import dataclass, field, asdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
-REPO_DIR = Path("/root/My_AI_Skills")
+REPO_DIR = Path(__file__).resolve().parent.parent  # repo root wherever the clone lives
 SKILLS_DIR = REPO_DIR / "skills"
 DEFAULT_CONFIG = REPO_DIR / "scripts" / "lint-config.json"
 
@@ -172,7 +172,7 @@ def discover_skills(category: str | None = None) -> list[Path]:
 def is_vendored(skill_path: Path, patterns: list[str]) -> bool:
     """True if this skill came from an upstream pack we re-sync rather than author."""
     try:
-        rel = skill_path.relative_to(REPO_DIR).as_posix()
+        rel = skill_path.resolve().relative_to(REPO_DIR).as_posix()  # resolve: --files may pass relative paths
     except ValueError:
         return False
     # Match the skill DIRECTORY as well as the SKILL.md path. A prefix glob like

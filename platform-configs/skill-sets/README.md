@@ -44,6 +44,8 @@ upstream `LICENSE` (MIT). Never edit vendored files; control exposure per machin
 | to-spec | same | same | `skills/engineering/to-spec` | 2 | ALLOW, 2/100 |
 | to-tickets | same | same | `skills/engineering/to-tickets` | 2 | NOTIFY, 27/100; findings reviewed and judged false positives: TM2 at `SKILL.md:40` is ticket-sequencing prose (no tool chaining, and the user approves the breakdown before publishing); EA3 at `LICENSE:16` is MIT warranty text |
 | domain-modeling | same | same | `skills/engineering/domain-modeling` | 4 | ALLOW, 2/100 |
+| grill-me | same | `49dd158d1076134a641b33efb035946536778336` (2026-10-09) | `skills/productivity/grill-me` → vendored at `skills/aarons-latest/grill-me` | 2 | SAFE, 0/100 (scanned 2026-10-17) |
+| grilling | same | same | `skills/productivity/grilling` → vendored at `skills/aarons-latest/grilling` | 2 | SAFE, 10/100 (2026-10-17); one MEDIUM EA2 at `SKILL.md:28` judged a false positive: "don't ask the user for anything you could look up yourself" is about fact-finding, and the skill forbids acting before the user confirms |
 
 ## Candidates considered and not vendored
 

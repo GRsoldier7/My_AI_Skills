@@ -12,6 +12,12 @@ one justified workflow; this table is not a pipeline to execute in full.
 | [workbetter](workbetter/SKILL.md) | Execute a ready bounded task with proportionate verification. |
 | [clean-project](clean-project/SKILL.md) | Investigate lifecycle/security/usage and manage approved cleanup with optimizeproject.md. |
 | [directory-cleanup](directory-cleanup/SKILL.md) | Organize directories and archives without unrelated refactoring or permanent deletion. |
+| [grill-me](grill-me/SKILL.md) | Manual entry point (`/grill-me`) to a relentless interview that sharpens a plan or design; delegates to `grilling`. Vendored from mattpocock/skills. |
+| [grilling](grilling/SKILL.md) | The interview primitive: asks the open frontier of design questions in numbered rounds with a recommended answer each, looks up facts itself, leaves decisions to you. Vendored from mattpocock/skills. |
+
+`grill-me` and `grilling` are third-party (MIT, byte-identical to upstream at a pinned commit; provenance in
+[platform-configs/skill-sets/README.md](../../platform-configs/skill-sets/README.md#provenance-third-party-vendored)).
+They are not part of the project-router workflow set and are not packaged by `scripts/project-router.py`.
 
 Reuse existing specialists for diagnosis, review, verification, release, and
 checkpointing. Their presence is checked at runtime; they are not new required
