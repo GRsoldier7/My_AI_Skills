@@ -14,6 +14,18 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 
 ## Log
 
+### 2026-10-17 — skill-sets README follows the GLOSSARY.md rename; desktop install
+
+**Done**
+- `platform-configs/skill-sets/README.md`: the `domain-modeling` row and step 2's "Done when" now say `GLOSSARY.md`, matching the vendored skills at `49dd158d`. The provenance table's scan header now reads "SkillSpector, static; 2026-10-03 unless a later date is given", because most rows now carry their own 2026-10-17 scan date.
+- On the desktop, installed grill-me, grilling, grill-with-docs, teach, domain-modeling, project-router, setup-matt-pocock-skills, to-spec, to-tickets and directory-cleanup into `~/.claude/skills`. `clean-project` stays uninstalled until its uncommitted work is committed (owner's call).
+
+**Verified**
+- All ten skills resolve as symlinks into this clone (`~/.claude/skills/<name>/SKILL.md`); `CONTEXT.md` now appears in the README only where it describes the rename.
+
+**Open**
+- The desktop re-synced setup-matt-pocock-skills and to-tickets to `49dd158d` in parallel with `c9f537c` (the third commit in the entry below; identical files) and scanned them with `/root/bin/skill-scan`: setup ALLOW 2/100; to-tickets NOTIFY 27/100 (TM2 `SKILL.md:40`, EA3 `LICENSE:16`, both reviewed as false positives). The provenance table keeps the Windows results (SAFE 0/100, CAUTION 25/100). The two scans disagree and have not been reconciled.
+
 ### 2026-10-17 — Vendor mattpocock grill-me + grilling into aarons-latest
 
 **Done**

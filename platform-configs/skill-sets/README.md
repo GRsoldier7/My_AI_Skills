@@ -27,7 +27,7 @@ Aaron's homelab already loads 50+ symlinked skills). Codex 0.145.0 reads `~/.age
 | [setup-matt-pocock-skills](../../skills/engineering/setup-matt-pocock-skills/SKILL.md) | Configure a repo for `to-spec`/`to-tickets`: issue tracker (GitHub, GitLab or local markdown), triage labels, domain-doc layout | Once per project, before the first spec or tickets | Manual: `/setup-matt-pocock-skills` (Claude Code), `$setup-matt-pocock-skills` (Codex) | Git repo; `gh` or `glab` only for a GitHub/GitLab tracker. **Edits the project's existing `CLAUDE.md` or `AGENTS.md`** (adds `## Agent skills`) and writes `docs/agents/*.md` |
 | [to-spec](../../skills/engineering/to-spec/SKILL.md) | Turn the current conversation into a spec and publish it to the tracker, without re-interviewing | Discovery is done and the decisions are already in the conversation | Manual: `/to-spec`, `$to-spec` | Setup has run. Publishing to GitHub/GitLab is outward-facing; the local-markdown tracker keeps it in the repo |
 | [to-tickets](../../skills/engineering/to-tickets/SKILL.md) | Break a plan, spec or conversation into tracer-bullet vertical tickets with blocking edges; you approve the breakdown before anything is published | A spec or plan is approved | Manual: `/to-tickets`, `$to-tickets` | Setup has run; same tracker note as `to-spec` |
-| [domain-modeling](../../skills/engineering/domain-modeling/SKILL.md) | Keep a `CONTEXT.md` glossary and ADRs so code and conversations use one domain language | Discussing terminology, editing `CONTEXT.md`, recording an ADR | Automatic (model-invoked) | None. It names ADRs `docs/adr/0001-<slug>.md`; on Aaron's homelab the doc-naming guard refuses that name inside `workspace/docs` and `hermes-deploy/docs`, so name ADRs `YYYYMMDD - Project - Description.md` there |
+| [domain-modeling](../../skills/engineering/domain-modeling/SKILL.md) | Keep a `GLOSSARY.md` glossary and ADRs so code and conversations use one domain language | Discussing terminology, editing `GLOSSARY.md`, recording an ADR | Automatic (model-invoked) | None. It names ADRs `docs/adr/0001-<slug>.md`; on Aaron's homelab the doc-naming guard refuses that name inside `workspace/docs` and `hermes-deploy/docs`, so name ADRs `YYYYMMDD - Project - Description.md` there |
 
 All four work in Claude Code and Codex: each ships `agents/openai.yaml`, and the three manual-only
 skills set both `disable-model-invocation: true` and `allow_implicit_invocation: false`.
@@ -38,7 +38,7 @@ Files are byte-identical to upstream at the pinned commit; each skill directory 
 upstream `LICENSE` (MIT). Never edit vendored files; control exposure per machine instead (see
 [Keeping context lean](#keeping-context-lean)).
 
-| Skill | Upstream | Commit | Upstream path | Upstream files | Security scan (2026-10-03, SkillSpector, static) |
+| Skill | Upstream | Commit | Upstream path | Upstream files | Security scan (SkillSpector, static; 2026-10-03 unless a later date is given) |
 |---|---|---|---|---|---|
 | setup-matt-pocock-skills | [mattpocock/skills](https://github.com/mattpocock/skills) | `49dd158d1076134a641b33efb035946536778336` (re-synced 2026-10-17 from `c55ee46`; follows the `CONTEXT.md` → `GLOSSARY.md` rename) | `skills/engineering/setup-matt-pocock-skills` | 7 | SAFE, 0/100 (2026-10-17) |
 | to-spec | same | `c55ee46` (content identical at `49dd158d`, checked 2026-10-17) | `skills/engineering/to-spec` | 2 | ALLOW, 2/100 |
@@ -162,7 +162,7 @@ are marked) and must be removed by hand.
 | Step | Do | Skills and commands | Done when |
 |---|---|---|---|
 | 1. Environment setup | Clone, run both installers | [Set up a new device](#set-up-a-new-device) | `install-skills.sh` says `In sync.` |
-| 2. Project creation or onboarding | Configure the tracker and domain docs once; establish the glossary | `/setup-matt-pocock-skills`, `domain-modeling`; for project lifecycle questions (start, next step, resume, rescope, cleanup) start with `project-router` | `docs/agents/*.md` and `CONTEXT.md` exist |
+| 2. Project creation or onboarding | Configure the tracker and domain docs once; establish the glossary | `/setup-matt-pocock-skills`, `domain-modeling`; for project lifecycle questions (start, next step, resume, rescope, cleanup) start with `project-router` | `docs/agents/*.md` and `GLOSSARY.md` exist |
 | 3. Skill selection | Let one controller pick the workflow; install library skills only when needed | `project-router` or your host's router (one controller, never nested); `./scripts/install-skills.sh --apply <name>` | the next workflow is named |
 | 4. Execution | Spec, then tickets, then one ticket per branch or worktree | `/to-spec` → `/to-tickets` → implement (test-first where it fits); `workbetter` or `continuing-alm-work` to execute or resume | ticket acceptance checks pass |
 | 5. Validation and review | Run the project's checks; an independent, read-only reviewer reviews the frozen diff against the ticket | project test/lint commands; a different model or session than the author | findings fixed or answered; a human merges |
