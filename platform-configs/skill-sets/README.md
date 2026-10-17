@@ -43,9 +43,11 @@ upstream `LICENSE` (MIT). Never edit vendored files; control exposure per machin
 | setup-matt-pocock-skills | [mattpocock/skills](https://github.com/mattpocock/skills) | `c55ee46073ed923f86ce59a5eb3b6d895095d1b7` | `skills/engineering/setup-matt-pocock-skills` | 7 | ALLOW, 2/100 |
 | to-spec | same | same | `skills/engineering/to-spec` | 2 | ALLOW, 2/100 |
 | to-tickets | same | same | `skills/engineering/to-tickets` | 2 | NOTIFY, 27/100; findings reviewed and judged false positives: TM2 at `SKILL.md:40` is ticket-sequencing prose (no tool chaining, and the user approves the breakdown before publishing); EA3 at `LICENSE:16` is MIT warranty text |
-| domain-modeling | same | same | `skills/engineering/domain-modeling` | 4 | ALLOW, 2/100 |
+| domain-modeling | same | `49dd158d1076134a641b33efb035946536778336` (re-synced 2026-10-17 from `c55ee46`; upstream renamed `CONTEXT.md` to `GLOSSARY.md`, which `grill-with-docs` expects) | `skills/engineering/domain-modeling` | 4 | SAFE, 0/100 (re-scanned 2026-10-17 at `49dd158d`) |
 | grill-me | same | `49dd158d1076134a641b33efb035946536778336` (2026-10-09) | `skills/productivity/grill-me` → vendored at `skills/aarons-latest/grill-me` | 2 | SAFE, 0/100 (scanned 2026-10-17) |
 | grilling | same | same | `skills/productivity/grilling` → vendored at `skills/aarons-latest/grilling` | 2 | SAFE, 10/100 (2026-10-17); one MEDIUM EA2 at `SKILL.md:28` judged a false positive: "don't ask the user for anything you could look up yourself" is about fact-finding, and the skill forbids acting before the user confirms |
+| grill-with-docs | same | same (`49dd158d`) | `skills/engineering/grill-with-docs` → vendored at `skills/aarons-latest/grill-with-docs` | 2 | SAFE, 0/100 (2026-10-17). Two-line wrapper: calls `grilling` and `domain-modeling`, so both must be installed with it |
+| teach | same | same (`49dd158d`) | `skills/productivity/teach` → vendored at `skills/aarons-latest/teach` | 6 | SAFE, 0/100 (2026-10-17) |
 
 ## Candidates considered and not vendored
 

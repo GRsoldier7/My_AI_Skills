@@ -20,10 +20,15 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 - Installed on the Windows device: `./scripts/install-skills.sh --tool claude --apply grill-me grilling` made real symlinks in `~/.claude/skills` (run under `MSYS=winsymlinks:nativestrict`; PowerShell reports `SymbolicLink`). Claude Code listed `grilling` live in the same session.
 - Fixed two Windows-only gate bugs found while validating: `scripts/validate-skills.sh` now strips CR from the `python3` pattern list (the Store python3 writes CRLF to pipes, so every `vendored_paths` entry but the last carried a `` and never matched); `scripts/lint-skills.py` derives `REPO_DIR` from its own location instead of the hardcoded `/root/My_AI_Skills`, and resolves `--files` paths before `relative_to`. Neither changes results on the homelab.
 
+- Same session, second commit: vendored `grill-with-docs` (same upstream commit, `skills/engineering/grill-with-docs`) into `aarons-latest`. It calls `grilling` and `domain-modeling`; `domain-modeling` (vendored 2026-10-03 at `c55ee46`) was not installed on the Windows device, so it was linked at the same time.
+- Re-synced `skills/engineering/domain-modeling` from `c55ee46` to `49dd158d` (byte-identical; upstream renamed `CONTEXT.md`/`CONTEXT-FORMAT.md` to `GLOSSARY.md`/`GLOSSARY-FORMAT.md`). Needed because `grill-with-docs` at `49dd158d` pairs with that version. `setup-matt-pocock-skills` stays at `c55ee46`; see Open.
+- Vendored `teach` (`skills/productivity/teach`, 6 files, SAFE 0/100) into `aarons-latest` at the owner's request. Standalone; manual `/teach <topic>`.
+
 **Verified**
-- 6/6 vendored files match upstream sha256. SkillSpector static: grill-me SAFE 0/100; grilling SAFE 10/100, one EA2 finding reviewed as a false positive (fact-finding prose; the skill requires user confirmation before acting).
+- All vendored files match upstream sha256 (grill-me 3, grilling 3, grill-with-docs 3, teach 7, domain-modeling 5). grill-with-docs and teach SAFE 0/100. SkillSpector static: grill-me SAFE 0/100; grilling SAFE 10/100, one EA2 finding reviewed as a false positive (fact-finding prose; the skill requires user confirmation before acting).
 
 **Open**
+- `setup-matt-pocock-skills` (still `c55ee46`) and its `domain.md` tell agents to read `CONTEXT.md`, but `domain-modeling` now writes `GLOSSARY.md`. Upstream has 5 changed files for it and 1 for `to-tickets`; re-sync both to `49dd158d` (same procedure: byte-identical copy, hash check, scan, provenance row) to close the gap. Not done this session: out of the asked scope.
 - Not added to `platform-configs/skill-sets/global.txt`; `grilling` is model-invocable and would cost context in every session. Install per device: `./scripts/install-skills.sh --apply grill-me grilling`.
 
 ### 2026-10-14 — homelab-organizer class-C fixes merged; 14 skill descriptions trimmed

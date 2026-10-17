@@ -14,8 +14,10 @@ one justified workflow; this table is not a pipeline to execute in full.
 | [directory-cleanup](directory-cleanup/SKILL.md) | Organize directories and archives without unrelated refactoring or permanent deletion. |
 | [grill-me](grill-me/SKILL.md) | Manual entry point (`/grill-me`) to a relentless interview that sharpens a plan or design; delegates to `grilling`. Vendored from mattpocock/skills. |
 | [grilling](grilling/SKILL.md) | The interview primitive: asks the open frontier of design questions in numbered rounds with a recommended answer each, looks up facts itself, leaves decisions to you. Vendored from mattpocock/skills. |
+| [grill-with-docs](grill-with-docs/SKILL.md) | Manual entry point (`/grill-with-docs`): the same interview, but stateful; runs `grilling` plus `domain-modeling` so decisions land in `GLOSSARY.md` and ADRs. Use it when working inside a repo. Vendored from mattpocock/skills. |
+| [teach](teach/SKILL.md) | Manual (`/teach <topic>`): multi-session tutoring in the current directory as a teaching workspace (MISSION.md, RESOURCES.md, lessons, reference sheets, learning records). Vendored from mattpocock/skills. |
 
-`grill-me` and `grilling` are third-party (MIT, byte-identical to upstream at a pinned commit; provenance in
+`grill-me`, `grilling`, `grill-with-docs` and `teach` are third-party (MIT, byte-identical to upstream at a pinned commit; provenance in
 [platform-configs/skill-sets/README.md](../../platform-configs/skill-sets/README.md#provenance-third-party-vendored)).
 They are not part of the project-router workflow set and are not packaged by `scripts/project-router.py`.
 

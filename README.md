@@ -100,7 +100,7 @@ Skills are designed to **compose** — `business-genius` routes to specialist su
 
 ## Skill Catalog
 
-### Aaron's Latest Skills (`skills/aarons-latest/`) — 7 skills
+### Aaron's Latest Skills (`skills/aarons-latest/`) — 9 skills
 
 Aaron's newest skills, kept in their own section so recent additions are easy to find.
 
@@ -110,6 +110,8 @@ Aaron's newest skills, kept in their own section so recent additions are easy to
 | `directory-cleanup` | Project cleanup, directory reorganization, safe archiving of outdated code, documents or plans, and ongoing repository-structure maintenance. |
 | `grill-me` | Manual (`/grill-me`): a relentless interview to sharpen a plan, design or idea when there is no repo to leave notes in. Thin entry point that calls `grilling`. Vendored from [mattpocock/skills](https://github.com/mattpocock/skills). |
 | `grilling` | The interview itself: numbered question rounds over the open design frontier, each with a recommended answer; facts are looked up, decisions are yours. Triggers on "grill" phrases. Vendored from mattpocock/skills. |
+| `grill-with-docs` | Manual (`/grill-with-docs`): the same interview with a paper trail. Runs `grilling` and `domain-modeling` together so settled decisions are written to `GLOSSARY.md` and ADRs. Prefer it over `grill-me` whenever there is a repo to leave notes in. Vendored from mattpocock/skills. |
+| `teach` | Manual (`/teach <topic>`): learn a skill or concept over multiple sessions. Turns the current directory into a teaching workspace with a mission, curated resources, short HTML lessons, printable reference sheets and learning records. Vendored from mattpocock/skills. |
 | `projectplan-builder` | A first project plan, delivery roadmap, implementation phases, or task breakdown for an idea, feature, or codebase that has no delivery baseline yet. Not for rescoping or executing an existing plan. |
 | `projectplan-rescope` | Rescoping, rescuing, simplifying, or reprioritizing an existing plan after changed requirements, deadlines, capacity, completed work, blockers, or new evidence. Not for a first plan or routine status reporting. |
 | `workbetter` | Executing or resuming a multi-step project plan: grounded sequencing, task-specific tool selection, proportional verification, drift checks, and reusable workflow improvements. Use when asked to WorkBetter, work through a plan efficiently, recover from drift, or improve a recurring execution workflow. |
@@ -497,11 +499,13 @@ aaron-skill-library/
 ├── .gitignore
 │
 ├── skills/                            # All 36 skills, organized by category
-│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (7)
+│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (9)
 │   │   ├── continuing-alm-work/       # Resume interrupted plans from last verified state
 │   │   ├── directory-cleanup/         # Safe cleanup, archiving and structure maintenance
 │   │   ├── grill-me/                  # /grill-me entry point (vendored, mattpocock/skills)
 │   │   ├── grilling/                  # Relentless design interview primitive (vendored)
+│   │   ├── grill-with-docs/           # Interview + GLOSSARY/ADR paper trail (vendored)
+│   │   ├── teach/                     # Multi-session tutoring workspace (vendored)
 │   │   ├── projectplan-builder/       # First delivery plan for an idea, feature or codebase
 │   │   ├── projectplan-rescope/       # Rescope or rescue an existing plan
 │   │   └── workbetter/                # Execute or resume a plan with verification and drift checks
