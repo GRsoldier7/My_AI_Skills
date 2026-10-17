@@ -123,6 +123,12 @@ check "T15 owner skill links for Claude Code" links_to "$H/.claude/skills/workbe
 check "T15 owner skill is not linked for Codex" absent "$H/.agents/skills/workbetter"
 check "T15 says why" out_has "managed by scripts/project-router.py"
 
+# T22: an aarons-latest skill that project-router.py does not manage IS linked for Codex
+H="$T/h14"; mkdir -p "$H"
+run "$H" --apply grill-me
+check "T22 non-router aarons-latest skill links for Claude Code" links_to "$H/.claude/skills/grill-me" "$REPO_DIR/skills/aarons-latest/grill-me"
+check "T22 non-router aarons-latest skill links for Codex too" links_to "$H/.agents/skills/grill-me" "$REPO_DIR/skills/aarons-latest/grill-me"
+
 # T16: a fully skipped set says so instead of a bare "In sync."
 H="$T/h9"; mkdir -p "$H/.claude/skills/to-spec" "$H/.agents/skills/to-spec"
 printf '%s\n' "$A" > "$T/set-a.txt"

@@ -2,13 +2,15 @@
 
 Running session log for this repo. Newest entry first. Append; never rewrite history. No secrets.
 
-## Current state (2026-09-30)
+## Current state (2026-10-17)
 
-- Library: 187 skills in the registry regenerated on 2026-10-03. The Windows global copies were last verified against the repository on 2026-09-27.
-- `continuing-alm-work` now uses the owner's nine-file replacement v2.0.0 package. The earlier 17-file build described below was not recovered; the new archive has a different SHA-256 and supersedes it.
-- SkillSpector gate (host `/root/bin/skill-scan`): rounds 1-5 were last verified on 2026-09-28 (`aaron/fp-tuning` @ `7293f4c`). Current host state has not been rechecked.
-- 2026-10-03: cross-tool skill sets. `scripts/install-skills.sh` links `platform-configs/skill-sets/global.txt` into Claude Code and Codex; four mattpocock skills vendored. Guide and index: `platform-configs/skill-sets/README.md`.
-- 2026-10-14: homelab-organizer class-C fixes merged and 14 skill descriptions trimmed on local `main`; push to origin pending.
+- Library: 191 skills in the master-orchestrator registry, regenerated 2026-10-17 from a complete Windows checkout. README and CLAUDE.md counts match it.
+- Vendored mattpocock skills are all at `49dd158d1076134a641b33efb035946536778336` (to-spec is identical at that commit): `setup-matt-pocock-skills`, `to-spec`, `to-tickets`, `domain-modeling` in `skills/engineering/`; `grill-me`, `grilling`, `grill-with-docs`, `teach` in `skills/aarons-latest/`. Provenance and scan results: `platform-configs/skill-sets/README.md`.
+- `scripts/install-skills.sh` skips only the project-router skills on the Codex side (read from `SKILLS` in `scripts/project-router.py`); other `skills/aarons-latest/*` install for both tools. Test suite: 56/57 on Windows under `MSYS=winsymlinks:nativestrict`; T14 (relative link survives `--prune`) fails on Windows with the unmodified installer too, a pre-existing MSYS `readlink` difference, untested on Linux since 2026-10-03.
+- Windows device (this machine): global set plus `domain-modeling`, `grill-me`, `grilling`, `grill-with-docs`, `teach` linked for Claude Code and Codex. Other devices: `git pull`, then `./scripts/install-skills.sh --apply` and `./scripts/install-skills.sh --apply domain-modeling grill-me grilling grill-with-docs teach`.
+- `scripts/lint-skills.py`, `scripts/validate-skills.sh` and `scripts/generate-skill-registry.py` run from any clone location and on Windows (hardcoded `/root/My_AI_Skills` paths and a CRLF trap removed 2026-10-17).
+- SkillSpector gate (host `/root/bin/skill-scan`): rounds 1-5 last verified 2026-09-28; current host state not rechecked.
+- `continuing-alm-work` is the owner's nine-file v2.0.0 package (2026-09-30).
 
 ## Log
 
@@ -23,12 +25,12 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 - Same session, second commit: vendored `grill-with-docs` (same upstream commit, `skills/engineering/grill-with-docs`) into `aarons-latest`. It calls `grilling` and `domain-modeling`; `domain-modeling` (vendored 2026-10-03 at `c55ee46`) was not installed on the Windows device, so it was linked at the same time.
 - Re-synced `skills/engineering/domain-modeling` from `c55ee46` to `49dd158d` (byte-identical; upstream renamed `CONTEXT.md`/`CONTEXT-FORMAT.md` to `GLOSSARY.md`/`GLOSSARY-FORMAT.md`). Needed because `grill-with-docs` at `49dd158d` pairs with that version. `setup-matt-pocock-skills` stays at `c55ee46`; see Open.
 - Vendored `teach` (`skills/productivity/teach`, 6 files, SAFE 0/100) into `aarons-latest` at the owner's request. Standalone; manual `/teach <topic>`.
+- Third commit (loose ends, owner-requested): re-synced `setup-matt-pocock-skills` (7 files, SAFE 0/100) and `to-tickets` (2 files, CAUTION 25/100, same TM2 false positive as 2026-10-03) to `49dd158d`, so no vendored mattpocock skill mentions `CONTEXT.md` any more; `to-spec` is unchanged upstream. `scripts/install-skills.sh` now skips only the project-router skills on the Codex side (read from `SKILLS` in `scripts/project-router.py`) instead of all of `skills/aarons-latest/*`, so the vendored grill/teach skills install for Codex too (new test T22). `scripts/generate-skill-registry.py` lost its hardcoded `/root/My_AI_Skills` paths and the registry was regenerated from this complete checkout. README and CLAUDE.md skill counts now match the registry total. This Windows device also got the global set and the new skills linked for Codex.
 
 **Verified**
 - All vendored files match upstream sha256 (grill-me 3, grilling 3, grill-with-docs 3, teach 7, domain-modeling 5). grill-with-docs and teach SAFE 0/100. SkillSpector static: grill-me SAFE 0/100; grilling SAFE 10/100, one EA2 finding reviewed as a false positive (fact-finding prose; the skill requires user confirmation before acting).
 
 **Open**
-- `setup-matt-pocock-skills` (still `c55ee46`) and its `domain.md` tell agents to read `CONTEXT.md`, but `domain-modeling` now writes `GLOSSARY.md`. Upstream has 5 changed files for it and 1 for `to-tickets`; re-sync both to `49dd158d` (same procedure: byte-identical copy, hash check, scan, provenance row) to close the gap. Not done this session: out of the asked scope.
 - Not added to `platform-configs/skill-sets/global.txt`; `grilling` is model-invocable and would cost context in every session. Install per device: `./scripts/install-skills.sh --apply grill-me grilling`.
 
 ### 2026-10-14 — homelab-organizer class-C fixes merged; 14 skill descriptions trimmed

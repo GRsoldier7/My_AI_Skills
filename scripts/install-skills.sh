@@ -87,6 +87,11 @@ note() {
 }
 
 [[ "$APPLY" == true ]] || echo "DRY RUN: nothing will change. Re-run with --apply."
+# Codex copies of these skills/aarons-latest/* names are managed by scripts/project-router.py; the
+# list is read from its SKILLS tuple so the two installers never manage the same name.
+ROUTER_SKILLS=" $(sed -n "/^SKILLS = (/,/^)/p" "$REPO_DIR/scripts/project-router.py" | grep -oE "'[a-z-]+'" | tr -d "'" | tr "
+" " ")"
+
 for tool in $TOOLS; do
     if [[ "$tool" == claude ]]; then dir="$BASE/.claude/skills"; else dir="$BASE/.agents/skills"; fi
     echo "== $tool: $dir"
@@ -96,7 +101,7 @@ for tool in $TOOLS; do
         name="${e##*/}"
         src="$REPO_DIR/$e"
         dst="$dir/$name"
-        if [[ "$tool" == codex && "$e" == skills/aarons-latest/* ]]; then
+        if [[ "$tool" == codex && "$e" == skills/aarons-latest/* && "$ROUTER_SKILLS" == *" $name "* ]]; then
             if [[ -L "$dst" && "$(readlink "$dst")" == "$REPO_DIR/"* ]]; then
                 note "SKIP    $name (managed by scripts/project-router.py; remove the stale link $dst first)"
             else

@@ -40,9 +40,9 @@ upstream `LICENSE` (MIT). Never edit vendored files; control exposure per machin
 
 | Skill | Upstream | Commit | Upstream path | Upstream files | Security scan (2026-10-03, SkillSpector, static) |
 |---|---|---|---|---|---|
-| setup-matt-pocock-skills | [mattpocock/skills](https://github.com/mattpocock/skills) | `c55ee46073ed923f86ce59a5eb3b6d895095d1b7` | `skills/engineering/setup-matt-pocock-skills` | 7 | ALLOW, 2/100 |
-| to-spec | same | same | `skills/engineering/to-spec` | 2 | ALLOW, 2/100 |
-| to-tickets | same | same | `skills/engineering/to-tickets` | 2 | NOTIFY, 27/100; findings reviewed and judged false positives: TM2 at `SKILL.md:40` is ticket-sequencing prose (no tool chaining, and the user approves the breakdown before publishing); EA3 at `LICENSE:16` is MIT warranty text |
+| setup-matt-pocock-skills | [mattpocock/skills](https://github.com/mattpocock/skills) | `49dd158d1076134a641b33efb035946536778336` (re-synced 2026-10-17 from `c55ee46`; follows the `CONTEXT.md` → `GLOSSARY.md` rename) | `skills/engineering/setup-matt-pocock-skills` | 7 | SAFE, 0/100 (2026-10-17) |
+| to-spec | same | `c55ee46` (content identical at `49dd158d`, checked 2026-10-17) | `skills/engineering/to-spec` | 2 | ALLOW, 2/100 |
+| to-tickets | same | `49dd158d1076134a641b33efb035946536778336` (re-synced 2026-10-17 from `c55ee46`) | `skills/engineering/to-tickets` | 2 | CAUTION, 25/100 (2026-10-17); one TM2 at `SKILL.md:40`, the same expand/contract ticket-sequencing prose judged a false positive on 2026-10-03 (no tool chaining; the user approves the breakdown before publishing) |
 | domain-modeling | same | `49dd158d1076134a641b33efb035946536778336` (re-synced 2026-10-17 from `c55ee46`; upstream renamed `CONTEXT.md` to `GLOSSARY.md`, which `grill-with-docs` expects) | `skills/engineering/domain-modeling` | 4 | SAFE, 0/100 (re-scanned 2026-10-17 at `49dd158d`) |
 | grill-me | same | `49dd158d1076134a641b33efb035946536778336` (2026-10-09) | `skills/productivity/grill-me` → vendored at `skills/aarons-latest/grill-me` | 2 | SAFE, 0/100 (scanned 2026-10-17) |
 | grilling | same | same | `skills/productivity/grilling` → vendored at `skills/aarons-latest/grilling` | 2 | SAFE, 10/100 (2026-10-17); one MEDIUM EA2 at `SKILL.md:28` judged a false positive: "don't ask the user for anything you could look up yourself" is about fact-finding, and the skill forbids acting before the user confirms |

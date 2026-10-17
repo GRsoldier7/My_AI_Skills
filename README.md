@@ -1,6 +1,6 @@
 # Aaron's AI Skill Library
 
-A library of **55 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. A **master-orchestrator** skill routes every request to the optimal skill chain automatically.
+A library of **191 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. A **master-orchestrator** skill routes every request to the optimal skill chain automatically.
 
 The library supports **five AI platforms**: Claude Code (slash commands), Google Antigravity / Gemini CLI, OpenAI Codex, Cursor, and ChatGPT. A dedicated **`skill-builder` meta-skill** manages the creation, auditing, and continuous improvement of all skills using a 5-module pipeline and a 10-dimension quality rubric.
 
@@ -100,12 +100,14 @@ Skills are designed to **compose** — `business-genius` routes to specialist su
 
 ## Skill Catalog
 
-### Aaron's Latest Skills (`skills/aarons-latest/`) — 9 skills
+### Aaron's Latest Skills (`skills/aarons-latest/`) — 11 skills
 
 Aaron's newest skills, kept in their own section so recent additions are easy to find.
 
 | Skill | When to Use |
 |-------|-------------|
+| `project-router` | Multi-step project startup, next-step selection, resuming interrupted work, rescoping, cleanup, or readiness assessment. Picks one justified workflow from evidence of phase, maturity, exposure, and permissions; read-only unless execution is authorized. |
+| `clean-project` | Investigating a project's lifecycle, security exposure, and usage, then managing approved cleanup through `optimizeproject.md`. |
 | `continuing-alm-work` | Resuming or continuing an established project, plan, roadmap, backlog, or interrupted session. Reconciles the verified state, executes the next safe task, checks the result, and leaves a precise resume marker. |
 | `directory-cleanup` | Project cleanup, directory reorganization, safe archiving of outdated code, documents or plans, and ongoing repository-structure maintenance. |
 | `grill-me` | Manual (`/grill-me`): a relentless interview to sharpen a plan, design or idea when there is no repo to leave notes in. Thin entry point that calls `grilling`. Vendored from [mattpocock/skills](https://github.com/mattpocock/skills). |
@@ -498,8 +500,10 @@ aaron-skill-library/
 ├── CLAUDE.md                          # Master Claude Code project instructions
 ├── .gitignore
 │
-├── skills/                            # All 36 skills, organized by category
-│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (9)
+├── skills/                            # All 191 skills, organized by category
+│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (11)
+│   │   ├── project-router/            # Pick the next project workflow from evidence
+│   │   ├── clean-project/             # Lifecycle/security/usage audit, approved cleanup
 │   │   ├── continuing-alm-work/       # Resume interrupted plans from last verified state
 │   │   ├── directory-cleanup/         # Safe cleanup, archiving and structure maintenance
 │   │   ├── grill-me/                  # /grill-me entry point (vendored, mattpocock/skills)
