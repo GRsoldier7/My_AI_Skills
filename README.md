@@ -100,7 +100,7 @@ Skills are designed to **compose** — `business-genius` routes to specialist su
 
 ## Skill Catalog
 
-### Aaron's Latest Skills (`skills/aarons-latest/`) — 11 skills
+### Aaron's Latest Skills (`skills/aarons-latest/`) — 12 skills
 
 Aaron's newest skills, kept in their own section so recent additions are easy to find.
 
@@ -116,6 +116,7 @@ Aaron's newest skills, kept in their own section so recent additions are easy to
 | `teach` | Manual (`/teach <topic>`): learn a skill or concept over multiple sessions. Turns the current directory into a teaching workspace with a mission, curated resources, short HTML lessons, printable reference sheets and learning records. Vendored from mattpocock/skills. |
 | `projectplan-builder` | A first project plan, delivery roadmap, implementation phases, or task breakdown for an idea, feature, or codebase that has no delivery baseline yet. Not for rescoping or executing an existing plan. |
 | `projectplan-rescope` | Rescoping, rescuing, simplifying, or reprioritizing an existing plan after changed requirements, deadlines, capacity, completed work, blockers, or new evidence. Not for a first plan or routine status reporting. |
+| `projectplan-roadmap` | Saving an existing or approved plan into the project as one concise, prescriptive roadmap file named `YYYYMMDD - <Project Name> - <Title>.md`: goal, locked decisions, contracts, ID'd task cards with exact files and observable done-criteria, waves, release gate, next action. Writes one file, verifies it, stops. |
 | `workbetter` | Executing or resuming a multi-step project plan: grounded sequencing, task-specific tool selection, proportional verification, drift checks, and reusable workflow improvements. Use when asked to WorkBetter, work through a plan efficiently, recover from drift, or improve a recurring execution workflow. |
 
 ---
@@ -501,7 +502,7 @@ aaron-skill-library/
 ├── .gitignore
 │
 ├── skills/                            # All 191 skills, organized by category
-│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (11)
+│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (12)
 │   │   ├── project-router/            # Pick the next project workflow from evidence
 │   │   ├── clean-project/             # Lifecycle/security/usage audit, approved cleanup
 │   │   ├── continuing-alm-work/       # Resume interrupted plans from last verified state
@@ -512,6 +513,7 @@ aaron-skill-library/
 │   │   ├── teach/                     # Multi-session tutoring workspace (vendored)
 │   │   ├── projectplan-builder/       # First delivery plan for an idea, feature or codebase
 │   │   ├── projectplan-rescope/       # Rescope or rescue an existing plan
+│   │   ├── projectplan-roadmap/       # Save a plan as a dated, prescriptive roadmap file
 │   │   └── workbetter/                # Execute or resume a plan with verification and drift checks
 │   │
 │   ├── core/                          # Orchestration & meta-skills (4)
