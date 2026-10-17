@@ -12,6 +12,20 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 
 ## Log
 
+### 2026-10-17 — re-synced setup-matt-pocock-skills and to-tickets to `49dd158d`
+
+**Done**
+- Re-synced `skills/engineering/setup-matt-pocock-skills` (5 files) and `skills/engineering/to-tickets` (1 file) byte-identical from mattpocock/skills `49dd158d1076134a641b33efb035946536778336` (upstream HEAD on 2026-10-17). Closes the Open item in the entry below: setup now scaffolds `GLOSSARY.md`/`GLOSSARY-MAP.md`, matching `domain-modeling` and `grill-with-docs`; `to-tickets` uses the tracker docs' new sub-issue operation, so the pair moves together. `to-spec` has no upstream change between the pins, so all vendored mattpocock skills now sit at `49dd158d`.
+- Provenance rows updated in `platform-configs/skill-sets/README.md`.
+- On the desktop (`aaron-Inspiron-3030`), the same session installed grill-me, grilling, grill-with-docs, teach, domain-modeling, project-router, setup-matt-pocock-skills, to-spec, to-tickets and directory-cleanup into `~/.claude/skills`. `clean-project` stays uninstalled until its uncommitted work is committed (owner's call).
+
+**Verified**
+- sha256: setup 8/8, to-tickets 3/3, to-spec 3/3 files match upstream (LICENSE unchanged between pins).
+- `/root/bin/skill-scan`: setup ALLOW 2/100; to-tickets NOTIFY 27/100, the same two findings as before (TM2 `SKILL.md:40` ticket-sequencing prose; EA3 `LICENSE:16` MIT warranty text), reviewed again as false positives.
+
+**Open**
+- Not pushed to origin (local `main` only).
+
 ### 2026-10-17 — Vendor mattpocock grill-me + grilling into aarons-latest
 
 **Done**
