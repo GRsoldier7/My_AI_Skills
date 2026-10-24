@@ -15,9 +15,11 @@ Without live browsing, disclose immediately; provide targeted queries without cl
 
 ## 2. Research
 
-Cover official promotions, sales, newsletter/SMS/app offers, loyalty/referrals, bundles, shipping, and manufacturers; public creators/social posts, video descriptions, blogs, Reddit/forums; coupon services; cashback, payment offers, price matching, and authorized discounted gift cards.
+Go beyond routine coupon lists and first-page results with surgical precision. Dig through Reddit threads and buried comments, public Instagram/TikTok/Facebook/X posts, YouTube descriptions, niche deal forums, blogs, and creator/ambassador pages. Use platform/domain filters and exact-code searches to follow promising mentions and links, uncovering obscure, publicly shared offers.
 
-Vary retailer/domain/date queries with promo, creator, sitewide, first-order, and shipping terms; add product/model/category. Seek exclusions and failures. Corroborate and deduplicate: repeated listings, update dates, and "verified" badges are not proof. Retain older offers with current support. Stop after relevant source categories are covered and further searches yield no material improvement. Disclose inaccessible sources.
+Check official promotions, sales, newsletter/SMS/app offers, loyalty/referrals, bundles, shipping, manufacturer offers, coupon services, cashback, payment offers, price matching, and authorized discounted gift cards.
+
+Vary retailer/domain/date queries with promo, creator, ambassador, campaign, sitewide, first-order, and shipping terms; add product/model/category. Seek exclusions and failures. Corroborate and deduplicate: repeated listings, update dates, and "verified" badges are not proof. Retain older offers with current support. Stop after relevant source categories are covered and further searches yield no material improvement. Disclose inaccessible sources.
 
 ## 3. Verify
 
