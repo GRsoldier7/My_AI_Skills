@@ -23,7 +23,7 @@ PROBE='cat <<EOF
   "disk_root_pct": "$(df -h / 2>/dev/null | awk "NR==2 {print \$5}")",
   "log_files_24h": $(find /var/log -mtime -1 -type f 2>/dev/null | wc -l),
   "services_up": "$(systemctl list-units --type=service --state=running --no-legend --no-pager 2>/dev/null | awk "{print \$1}" | head -20 | tr "\n" "," | sed "s/,\$//")",
-  "pkgs_outdated": $(apt list --upgradable 2>/dev/null | grep -c upgradable || echo 0)
+  "pkgs_outdated": $(apt list --upgradable 2>/dev/null | grep -c upgradable)
 }
 EOF'
 

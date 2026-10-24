@@ -372,15 +372,26 @@ case "$1" in
   config) printf 'name: vm-b\\nmemory: 2048\\n' ;;
 esac
 """
+# Running CT whose `pct exec` runs the probe on this host, against an apt that lists nothing upgradable
+PCT_RUNNING_STUB = """#!/bin/sh
+case "$1" in
+  list) printf 'VMID       Status     Lock         Name\\n101        running                 ct-a\\n' ;;
+  status) echo 'status: running' ;;
+  config) printf 'hostname: ct-a\\nmemory: 512\\n' ;;
+  exec) shift 3; exec "$@" ;;
+esac
+"""
+APT_NONE_UPGRADABLE_STUB = "#!/bin/sh\necho 'Listing... Done'\n"
 
 
 class InventoryContainersTest(unittest.TestCase):
     # Stubbed pct/qm: CT 101 has no doc; VM 110's doc sits in lxc/ (misfiled); vms/ is empty
-    def inventory(self) -> dict:
+    def inventory(self, pct_stub: str = PCT_STUB) -> dict:
         with tempfile.TemporaryDirectory() as tmp:
             stubs = Path(tmp) / 'bin'
             stubs.mkdir()
-            for name, body in (('pct', PCT_STUB), ('qm', QM_STUB), ('hostname', '#!/bin/sh\necho node-a\n')):
+            for name, body in (('pct', pct_stub), ('qm', QM_STUB), ('hostname', '#!/bin/sh\necho node-a\n'),
+                               ('apt', APT_NONE_UPGRADABLE_STUB)):
                 (stubs / name).write_text(body)
                 (stubs / name).chmod(0o755)
             (Path(tmp) / 'lxc' / '110-misfiled').mkdir(parents=True)
@@ -413,6 +424,12 @@ class InventoryContainersTest(unittest.TestCase):
         # Unclustered nodes: a peer node's guest doc folder read as orphaned here, and only a hand check on
         # the peer stopped the archive. The scope has to travel in the data, not only in prose
         self.assertEqual(self.inventory()['drift_summary']['checked_nodes'], ['node-a'])
+
+    def test_fully_patched_ct_keeps_json_valid(self) -> None:
+        # #25: grep -c prints 0 AND exits 1 on no match, so `|| echo 0` emitted "0\n0" and broke the whole
+        # file the first time a CT had nothing to upgrade (2026-10-23)
+        ct = next(c for c in self.inventory(PCT_RUNNING_STUB)['containers'] if c['id'] == '101')
+        self.assertEqual(ct['probe']['pkgs_outdated'], 0)
 
     def test_doc_schema_matches_emit(self) -> None:
         # The doc promised current/baseline_delta/drift per guest; the script emits none of them
