@@ -17,6 +17,7 @@ one justified workflow; this table is not a pipeline to execute in full.
 | [grill-with-docs](grill-with-docs/SKILL.md) | Manual entry point (`/grill-with-docs`): the same interview, but stateful; runs `grilling` plus `domain-modeling` so decisions land in `GLOSSARY.md` and ADRs. Use it when working inside a repo. Vendored from mattpocock/skills. |
 | [teach](teach/SKILL.md) | Manual (`/teach <topic>`): multi-session tutoring in the current directory as a teaching workspace (MISSION.md, RESOURCES.md, lessons, reference sheets, learning records). Vendored from mattpocock/skills. |
 | [discount-codes](discount-codes/SKILL.md) | Find legitimate website or product discounts, compare actual costs, and label verification evidence. |
+| [adaptive-research](adaptive-research/SKILL.md) | Research questions and compare options through broad discovery, verified evidence, and concise recommendations. |
 
 `grill-me`, `grilling`, `grill-with-docs` and `teach` are third-party (MIT, byte-identical to upstream at a pinned commit; provenance in
 [platform-configs/skill-sets/README.md](../../platform-configs/skill-sets/README.md#provenance-third-party-vendored)).
