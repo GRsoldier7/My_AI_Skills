@@ -1,5 +1,5 @@
 ---
-name: adaptive-research
+name: research_adaptive
 description: Use when researching a question, finding resources, or comparing options that require broad discovery, verified evidence, and concise recommendations.
 ---
 
