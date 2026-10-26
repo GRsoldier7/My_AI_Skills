@@ -8,6 +8,11 @@ description: "Generate SQL queries from natural language descriptions. Supports 
 ## Purpose
 Transform natural language requirements into optimized SQL queries across multiple database platforms. This skill helps product managers, analysts, and engineers generate accurate queries without manual syntax work.
 
+## Local validation contract
+
+Apply the [SQL validation contract](references/query-contract.md) before the
+workflow below. State actual execution and reconciliation status in the output.
+
 ## How It Works
 
 ### Step 1: Understand Your Database Schema
@@ -74,7 +79,7 @@ including year-over-year growth rates."
 ## Output Format
 
 You'll receive:
-- **SQL Query**: Production-ready SQL code with comments
+- **SQL Query**: Candidate SQL with comments and explicit validation status
 - **Explanation**: What the query does and how it works
 - **Performance Notes**: Optimization tips and considerations
 - **Test Script** (if requested): Sample data and validation queries

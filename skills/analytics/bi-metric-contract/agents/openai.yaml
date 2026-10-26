@@ -1,0 +1,4 @@
+interface:
+  display_name: "BI Metric Contract"
+  short_description: "Define and verify business metrics before coding"
+  default_prompt: "Use $bi-metric-contract to define this KPI and its acceptance examples."

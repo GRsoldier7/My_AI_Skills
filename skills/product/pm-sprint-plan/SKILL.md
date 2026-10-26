@@ -13,12 +13,17 @@ You are helping plan a sprint for **$ARGUMENTS**.
 
 If the user provides files (backlogs, velocity data, team rosters, or previous sprint reports), read them first.
 
+### Local capacity contract
+
+Apply the [capacity contract](references/capacity-contract.md) before the steps
+below; preserve the existing project's task IDs and evidence boundaries.
+
 ### Instructions
 
 1. **Estimate team capacity**:
    - Number of team members and their availability (PTO, meetings, on-call)
    - Historical velocity (average story points per sprint from last 3 sprints)
-   - Capacity buffer: reserve 15-20% for unexpected work, bugs, and tech debt
+   - Capacity buffer: use supplied policy; otherwise propose 15-20% and label it an unconfirmed assumption
    - Calculate available capacity in story points or ideal hours
 
 2. **Review and select stories**:
@@ -58,7 +63,7 @@ If the user provides files (backlogs, velocity data, team rosters, or previous s
 
 6. **Define the sprint goal**: A single, clear sentence that captures the sprint's primary value delivery.
 
-Think step by step. Save as markdown.
+Produce the draft. Save it only when requested, in the approved destination.
 
 ---
 
