@@ -66,7 +66,7 @@ fi
 bad=0
 while IFS= read -r e; do
     [[ -n "$e" ]] || continue
-    if [[ "$e" != skills/* || "$e" == *..* || -z "${e##*/}" || ! -f "$REPO_DIR/$e/SKILL.md" ]]; then
+    if [[ "$e" != skills/* || "$e" == *..* || "$e" == *//* || "/$e/" == */./* || -z "${e##*/}" || ! -f "$REPO_DIR/$e/SKILL.md" ]]; then
         echo "ERROR: not a skill directory in this repo: $e" >&2
         bad=1
     fi
@@ -74,6 +74,37 @@ done <<< "$ENTRIES"
 dups="$(grep -v '^$' <<< "$ENTRIES" | sed 's|.*/||' | sort | uniq -d || true)"
 if [[ -n "$dups" ]]; then echo "ERROR: two entries share a skill name: $dups" >&2; bad=1; fi
 [[ "$bad" -eq 0 ]] || exit 1
+
+# Codex copies of the skills named in scripts/project-router.py SKILLS come from that script, and two
+# installers must never manage one skill name, so the Codex side skips exactly those names. Read with
+# Python's own parser before anything is written: SKILLS must be a tuple of strings bound only by
+# top-level assignments (the last one wins, as in Python); any other binding (+=, inside a block or
+# function, del, import, def, class, except ... as) fails closed. -I keeps a stray ast.py in the current directory from being
+# imported; utf-8-sig accepts a BOM; tr drops the CR a Windows Store python3 emits. Anything but a
+# clean exit and plain skill names fails closed.
+ROUTER_SKILLS=""
+if [[ " $TOOLS " == *" codex "* ]] && grep -q '^skills/aarons-latest/' <<< "$ENTRIES"; then
+    ROUTER_SKILLS="$(python3 -I -c 'import ast, sys
+tree = ast.parse(open(sys.argv[1], encoding="utf-8-sig").read())
+names, top = None, set()
+for n in tree.body:
+    targets = n.targets if isinstance(n, ast.Assign) else [n.target] if isinstance(n, ast.AnnAssign) and n.value else []
+    if any(getattr(t, "id", "") == "SKILLS" for t in targets):
+        names = ast.literal_eval(n.value)
+        top.update(map(id, targets))
+for n in ast.walk(tree):
+    if (isinstance(n, ast.Name) and n.id == "SKILLS" and not isinstance(n.ctx, ast.Load) and id(n) not in top
+            or isinstance(n, ast.alias) and (n.asname or n.name.split(".")[0]) == "SKILLS"
+            or not isinstance(n, ast.alias) and getattr(n, "name", None) == "SKILLS"):
+        sys.exit(1)
+if not isinstance(names, tuple) or not all(isinstance(s, str) for s in names):
+    sys.exit(1)
+print("\n".join(names))' "$REPO_DIR/scripts/project-router.py" | tr -d '\r')" || ROUTER_SKILLS=""
+    if [[ -z "$ROUTER_SKILLS" ]] || grep -qvxE '[a-z0-9-]+' <<< "$ROUTER_SKILLS"; then
+        echo "ERROR: cannot read SKILLS from scripts/project-router.py: it must be a non-empty tuple of names matching [a-z0-9-]+, and python3 is needed when a Codex run lists skills/aarons-latest/* entries" >&2
+        exit 1
+    fi
+fi
 
 in_set() { grep -qxF "$1" <<< "$ENTRIES"; }
 pending=0
@@ -96,7 +127,7 @@ for tool in $TOOLS; do
         name="${e##*/}"
         src="$REPO_DIR/$e"
         dst="$dir/$name"
-        if [[ "$tool" == codex && "$e" == skills/aarons-latest/* ]]; then
+        if [[ "$tool" == codex && "$e" == skills/aarons-latest/* ]] && grep -qxF "$name" <<< "$ROUTER_SKILLS"; then
             if [[ -L "$dst" && "$(readlink "$dst")" == "$REPO_DIR/"* ]]; then
                 note "SKIP    $name (managed by scripts/project-router.py; remove the stale link $dst first)"
             else

@@ -8,6 +8,7 @@ one justified workflow; this table is not a pipeline to execute in full.
 | [project-router](project-router/SKILL.md) | Select the next workflow from evidence of phase, maturity, exposure, and permissions. |
 | [projectplan-builder](projectplan-builder/SKILL.md) | Create the first delivery baseline for a defined scope; planning only. |
 | [projectplan-rescope](projectplan-rescope/SKILL.md) | Revise an existing baseline when evidence or constraints justify it; planning only. |
+| [alm](alm/SKILL.md) | Manual-only `/alm`: one lifecycle owner that drives the plan to production, lean — ground, route the best-fit specialist per cycle, verify, release. Never nested under project-router. |
 | [continuing-alm-work](continuing-alm-work/SKILL.md) | Reconstruct uncertain state and resume authorized work. |
 | [workbetter](workbetter/SKILL.md) | Execute a ready bounded task with proportionate verification. |
 | [clean-project](clean-project/SKILL.md) | Investigate lifecycle/security/usage and manage approved cleanup with optimizeproject.md. |
@@ -16,6 +17,8 @@ one justified workflow; this table is not a pipeline to execute in full.
 | [grilling](grilling/SKILL.md) | The interview primitive: asks the open frontier of design questions in numbered rounds with a recommended answer each, looks up facts itself, leaves decisions to you. Vendored from mattpocock/skills. |
 | [grill-with-docs](grill-with-docs/SKILL.md) | Manual entry point (`/grill-with-docs`): the same interview, but stateful; runs `grilling` plus `domain-modeling` so decisions land in `GLOSSARY.md` and ADRs. Use it when working inside a repo. Vendored from mattpocock/skills. |
 | [teach](teach/SKILL.md) | Manual (`/teach <topic>`): multi-session tutoring in the current directory as a teaching workspace (MISSION.md, RESOURCES.md, lessons, reference sheets, learning records). Vendored from mattpocock/skills. |
+| [discount-codes](discount-codes/SKILL.md) | Find legitimate website or product discounts, compare actual costs, and label verification evidence. |
+| [research_adaptive](research_adaptive/SKILL.md) | Research questions and compare options through broad discovery, verified evidence, and concise recommendations. |
 
 `grill-me`, `grilling`, `grill-with-docs` and `teach` are third-party (MIT, byte-identical to upstream at a pinned commit; provenance in
 [platform-configs/skill-sets/README.md](../../platform-configs/skill-sets/README.md#provenance-third-party-vendored)).

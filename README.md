@@ -1,6 +1,6 @@
 # Aaron's AI Skill Library
 
-A library of **55 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. A **master-orchestrator** skill routes every request to the optimal skill chain automatically.
+A library of **191 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. A **master-orchestrator** skill routes every request to the optimal skill chain automatically.
 
 The library supports **five AI platforms**: Claude Code (slash commands), Google Antigravity / Gemini CLI, OpenAI Codex, Cursor, and ChatGPT. A dedicated **`skill-builder` meta-skill** manages the creation, auditing, and continuous improvement of all skills using a 5-module pipeline and a 10-dimension quality rubric.
 
@@ -38,6 +38,9 @@ cd ~/My_AI_Skills
 
 # 3. Verify: prints "In sync."
 ./scripts/install-skills.sh
+
+# 4. Aaron's project skills (Claude Code by name, Codex via scripts/project-router.py), the per-device
+#    skills and the continuing-alm-work override: platform-configs/skill-sets/README.md, "Set up a new device"
 ```
 
 Any other skill installs on demand with `./scripts/install-skills.sh --apply <skill-dir-name>`; then type its
@@ -100,12 +103,15 @@ Skills are designed to **compose** — `business-genius` routes to specialist su
 
 ## Skill Catalog
 
-### Aaron's Latest Skills (`skills/aarons-latest/`) — 9 skills
+### Aaron's Latest Skills (`skills/aarons-latest/`) — 13 skills
 
 Aaron's newest skills, kept in their own section so recent additions are easy to find.
 
 | Skill | When to Use |
 |-------|-------------|
+| `project-router` | Multi-step project startup, next-step selection, resuming interrupted work, rescoping, cleanup, or readiness assessment. Picks one justified workflow from evidence of phase, maturity, exposure, and permissions; read-only unless execution is authorized. |
+| `clean-project` | Investigating a project's lifecycle, security exposure, and usage, then managing approved cleanup through `optimizeproject.md`. |
+| `alm` | Manual-only `/alm` lifecycle driver: drives the plan of record to production, lean and surgical — grounds in fresh evidence, detects the ALM phase, runs the best-fit specialist per cycle, verifies before done. Replaces the `continuing-alm-work` + `resume-grounded` + `workbetter` incantation, with `/using-superpowers` and `/project-router` built in. |
 | `continuing-alm-work` | Resuming or continuing an established project, plan, roadmap, backlog, or interrupted session. Reconciles the verified state, executes the next safe task, checks the result, and leaves a precise resume marker. |
 | `directory-cleanup` | Project cleanup, directory reorganization, safe archiving of outdated code, documents or plans, and ongoing repository-structure maintenance. |
 | `grill-me` | Manual (`/grill-me`): a relentless interview to sharpen a plan, design or idea when there is no repo to leave notes in. Thin entry point that calls `grilling`. Vendored from [mattpocock/skills](https://github.com/mattpocock/skills). |
@@ -114,6 +120,7 @@ Aaron's newest skills, kept in their own section so recent additions are easy to
 | `teach` | Manual (`/teach <topic>`): learn a skill or concept over multiple sessions. Turns the current directory into a teaching workspace with a mission, curated resources, short HTML lessons, printable reference sheets and learning records. Vendored from mattpocock/skills. |
 | `projectplan-builder` | A first project plan, delivery roadmap, implementation phases, or task breakdown for an idea, feature, or codebase that has no delivery baseline yet. Not for rescoping or executing an existing plan. |
 | `projectplan-rescope` | Rescoping, rescuing, simplifying, or reprioritizing an existing plan after changed requirements, deadlines, capacity, completed work, blockers, or new evidence. Not for a first plan or routine status reporting. |
+| `projectplan-roadmap` | Saving an existing or approved plan into the project as one concise, prescriptive roadmap file named `YYYYMMDD - <Project Name> - <Title>.md`: goal, locked decisions, contracts, ID'd task cards with exact files and observable done-criteria, waves, release gate, next action. Writes one file, verifies it, stops. |
 | `workbetter` | Executing or resuming a multi-step project plan: grounded sequencing, task-specific tool selection, proportional verification, drift checks, and reusable workflow improvements. Use when asked to WorkBetter, work through a plan efficiently, recover from drift, or improve a recurring execution workflow. |
 
 ---
@@ -498,8 +505,11 @@ aaron-skill-library/
 ├── CLAUDE.md                          # Master Claude Code project instructions
 ├── .gitignore
 │
-├── skills/                            # All 36 skills, organized by category
-│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (9)
+├── skills/                            # All 191 skills, organized by category
+│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (13)
+│   │   ├── project-router/            # Pick the next project workflow from evidence
+│   │   ├── clean-project/             # Lifecycle/security/usage audit, approved cleanup
+│   │   ├── alm/                       # Manual-only /alm lifecycle driver, plan to production
 │   │   ├── continuing-alm-work/       # Resume interrupted plans from last verified state
 │   │   ├── directory-cleanup/         # Safe cleanup, archiving and structure maintenance
 │   │   ├── grill-me/                  # /grill-me entry point (vendored, mattpocock/skills)
@@ -508,6 +518,7 @@ aaron-skill-library/
 │   │   ├── teach/                     # Multi-session tutoring workspace (vendored)
 │   │   ├── projectplan-builder/       # First delivery plan for an idea, feature or codebase
 │   │   ├── projectplan-rescope/       # Rescope or rescue an existing plan
+│   │   ├── projectplan-roadmap/       # Save a plan as a dated, prescriptive roadmap file
 │   │   └── workbetter/                # Execute or resume a plan with verification and drift checks
 │   │
 │   ├── core/                          # Orchestration & meta-skills (4)

@@ -2,13 +2,16 @@
 
 Running session log for this repo. Newest entry first. Append; never rewrite history. No secrets.
 
-## Current state (2026-09-30)
+## Current state (2026-10-17)
 
-- Library: 187 skills in the registry regenerated on 2026-10-03. The Windows global copies were last verified against the repository on 2026-09-27.
-- `continuing-alm-work` now uses the owner's nine-file replacement v2.0.0 package. The earlier 17-file build described below was not recovered; the new archive has a different SHA-256 and supersedes it.
-- SkillSpector gate (host `/root/bin/skill-scan`): rounds 1-5 were last verified on 2026-09-28 (`aaron/fp-tuning` @ `7293f4c`). Current host state has not been rechecked.
-- 2026-10-03: cross-tool skill sets. `scripts/install-skills.sh` links `platform-configs/skill-sets/global.txt` into Claude Code and Codex; four mattpocock skills vendored. Guide and index: `platform-configs/skill-sets/README.md`.
-- 2026-10-14: homelab-organizer class-C fixes merged and 14 skill descriptions trimmed on local `main`; push to origin pending.
+- Library: 191 skills in the master-orchestrator registry, regenerated 2026-10-17 from a complete Windows checkout. README and CLAUDE.md counts match it.
+- Vendored mattpocock skills are all at `49dd158d1076134a641b33efb035946536778336` (to-spec is identical at that commit): `setup-matt-pocock-skills`, `to-spec`, `to-tickets`, `domain-modeling` in `skills/engineering/`; `grill-me`, `grilling`, `grill-with-docs`, `teach` in `skills/aarons-latest/`. Provenance and scan results: `platform-configs/skill-sets/README.md`.
+- `scripts/install-skills.sh` skips only the project-router skills on the Codex side, read from `SKILLS` in `scripts/project-router.py` with Python's parser (fails closed; see the rev 9 entry below); other `skills/aarons-latest/*` install for both tools. Test suite: 98/98 on Linux (homelab, 2026-10-17). Before rev 9, 56/57 on Windows under `MSYS=winsymlinks:nativestrict`; T14 (relative link survives `--prune`) failed there with the unmodified installer too, a pre-existing MSYS `readlink` difference.
+- Device setup guide (`platform-configs/skill-sets/README.md`) covers every skill: `global.txt` is the set for both tools; Aaron's 7 go into Claude Code by name and into Codex from `scripts/project-router.py`; `grill-me`, `grilling`, `grill-with-docs`, `teach` and `projectplan-roadmap` go into both tools by name. Setup adds `--global-guidance` and the `continuing-alm-work` `skillOverrides` entry; the Verify table checks each part.
+- Windows desktop (2026-10-17, before rev 9): global set plus `domain-modeling`, `grill-me`, `grilling`, `grill-with-docs`, `teach` linked for Claude Code and Codex. Other devices: `git pull`, then follow "Set up a new device" in the guide.
+- `scripts/lint-skills.py`, `scripts/validate-skills.sh` and `scripts/generate-skill-registry.py` run from any clone location and on Windows (hardcoded `/root/My_AI_Skills` paths and a CRLF trap removed 2026-10-17).
+- SkillSpector gate (host `/root/bin/skill-scan`): rounds 1-5 last verified 2026-09-28; current host state not rechecked.
+- `continuing-alm-work` is the owner's nine-file v2.0.0 package (2026-09-30).
 
 ## Log
 
@@ -26,6 +29,35 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 **Open**
 - Not pushed to origin (local `main` only).
 
+### 2026-10-17 — rev 9: device setup guide covers every skill; Codex skip read with Python's parser
+
+**Done**
+- `scripts/install-skills.sh` reads `SKILLS` from `scripts/project-router.py` with Python's `ast` parser before anything is written, replacing the `sed` parse from `c9f537c` (entry below). The `sed` parse dropped double-quoted names (`('workbetter', "extra",)` read as `workbetter` only, so `extra` would get a second installer on Codex) and, under `set -eo pipefail`, aborted every run without a message on an all-double-quoted or annotated `SKILLS`. The reader runs `python3 -I` (a stray `ast.py` in the current directory is never imported), accepts a BOM, and fails closed unless `SKILLS` is a tuple of plain names bound only by top-level assignments (`+=`, a nested or conditional assignment, `del` or an import of the name are refused). Claude-only runs, and sets with no `skills/aarons-latest/*` entry, do not need python3. Set entries with `//` or `.` segments are refused.
+- `global.txt` is unchanged: as its `c9f537c` header says, it does not list the project-router skills. The guide installs Aaron's 7 into Claude Code by name (`--tool claude --apply …`). This supersedes an uncommitted 2026-10-03 design that listed them in `global.txt` for Claude Code.
+- Guide (`platform-configs/skill-sets/README.md`): setup runs `project-router.py install --apply --global-guidance`; Claude Code gets `continuing-alm-work` manual-only via `skillOverrides` (its frontmatter cannot carry `disable-model-invocation`: the skill's own validator accepts only the open Agent Skills fields); per device, Aaron's 7 for Claude Code and `grill-me grilling grill-with-docs teach projectplan-roadmap` for both tools, which supersedes the per-device commands in the entries below; Windows points to Git Bash first, and the PowerShell fallback reads `SKILLS` too and stops if it cannot; Update and sync covers `--global-guidance`, the override on older devices, real-directory SKIPs and old CRLF clones; the Verify table checks each part. Root `README.md` points to it.
+- New `.gitattributes`: `*.sh`, `*.py` and `*.txt` check out LF on every OS. A default Git for Windows clone (`core.autocrlf=true`) otherwise checks the scripts out CRLF, and bash cannot run them.
+- Tests: T22 also checks that no project-router SKIP is printed; T23-T32 cover the reader (names in and out of `SKILLS`, annotated, unreadable, Claude-only, CRLF output, junk or failing python3, string, BOM with mixed quotes, stray `ast.py`, and the refused bindings).
+
+**Verified**
+- Installer tests 98/98 on Linux. Removing any new guard (BOM, `-I`, tuple-of-strings check, list refusal, binding walk, import alias, def/class binders, the Claude-only python3 gate) fails its test; the `c9f537c` installer fails 29 of the 98. In a scratch `core.autocrlf=true` clone the scripts check out CRLF without `.gitattributes` and LF with it, and the suite passes there; `git add --renormalize .` stages nothing but `.gitattributes`.
+- Scratch HOME, new device, guide order: every sandbox-checkable Verify row returns its expected value (set `In sync.` with no SKIP lines; Aaron's 7 in Claude Code `In sync.`; per-device `In sync.` with no SKIP lines; Codex `0 new skills; 7 already match`; routing block 1; override `user-invocable-only`; 16 skills in each tool), and the matching row goes RED when its part is removed. A `--prune` dry run reports 17 REMOVE lines (the 12 by-name Claude Code links and the 5 by-name Codex links), as the guide warns. On the homelab, `claude -p` init lists 15 of the 16 names, manual-only ones included; `projectplan-roadmap`, not installed there, is the one missing. The Codex session rows and Windows are untested.
+
+**Open**
+- Run the setup on each other device. The desktop holds `clean-project` back (entry below): leave it out of the Claude Code command there until its work is committed. The Windows PowerShell steps are untested, and the fallback's `SKILLS` read has the installer's isolation, BOM and tuple checks but not its binding checks. The homelab's Claude Code copies of the 7 are real directories installed by hand (the installer reports them as SKIP); its `continuing-alm-work` copy lacks `agents/openai.yaml`, which Claude Code does not read.
+- If `projectplan-roadmap` is ever added to `SKILLS`, remove its Codex symlink by hand; `install-skills.sh` reports it as a stale link.
+
+### 2026-10-17 — skill-sets README follows the GLOSSARY.md rename; desktop install
+
+**Done**
+- `platform-configs/skill-sets/README.md`: the `domain-modeling` row and step 2's "Done when" now say `GLOSSARY.md`, matching the vendored skills at `49dd158d`. The provenance table's scan header now reads "SkillSpector, static; 2026-10-03 unless a later date is given", because most rows now carry their own 2026-10-17 scan date.
+- On the desktop, installed grill-me, grilling, grill-with-docs, teach, domain-modeling, project-router, setup-matt-pocock-skills, to-spec, to-tickets and directory-cleanup into `~/.claude/skills`. `clean-project` stays uninstalled until its uncommitted work is committed (owner's call).
+
+**Verified**
+- All ten skills resolve as symlinks into this clone (`~/.claude/skills/<name>/SKILL.md`); `CONTEXT.md` now appears in the README only where it describes the rename.
+
+**Open**
+- The desktop re-synced setup-matt-pocock-skills and to-tickets to `49dd158d` in parallel with `c9f537c` (the third commit in the entry below; identical files) and scanned them with `/root/bin/skill-scan`: setup ALLOW 2/100; to-tickets NOTIFY 27/100 (TM2 `SKILL.md:40`, EA3 `LICENSE:16`, both reviewed as false positives). The provenance table keeps the Windows results (SAFE 0/100, CAUTION 25/100). The two scans disagree and have not been reconciled.
+
 ### 2026-10-17 — Vendor mattpocock grill-me + grilling into aarons-latest
 
 **Done**
@@ -37,12 +69,12 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 - Same session, second commit: vendored `grill-with-docs` (same upstream commit, `skills/engineering/grill-with-docs`) into `aarons-latest`. It calls `grilling` and `domain-modeling`; `domain-modeling` (vendored 2026-10-03 at `c55ee46`) was not installed on the Windows device, so it was linked at the same time.
 - Re-synced `skills/engineering/domain-modeling` from `c55ee46` to `49dd158d` (byte-identical; upstream renamed `CONTEXT.md`/`CONTEXT-FORMAT.md` to `GLOSSARY.md`/`GLOSSARY-FORMAT.md`). Needed because `grill-with-docs` at `49dd158d` pairs with that version. `setup-matt-pocock-skills` stays at `c55ee46`; see Open.
 - Vendored `teach` (`skills/productivity/teach`, 6 files, SAFE 0/100) into `aarons-latest` at the owner's request. Standalone; manual `/teach <topic>`.
+- Third commit (loose ends, owner-requested): re-synced `setup-matt-pocock-skills` (7 files, SAFE 0/100) and `to-tickets` (2 files, CAUTION 25/100, same TM2 false positive as 2026-10-03) to `49dd158d`, so no vendored mattpocock skill mentions `CONTEXT.md` any more; `to-spec` is unchanged upstream. `scripts/install-skills.sh` now skips only the project-router skills on the Codex side (read from `SKILLS` in `scripts/project-router.py`) instead of all of `skills/aarons-latest/*`, so the vendored grill/teach skills install for Codex too (new test T22). `scripts/generate-skill-registry.py` lost its hardcoded `/root/My_AI_Skills` paths and the registry was regenerated from this complete checkout. README and CLAUDE.md skill counts now match the registry total. This Windows device also got the global set and the new skills linked for Codex.
 
 **Verified**
 - All vendored files match upstream sha256 (grill-me 3, grilling 3, grill-with-docs 3, teach 7, domain-modeling 5). grill-with-docs and teach SAFE 0/100. SkillSpector static: grill-me SAFE 0/100; grilling SAFE 10/100, one EA2 finding reviewed as a false positive (fact-finding prose; the skill requires user confirmation before acting).
 
 **Open**
-- `setup-matt-pocock-skills` (still `c55ee46`) and its `domain.md` tell agents to read `CONTEXT.md`, but `domain-modeling` now writes `GLOSSARY.md`. Upstream has 5 changed files for it and 1 for `to-tickets`; re-sync both to `49dd158d` (same procedure: byte-identical copy, hash check, scan, provenance row) to close the gap. Not done this session: out of the asked scope.
 - Not added to `platform-configs/skill-sets/global.txt`; `grilling` is model-invocable and would cost context in every session. Install per device: `./scripts/install-skills.sh --apply grill-me grilling`.
 
 ### 2026-10-14 — homelab-organizer class-C fixes merged; 14 skill descriptions trimmed
