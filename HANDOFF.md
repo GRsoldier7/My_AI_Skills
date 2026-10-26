@@ -2,7 +2,63 @@
 
 Running session log for this repo. Newest entry first. Append; never rewrite history. No secrets.
 
-## Current state (2026-10-17)
+## Current state (2026-10-26): analytics trial integration
+
+Approved repository slice: three trial skills, six existing-package upgrades,
+curated profiles and the existing nine-task architecture plan, now in docs.
+
+Implemented: bi-metric-contract, bigquery-review and knowledge-synthesis;
+analytics, Power BI, SQL/sprint and intake upgrades; 11-package manifest;
+analytics (5), work-parallon (8), consulting (7), maintainer (2) sets. All selected
+packages remain trial. Global selection and seven-skill lifecycle ownership are
+preserved. The refreshed legacy catalog has 198 canonical definitions; 44
+Claude-specific definitions remain a separate, preserved source population.
+SQL/sprint are documented phuryn adaptations with original names/MIT licenses.
+
+Verification:
+- Profile tests: 21 passed, including exact package hashes/resources, dependency
+  and identity checks, isolated repeat installation, unmanaged set ownership,
+  orphaned outputs and a fresh autocrlf checkout preserving license bytes.
+- Portable SQLite cohort fixtures: 7 passed; router: 9 passed; installer: 98
+  checks passed. Router suite runs with CODEX_HOME absent from its temporary
+  test subprocess; no runtime guard was weakened.
+- New-skill authoring validation and scoped lint passed; Python compilation,
+  git diff --check and a seven-skill/18-file archive build passed.
+- Three fresh-agent synthetic exercises passed. Baseline responses also passed;
+  no measured uplift is claimed. Materials: evals/analytics-skills.json.
+- Independent review reproduced the original suites, with no Critical finding.
+  Its three Important findings were reproduced RED then fixed: license line
+  endings, unmanaged-set overwrite and orphaned generated profiles. Five new
+  regression tests cover the fixes.
+
+Ruling: orphaned sets block generation and remain preserved until explicit
+reviewed retirement. Cost if wrong: one manual step per rename; automatic
+deletion could remove a selection that is still used.
+Ruling: the final router checklist contradiction was corrected as functional
+routing consistency despite its Minor review label. Cost if wrong: narrow
+discovery wording changes; permissions and lifecycle membership remain intact.
+
+Native SQL normalization, DAX/RLS/performance, actual-device discovery,
+unmanaged/plugin collisions and employer policy remain unverified. The reviewer
+did not contact external sources; the implementer inspected reference revisions
+and licenses through GitHub. Broader legacy quality, inaccessible NAS sources
+and statistical behavioral uplift are outside this slice. No cosmetic review
+item remains. Direct HTTPS push lacked credentials; synchronization uses the
+connected GitHub tools and the same reviewed file tree, with a possibly different
+remote commit SHA. No user-device or account-plugin install was performed.
+
+RESUME FROM:
+- Phase: Shared analytics pilot; repository implementation ready for review.
+- Task: Broader SK-01/02/03/04/05/08 gates remain In progress.
+- Status: Trial; actual-host release pending.
+- Last verified result: 21 profile, 7 SQL, 9 router and 98 installer checks passed.
+- Exact next action: Review integration PR, reconcile NAS sources read-only, then verify a selected profile on an approved clean target.
+- Required inputs: Target versions/permissions and NAS source access.
+- Relevant artifacts: Architecture plan, manifest, set guide, evals and tests.
+- Blockers: Actual devices, native engine tools and employer policy unavailable.
+- Pending approvals: Repository slice authorized; merge/deployment separate.
+
+## Prior state snapshot (2026-10-17)
 
 - Library: 191 skills in the master-orchestrator registry, regenerated 2026-10-17 from a complete Windows checkout. README and CLAUDE.md counts match it.
 - Vendored mattpocock skills are all at `49dd158d1076134a641b33efb035946536778336` (to-spec is identical at that commit): `setup-matt-pocock-skills`, `to-spec`, `to-tickets`, `domain-modeling` in `skills/engineering/`; `grill-me`, `grilling`, `grill-with-docs`, `teach` in `skills/aarons-latest/`. Provenance and scan results: `platform-configs/skill-sets/README.md`.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Knowledge Synthesis"
+  short_description: "Turn source evidence into cited decisions and briefs"
+  default_prompt: "Use $knowledge-synthesis to prepare a concise, source-backed decision brief."
