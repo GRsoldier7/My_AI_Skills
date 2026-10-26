@@ -103,7 +103,7 @@ Skills are designed to **compose** — `business-genius` routes to specialist su
 
 ## Skill Catalog
 
-### Aaron's Latest Skills (`skills/aarons-latest/`) — 12 skills
+### Aaron's Latest Skills (`skills/aarons-latest/`) — 13 skills
 
 Aaron's newest skills, kept in their own section so recent additions are easy to find.
 
@@ -111,6 +111,7 @@ Aaron's newest skills, kept in their own section so recent additions are easy to
 |-------|-------------|
 | `project-router` | Multi-step project startup, next-step selection, resuming interrupted work, rescoping, cleanup, or readiness assessment. Picks one justified workflow from evidence of phase, maturity, exposure, and permissions; read-only unless execution is authorized. |
 | `clean-project` | Investigating a project's lifecycle, security exposure, and usage, then managing approved cleanup through `optimizeproject.md`. |
+| `alm` | Manual-only `/alm` lifecycle driver: drives the plan of record to production, lean and surgical — grounds in fresh evidence, detects the ALM phase, runs the best-fit specialist per cycle, verifies before done. Replaces the `continuing-alm-work` + `resume-grounded` + `workbetter` incantation, with `/using-superpowers` and `/project-router` built in. |
 | `continuing-alm-work` | Resuming or continuing an established project, plan, roadmap, backlog, or interrupted session. Reconciles the verified state, executes the next safe task, checks the result, and leaves a precise resume marker. |
 | `directory-cleanup` | Project cleanup, directory reorganization, safe archiving of outdated code, documents or plans, and ongoing repository-structure maintenance. |
 | `grill-me` | Manual (`/grill-me`): a relentless interview to sharpen a plan, design or idea when there is no repo to leave notes in. Thin entry point that calls `grilling`. Vendored from [mattpocock/skills](https://github.com/mattpocock/skills). |
@@ -505,9 +506,10 @@ aaron-skill-library/
 ├── .gitignore
 │
 ├── skills/                            # All 191 skills, organized by category
-│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (12)
+│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (13)
 │   │   ├── project-router/            # Pick the next project workflow from evidence
 │   │   ├── clean-project/             # Lifecycle/security/usage audit, approved cleanup
+│   │   ├── alm/                       # Manual-only /alm lifecycle driver, plan to production
 │   │   ├── continuing-alm-work/       # Resume interrupted plans from last verified state
 │   │   ├── directory-cleanup/         # Safe cleanup, archiving and structure maintenance
 │   │   ├── grill-me/                  # /grill-me entry point (vendored, mattpocock/skills)

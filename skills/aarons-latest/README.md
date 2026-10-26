@@ -8,6 +8,7 @@ one justified workflow; this table is not a pipeline to execute in full.
 | [project-router](project-router/SKILL.md) | Select the next workflow from evidence of phase, maturity, exposure, and permissions. |
 | [projectplan-builder](projectplan-builder/SKILL.md) | Create the first delivery baseline for a defined scope; planning only. |
 | [projectplan-rescope](projectplan-rescope/SKILL.md) | Revise an existing baseline when evidence or constraints justify it; planning only. |
+| [alm](alm/SKILL.md) | Manual-only `/alm`: one lifecycle owner that drives the plan to production, lean — ground, route the best-fit specialist per cycle, verify, release. Never nested under project-router. |
 | [continuing-alm-work](continuing-alm-work/SKILL.md) | Reconstruct uncertain state and resume authorized work. |
 | [workbetter](workbetter/SKILL.md) | Execute a ready bounded task with proportionate verification. |
 | [clean-project](clean-project/SKILL.md) | Investigate lifecycle/security/usage and manage approved cleanup with optimizeproject.md. |
