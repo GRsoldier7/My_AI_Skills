@@ -36,7 +36,7 @@ I'm Aaron DeYoung — AI consultant, entrepreneur, and builder. I help companies
 
 ## The Skill Library
 
-This CLAUDE.md works in concert with a library of **202 specialist skills** organized in `skills/`. Each skill is a deep-domain expert. Skills compose through curated profiles and one task-appropriate execution owner.
+This CLAUDE.md works in concert with a library of **231 specialist skills** organized in `skills/`. Each skill is a deep-domain expert. Skills compose through curated profiles and one task-appropriate execution owner.
 
 ### Routing and curated profiles
 

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "note": "Non-skill sources; not installed or automatically enabled. Skills are recorded in skill-sets/manifest.json.",
+  "artifacts": [
+    {
+      "type": "agent",
+      "path": "agents/ecc/architect.md",
+      "sha256": "6b8e1e8bd274995f3949691731f4334820c061d3054eaea3be2ce163386d1f24",
+      "upstream": "https://github.com/affaan-m/ECC/blob/91b5f6a371f7b06d2c3e0c208147c559e11f022c/agents/architect.md",
+      "license": "MIT",
+      "license_path": "agents/ecc/LICENSE",
+      "status": "reference",
+      "target": "Claude-style source; adapt tool fields for the receiving host"
+    },
+    {
+      "type": "agent",
+      "path": "agents/ecc/code-reviewer.md",
+      "sha256": "9dd23be23d65f18126e10f7680fc1eb2576ec54a427d076ff2f870bd0bafd5d2",
+      "upstream": "https://github.com/affaan-m/ECC/blob/91b5f6a371f7b06d2c3e0c208147c559e11f022c/agents/code-reviewer.md",
+      "license": "MIT",
+      "license_path": "agents/ecc/LICENSE",
+      "status": "reference",
+      "target": "Claude-style source; adapt tool fields for the receiving host"
+    },
+    {
+      "type": "agent",
+      "path": "agents/ecc/planner.md",
+      "sha256": "63aba865206bac9cb5887542fb01b97656e7701faff98e091aa77057ba9860bc",
+      "upstream": "https://github.com/affaan-m/ECC/blob/91b5f6a371f7b06d2c3e0c208147c559e11f022c/agents/planner.md",
+      "license": "MIT",
+      "license_path": "agents/ecc/LICENSE",
+      "status": "reference",
+      "target": "Claude-style source; adapt tool fields for the receiving host"
+    },
+    {
+      "type": "agent",
+      "path": "agents/ecc/security-reviewer.md",
+      "sha256": "813e4062bed5f42ab25dd02a0070f682058ffe9508198fcfdbb2c31296f93b7b",
+      "upstream": "https://github.com/affaan-m/ECC/blob/91b5f6a371f7b06d2c3e0c208147c559e11f022c/agents/security-reviewer.md",
+      "license": "MIT",
+      "license_path": "agents/ecc/LICENSE",
+      "status": "reference",
+      "target": "Claude-style source; adapt tool fields for the receiving host"
+    },
+    {
+      "type": "prompt",
+      "path": "prompts/copilot/build-fix.prompt.md",
+      "sha256": "883d339b44560d6ad1bb750b15d9f16233dcdf3a8c71acdb241a921dc203ba44",
+      "upstream": "https://github.com/affaan-m/ECC/blob/91b5f6a371f7b06d2c3e0c208147c559e11f022c/.github/prompts/build-fix.prompt.md",
+      "license": "MIT",
+      "license_path": "prompts/copilot/LICENSE",
+      "status": "reference",
+      "target": "GitHub Copilot"
+    },
+    {
+      "type": "prompt",
+      "path": "prompts/copilot/plan.prompt.md",
+      "sha256": "af82b05cc68e600fe1d8af6d320523073e2e5e2c7911ef84c5eb6628b602c3ef",
+      "upstream": "https://github.com/affaan-m/ECC/blob/91b5f6a371f7b06d2c3e0c208147c559e11f022c/.github/prompts/plan.prompt.md",
+      "license": "MIT",
+      "license_path": "prompts/copilot/LICENSE",
+      "status": "reference",
+      "target": "GitHub Copilot"
+    },
+    {
+      "type": "prompt",
+      "path": "prompts/copilot/refactor.prompt.md",
+      "sha256": "1fe05960dc200f773afd46388f46aed3c45446aa5b64b058837c1a807108aba8",
+      "upstream": "https://github.com/affaan-m/ECC/blob/91b5f6a371f7b06d2c3e0c208147c559e11f022c/.github/prompts/refactor.prompt.md",
+      "license": "MIT",
+      "license_path": "prompts/copilot/LICENSE",
+      "status": "reference",
+      "target": "GitHub Copilot"
+    },
+    {
+      "type": "prompt",
+      "path": "prompts/copilot/security-review.prompt.md",
+      "sha256": "cad3b7159a3df27aa2e27bc84540ffaa7d46e4990e77a07f22bfe648238c1461",
+      "upstream": "https://github.com/affaan-m/ECC/blob/91b5f6a371f7b06d2c3e0c208147c559e11f022c/.github/prompts/security-review.prompt.md",
+      "license": "MIT",
+      "license_path": "prompts/copilot/LICENSE",
+      "status": "reference",
+      "target": "GitHub Copilot"
+    },
+    {
+      "type": "prompt",
+      "path": "prompts/copilot/tdd.prompt.md",
+      "sha256": "e69801884038de19e2515c5c8fa675d1076cfab46c102158f5769ae56739a056",
+      "upstream": "https://github.com/affaan-m/ECC/blob/91b5f6a371f7b06d2c3e0c208147c559e11f022c/.github/prompts/tdd.prompt.md",
+      "license": "MIT",
+      "license_path": "prompts/copilot/LICENSE",
+      "status": "reference",
+      "target": "GitHub Copilot"
+    }
+  ]
+}

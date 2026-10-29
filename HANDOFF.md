@@ -2,7 +2,30 @@
 
 Running session log for this repo. Newest entry first. Append; never rewrite history. No secrets.
 
-## Current state (2026-10-26): analytics trial integration
+## Current state (2026-10-29 — library imports)
+
+Requested upstream imports are implemented on `codex/skills-library-imports-20261029`
+from c0f0f14 (existing analytics and faith work preserved). The canonical catalog
+now has 74 entries, 25 installable profiles and four reference profiles; the
+tracked source registry has 231 skills. Sources, adaptations, licensing limits and
+verification are in [Library Imports and Sync](docs/20261029%20-%20My%20AI%20Skills%20-%20Library%20Imports%20and%20Sync.md).
+
+The owner selected consolidation on GitHub's newer catalog while preserving the
+NAS local work. A separate local full-file backup and Git bundle were hash-verified.
+The older profile compiler is superseded; unique local profiles are represented in
+the canonical manifest. No private local candidates are bulk-published.
+
+Verification: catalog 25 sets; profile tests 32; installer checks 98; router tests 9;
+33 imported packages linted with zero failures and 11 advisory warnings. Secret
+scan found no live credentials (one existing model-name token false positive).
+Four restricted Anthropic document packages are reference-only. ECC team-builder
+is reference-only; native Hermes/Copilot activation is not verified or performed.
+
+Next: review the feature branch for a main merge if desired; then choose the actual
+Copilot/Hermes target and verify native discovery using a synthetic task. Keep one
+workflow owner per task. Do not assume repository storage enables runtime plugins.
+
+## Prior state (2026-10-26): analytics trial integration
 
 Approved repository slice: three trial skills, six existing-package upgrades,
 curated profiles and the existing nine-task architecture plan, now in docs.
@@ -120,7 +143,8 @@ RESUME FROM:
 - Vendored `grill-me` and `grilling` byte-identical from mattpocock/skills @ `49dd158d1076134a641b33efb035946536778336` (`skills/productivity/*`) into `skills/aarons-latest/`, each with the upstream MIT `LICENSE`. `grill-me` is a one-line wrapper that calls `grilling`, so both are required.
 - Placed in `aarons-latest` at the owner's request (not `engineering/` like the 2026-10-03 vendored set). `scripts/project-router.py` uses a fixed seven-skill list, so the Codex/ChatGPT plugin build is unaffected. Added both to `vendored_paths`; updated the catalog README, the aarons-latest README and the skill-sets provenance table.
 - Installed on the Windows device: `./scripts/install-skills.sh --tool claude --apply grill-me grilling` made real symlinks in `~/.claude/skills` (run under `MSYS=winsymlinks:nativestrict`; PowerShell reports `SymbolicLink`). Claude Code listed `grilling` live in the same session.
-- Fixed two Windows-only gate bugs found while validating: `scripts/validate-skills.sh` now strips CR from the `python3` pattern list (the Store python3 writes CRLF to pipes, so every `vendored_paths` entry but the last carried a `` and never matched); `scripts/lint-skills.py` derives `REPO_DIR` from its own location instead of the hardcoded `/root/My_AI_Skills`, and resolves `--files` paths before `relative_to`. Neither changes results on the homelab.
+- Fixed two Windows-only gate bugs found while validating: `scripts/validate-skills.sh` now strips CR from the `python3` pattern list (the Store python3 writes CRLF to pipes, so every `vendored_paths` entry but the last carried a `
+` and never matched); `scripts/lint-skills.py` derives `REPO_DIR` from its own location instead of the hardcoded `/root/My_AI_Skills`, and resolves `--files` paths before `relative_to`. Neither changes results on the homelab.
 
 - Same session, second commit: vendored `grill-with-docs` (same upstream commit, `skills/engineering/grill-with-docs`) into `aarons-latest`. It calls `grilling` and `domain-modeling`; `domain-modeling` (vendored 2026-10-03 at `c55ee46`) was not installed on the Windows device, so it was linked at the same time.
 - Re-synced `skills/engineering/domain-modeling` from `c55ee46` to `49dd158d` (byte-identical; upstream renamed `CONTEXT.md`/`CONTEXT-FORMAT.md` to `GLOSSARY.md`/`GLOSSARY-FORMAT.md`). Needed because `grill-with-docs` at `49dd158d` pairs with that version. `setup-matt-pocock-skills` stays at `c55ee46`; see Open.

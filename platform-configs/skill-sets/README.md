@@ -336,32 +336,122 @@ Generated from `manifest.json`. All trial profiles require deliberate selection;
 | Profile | Packages | Trial | Selection |
 |---|---:|---:|---|
 | [analytics](analytics.txt) | 5 | 5 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review |
-| [consulting](consulting.txt) | 7 | 7 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review, consulting-operations, knowledge-synthesis |
-| [faith-learning](faith-learning.txt) | 7 | 7 | bible-study-theologian, faith-life-integration, sunday-school-teacher, prayer-and-reflection, group-study-leader, bible-study-publisher, social-media-apologetics |
-| [faith-personal](faith-personal.txt) | 3 | 3 | bible-study-theologian, prayer-and-reflection, faith-life-integration |
-| [faith-publishing](faith-publishing.txt) | 3 | 3 | bible-study-theologian, bible-study-publisher, social-media-apologetics |
-| [faith-teaching](faith-teaching.txt) | 4 | 4 | bible-study-theologian, group-study-leader, sunday-school-teacher, prayer-and-reflection |
+| [business-coding](business-coding.txt) | 17 | 17 | brainstorming, diagnosing-superpowers, dispatching-parallel-agents, requesting-code-review, executing-plans, finishing-a-development-branch, receiving-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills, karpathy-guidelines, anthropic-frontend-design |
+| [business-operations](business-operations.txt) | 7 | 7 | theme-factory, web-artifacts-builder, discernment-nudge, consulting-operations, pricing-strategist, professional-communicator, internal-comms |
+| [consulting](consulting.txt) | 12 | 12 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review, theme-factory, web-artifacts-builder, discernment-nudge, consulting-operations, knowledge-synthesis, professional-communicator, internal-comms |
+| [consulting-coding](consulting-coding.txt) | 17 | 17 | brainstorming, diagnosing-superpowers, dispatching-parallel-agents, requesting-code-review, executing-plans, finishing-a-development-branch, receiving-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills, karpathy-guidelines, anthropic-frontend-design |
+| [continued-learning](continued-learning.txt) | 5 | 5 | theme-factory, web-artifacts-builder, discernment-nudge, academy-guide, teach |
+| [e7](e7.txt) | 7 | 7 | theme-factory, web-artifacts-builder, discernment-nudge, internal-comms, consulting-operations, pricing-strategist, professional-communicator |
+| [engineering-planning](engineering-planning.txt) | 4 | 0 | setup-matt-pocock-skills, to-spec, to-tickets, domain-modeling |
+| [faith-learning](faith-learning.txt) | 11 | 11 | theme-factory, web-artifacts-builder, discernment-nudge, bible-study-theologian, faith-life-integration, sunday-school-teacher, prayer-and-reflection, group-study-leader, bible-study-publisher, social-media-apologetics, teach |
+| [faith-personal](faith-personal.txt) | 6 | 6 | theme-factory, web-artifacts-builder, discernment-nudge, bible-study-theologian, prayer-and-reflection, faith-life-integration |
+| [faith-publishing](faith-publishing.txt) | 6 | 6 | theme-factory, web-artifacts-builder, discernment-nudge, bible-study-theologian, bible-study-publisher, social-media-apologetics |
+| [faith-teaching](faith-teaching.txt) | 7 | 7 | theme-factory, web-artifacts-builder, discernment-nudge, bible-study-theologian, group-study-leader, sunday-school-teacher, prayer-and-reflection |
+| [government-contracting](government-contracting.txt) | 4 | 4 | theme-factory, web-artifacts-builder, discernment-nudge, internal-comms |
+| [hermes-teams](hermes-teams.txt) | 3 | 3 | team-agent-orchestration, agent-harness-construction, hermes-imports |
+| [home-coding](home-coding.txt) | 17 | 17 | brainstorming, diagnosing-superpowers, dispatching-parallel-agents, requesting-code-review, executing-plans, finishing-a-development-branch, receiving-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills, karpathy-guidelines, anthropic-frontend-design |
+| [home-life](home-life.txt) | 5 | 5 | theme-factory, web-artifacts-builder, discernment-nudge, knowledge-management, personal-productivity |
+| [interview](interview.txt) | 4 | 2 | grilling, grill-me, domain-modeling, grill-with-docs |
 | [maintainer](maintainer.txt) | 2 | 2 | skill-builder, skill-sentinel |
-| [work-parallon](work-parallon.txt) | 8 | 8 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review, knowledge-synthesis, sprint-plan, professional-communicator |
+| [productivity](productivity.txt) | 7 | 7 | grilling, grill-me, handoff, teach, to-questionnaire, wait-what, writing-for-agents |
+| [shared-artifacts](shared-artifacts.txt) | 3 | 3 | theme-factory, web-artifacts-builder, discernment-nudge |
+| [superpowers](superpowers.txt) | 15 | 15 | brainstorming, diagnosing-superpowers, dispatching-parallel-agents, requesting-code-review, executing-plans, finishing-a-development-branch, receiving-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills |
+| [web-product](web-product.txt) | 5 | 5 | theme-factory, web-artifacts-builder, discernment-nudge, brand-website-strategy, anthropic-frontend-design |
+| [work-analytics](work-analytics.txt) | 6 | 6 | theme-factory, web-artifacts-builder, discernment-nudge, data-analytics-engine, power-bi, professional-communicator |
+| [work-copilot-coding](work-copilot-coding.txt) | 17 | 17 | brainstorming, diagnosing-superpowers, dispatching-parallel-agents, requesting-code-review, executing-plans, finishing-a-development-branch, receiving-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills, karpathy-guidelines, anthropic-frontend-design |
+| [work-parallon](work-parallon.txt) | 12 | 12 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review, theme-factory, web-artifacts-builder, discernment-nudge, knowledge-synthesis, sprint-plan, professional-communicator, internal-comms |
 
 | Skill | Canonical path | Status |
 |---|---|---|
+| academy-guide | skills/learning/academy-guide | trial |
+| agent-harness-construction | skills/engineering/agent-harness-construction | trial |
+| anthropic-frontend-design | skills/engineering/anthropic-frontend-design | trial |
 | bi-metric-contract | skills/analytics/bi-metric-contract | trial |
 | bible-study-publisher | skills/faith/bible-study-publisher | trial |
 | bible-study-theologian | skills/faith/bible-study-theologian | trial |
 | bigquery-review | skills/analytics/bigquery-review | trial |
+| biohacking-data-pipeline | skills/product/biohacking-data-pipeline | reference |
+| brainstorming | skills/engineering/brainstorming | trial |
+| brand-website-strategy | skills/product/brand-website-strategy | trial |
+| clean-project | skills/aarons-latest/clean-project | trial |
 | consulting-operations | skills/strategy/consulting-operations | trial |
+| continuing-alm-work | skills/aarons-latest/continuing-alm-work | trial |
 | data-analytics-engine | skills/engineering/data-analytics-engine | trial |
+| diagnosing-superpowers | skills/engineering/diagnosing-superpowers | trial |
+| directory-cleanup | skills/aarons-latest/directory-cleanup | trial |
+| discernment-nudge | skills/core/discernment-nudge | trial |
+| dispatching-parallel-agents | skills/engineering/dispatching-parallel-agents | trial |
+| docker-infrastructure | skills/engineering/docker-infrastructure | trial |
+| domain-modeling | skills/engineering/domain-modeling | active |
+| executing-plans | skills/engineering/executing-plans | trial |
+| fact-checker | skills/core/fact-checker | reference |
 | faith-life-integration | skills/faith/faith-life-integration | trial |
+| finishing-a-development-branch | skills/engineering/finishing-a-development-branch | trial |
+| grill-me | skills/aarons-latest/grill-me | trial |
+| grill-with-docs | skills/aarons-latest/grill-with-docs | active |
+| grilling | skills/aarons-latest/grilling | trial |
 | group-study-leader | skills/faith/group-study-leader | trial |
+| handoff | skills/productivity/handoff | trial |
+| health-biohacking-protocol | skills/product/health-biohacking-protocol | reference |
+| hermes-imports | skills/engineering/hermes-imports | trial |
+| internal-comms | skills/growth/internal-comms | trial |
+| karpathy-guidelines | skills/engineering/karpathy-guidelines | trial |
+| knowledge-management | skills/core/knowledge-management | trial |
 | knowledge-synthesis | skills/core/knowledge-synthesis | trial |
+| n8n-workflow-architect | skills/engineering/n8n-workflow-architect | reference |
+| personal-productivity | skills/core/personal-productivity | trial |
 | power-bi | skills/microsoft/power-bi | trial |
 | prayer-and-reflection | skills/faith/prayer-and-reflection | trial |
+| pricing-strategist | skills/strategy/pricing-strategist | trial |
 | professional-communicator | skills/growth/professional-communicator | trial |
+| project-router | skills/aarons-latest/project-router | trial |
+| projectplan-builder | skills/aarons-latest/projectplan-builder | trial |
+| projectplan-rescope | skills/aarons-latest/projectplan-rescope | trial |
+| projectplan-roadmap | skills/aarons-latest/projectplan-roadmap | trial |
+| receiving-code-review | skills/engineering/receiving-code-review | trial |
+| requesting-code-review | skills/engineering/requesting-code-review | trial |
+| research_adaptive | skills/aarons-latest/research_adaptive | reference |
+| setup-matt-pocock-skills | skills/engineering/setup-matt-pocock-skills | active |
 | skill-builder | skills/core/skill-builder | trial |
 | skill-sentinel | skills/core/skill-sentinel | trial |
 | social-media-apologetics | skills/faith/social-media-apologetics | trial |
 | sprint-plan | skills/product/pm-sprint-plan | trial |
 | sql-queries | skills/product/pm-sql-queries | trial |
+| subagent-driven-development | skills/engineering/subagent-driven-development | trial |
 | sunday-school-teacher | skills/faith/sunday-school-teacher | trial |
+| systematic-debugging | skills/engineering/systematic-debugging | trial |
+| teach | skills/aarons-latest/teach | trial |
+| team-agent-orchestration | skills/aarons-latest/team-agent-orchestration | trial |
+| team-builder | skills/engineering/team-builder | reference |
+| test-driven-development | skills/engineering/test-driven-development | trial |
+| theme-factory | skills/design/theme-factory | trial |
+| to-questionnaire | skills/productivity/to-questionnaire | trial |
+| to-spec | skills/engineering/to-spec | active |
+| to-tickets | skills/engineering/to-tickets | active |
+| using-git-worktrees | skills/engineering/using-git-worktrees | trial |
+| using-superpowers | skills/core/using-superpowers | trial |
+| verification-before-completion | skills/engineering/verification-before-completion | trial |
+| wait-what | skills/productivity/wait-what | trial |
+| web-artifacts-builder | skills/engineering/web-artifacts-builder | trial |
+| workbetter | skills/aarons-latest/workbetter | trial |
+| writing-for-agents | skills/productivity/writing-for-agents | trial |
+| writing-plans | skills/engineering/writing-plans | trial |
+| writing-skills | skills/engineering/writing-skills | trial |
 <!-- CURATED-SETS:END -->
+
+## October 29 library import
+
+The canonical compiler is `scripts/skill-sets.py`; the older local catalog's
+unique profiles were reconciled here. `reference_profiles` retains core policy,
+the separate lifecycle distributor and existing blocked domains without emitting
+misleading installer sets. Domain profiles combine shared capabilities once.
+
+[Import record](../../docs/20261029%20-%20My%20AI%20Skills%20-%20Library%20Imports%20and%20Sync.md)
+contains all upstream pins and local adaptations. Non-skill assets use
+[artifact-sources.json](../artifact-sources.json). The four restricted document
+packages are [references only](../../skills/documents/README.md).
+
+Imported skill text remains subordinate to the user's readiness gate and host
+permissions. In particular, discernment-nudge's suggested questions do not add
+blanket clarification or approval requirements. None of these trial selections
+was installed globally by this import.

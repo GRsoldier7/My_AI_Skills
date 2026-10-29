@@ -1,6 +1,6 @@
 {
   "_comment": "Configuration for lint-skills.py. Edit to add/remove tokens. Tokens are matched as plain substrings unless 'regex': true.",
-  "_vendored_comment": "Upstream skill packs vendored by 6c58ff3 (EveryInc, phuryn) and aa19ad5 (Foundation AddOn). They name and structure themselves, so this repo's naming and metadata conventions are not theirs to satisfy — name-mismatch and metadata-missing are skipped here. Every other rule still applies, so a genuine defect in vendored code still fails. Entries below the globs are individually vendored skills that do not share a name prefix; provenance was established with `git log --diff-filter=A` per file, not by guessing from the name.",
+  "_vendored_comment": "Upstream skill packs vendored by 6c58ff3 (EveryInc, phuryn) and aa19ad5 (Foundation AddOn). They name and structure themselves, so this repo's naming and metadata conventions are not theirs to satisfy \u2014 name-mismatch and metadata-missing are skipped here. Every other rule still applies, so a genuine defect in vendored code still fails. Entries below the globs are individually vendored skills that do not share a name prefix; provenance was established with `git log --diff-filter=A` per file, not by guessing from the name.",
   "vendored_paths": [
     "skills/product/pm-*",
     "skills/engineering/ce-*",
@@ -39,7 +39,36 @@
     "skills/aarons-latest/grill-me",
     "skills/aarons-latest/grilling",
     "skills/aarons-latest/grill-with-docs",
-    "skills/aarons-latest/teach"
+    "skills/aarons-latest/teach",
+    "skills/learning/academy-guide",
+    "skills/core/discernment-nudge",
+    "skills/engineering/anthropic-frontend-design",
+    "skills/growth/internal-comms",
+    "skills/design/theme-factory",
+    "skills/engineering/web-artifacts-builder",
+    "skills/productivity/handoff",
+    "skills/productivity/to-questionnaire",
+    "skills/productivity/wait-what",
+    "skills/productivity/writing-for-agents",
+    "skills/engineering/brainstorming",
+    "skills/engineering/diagnosing-superpowers",
+    "skills/engineering/dispatching-parallel-agents",
+    "skills/engineering/executing-plans",
+    "skills/engineering/finishing-a-development-branch",
+    "skills/engineering/receiving-code-review",
+    "skills/engineering/requesting-code-review",
+    "skills/engineering/subagent-driven-development",
+    "skills/engineering/systematic-debugging",
+    "skills/engineering/test-driven-development",
+    "skills/engineering/using-git-worktrees",
+    "skills/engineering/verification-before-completion",
+    "skills/engineering/writing-plans",
+    "skills/engineering/writing-skills",
+    "skills/engineering/agent-harness-construction",
+    "skills/engineering/hermes-imports",
+    "skills/aarons-latest/team-agent-orchestration",
+    "skills/engineering/team-builder",
+    "skills/engineering/karpathy-guidelines"
   ],
   "max_age_days": 90,
   "stale_tokens": [
@@ -52,25 +81,25 @@
     {
       "token": "claude-3-5-sonnet",
       "severity": "WARN",
-      "reason": "Older Sonnet model — confirm intentional.",
+      "reason": "Older Sonnet model \u2014 confirm intentional.",
       "fix": "Verify the model is intentional; latest is Sonnet 4.5+."
     },
     {
       "token": "claude-3-opus",
       "severity": "WARN",
-      "reason": "Legacy Opus model — confirm intentional.",
+      "reason": "Legacy Opus model \u2014 confirm intentional.",
       "fix": "Update to claude-opus-4-7 unless legacy reference."
     },
     {
       "token": "192.168.1.240",
       "severity": "FAIL",
-      "reason": "Stale homelab IP — this host was renumbered.",
+      "reason": "Stale homelab IP \u2014 this host was renumbered.",
       "fix": "Replace with the current Proxmox host address. Do not commit real LAN addresses to this repo; use RFC 5737 (192.0.2.0/24) in examples."
     },
     {
       "token": "Cowork",
       "severity": "WARN",
-      "reason": "'Cowork' was renamed — confirm correct branding.",
+      "reason": "'Cowork' was renamed \u2014 confirm correct branding.",
       "fix": "Replace with the current product name if applicable."
     },
     {

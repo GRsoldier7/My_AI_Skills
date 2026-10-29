@@ -1,6 +1,28 @@
 # Aaron's AI Skill Library
 
-A library of **202 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. Curated profiles select shared canonical skills; project-router owns lifecycle selection and master-orchestrator serves explicit catalog discovery.
+
+## Library organization and October 29 imports
+
+- `skills/`: complete reusable procedures, organized by capability/domain.
+- `agents/`: specialist personas; `agents/ecc/` contains four source definitions.
+- `prompts/`: reusable task starters; `prompts/copilot/` contains five templates.
+- `platform-configs/`: host adapters and one canonical selection manifest.
+- `docs/` and `evals/`: decisions, provenance and verification evidence.
+
+Select [domain profiles](platform-configs/skill-sets/README.md) without duplicating
+skills for Parallon, Consulting, E7, home or learning. Shared artifact skills are
+included across the domain profiles. Coding profiles select Superpowers separately
+from the lifecycle router. See the [import and sync record](docs/20261029%20-%20My%20AI%20Skills%20-%20Library%20Imports%20and%20Sync.md)
+for coverage, source pins and licensing limits. DOCX/PDF/PPTX/XLSX are
+[upstream references](skills/documents/README.md), not redistributed packages.
+
+`python3 scripts/skill-sets.py` verifies the catalog; `--write` regenerates its
+sets. `scripts/skill-catalog.py` from the older local foundation is superseded by
+this compiler; its work is preserved in the local backup. Empty core policy,
+router-managed lifecycle and blocked profiles remain in `reference_profiles`.
+
+
+A library of **231 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. Curated profiles select shared canonical skills; project-router owns lifecycle selection and master-orchestrator serves explicit catalog discovery.
 
 The library supports **five AI platforms**: Claude Code (slash commands), Google Antigravity / Gemini CLI, OpenAI Codex, Cursor, and ChatGPT. A dedicated **`skill-builder` meta-skill** manages the creation, auditing, and continuous improvement of all skills using a 5-module pipeline and a 10-dimension quality rubric.
 
@@ -525,7 +547,7 @@ aaron-skill-library/
 ├── CLAUDE.md                          # Master Claude Code project instructions
 ├── .gitignore
 │
-├── skills/                            # All 202 skills, organized by category
+├── skills/                            # All 231 skills, organized by category
 │   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (13)
 │   │   ├── project-router/            # Pick the next project workflow from evidence
 │   │   ├── clean-project/             # Lifecycle/security/usage audit, approved cleanup

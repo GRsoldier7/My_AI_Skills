@@ -401,3 +401,11 @@ After reconciliation, implement the smallest approved slice through SK-03/04/05 
 Repository claims are pinned to 847e236. Primary inspected files include [AGENTS.md](https://github.com/GRsoldier7/My_AI_Skills/blob/847e2364979dc69b7e0e1e4c5c3de3d87b51869f/AGENTS.md), [CLAUDE.md](https://github.com/GRsoldier7/My_AI_Skills/blob/847e2364979dc69b7e0e1e4c5c3de3d87b51869f/CLAUDE.md), [master-orchestrator](https://github.com/GRsoldier7/My_AI_Skills/blob/847e2364979dc69b7e0e1e4c5c3de3d87b51869f/skills/core/master-orchestrator/SKILL.md), [installer](https://github.com/GRsoldier7/My_AI_Skills/blob/847e2364979dc69b7e0e1e4c5c3de3d87b51869f/scripts/install-skills.sh), [router packager](https://github.com/GRsoldier7/My_AI_Skills/blob/847e2364979dc69b7e0e1e4c5c3de3d87b51869f/scripts/project-router.py), [installation boundaries](https://github.com/GRsoldier7/My_AI_Skills/blob/847e2364979dc69b7e0e1e4c5c3de3d87b51869f/platform-configs/openai/project-router/README.md), [analytics source](https://github.com/GRsoldier7/My_AI_Skills/blob/847e2364979dc69b7e0e1e4c5c3de3d87b51869f/skills/engineering/data-analytics-engine/SKILL.md), [Power BI source](https://github.com/GRsoldier7/My_AI_Skills/blob/847e2364979dc69b7e0e1e4c5c3de3d87b51869f/skills/microsoft/power-bi/SKILL.md) and [n8n source](https://github.com/GRsoldier7/My_AI_Skills/blob/847e2364979dc69b7e0e1e4c5c3de3d87b51869f/skills/engineering/n8n-workflow-architect/SKILL.md).
 
 Muse's attached recommendation was read in full and treated as a proposal to verify. Local inventory was read directly from the supplied NAS workspace. Research used official platform documentation and upstream repositories; proposed fit and prioritization are architectural judgments, not benchmark rankings.
+
+## 2026-10-29 library import checkpoint
+
+The owner selected the newer GitHub profile catalog as canonical and requested
+upstream skill additions plus separated agents/prompts. Implementation, scope,
+source pins and validation are recorded in
+[Library Imports and Sync](20261029%20-%20My%20AI%20Skills%20-%20Library%20Imports%20and%20Sync.md).
+Next action: review the feature branch for merge; host activation remains separate.

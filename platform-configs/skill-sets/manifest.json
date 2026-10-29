@@ -376,6 +376,1177 @@
         "owner_source": "bible-theologian-v2 plugin 2.1.0; read-only source, canonical adaptation only"
       },
       "package_sha256": "76b0ab2d19ca838f10e9f6cd00ec07c6b470a1d8df8b816e821a521527ee7886"
+    },
+    {
+      "id": "academy-guide",
+      "name": "academy-guide",
+      "path": "skills/learning/academy-guide",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "local-adaptation",
+        "repository": "https://github.com/anthropics/skills",
+        "revision": "ca45fc496a3436251f191354091d557da31c15b5",
+        "path": "skills/academy-guide",
+        "license": "Apache-2.0",
+        "local_changes": "Render the upstream [Title](URL) placeholder as inline code so link validation does not treat it as a missing file."
+      },
+      "package_sha256": "8ead21a95a97b753e4e93c140f0bdc9d264688a7656ab806fac2948ca6eb98db"
+    },
+    {
+      "id": "discernment-nudge",
+      "name": "discernment-nudge",
+      "path": "skills/core/discernment-nudge",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/anthropics/skills",
+        "revision": "ca45fc496a3436251f191354091d557da31c15b5",
+        "path": "skills/discernment-nudge",
+        "license": "Apache-2.0",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "c3f503f343e5e32f7c8539e47853ca4d69e0cfdbd294789510c8203ae8f92e1d"
+    },
+    {
+      "id": "anthropic-frontend-design",
+      "name": "anthropic-frontend-design",
+      "path": "skills/engineering/anthropic-frontend-design",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "local-adaptation",
+        "repository": "https://github.com/anthropics/skills",
+        "revision": "ca45fc496a3436251f191354091d557da31c15b5",
+        "path": "skills/frontend-design",
+        "license": "Apache-2.0",
+        "local_changes": "Namespace directory and frontmatter name to anthropic-frontend-design to preserve existing ce-frontend-design identity; workflow body unchanged."
+      },
+      "package_sha256": "f2b15a00f0019e63691df3a4198e4603ccb07166a67e44826a98e4f09f17a1c8"
+    },
+    {
+      "id": "internal-comms",
+      "name": "internal-comms",
+      "path": "skills/growth/internal-comms",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "local-adaptation",
+        "repository": "https://github.com/anthropics/skills",
+        "revision": "ca45fc496a3436251f191354091d557da31c15b5",
+        "path": "skills/internal-comms",
+        "license": "Apache-2.0",
+        "local_changes": "Remove one upstream trailing space in examples/3p-updates.md for repository diff validation; wording unchanged."
+      },
+      "package_sha256": "94599d0bcb5ee8319972d538562a6fa46677ae15381e18e96c2b29d5e10eca18"
+    },
+    {
+      "id": "theme-factory",
+      "name": "theme-factory",
+      "path": "skills/design/theme-factory",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/anthropics/skills",
+        "revision": "ca45fc496a3436251f191354091d557da31c15b5",
+        "path": "skills/theme-factory",
+        "license": "Apache-2.0",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "f426a07c06316201360be19324f2689c5bd3ab2d1669848c9383c321efa4386f"
+    },
+    {
+      "id": "web-artifacts-builder",
+      "name": "web-artifacts-builder",
+      "path": "skills/engineering/web-artifacts-builder",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/anthropics/skills",
+        "revision": "ca45fc496a3436251f191354091d557da31c15b5",
+        "path": "skills/web-artifacts-builder",
+        "license": "Apache-2.0",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "7a081b86fd5068d3ca2c4d9c059956634feff65ccbf1c39c3d34a6e5d0971139"
+    },
+    {
+      "id": "grill-me",
+      "name": "grill-me",
+      "path": "skills/aarons-latest/grill-me",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [
+        "grilling"
+      ],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/mattpocock/skills",
+        "revision": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+        "path": "skills/productivity/grill-me",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "7b8272212181514e50c371cbd2fa97da8b4280450cbe4e54c70b580595b7b77e"
+    },
+    {
+      "id": "grilling",
+      "name": "grilling",
+      "path": "skills/aarons-latest/grilling",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/mattpocock/skills",
+        "revision": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+        "path": "skills/productivity/grilling",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "fac97e7604fabc21eb4d791432a1af533561eedd41781d3fb20f5a2d4f03e2cd"
+    },
+    {
+      "id": "handoff",
+      "name": "handoff",
+      "path": "skills/productivity/handoff",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/mattpocock/skills",
+        "revision": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+        "path": "skills/productivity/handoff",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "7b0599359d0a070a7e58b018dc8790d10b5452f72b4f86f201b3037eb87f7f06"
+    },
+    {
+      "id": "teach",
+      "name": "teach",
+      "path": "skills/aarons-latest/teach",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/mattpocock/skills",
+        "revision": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+        "path": "skills/productivity/teach",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "ed7d1bd923d9d85e4b833756621f491d4cd54bd7f7bc7939293020c40788f072"
+    },
+    {
+      "id": "to-questionnaire",
+      "name": "to-questionnaire",
+      "path": "skills/productivity/to-questionnaire",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/mattpocock/skills",
+        "revision": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+        "path": "skills/productivity/to-questionnaire",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "ce25e6e122f9cc236e9a1a37564af335ba96f146d1821134fa568c95b7907909"
+    },
+    {
+      "id": "wait-what",
+      "name": "wait-what",
+      "path": "skills/productivity/wait-what",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/mattpocock/skills",
+        "revision": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+        "path": "skills/productivity/wait-what",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "f261a75303366ffd6bbffbce152df048ef4271ef0fb477d8ab148e25df508116"
+    },
+    {
+      "id": "writing-for-agents",
+      "name": "writing-for-agents",
+      "path": "skills/productivity/writing-for-agents",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/mattpocock/skills",
+        "revision": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+        "path": "skills/productivity/writing-for-agents",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "8679b3639f3454004434f4b76118dfc599cdee09a62519bee8e37e29b4e2a4a9"
+    },
+    {
+      "id": "brainstorming",
+      "name": "brainstorming",
+      "path": "skills/engineering/brainstorming",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/brainstorming",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "d6daa1c894d5846b920522ee757e2efeee1ef0f5735348d67b058550ac17b836"
+    },
+    {
+      "id": "diagnosing-superpowers",
+      "name": "diagnosing-superpowers",
+      "path": "skills/engineering/diagnosing-superpowers",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/diagnosing-superpowers",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "812999ec3a160c2786ebd0ea03e264a2c89a50e590d02f0d71055961895c3835"
+    },
+    {
+      "id": "dispatching-parallel-agents",
+      "name": "dispatching-parallel-agents",
+      "path": "skills/engineering/dispatching-parallel-agents",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/dispatching-parallel-agents",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "da566964096946b1555ef53e38dd3b36009fb09ad37ca85f172551da083552a7"
+    },
+    {
+      "id": "executing-plans",
+      "name": "executing-plans",
+      "path": "skills/engineering/executing-plans",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [
+        "requesting-code-review"
+      ],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/executing-plans",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "9d3b3bf666b1ab593d01d860871a7362611a2a22d5840860e6bb2b5fe0196821"
+    },
+    {
+      "id": "finishing-a-development-branch",
+      "name": "finishing-a-development-branch",
+      "path": "skills/engineering/finishing-a-development-branch",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/finishing-a-development-branch",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "eefb513e65dd91409d8accbe869f4ecfe0cc1cb63fb4a13dddc693635f274aeb"
+    },
+    {
+      "id": "receiving-code-review",
+      "name": "receiving-code-review",
+      "path": "skills/engineering/receiving-code-review",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/receiving-code-review",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "3cbd70aed537b32e8f4e29b60f558c5220259e0472dfd7905e3561031a5bf906"
+    },
+    {
+      "id": "requesting-code-review",
+      "name": "requesting-code-review",
+      "path": "skills/engineering/requesting-code-review",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/requesting-code-review",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "040266a90d83dcab032ee9c36c40ced5b66281086d4f700880903782dfd4f7f6"
+    },
+    {
+      "id": "subagent-driven-development",
+      "name": "subagent-driven-development",
+      "path": "skills/engineering/subagent-driven-development",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [
+        "requesting-code-review"
+      ],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/subagent-driven-development",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "32669db799602a10be5980191637956c5abe6e6c0cfaa98386e745622967ea0c"
+    },
+    {
+      "id": "systematic-debugging",
+      "name": "systematic-debugging",
+      "path": "skills/engineering/systematic-debugging",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/systematic-debugging",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "cb6670d841ef42dbc8117deb3402f608cf5d44db2c0c9fd39c2ecde5e67b8fea"
+    },
+    {
+      "id": "test-driven-development",
+      "name": "test-driven-development",
+      "path": "skills/engineering/test-driven-development",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/test-driven-development",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "5ba1cc419c394df43ddd645586ef61b5aa4bba5a47d32d3e279a3c32ce162699"
+    },
+    {
+      "id": "using-git-worktrees",
+      "name": "using-git-worktrees",
+      "path": "skills/engineering/using-git-worktrees",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/using-git-worktrees",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "767cea2618dcae5acfba0170508ed7f0392a91d996d802f77137f3e51ab373b3"
+    },
+    {
+      "id": "using-superpowers",
+      "name": "using-superpowers",
+      "path": "skills/core/using-superpowers",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/using-superpowers",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "999a1a872778b43ec9650319aa7549046dd8a51710cf72a0c3844941bc58d356"
+    },
+    {
+      "id": "verification-before-completion",
+      "name": "verification-before-completion",
+      "path": "skills/engineering/verification-before-completion",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/verification-before-completion",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "a548de9c0de8ce76e3604d2ae1d0151b36535fb6de6438d1dad1841b680c084a"
+    },
+    {
+      "id": "writing-plans",
+      "name": "writing-plans",
+      "path": "skills/engineering/writing-plans",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/writing-plans",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "30c485657d51053f0c0602daa48b1cbbdcfa816e209fc617841bfebb57a99adf"
+    },
+    {
+      "id": "writing-skills",
+      "name": "writing-skills",
+      "path": "skills/engineering/writing-skills",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [
+        "using-superpowers"
+      ],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "local-adaptation",
+        "repository": "https://github.com/obra/superpowers",
+        "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+        "path": "skills/writing-skills",
+        "license": "MIT",
+        "local_changes": "Adjust two relative references to existing canonical core/using-superpowers location; rest of package unchanged. MIT license included."
+      },
+      "package_sha256": "e47632ab336affecd41af5afe93f4c4fb98c7ac6025e6ce5023a1400e152816b"
+    },
+    {
+      "id": "agent-harness-construction",
+      "name": "agent-harness-construction",
+      "path": "skills/engineering/agent-harness-construction",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/affaan-m/ECC",
+        "revision": "91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+        "path": "skills/agent-harness-construction",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "a500cb3a88469b53bf1d7b3ec5a6fbe78d8693656dcbd1e3c7334d4f0c81c3a7"
+    },
+    {
+      "id": "hermes-imports",
+      "name": "hermes-imports",
+      "path": "skills/engineering/hermes-imports",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/affaan-m/ECC",
+        "revision": "91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+        "path": "skills/hermes-imports",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "eb25be4b6f6de9481bb7845551858d1eec32cd8c6c62e13e250a0f172602204d"
+    },
+    {
+      "id": "team-agent-orchestration",
+      "name": "team-agent-orchestration",
+      "path": "skills/aarons-latest/team-agent-orchestration",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/affaan-m/ECC",
+        "revision": "91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+        "path": "skills/team-agent-orchestration",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "dcc86642637c3a645f0a6457f949eab9dfe16f8a6062c4d535946eafc93915ee"
+    },
+    {
+      "id": "team-builder",
+      "name": "team-builder",
+      "path": "skills/engineering/team-builder",
+      "aliases": [],
+      "status": "reference",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/affaan-m/ECC",
+        "revision": "91b5f6a371f7b06d2c3e0c208147c559e11f022c",
+        "path": "skills/team-builder",
+        "license": "MIT",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "a0ca1c17977266abb6c346d9639b8e0bf5678d64df0bb1b6904ef7b6492a7976",
+      "activation_blocker": "Claude-specific agent discovery; adapt and verify before Hermes use."
+    },
+    {
+      "id": "karpathy-guidelines",
+      "name": "karpathy-guidelines",
+      "path": "skills/engineering/karpathy-guidelines",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "upstream",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "Explicit task/profile selection; package storage does not activate host hooks or authorize external actions.",
+      "provenance": {
+        "kind": "vendored",
+        "repository": "https://github.com/multica-ai/andrej-karpathy-skills",
+        "revision": "2c606141936f1eeef17fa3043a72095b4765b9c2",
+        "path": "skills/karpathy-guidelines",
+        "license": "MIT (declared in SKILL.md; no standalone upstream license file)",
+        "local_changes": "Upstream files preserved; repository license included where provided."
+      },
+      "package_sha256": "e64131803b0a34b8c39afc11338a74f8305cf8f69f750620bdf6cb38f6865c52"
+    },
+    {
+      "id": "project-router",
+      "name": "project-router",
+      "path": "skills/aarons-latest/project-router",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [
+        "projectplan-builder",
+        "projectplan-rescope",
+        "continuing-alm-work",
+        "workbetter",
+        "clean-project",
+        "directory-cleanup"
+      ],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "37efb847831955c65f5e105930586880ef8ac5d834f4ef1cd0f6068317838e7d"
+    },
+    {
+      "id": "projectplan-builder",
+      "name": "projectplan-builder",
+      "path": "skills/aarons-latest/projectplan-builder",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "ef8fd81b8e07a49f067f782f8cf4227301336a569f445259218f7fca0028fcac"
+    },
+    {
+      "id": "projectplan-rescope",
+      "name": "projectplan-rescope",
+      "path": "skills/aarons-latest/projectplan-rescope",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "e742810aa6e8b546bbecd7b5297b1404e24b06b3c3d58f4f588221ec97f9a642"
+    },
+    {
+      "id": "continuing-alm-work",
+      "name": "continuing-alm-work",
+      "path": "skills/aarons-latest/continuing-alm-work",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "14456e16e9d003fdf0a47645b183d85f5bdb58ca0a3d52b2fcc59be376f4173c"
+    },
+    {
+      "id": "workbetter",
+      "name": "workbetter",
+      "path": "skills/aarons-latest/workbetter",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "a85c37c0eb6630ab39465b911ef651dda29319b000ce09e612581c4900677420"
+    },
+    {
+      "id": "clean-project",
+      "name": "clean-project",
+      "path": "skills/aarons-latest/clean-project",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "7c41d29801d4fe0e1a09e644b5484c8d7e54e426d37494e28f531e6e28c2acde"
+    },
+    {
+      "id": "directory-cleanup",
+      "name": "directory-cleanup",
+      "path": "skills/aarons-latest/directory-cleanup",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "6a4200aa4bb82b05b8b4dd92524610b89cec379d848e8436279c3bc58b2b02ee"
+    },
+    {
+      "id": "projectplan-roadmap",
+      "name": "projectplan-roadmap",
+      "path": "skills/aarons-latest/projectplan-roadmap",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "a0c67e53203732d8dfaa17df785ca08402413bdbbf414f2ba1f1babd09abfa05"
+    },
+    {
+      "id": "setup-matt-pocock-skills",
+      "name": "setup-matt-pocock-skills",
+      "path": "skills/engineering/setup-matt-pocock-skills",
+      "aliases": [],
+      "status": "active",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "historical documented review; not repeated in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "492f2df68d072ccbf471a0f4e0e3b08b71a767c195e163766bb583523bce3885"
+    },
+    {
+      "id": "to-spec",
+      "name": "to-spec",
+      "path": "skills/engineering/to-spec",
+      "aliases": [],
+      "status": "active",
+      "dependencies": [
+        "setup-matt-pocock-skills"
+      ],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "historical documented review; not repeated in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "d63ddc34a8417b465fb04200527ac4d1d29f2453a084c673fd6ca4b6bf15e643"
+    },
+    {
+      "id": "to-tickets",
+      "name": "to-tickets",
+      "path": "skills/engineering/to-tickets",
+      "aliases": [],
+      "status": "active",
+      "dependencies": [
+        "setup-matt-pocock-skills"
+      ],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "historical documented review; not repeated in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "139aa7df5e7aca658f0f4adcba7241b695bcce94a420cdfe30f63d9a2f08ebc1"
+    },
+    {
+      "id": "domain-modeling",
+      "name": "domain-modeling",
+      "path": "skills/engineering/domain-modeling",
+      "aliases": [],
+      "status": "active",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "historical documented review; not repeated in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "370e8d39789582afe04ca60449240431ca11e57ec2bb18ef245ee984a671e525"
+    },
+    {
+      "id": "grill-with-docs",
+      "name": "grill-with-docs",
+      "path": "skills/aarons-latest/grill-with-docs",
+      "aliases": [],
+      "status": "active",
+      "dependencies": [
+        "grilling",
+        "domain-modeling"
+      ],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "historical documented review; not repeated in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "f7c97806844117b4c70b556f74b3d88a6974f6675cfcf8d529db1ac1cabda28c"
+    },
+    {
+      "id": "brand-website-strategy",
+      "name": "brand-website-strategy",
+      "path": "skills/product/brand-website-strategy",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "dc4a4aba34ab2325c0cbcce67a089c572cb982d6b630ce17b7ed858eaabf3be7"
+    },
+    {
+      "id": "knowledge-management",
+      "name": "knowledge-management",
+      "path": "skills/core/knowledge-management",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "59077d713abe673bead929c92a85d954500712d4a25607b5ab64ae3939abe3e1"
+    },
+    {
+      "id": "personal-productivity",
+      "name": "personal-productivity",
+      "path": "skills/core/personal-productivity",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "1cf6b48fdece8142939e344626efcb50bc5620409b6d72847ab2e1c1980805ce"
+    },
+    {
+      "id": "pricing-strategist",
+      "name": "pricing-strategist",
+      "path": "skills/strategy/pricing-strategist",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "8da4b65ded7057da9a711dc6603dbf5f3d2a70c6fd104190f5d71be54dfb708c"
+    },
+    {
+      "id": "docker-infrastructure",
+      "name": "docker-infrastructure",
+      "path": "skills/engineering/docker-infrastructure",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "e352543d882e2fc8724a228c90249cf3cad46a5f24219cfcfba042342a9a26fa"
+    },
+    {
+      "id": "fact-checker",
+      "name": "fact-checker",
+      "path": "skills/core/fact-checker",
+      "aliases": [],
+      "status": "reference",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "e44723cf9c95b655367f4db5daa1d5b42ae620d59e6fe27cfd014445ee201da5",
+      "activation_blocker": "SK-07: verify upstream pin/license and evidence-task behavior before activation."
+    },
+    {
+      "id": "n8n-workflow-architect",
+      "name": "n8n-workflow-architect",
+      "path": "skills/engineering/n8n-workflow-architect",
+      "aliases": [],
+      "status": "reference",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "84dc0074e575d9e8fda12c02c91ef065aecf04225a88bfdd33cc8ebd026f8e89",
+      "activation_blocker": "SK-07: correct version assumptions and resolve missing references before activation."
+    },
+    {
+      "id": "health-biohacking-protocol",
+      "name": "health-biohacking-protocol",
+      "path": "skills/product/health-biohacking-protocol",
+      "aliases": [],
+      "status": "reference",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "0e94a2e1f10a9fffee0ab1820529c1172de66ec88beb1c45b007a2b951528e7e",
+      "activation_blocker": "SK-07: unverified claim-level health advice; retain reference only, do not generate personal protocols."
+    },
+    {
+      "id": "biohacking-data-pipeline",
+      "name": "biohacking-data-pipeline",
+      "path": "skills/product/biohacking-data-pipeline",
+      "aliases": [],
+      "status": "reference",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "6f688f75557091138705fdc633009b9fa850fbe77fbf2ee2e6650beaa012a029",
+      "activation_blocker": "SK-07: required schema-patterns resource absent; separate private health data before activation."
+    },
+    {
+      "id": "research-adaptive",
+      "name": "research_adaptive",
+      "path": "skills/aarons-latest/research_adaptive",
+      "aliases": [],
+      "status": "reference",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "provenance": {
+        "kind": "retained-local-catalog",
+        "previous_record": {
+          "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+          "revision": "847e2364979dc69b7e0e1e4c5c3de3d87b51869f",
+          "upstream_record": "platform-configs/skill-sets/README.md; package license/header when present",
+          "upstream_verification": "not independently verified in this build"
+        },
+        "note": "Preserved local profile selection and source; no new behavioral certification."
+      },
+      "package_sha256": "543c2631f4e88d0a748bb6b8e976635795130d8770900013772436c000f6fb08",
+      "activation_blocker": "Owner-requested underscore name preserved; compatibility and runtime references need host validation."
     }
   ],
   "profiles": {
@@ -394,22 +1565,28 @@
       "skills": [
         "knowledge-synthesis",
         "sprint-plan",
-        "professional-communicator"
+        "professional-communicator",
+        "internal-comms"
       ],
       "includes": [
-        "analytics"
+        "analytics",
+        "shared-artifacts"
       ],
       "allow_trial": true
     },
     "consulting": {
       "skills": [
         "consulting-operations",
-        "knowledge-synthesis"
+        "knowledge-synthesis",
+        "professional-communicator",
+        "internal-comms"
       ],
       "includes": [
-        "analytics"
+        "analytics",
+        "shared-artifacts"
       ],
-      "allow_trial": true
+      "allow_trial": true,
+      "context": "platform-configs/profiles/consulting/CONTEXT.md"
     },
     "maintainer": {
       "skills": [
@@ -425,7 +1602,9 @@
         "prayer-and-reflection",
         "faith-life-integration"
       ],
-      "includes": [],
+      "includes": [
+        "shared-artifacts"
+      ],
       "allow_trial": true
     },
     "faith-teaching": {
@@ -434,7 +1613,9 @@
         "sunday-school-teacher",
         "prayer-and-reflection"
       ],
-      "includes": [],
+      "includes": [
+        "shared-artifacts"
+      ],
       "allow_trial": true
     },
     "faith-publishing": {
@@ -442,7 +1623,9 @@
         "bible-study-publisher",
         "social-media-apologetics"
       ],
-      "includes": [],
+      "includes": [
+        "shared-artifacts"
+      ],
       "allow_trial": true
     },
     "faith-learning": {
@@ -453,10 +1636,262 @@
         "prayer-and-reflection",
         "group-study-leader",
         "bible-study-publisher",
-        "social-media-apologetics"
+        "social-media-apologetics",
+        "teach"
+      ],
+      "includes": [
+        "shared-artifacts"
+      ],
+      "allow_trial": true,
+      "context": "platform-configs/profiles/faith-learning/CONTEXT.md"
+    },
+    "engineering-planning": {
+      "skills": [
+        "setup-matt-pocock-skills",
+        "to-spec",
+        "to-tickets",
+        "domain-modeling"
+      ],
+      "includes": [],
+      "allow_trial": true,
+      "description": "Existing four-skill global selection, explicitly selected for software projects.",
+      "context": "platform-configs/profiles/engineering-planning/CONTEXT.md"
+    },
+    "interview": {
+      "skills": [
+        "grill-me",
+        "grill-with-docs"
+      ],
+      "includes": [],
+      "allow_trial": true,
+      "description": "Interview wrappers with resolved shared dependencies.",
+      "context": "platform-configs/profiles/interview/CONTEXT.md"
+    },
+    "work-analytics": {
+      "skills": [
+        "data-analytics-engine",
+        "power-bi",
+        "professional-communicator"
+      ],
+      "includes": [
+        "shared-artifacts"
+      ],
+      "allow_trial": true,
+      "description": "Trial employer-safe analytics instruction candidate; target-host proof pending; explicit --allow-trial required.",
+      "context": "platform-configs/profiles/work-analytics/CONTEXT.md"
+    },
+    "web-product": {
+      "skills": [
+        "brand-website-strategy",
+        "anthropic-frontend-design"
+      ],
+      "includes": [
+        "shared-artifacts"
+      ],
+      "allow_trial": true,
+      "description": "Generic website strategy and delivery; separate project context for each website.",
+      "context": "platform-configs/profiles/web-product/CONTEXT.md"
+    },
+    "home-life": {
+      "skills": [
+        "knowledge-management",
+        "personal-productivity"
+      ],
+      "includes": [
+        "shared-artifacts"
+      ],
+      "allow_trial": true,
+      "description": "Private household context stays in its own profile; generic procedures only here.",
+      "context": "platform-configs/profiles/home-life/CONTEXT.md"
+    },
+    "business-operations": {
+      "skills": [
+        "consulting-operations",
+        "pricing-strategist",
+        "professional-communicator",
+        "internal-comms"
+      ],
+      "includes": [
+        "shared-artifacts"
+      ],
+      "allow_trial": true,
+      "description": "Generic scope, pricing and stakeholder drafting.",
+      "context": "platform-configs/profiles/business-operations/CONTEXT.md"
+    },
+    "government-contracting": {
+      "skills": [
+        "internal-comms"
+      ],
+      "includes": [
+        "shared-artifacts"
+      ],
+      "allow_trial": true,
+      "description": "Discovery placeholder; inspect existing private contracting materials before selection.",
+      "context": "platform-configs/profiles/government-contracting/CONTEXT.md"
+    },
+    "shared-artifacts": {
+      "skills": [
+        "theme-factory",
+        "web-artifacts-builder",
+        "discernment-nudge"
+      ],
+      "includes": [],
+      "allow_trial": true,
+      "description": "Reusable across every domain; document skill upstream references are in skills/documents/README.md."
+    },
+    "productivity": {
+      "skills": [
+        "grill-me",
+        "grilling",
+        "handoff",
+        "teach",
+        "to-questionnaire",
+        "wait-what",
+        "writing-for-agents"
       ],
       "includes": [],
       "allow_trial": true
+    },
+    "continued-learning": {
+      "skills": [
+        "academy-guide",
+        "teach"
+      ],
+      "includes": [
+        "shared-artifacts"
+      ],
+      "allow_trial": true
+    },
+    "superpowers": {
+      "skills": [
+        "brainstorming",
+        "diagnosing-superpowers",
+        "dispatching-parallel-agents",
+        "executing-plans",
+        "finishing-a-development-branch",
+        "receiving-code-review",
+        "requesting-code-review",
+        "subagent-driven-development",
+        "systematic-debugging",
+        "test-driven-development",
+        "using-git-worktrees",
+        "using-superpowers",
+        "verification-before-completion",
+        "writing-plans",
+        "writing-skills"
+      ],
+      "includes": [],
+      "allow_trial": true,
+      "description": "One development workflow owner; do not stack with lifecycle router in the same task."
+    },
+    "hermes-teams": {
+      "skills": [
+        "team-agent-orchestration",
+        "agent-harness-construction",
+        "hermes-imports"
+      ],
+      "includes": [],
+      "allow_trial": true,
+      "description": "Portable guidance only; team-builder and ECC runtime remain separate."
+    },
+    "e7": {
+      "skills": [],
+      "includes": [
+        "government-contracting",
+        "business-operations"
+      ],
+      "allow_trial": true
+    },
+    "work-copilot-coding": {
+      "skills": [
+        "karpathy-guidelines",
+        "anthropic-frontend-design"
+      ],
+      "includes": [
+        "superpowers"
+      ],
+      "allow_trial": true,
+      "description": "Coding-only selection; private domain context remains external."
+    },
+    "home-coding": {
+      "skills": [
+        "karpathy-guidelines",
+        "anthropic-frontend-design"
+      ],
+      "includes": [
+        "superpowers"
+      ],
+      "allow_trial": true,
+      "description": "Coding-only selection; private domain context remains external."
+    },
+    "consulting-coding": {
+      "skills": [
+        "karpathy-guidelines",
+        "anthropic-frontend-design"
+      ],
+      "includes": [
+        "superpowers"
+      ],
+      "allow_trial": true,
+      "description": "Coding-only selection; private domain context remains external."
+    },
+    "business-coding": {
+      "skills": [
+        "karpathy-guidelines",
+        "anthropic-frontend-design"
+      ],
+      "includes": [
+        "superpowers"
+      ],
+      "allow_trial": true,
+      "description": "Coding-only selection; private domain context remains external."
+    }
+  },
+  "reference_profiles": {
+    "homelab-automation": {
+      "skills": [
+        "docker-infrastructure",
+        "n8n-workflow-architect"
+      ],
+      "includes": [
+        "core"
+      ],
+      "allow_trial": true,
+      "description": "Candidate existing-service automation; BLOCKED pending n8n correction.",
+      "context": "platform-configs/profiles/homelab-automation/CONTEXT.md",
+      "reason": "Existing local blockers preserved; not an installable profile."
+    },
+    "health-research": {
+      "skills": [
+        "fact-checker"
+      ],
+      "includes": [
+        "core"
+      ],
+      "allow_trial": true,
+      "description": "Evidence appraisal candidate; BLOCKED, no individualized health protocols.",
+      "context": "platform-configs/profiles/health-research/CONTEXT.md",
+      "reason": "Existing local blockers preserved; not an installable profile."
+    },
+    "core": {
+      "skills": [],
+      "includes": [],
+      "allow_trial": true,
+      "description": "Context-free selection policy; no universally forced skill.",
+      "context": "platform-configs/profiles/core/CONTEXT.md",
+      "reason": "Empty context policy; no installable set."
+    },
+    "lifecycle": {
+      "skills": [
+        "project-router"
+      ],
+      "includes": [
+        "core"
+      ],
+      "allow_trial": true,
+      "description": "Existing seven-skill lifecycle bundle, with roadmap optional by explicit selection.",
+      "context": "platform-configs/profiles/lifecycle/CONTEXT.md",
+      "reason": "Existing seven-skill router uses project-router.py distribution; do not bypass its ownership with the general installer."
     }
   }
 }
