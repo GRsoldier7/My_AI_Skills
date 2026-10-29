@@ -337,20 +337,31 @@ Generated from `manifest.json`. All trial profiles require deliberate selection;
 |---|---:|---:|---|
 | [analytics](analytics.txt) | 5 | 5 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review |
 | [consulting](consulting.txt) | 7 | 7 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review, consulting-operations, knowledge-synthesis |
+| [faith-learning](faith-learning.txt) | 7 | 7 | bible-study-theologian, faith-life-integration, sunday-school-teacher, prayer-and-reflection, group-study-leader, bible-study-publisher, social-media-apologetics |
+| [faith-personal](faith-personal.txt) | 3 | 3 | bible-study-theologian, prayer-and-reflection, faith-life-integration |
+| [faith-publishing](faith-publishing.txt) | 3 | 3 | bible-study-theologian, bible-study-publisher, social-media-apologetics |
+| [faith-teaching](faith-teaching.txt) | 4 | 4 | bible-study-theologian, group-study-leader, sunday-school-teacher, prayer-and-reflection |
 | [maintainer](maintainer.txt) | 2 | 2 | skill-builder, skill-sentinel |
 | [work-parallon](work-parallon.txt) | 8 | 8 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review, knowledge-synthesis, sprint-plan, professional-communicator |
 
 | Skill | Canonical path | Status |
 |---|---|---|
 | bi-metric-contract | skills/analytics/bi-metric-contract | trial |
+| bible-study-publisher | skills/faith/bible-study-publisher | trial |
+| bible-study-theologian | skills/faith/bible-study-theologian | trial |
 | bigquery-review | skills/analytics/bigquery-review | trial |
 | consulting-operations | skills/strategy/consulting-operations | trial |
 | data-analytics-engine | skills/engineering/data-analytics-engine | trial |
+| faith-life-integration | skills/faith/faith-life-integration | trial |
+| group-study-leader | skills/faith/group-study-leader | trial |
 | knowledge-synthesis | skills/core/knowledge-synthesis | trial |
 | power-bi | skills/microsoft/power-bi | trial |
+| prayer-and-reflection | skills/faith/prayer-and-reflection | trial |
 | professional-communicator | skills/growth/professional-communicator | trial |
 | skill-builder | skills/core/skill-builder | trial |
 | skill-sentinel | skills/core/skill-sentinel | trial |
+| social-media-apologetics | skills/faith/social-media-apologetics | trial |
 | sprint-plan | skills/product/pm-sprint-plan | trial |
 | sql-queries | skills/product/pm-sql-queries | trial |
+| sunday-school-teacher | skills/faith/sunday-school-teacher | trial |
 <!-- CURATED-SETS:END -->

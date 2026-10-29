@@ -1,0 +1,4 @@
+interface:
+  display_name: "Group Study Leader"
+  short_description: "Practical Bible studies for adult small groups"
+  default_prompt: "Use $group-study-leader to prepare a 50-minute adult small-group study of James 1:19-27 with separate leader notes."

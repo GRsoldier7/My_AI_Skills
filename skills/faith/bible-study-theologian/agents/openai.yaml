@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bible Study Theologian"
+  short_description: "Study Scripture in context with honest evidence"
+  default_prompt: "Use $bible-study-theologian to explain this passage and its strongest practical insights."

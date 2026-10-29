@@ -36,7 +36,7 @@ I'm Aaron DeYoung — AI consultant, entrepreneur, and builder. I help companies
 
 ## The Skill Library
 
-This CLAUDE.md works in concert with a library of **198 specialist skills** organized in `skills/`. Each skill is a deep-domain expert. Skills compose through curated profiles and one task-appropriate execution owner.
+This CLAUDE.md works in concert with a library of **202 specialist skills** organized in `skills/`. Each skill is a deep-domain expert. Skills compose through curated profiles and one task-appropriate execution owner.
 
 ### Routing and curated profiles
 
@@ -77,10 +77,15 @@ or other controllers. An active execution owner keeps ownership.
 - **database-design** — PostgreSQL schema architect: normalization, indexes, JSONB, provenance.
 - **testing-strategy** — pytest expert: fixtures, transaction-rollback isolation, hypothesis, async.
 
-### Faith (`skills/faith/`) — 3 skills
+### Faith (`skills/faith/`) — 7 skills
+
 - **bible-study-theologian** — Historical-grammatical hermeneutics, 4 study modes, scholarly engagement.
-- **faith-life-integration** — 6-lens framework for applying biblical wisdom to real decisions.
-- **sunday-school-teacher** — Age-appropriate curriculum design, lesson plans, object lessons.
+- **faith-life-integration** — Context-aware decisions and sustainable discipleship habits.
+- **sunday-school-teacher** — Family devotions and Sunday school across ages, with careful curriculum and object lessons.
+- **prayer-and-reflection** — Honest prayer, lament, intercession, private journals.
+- **group-study-leader** — Timed adult/men's sessions and leader/participant materials.
+- **bible-study-publisher** — Original public study content and repurposing.
+- **social-media-apologetics** — Gracious evidence-based replies to faith claims.
 
 ### Strategy & Business (`skills/strategy/`) — 9 skills
 - **consulting-operations** — Engagement lifecycle, proposals, SOWs, pricing, scope creep prevention.

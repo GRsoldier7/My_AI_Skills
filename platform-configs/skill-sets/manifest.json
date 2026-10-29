@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "Curated advisory pilot; not an exhaustive inventory or target installation receipt",
+  "scope": "Curated advisory and faith pilots; not an exhaustive inventory or target installation receipt",
   "status_vocabulary": [
     "trial",
     "active",
@@ -236,6 +236,146 @@
         "note": "Existing source-repo claim EvolutionUnleashed/skill-sentinel is retained; exact upstream equivalence not established. Trial only."
       },
       "package_sha256": "cfe9998d4c9f25cd48a4f7a10c123a6472833d879c78672b062d9bb89c1174fa"
+    },
+    {
+      "id": "bible-study-theologian",
+      "name": "bible-study-theologian",
+      "path": "skills/faith/bible-study-theologian",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "study and drafting; private records, posting and scheduling require explicit authorized actions",
+      "provenance": {
+        "kind": "owner-source-adaptation",
+        "repository_baseline": "62edc59f4149929e09ea40d7523db35564ac5a5a",
+        "license": "owner-authored terms unspecified",
+        "note": "Original repository development; no third-party source code or Bible corpus vendored.",
+        "owner_source": "Bible Theologian | by AARON instructions and bible-theologian-v2/bible-study-mentor; available packaged sources read 2026-10-29; canonical adaptation only, not a live CustomGPT configuration export"
+      },
+      "package_sha256": "30328983c53058075d2500cf9d5f89491631c6fbaccf9c256253521faf6e757f"
+    },
+    {
+      "id": "faith-life-integration",
+      "name": "faith-life-integration",
+      "path": "skills/faith/faith-life-integration",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [
+        "bible-study-theologian"
+      ],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "study and drafting; private records, posting and scheduling require explicit authorized actions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "62edc59f4149929e09ea40d7523db35564ac5a5a",
+        "license": "owner-authored terms unspecified",
+        "note": "Original repository development; no third-party source code or Bible corpus vendored."
+      },
+      "package_sha256": "52b547ca3c19055fb256be0245fdd54d476913c94a8380fa41c1ec2cd4609e42"
+    },
+    {
+      "id": "sunday-school-teacher",
+      "name": "sunday-school-teacher",
+      "path": "skills/faith/sunday-school-teacher",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [
+        "bible-study-theologian"
+      ],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "study and drafting; private records, posting and scheduling require explicit authorized actions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "62edc59f4149929e09ea40d7523db35564ac5a5a",
+        "license": "owner-authored terms unspecified",
+        "note": "Original repository development; no third-party source code or Bible corpus vendored."
+      },
+      "package_sha256": "b1337121f7b5bd5efe1b8b2124ef23a1258455ce74b58fb288ddf68b3afe251e"
+    },
+    {
+      "id": "prayer-and-reflection",
+      "name": "prayer-and-reflection",
+      "path": "skills/faith/prayer-and-reflection",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [
+        "bible-study-theologian"
+      ],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "study and drafting; private records, posting and scheduling require explicit authorized actions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "62edc59f4149929e09ea40d7523db35564ac5a5a",
+        "license": "owner-authored terms unspecified",
+        "note": "Original repository development; no third-party source code or Bible corpus vendored."
+      },
+      "package_sha256": "9684c6ebc7cb5e6362b377e6cd336e7dcceac04b6758d4ab8321ee322f8ef1c5"
+    },
+    {
+      "id": "group-study-leader",
+      "name": "group-study-leader",
+      "path": "skills/faith/group-study-leader",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [
+        "bible-study-theologian"
+      ],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "study and drafting; private records, posting and scheduling require explicit authorized actions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "62edc59f4149929e09ea40d7523db35564ac5a5a",
+        "license": "owner-authored terms unspecified",
+        "note": "Original repository development; no third-party source code or Bible corpus vendored."
+      },
+      "package_sha256": "7f236e99396c5d1d463d53ed23fd5f357d49af4cbb19de96ae5e6ed390723f98"
+    },
+    {
+      "id": "bible-study-publisher",
+      "name": "bible-study-publisher",
+      "path": "skills/faith/bible-study-publisher",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [
+        "bible-study-theologian"
+      ],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "study and drafting; private records, posting and scheduling require explicit authorized actions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "62edc59f4149929e09ea40d7523db35564ac5a5a",
+        "license": "owner-authored terms unspecified",
+        "note": "Original repository development; no third-party source code or Bible corpus vendored."
+      },
+      "package_sha256": "203deb4294df5209ad1be43962d3d95889d1bf27a5a8ac2f6e3e5c778dc2cb03"
+    },
+    {
+      "id": "social-media-apologetics",
+      "name": "social-media-apologetics",
+      "path": "skills/faith/social-media-apologetics",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [
+        "bible-study-theologian"
+      ],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-29",
+      "allowed_use": "study and drafting; private records, posting and scheduling require explicit authorized actions",
+      "provenance": {
+        "kind": "owner-source-adaptation",
+        "repository_baseline": "62edc59f4149929e09ea40d7523db35564ac5a5a",
+        "license": "owner-authored terms unspecified",
+        "note": "Original repository development; no third-party source code or Bible corpus vendored.",
+        "owner_source": "bible-theologian-v2 plugin 2.1.0; read-only source, canonical adaptation only"
+      },
+      "package_sha256": "76b0ab2d19ca838f10e9f6cd00ec07c6b470a1d8df8b816e821a521527ee7886"
     }
   ],
   "profiles": {
@@ -275,6 +415,45 @@
       "skills": [
         "skill-builder",
         "skill-sentinel"
+      ],
+      "includes": [],
+      "allow_trial": true
+    },
+    "faith-personal": {
+      "skills": [
+        "bible-study-theologian",
+        "prayer-and-reflection",
+        "faith-life-integration"
+      ],
+      "includes": [],
+      "allow_trial": true
+    },
+    "faith-teaching": {
+      "skills": [
+        "group-study-leader",
+        "sunday-school-teacher",
+        "prayer-and-reflection"
+      ],
+      "includes": [],
+      "allow_trial": true
+    },
+    "faith-publishing": {
+      "skills": [
+        "bible-study-publisher",
+        "social-media-apologetics"
+      ],
+      "includes": [],
+      "allow_trial": true
+    },
+    "faith-learning": {
+      "skills": [
+        "bible-study-theologian",
+        "faith-life-integration",
+        "sunday-school-teacher",
+        "prayer-and-reflection",
+        "group-study-leader",
+        "bible-study-publisher",
+        "social-media-apologetics"
       ],
       "includes": [],
       "allow_trial": true

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Social Media Apologetics"
+  short_description: "Answer faith objections with evidence and grace"
+  default_prompt: "Use $social-media-apologetics to draft a gracious response to this comment."

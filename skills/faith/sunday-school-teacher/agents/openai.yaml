@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sunday School and Family Teaching"
+  short_description: "Biblical lessons and family devotions for every age"
+  default_prompt: "Use $sunday-school-teacher to prepare a simple mixed-age family devotion with discussion and prayer."

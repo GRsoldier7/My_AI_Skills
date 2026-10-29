@@ -1,6 +1,25 @@
-# My AI Skills: architecture and delivery plan
+# 20261025 - My AI Skills - Architecture and Delivery Plan
 
 **Original assessment: October 25, 2026. Focused analytics integration approved October 26, 2026.**
+
+## Faith-domain implementation checkpoint: October 29, 2026
+
+Current user-authorized slice: research existing GitHub options and build repository-ready spiritual-workflow skills. SK-07 now has a scoped faith trial; broader domain migration/release gates remain open. This checkpoint does not supersede unfinished analytics/native-host work below.
+
+- Upgraded three existing faith IDs and added four canonical skills; shared contextual study foundation, optional references, and owner-plugin reconciliation.
+- Extended the existing manifest with seven trial entries and four selections: faith-personal, faith-teaching, faith-publishing, faith-learning. One generic faith context; no private prayer or family records.
+- Added 20 behavioral scenarios; eight fresh-agent exercises reviewed successfully, twelve pending. Seven packages lint clean. Profile suite 32 tests passes; existing analytics 7/router 9/installer 98 checks pass.
+- Shared-package references now require declared dependencies, with path/symlink/cycle regressions. No new framework, backend, subscription, posting integration, or runtime controller.
+- GitHub main observed at d6dd254; published analytics branch 62edc59 is this slice's base. The Windows/NAS checkout was not available here. Preserve that unmerged local history when reconciling.
+- See [faith research and build](<20261029 - My AI Skills - Faith Skills Research and Build.md>) for candidates, sources, usage, and limitations.
+- Quality follow-up: [faith skills quality audit](<20261029 - My AI Skills - Faith Skills Quality Audit.md>) records the frozen 10-factor rubric, all seven before/after scores, raw paired responses, boundary cases, a corrected journal-status defect, measured instruction size, and native-host limitations.
+
+RESUME FROM:
+- Phase: Faith trial authoring within SK-07; cross-domain release still incomplete.
+- Status: Seven faith skills refined and scored using the owner's Bible Theologian approach; delivery uses the codex/faith-skills-20261029 review branch. Main merge and actual-device installation remain separate.
+- Next action: Review the quality audit and use faith-personal on one real study. Review three real uses per skill before promoting trial status; do not install every profile globally.
+- Remaining evidence: 12 behavior cases, repeated real uses, actual host/plugin collision checks, native deployment, pastoral review as appropriate.
+- Approval boundary: no public post, private-journal transfer, service setup, or main merge authorized by skill authoring.
 
 ## Current scoped implementation: October 26, 2026
 

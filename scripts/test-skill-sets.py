@@ -97,6 +97,94 @@ class SkillSetTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             M.validate(self.root, self.manifest)
 
+    def write_resource(self, skill_id, relative, content):
+        entry = next(entry for entry in self.entries if entry['id'] == skill_id)
+        folder = self.root / entry['path']
+        path = folder / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content)
+        entry['package_sha256'] = M.package_hash(folder)
+        return path
+
+    def test_declared_dependency_reference_is_allowed(self):
+        self.entries[1]['dependencies'] = ['alpha']
+        self.write_resource('alpha', 'references/foundation.md', '# Foundation\n')
+        self.write_resource('beta', 'references/guide.md',
+                            '[Foundation](../../alpha/references/foundation.md#foundation)\n')
+        M.validate(self.root, self.manifest)
+
+    def test_transitive_dependency_reference_is_allowed(self):
+        folder = self.root / 'skills/core/gamma'
+        folder.mkdir()
+        (folder / 'SKILL.md').write_text('---\nname: gamma\n---\n# Gamma\n')
+        self.entries.append(dict(id='gamma', name='gamma', path='skills/core/gamma',
+                                 aliases=[], status='trial', dependencies=['beta'],
+                                 provenance={'kind': 'owner-authored'},
+                                 package_sha256=M.package_hash(folder)))
+        self.entries[1]['dependencies'] = ['alpha']
+        self.write_resource('gamma', 'guide.md', '[Foundation](../alpha/SKILL.md)\n')
+        M.validate(self.root, self.manifest)
+
+    def test_profile_membership_does_not_authorize_sibling_reference(self):
+        self.write_resource('beta', 'guide.md', '[Undeclared](../alpha/SKILL.md)\n')
+        with self.assertRaises(ValueError):
+            M.validate(self.root, self.manifest)
+
+    def test_missing_file_in_declared_dependency_is_rejected(self):
+        self.entries[1]['dependencies'] = ['alpha']
+        self.write_resource('beta', 'guide.md', '[Missing](../alpha/missing.md)\n')
+        with self.assertRaises(ValueError):
+            M.validate(self.root, self.manifest)
+
+    def test_absolute_reference_inside_own_package_is_rejected(self):
+        target = self.root / self.entries[0]['path'] / 'SKILL.md'
+        self.write_resource('alpha', 'guide.md', f'[Absolute]({target})\n')
+        with self.assertRaises(ValueError):
+            M.validate(self.root, self.manifest)
+
+    def test_windows_absolute_reference_is_rejected(self):
+        self.write_resource('alpha', 'guide.md', '[Absolute](C:/skills/alpha/SKILL.md)\n')
+        with self.assertRaises(ValueError):
+            M.validate(self.root, self.manifest)
+
+    def test_reference_outside_repository_is_rejected(self):
+        outside = tempfile.TemporaryDirectory(dir=self.root.parent)
+        self.addCleanup(outside.cleanup)
+        (Path(outside.name) / 'outside.md').write_text('Outside repository\n')
+        target = '../../../../' + Path(outside.name).name + '/outside.md'
+        self.write_resource('alpha', 'guide.md', f'[Outside]({target})\n')
+        with self.assertRaises(ValueError):
+            M.validate(self.root, self.manifest)
+
+    def test_reference_outside_allowed_packages_is_rejected(self):
+        (self.root / 'README.md').write_text('Repository guide\n')
+        self.entries[1]['dependencies'] = ['alpha']
+        self.write_resource('beta', 'guide.md', '[Outside](../../../README.md)\n')
+        with self.assertRaises(ValueError):
+            M.validate(self.root, self.manifest)
+
+    def test_symlink_component_in_dependency_reference_is_rejected(self):
+        self.entries[1]['dependencies'] = ['alpha']
+        (self.root / 'skills/core/redirect').symlink_to(self.root / self.entries[0]['path'])
+        for target in ('../redirect/SKILL.md', '../redirect/../alpha/SKILL.md'):
+            with self.subTest(target=target):
+                self.write_resource('beta', 'guide.md', f'[Redirect]({target})\n')
+                with self.assertRaises(ValueError):
+                    M.validate(self.root, self.manifest)
+
+    def test_dependency_cycles_are_rejected_without_profile_selection(self):
+        self.manifest['profiles'] = {}
+        self.entries[0]['dependencies'] = ['beta']
+        self.entries[1]['dependencies'] = ['alpha']
+        with self.assertRaises(ValueError):
+            M.validate(self.root, self.manifest)
+
+    def test_unknown_dependencies_are_rejected_without_profile_selection(self):
+        self.manifest['profiles'] = {}
+        self.entries[0]['dependencies'] = ['missing']
+        with self.assertRaises(ValueError):
+            M.validate(self.root, self.manifest)
+
     def test_path_escape_and_symlink_fail(self):
         original = self.entries[0]['path']
         self.entries[0]['path'] = '../outside'

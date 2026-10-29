@@ -1,4 +1,4 @@
-name: Analytics skill pilot
+name: Curated skill pilots
 
 on:
   pull_request:
@@ -40,3 +40,5 @@ jobs:
           skills/microsoft/power-bi/SKILL.md
           skills/product/pm-sql-queries/SKILL.md
           skills/product/pm-sprint-plan/SKILL.md
+      - name: Lint faith trial skills
+        run: python3 scripts/lint-skills.py --category faith

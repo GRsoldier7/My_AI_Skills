@@ -1,6 +1,6 @@
 # Aaron's AI Skill Library
 
-A library of **198 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. Curated profiles select shared canonical skills; project-router owns lifecycle selection and master-orchestrator serves explicit catalog discovery.
+A library of **202 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. Curated profiles select shared canonical skills; project-router owns lifecycle selection and master-orchestrator serves explicit catalog discovery.
 
 The library supports **five AI platforms**: Claude Code (slash commands), Google Antigravity / Gemini CLI, OpenAI Codex, Cursor, and ChatGPT. A dedicated **`skill-builder` meta-skill** manages the creation, auditing, and continuous improvement of all skills using a 5-module pipeline and a 10-dimension quality rubric.
 
@@ -32,6 +32,14 @@ for analytics, work-parallon, consulting and skill maintenance. New capabilities
 are bi-metric-contract, bigquery-review and knowledge-synthesis, all in trial.
 The [architecture plan](docs/20261025%20-%20My%20AI%20Skills%20-%20Architecture%20and%20Delivery%20Plan.md)
 records the existing SK-01 through SK-09 tasks and this scoped implementation.
+
+## Faith pilot
+
+Seven coordinated trial skills cover contextual study, prayer, adult groups,
+family/classroom teaching, discipleship habits, original public content, and replies.
+Use faith-personal, faith-teaching, or faith-publishing from the existing curated
+sets. See [research and usage](<docs/20261029 - My AI Skills - Faith Skills Research and Build.md>).
+These sources are not automatically installed; keep private records outside this repo.
 
 ## Quick Start
 
@@ -170,15 +178,19 @@ Full-stack engineering: security, automation, data, containers, MCP servers, cod
 
 ---
 
-### Faith (`skills/faith/`) — 3 skills
+### Faith (`skills/faith/`) — 7 skills
 
 Biblical study, life application, and teaching ministry.
 
 | Skill | When to Use |
 |-------|-------------|
 | `bible-study-theologian` | Deep scripture study, historical-grammatical hermeneutics, word studies, doctrinal research, sermon prep. |
-| `faith-life-integration` | Applying biblical wisdom to real business, financial, and relationship decisions. 6-lens framework. |
-| `sunday-school-teacher` | Age-appropriate lesson plans (preschool–high school), curriculum design, object lessons, series planning. |
+| `faith-life-integration` | Context-aware decisions, reading plans, Scripture memory, service, rest, and discipleship rhythms. |
+| `sunday-school-teacher` | Sunday school across ages, mixed-age family devotions, complete curriculum, and careful object lessons. |
+| `prayer-and-reflection` | Honest prayer, lament, gratitude, intercession, and private journal updates. |
+| `group-study-leader` | Timed adult and men's studies with separate participant/leader notes. |
+| `bible-study-publisher` | Study-grounded posts, carousels, short scripts, and content series. |
+| `social-media-apologetics` | Concise gracious replies with contextual Scripture and verified evidence. |
 
 ---
 
@@ -513,7 +525,7 @@ aaron-skill-library/
 ├── CLAUDE.md                          # Master Claude Code project instructions
 ├── .gitignore
 │
-├── skills/                            # All 191 skills, organized by category
+├── skills/                            # All 202 skills, organized by category
 │   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (13)
 │   │   ├── project-router/            # Pick the next project workflow from evidence
 │   │   ├── clean-project/             # Lifecycle/security/usage audit, approved cleanup

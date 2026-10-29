@@ -48,6 +48,24 @@ def package_hash(folder: Path) -> str:
     return digest.hexdigest()
 
 
+def reference_path(root: Path, resource: Path, target: str) -> Path:
+    """Resolve a relative reference without crossing symlinks or the repo boundary."""
+    if target.startswith('/') or '\\' in target or re.match(r'^[a-zA-Z]:', target):
+        raise ValueError(f'Unsafe reference in {resource}: {target}')
+    repository = root.resolve()
+    path = resource.parent.resolve()
+    parts = PurePosixPath(target).parts
+    for index, part in enumerate(parts):
+        path = path.parent if part == '..' else path / part
+        if not path.is_relative_to(repository):
+            raise ValueError(f'Outside-repository reference in {resource}: {target}')
+        if path.is_symlink():
+            raise ValueError(f'Symlink reference in {resource}: {target}')
+        if not path.exists() or (index < len(parts) - 1 and not path.is_dir()):
+            raise ValueError(f'Missing reference in {resource}: {target}')
+    return path
+
+
 def markdown_links(text: str) -> list[str]:
     """Find live inline links, excluding fenced/inline code examples."""
     visible: list[str] = []
@@ -115,6 +133,7 @@ def validate(root: Path, manifest: dict, check_hashes: bool = True) -> None:
     identities: dict[str, str] = {}
     paths: set[str] = set()
     ids: set[str] = set()
+    packages: dict[str, Path] = {}
     for entry in manifest['skills']:
         for key in ('id', 'name', 'path', 'status', 'provenance', 'package_sha256'):
             if key not in entry:
@@ -146,13 +165,33 @@ def validate(root: Path, manifest: dict, check_hashes: bool = True) -> None:
         actual = package_hash(folder)
         if check_hashes and actual != entry['package_sha256']:
             raise ValueError(f'Package changed; review before --refresh-hashes: {skill_id}')
+        packages[skill_id] = folder.resolve()
+
+    entries = {entry['id']: entry for entry in manifest['skills']}
+    dependency_packages: dict[str, set[Path]] = {}
+
+    def allowed_packages(skill_id: str, visiting: set[str]) -> set[Path]:
+        if skill_id in visiting or skill_id not in entries:
+            raise ValueError(f'Unknown or cyclic dependency: {skill_id}')
+        if skill_id not in dependency_packages:
+            allowed = {packages[skill_id]}
+            for dependency in entries[skill_id].get('dependencies', []):
+                allowed.update(allowed_packages(dependency, visiting | {skill_id}))
+            dependency_packages[skill_id] = allowed
+        return dependency_packages[skill_id]
+
+    for entry in manifest['skills']:
+        folder = packages[entry['id']]
+        allowed = allowed_packages(entry['id'], set())
         for resource in folder.rglob('*.md'):
             for target in markdown_links(resource.read_text(encoding='utf-8')):
+                if target.startswith('/') or re.match(r'^[a-zA-Z]:', target):
+                    raise ValueError(f'Absolute reference in {resource}: {target}')
                 if re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*:', target) or target.startswith('#'):
                     continue
                 target = target.split('#', 1)[0]
-                destination = (resource.parent / target).resolve()
-                if not destination.is_relative_to(folder.resolve()) or not destination.is_file():
+                destination = reference_path(root, resource, target)
+                if not any(destination.is_relative_to(package) for package in allowed) or not destination.is_file():
                     raise ValueError(f'Missing/outside-package reference in {resource}: {target}')
     for name in manifest['profiles']:
         if not SLUG.fullmatch(name):
