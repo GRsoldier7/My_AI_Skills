@@ -1,5 +1,10 @@
 # GitHub Copilot delivery
 
+The expanded selections, staged exports, runtime limits and receiving-host checks
+are in the [Platform Delivery Guide](<../../docs/20261029 - My AI Skills - Platform Delivery Guide.md>).
+The source catalog separates skills, personas and prompts; importing files does
+not register or activate them on this host.
+
 Select [work-copilot-coding](../skill-sets/work-copilot-coding.txt) for the
 Superpowers coding workflow plus Karpathy guidelines and frontend design.
 The same shared workflow is available as home-coding, consulting-coding and

@@ -1,0 +1,841 @@
+{
+  "schema_version": 1,
+  "catalog_path": "docs/20261029 - My AI Skills - Library Catalog.md",
+  "bundles": {
+    "shared-writing": {
+      "title": "My AI Skills \u2014 Shared Writing",
+      "description": "Writing refinement available across every domain.",
+      "prompt": "Use the selected shared writing guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "design-general": {
+      "title": "My AI Skills \u2014 Design General",
+      "description": "Primary design and refinement system; engine is separately approved and configured.",
+      "prompt": "Use the selected design general guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ],
+      "agents": [
+        {
+          "path": "agents/impeccable/impeccable-asset-producer.agent.md",
+          "name": "impeccable-asset-producer",
+          "description": "Impeccable specialist: asset producer",
+          "tools": [
+            "read",
+            "search",
+            "edit",
+            "execute"
+          ],
+          "platforms": [
+            "copilot"
+          ]
+        },
+        {
+          "path": "agents/impeccable/impeccable-documenter.agent.md",
+          "name": "impeccable-documenter",
+          "description": "Impeccable specialist: documenter",
+          "tools": [
+            "read",
+            "search",
+            "edit",
+            "execute"
+          ],
+          "platforms": [
+            "copilot"
+          ]
+        },
+        {
+          "path": "agents/impeccable/impeccable-finish-reviewer.agent.md",
+          "name": "impeccable-finish-reviewer",
+          "description": "Impeccable specialist: finish reviewer",
+          "tools": [
+            "read",
+            "search"
+          ],
+          "platforms": [
+            "copilot"
+          ]
+        },
+        {
+          "path": "agents/impeccable/impeccable-manual-edit-applier.agent.md",
+          "name": "impeccable-manual-edit-applier",
+          "description": "Impeccable specialist: manual edit applier",
+          "tools": [
+            "read",
+            "search",
+            "edit",
+            "execute"
+          ],
+          "platforms": [
+            "copilot"
+          ]
+        }
+      ]
+    },
+    "design-product-ui": {
+      "title": "My AI Skills \u2014 Design Product Ui",
+      "description": "Business interfaces and searchable design reference; one active design owner.",
+      "prompt": "Use the selected design product ui guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ],
+      "prompts": [
+        {
+          "path": "prompts/interface-design/design-deslop.prompt.md",
+          "name": "design-deslop"
+        },
+        {
+          "path": "prompts/interface-design/design-review.prompt.md",
+          "name": "design-review"
+        }
+      ]
+    },
+    "design-marketing": {
+      "title": "My AI Skills \u2014 Design Marketing",
+      "description": "Expressive marketing pages; Node and browser workflow needs receiving-host verification.",
+      "prompt": "Use the selected design marketing guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "design-polish": {
+      "title": "My AI Skills \u2014 Design Polish",
+      "description": "Selected interaction and mobile finishing guidance.",
+      "prompt": "Use the selected design polish guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "emil-toolkit": {
+      "title": "My AI Skills \u2014 Emil Toolkit",
+      "description": "Full optional Emil toolkit; select the specialist needed for the current task.",
+      "prompt": "Use the selected emil toolkit guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "html-artifacts": {
+      "title": "My AI Skills \u2014 Html Artifacts",
+      "description": "HTML deliverables, including approved external services when requested.",
+      "prompt": "Use the selected html artifacts guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "html-artifacts-offline": {
+      "title": "My AI Skills \u2014 Html Artifacts Offline",
+      "description": "Explicit offline single-file alternative with bundled resources.",
+      "prompt": "Use the selected html artifacts offline guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "connected-artifacts": {
+      "title": "My AI Skills \u2014 Connected Artifacts",
+      "description": "Synthetic snapshot starter and approved Power BI, Excel, GCP/BigQuery and Azure architecture.",
+      "prompt": "Use the selected connected artifacts guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "parallon-artifacts": {
+      "title": "My AI Skills \u2014 Parallon Artifacts",
+      "description": "ChatGPT guidance and Copilot artifacts for Parallon; no MCP server dependencies.",
+      "prompt": "Use the selected parallon artifacts guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot"
+      ],
+      "agents": [
+        {
+          "path": "agents/agency/design/design-ux-architect.md",
+          "name": "agency-design-ux-architect",
+          "description": "Selected specialist: design ux architect",
+          "tools": [
+            "read",
+            "search"
+          ]
+        },
+        {
+          "path": "agents/agency/testing/testing-accessibility-auditor.md",
+          "name": "agency-testing-accessibility-auditor",
+          "description": "Selected specialist: testing accessibility auditor",
+          "tools": [
+            "read",
+            "search"
+          ]
+        }
+      ]
+    },
+    "reverse-engineering": {
+      "title": "My AI Skills \u2014 Reverse Engineering",
+      "description": "REA source and capability-limited evidence/CLI adapters.",
+      "prompt": "Use the selected reverse engineering guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "browser-qa": {
+      "title": "My AI Skills \u2014 Browser Qa",
+      "description": "Approved CLI browser verification; no MCP server or automatic browser acquisition.",
+      "prompt": "Use the selected browser qa guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "addy-engineering": {
+      "title": "My AI Skills \u2014 Addy Engineering",
+      "description": "Optional Addy engineering specialists; keep the current coordinator and select by phase.",
+      "prompt": "Use the selected addy engineering guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ],
+      "agents": [
+        {
+          "path": "agents/addyosmani/code-reviewer.md",
+          "name": "addy-code-reviewer",
+          "description": "Selected specialist: code reviewer",
+          "tools": [
+            "read",
+            "search"
+          ]
+        },
+        {
+          "path": "agents/addyosmani/security-auditor.md",
+          "name": "addy-security-auditor",
+          "description": "Selected specialist: security auditor",
+          "tools": [
+            "read",
+            "search"
+          ]
+        },
+        {
+          "path": "agents/addyosmani/test-engineer.md",
+          "name": "addy-test-engineer",
+          "description": "Selected specialist: test engineer",
+          "tools": [
+            "read",
+            "search"
+          ]
+        },
+        {
+          "path": "agents/addyosmani/web-performance-auditor.md",
+          "name": "addy-web-performance-auditor",
+          "description": "Selected specialist: web performance auditor",
+          "tools": [
+            "read",
+            "search"
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "path": "prompts/addyosmani/build.md",
+          "name": "addy-build"
+        },
+        {
+          "path": "prompts/addyosmani/code-simplify.md",
+          "name": "addy-code-simplify"
+        },
+        {
+          "path": "prompts/addyosmani/constraints.md",
+          "name": "addy-constraints"
+        },
+        {
+          "path": "prompts/addyosmani/plan.md",
+          "name": "addy-plan"
+        },
+        {
+          "path": "prompts/addyosmani/review.md",
+          "name": "addy-review"
+        },
+        {
+          "path": "prompts/addyosmani/ship.md",
+          "name": "addy-ship"
+        },
+        {
+          "path": "prompts/addyosmani/spec.md",
+          "name": "addy-spec"
+        }
+      ]
+    },
+    "addy-controller": {
+      "title": "My AI Skills \u2014 Addy Controller",
+      "description": "Alternative controller only; explicit transfer required before replacing the current workflow owner.",
+      "prompt": "Use the selected addy controller guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "agent-deep-review": {
+      "title": "My AI Skills \u2014 Agent Deep Review",
+      "description": "Optional bounded deep-review workflow; no automatic repeated audit loop.",
+      "prompt": "Use the selected agent deep review guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "agent-team-design": {
+      "title": "My AI Skills \u2014 Agent Team Design",
+      "description": "Design specialists for an existing team coordinator; select one creator and optional finish reviewers.",
+      "prompt": "Use the selected agent team design guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ],
+      "agents": [
+        {
+          "path": "agents/impeccable/impeccable-asset-producer.agent.md",
+          "name": "impeccable-asset-producer",
+          "description": "Impeccable specialist: asset producer",
+          "tools": [
+            "read",
+            "search",
+            "edit",
+            "execute"
+          ],
+          "platforms": [
+            "copilot"
+          ]
+        },
+        {
+          "path": "agents/impeccable/impeccable-documenter.agent.md",
+          "name": "impeccable-documenter",
+          "description": "Impeccable specialist: documenter",
+          "tools": [
+            "read",
+            "search",
+            "edit",
+            "execute"
+          ],
+          "platforms": [
+            "copilot"
+          ]
+        },
+        {
+          "path": "agents/impeccable/impeccable-finish-reviewer.agent.md",
+          "name": "impeccable-finish-reviewer",
+          "description": "Impeccable specialist: finish reviewer",
+          "tools": [
+            "read",
+            "search"
+          ],
+          "platforms": [
+            "copilot"
+          ]
+        },
+        {
+          "path": "agents/impeccable/impeccable-manual-edit-applier.agent.md",
+          "name": "impeccable-manual-edit-applier",
+          "description": "Impeccable specialist: manual edit applier",
+          "tools": [
+            "read",
+            "search",
+            "edit",
+            "execute"
+          ],
+          "platforms": [
+            "copilot"
+          ]
+        }
+      ]
+    },
+    "agent-team-research": {
+      "title": "My AI Skills \u2014 Agent Team Research",
+      "description": "Bounded experiments and authorized reverse engineering; no GPU training runtime installation.",
+      "prompt": "Use the selected agent team research guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "consulting-web-research": {
+      "title": "My AI Skills \u2014 Consulting Web Research",
+      "description": "Consulting/E7 web research; Firecrawl account, credits and installed CLI are verified separately.",
+      "prompt": "Use the selected consulting web research guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "consulting-web-integration": {
+      "title": "My AI Skills \u2014 Consulting Web Integration",
+      "description": "Consulting/E7 application integration patterns; no server, MCP, feedback or monitors enabled.",
+      "prompt": "Use the selected consulting web integration guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "e7-web-research": {
+      "title": "My AI Skills \u2014 E7 Web Research",
+      "description": "E7 selection of the shared Firecrawl research packages.",
+      "prompt": "Use the selected e7 web research guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "e7-web-integration": {
+      "title": "My AI Skills \u2014 E7 Web Integration",
+      "description": "E7 selection of the shared Firecrawl integration packages.",
+      "prompt": "Use the selected e7 web integration guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "skill-maintenance": {
+      "title": "My AI Skills \u2014 Skill Maintenance",
+      "description": "Library maintenance with isolated static gate and separately authorized semantic scanning.",
+      "prompt": "Use the selected skill maintenance guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "work-copilot-coding": {
+      "title": "My AI Skills \u2014 Work Copilot Coding",
+      "description": "Coding-only selection; private domain context remains external.",
+      "prompt": "Use the selected work copilot coding guidance for my current task.",
+      "platforms": [
+        "copilot"
+      ],
+      "agents": [
+        {
+          "path": "agents/agency/design/design-ux-architect.md",
+          "name": "agency-design-ux-architect",
+          "description": "Selected specialist: design ux architect",
+          "tools": [
+            "read",
+            "search"
+          ]
+        },
+        {
+          "path": "agents/agency/engineering/engineering-frontend-developer.md",
+          "name": "agency-engineering-frontend-developer",
+          "description": "Selected specialist: engineering frontend developer",
+          "tools": [
+            "read",
+            "search"
+          ]
+        },
+        {
+          "path": "agents/agency/engineering/engineering-data-engineer.md",
+          "name": "agency-engineering-data-engineer",
+          "description": "Selected specialist: engineering data engineer",
+          "tools": [
+            "read",
+            "search"
+          ]
+        },
+        {
+          "path": "agents/agency/testing/testing-accessibility-auditor.md",
+          "name": "agency-testing-accessibility-auditor",
+          "description": "Selected specialist: testing accessibility auditor",
+          "tools": [
+            "read",
+            "search"
+          ]
+        },
+        {
+          "path": "agents/agency/testing/testing-api-tester.md",
+          "name": "agency-testing-api-tester",
+          "description": "Selected specialist: testing api tester",
+          "tools": [
+            "read",
+            "search"
+          ]
+        },
+        {
+          "path": "agents/agency/testing/testing-reality-checker.md",
+          "name": "agency-testing-reality-checker",
+          "description": "Selected specialist: testing reality checker",
+          "tools": [
+            "read",
+            "search"
+          ]
+        }
+      ]
+    },
+    "home-coding": {
+      "title": "My AI Skills \u2014 Home Coding",
+      "description": "Coding-only selection; private domain context remains external.",
+      "prompt": "Use the selected home coding guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "consulting-coding": {
+      "title": "My AI Skills \u2014 Consulting Coding",
+      "description": "Coding-only selection; private domain context remains external.",
+      "prompt": "Use the selected consulting coding guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "business-coding": {
+      "title": "My AI Skills \u2014 Business Coding",
+      "description": "Coding-only selection; private domain context remains external.",
+      "prompt": "Use the selected business coding guidance for my current task.",
+      "platforms": [
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "work-parallon": {
+      "title": "My AI Skills \u2014 Work Parallon",
+      "description": "Selected work parallon capabilities; private domain context stays external.",
+      "prompt": "Use the selected work parallon guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "consulting": {
+      "title": "My AI Skills \u2014 Consulting",
+      "description": "Selected consulting capabilities; private domain context stays external.",
+      "prompt": "Use the selected consulting guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "e7": {
+      "title": "My AI Skills \u2014 E7",
+      "description": "Selected e7 capabilities; private domain context stays external.",
+      "prompt": "Use the selected e7 guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "home-life": {
+      "title": "My AI Skills \u2014 Home Life",
+      "description": "Private household context stays in its own profile; generic procedures only here.",
+      "prompt": "Use the selected home life guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "continued-learning": {
+      "title": "My AI Skills \u2014 Continued Learning",
+      "description": "Selected continued learning capabilities; private domain context stays external.",
+      "prompt": "Use the selected continued learning guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "productivity": {
+      "title": "My AI Skills \u2014 Productivity",
+      "description": "Selected productivity capabilities; private domain context stays external.",
+      "prompt": "Use the selected productivity guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "faith-personal": {
+      "title": "My AI Skills \u2014 Faith Personal",
+      "description": "Selected faith personal capabilities; private domain context stays external.",
+      "prompt": "Use the selected faith personal guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "faith-teaching": {
+      "title": "My AI Skills \u2014 Faith Teaching",
+      "description": "Selected faith teaching capabilities; private domain context stays external.",
+      "prompt": "Use the selected faith teaching guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "faith-publishing": {
+      "title": "My AI Skills \u2014 Faith Publishing",
+      "description": "Selected faith publishing capabilities; private domain context stays external.",
+      "prompt": "Use the selected faith publishing guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "faith-learning": {
+      "title": "My AI Skills \u2014 Faith Learning",
+      "description": "Selected faith learning capabilities; private domain context stays external.",
+      "prompt": "Use the selected faith learning guidance for my current task.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "codex",
+        "hermes"
+      ]
+    },
+    "hermes-teams": {
+      "title": "My AI Skills \u2014 Hermes Teams",
+      "description": "Hermes remains coordinator; selected ECC task briefs and Addy guidance. Runtime and personas require explicit host configuration.",
+      "prompt": "Use the selected hermes teams guidance for my current task.",
+      "platforms": [
+        "hermes"
+      ],
+      "agents": [
+        {
+          "path": "agents/hermes/ecc-planner.md",
+          "name": "hermes-ecc-planner",
+          "description": "Selected specialist: ecc planner",
+          "tools": [
+            "read",
+            "search"
+          ]
+        },
+        {
+          "path": "agents/hermes/ecc-architect.md",
+          "name": "hermes-ecc-architect",
+          "description": "Selected specialist: ecc architect",
+          "tools": [
+            "read",
+            "search"
+          ]
+        },
+        {
+          "path": "agents/hermes/ecc-code-reviewer.md",
+          "name": "hermes-ecc-code-reviewer",
+          "description": "Selected specialist: ecc code reviewer",
+          "tools": [
+            "read",
+            "search"
+          ]
+        },
+        {
+          "path": "agents/hermes/ecc-security-reviewer.md",
+          "name": "hermes-ecc-security-reviewer",
+          "description": "Selected specialist: ecc security reviewer",
+          "tools": [
+            "read",
+            "search"
+          ]
+        }
+      ]
+    }
+  },
+  "skills": {
+    "design-taste-frontend": {
+      "chatgpt": {
+        "mode": "instructions",
+        "override": "platform-configs/adapters/design-taste-frontend/chatgpt.md"
+      }
+    },
+    "dogum-html-artifacts": {
+      "chatgpt": {
+        "mode": "instructions",
+        "override": "platform-configs/adapters/dogum-html-artifacts/chatgpt.md"
+      }
+    },
+    "html-artifacts-offline": {
+      "chatgpt": {
+        "mode": "instructions",
+        "override": "platform-configs/adapters/html-artifacts-offline/chatgpt.md"
+      }
+    },
+    "impeccable": {
+      "chatgpt": {
+        "mode": "instructions",
+        "override": "platform-configs/adapters/impeccable/chatgpt.md"
+      },
+      "codex": {
+        "mode": "full",
+        "source": "platform-configs/provider-variants/impeccable/codex/impeccable",
+        "package_sha256": "5e28dbf606a5267b8c5b5d70e02497bf5d472127585f04a09e9c16ae44a74558"
+      }
+    },
+    "playwright-cli": {
+      "chatgpt": {
+        "mode": "instructions",
+        "override": "platform-configs/adapters/playwright-cli/chatgpt.md"
+      }
+    },
+    "ui-ux-pro-max": {
+      "chatgpt": {
+        "mode": "instructions",
+        "override": "platform-configs/adapters/ui-ux-pro-max/chatgpt.md"
+      }
+    },
+    "reverse-engineer-anything": {
+      "copilot": {
+        "mode": "full",
+        "override": "platform-configs/adapters/reverse-engineer-anything/copilot.md"
+      },
+      "chatgpt": {
+        "mode": "instructions",
+        "override": "platform-configs/adapters/reverse-engineer-anything/chatgpt.md"
+      }
+    },
+    "skill-inspector": {
+      "chatgpt": {
+        "mode": "instructions",
+        "override": "platform-configs/adapters/skill-inspector/chatgpt.md"
+      }
+    },
+    "browser-testing-with-devtools": {
+      "chatgpt": {
+        "mode": "blocked",
+        "reason": "Requires Chrome DevTools MCP; not included in Parallon."
+      },
+      "copilot": {
+        "mode": "blocked",
+        "reason": "Requires Chrome DevTools MCP; not included in Parallon."
+      }
+    },
+    "hermes-agent": {
+      "chatgpt": {
+        "mode": "blocked",
+        "reason": "Runtime/controller package selected separately; no ChatGPT activation adapter."
+      }
+    },
+    "using-agent-skills": {
+      "chatgpt": {
+        "mode": "blocked",
+        "reason": "Runtime/controller package selected separately; no ChatGPT activation adapter."
+      }
+    },
+    "web-artifacts-builder": {
+      "chatgpt": {
+        "mode": "instructions",
+        "override": "platform-configs/adapters/web-artifacts-builder/chatgpt.md"
+      }
+    }
+  },
+  "domains": {
+    "parallon": [
+      "work-parallon",
+      "parallon-artifacts",
+      "work-copilot-coding",
+      "design-general",
+      "design-product-ui",
+      "design-marketing",
+      "design-polish",
+      "html-artifacts-offline",
+      "browser-qa",
+      "reverse-engineering"
+    ],
+    "consulting": [
+      "consulting",
+      "consulting-coding",
+      "consulting-web-research",
+      "consulting-web-integration",
+      "connected-artifacts"
+    ],
+    "e7": [
+      "e7",
+      "business-coding",
+      "e7-web-research",
+      "e7-web-integration",
+      "connected-artifacts"
+    ],
+    "home": [
+      "home-life",
+      "home-coding"
+    ],
+    "learning": [
+      "continued-learning",
+      "productivity"
+    ],
+    "faith": [
+      "faith-personal",
+      "faith-teaching",
+      "faith-publishing",
+      "faith-learning"
+    ],
+    "hermes-teams": [
+      "hermes-teams",
+      "addy-engineering",
+      "agent-team-design",
+      "agent-team-research"
+    ]
+  },
+  "all_domain_options": [
+    "design-general",
+    "design-product-ui",
+    "design-marketing",
+    "design-polish",
+    "emil-toolkit",
+    "html-artifacts",
+    "html-artifacts-offline",
+    "connected-artifacts",
+    "shared-writing"
+  ]
+}

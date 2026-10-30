@@ -182,7 +182,12 @@ def validate(root: Path, manifest: dict, check_hashes: bool = True) -> None:
 
     for entry in manifest['skills']:
         folder = packages[entry['id']]
-        allowed = allowed_packages(entry['id'], set())
+        allowed = set(allowed_packages(entry['id'], set()))
+        # Related skills are navigation, not runtime dependencies; cycles are valid.
+        related = entry.get('related_skills', [])
+        if any(name not in packages for name in related):
+            raise ValueError(f'Unknown related skill: {entry["id"]}')
+        related_mains = {packages[name] / 'SKILL.md' for name in related}
         for resource in folder.rglob('*.md'):
             for target in markdown_links(resource.read_text(encoding='utf-8')):
                 if target.startswith('/') or re.match(r'^[a-zA-Z]:', target):
@@ -191,7 +196,7 @@ def validate(root: Path, manifest: dict, check_hashes: bool = True) -> None:
                     continue
                 target = target.split('#', 1)[0]
                 destination = reference_path(root, resource, target)
-                if not any(destination.is_relative_to(package) for package in allowed) or not destination.is_file():
+                if (not any(destination.is_relative_to(package) for package in allowed) and destination not in related_mains) or not destination.is_file():
                     raise ValueError(f'Missing/outside-package reference in {resource}: {target}')
     for name in manifest['profiles']:
         if not SLUG.fullmatch(name):

@@ -2,3 +2,7 @@
 skills/aarons-latest/team-agent-orchestration
 skills/engineering/agent-harness-construction
 skills/engineering/hermes-imports
+skills/engineering/hermes-agent
+skills/engineering/context-engineering
+skills/engineering/code-review-and-quality
+skills/engineering/constraint-driven-development

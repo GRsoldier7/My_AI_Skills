@@ -335,71 +335,157 @@ Generated from `manifest.json`. All trial profiles require deliberate selection;
 
 | Profile | Packages | Trial | Selection |
 |---|---:|---:|---|
+| [addy-controller](addy-controller.txt) | 1 | 1 | using-agent-skills |
+| [addy-engineering](addy-engineering.txt) | 22 | 22 | api-and-interface-design, ci-cd-and-automation, code-review-and-quality, code-simplification, constraint-driven-development, context-engineering, debugging-and-error-recovery, deprecation-and-migration, documentation-and-adrs, frontend-ui-engineering, git-workflow-and-versioning, idea-refine, incremental-implementation, interview-me, observability-and-instrumentation, performance-optimization, planning-and-task-breakdown, security-and-hardening, shipping-and-launch, source-driven-development, spec-driven-development, addy-test-driven-development |
+| [agent-deep-review](agent-deep-review.txt) | 1 | 1 | doubt-driven-development |
+| [agent-team-design](agent-team-design.txt) | 5 | 5 | impeccable, design-taste-frontend, emil-design-eng, mobile-native, break-ui |
+| [agent-team-research](agent-team-research.txt) | 2 | 2 | bounded-agent-research, reverse-engineer-anything |
 | [analytics](analytics.txt) | 5 | 5 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review |
+| [browser-qa](browser-qa.txt) | 1 | 1 | playwright-cli |
 | [business-coding](business-coding.txt) | 17 | 17 | brainstorming, diagnosing-superpowers, dispatching-parallel-agents, requesting-code-review, executing-plans, finishing-a-development-branch, receiving-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills, karpathy-guidelines, anthropic-frontend-design |
-| [business-operations](business-operations.txt) | 7 | 7 | theme-factory, web-artifacts-builder, discernment-nudge, consulting-operations, pricing-strategist, professional-communicator, internal-comms |
-| [consulting](consulting.txt) | 12 | 12 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review, theme-factory, web-artifacts-builder, discernment-nudge, consulting-operations, knowledge-synthesis, professional-communicator, internal-comms |
+| [business-operations](business-operations.txt) | 8 | 8 | humanizer, theme-factory, web-artifacts-builder, discernment-nudge, consulting-operations, pricing-strategist, professional-communicator, internal-comms |
+| [connected-artifacts](connected-artifacts.txt) | 4 | 4 | connected-html-artifacts, dogum-html-artifacts, theme-factory, bi-metric-contract |
+| [consulting](consulting.txt) | 13 | 13 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review, humanizer, theme-factory, web-artifacts-builder, discernment-nudge, consulting-operations, knowledge-synthesis, professional-communicator, internal-comms |
 | [consulting-coding](consulting-coding.txt) | 17 | 17 | brainstorming, diagnosing-superpowers, dispatching-parallel-agents, requesting-code-review, executing-plans, finishing-a-development-branch, receiving-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills, karpathy-guidelines, anthropic-frontend-design |
-| [continued-learning](continued-learning.txt) | 5 | 5 | theme-factory, web-artifacts-builder, discernment-nudge, academy-guide, teach |
-| [e7](e7.txt) | 7 | 7 | theme-factory, web-artifacts-builder, discernment-nudge, internal-comms, consulting-operations, pricing-strategist, professional-communicator |
+| [consulting-web-integration](consulting-web-integration.txt) | 7 | 7 | firecrawl-developer-index, firecrawl-research-index, firecrawl-build, firecrawl-build-interact, firecrawl-build-onboarding, firecrawl-build-scrape, firecrawl-build-search |
+| [consulting-web-research](consulting-web-research.txt) | 15 | 15 | firecrawl-scrape, firecrawl, firecrawl-agent, firecrawl-alexandria, firecrawl-crawl, firecrawl-developer-index, firecrawl-download, firecrawl-interact, firecrawl-map, firecrawl-parse, firecrawl-research-index, firecrawl-search, firecrawl-competitive-intel, firecrawl-lead-research, firecrawl-market-research |
+| [continued-learning](continued-learning.txt) | 6 | 6 | humanizer, theme-factory, web-artifacts-builder, discernment-nudge, academy-guide, teach |
+| [design-general](design-general.txt) | 1 | 1 | impeccable |
+| [design-marketing](design-marketing.txt) | 1 | 1 | design-taste-frontend |
+| [design-polish](design-polish.txt) | 3 | 3 | emil-design-eng, mobile-native, break-ui |
+| [design-product-ui](design-product-ui.txt) | 2 | 2 | interface-design, ui-ux-pro-max |
+| [e7](e7.txt) | 8 | 8 | humanizer, theme-factory, web-artifacts-builder, discernment-nudge, internal-comms, consulting-operations, pricing-strategist, professional-communicator |
+| [e7-web-integration](e7-web-integration.txt) | 7 | 7 | firecrawl-developer-index, firecrawl-research-index, firecrawl-build, firecrawl-build-interact, firecrawl-build-onboarding, firecrawl-build-scrape, firecrawl-build-search |
+| [e7-web-research](e7-web-research.txt) | 15 | 15 | firecrawl-scrape, firecrawl, firecrawl-agent, firecrawl-alexandria, firecrawl-crawl, firecrawl-developer-index, firecrawl-download, firecrawl-interact, firecrawl-map, firecrawl-parse, firecrawl-research-index, firecrawl-search, firecrawl-competitive-intel, firecrawl-lead-research, firecrawl-market-research |
+| [emil-toolkit](emil-toolkit.txt) | 16 | 16 | animate-expo, animate, animation-performance, animation-vocabulary, apple-design, ask-sonner, break-ui, emil-design-eng, find-animation-opportunities, improve-animations, mobile-native, pick-ui-library, emil-prototype, remove-animations, review-animations, write-swift |
 | [engineering-planning](engineering-planning.txt) | 4 | 0 | setup-matt-pocock-skills, to-spec, to-tickets, domain-modeling |
-| [faith-learning](faith-learning.txt) | 11 | 11 | theme-factory, web-artifacts-builder, discernment-nudge, bible-study-theologian, faith-life-integration, sunday-school-teacher, prayer-and-reflection, group-study-leader, bible-study-publisher, social-media-apologetics, teach |
-| [faith-personal](faith-personal.txt) | 6 | 6 | theme-factory, web-artifacts-builder, discernment-nudge, bible-study-theologian, prayer-and-reflection, faith-life-integration |
-| [faith-publishing](faith-publishing.txt) | 6 | 6 | theme-factory, web-artifacts-builder, discernment-nudge, bible-study-theologian, bible-study-publisher, social-media-apologetics |
-| [faith-teaching](faith-teaching.txt) | 7 | 7 | theme-factory, web-artifacts-builder, discernment-nudge, bible-study-theologian, group-study-leader, sunday-school-teacher, prayer-and-reflection |
-| [government-contracting](government-contracting.txt) | 4 | 4 | theme-factory, web-artifacts-builder, discernment-nudge, internal-comms |
-| [hermes-teams](hermes-teams.txt) | 3 | 3 | team-agent-orchestration, agent-harness-construction, hermes-imports |
+| [faith-learning](faith-learning.txt) | 12 | 12 | humanizer, theme-factory, web-artifacts-builder, discernment-nudge, bible-study-theologian, faith-life-integration, sunday-school-teacher, prayer-and-reflection, group-study-leader, bible-study-publisher, social-media-apologetics, teach |
+| [faith-personal](faith-personal.txt) | 7 | 7 | humanizer, theme-factory, web-artifacts-builder, discernment-nudge, bible-study-theologian, prayer-and-reflection, faith-life-integration |
+| [faith-publishing](faith-publishing.txt) | 7 | 7 | humanizer, theme-factory, web-artifacts-builder, discernment-nudge, bible-study-theologian, bible-study-publisher, social-media-apologetics |
+| [faith-teaching](faith-teaching.txt) | 8 | 8 | humanizer, theme-factory, web-artifacts-builder, discernment-nudge, bible-study-theologian, group-study-leader, sunday-school-teacher, prayer-and-reflection |
+| [government-contracting](government-contracting.txt) | 5 | 5 | humanizer, theme-factory, web-artifacts-builder, discernment-nudge, internal-comms |
+| [hermes-teams](hermes-teams.txt) | 7 | 7 | team-agent-orchestration, agent-harness-construction, hermes-imports, hermes-agent, context-engineering, code-review-and-quality, constraint-driven-development |
 | [home-coding](home-coding.txt) | 17 | 17 | brainstorming, diagnosing-superpowers, dispatching-parallel-agents, requesting-code-review, executing-plans, finishing-a-development-branch, receiving-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills, karpathy-guidelines, anthropic-frontend-design |
-| [home-life](home-life.txt) | 5 | 5 | theme-factory, web-artifacts-builder, discernment-nudge, knowledge-management, personal-productivity |
+| [home-life](home-life.txt) | 6 | 6 | humanizer, theme-factory, web-artifacts-builder, discernment-nudge, knowledge-management, personal-productivity |
+| [html-artifacts](html-artifacts.txt) | 3 | 3 | dogum-html-artifacts, theme-factory, humanizer |
+| [html-artifacts-offline](html-artifacts-offline.txt) | 2 | 2 | html-artifacts-offline, humanizer |
 | [interview](interview.txt) | 4 | 2 | grilling, grill-me, domain-modeling, grill-with-docs |
 | [maintainer](maintainer.txt) | 2 | 2 | skill-builder, skill-sentinel |
+| [parallon-artifacts](parallon-artifacts.txt) | 6 | 6 | interface-design, dogum-html-artifacts, theme-factory, humanizer, connected-html-artifacts, bi-metric-contract |
 | [productivity](productivity.txt) | 7 | 7 | grilling, grill-me, handoff, teach, to-questionnaire, wait-what, writing-for-agents |
-| [shared-artifacts](shared-artifacts.txt) | 3 | 3 | theme-factory, web-artifacts-builder, discernment-nudge |
+| [reverse-engineering](reverse-engineering.txt) | 1 | 1 | reverse-engineer-anything |
+| [shared-artifacts](shared-artifacts.txt) | 4 | 4 | humanizer, theme-factory, web-artifacts-builder, discernment-nudge |
+| [shared-writing](shared-writing.txt) | 1 | 1 | humanizer |
+| [skill-maintenance](skill-maintenance.txt) | 3 | 3 | skill-builder, skill-sentinel, skill-inspector |
 | [superpowers](superpowers.txt) | 15 | 15 | brainstorming, diagnosing-superpowers, dispatching-parallel-agents, requesting-code-review, executing-plans, finishing-a-development-branch, receiving-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills |
-| [web-product](web-product.txt) | 5 | 5 | theme-factory, web-artifacts-builder, discernment-nudge, brand-website-strategy, anthropic-frontend-design |
-| [work-analytics](work-analytics.txt) | 6 | 6 | theme-factory, web-artifacts-builder, discernment-nudge, data-analytics-engine, power-bi, professional-communicator |
+| [web-product](web-product.txt) | 6 | 6 | humanizer, theme-factory, web-artifacts-builder, discernment-nudge, brand-website-strategy, anthropic-frontend-design |
+| [work-analytics](work-analytics.txt) | 7 | 7 | humanizer, theme-factory, web-artifacts-builder, discernment-nudge, data-analytics-engine, power-bi, professional-communicator |
 | [work-copilot-coding](work-copilot-coding.txt) | 17 | 17 | brainstorming, diagnosing-superpowers, dispatching-parallel-agents, requesting-code-review, executing-plans, finishing-a-development-branch, receiving-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills, karpathy-guidelines, anthropic-frontend-design |
-| [work-parallon](work-parallon.txt) | 12 | 12 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review, theme-factory, web-artifacts-builder, discernment-nudge, knowledge-synthesis, sprint-plan, professional-communicator, internal-comms |
+| [work-parallon](work-parallon.txt) | 13 | 13 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review, humanizer, theme-factory, web-artifacts-builder, discernment-nudge, knowledge-synthesis, sprint-plan, professional-communicator, internal-comms |
 
 | Skill | Canonical path | Status |
 |---|---|---|
 | academy-guide | skills/learning/academy-guide | trial |
+| addy-test-driven-development | skills/engineering/addy-test-driven-development | trial |
 | agent-harness-construction | skills/engineering/agent-harness-construction | trial |
+| animate | skills/design/animate | trial |
+| animate-expo | skills/design/animate-expo | trial |
+| animation-performance | skills/design/animation-performance | trial |
+| animation-vocabulary | skills/design/animation-vocabulary | trial |
 | anthropic-frontend-design | skills/engineering/anthropic-frontend-design | trial |
+| api-and-interface-design | skills/engineering/api-and-interface-design | trial |
+| apple-design | skills/design/apple-design | trial |
+| ask-sonner | skills/design/ask-sonner | trial |
 | bi-metric-contract | skills/analytics/bi-metric-contract | trial |
 | bible-study-publisher | skills/faith/bible-study-publisher | trial |
 | bible-study-theologian | skills/faith/bible-study-theologian | trial |
 | bigquery-review | skills/analytics/bigquery-review | trial |
 | biohacking-data-pipeline | skills/product/biohacking-data-pipeline | reference |
+| bounded-agent-research | skills/research/bounded-agent-research | trial |
 | brainstorming | skills/engineering/brainstorming | trial |
 | brand-website-strategy | skills/product/brand-website-strategy | trial |
+| break-ui | skills/design/break-ui | trial |
+| browser-testing-with-devtools | skills/engineering/browser-testing-with-devtools | trial |
+| ci-cd-and-automation | skills/engineering/ci-cd-and-automation | trial |
 | clean-project | skills/aarons-latest/clean-project | trial |
+| code-review-and-quality | skills/engineering/code-review-and-quality | trial |
+| code-simplification | skills/engineering/code-simplification | trial |
+| connected-html-artifacts | skills/analytics/connected-html-artifacts | trial |
+| constraint-driven-development | skills/engineering/constraint-driven-development | trial |
 | consulting-operations | skills/strategy/consulting-operations | trial |
+| context-engineering | skills/engineering/context-engineering | trial |
 | continuing-alm-work | skills/aarons-latest/continuing-alm-work | trial |
 | data-analytics-engine | skills/engineering/data-analytics-engine | trial |
+| debugging-and-error-recovery | skills/engineering/debugging-and-error-recovery | trial |
+| deprecation-and-migration | skills/engineering/deprecation-and-migration | trial |
+| design-taste-frontend | skills/design/design-taste-frontend | trial |
 | diagnosing-superpowers | skills/engineering/diagnosing-superpowers | trial |
 | directory-cleanup | skills/aarons-latest/directory-cleanup | trial |
 | discernment-nudge | skills/core/discernment-nudge | trial |
 | dispatching-parallel-agents | skills/engineering/dispatching-parallel-agents | trial |
 | docker-infrastructure | skills/engineering/docker-infrastructure | trial |
+| documentation-and-adrs | skills/engineering/documentation-and-adrs | trial |
+| dogum-html-artifacts | skills/design/dogum-html-artifacts | trial |
 | domain-modeling | skills/engineering/domain-modeling | active |
+| doubt-driven-development | skills/engineering/doubt-driven-development | trial |
+| emil-design-eng | skills/design/emil-design-eng | trial |
+| emil-prototype | skills/design/emil-prototype | trial |
 | executing-plans | skills/engineering/executing-plans | trial |
 | fact-checker | skills/core/fact-checker | reference |
 | faith-life-integration | skills/faith/faith-life-integration | trial |
+| find-animation-opportunities | skills/design/find-animation-opportunities | trial |
 | finishing-a-development-branch | skills/engineering/finishing-a-development-branch | trial |
+| firecrawl | skills/research/firecrawl | trial |
+| firecrawl-agent | skills/research/firecrawl-agent | trial |
+| firecrawl-alexandria | skills/research/firecrawl-alexandria | trial |
+| firecrawl-build | skills/engineering/firecrawl-build | trial |
+| firecrawl-build-interact | skills/engineering/firecrawl-build-interact | trial |
+| firecrawl-build-onboarding | skills/engineering/firecrawl-build-onboarding | trial |
+| firecrawl-build-scrape | skills/engineering/firecrawl-build-scrape | trial |
+| firecrawl-build-search | skills/engineering/firecrawl-build-search | trial |
+| firecrawl-competitive-intel | skills/research/firecrawl-competitive-intel | trial |
+| firecrawl-crawl | skills/research/firecrawl-crawl | trial |
+| firecrawl-developer-index | skills/research/firecrawl-developer-index | trial |
+| firecrawl-download | skills/research/firecrawl-download | trial |
+| firecrawl-interact | skills/research/firecrawl-interact | trial |
+| firecrawl-lead-research | skills/research/firecrawl-lead-research | trial |
+| firecrawl-map | skills/research/firecrawl-map | trial |
+| firecrawl-market-research | skills/research/firecrawl-market-research | trial |
+| firecrawl-monitor | skills/research/firecrawl-monitor | reference |
+| firecrawl-parse | skills/research/firecrawl-parse | trial |
+| firecrawl-research-index | skills/research/firecrawl-research-index | trial |
+| firecrawl-scrape | skills/research/firecrawl-scrape | trial |
+| firecrawl-search | skills/research/firecrawl-search | trial |
+| frontend-ui-engineering | skills/engineering/frontend-ui-engineering | trial |
+| git-workflow-and-versioning | skills/engineering/git-workflow-and-versioning | trial |
 | grill-me | skills/aarons-latest/grill-me | trial |
 | grill-with-docs | skills/aarons-latest/grill-with-docs | active |
 | grilling | skills/aarons-latest/grilling | trial |
 | group-study-leader | skills/faith/group-study-leader | trial |
 | handoff | skills/productivity/handoff | trial |
 | health-biohacking-protocol | skills/product/health-biohacking-protocol | reference |
+| hermes-agent | skills/engineering/hermes-agent | trial |
 | hermes-imports | skills/engineering/hermes-imports | trial |
+| html-artifacts-offline | skills/design/html-artifacts-offline | trial |
+| humanizer | skills/core/humanizer | trial |
+| idea-refine | skills/engineering/idea-refine | trial |
+| impeccable | skills/design/impeccable | trial |
+| improve-animations | skills/design/improve-animations | trial |
+| incremental-implementation | skills/engineering/incremental-implementation | trial |
+| interface-design | skills/design/interface-design | trial |
 | internal-comms | skills/growth/internal-comms | trial |
+| interview-me | skills/engineering/interview-me | trial |
 | karpathy-guidelines | skills/engineering/karpathy-guidelines | trial |
 | knowledge-management | skills/core/knowledge-management | trial |
 | knowledge-synthesis | skills/core/knowledge-synthesis | trial |
+| mobile-native | skills/design/mobile-native | trial |
 | n8n-workflow-architect | skills/engineering/n8n-workflow-architect | reference |
+| observability-and-instrumentation | skills/engineering/observability-and-instrumentation | trial |
+| performance-optimization | skills/engineering/performance-optimization | trial |
 | personal-productivity | skills/core/personal-productivity | trial |
+| pick-ui-library | skills/design/pick-ui-library | trial |
+| planning-and-task-breakdown | skills/engineering/planning-and-task-breakdown | trial |
+| playwright-cli | skills/engineering/playwright-cli | trial |
 | power-bi | skills/microsoft/power-bi | trial |
 | prayer-and-reflection | skills/faith/prayer-and-reflection | trial |
 | pricing-strategist | skills/strategy/pricing-strategist | trial |
@@ -409,12 +495,20 @@ Generated from `manifest.json`. All trial profiles require deliberate selection;
 | projectplan-rescope | skills/aarons-latest/projectplan-rescope | trial |
 | projectplan-roadmap | skills/aarons-latest/projectplan-roadmap | trial |
 | receiving-code-review | skills/engineering/receiving-code-review | trial |
+| remove-animations | skills/design/remove-animations | trial |
 | requesting-code-review | skills/engineering/requesting-code-review | trial |
 | research_adaptive | skills/aarons-latest/research_adaptive | reference |
+| reverse-engineer-anything | skills/engineering/reverse-engineer-anything | trial |
+| review-animations | skills/design/review-animations | trial |
+| security-and-hardening | skills/engineering/security-and-hardening | trial |
 | setup-matt-pocock-skills | skills/engineering/setup-matt-pocock-skills | active |
+| shipping-and-launch | skills/engineering/shipping-and-launch | trial |
 | skill-builder | skills/core/skill-builder | trial |
+| skill-inspector | skills/security/skill-inspector | trial |
 | skill-sentinel | skills/core/skill-sentinel | trial |
 | social-media-apologetics | skills/faith/social-media-apologetics | trial |
+| source-driven-development | skills/engineering/source-driven-development | trial |
+| spec-driven-development | skills/engineering/spec-driven-development | trial |
 | sprint-plan | skills/product/pm-sprint-plan | trial |
 | sql-queries | skills/product/pm-sql-queries | trial |
 | subagent-driven-development | skills/engineering/subagent-driven-development | trial |
@@ -428,12 +522,15 @@ Generated from `manifest.json`. All trial profiles require deliberate selection;
 | to-questionnaire | skills/productivity/to-questionnaire | trial |
 | to-spec | skills/engineering/to-spec | active |
 | to-tickets | skills/engineering/to-tickets | active |
+| ui-ux-pro-max | skills/design/ui-ux-pro-max | trial |
+| using-agent-skills | skills/engineering/using-agent-skills | trial |
 | using-git-worktrees | skills/engineering/using-git-worktrees | trial |
 | using-superpowers | skills/core/using-superpowers | trial |
 | verification-before-completion | skills/engineering/verification-before-completion | trial |
 | wait-what | skills/productivity/wait-what | trial |
 | web-artifacts-builder | skills/engineering/web-artifacts-builder | trial |
 | workbetter | skills/aarons-latest/workbetter | trial |
+| write-swift | skills/engineering/write-swift | trial |
 | writing-for-agents | skills/productivity/writing-for-agents | trial |
 | writing-plans | skills/engineering/writing-plans | trial |
 | writing-skills | skills/engineering/writing-skills | trial |

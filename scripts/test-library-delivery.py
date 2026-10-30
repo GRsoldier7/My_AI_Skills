@@ -5,7 +5,6 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-import zipfile
 
 spec = importlib.util.spec_from_file_location('delivery',Path(__file__).with_name('library-delivery.py'))
 delivery = importlib.util.module_from_spec(spec)
@@ -101,6 +100,18 @@ class DeliveryTests(unittest.TestCase):
         out=Path(self.export()['output'])
         self.assertIn('](../sample/SKILL.md)',(out/'.github/skills/second/SKILL.md').read_text())
 
+    def test_unselected_related_skill_links_to_pinned_source(self):
+        other=self.add_skill('other')
+        other['status']='reference'
+        other['provenance']={'kind':'upstream','repository':'https://github.com/example/skills','revision':'a'*40,'path':'skills/other'}
+        self.manifest['profiles']['demo']['skills'].remove('other')
+        first=self.manifest['skills'][0]; first['related_skills']=['other']
+        with (self.root/first['path']/'SKILL.md').open('a') as f: f.write('\nSee [related](../other/SKILL.md).\n')
+        first['package_sha256']=delivery.sets.package_hash(self.root/first['path']); self.save()
+        out=Path(self.export()['output'])
+        self.assertFalse((out/'.github/skills/other').exists())
+        self.assertIn('/blob/'+'a'*40+'/skills/other/SKILL.md',(out/'.github/skills/sample/SKILL.md').read_text())
+
     def test_instruction_override_excludes_runtime(self):
         self.put('skills/core/sample/scripts/run.py','raise RuntimeError("Never execute me")\n')
         self.manifest['skills'][0]['package_sha256']=delivery.sets.package_hash(self.root/'skills/core/sample')
@@ -112,6 +123,15 @@ class DeliveryTests(unittest.TestCase):
         self.assertTrue((out/'skills/sample/LICENSE').exists())
         self.assertIn('Instruction-only',(out/'skills/sample/SKILL.md').read_text())
         self.assertIn('com.openai',json.loads((out/'plugin.json').read_text())['extensions'])
+
+    def test_full_adapter_retains_canonical_instructions(self):
+        path='platform-configs/adapters/sample/copilot.md'
+        self.artifact(path,'Use approved CLI only.\n')
+        self.config['skills']['sample']={'copilot':{'mode':'full','override':path}}; self.save()
+        out=Path(self.export()['output'])
+        text=(out/'.github/skills/sample/SKILL.md').read_text()
+        self.assertIn('Use approved CLI only.',text)
+        self.assertIn('Use synthetic data.',text)
 
     def test_unregistered_override_is_rejected(self):
         path='platform-configs/adapters/sample/chatgpt.md'; self.put(path,'manual guidance')
@@ -139,6 +159,39 @@ class DeliveryTests(unittest.TestCase):
         text=(out/'.github/agents/demo-reviewer.agent.md').read_text()
         self.assertIn('name: demo-reviewer',text)
         self.assertIn('tools: ["read", "search"]',text)
+
+    def test_agent_reference_closure_retains_license(self):
+        self.artifact('agents/demo.md','Review [checklist](references/check.md).\n')
+        self.artifact('agents/references/check.md','Complete checklist.\n')
+        self.artifact('agents/LICENSE','Synthetic license.\n')
+        self.artifacts['artifacts'][0]['license_path']='agents/LICENSE'
+        self.config['bundles']['demo']['agents']=[{'path':'agents/demo.md','name':'demo','description':'Review'}]; self.save()
+        out=Path(self.export()['output'])
+        self.assertTrue((out/'references/library/agents/LICENSE').is_file())
+        self.assertIn('../../references/library/agents/references/check.md',(out/'.github/agents/demo.agent.md').read_text())
+
+    def test_agent_unregistered_dependency_rejected(self):
+        self.artifact('agents/demo.md','Review [secret](other.md).\n')
+        self.put('agents/other.md','Unregistered.\n')
+        self.config['bundles']['demo']['agents']=[{'path':'agents/demo.md','name':'demo','description':'Review'}]; self.save()
+        with self.assertRaisesRegex(ValueError,'Unregistered'): self.export()
+
+    def test_override_dangling_link_rejected(self):
+        path='platform-configs/adapters/sample/chatgpt.md'
+        self.artifact(path,'---\nname: sample\n---\nRead [missing](references/missing.md).\n')
+        self.config['skills']['sample']={'chatgpt':{'mode':'instructions','override':path}}; self.save()
+        with self.assertRaisesRegex(ValueError,'Unresolved exported link'): self.export('chatgpt')
+
+    def test_host_specific_agents_are_not_added_to_other_hosts(self):
+        self.artifact('agents/demo.md','CLI persona.\n')
+        self.config['bundles']['demo']['agents']=[{'path':'agents/demo.md','name':'demo','description':'CLI persona','platforms':['copilot']}];self.save()
+        out=Path(self.export('chatgpt')['output'])
+        self.assertFalse((out/'references/agents/demo.md').exists())
+
+    def test_catalog_rejects_changed_artifact(self):
+        self.artifact('agents/demo.md','Original.\n'); self.save()
+        self.put('agents/demo.md','Changed.\n')
+        with self.assertRaisesRegex(ValueError,'Artifact changed'): delivery.catalog(self.root,True)
 
     def test_catalog_drift_detection(self):
         with self.assertRaisesRegex(ValueError,'stale'): delivery.catalog(self.root)

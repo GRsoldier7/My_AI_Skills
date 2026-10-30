@@ -113,6 +113,24 @@ class SkillSetTests(unittest.TestCase):
                             '[Foundation](../../alpha/references/foundation.md#foundation)\n')
         M.validate(self.root, self.manifest)
 
+    def test_related_navigation_is_not_an_install_dependency(self):
+        self.entries[0]['related_skills']=['beta']
+        self.entries[1]['related_skills']=['alpha']
+        self.write_resource('alpha','guide.md','[Related](../beta/SKILL.md)\n')
+        self.write_resource('beta','guide.md','[Related](../alpha/SKILL.md)\n')
+        M.validate(self.root,self.manifest)
+        self.assertEqual([e['id'] for e in M.resolve_profile(self.manifest,'base')],['alpha'])
+
+    def test_related_navigation_does_not_authorize_support_files(self):
+        self.entries[0]['related_skills']=['beta']
+        self.write_resource('beta','support.md','Support\n')
+        self.write_resource('alpha','guide.md','[Undeclared dependency](../beta/support.md)\n')
+        with self.assertRaises(ValueError): M.validate(self.root,self.manifest)
+
+    def test_unknown_related_skill_is_rejected(self):
+        self.entries[0]['related_skills']=['missing']
+        with self.assertRaises(ValueError): M.validate(self.root,self.manifest)
+
     def test_transitive_dependency_reference_is_allowed(self):
         folder = self.root / 'skills/core/gamma'
         folder.mkdir()

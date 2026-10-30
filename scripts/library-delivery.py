@@ -9,7 +9,6 @@ import json
 import os
 from pathlib import Path
 import re
-import shutil
 import tempfile
 import zipfile
 
@@ -37,13 +36,13 @@ def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def with_policy(text: str, name: str, instructions: bool = False) -> str:
+def with_policy(text: str, name: str, instructions: bool = False, prepend: str = "") -> str:
     match = re.match(r'^---\n.*?\n---(?:\n|$)', text, re.S)
     if not match:
         text = f'---\nname: {name}\ndescription: Portable guidance for {name}.\n---\n' + text
         match = re.match(r'^---\n.*?\n---\n', text, re.S)
     extra = '\nInstruction-only delivery: do not invoke local scripts, engines or shell commands. Use available host capabilities; runtime verification is not provided.\n' if instructions else ''
-    return text[:match.end()] + '\n' + POLICY + extra + '\n' + text[match.end():]
+    return text[:match.end()] + '\n' + POLICY + extra + '\n' + prepend + '\n' + text[match.end():]
 
 
 def load(root: Path) -> tuple[dict, dict, dict]:
@@ -54,6 +53,10 @@ def load(root: Path) -> tuple[dict, dict, dict]:
     artifacts = {a['path']: a for a in inventory['artifacts']}
     if len(artifacts) != len(inventory['artifacts']):
         raise ValueError('Duplicate artifact paths')
+    for path, record in artifacts.items():
+        verified_artifact(root, path, artifacts)
+        if record.get('license_path') and not sets.safe_path(root,record['license_path']).is_file():
+            raise ValueError(f'Missing artifact license: {path}')
     return manifest, delivery, artifacts
 
 
@@ -77,7 +80,7 @@ def verified_artifact(root: Path, path: str, records: dict) -> bytes:
     return data
 
 
-def rewrite_links(text: str, resource: Path, source_map: dict[Path, Path]) -> str:
+def rewrite_links(text: str, resource: Path, source_map: dict[Path, Path], external: dict[Path, str] | None = None) -> str:
     for target in sets.markdown_links(text):
         if re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*:', target) or target.startswith('#'):
             continue
@@ -86,6 +89,8 @@ def rewrite_links(text: str, resource: Path, source_map: dict[Path, Path]) -> st
         if destination in source_map and resource.resolve() in source_map:
             relative = os.path.relpath(source_map[destination], source_map[resource.resolve()].parent).replace(os.sep, '/')
             text = text.replace('](' + target + ')', '](' + relative + (sep + anchor if sep else '') + ')')
+        elif external and destination in external:
+            text = text.replace('](' + target + ')', '](' + external[destination] + (sep + anchor if sep else '') + ')')
         else:
             raise ValueError(f'Export loses a referenced resource: {resource.name}: {target}')
     return text
@@ -136,16 +141,52 @@ def export(root: Path, profile: str, platform: str, output: Path) -> dict:
             payload[dest.as_posix()] = path.read_bytes()
             source_map[path.resolve()] = dest
         main = target / 'SKILL.md'
-        text = (override or source / 'SKILL.md').read_text(encoding='utf-8')
-        payload[main.as_posix()] = with_policy(text, entry['name'], mode == 'instructions').encode()
-        if not override:
+        text = (override if mode == 'instructions' else source / 'SKILL.md').read_text(encoding='utf-8')
+        prepend = override.read_text(encoding='utf-8') if override and mode == 'full' else ''
+        payload[main.as_posix()] = with_policy(text, entry['name'], mode == 'instructions', prepend).encode()
+        if mode == 'full':
             source_map[(source / 'SKILL.md').resolve()] = main
         selected.append({'id':entry['id'], 'source_sha256':entry['package_sha256'], 'mode':mode})
+    related_urls = {}
+    by_id = {entry['id']:entry for entry in manifest['skills']}
+    for entry in entries:
+        for related in entry.get('related_skills', []):
+            other = by_id[related]
+            provenance = other['provenance']
+            if all(provenance.get(k) for k in ('repository','revision','path')):
+                related_urls[sets.safe_path(root,other['path']).resolve() / 'SKILL.md'] = f'{provenance["repository"]}/blob/{provenance["revision"]}/{provenance["path"]}/SKILL.md'
     for source, dest in source_map.items():
         if dest.suffix.lower() == '.md':
-            payload[dest.as_posix()] = rewrite_links(payload[dest.as_posix()].decode('utf-8'), source, source_map).encode()
+            payload[dest.as_posix()] = rewrite_links(payload[dest.as_posix()].decode('utf-8'), source, source_map, related_urls).encode()
+    artifact_map: dict[Path, Path] = {}
+
+    def add_artifact(path: str) -> None:
+        source = sets.safe_path(root, path).resolve()
+        if source in artifact_map:
+            return
+        data = verified_artifact(root, path, artifacts)
+        dest = Path('references/library') / path
+        artifact_map[source] = dest
+        payload[dest.as_posix()] = data
+        record = artifacts[path]
+        dependencies = list(record.get('dependencies', []))
+        if record.get('license_path'):
+            dependencies.append(record['license_path'])
+        if source.suffix.lower() == '.md':
+            for target_ in sets.markdown_links(data.decode('utf-8')):
+                if re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*:', target_) or target_.startswith('#'):
+                    continue
+                linked = sets.reference_path(root, source, target_.split('#', 1)[0])
+                dependencies.append(linked.relative_to(root.resolve()).as_posix())
+        for dependency in dependencies:
+            add_artifact(dependency)
+
+    rendered_artifacts: list[tuple[Path, Path]] = []
     for item in bundle.get('agents', []):
+        if platform not in item.get('platforms', PLATFORMS):
+            continue
         path = item['path']
+        add_artifact(path)
         raw = verified_artifact(root, path, artifacts).decode('utf-8')
         body = re.sub(r'^---\n.*?\n---\n?', '', raw, count=1, flags=re.S)
         name = item['name']
@@ -164,8 +205,10 @@ def export(root: Path, profile: str, platform: str, output: Path) -> dict:
         if dest in payload:
             raise ValueError('Duplicate agent export')
         payload[dest] = body.encode()
+        rendered_artifacts.append((sets.safe_path(root,path).resolve(),Path(dest)))
     for item in bundle.get('prompts', []):
         path = item['path']
+        add_artifact(path)
         body = verified_artifact(root, path, artifacts).decode('utf-8')
         name = item['name']
         if not sets.SLUG.fullmatch(name):
@@ -175,6 +218,24 @@ def export(root: Path, profile: str, platform: str, output: Path) -> dict:
         if dest in payload:
             raise ValueError('Duplicate prompt export')
         payload[dest] = (POLICY + '\n' + body).encode()
+        rendered_artifacts.append((sets.safe_path(root,path).resolve(),Path(dest)))
+    for source, dest in artifact_map.items():
+        if dest.suffix.lower() == '.md':
+            payload[dest.as_posix()] = rewrite_links(payload[dest.as_posix()].decode('utf-8'), source, artifact_map).encode()
+    for source, dest in rendered_artifacts:
+        mapping = dict(artifact_map)
+        mapping[source] = dest
+        payload[dest.as_posix()] = rewrite_links(payload[dest.as_posix()].decode('utf-8'), source, mapping).encode()
+    # Validate every emitted Markdown link, including instruction overrides.
+    for name, data in payload.items():
+        if not name.endswith('.md'):
+            continue
+        for target_ in sets.markdown_links(data.decode('utf-8')):
+            if re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*:', target_) or target_.startswith('#'):
+                continue
+            resolved = os.path.normpath(str(Path(name).parent / target_.split('#', 1)[0]))
+            if resolved not in payload:
+                raise ValueError(f'Unresolved exported link in {name}: {target_}')
     if platform == 'chatgpt':
         plugin = {'name':'my-ai-skills-' + profile, 'version':'1.0.0', 'description':bundle['description'], 'author':{'name':'Aaron DeYoung'}, 'repository':'https://github.com/GRsoldier7/My_AI_Skills', 'extensions':{'com.openai':{'interface':{'displayName':bundle['title'], 'shortDescription':bundle['description'][:80], 'longDescription':bundle['description'], 'developerName':'Aaron DeYoung', 'category':'Productivity', 'defaultPrompt':[bundle['prompt']]}}}}
         payload['plugin.json'] = (json.dumps(plugin,indent=2)+'\n').encode()

@@ -1,5 +1,10 @@
 # Hermes Teams source selection
 
+The expanded selections, staged exports, runtime limits and receiving-host checks
+are in the [Platform Delivery Guide](<../../docs/20261029 - My AI Skills - Platform Delivery Guide.md>).
+The source catalog separates skills, personas and prompts; importing files does
+not register or activate them on this host.
+
 [hermes-teams](../skill-sets/hermes-teams.txt) selects ECC's portable team-agent
 orchestration, agent-harness construction and Hermes import guidance. Four
 candidate personas live under `agents/ecc/`; they need Hermes-compatible tool

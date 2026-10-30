@@ -4,10 +4,17 @@
 ## Library organization and October 29 imports
 
 - `skills/`: complete reusable procedures, organized by capability/domain.
-- `agents/`: specialist personas; `agents/ecc/` contains four source definitions.
-- `prompts/`: reusable task starters; `prompts/copilot/` contains five templates.
+- `agents/`: ECC, Addy, Impeccable and 283 Agency specialist personas, organized by collection/division.
+- `prompts/`: reusable Copilot, Addy and Interface Design task starters.
 - `platform-configs/`: host adapters and one canonical selection manifest.
+- `tooling/`: isolated skill scanning and research-runtime references.
 - `docs/` and `evals/`: decisions, provenance and verification evidence.
+
+Start with the [Library Catalog](<docs/20261029 - My AI Skills - Library Catalog.md>)
+and [Platform Delivery Guide](<docs/20261029 - My AI Skills - Platform Delivery Guide.md>).
+The [Expansion Plan](<docs/20261029 - My AI Skills - Library Organization and Expansion Plan.md>)
+records the approved scope. Build selected ChatGPT, Copilot, Codex or Hermes ZIPs
+with `scripts/library-delivery.py`; bundles are staged for review, not activated.
 
 Select [domain profiles](platform-configs/skill-sets/README.md) without duplicating
 skills for Parallon, Consulting, E7, home or learning. Shared artifact skills are

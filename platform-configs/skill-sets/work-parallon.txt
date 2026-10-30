@@ -4,6 +4,7 @@ skills/microsoft/power-bi
 skills/product/pm-sql-queries
 skills/analytics/bi-metric-contract
 skills/analytics/bigquery-review
+skills/core/humanizer
 skills/design/theme-factory
 skills/engineering/web-artifacts-builder
 skills/core/discernment-nudge
