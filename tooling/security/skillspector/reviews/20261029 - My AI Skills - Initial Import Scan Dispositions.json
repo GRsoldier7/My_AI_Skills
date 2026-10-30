@@ -1,0 +1,1278 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-29",
+  "scanner_revision": "54921c8c7c23008c8af2328d5ab492a904b6ece4",
+  "raw_gate_passed": false,
+  "raw_report_directory": "/tmp/skillspector-initial-imports-20261029",
+  "raw_receipt_sha256": "a0572b37508afdb96252bd4d68fadb3a861890ad2ef2700dab5f2649e15f6e8d",
+  "packages": [
+    {
+      "id": "academy-guide",
+      "path": "skills/learning/academy-guide",
+      "package_sha256": "8ead21a95a97b753e4e93c140f0bdc9d264688a7656ab806fac2948ca6eb98db",
+      "raw_report_sha256": "4f883a909f5d6a3f3f75ae8beb5d3c6d19c6945b3945fe8da2b73953dd7d530e",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [
+        {
+          "rule": "LP3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": null,
+          "disposition": "runtime_scope_required",
+          "reason": "Portable source omits an allowed-tools declaration. The cited network, shell, environment or write examples are real capabilities; a host adapter must restrict them to the current authorized task and available approved tools. No runtime was activated."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "discernment-nudge",
+      "path": "skills/core/discernment-nudge",
+      "package_sha256": "c3f503f343e5e32f7c8539e47853ca4d69e0cfdbd294789510c8203ae8f92e1d",
+      "raw_report_sha256": "bba6dd485f237bfc61d5d1396e761081e016a0ac5e89f1040d5c30c2ecb18505",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [
+        {
+          "rule": "AR1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 191,
+            "end_line": 191,
+            "start_column": 0,
+            "end_column": 13
+          },
+          "match_fingerprint": "9212e5663c565e407e9116af9e8e2a1b2e4bd139a2f42725630e861de8aeb419",
+          "disposition": "false_positive_output_order",
+          "reason": "Always answer first specifies that an optional learning nudge follows the substantive response. It does not override safety, scope or the host ability to decline."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "anthropic-frontend-design",
+      "path": "skills/engineering/anthropic-frontend-design",
+      "package_sha256": "f2b15a00f0019e63691df3a4198e4603ccb07166a67e44826a98e4f09f17a1c8",
+      "raw_report_sha256": "77c7fbee95b40b1d9f60cfaa4f8d53a24f587f41f33af033d7c45c0d92cca635",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [
+        {
+          "rule": "AR2",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 69,
+            "end_line": 69,
+            "start_column": 163,
+            "end_column": 178
+          },
+          "match_fingerprint": "6548012a81eb308abd86389fb7c9e00f5ae1bfa59164ef7c3962c84c137ad1d3",
+          "disposition": "false_positive_interface_copy",
+          "reason": "Errors do not apologize is guidance for UI error wording; the surrounding text requires explaining the failure and recovery. It is not suppression of assistant safety caveats."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "internal-comms",
+      "path": "skills/growth/internal-comms",
+      "package_sha256": "94599d0bcb5ee8319972d538562a6fa46677ae15381e18e96c2b29d5e10eca18",
+      "raw_report_sha256": "ab0aa7a3fc04112a036a99616711fdf5af6fa6ca04159fc09afc8fb33062b0c8",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "theme-factory",
+      "path": "skills/design/theme-factory",
+      "package_sha256": "f426a07c06316201360be19324f2689c5bd3ab2d1669848c9383c321efa4386f",
+      "raw_report_sha256": "3bdc6ff27470e1fe54a5b15958e86a9302ec8c8fc6fad073d9f2e27fc87b50c3",
+      "raw_exit_code": 1,
+      "finding_count": 3,
+      "coverage_percent": 92.3,
+      "is_complete": false,
+      "coverage_review": "PDF was inspected with isolated metadata, JavaScript, attachment and text tools; no active payload identified. This supplements but does not replace the incomplete static binary verdict.",
+      "issues": [
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 23,
+            "end_line": null
+          },
+          "match_fingerprint": "c69e1328ab44880d2d40c480ddbdb21a6c5e444093fd463d108b084c9d9d52a9",
+          "disposition": "manually_reviewed_binary_coverage_gap",
+          "reason": "The pinned PDF is a 10-page ReportLab theme showcase. Isolated pdfinfo reports no JavaScript, no forms and no encryption; pdfdetach reports zero embedded files; extracted text contains ten color/font examples. Raw binary coverage remains incomplete, not evidence of concealed malware. Open only in an approved PDF viewer."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 30,
+            "end_line": null
+          },
+          "match_fingerprint": "c69e1328ab44880d2d40c480ddbdb21a6c5e444093fd463d108b084c9d9d52a9",
+          "disposition": "manually_reviewed_binary_coverage_gap",
+          "reason": "The pinned PDF is a 10-page ReportLab theme showcase. Isolated pdfinfo reports no JavaScript, no forms and no encryption; pdfdetach reports zero embedded files; extracted text contains ten color/font examples. Raw binary coverage remains incomplete, not evidence of concealed malware. Open only in an approved PDF viewer."
+        },
+        {
+          "rule": "SC9",
+          "severity": "HIGH",
+          "location": {
+            "file": "theme-showcase.pdf",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "a890889cc4cc737b9ac5444e445e965f362ec82256abc9032f5e5819a9854199",
+          "disposition": "manually_reviewed_binary_coverage_gap",
+          "reason": "The pinned PDF is a 10-page ReportLab theme showcase. Isolated pdfinfo reports no JavaScript, no forms and no encryption; pdfdetach reports zero embedded files; extracted text contains ten color/font examples. Raw binary coverage remains incomplete, not evidence of concealed malware. Open only in an approved PDF viewer."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "web-artifacts-builder",
+      "path": "skills/engineering/web-artifacts-builder",
+      "package_sha256": "7a081b86fd5068d3ca2c4d9c059956634feff65ccbf1c39c3d34a6e5d0971139",
+      "raw_report_sha256": "b006cd535a024faa71de3941d5c9748723af41f8c9db23a79d276ba38c3b1220",
+      "raw_exit_code": 1,
+      "finding_count": 3,
+      "coverage_percent": 75.0,
+      "is_complete": false,
+      "coverage_review": "The explicit build helper was read and its archive expanded with strict member validation for a supplemental static pass. Runtime global installs/unpinned dependencies remain restricted; package raw coverage stays 75%.",
+      "issues": [
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 10,
+            "end_line": null
+          },
+          "match_fingerprint": "7c5fc2767100d7cb9c290018830f33f58c0909ae2420872bbc99953f020869ca",
+          "disposition": "reviewed_source_runtime_restricted",
+          "reason": "Initializer and archive are explicit upstream build assets. Archive inventory accepted only 45 regular UTF-8 files/4 directories, no links, devices or escaping paths; expanded source static scan passed with 0 findings and complete enabled coverage. Initializer contains global pnpm installation and unpinned package acquisition: do not execute automatically; adapt to approved pinned project tooling. Raw package coverage remains incomplete."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 28,
+            "end_line": null
+          },
+          "match_fingerprint": "7c5fc2767100d7cb9c290018830f33f58c0909ae2420872bbc99953f020869ca",
+          "disposition": "reviewed_source_runtime_restricted",
+          "reason": "Initializer and archive are explicit upstream build assets. Archive inventory accepted only 45 regular UTF-8 files/4 directories, no links, devices or escaping paths; expanded source static scan passed with 0 findings and complete enabled coverage. Initializer contains global pnpm installation and unpinned package acquisition: do not execute automatically; adapt to approved pinned project tooling. Raw package coverage remains incomplete."
+        },
+        {
+          "rule": "SC9",
+          "severity": "HIGH",
+          "location": {
+            "file": "scripts/shadcn-components.tar.gz",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "919e499d4ea43217d077761fd3f459bf451c3c073a39df5ee5ddc14dbb77010d",
+          "disposition": "reviewed_source_runtime_restricted",
+          "reason": "Initializer and archive are explicit upstream build assets. Archive inventory accepted only 45 regular UTF-8 files/4 directories, no links, devices or escaping paths; expanded source static scan passed with 0 findings and complete enabled coverage. Initializer contains global pnpm installation and unpinned package acquisition: do not execute automatically; adapt to approved pinned project tooling. Raw package coverage remains incomplete."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "grill-me",
+      "path": "skills/aarons-latest/grill-me",
+      "package_sha256": "7b8272212181514e50c371cbd2fa97da8b4280450cbe4e54c70b580595b7b77e",
+      "raw_report_sha256": "17c009cbd14e04037063ab38eb7e74dd9f8d243342b1db1c657f6eeca60c40aa",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "grilling",
+      "path": "skills/aarons-latest/grilling",
+      "package_sha256": "fac97e7604fabc21eb4d791432a1af533561eedd41781d3fb20f5a2d4f03e2cd",
+      "raw_report_sha256": "0c17b7392f579daac862c2a66d28078d425e3ff749dfd6d717b59b4b63e2c72c",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 28,
+            "end_line": null,
+            "start_column": 194
+          },
+          "match_fingerprint": "9de502b09a567df9fdaf24805fd25357cfaae1ef9e04e7f68c439b4b11307bcf",
+          "disposition": "false_positive_context",
+          "reason": "The user retains decisions; agents discover facts already available in the environment instead of asking the human to look them up."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "handoff",
+      "path": "skills/productivity/handoff",
+      "package_sha256": "7b0599359d0a070a7e58b018dc8790d10b5452f72b4f86f201b3037eb87f7f06",
+      "raw_report_sha256": "63b3b60176a5da66c6190b2875f735b773a3e2c458f9c847fd17fb41bf8b2bc9",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "teach",
+      "path": "skills/aarons-latest/teach",
+      "package_sha256": "ed7d1bd923d9d85e4b833756621f491d4cd54bd7f7bc7939293020c40788f072",
+      "raw_report_sha256": "564640b084ebfec6ea9cc5e0d6491fdcfa95b20df81bc386fd976409bf8b654f",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "to-questionnaire",
+      "path": "skills/productivity/to-questionnaire",
+      "package_sha256": "ce25e6e122f9cc236e9a1a37564af335ba96f146d1821134fa568c95b7907909",
+      "raw_report_sha256": "d476fb78d8a51d574c04ffb88937709b854e4ed515b60c39b36144339692d6a0",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [
+        {
+          "rule": "AR1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 9,
+            "end_line": 9,
+            "start_column": 94,
+            "end_column": 107
+          },
+          "match_fingerprint": "b4404d69f30b43064cedf6b7a3bc0f82006c7ad3e8bc125c4f8dc6a681444289",
+          "disposition": "false_positive_user_knowledge",
+          "reason": "The text says the human can answer who a questionnaire is for. It does not instruct the assistant to comply with every request."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "wait-what",
+      "path": "skills/productivity/wait-what",
+      "package_sha256": "f261a75303366ffd6bbffbce152df048ef4271ef0fb477d8ab148e25df508116",
+      "raw_report_sha256": "d922ac054ebf7d3301d38447bee608014f6c899225bee604ef00dc1de306185e",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "writing-for-agents",
+      "path": "skills/productivity/writing-for-agents",
+      "package_sha256": "8679b3639f3454004434f4b76118dfc599cdee09a62519bee8e37e29b4e2a4a9",
+      "raw_report_sha256": "0372085ac4d2f82f8423f84a534983acd97949cda5d6527b4c0235880a54dbc1",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "brainstorming",
+      "path": "skills/engineering/brainstorming",
+      "package_sha256": "d6daa1c894d5846b920522ee757e2efeee1ef0f5735348d67b058550ac17b836",
+      "raw_report_sha256": "c8988dd2ebf310c8e5a1de771a533d75f404c52a67eb61fb17820362cef35807",
+      "raw_exit_code": 1,
+      "finding_count": 7,
+      "coverage_percent": 77.8,
+      "is_complete": false,
+      "coverage_review": "Focused review covered server binding/token/origin checks, background startup, file access and cleanup. Optional companion is inactive; no claim of a complete runtime security audit. Raw grammar limitations remain.",
+      "issues": [
+        {
+          "rule": "TM1",
+          "severity": "HIGH",
+          "location": {
+            "file": "scripts/stop-server.sh",
+            "start_line": 22,
+            "end_line": null,
+            "start_column": 2
+          },
+          "match_fingerprint": "cfcff570082293a2f0d8ff84580726582b1114dc18f308571e4f18927f3dbc46",
+          "disposition": "runtime_sensitive_cleanup",
+          "reason": "This deletes the companion server-info marker. The helper also kills a verified session process and removes a supplied /tmp session directory. The raw prefix check is not canonical-path validation: never invoke with arbitrary/untrusted paths, and do not run recursive cleanup without applicable explicit authorization. Companion remains inactive."
+        },
+        {
+          "rule": "LP3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": null,
+          "disposition": "runtime_scope_required",
+          "reason": "Portable source omits an allowed-tools declaration. The cited network, shell, environment or write examples are real capabilities; a host adapter must restrict them to the current authorized task and available approved tools. No runtime was activated."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "scripts/start-server.sh",
+            "start_line": 102,
+            "end_line": null,
+            "start_column": 25
+          },
+          "match_fingerprint": "a3b2c30e52b72d9ed99fed84c020ce072453b04697f4f184c9268de970914edb",
+          "disposition": "runtime_sensitive_background_service",
+          "reason": "nohup/disown keep an optional local browser companion alive. It defaults to loopback and has token/origin checks, owner monitoring and idle shutdown. This is genuine background execution, not hidden persistence; starting it, binding elsewhere, or cleanup requires the current approved runtime scope."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "scripts/start-server.sh",
+            "start_line": 179,
+            "end_line": null,
+            "start_column": 6
+          },
+          "match_fingerprint": "a3b2c30e52b72d9ed99fed84c020ce072453b04697f4f184c9268de970914edb",
+          "disposition": "runtime_sensitive_background_service",
+          "reason": "nohup/disown keep an optional local browser companion alive. It defaults to loopback and has token/origin checks, owner monitoring and idle shutdown. This is genuine background execution, not hidden persistence; starting it, binding elsewhere, or cleanup requires the current approved runtime scope."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "scripts/start-server.sh",
+            "start_line": 180,
+            "end_line": null,
+            "start_column": 0
+          },
+          "match_fingerprint": "a3b2c30e52b72d9ed99fed84c020ce072453b04697f4f184c9268de970914edb",
+          "disposition": "runtime_sensitive_background_service",
+          "reason": "nohup/disown keep an optional local browser companion alive. It defaults to loopback and has token/origin checks, owner monitoring and idle shutdown. This is genuine background execution, not hidden persistence; starting it, binding elsewhere, or cleanup requires the current approved runtime scope."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "scripts/start-server.sh",
+            "start_line": 179,
+            "end_line": null,
+            "start_column": 35
+          },
+          "match_fingerprint": "72c100fe5d6d3128aaece0be49962c029cb95703b6df45da1f736801c627186b",
+          "disposition": "runtime_sensitive_background_service",
+          "reason": "nohup/disown keep an optional local browser companion alive. It defaults to loopback and has token/origin checks, owner monitoring and idle shutdown. This is genuine background execution, not hidden persistence; starting it, binding elsewhere, or cleanup requires the current approved runtime scope."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "scripts/start-server.sh",
+            "start_line": 182,
+            "end_line": null,
+            "start_column": 0
+          },
+          "match_fingerprint": "72c100fe5d6d3128aaece0be49962c029cb95703b6df45da1f736801c627186b",
+          "disposition": "runtime_sensitive_background_service",
+          "reason": "nohup/disown keep an optional local browser companion alive. It defaults to loopback and has token/origin checks, owner monitoring and idle shutdown. This is genuine background execution, not hidden persistence; starting it, binding elsewhere, or cleanup requires the current approved runtime scope."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "diagnosing-superpowers",
+      "path": "skills/engineering/diagnosing-superpowers",
+      "package_sha256": "812999ec3a160c2786ebd0ea03e264a2c89a50e590d02f0d71055961895c3835",
+      "raw_report_sha256": "5c5f02ecb0b56ce46fa60ef128445a61fba9c197187b35aec7e771a97e9b80e7",
+      "raw_exit_code": 1,
+      "finding_count": 3,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [
+        {
+          "rule": "AR2",
+          "severity": "HIGH",
+          "location": {
+            "file": "prompts/request-conflicts.md",
+            "start_line": 19,
+            "end_line": 19,
+            "start_column": 3,
+            "end_column": 15
+          },
+          "match_fingerprint": "cfb63a167f529fc9932a01a4f54df4414a5b0ca7eb6d5d3a782daae70d75d42a",
+          "disposition": "false_positive_neutral_reporting",
+          "reason": "Do not judge the human asks a diagnostic report to describe an instruction conflict and its resolution neutrally. It does not suppress safety decisions."
+        },
+        {
+          "rule": "LP3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": null,
+          "disposition": "runtime_scope_required",
+          "reason": "Portable source omits an allowed-tools declaration. The cited network, shell, environment or write examples are real capabilities; a host adapter must restrict them to the current authorized task and available approved tools. No runtime was activated."
+        },
+        {
+          "rule": "E1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/github-issues.md",
+            "start_line": 18,
+            "end_line": null,
+            "start_column": 3
+          },
+          "match_fingerprint": "061abab0022b7a79cdf98b2721e4ad6d47cd4ad12584ecf052130ef51f05d966",
+          "disposition": "documented_public_lookup",
+          "reason": "The endpoint is GitHub public issue search for obra/superpowers. Do not put private source, credentials or transcripts into search terms or issue reports; this review made no such request."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "dispatching-parallel-agents",
+      "path": "skills/engineering/dispatching-parallel-agents",
+      "package_sha256": "da566964096946b1555ef53e38dd3b36009fb09ad37ca85f172551da083552a7",
+      "raw_report_sha256": "7aeeffde23b4d4da3cb4879007a887090e8d128919309f6401494b157bd2dd00",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "executing-plans",
+      "path": "skills/engineering/executing-plans",
+      "package_sha256": "9d3b3bf666b1ab593d01d860871a7362611a2a22d5840860e6bb2b5fe0196821",
+      "raw_report_sha256": "568de6cad38c4c32bd8739b4f96e861c236661514d4b962cbeb9dcc900327541",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 75.0,
+      "is_complete": false,
+      "coverage_review": "Full SKILL.md inspected; Graphviz/process documentation and examples explain the projection issue. Cleanup/push/destructive work still requires host authorization. Raw projection gap unchanged.",
+      "issues": [
+        {
+          "rule": "TM1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 140,
+            "end_line": null,
+            "start_column": 3
+          },
+          "match_fingerprint": "efb9e433433f7feeafc94a70d7a4ebc72e8bc2a0ebf1ce213586ba7ff5744db8",
+          "disposition": "false_positive_destructive_command_warning",
+          "reason": "The cited git clean command is a warning that ignored scratch would be destroyed, not a request to run it. Cleanup and TDD deletion directions elsewhere remain subordinate to explicit destructive-action authorization and preservation of existing work."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "finishing-a-development-branch",
+      "path": "skills/engineering/finishing-a-development-branch",
+      "package_sha256": "eefb513e65dd91409d8accbe869f4ecfe0cc1cb63fb4a13dddc693635f274aeb",
+      "raw_report_sha256": "88294449a3fdd39c36a29f03311c9bd4a49c7dff8b220fad0c3a82e4259fe977",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [
+        {
+          "rule": "TM1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 116,
+            "end_line": null,
+            "start_column": 0
+          },
+          "match_fingerprint": "fb0568ff3c5d0b616b031acb262a76e69179cca82de0ccb30bf71c38f24ac6a5",
+          "disposition": "runtime_sensitive_authorized_git_workflow",
+          "reason": "The passage documents the user-selected push/PR option; discard is separately gated on explicit confirmation. It does not authorize this scan to push, merge, delete or open a PR. Existing Git policy takes precedence."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "receiving-code-review",
+      "path": "skills/engineering/receiving-code-review",
+      "package_sha256": "3cbd70aed537b32e8f4e29b60f558c5220259e0472dfd7905e3561031a5bf906",
+      "raw_report_sha256": "e4e6f2e7ae07e4fe0673ae3b7dd8e456b85c9b69a7267527d38bcbde34fe93a8",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "requesting-code-review",
+      "path": "skills/engineering/requesting-code-review",
+      "package_sha256": "040266a90d83dcab032ee9c36c40ced5b66281086d4f700880903782dfd4f7f6",
+      "raw_report_sha256": "420f3fc7c4bf33ebebf17982d5519f1e54d7a433d21103cb6d3898db52a71a31",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "code-reviewer.md",
+            "start_line": 147,
+            "end_line": null,
+            "start_column": 23
+          },
+          "match_fingerprint": "9341b6f34d6af9081a0d6673f4217b7307d273da9f43357efd9029e15c5da76c",
+          "disposition": "false_positive_context",
+          "reason": "Without checking occurs under a DO NOT list: the instruction prohibits unsupported approval."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "subagent-driven-development",
+      "path": "skills/engineering/subagent-driven-development",
+      "package_sha256": "32669db799602a10be5980191637956c5abe6e6c0cfaa98386e745622967ea0c",
+      "raw_report_sha256": "4ee1313e0363ed7f350a2bf2bd794d4aacb8a5cd447e3af65faad0ee7d171e03",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [
+        {
+          "rule": "TM1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 126,
+            "end_line": null,
+            "start_column": 3
+          },
+          "match_fingerprint": "efb9e433433f7feeafc94a70d7a4ebc72e8bc2a0ebf1ce213586ba7ff5744db8",
+          "disposition": "false_positive_destructive_command_warning",
+          "reason": "The cited git clean command is a warning that ignored scratch would be destroyed, not a request to run it. Cleanup and TDD deletion directions elsewhere remain subordinate to explicit destructive-action authorization and preservation of existing work."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "systematic-debugging",
+      "path": "skills/engineering/systematic-debugging",
+      "package_sha256": "cb6670d841ef42dbc8117deb3402f608cf5d44db2c0c9fd39c2ecde5e67b8fea",
+      "raw_report_sha256": "90407d00347c6e58fe7e9c6afa453299f3c68551240351c7ef75672d9349efd4",
+      "raw_exit_code": 1,
+      "finding_count": 6,
+      "coverage_percent": 91.7,
+      "is_complete": false,
+      "coverage_review": "Full condition-based-waiting.md inspected and traced to a JS template false positive; sensitive signing/logging examples require scoped redaction. Raw grammar limitation unchanged.",
+      "issues": [
+        {
+          "rule": "PE3",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 98,
+            "end_line": null,
+            "start_column": 13
+          },
+          "match_fingerprint": "044e59b8cb232d8d2a59d6f4b1e8fe2b50ce1a35abe47e0398df30fd491b561c",
+          "disposition": "runtime_sensitive_diagnostic_example",
+          "reason": "The Apple signing example lists keychain paths and signing identities, rather than extracting private keys. These can reveal account metadata; inspect only when the user authorized signing diagnosis, redact private outputs, and do not persist or share them."
+        },
+        {
+          "rule": "PE3",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 99,
+            "end_line": null,
+            "start_column": 17
+          },
+          "match_fingerprint": "cf159af5f3c5aa20214f7ff51b2ec06e8190ff1ab76c35f09188a749bd35c424",
+          "disposition": "runtime_sensitive_diagnostic_example",
+          "reason": "The Apple signing example lists keychain paths and signing identities, rather than extracting private keys. These can reveal account metadata; inspect only when the user authorized signing diagnosis, redact private outputs, and do not persist or share them."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 283,
+            "end_line": null
+          },
+          "match_fingerprint": "6c509991cdc8a2b1c0d6c1df935ca199ee507bb22e0c50ab5c59e348c8b221cd",
+          "disposition": "manually_reviewed_parser_context",
+          "reason": "The referenced file is bounded polling guidance. Parser diagnostics misread its JavaScript timeout message template at condition-based-waiting.md:74 as shell syntax. The implementation uses a timeout; raw incomplete coverage remains recorded."
+        },
+        {
+          "rule": "E4",
+          "severity": "HIGH",
+          "location": {
+            "file": "defense-in-depth.md",
+            "start_line": 73,
+            "end_line": null,
+            "start_column": 13
+          },
+          "match_fingerprint": "4a0c4f991eca111ef87cbb11c732000bea934c1f174d9cb57f6e3b63a4d417e9",
+          "disposition": "false_positive_local_debug_context",
+          "reason": "Capture context describes local debug logging of a function directory, current working directory and stack. No exfiltration endpoint is present; minimize and redact sensitive paths or values before retaining logs."
+        },
+        {
+          "rule": "LP3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": null,
+          "disposition": "runtime_scope_required",
+          "reason": "Portable source omits an allowed-tools declaration. The cited network, shell, environment or write examples are real capabilities; a host adapter must restrict them to the current authorized task and available approved tools. No runtime was activated."
+        },
+        {
+          "rule": "EA4",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "condition-based-waiting.md",
+            "start_line": 89,
+            "end_line": null,
+            "start_column": 18
+          },
+          "match_fingerprint": "593f247d88c70be4da3e30c34afe81f5fcf45d714cf136b7335177335f5dcd0a",
+          "disposition": "false_positive_negated_example",
+          "reason": "Loop forever is explicitly labeled a bad pattern, followed by the requirement to include a timeout."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "test-driven-development",
+      "path": "skills/engineering/test-driven-development",
+      "package_sha256": "5ba1cc419c394df43ddd645586ef61b5aa4bba5a47d32d3e279a3c32ce162699",
+      "raw_report_sha256": "4d31321c7d6de7702d4c7338a48cdce787aa827679f8d6fb47047a8e35e442dc",
+      "raw_exit_code": 1,
+      "finding_count": 0,
+      "coverage_percent": 66.7,
+      "is_complete": false,
+      "coverage_review": "The syntax diagnostic traced an unresolved Markdown fence near line162. An isolated 8x-bound diagnostic resolves this case, but no supported tuning option exists; no runtime change or rule suppression was applied.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "using-git-worktrees",
+      "path": "skills/engineering/using-git-worktrees",
+      "package_sha256": "767cea2618dcae5acfba0170508ed7f0392a91d996d802f77137f3e51ab373b3",
+      "raw_report_sha256": "857df84f06c586cae6b1a943edb67cff38e9f13eeb9f806b4239f06f83312dec",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 45,
+            "end_line": null,
+            "start_column": 39
+          },
+          "match_fingerprint": "8dc77d3dce9ba1f2672e813265a1b1a0c8594866ef38a4e978bf4f4451795465",
+          "disposition": "false_positive_context",
+          "reason": "Without asking applies only to an already declared user preference; explicit user choice remains authoritative."
+        },
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 67,
+            "end_line": null,
+            "start_column": 123
+          },
+          "match_fingerprint": "8dc77d3dce9ba1f2672e813265a1b1a0c8594866ef38a4e978bf4f4451795465",
+          "disposition": "false_positive_context",
+          "reason": "Without asking applies only to an already declared user preference; explicit user choice remains authoritative."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "using-superpowers",
+      "path": "skills/core/using-superpowers",
+      "package_sha256": "999a1a872778b43ec9650319aa7549046dd8a51710cf72a0c3844941bc58d356",
+      "raw_report_sha256": "ae8ca5ec4e1a355e8aa6078128140a2e3841203148bd093c6f5bb668eabe0dd9",
+      "raw_exit_code": 1,
+      "finding_count": 5,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [
+        {
+          "rule": "AS1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/codex-tools.md",
+            "start_line": 3,
+            "end_line": null,
+            "start_column": 27
+          },
+          "match_fingerprint": "ac8a2c85e2eeb5e14c174cae3d679d330225a562a4847ce1a64de3a1bcf488fb",
+          "disposition": "runtime_sensitive_config_reference",
+          "reason": "The Codex compatibility reference describes optional feature/default configuration in the owner config file. No credential read is requested, but it does not grant permission to modify host config or override the live tool contract; activation is separate."
+        },
+        {
+          "rule": "AS1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/codex-tools.md",
+            "start_line": 71,
+            "end_line": null,
+            "start_column": 1
+          },
+          "match_fingerprint": "ac8a2c85e2eeb5e14c174cae3d679d330225a562a4847ce1a64de3a1bcf488fb",
+          "disposition": "runtime_sensitive_config_reference",
+          "reason": "The Codex compatibility reference describes optional feature/default configuration in the owner config file. No credential read is requested, but it does not grant permission to modify host config or override the live tool contract; activation is separate."
+        },
+        {
+          "rule": "LP3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": null,
+          "disposition": "runtime_scope_required",
+          "reason": "Portable source omits an allowed-tools declaration. The cited network, shell, environment or write examples are real capabilities; a host adapter must restrict them to the current authorized task and available approved tools. No runtime was activated."
+        },
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/codex-tools.md",
+            "start_line": 35,
+            "end_line": null,
+            "start_column": 29
+          },
+          "match_fingerprint": "9341b6f34d6af9081a0d6673f4217b7307d273da9f43357efd9029e15c5da76c",
+          "disposition": "false_positive_context",
+          "reason": "Without checking appears in a prohibition on copying stale model names; it requires checking the current tool allowlist."
+        },
+        {
+          "rule": "MP2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/muse-tools.md",
+            "start_line": 31,
+            "end_line": null,
+            "start_column": 61
+          },
+          "match_fingerprint": "b437bf0ce9c7e264b31d4148c86bea655b298b5a794114548e1ecc1829aba2ec",
+          "disposition": "false_positive_template_wording",
+          "reason": "Fill prompt templates means populate a child task template before delegation; it is not memory poisoning or instruction injection."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "verification-before-completion",
+      "path": "skills/engineering/verification-before-completion",
+      "package_sha256": "a548de9c0de8ce76e3604d2ae1d0151b36535fb6de6438d1dad1841b680c084a",
+      "raw_report_sha256": "4c0d52c5597187bf01499b24658411d081a4283d13fbbc8f49c457c16f199a0d",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 54,
+            "end_line": null,
+            "start_column": 26
+          },
+          "match_fingerprint": "fe5d1711651a4715ab1d9b8451c549b9733b35dcee753a00cc95b0754ef2c699",
+          "disposition": "false_positive_context",
+          "reason": "Without verification is a listed red flag; the skill requires verification before completion claims."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "writing-plans",
+      "path": "skills/engineering/writing-plans",
+      "package_sha256": "30c485657d51053f0c0602daa48b1cbbdcfa816e209fc617841bfebb57a99adf",
+      "raw_report_sha256": "d00529eaa09798997858819196276039b848d2b8becbae62196727dbbd9a45e7",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "writing-skills",
+      "path": "skills/engineering/writing-skills",
+      "package_sha256": "e47632ab336affecd41af5afe93f4c4fb98c7ac6025e6ce5023a1400e152816b",
+      "raw_report_sha256": "46f8ff09d3965258f01fd7f4e5ee74fd4b3996445ae5abd59dcbe1ab2ea2406e",
+      "raw_exit_code": 1,
+      "finding_count": 19,
+      "coverage_percent": 81.8,
+      "is_complete": false,
+      "coverage_review": "Full testing reference and graph renderer inspected. The renderer invokes dot via execFileSync and writes diagrams; use only authorized output directories and approved Graphviz. Pressure scenarios/deletion instructions do not override permissions. Raw text/grammar gaps remain.",
+      "issues": [
+        {
+          "rule": "RA1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 41,
+            "end_line": null,
+            "start_column": 21
+          },
+          "match_fingerprint": "e0242b8e6d5f63893af756be8d28c64a88a6e3c8699a64f411a6f3aa3f7bba64",
+          "disposition": "authorized_skill_authoring_reference",
+          "reason": "Writing/editing a skill is the declared authoring task. It is not runtime self-escalation. Changes require the current task scope; do not rewrite policy, delete prior work or alter host installation merely because a reference says to do so."
+        },
+        {
+          "rule": "RA1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 171,
+            "end_line": null,
+            "start_column": 0
+          },
+          "match_fingerprint": "e0242b8e6d5f63893af756be8d28c64a88a6e3c8699a64f411a6f3aa3f7bba64",
+          "disposition": "authorized_skill_authoring_reference",
+          "reason": "Writing/editing a skill is the declared authoring task. It is not runtime self-escalation. Changes require the current task scope; do not rewrite policy, delete prior work or alter host installation merely because a reference says to do so."
+        },
+        {
+          "rule": "RA1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 287,
+            "end_line": null,
+            "start_column": 0
+          },
+          "match_fingerprint": "e0242b8e6d5f63893af756be8d28c64a88a6e3c8699a64f411a6f3aa3f7bba64",
+          "disposition": "authorized_skill_authoring_reference",
+          "reason": "Writing/editing a skill is the declared authoring task. It is not runtime self-escalation. Changes require the current task scope; do not rewrite policy, delete prior work or alter host installation merely because a reference says to do so."
+        },
+        {
+          "rule": "RA1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/testing-skills-with-subagents.md",
+            "start_line": 36,
+            "end_line": null,
+            "start_column": 14
+          },
+          "match_fingerprint": "e0242b8e6d5f63893af756be8d28c64a88a6e3c8699a64f411a6f3aa3f7bba64",
+          "disposition": "authorized_skill_authoring_reference",
+          "reason": "Writing/editing a skill is the declared authoring task. It is not runtime self-escalation. Changes require the current task scope; do not rewrite policy, delete prior work or alter host installation merely because a reference says to do so."
+        },
+        {
+          "rule": "RA1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/testing-skills-with-subagents.md",
+            "start_line": 84,
+            "end_line": null,
+            "start_column": 0
+          },
+          "match_fingerprint": "e0242b8e6d5f63893af756be8d28c64a88a6e3c8699a64f411a6f3aa3f7bba64",
+          "disposition": "authorized_skill_authoring_reference",
+          "reason": "Writing/editing a skill is the declared authoring task. It is not runtime self-escalation. Changes require the current task scope; do not rewrite policy, delete prior work or alter host installation merely because a reference says to do so."
+        },
+        {
+          "rule": "RA1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/testing-skills-with-subagents.md",
+            "start_line": 364,
+            "end_line": null,
+            "start_column": 14
+          },
+          "match_fingerprint": "e0242b8e6d5f63893af756be8d28c64a88a6e3c8699a64f411a6f3aa3f7bba64",
+          "disposition": "authorized_skill_authoring_reference",
+          "reason": "Writing/editing a skill is the declared authoring task. It is not runtime self-escalation. Changes require the current task scope; do not rewrite policy, delete prior work or alter host installation merely because a reference says to do so."
+        },
+        {
+          "rule": "RA1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 172,
+            "end_line": null,
+            "start_column": 0
+          },
+          "match_fingerprint": "816ac1b44d95511ddff57773e127651c333ec42f888ae313d9a40e0c5084ea8e",
+          "disposition": "authorized_skill_authoring_reference",
+          "reason": "Writing/editing a skill is the declared authoring task. It is not runtime self-escalation. Changes require the current task scope; do not rewrite policy, delete prior work or alter host installation merely because a reference says to do so."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 307,
+            "end_line": null
+          },
+          "match_fingerprint": "a81a47039ceb83c7a6d157509ab7317479c0370203ebadee8c04b9afc09cf92c",
+          "disposition": "manually_reviewed_text_projection_gap",
+          "reason": "All 384 lines of the testing reference were read as authoring/test guidance. Examples deliberately use Before/After markup and pressure scenarios; no concealed executable payload was identified. Such scenarios run only with synthetic disposable work, and host permission rules override deletion demands. Raw obfuscated_instruction_text coverage remains unresolved."
+        },
+        {
+          "rule": "AS1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/CLAUDE_MD_TESTING.md",
+            "start_line": 85,
+            "end_line": null,
+            "start_column": 9
+          },
+          "match_fingerprint": "4a82a836d1e9f490bf284481b2505ae2a363367618429168d278bf24a6095086",
+          "disposition": "false_positive_scope_truncation",
+          "reason": "The matched prefix is truncated by the rule: the actual command searches only ~/.claude/skills/, not the whole configuration directory. Restrict discovery to known skill files; never sweep auth/session directories."
+        },
+        {
+          "rule": "AS1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/CLAUDE_MD_TESTING.md",
+            "start_line": 95,
+            "end_line": null,
+            "start_column": 9
+          },
+          "match_fingerprint": "4a82a836d1e9f490bf284481b2505ae2a363367618429168d278bf24a6095086",
+          "disposition": "false_positive_scope_truncation",
+          "reason": "The matched prefix is truncated by the rule: the actual command searches only ~/.claude/skills/, not the whole configuration directory. Restrict discovery to known skill files; never sweep auth/session directories."
+        },
+        {
+          "rule": "AS1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/CLAUDE_MD_TESTING.md",
+            "start_line": 123,
+            "end_line": null,
+            "start_column": 14
+          },
+          "match_fingerprint": "a236ff6114de9223a1b6fb8d94be4399c863736560364f5ab17ac5d18f55e08a",
+          "disposition": "false_positive_scope_truncation",
+          "reason": "The matched prefix is truncated by the rule: the actual command searches only ~/.claude/skills/, not the whole configuration directory. Restrict discovery to known skill files; never sweep auth/session directories."
+        },
+        {
+          "rule": "RA1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/anthropic-best-practices.md",
+            "start_line": 5,
+            "end_line": null,
+            "start_column": 132
+          },
+          "match_fingerprint": "d3d1df715fa69a79750b2e473493c486f496d697ec663eb03cf4b3890ebb121a",
+          "disposition": "authorized_skill_authoring_reference",
+          "reason": "Writing/editing a skill is the declared authoring task. It is not runtime self-escalation. Changes require the current task scope; do not rewrite policy, delete prior work or alter host installation merely because a reference says to do so."
+        },
+        {
+          "rule": "RA1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/testing-skills-with-subagents.md",
+            "start_line": 9,
+            "end_line": null,
+            "start_column": 62
+          },
+          "match_fingerprint": "be76aa3b8ee8ba0091b45db5ceb2fe4088a26078a5f1429d11667e608c128e95",
+          "disposition": "authorized_skill_authoring_reference",
+          "reason": "Writing/editing a skill is the declared authoring task. It is not runtime self-escalation. Changes require the current task scope; do not rewrite policy, delete prior work or alter host installation merely because a reference says to do so."
+        },
+        {
+          "rule": "LP3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": null,
+          "disposition": "runtime_scope_required",
+          "reason": "Portable source omits an allowed-tools declaration. The cited network, shell, environment or write examples are real capabilities; a host adapter must restrict them to the current authorized task and available approved tools. No runtime was activated."
+        },
+        {
+          "rule": "AS3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/CLAUDE_MD_TESTING.md",
+            "start_line": 84,
+            "end_line": null,
+            "start_column": 9
+          },
+          "match_fingerprint": "89bbc02f0194c240d4ef23c88f7a7fca508b8e000bf201e7376c4bfa7710cb16",
+          "disposition": "authorized_narrow_skill_discovery",
+          "reason": "These examples list/search known skill directories or count a named SKILL.md file. They are not permission to enumerate credential stores or unrelated home files."
+        },
+        {
+          "rule": "AS3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/CLAUDE_MD_TESTING.md",
+            "start_line": 94,
+            "end_line": null,
+            "start_column": 20
+          },
+          "match_fingerprint": "89bbc02f0194c240d4ef23c88f7a7fca508b8e000bf201e7376c4bfa7710cb16",
+          "disposition": "authorized_narrow_skill_discovery",
+          "reason": "These examples list/search known skill directories or count a named SKILL.md file. They are not permission to enumerate credential stores or unrelated home files."
+        },
+        {
+          "rule": "AS3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/CLAUDE_MD_TESTING.md",
+            "start_line": 107,
+            "end_line": null,
+            "start_column": 26
+          },
+          "match_fingerprint": "89bbc02f0194c240d4ef23c88f7a7fca508b8e000bf201e7376c4bfa7710cb16",
+          "disposition": "authorized_narrow_skill_discovery",
+          "reason": "These examples list/search known skill directories or count a named SKILL.md file. They are not permission to enumerate credential stores or unrelated home files."
+        },
+        {
+          "rule": "AS3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/CLAUDE_MD_TESTING.md",
+            "start_line": 122,
+            "end_line": null,
+            "start_column": 14
+          },
+          "match_fingerprint": "89bbc02f0194c240d4ef23c88f7a7fca508b8e000bf201e7376c4bfa7710cb16",
+          "disposition": "authorized_narrow_skill_discovery",
+          "reason": "These examples list/search known skill directories or count a named SKILL.md file. They are not permission to enumerate credential stores or unrelated home files."
+        },
+        {
+          "rule": "AS3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/discovery.md",
+            "start_line": 176,
+            "end_line": null,
+            "start_column": 6
+          },
+          "match_fingerprint": "3bb8c352c210acc42fcb062716095911a2ddfa2c2e13430150284e8298e38aed",
+          "disposition": "authorized_narrow_skill_discovery",
+          "reason": "These examples list/search known skill directories or count a named SKILL.md file. They are not permission to enumerate credential stores or unrelated home files."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "agent-harness-construction",
+      "path": "skills/engineering/agent-harness-construction",
+      "package_sha256": "a500cb3a88469b53bf1d7b3ec5a6fbe78d8693656dcbd1e3c7334d4f0c81c3a7",
+      "raw_report_sha256": "63ac8f6bbd70e363009f2f180ff9ae3e7ffdc94287bf31eba6eebeae9ec00024",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "hermes-imports",
+      "path": "skills/engineering/hermes-imports",
+      "package_sha256": "eb25be4b6f6de9481bb7845551858d1eec32cd8c6c62e13e250a0f172602204d",
+      "raw_report_sha256": "ff1688a3f7402a88100906390229aa5cab77520073a46dc973d5fbe90687c3a2",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "team-agent-orchestration",
+      "path": "skills/aarons-latest/team-agent-orchestration",
+      "package_sha256": "dcc86642637c3a645f0a6457f949eab9dfe16f8a6062c4d535946eafc93915ee",
+      "raw_report_sha256": "f78e5968c93eac7370b55d1b363a115f439216d440714c32c3e6d8edc55efbf4",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "team-builder",
+      "path": "skills/engineering/team-builder",
+      "package_sha256": "a0ca1c17977266abb6c346d9639b8e0bf5678d64df0bb1b6904ef7b6492a7976",
+      "raw_report_sha256": "022c61d6d5e95d252c8e1a25f26e850cb4d9b221233cb4a39b85616c9cb707b9",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "karpathy-guidelines",
+      "path": "skills/engineering/karpathy-guidelines",
+      "package_sha256": "e64131803b0a34b8c39afc11338a74f8305cf8f69f750620bdf6cb38f6865c52",
+      "raw_report_sha256": "73575f810e2a884bb93f29c471a201c5d6a86cc4c077fe0b326e9c925147b607",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "coverage_review": "Enabled static analyzers reported complete coverage; semantic review is not a safety certification.",
+      "issues": [],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    },
+    {
+      "id": "connected-html-artifacts",
+      "path": "skills/analytics/connected-html-artifacts",
+      "package_sha256": "718a644a25eae3029e1b7b4e773518b08995311bc030694c40bd0f1c1d5b86b2",
+      "raw_report_sha256": "e2c1997c818086ddcdef7f4d5de19a1327c67728010921b7c9cb9ab7bc4c5a84",
+      "raw_exit_code": 1,
+      "finding_count": 3,
+      "coverage_percent": 88.9,
+      "is_complete": false,
+      "coverage_review": "Full snapshot inspected; status template at line92 is misparsed as shell. No network access or dynamic code evaluation exists in the example; native browser behavior is verified separately by the implementation owner.",
+      "issues": [
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 71,
+            "end_line": null
+          },
+          "match_fingerprint": "5935fbe34eb9a6404d8054d443acfdcab66c280329789da9584daed5d528e3b6",
+          "disposition": "manually_reviewed_parser_context",
+          "reason": "The complete HTML snapshot was inspected. Shell parser misreads its JavaScript status template at examples/snapshot.html:92. The page uses local file input, textContent, size/row limits and spreadsheet formula neutralization, with no network calls or external script. Raw incomplete coverage remains visible."
+        },
+        {
+          "rule": "LP3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": null,
+          "disposition": "runtime_scope_required",
+          "reason": "Portable source omits an allowed-tools declaration. The cited network, shell, environment or write examples are real capabilities; a host adapter must restrict them to the current authorized task and available approved tools. No runtime was activated."
+        },
+        {
+          "rule": "EA3",
+          "severity": "LOW",
+          "location": {
+            "file": "references/snapshots.md",
+            "start_line": 17,
+            "end_line": null,
+            "start_column": 25
+          },
+          "match_fingerprint": "8b2828280e0b08be4516f804153cc76a1c7a13894072cfd2e6ef96a3ebdb0ed1",
+          "disposition": "false_positive_negation",
+          "reason": "The cited sentence explicitly says not to silently expand permission scopes for a read-only report."
+        }
+      ],
+      "staging_disposition": "Reviewed source staging acceptable under existing trial/reference status; no runtime activation granted"
+    }
+  ],
+  "supplemental_evidence": {
+    "pdf": {
+      "artifact_sha256": "3e126eca9fe99088051f7cb984c97cedb31c7d9e09ce0ba5d61bd01e70a0d253",
+      "evidence_sha256": "46c25a11230b624700da252e7dc42c268ab73ddb54b1d3713c7b7ec07b069448",
+      "result": "10 pages; no JavaScript, forms, encryption or embedded files; theme text reviewed"
+    },
+    "archive": {
+      "artifact_sha256": "1296f069e825de7933de7e8ac63672495cacce3f88f2dc45554dbcddbcbca60f",
+      "inventory_sha256": "e2d482e5551cc3e0801a22086e0686878820758113c5151e4b6b40bd8950a2d5",
+      "regular_files": 45,
+      "directories": 4,
+      "expanded_bytes": 115785,
+      "receipt_sha256": "89ae98064d74df72b5d9f967ba7df2cb7e3e412f3619a24bcf9329067ec07288",
+      "gate_passed": true,
+      "finding_count": 0,
+      "coverage_percent": 100.0
+    },
+    "parser_diagnostics": "See adjacent Scanner Coverage Calibration document. Diagnostic bound changes existed only in isolated process memory; production scanner/runtime files remain unchanged."
+  },
+  "limitations": [
+    "Raw scanner gate remains failed; contextual review permits source staging only, not unrestricted activation.",
+    "Eight packages retain incomplete enabled static coverage.",
+    "No LLM/provider calls, host credentials, live OSV lookups or candidate execution.",
+    "Imported document-provider implementations docx/pdf/pptx/xlsx were not redistributed; provider reference records are outside the skill-package scan.",
+    "Changes to package bytes invalidate this review; runtime dependencies and host policies need independent verification."
+  ]
+}
