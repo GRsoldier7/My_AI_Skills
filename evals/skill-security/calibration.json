@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-29",
+  "scanner": {
+    "version": "2.12.0",
+    "revision": "54921c8c7c23008c8af2328d5ab492a904b6ece4",
+    "dependency_count": 72,
+    "lock_sha256": "a8992d9ee11035544335fa5b82d3b4ec6eafbea508cd5e49feee6c009792fc4c"
+  },
+  "results": [
+    {
+      "package": "evals/skill-security/benign",
+      "fixture_sha256": "5e22c619f85fa32ff10d766d7ef33b1a37c9b12c127447b72dba7cc418170c23",
+      "exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "complete": true,
+      "llm_used": false,
+      "isolation_checks": {
+        "network_unreachable": true,
+        "input_read_only": true,
+        "home_empty": true,
+        "credential_environment_empty": true,
+        "tracing_disabled": true
+      }
+    },
+    {
+      "package": "evals/skill-security/malicious",
+      "fixture_sha256": "7b26e36efec656ef6c7d2ab3a657ba3096a2e8a28dff45de98f33b0967249750",
+      "exit_code": 1,
+      "finding_count": 4,
+      "coverage_percent": 100.0,
+      "complete": true,
+      "llm_used": false,
+      "isolation_checks": {
+        "network_unreachable": true,
+        "input_read_only": true,
+        "home_empty": true,
+        "credential_environment_empty": true,
+        "tracing_disabled": true
+      }
+    }
+  ],
+  "limitations": [
+    "Static analysis is not semantic safety certification",
+    "No live dependency vulnerability lookup"
+  ],
+  "note": "Synthetic static calibration only; adversarial fixture is inert data and was never executed."
+}

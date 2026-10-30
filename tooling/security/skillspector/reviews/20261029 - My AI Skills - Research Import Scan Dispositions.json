@@ -1,0 +1,1025 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-29",
+  "scanner_revision": "54921c8c7c23008c8af2328d5ab492a904b6ece4",
+  "raw_gate_passed": false,
+  "raw_report_directory": "/tmp/skillspector-research-imports-20261029",
+  "packages": [
+    {
+      "path": "skills/core/humanizer",
+      "package_sha256": "2d5d81cb3b94197fef631496ab8262616486b6add8dcc2884c86cbd9a5d17d8a",
+      "raw_report_sha256": "578b75e2e7c564ab6525189ea5da3e5d73f21aff21b9266cf5e116c903d7bb99",
+      "raw_exit_code": 1,
+      "finding_count": 5,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "AR2",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 165,
+            "end_line": 165,
+            "start_column": 29,
+            "end_column": 44
+          },
+          "match_fingerprint": "e1c52694e854c5bd049e3a3ae66f3efcfe098f61a8ee160655ad3b90035f67fd",
+          "disposition": "false_positive_quoted_example",
+          "reason": "The phrase without warning appears in before/after punctuation examples about a policy announcement. It does not instruct an assistant to suppress safety warnings."
+        },
+        {
+          "rule": "AR2",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 167,
+            "end_line": 167,
+            "start_column": 28,
+            "end_column": 43
+          },
+          "match_fingerprint": "e1c52694e854c5bd049e3a3ae66f3efcfe098f61a8ee160655ad3b90035f67fd",
+          "disposition": "false_positive_quoted_example",
+          "reason": "The phrase without warning appears in before/after punctuation examples about a policy announcement. It does not instruct an assistant to suppress safety warnings."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "README.md",
+            "start_line": 40,
+            "end_line": null
+          },
+          "match_fingerprint": "2b5664f2a936abba4141331e7b3e83205cce617d2cea9af83aa306db07500782",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "README.md",
+            "start_line": 45,
+            "end_line": null
+          },
+          "match_fingerprint": "2b5664f2a936abba4141331e7b3e83205cce617d2cea9af83aa306db07500782",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "README.md",
+            "start_line": 55,
+            "end_line": null
+          },
+          "match_fingerprint": "2b5664f2a936abba4141331e7b3e83205cce617d2cea9af83aa306db07500782",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/engineering/reverse-engineer-anything",
+      "package_sha256": "8e46fcac1bc8cba12d6bfed131d54e1c6ec1ae7d6d61fd13a60f0cdfdc458c3b",
+      "raw_report_sha256": "dc390276f7f0f0821fa77e4282f4e00e1d362e4b1e46884619fe06b4a18a2f84",
+      "raw_exit_code": 1,
+      "finding_count": 23,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 52,
+            "end_line": null
+          },
+          "match_fingerprint": "cc35c7fbed0ff6f553a38cc1f8fc7f88e44bf941954d62f7ece6d1e29679158e",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 66,
+            "end_line": null
+          },
+          "match_fingerprint": "cc35c7fbed0ff6f553a38cc1f8fc7f88e44bf941954d62f7ece6d1e29679158e",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 71,
+            "end_line": null
+          },
+          "match_fingerprint": "cc35c7fbed0ff6f553a38cc1f8fc7f88e44bf941954d62f7ece6d1e29679158e",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 85,
+            "end_line": null
+          },
+          "match_fingerprint": "cc35c7fbed0ff6f553a38cc1f8fc7f88e44bf941954d62f7ece6d1e29679158e",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 93,
+            "end_line": null
+          },
+          "match_fingerprint": "cc35c7fbed0ff6f553a38cc1f8fc7f88e44bf941954d62f7ece6d1e29679158e",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 115,
+            "end_line": null,
+            "start_column": 12
+          },
+          "match_fingerprint": "92ac6668a75d0bc0e0c009eaa03caa4e6c179ffa107b611e1fe7194dd61864e6",
+          "disposition": "false_positive_format_reference",
+          "reason": "plist is an analyzed artifact format in REA, not a persistence installation instruction."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/native-and-artifacts.md",
+            "start_line": 18,
+            "end_line": null,
+            "start_column": 70
+          },
+          "match_fingerprint": "92ac6668a75d0bc0e0c009eaa03caa4e6c179ffa107b611e1fe7194dd61864e6",
+          "disposition": "false_positive_format_reference",
+          "reason": "plist is an analyzed artifact format in REA, not a persistence installation instruction."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/native-and-artifacts.md",
+            "start_line": 29,
+            "end_line": null,
+            "start_column": 22
+          },
+          "match_fingerprint": "92ac6668a75d0bc0e0c009eaa03caa4e6c179ffa107b611e1fe7194dd61864e6",
+          "disposition": "false_positive_format_reference",
+          "reason": "plist is an analyzed artifact format in REA, not a persistence installation instruction."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/native-and-artifacts.md",
+            "start_line": 511,
+            "end_line": null,
+            "start_column": 17
+          },
+          "match_fingerprint": "92ac6668a75d0bc0e0c009eaa03caa4e6c179ffa107b611e1fe7194dd61864e6",
+          "disposition": "false_positive_format_reference",
+          "reason": "plist is an analyzed artifact format in REA, not a persistence installation instruction."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/native-and-artifacts.md",
+            "start_line": 511,
+            "end_line": null,
+            "start_column": 59
+          },
+          "match_fingerprint": "92ac6668a75d0bc0e0c009eaa03caa4e6c179ffa107b611e1fe7194dd61864e6",
+          "disposition": "false_positive_format_reference",
+          "reason": "plist is an analyzed artifact format in REA, not a persistence installation instruction."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/native-and-artifacts.md",
+            "start_line": 512,
+            "end_line": null,
+            "start_column": 62
+          },
+          "match_fingerprint": "92ac6668a75d0bc0e0c009eaa03caa4e6c179ffa107b611e1fe7194dd61864e6",
+          "disposition": "false_positive_format_reference",
+          "reason": "plist is an analyzed artifact format in REA, not a persistence installation instruction."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/native-and-artifacts.md",
+            "start_line": 513,
+            "end_line": null,
+            "start_column": 7
+          },
+          "match_fingerprint": "92ac6668a75d0bc0e0c009eaa03caa4e6c179ffa107b611e1fe7194dd61864e6",
+          "disposition": "false_positive_format_reference",
+          "reason": "plist is an analyzed artifact format in REA, not a persistence installation instruction."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/native-and-artifacts.md",
+            "start_line": 513,
+            "end_line": null,
+            "start_column": 28
+          },
+          "match_fingerprint": "92ac6668a75d0bc0e0c009eaa03caa4e6c179ffa107b611e1fe7194dd61864e6",
+          "disposition": "false_positive_format_reference",
+          "reason": "plist is an analyzed artifact format in REA, not a persistence installation instruction."
+        },
+        {
+          "rule": "MP2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/connection-and-recovery.md",
+            "start_line": 18,
+            "end_line": null,
+            "start_column": 89
+          },
+          "match_fingerprint": "5d64e38332663d53e94c5a06975d671b7ab689f1aa6a06ea60e074ded5c409f1",
+          "disposition": "false_positive_markdown_layout",
+          "reason": "Long ordinary ASCII spaces align upstream Markdown tables; inspected rows describe capability and recovery semantics, not hidden instructions."
+        },
+        {
+          "rule": "MP2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/connection-and-recovery.md",
+            "start_line": 20,
+            "end_line": null,
+            "start_column": 179
+          },
+          "match_fingerprint": "5d64e38332663d53e94c5a06975d671b7ab689f1aa6a06ea60e074ded5c409f1",
+          "disposition": "false_positive_markdown_layout",
+          "reason": "Long ordinary ASCII spaces align upstream Markdown tables; inspected rows describe capability and recovery semantics, not hidden instructions."
+        },
+        {
+          "rule": "MP2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/connection-and-recovery.md",
+            "start_line": 21,
+            "end_line": null,
+            "start_column": 140
+          },
+          "match_fingerprint": "5d64e38332663d53e94c5a06975d671b7ab689f1aa6a06ea60e074ded5c409f1",
+          "disposition": "false_positive_markdown_layout",
+          "reason": "Long ordinary ASCII spaces align upstream Markdown tables; inspected rows describe capability and recovery semantics, not hidden instructions."
+        },
+        {
+          "rule": "MP2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/connection-and-recovery.md",
+            "start_line": 22,
+            "end_line": null,
+            "start_column": 234
+          },
+          "match_fingerprint": "5d64e38332663d53e94c5a06975d671b7ab689f1aa6a06ea60e074ded5c409f1",
+          "disposition": "false_positive_markdown_layout",
+          "reason": "Long ordinary ASCII spaces align upstream Markdown tables; inspected rows describe capability and recovery semantics, not hidden instructions."
+        },
+        {
+          "rule": "MP2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/connection-and-recovery.md",
+            "start_line": 24,
+            "end_line": null,
+            "start_column": 226
+          },
+          "match_fingerprint": "5d64e38332663d53e94c5a06975d671b7ab689f1aa6a06ea60e074ded5c409f1",
+          "disposition": "false_positive_markdown_layout",
+          "reason": "Long ordinary ASCII spaces align upstream Markdown tables; inspected rows describe capability and recovery semantics, not hidden instructions."
+        },
+        {
+          "rule": "MP2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/connection-and-recovery.md",
+            "start_line": 25,
+            "end_line": null,
+            "start_column": 377
+          },
+          "match_fingerprint": "5d64e38332663d53e94c5a06975d671b7ab689f1aa6a06ea60e074ded5c409f1",
+          "disposition": "false_positive_markdown_layout",
+          "reason": "Long ordinary ASCII spaces align upstream Markdown tables; inspected rows describe capability and recovery semantics, not hidden instructions."
+        },
+        {
+          "rule": "MP2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/connection-and-recovery.md",
+            "start_line": 26,
+            "end_line": null,
+            "start_column": 233
+          },
+          "match_fingerprint": "5d64e38332663d53e94c5a06975d671b7ab689f1aa6a06ea60e074ded5c409f1",
+          "disposition": "false_positive_markdown_layout",
+          "reason": "Long ordinary ASCII spaces align upstream Markdown tables; inspected rows describe capability and recovery semantics, not hidden instructions."
+        },
+        {
+          "rule": "MP2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/runtime-observation.md",
+            "start_line": 11,
+            "end_line": null,
+            "start_column": 250
+          },
+          "match_fingerprint": "5d64e38332663d53e94c5a06975d671b7ab689f1aa6a06ea60e074ded5c409f1",
+          "disposition": "false_positive_markdown_layout",
+          "reason": "Long ordinary ASCII spaces align upstream Markdown tables; inspected rows describe capability and recovery semantics, not hidden instructions."
+        },
+        {
+          "rule": "P9",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/connection-and-recovery.md",
+            "start_line": 19,
+            "end_line": null
+          },
+          "match_fingerprint": "5c6bb05e6d03a7c2e6d14669ec7682abdb1718a3a11e38f63fd2347d19f79777",
+          "disposition": "false_positive_markdown_layout",
+          "reason": "Repeated ASCII hyphens are the separator row of the same upstream Markdown table."
+        },
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/native-and-artifacts.md",
+            "start_line": 530,
+            "end_line": null,
+            "start_column": 69
+          },
+          "match_fingerprint": "02114119728c4c9031d411902239e1c4b76f46eb7c1932c9ae63fcbe2fd1030c",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "REA documents no server approval flag for a read-only DMG inspection mount; host policy and target authorization still apply."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl",
+      "package_sha256": "a22f33cdd8906e76cca255f9450b73d4dc668d147c288c2f5893b464834d24c1",
+      "raw_report_sha256": "d65c0df1f1fe87d9185ec2d7d4ae79dc635122614e86ec5b9fc5df2537ba8095",
+      "raw_exit_code": 1,
+      "finding_count": 4,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 7,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "rules/install.md",
+            "start_line": 91,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "rules/install.md",
+            "start_line": 15,
+            "end_line": null
+          },
+          "match_fingerprint": "976426014671a15c8f08cd45c2b263e6df0c4b3457ff8b05191e9962239a493f",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-agent",
+      "package_sha256": "671de46cee337db6285251b724fdb51f862b6f344fe2b13e8e049af95d9c8cd6",
+      "raw_report_sha256": "472676952cd5b5c086b79a9a56d7c5491cbedc2019463a3e620922b4118ac0eb",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 6,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-alexandria",
+      "package_sha256": "b332ccf7795a3b488b6011272acb5c5cc69e5bbaa34e2bff21f2a561c9e3ded7",
+      "raw_report_sha256": "05071816bb71bf3e424f3ecb60f990d654a26b962eedc6c8e5e40f2e8d25d65c",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-crawl",
+      "package_sha256": "4a9eb4fae88b9b7f7dc3c17e432c6b301f3e038aad06a85290231ae83e83275d",
+      "raw_report_sha256": "1e259400bd7cf8510ce8c7fe47d3a38f6a2857da8d6d73e5c168fd85a116c75a",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 7,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-developer-index",
+      "package_sha256": "ae8c571a7298eb667c93147bfa5328f6247e72c26be5c2a0b952a998149aebfa",
+      "raw_report_sha256": "000ffc297084bf789a54f1e042128f54ca89b127e395d644d2e615e2cfaa6eb1",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "E1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 21,
+            "end_line": null,
+            "start_column": 20
+          },
+          "match_fingerprint": "2825ed596d9bcf32646d5f2b70ccef7c30d8865e4c7408fd1bbf6282989c0a22",
+          "disposition": "documented_service_boundary",
+          "reason": "The Firecrawl API host is the requested service endpoint, not an undisclosed exfiltration destination. Optional Consulting/E7 use requires authorized public/task inputs."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-download",
+      "package_sha256": "02bfdf3ad4d6d11966d832f3233f8ead03931aec10758f4043d270c428265b6c",
+      "raw_report_sha256": "64b86916735275d84445defbb047e30df16459f94d5985fdf97658c03f39b555",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 7,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-interact",
+      "package_sha256": "e834dbe6366f20ace23750e23dd2ef8663a8ab16c9d0a2826ba7adc584e769a6",
+      "raw_report_sha256": "6936f9298a8b4129bebb4b13a930515ba5114f22e52c84bdbbef76741e3938a6",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 7,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-map",
+      "package_sha256": "aec53abf0548b523404de327be9bd3453dde026b96b237e0756da6d0e77344e7",
+      "raw_report_sha256": "d0c9cc09d9cad50d1d2f393ecb44350245bd25755757b488b943c2f334ccd2ee",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 7,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-monitor",
+      "package_sha256": "304e6cca898e3fd6b2ae8ae811d195c4dbc0fec1de80eed85b939e479ee8c7c1",
+      "raw_report_sha256": "09349719541525e3ae2d26018d94015f6929a4c9768cfa287a33f4585692dbbd",
+      "raw_exit_code": 1,
+      "finding_count": 4,
+      "coverage_percent": 80.0,
+      "is_complete": false,
+      "issues": [
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 67,
+            "end_line": null
+          },
+          "match_fingerprint": "622e99986e5d0ba8b3c9f392b14d485917bf0b398e83f73552e88e3feaa96ed1",
+          "disposition": "coverage_blocker",
+          "reason": "Static parser span limit left json-tracking.md partially scanned (80% package coverage). All 71 lines were manually read: illustrative JSON pricing monitor creation, no hidden code. Raw scanner coverage remains incomplete; keep monitor reference-only pending further verification."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 7,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 78,
+            "end_line": null,
+            "start_column": 182
+          },
+          "match_fingerprint": "c72d5434ba74bdc2cbbe6e19a9e12043cf6ba5685019e13ebafc7aefe5481376",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Firecrawl describes server-side auto-confirmation of team-owned email recipients. It is not permission to create a monitor or send notifications; library policy disables unsolicited monitoring."
+        }
+      ],
+      "staging_disposition": "reference-only; unresolved static coverage"
+    },
+    {
+      "path": "skills/research/firecrawl-parse",
+      "package_sha256": "d18a7267fd4c7c6d28a5736b511eb837c2993ae4ace0dbb7828109327496f6be",
+      "raw_report_sha256": "2f2b4f113801c5bd5c9b19d07902cf7760d595145d82ccb92205b27ab996685a",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 7,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-research-index",
+      "package_sha256": "24edbe8372b74dc58f05bd14b0654d5cf9f6e6649112a50deba5b8b42f3a9153",
+      "raw_report_sha256": "8158287ed12f56291a339f09ee86dc3571920c22553694ce2ee6dc0af4b9a0b0",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-scrape",
+      "package_sha256": "91f77eea82e5521cea94b3d63380209c85032087d256436049a6a54b738a85bd",
+      "raw_report_sha256": "414afb978cb47473068dbf275710b40a6fb743ce47cc6d314fc5bc5809b51a8b",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 6,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-search",
+      "package_sha256": "7cc3625219a19b2eb5c22b2569a87c781f2e5a4390f42b773896b266e58da939",
+      "raw_report_sha256": "c846e39d9ae584dbea4bbe1253a4bea1877a13b30c68c774d651d2a3b1b194f7",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 6,
+            "end_line": null
+          },
+          "match_fingerprint": "662e9788ad8c9b55779c0de1cc4a46c3706ac227b393cc68293126a279b36ebe",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/engineering/firecrawl-build",
+      "package_sha256": "83dad8f4139a9e7b85f5ff4e5acc1cb5f9848449830490adf5d0ec67d26bd1a1",
+      "raw_report_sha256": "e944968283c441c6600b21c88f35752cd2805c9187d4f729efb289553ae443c2",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "TR2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 2,
+            "end_line": null
+          },
+          "match_fingerprint": "a1257962c71c6e6927d08daf4ac447379900591a1a924eed9f0f3b8d64845bb1",
+          "disposition": "false_positive_endpoint_name",
+          "reason": "The slash-prefixed search endpoint is API documentation rather than a request to shadow host commands. Optional profile prevents global trigger takeover."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 133,
+            "end_line": null
+          },
+          "match_fingerprint": "976426014671a15c8f08cd45c2b263e6df0c4b3457ff8b05191e9962239a493f",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/engineering/firecrawl-build-interact",
+      "package_sha256": "d9a126c10d6a1cdacaeebd3837693bfc50cdb315f266abadecca520ba132b5db",
+      "raw_report_sha256": "b4393b55cc553423c0c478d43ead5b00b4b5f375e016b16ffd8ced7eeda5f211",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/engineering/firecrawl-build-onboarding",
+      "package_sha256": "c42b993b0e6ea1f594c444b38f432f7bd32492eb28ce0f19598524f57142ed94",
+      "raw_report_sha256": "ac9b2aba53d3ecc73f0d6bb133fa57315f5041aaec9eaedb363e5cf0d2af4034",
+      "raw_exit_code": 1,
+      "finding_count": 3,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "PE3",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/auth-flow.md",
+            "start_line": 38,
+            "end_line": null,
+            "start_column": 35
+          },
+          "match_fingerprint": "66ef81c27c03406fd9935e5fc86fc4126d7150c15b8d076fdc528d05cea7c7bf",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "The .env example describes storing a placeholder API key. No key is present. Library policy requires private secret storage; no automatic authentication or writes."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 38,
+            "end_line": null
+          },
+          "match_fingerprint": "976426014671a15c8f08cd45c2b263e6df0c4b3457ff8b05191e9962239a493f",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 43,
+            "end_line": null
+          },
+          "match_fingerprint": "2b5664f2a936abba4141331e7b3e83205cce617d2cea9af83aa306db07500782",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Upstream unpinned npx/install examples are a real acquisition risk. Preserved as source evidence; explicit library policy prohibits automatic acquisition/global setup and runtime activation is separate."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/engineering/firecrawl-build-scrape",
+      "package_sha256": "dc7de5ee6658d3e26bb32e2d9a8b4dc62dd1e13b6fa23cfa2c6901187df1474f",
+      "raw_report_sha256": "daccbec712b0efd141c664f92f0724152f607ec3e58548fa62d723b0f77d70af",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/engineering/firecrawl-build-search",
+      "package_sha256": "b3a60fab4f8728a9f4f9c1710492d70e08a615d1789d2ca568c8d6d3cabccf85",
+      "raw_report_sha256": "cb47e38258dce03c00153f14fbc02ec9d34177b04826683282e601cd05f45f1d",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "TR2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 1,
+            "end_line": null
+          },
+          "match_fingerprint": "035b664478d026ad098a5e38e8b98491fbf7431c0dd9bf2208d5787bf9856785",
+          "disposition": "false_positive_endpoint_name",
+          "reason": "The slash-prefixed search endpoint is API documentation rather than a request to shadow host commands. Optional profile prevents global trigger takeover."
+        }
+      ],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-competitive-intel",
+      "package_sha256": "2a5f02205b02b195c6e3e3a5f738585b4eb925b5310583fe2e47ca723baec7ed",
+      "raw_report_sha256": "3dd1a90a22cadaf285f2c937b81f31197a0546c72dea603147916e5386234614",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-lead-research",
+      "package_sha256": "4f4f449a3cc07b329c7c746e9ace7d1a6a10dc16fe871e519441b5912b6cffc0",
+      "raw_report_sha256": "7d74adffe509468ee0231f6ddee12112a6fed7bf6c1a39c13a791f8db2426702",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/research/firecrawl-market-research",
+      "package_sha256": "78ff3bfb688e2b882f4a591400d3547187cfc138669d857b7c06f87a7456310d",
+      "raw_report_sha256": "e2eabbaf320b66ae2c68224a577fc61ab8c60c3f3d2a8f5bf4f384af458e3941",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    },
+    {
+      "path": "skills/security/skill-inspector",
+      "package_sha256": "caa13279392d73270a352efea65824e02e45acd8d9027d99f8a938ebe441731d",
+      "raw_report_sha256": "31a73a377d248e2570bd28e7c336d9ced75bb2cd3f9c811352b1abc1f84d4a17",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "staging_disposition": "Source staging acceptable after contextual review; no runtime activation granted"
+    }
+  ],
+  "limitations": [
+    "Static analysis is not semantic safety certification",
+    "No live dependency vulnerability lookup"
+  ]
+}
