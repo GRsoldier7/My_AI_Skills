@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-29",
+  "artifact": "skills/analytics/connected-html-artifacts/examples/snapshot.html",
+  "sha256": "5d8750868ee3b6e17ebfc5519b6c64363af6d838fd5eb08d743188342c702a19",
+  "environment": "Existing Playwright browser over a temporary 127.0.0.1-only HTTP server; server stopped afterward",
+  "passed": [
+    "CSV quoted commas and escaped quotes",
+    "CSV embedded newlines",
+    "unequal row width rejected",
+    "duplicate headers rejected",
+    "unclosed quoted field rejected",
+    "formula-safe CSV serialization",
+    "synthetic file upload rendered",
+    "untrusted HTML rendered as text",
+    "failed import preserves prior snapshot with explicit error",
+    "row filtering",
+    "empty results disable export",
+    "keyboard Tab focus and Enter export",
+    "downloaded CSV content inspected",
+    "desktop screenshot inspected at 1440px",
+    "mobile screenshot inspected at 320px; overflow fixed and rechecked",
+    "zero resource/network requests and zero console errors after favicon fix"
+  ],
+  "not_verified": [
+    "file:// browser navigation (host blocks protocol)",
+    "real XLSX parser",
+    "live accounts, Power BI licensing, OAuth and database connectivity",
+    "dark-mode rendering and print preview"
+  ],
+  "source_policy": "Synthetic fixtures only; no private data or credentials"
+}
