@@ -79,7 +79,8 @@ for (const line of diff.split('\n')) {
 }
 
 const findings = [];
-const flag = (rule, f, text) => findings.push({ rule, file: f, text: text.trim().slice(0, 120) });
+// Do not retain source excerpts: a violation line can also contain a secret.
+const flag = (rule, f) => findings.push({ rule, file: f });
 const isTest = (f) => /\.(test|spec)\.|_test\.|test_/.test(f);
 const isConstraints = (f) => /CONSTRAINTS\.md$/.test(f);
 
@@ -164,7 +165,7 @@ for (const r of removedRules) {
 
 if (findings.length === 0) { console.log('floor-guard: clean'); process.exit(0); }
 console.error('floor-guard: ' + findings.length + ' floor violation(s):');
-for (const f of findings) console.error(`  [${f.rule}] ${f.file}: ${f.text}`);
+for (const f of findings) console.error(`  [${f.rule}] ${f.file}`);
 if (findings.some((f) => f.rule === 'rule-removed')) {
   console.error('\nA rule-removed finding can also mean the rule\'s label changed: rename a rule in one commit and change its thresholds in another.');
 }

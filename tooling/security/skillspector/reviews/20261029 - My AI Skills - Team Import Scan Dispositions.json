@@ -1,0 +1,1873 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-29",
+  "scanner_revision": "54921c8c7c23008c8af2328d5ab492a904b6ece4",
+  "scanner_runtime": {
+    "version": "2.12.0",
+    "revision": "54921c8c7c23008c8af2328d5ab492a904b6ece4",
+    "dependency_count": 72,
+    "lock_sha256": "a8992d9ee11035544335fa5b82d3b4ec6eafbea508cd5e49feee6c009792fc4c"
+  },
+  "raw_gate_passed": false,
+  "raw_report_directory": "/tmp/skillspector-team-imports-20261029",
+  "raw_receipt_sha256": "320a379f6ada6eac4f46640e37df4cc8c8ee4574986bb3cf7d101974dcc3fb68",
+  "git_recovery_rescan_directory": "/tmp/skillspector-team-git-recovery-rescan-20261029",
+  "git_recovery_rescan_receipt_sha256": "d8fe5f4dba81679ffbe1dabb5fafbd49a11fdbbef52fac1467739d3d52352f98",
+  "manual_fixes_rescan_directory": "/tmp/skillspector-team-manual-fixes-rescan-20261029",
+  "manual_fixes_rescan_receipt_sha256": "ba2abe39a7eeb43b7d18e0c9a01581b42ed51acd506b7e75965de465d5983c04",
+  "scope": "27 team skill packages only; Agency/Addy personas, prompts, and platform adapters are not claimed as SkillSpector-scanned here.",
+  "mode": "static-only; isolated network; no LLM; no live OSV lookup",
+  "packages": [
+    {
+      "path": "skills/engineering/api-and-interface-design",
+      "package_sha256": "81fe029e564bc0c499aede1b403f2d8099b8b665b4fe2bacf0208b69b6946eef",
+      "raw_report_sha256": "b0472085122d5423594a1e43f51db1cd158c19e9817859e1cefb4477b35d179a",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0000-api-and-interface-design.json",
+      "raw_exit_code": 1,
+      "finding_count": 0,
+      "coverage_percent": 66.7,
+      "is_complete": false,
+      "issues": [],
+      "coverage_exceptions": [
+        {
+          "outcome": "partial",
+          "phase": "static",
+          "reason_code": "static_parse_limit",
+          "message": "A security-relevant expression exceeded a bounded static parser's span limit.",
+          "path": "SKILL.md",
+          "start_line": null,
+          "end_line": null,
+          "fatal": false,
+          "analyzers": [
+            "static_patterns_tool_misuse"
+          ]
+        }
+      ],
+      "manual_coverage_review": {
+        "affected_files": [
+          {
+            "path": "SKILL.md",
+            "sha256": "cc5e2166c484b2c297e8253f56e7525e5031f81d66101ca4e760ef378ea6bad0",
+            "review_scope": "Full affected-file contextual source review; does not change scanner completeness."
+          }
+        ],
+        "context": "JavaScript template ${orderId}:${Date.now()} is parsed as shell by the frozen tool-misuse analyzer. Larger diagnostic caps do not fix this grammar/context mismatch."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/browser-testing-with-devtools",
+      "package_sha256": "fe645f91a252dd03550a0fc5c23680933b08624fe83864cec585f54aebf92fd8",
+      "raw_report_sha256": "90887930f7a3bb31bdb34e74b26b2888d6abb9b5c241aa9bc47199e30a9680e8",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0001-browser-testing-with-devtools.json",
+      "raw_exit_code": 1,
+      "finding_count": 4,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "YR1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 64,
+            "end_line": null
+          },
+          "match_fingerprint": "198ecc1c8b7cc789ad73fcec02976232d2ac9862a469c411dd190afffbd16213",
+          "disposition": "false_positive_contextual",
+          "reason": "The paragraph warns that an attached authenticated Chrome profile exposes cookies and recommends a dedicated isolated profile. It does not request credential theft; the MCP/browser workflow remains excluded from Parallon."
+        },
+        {
+          "rule": "P1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 77,
+            "end_line": 77,
+            "start_column": 225,
+            "end_column": 253
+          },
+          "match_fingerprint": "80b6579db4fce32126ffbbce6761b213cd90ab636a49c5bc4c57be6a3551dae7",
+          "disposition": "false_positive_contextual",
+          "reason": "The matched prompt-injection wording is a quoted example explicitly identified as untrusted browser/document content to ignore. It does not override host or user instructions."
+        },
+        {
+          "rule": "YR4",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 77,
+            "end_line": null
+          },
+          "match_fingerprint": "799a2ea8bf4e09be1b430a604814828d97c497a0a2221cc1c4cc34fb186a2635",
+          "disposition": "false_positive_contextual",
+          "reason": "The matched prompt-injection wording is a quoted example explicitly identified as untrusted browser/document content to ignore. It does not override host or user instructions."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 41,
+            "end_line": null
+          },
+          "match_fingerprint": "f3c25ad12027b4abae446d885d4e99fb4c61a7dc86fb056eeca39a06ab31d4b1",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/ci-cd-and-automation",
+      "package_sha256": "dbab07852f620b13839df83b97552df8a1ab283b132b410cc59a2c5b4d2c3aed",
+      "raw_report_sha256": "3b6e9ab6df1f7e8af71ac5eda6de6f4636a0e72dfd3a87aa2003895c1d89f825",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0002-ci-cd-and-automation.json",
+      "raw_exit_code": 1,
+      "finding_count": 8,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "PE3",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 278,
+            "end_line": null,
+            "start_column": 0
+          },
+          "match_fingerprint": "66ef81c27c03406fd9935e5fc86fc4126d7150c15b8d076fdc528d05cea7c7bf",
+          "disposition": "false_positive_contextual",
+          "reason": "The surrounding policy says real .env files are not committed and only placeholder examples belong in Git. The match is defensive secret-handling guidance, not credential collection."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 88,
+            "end_line": null
+          },
+          "match_fingerprint": "f93ea7c95b3acfc2d072d9bd41d1947e36b5c69f5c5a0609a4b25ab8c668b10a",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 351,
+            "end_line": null
+          },
+          "match_fingerprint": "f93ea7c95b3acfc2d072d9bd41d1947e36b5c69f5c5a0609a4b25ab8c668b10a",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 128,
+            "end_line": null
+          },
+          "match_fingerprint": "1c4ec899769ec1ad845dfd17e08db14b18c730cbdd554c831485e716aeab526c",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 152,
+            "end_line": null
+          },
+          "match_fingerprint": "5d1e71786bcce07e288b1b7488d594b4d051d0f6efefb2c50641987706a012da",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 156,
+            "end_line": null
+          },
+          "match_fingerprint": "5d1e71786bcce07e288b1b7488d594b4d051d0f6efefb2c50641987706a012da",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 207,
+            "end_line": null
+          },
+          "match_fingerprint": "cc926180331e2a6530821422d382714bb32f1f53e4c6da6c0c4a8aa07dbeb2b9",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 271,
+            "end_line": null
+          },
+          "match_fingerprint": "cc926180331e2a6530821422d382714bb32f1f53e4c6da6c0c4a8aa07dbeb2b9",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/code-review-and-quality",
+      "package_sha256": "c0e4da4447f702132663b37e6323ededdaaf0f9224ad1ef7004e347b586e189c",
+      "raw_report_sha256": "53e50dc63721b7bbb092be3f464528879863e81280c58bab6267c81744ce3753",
+      "raw_report": "/tmp/skillspector-team-manual-fixes-rescan-20261029/0000-code-review-and-quality.json",
+      "raw_exit_code": 1,
+      "finding_count": 5,
+      "coverage_percent": 80.0,
+      "is_complete": false,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 195,
+            "end_line": null
+          },
+          "match_fingerprint": "790d3589e42899a40f608928ce1ffbb0a528ea1815d5c799ae10167492e360eb",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 198,
+            "end_line": null
+          },
+          "match_fingerprint": "290da01851b8aa404af0c8651ee555ff3c36dfc51063fb7c3b4e5cc301224699",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 200,
+            "end_line": null
+          },
+          "match_fingerprint": "3c1e5cf2bba47da8678d79d70769826541b28ebdc8c6ff6616da76567dd383ea",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 203,
+            "end_line": null
+          },
+          "match_fingerprint": "799d229d4be80a664b62b0192c372c813571bf3ce2d47af705f99aae36917fc9",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "EA4",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 227,
+            "end_line": null,
+            "start_column": 2
+          },
+          "match_fingerprint": "ceabe70399d5504acc60db41ae16109cf88f6a48499424de17675cd75dfb845f",
+          "disposition": "false_positive_contextual",
+          "reason": "Unbounded queries appears in an anti-pattern table whose fix is Always paginate, add LIMIT. The example prohibits unbounded execution."
+        }
+      ],
+      "coverage_exceptions": [
+        {
+          "outcome": "partial",
+          "phase": "static",
+          "reason_code": "obfuscated_instruction_text",
+          "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+          "path": "SKILL.md",
+          "start_line": null,
+          "end_line": null,
+          "fatal": false,
+          "analyzers": [
+            "static_patterns_agent_snooping",
+            "static_patterns_anti_refusal",
+            "static_patterns_deserialization",
+            "static_patterns_excessive_agency",
+            "static_patterns_harmful_content",
+            "static_patterns_memory_poisoning",
+            "static_patterns_privilege_escalation",
+            "static_patterns_prompt_injection",
+            "static_patterns_rogue_agent",
+            "static_patterns_ssrf",
+            "static_patterns_supply_chain",
+            "static_patterns_system_prompt_leakage",
+            "static_patterns_tool_misuse"
+          ]
+        }
+      ],
+      "manual_coverage_review": {
+        "affected_files": [
+          {
+            "path": "SKILL.md",
+            "sha256": "76c9143738dfe2569c05be780afd507babcdcf8c8afc424aa65dd0fb4c5a1b94",
+            "review_scope": "Full affected-file contextual source review; does not change scanner completeness."
+          }
+        ],
+        "context": "Full SKILL.md review found no hidden malicious behavior. The raw obfuscated_instruction_text result remains unresolved as a scanner diagnostic; a genuine mutation-testing scope concern was corrected to require an explicitly authorized isolated disposable checkout, with no writes in read-only/shared reviews."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/code-simplification",
+      "package_sha256": "3f69fed318a77ffe051832cca8922843b8ac5922cbcb6556f658b9287dee3ed8",
+      "raw_report_sha256": "be672d97130fff3992ee34ed00d28990a9cdf4a8acbb8c8aced7cd5dbfcab1c5",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0004-code-simplification.json",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RA1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 155,
+            "end_line": null,
+            "start_column": 74
+          },
+          "match_fingerprint": "9c3f58ca3574777fed1fdfed7452e3e0ba98469ab607f366116c4ec2f509865a",
+          "disposition": "false_positive_contextual",
+          "reason": "The table row concerns redundant TypeScript type assertions whose type is already inferred. It does not remove tests, runtime checks, safety assertions, or verification."
+        },
+        {
+          "rule": "EA3",
+          "severity": "LOW",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 103,
+            "end_line": null,
+            "start_column": 117
+          },
+          "match_fingerprint": "f7c89e93a631ac5ee50a07e2fb7ed0483ed4da00a3837cabc5a816c697d9b2b0",
+          "disposition": "false_positive_contextual",
+          "reason": "The instruction says avoid unrelated refactors unless explicitly asked to broaden scope; it limits scope rather than authorizing expansion."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/constraint-driven-development",
+      "package_sha256": "19dda82cb89141838509f167e56e5ed7adc000c44a5ba7256b9792805ad9d83e",
+      "raw_report_sha256": "d9b48b571c747a87febdca59da584913e1f5f8faec0f4057e218d3c550c368db",
+      "raw_report": "/tmp/skillspector-team-manual-fixes-rescan-20261029/0001-constraint-driven-development.json",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 50.0,
+      "is_complete": false,
+      "issues": [
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 216,
+            "end_line": null
+          },
+          "match_fingerprint": "afd9398bcd5f2af0a8fecc77b7f8fdbbf9659784fd7f0b044e0f2ad53f2fcfd5",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 258,
+            "end_line": null
+          },
+          "match_fingerprint": "afd9398bcd5f2af0a8fecc77b7f8fdbbf9659784fd7f0b044e0f2ad53f2fcfd5",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        }
+      ],
+      "coverage_exceptions": [
+        {
+          "outcome": "partial",
+          "phase": "static",
+          "reason_code": "static_parse_limit",
+          "message": "A security-relevant expression exceeded a bounded static parser's span limit.",
+          "path": "SKILL.md",
+          "start_line": null,
+          "end_line": null,
+          "fatal": false,
+          "analyzers": [
+            "static_patterns_tool_misuse"
+          ]
+        },
+        {
+          "outcome": "partial",
+          "phase": "static",
+          "reason_code": "static_parse_limit",
+          "message": "A security-relevant expression exceeded a bounded static parser's span limit.",
+          "path": "references/floor-guard.md",
+          "start_line": null,
+          "end_line": null,
+          "fatal": false,
+          "analyzers": [
+            "static_patterns_tool_misuse"
+          ]
+        }
+      ],
+      "manual_coverage_review": {
+        "affected_files": [
+          {
+            "path": "SKILL.md",
+            "sha256": "97f5043f639225562424ac6ef8f2a22a3bdb5250a792af36f751ddbcbbe48954",
+            "review_scope": "Full affected-file contextual source review; does not change scanner completeness."
+          },
+          {
+            "path": "references/floor-guard.md",
+            "sha256": "4280c3a22b9b539f17e8afe41c64963f70044f4ad4c7ea863ab7a960eadacb5b",
+            "review_scope": "Full affected-file contextual source review; does not change scanner completeness."
+          }
+        ],
+        "context": "Full SKILL.md/floor-guard review confirms Markdown $PREVIEW_URL and JavaScript templates trigger shell parsing; larger diagnostic caps do not fix the mismatch. A real source-excerpt logging concern was corrected: findings now retain/output only rule and file path. Synthetic marker tests passed for violation, clean, and unavailable-base outcomes."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/context-engineering",
+      "package_sha256": "8e5398aa1249111c7ccd7f153686eadc7cb596adf9b858f33407c53861166258",
+      "raw_report_sha256": "34bc2c6346e8d4509e6a01c491b52235c83e052d5fe097762adc891ba1f7e0ea",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0006-context-engineering.json",
+      "raw_exit_code": 1,
+      "finding_count": 4,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "PE3",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 65,
+            "end_line": null,
+            "start_column": 15
+          },
+          "match_fingerprint": "66ef81c27c03406fd9935e5fc86fc4126d7150c15b8d076fdc528d05cea7c7bf",
+          "disposition": "false_positive_contextual",
+          "reason": "The surrounding policy says real .env files are not committed and only placeholder examples belong in Git. The match is defensive secret-handling guidance, not credential collection."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 55,
+            "end_line": null
+          },
+          "match_fingerprint": "f93ea7c95b3acfc2d072d9bd41d1947e36b5c69f5c5a0609a4b25ab8c668b10a",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 66,
+            "end_line": null,
+            "start_column": 25
+          },
+          "match_fingerprint": "9341b6f34d6af9081a0d6673f4217b7307d273da9f43357efd9029e15c5da76c",
+          "disposition": "false_positive_contextual",
+          "reason": "The matches are a Never add dependencies without checking boundary and a red flag for unverified external instructions. The matched wording is a boundary or warning, not permission to bypass checks."
+        },
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 342,
+            "end_line": null,
+            "start_column": 64
+          },
+          "match_fingerprint": "fe5d1711651a4715ab1d9b8451c549b9733b35dcee753a00cc95b0754ef2c699",
+          "disposition": "false_positive_contextual",
+          "reason": "The matches are a Never add dependencies without checking boundary and a red flag for unverified external instructions. The matched wording is a boundary or warning, not permission to bypass checks."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/debugging-and-error-recovery",
+      "package_sha256": "031f1d4a4c2c7eba1fb7a15f55680390e5e23cc5ec69fbc164f1dc76da85bbbb",
+      "raw_report_sha256": "912b0c853d09b107fc7f80e5938aa99a93e5b91bc5716e3bd868a48fa6830f72",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0007-debugging-and-error-recovery.json",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/deprecation-and-migration",
+      "package_sha256": "ece9b6cab4129d2f4ade91228c6e15fa067f12e724b6848fad727fff2d6c1459",
+      "raw_report_sha256": "5287b81b0747a67b12dc51fd588621779f599753959ca9835aadbc097a2f374b",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0008-deprecation-and-migration.json",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 91,
+            "end_line": null
+          },
+          "match_fingerprint": "b338c434223ca4627319545d0a7cccac1c4d279acaf12e3fc3def9d821dfbfc4",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/documentation-and-adrs",
+      "package_sha256": "a8ed1a952f320dfb0155b1639917d8a36b35ba4e19134e10c4adda55938726a5",
+      "raw_report_sha256": "a88d2bebbff5466e18e972d1f457039cb3888efc7211f748d8db1e19341627d2",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0009-documentation-and-adrs.json",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/doubt-driven-development",
+      "package_sha256": "5d1808269f9b448ccb0527492192e02c3f98dfa992ae48dac07f5ea48d13e069",
+      "raw_report_sha256": "a5aada2acb597902365513d6ee5e827ea427fef35ab22f24d154119fda23ad12",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0010-doubt-driven-development.json",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "EA5",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 144,
+            "end_line": 144,
+            "start_column": 0,
+            "end_column": 70
+          },
+          "match_fingerprint": "6d7e3a19d528be064fb38dd3808fabb3d2b340216d5de8e8ad453caa88f8b562",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is a read-only cross-model CLI example after the user picks a CLI and confirms the exact invocation. Prompt input is passed through a file on stdin. No delegation, credential use, external sharing, or CLI invocation is authorized by import."
+        },
+        {
+          "rule": "AS1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/shared/orchestration-patterns.md",
+            "start_line": 205,
+            "end_line": null,
+            "start_column": 33
+          },
+          "match_fingerprint": "5a1df888db5d4ec0b5b9acca20cfc27be4af48718ceb134b7edd155d53abdf2c",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "The shared reference documents an experimental Claude Code settings edit. It is optional host-specific setup, not a Hermes requirement or automatic action; persistent configuration changes remain separately authorized."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/frontend-ui-engineering",
+      "package_sha256": "dd4168b5e546e5df101ff172ff00a6639b2de202b9f2d28acdddcbaeadc1c8ed",
+      "raw_report_sha256": "387be1d1834d9163fd869b1ff1f1d08c7e35642dc25faf6ee07f03518c33221c",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0011-frontend-ui-engineering.json",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/accessibility-checklist.md",
+            "start_line": 128,
+            "end_line": null
+          },
+          "match_fingerprint": "6061fc4f19343992fd531c91ec3daa4be9fb139873d23faef000ddcb39f4e8aa",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/git-workflow-and-versioning",
+      "package_sha256": "e771cae32f15393740c5e6126e807411a5c5e489f01c7efad56b05474ab6ee98",
+      "raw_report_sha256": "3b19c3d91ec4030ecb2bbc5845b2824ca3473ee890773750c34a06ad60f1b111",
+      "raw_report": "/tmp/skillspector-team-git-recovery-rescan-20261029/0000-git-workflow-and-versioning.json",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 229,
+            "end_line": null
+          },
+          "match_fingerprint": "f93ea7c95b3acfc2d072d9bd41d1947e36b5c69f5c5a0609a4b25ab8c668b10a",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted.",
+      "superseded_scan": {
+        "raw_report": "/tmp/skillspector-team-imports-20261029/0012-git-workflow-and-versioning.json",
+        "raw_report_sha256": "d915e48d97c9cc847a3236920b7d286bf9533a4ae091242a9d92d44d4238b615",
+        "finding_count": 2,
+        "resolved_rule": "TM1",
+        "resolution": "Replaced destructive recovery paragraph and failed-test diagram defaults with preservation, inspection, reversible correction, and task-specific permission. Updated provenance and rescanned: 100% enabled-static coverage; only RP1 remains."
+      }
+    },
+    {
+      "path": "skills/engineering/idea-refine",
+      "package_sha256": "8ee0e2406c31ead503b7a543abc650db4658aef3fb2e0d90f705d9267ad77a41",
+      "raw_report_sha256": "872fd97e4c8f6f212aa8b31e44bdb952e0a0d8d7fc9f08b272f46d95cc764149",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0013-idea-refine.json",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/incremental-implementation",
+      "package_sha256": "3eb9b037c8532ffc766d094a284422a3d8a16b5131af0b9d5d01fdcc96b858ae",
+      "raw_report_sha256": "28f2c6cf24256bb16a79ed08c6b12ee32f70463716968da3e62496b81100433a",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0014-incremental-implementation.json",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 206,
+            "end_line": null
+          },
+          "match_fingerprint": "f93ea7c95b3acfc2d072d9bd41d1947e36b5c69f5c5a0609a4b25ab8c668b10a",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/interview-me",
+      "package_sha256": "f9972591cfa899a68f18cee4a63be76d5999435459626c30e98be75ce686512e",
+      "raw_report_sha256": "9216b7e42b3487b03142d4ec297dd60930f34e49d7b0d2621f4ba1a1c8c72e89",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0015-interview-me.json",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/observability-and-instrumentation",
+      "package_sha256": "c806c89114baeb856597bc87333fde8d9e8d871bbf55d93b3d194872b78713bd",
+      "raw_report_sha256": "09de8cde6a76f0e5faa3358a3db44086b316400fb38515b1e4b99017de766f95",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0016-observability-and-instrumentation.json",
+      "raw_exit_code": 1,
+      "finding_count": 0,
+      "coverage_percent": 75.0,
+      "is_complete": false,
+      "issues": [],
+      "coverage_exceptions": [
+        {
+          "outcome": "partial",
+          "phase": "static",
+          "reason_code": "static_parse_limit",
+          "message": "A security-relevant expression exceeded a bounded static parser's span limit.",
+          "path": "SKILL.md",
+          "start_line": null,
+          "end_line": null,
+          "fatal": false,
+          "analyzers": [
+            "static_patterns_tool_misuse"
+          ]
+        }
+      ],
+      "manual_coverage_review": {
+        "affected_files": [
+          {
+            "path": "SKILL.md",
+            "sha256": "34a1c3889dfd2558692fcbf1ada020e71f41116722e30c1a7dbeb6268953d4cc",
+            "review_scope": "Full affected-file contextual source review; does not change scanner completeness."
+          }
+        ],
+        "context": "Full SKILL.md review found logging, bounded metrics, tracing, and authorized staging verification examples; JavaScript dollar/template content is not shell execution. Telemetry configuration, sending test alerts, or touching shared services still requires the target-task scope."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/performance-optimization",
+      "package_sha256": "5555ff1e597a2051e049909f9de0df753b9bc49a5ea8e2e42e77c5fe7bb72040",
+      "raw_report_sha256": "232e33c001499738658a649949071dd9fcecdbe74837180669fba4e2620e87f1",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0017-performance-optimization.json",
+      "raw_exit_code": 1,
+      "finding_count": 6,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 206,
+            "end_line": null
+          },
+          "match_fingerprint": "799d229d4be80a664b62b0192c372c813571bf3ce2d47af705f99aae36917fc9",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 203,
+            "end_line": null
+          },
+          "match_fingerprint": "799d229d4be80a664b62b0192c372c813571bf3ce2d47af705f99aae36917fc9",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 195,
+            "end_line": null
+          },
+          "match_fingerprint": "790d3589e42899a40f608928ce1ffbb0a528ea1815d5c799ae10167492e360eb",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 198,
+            "end_line": null
+          },
+          "match_fingerprint": "290da01851b8aa404af0c8651ee555ff3c36dfc51063fb7c3b4e5cc301224699",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 200,
+            "end_line": null
+          },
+          "match_fingerprint": "3c1e5cf2bba47da8678d79d70769826541b28ebdc8c6ff6616da76567dd383ea",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "EA4",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 227,
+            "end_line": null,
+            "start_column": 2
+          },
+          "match_fingerprint": "ceabe70399d5504acc60db41ae16109cf88f6a48499424de17675cd75dfb845f",
+          "disposition": "false_positive_contextual",
+          "reason": "Unbounded queries appears in an anti-pattern table whose fix is Always paginate, add LIMIT. The example prohibits unbounded execution."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/planning-and-task-breakdown",
+      "package_sha256": "68442a10663ae2e251cefe93caa3451f07e64ab9f1bb6187b339e767d5035c1d",
+      "raw_report_sha256": "fc7f389b380cfd676f8300e6cd25bb0220f3eddf9df121e4f6bf340df05c547a",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0018-planning-and-task-breakdown.json",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 234,
+            "end_line": null,
+            "start_column": 102
+          },
+          "match_fingerprint": "8dc77d3dce9ba1f2672e813265a1b1a0c8594866ef38a4e978bf4f4451795465",
+          "disposition": "false_positive_contextual",
+          "reason": "Both matches are listed as red flags: overwriting unfinished plans without asking and omitting verification. The matched wording is a boundary or warning, not permission to bypass checks."
+        },
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 237,
+            "end_line": null,
+            "start_column": 2
+          },
+          "match_fingerprint": "6464a18f86607fbd4940d3be07cb4323b3073961c7e40f6d99254fbd009fae68",
+          "disposition": "false_positive_contextual",
+          "reason": "Both matches are listed as red flags: overwriting unfinished plans without asking and omitting verification. The matched wording is a boundary or warning, not permission to bypass checks."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/security-and-hardening",
+      "package_sha256": "7b40f9e4123bb3dfa21b3eb0776c382e1cd8475c280cc6045c9bf54476371fb5",
+      "raw_report_sha256": "9966680e9bb78dbcfa603669186f7f9522f467c28e1875b33edaaad417eacad6",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0019-security-and-hardening.json",
+      "raw_exit_code": 1,
+      "finding_count": 21,
+      "coverage_percent": 80.0,
+      "is_complete": false,
+      "issues": [
+        {
+          "rule": "YR4",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 21,
+            "end_line": null
+          },
+          "match_fingerprint": "d4917bc32ab1bbcd613110cc8a6d50fce418e23d2561b1b0948af4f78abccc4c",
+          "disposition": "false_positive_contextual",
+          "reason": "YARA combines the Threat Model heading with the later instruction Never disable security headers. The actual sentence forbids weakening security; the match is not an instruction to disable it."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 77,
+            "end_line": null
+          },
+          "match_fingerprint": "172d45ef9ce62b97b074eee35f98e6a518042361c00939482d45e2dcf8ade85b",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 85,
+            "end_line": null
+          },
+          "match_fingerprint": "172d45ef9ce62b97b074eee35f98e6a518042361c00939482d45e2dcf8ade85b",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 92,
+            "end_line": null
+          },
+          "match_fingerprint": "172d45ef9ce62b97b074eee35f98e6a518042361c00939482d45e2dcf8ade85b",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 100,
+            "end_line": null
+          },
+          "match_fingerprint": "172d45ef9ce62b97b074eee35f98e6a518042361c00939482d45e2dcf8ade85b",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 107,
+            "end_line": null
+          },
+          "match_fingerprint": "172d45ef9ce62b97b074eee35f98e6a518042361c00939482d45e2dcf8ade85b",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 113,
+            "end_line": null
+          },
+          "match_fingerprint": "172d45ef9ce62b97b074eee35f98e6a518042361c00939482d45e2dcf8ade85b",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 119,
+            "end_line": null
+          },
+          "match_fingerprint": "172d45ef9ce62b97b074eee35f98e6a518042361c00939482d45e2dcf8ade85b",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 125,
+            "end_line": null
+          },
+          "match_fingerprint": "172d45ef9ce62b97b074eee35f98e6a518042361c00939482d45e2dcf8ade85b",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 131,
+            "end_line": null
+          },
+          "match_fingerprint": "172d45ef9ce62b97b074eee35f98e6a518042361c00939482d45e2dcf8ade85b",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 140,
+            "end_line": null
+          },
+          "match_fingerprint": "172d45ef9ce62b97b074eee35f98e6a518042361c00939482d45e2dcf8ade85b",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 152,
+            "end_line": null
+          },
+          "match_fingerprint": "172d45ef9ce62b97b074eee35f98e6a518042361c00939482d45e2dcf8ade85b",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 162,
+            "end_line": null
+          },
+          "match_fingerprint": "172d45ef9ce62b97b074eee35f98e6a518042361c00939482d45e2dcf8ade85b",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "MP3",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 129,
+            "end_line": null,
+            "start_column": 265
+          },
+          "match_fingerprint": "a4ad140049198e9c3ff8b46c4dc536f942f987bcbd40322c46fb03fd4c260ed9",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "Rotation after a leaked secret is incident-response guidance. History purging is a destructive shared-state operation and cannot be executed from this example without explicit task-specific permission and a recovery plan."
+        },
+        {
+          "rule": "SSRF1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/hardening-patterns.md",
+            "start_line": 155,
+            "end_line": null,
+            "start_column": 63
+          },
+          "match_fingerprint": "d61ab72824eae3143803cfed4f723d8454fedefdac1d6ad5c7f4299f9032a6ee",
+          "disposition": "false_positive_contextual",
+          "reason": "The metadata IP is named as a forbidden destination in SSRF-prevention guidance. The example rejects private/reserved addresses and documents DNS-rebinding limitations; it is not a request to fetch metadata."
+        },
+        {
+          "rule": "PE3",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/hardening-patterns.md",
+            "start_line": 281,
+            "end_line": null,
+            "start_column": 0
+          },
+          "match_fingerprint": "66ef81c27c03406fd9935e5fc86fc4126d7150c15b8d076fdc528d05cea7c7bf",
+          "disposition": "false_positive_contextual",
+          "reason": "The surrounding policy says real .env files are not committed and only placeholder examples belong in Git. The match is defensive secret-handling guidance, not credential collection."
+        },
+        {
+          "rule": "PE3",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/hardening-patterns.md",
+            "start_line": 283,
+            "end_line": null,
+            "start_column": 6
+          },
+          "match_fingerprint": "66ef81c27c03406fd9935e5fc86fc4126d7150c15b8d076fdc528d05cea7c7bf",
+          "disposition": "false_positive_contextual",
+          "reason": "The surrounding policy says real .env files are not committed and only placeholder examples belong in Git. The match is defensive secret-handling guidance, not credential collection."
+        },
+        {
+          "rule": "PE3",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/hardening-patterns.md",
+            "start_line": 287,
+            "end_line": null,
+            "start_column": 2
+          },
+          "match_fingerprint": "66ef81c27c03406fd9935e5fc86fc4126d7150c15b8d076fdc528d05cea7c7bf",
+          "disposition": "false_positive_contextual",
+          "reason": "The surrounding policy says real .env files are not committed and only placeholder examples belong in Git. The match is defensive secret-handling guidance, not credential collection."
+        },
+        {
+          "rule": "PE3",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/hardening-patterns.md",
+            "start_line": 284,
+            "end_line": null,
+            "start_column": 6
+          },
+          "match_fingerprint": "021f7ffa4122cf8ed26ecae08a0a46ff9aa27fee40f717ab4c3bff5f82c6550e",
+          "disposition": "false_positive_contextual",
+          "reason": "The surrounding policy says real .env files are not committed and only placeholder examples belong in Git. The match is defensive secret-handling guidance, not credential collection."
+        },
+        {
+          "rule": "PE3",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/hardening-patterns.md",
+            "start_line": 288,
+            "end_line": null,
+            "start_column": 2
+          },
+          "match_fingerprint": "021f7ffa4122cf8ed26ecae08a0a46ff9aa27fee40f717ab4c3bff5f82c6550e",
+          "disposition": "false_positive_contextual",
+          "reason": "The surrounding policy says real .env files are not committed and only placeholder examples belong in Git. The match is defensive secret-handling guidance, not credential collection."
+        },
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 198,
+            "end_line": null,
+            "start_column": 44
+          },
+          "match_fingerprint": "4b9d13ac603b6b3b7223dbea83ec4db8a7d9cd4c5f75cb33027bd83f42ec46e4",
+          "disposition": "false_positive_contextual",
+          "reason": "The no-consent phrase is a red flag forbidding inappropriate personal-data sharing. The matched wording is a boundary or warning, not permission to bypass checks."
+        }
+      ],
+      "coverage_exceptions": [
+        {
+          "outcome": "partial",
+          "phase": "static",
+          "reason_code": "static_parse_limit",
+          "message": "A security-relevant expression exceeded a bounded static parser's span limit.",
+          "path": "references/hardening-patterns.md",
+          "start_line": null,
+          "end_line": null,
+          "fatal": false,
+          "analyzers": [
+            "static_patterns_tool_misuse"
+          ]
+        }
+      ],
+      "manual_coverage_review": {
+        "affected_files": [
+          {
+            "path": "references/hardening-patterns.md",
+            "sha256": "dd2b09555c93fade979f1ca94e7b72ea6beed06c2054e40abc48e4b831bb98d3",
+            "review_scope": "Full affected-file contextual source review; does not change scanner completeness."
+          }
+        ],
+        "context": "Full hardening-patterns.md review found paired BAD/GOOD defensive examples, validation, bounded-path deletion protections, secret handling, and explicit SSRF DNS-rebinding caveats. These templates require application-specific review; history purging remains a separate authorized operation."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/shipping-and-launch",
+      "package_sha256": "a172d97d4e1dbe305ebfff4869c910e3c94f6baed40b4ae13361086f7c52f157",
+      "raw_report_sha256": "7f8975fb94c0d6bfd4da93d57defd4ab7eff5e7f2ce83a0500fd62ef45aa331d",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0020-shipping-and-launch.json",
+      "raw_exit_code": 1,
+      "finding_count": 7,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "AR2",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 25,
+            "end_line": 25,
+            "start_column": 26,
+            "end_column": 37
+          },
+          "match_fingerprint": "6c8054857f33a9ba7845d7c88384ccfa0cdb75d2cd98c594df12b25a3c301d9c",
+          "disposition": "false_positive_contextual",
+          "reason": "Build succeeds with no warnings is a build-quality acceptance condition. It does not suppress security warnings or change refusal behavior."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/accessibility-checklist.md",
+            "start_line": 128,
+            "end_line": null
+          },
+          "match_fingerprint": "6061fc4f19343992fd531c91ec3daa4be9fb139873d23faef000ddcb39f4e8aa",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 195,
+            "end_line": null
+          },
+          "match_fingerprint": "790d3589e42899a40f608928ce1ffbb0a528ea1815d5c799ae10167492e360eb",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 198,
+            "end_line": null
+          },
+          "match_fingerprint": "290da01851b8aa404af0c8651ee555ff3c36dfc51063fb7c3b4e5cc301224699",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 200,
+            "end_line": null
+          },
+          "match_fingerprint": "3c1e5cf2bba47da8678d79d70769826541b28ebdc8c6ff6616da76567dd383ea",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 203,
+            "end_line": null
+          },
+          "match_fingerprint": "799d229d4be80a664b62b0192c372c813571bf3ce2d47af705f99aae36917fc9",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "EA4",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/shared/performance-checklist.md",
+            "start_line": 227,
+            "end_line": null,
+            "start_column": 2
+          },
+          "match_fingerprint": "ceabe70399d5504acc60db41ae16109cf88f6a48499424de17675cd75dfb845f",
+          "disposition": "false_positive_contextual",
+          "reason": "Unbounded queries appears in an anti-pattern table whose fix is Always paginate, add LIMIT. The example prohibits unbounded execution."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/source-driven-development",
+      "package_sha256": "191dc005ac039c5b34ad51590c58ab76de08e172b994e4d9976111490fbfb9b9",
+      "raw_report_sha256": "da067fc73db793fb7edf3b7361b226b1842dbbf04892838be76b6a2d8cb19b1f",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0021-source-driven-development.json",
+      "raw_exit_code": 1,
+      "finding_count": 3,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "YR4",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 101,
+            "end_line": null
+          },
+          "match_fingerprint": "ea5a25d6b62cc8dc6f0b13c124dda7e61e83c99d4d419254f02e84010e674353",
+          "disposition": "false_positive_contextual",
+          "reason": "The matched prompt-injection wording is a quoted example explicitly identified as untrusted browser/document content to ignore. It does not override host or user instructions."
+        },
+        {
+          "rule": "P1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 110,
+            "end_line": 110,
+            "start_column": 96,
+            "end_column": 124
+          },
+          "match_fingerprint": "7f4628556472f313b15747f5a17dac99756fa4970aae5e69c5fea3ff34828f0a",
+          "disposition": "false_positive_contextual",
+          "reason": "The matched prompt-injection wording is a quoted example explicitly identified as untrusted browser/document content to ignore. It does not override host or user instructions."
+        },
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 195,
+            "end_line": null,
+            "start_column": 34
+          },
+          "match_fingerprint": "9341b6f34d6af9081a0d6673f4217b7307d273da9f43357efd9029e15c5da76c",
+          "disposition": "false_positive_contextual",
+          "reason": "The phrase appears in a red flag against implementing framework code without checking version-specific documentation. The matched wording is a boundary or warning, not permission to bypass checks."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/spec-driven-development",
+      "package_sha256": "4cd51e2a109df70b4a2a449b2c9ec36908ff7ae7313c1824575f1c092a3c7f12",
+      "raw_report_sha256": "37ef87eb2c452b40b5059c91c7f2436c645688ebf722729888c969ded46c26ef",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0022-spec-driven-development.json",
+      "raw_exit_code": 1,
+      "finding_count": 4,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 113,
+            "end_line": null,
+            "start_column": 81
+          },
+          "match_fingerprint": "7868080a35a6878aa292c53196ddb331f19d628c33953fb70850fdaf54c4191c",
+          "disposition": "false_positive_contextual",
+          "reason": "The phrase appears under Never do and forbids removing failing tests without approval. The matched wording is a boundary or warning, not permission to bypass checks."
+        },
+        {
+          "rule": "AS3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 214,
+            "end_line": null,
+            "start_column": 39
+          },
+          "match_fingerprint": "849e3f11d3a120acd790c460c01f2f8e2a3ff433e56e536ae6ef3e74e35464e1",
+          "disposition": "false_positive_contextual",
+          "reason": "These are explicit peer-skill workflow references, including the locally namespaced Addy TDD skill. They do not grant hidden authority or override the active controller. Only select approved peer packages; package-isolated scanning reports these cross-package paths as missing."
+        },
+        {
+          "rule": "AS3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 214,
+            "end_line": null,
+            "start_column": 119
+          },
+          "match_fingerprint": "58abeb3df2562150f62ab87f318944527836cb594d91c6dfa4abdd00b0a47c62",
+          "disposition": "false_positive_contextual",
+          "reason": "These are explicit peer-skill workflow references, including the locally namespaced Addy TDD skill. They do not grant hidden authority or override the active controller. Only select approved peer packages; package-isolated scanning reports these cross-package paths as missing."
+        },
+        {
+          "rule": "AS3",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 214,
+            "end_line": null,
+            "start_column": 204
+          },
+          "match_fingerprint": "3956e312a09c45937f1b74d1433180e3f493c8beba515f298a83cb01fad9270d",
+          "disposition": "false_positive_contextual",
+          "reason": "These are explicit peer-skill workflow references, including the locally namespaced Addy TDD skill. They do not grant hidden authority or override the active controller. Only select approved peer packages; package-isolated scanning reports these cross-package paths as missing."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/addy-test-driven-development",
+      "package_sha256": "3a69df1c5fca4b3ef721d6ebc0dfbbd719dcb29a670f17cbdd7a1be65efe25fd",
+      "raw_report_sha256": "848385638d6705319a51135d1d2cfdf67682bbf888d2e740b0f000984fe05b73",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0023-addy-test-driven-development.json",
+      "raw_exit_code": 1,
+      "finding_count": 1,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 378,
+            "end_line": null,
+            "start_column": 51
+          },
+          "match_fingerprint": "9341b6f34d6af9081a0d6673f4217b7307d273da9f43357efd9029e15c5da76c",
+          "disposition": "false_positive_contextual",
+          "reason": "The phrase is a red flag against selecting a default test command without checking the repository tooling. The matched wording is a boundary or warning, not permission to bypass checks."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/using-agent-skills",
+      "package_sha256": "68fc10b0f1fbf5a29bee08ac14005c13d9221a579e98fa9b81ca309e41245833",
+      "raw_report_sha256": "59cd0daefbd287ccf8c8eacc88dbcb7acd8b42bd977e7b8a7b806bf33367c8dc",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0024-using-agent-skills.json",
+      "raw_exit_code": 1,
+      "finding_count": 2,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 120,
+            "end_line": null,
+            "start_column": 28
+          },
+          "match_fingerprint": "9341b6f34d6af9081a0d6673f4217b7307d273da9f43357efd9029e15c5da76c",
+          "disposition": "false_positive_contextual",
+          "reason": "The matches flag unchecked assumptions and explicitly say not to skip verification. The matched wording is a boundary or warning, not permission to bypass checks."
+        },
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 135,
+            "end_line": null,
+            "start_column": 79
+          },
+          "match_fingerprint": "8db53b29ee2a947f415f92059d24849bcd6dd8e0dd6b2e1cd45dc449b8f679e4",
+          "disposition": "false_positive_contextual",
+          "reason": "The matches flag unchecked assumptions and explicitly say not to skip verification. The matched wording is a boundary or warning, not permission to bypass checks."
+        }
+      ],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/engineering/hermes-agent",
+      "package_sha256": "3d02ce2e1f72f3645236d4f60f7b953962a3e2269a8de6174b8e6c5db514ac7f",
+      "raw_report_sha256": "abbe2719898ffab351a5632a4b4c63837bea043f4f9e9f8c8a85ee79d3ec4379",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0025-hermes-agent.json",
+      "raw_exit_code": 1,
+      "finding_count": 15,
+      "coverage_percent": 91.7,
+      "is_complete": false,
+      "issues": [
+        {
+          "rule": "TM2",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 49,
+            "end_line": null,
+            "start_column": 60
+          },
+          "match_fingerprint": "04c6c3d162d775e86218721a59c0fde586c2bacf502ea9bb612977f2736a0c66",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "The quick-start example pipes a mutable remote installer into a shell. This is a real execution/acquisition risk, preserved as upstream reference only. Import does not authorize fetching/executing it; runtime setup must separately inspect and pin the installer and dependencies."
+        },
+        {
+          "rule": "PE3",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 72,
+            "end_line": null,
+            "start_column": 10
+          },
+          "match_fingerprint": "66ef81c27c03406fd9935e5fc86fc4126d7150c15b8d076fdc528d05cea7c7bf",
+          "disposition": "false_positive_contextual",
+          "reason": "This is a documented secret-storage path or reload command, not a request to reveal credentials. Hermes runtime configuration and reloads require a separate authorized task; no secret values are bundled."
+        },
+        {
+          "rule": "PE3",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/slash-commands.md",
+            "start_line": 72,
+            "end_line": null,
+            "start_column": 32
+          },
+          "match_fingerprint": "66ef81c27c03406fd9935e5fc86fc4126d7150c15b8d076fdc528d05cea7c7bf",
+          "disposition": "false_positive_contextual",
+          "reason": "This is a documented secret-storage path or reload command, not a request to reveal credentials. Hermes runtime configuration and reloads require a separate authorized task; no secret values are bundled."
+        },
+        {
+          "rule": "AE1",
+          "severity": "HIGH",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 103,
+            "end_line": null
+          },
+          "match_fingerprint": "2e9df543fbd68dba92ea46f3e046b2822dfab4744d1deee16b926421aaaf2c3d",
+          "disposition": "incomplete_static_coverage",
+          "reason": "The referenced file is present but the shell-pattern parser reports partial analysis. Manual review of the affected file supplements source-staging review only; the raw partial coverage and HIGH finding remain unchanged."
+        },
+        {
+          "rule": "MP3",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/cli-reference.md",
+            "start_line": 127,
+            "end_line": null,
+            "start_column": 31
+          },
+          "match_fingerprint": "e66ea9b7b86f1e446b9463e3549aa4091faa316ad81900af8468941e913b031e",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "The text is a CLI index listing memory setup/status/off/reset verbs, not an instruction to clear memory. Reset/off operations require a separate explicit task and preservation of existing state."
+        },
+        {
+          "rule": "TM1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/security-privacy.md",
+            "start_line": 31,
+            "end_line": null,
+            "start_column": 127
+          },
+          "match_fingerprint": "f21f5124192a6ca491d13034d2b1dcaae69642decbd659201773b11a2bc5c2a5",
+          "disposition": "false_positive_contextual",
+          "reason": "Destructive commands are examples of operations Hermes approval prompts assess. This paragraph describes guarding those commands rather than instructing their execution."
+        },
+        {
+          "rule": "TM1",
+          "severity": "HIGH",
+          "location": {
+            "file": "references/security-privacy.md",
+            "start_line": 55,
+            "end_line": null,
+            "start_column": 42
+          },
+          "match_fingerprint": "1bdb9caf133b3f235f982496412c48ff88f6130ce2d079d09c931c2e37811525",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "The file deletion is a narrow documented reset of accumulated shell-hook consent when requested. It still changes persistent authorization state and must not run during import or without explicit task-specific permission."
+        },
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/delegate-task-concurrency-diagnosis.md",
+            "start_line": 91,
+            "end_line": null,
+            "start_column": 14
+          },
+          "match_fingerprint": "1f8306a1f689daa9d37f09e0658fd911f36799e1ee4420f71473ea93136cb717",
+          "disposition": "false_positive_contextual",
+          "reason": "The sentence explains that subagent_auto_approve: false does not control concurrency and distinguishes approval bypass from scheduling. It is not a directive to enable bypass."
+        },
+        {
+          "rule": "RP1",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/native-mcp.md",
+            "start_line": 208,
+            "end_line": null
+          },
+          "match_fingerprint": "383bad777e8ef61fcf5c9724ddf24199845db5b029473f4fb9848923328dd75f",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "This is an unpinned package/tool acquisition or npx example. Keep it as reference; use the target project lockfile and approved existing tools. It grants no download, installer, network, deployment, or global configuration authority."
+        },
+        {
+          "rule": "EA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/security-privacy.md",
+            "start_line": 33,
+            "end_line": null,
+            "start_column": 12
+          },
+          "match_fingerprint": "d136f35fbcfa4c6db41b45ba9d17d36e2634ea52685668d0ec094a066e0ff6b8",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "The reference describes approval modes including bypass modes. These are runtime-sensitive controls, not permitted defaults; importing the source does not authorize disabling approval prompts or redaction."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/slash-commands.md",
+            "start_line": 30,
+            "end_line": null,
+            "start_column": 36
+          },
+          "match_fingerprint": "df25d1627f06e5b2d069d185ecbd9aa0f1909533f78bd5b919b6000e41f0bc74",
+          "disposition": "false_positive_contextual",
+          "reason": "This is the documented user-invoked session browser/resume command. It does not direct covert persistence or unauthorized session inspection."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/themes.md",
+            "start_line": 20,
+            "end_line": null,
+            "start_column": 2
+          },
+          "match_fingerprint": "8841e3943fae46cc96643d82635f42af724b0960123d89d840ab8cc74a496f11",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "The theme/widget instructions write to the active Hermes home and can load code/configuration. Source staging does not perform those writes; profile selection, review of the code, and task-specific authorization precede any activation."
+        },
+        {
+          "rule": "PE2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/troubleshooting.md",
+            "start_line": 63,
+            "end_line": null,
+            "start_column": 50
+          },
+          "match_fingerprint": "16746f7044f347c6322d4c5b879b3fb06b2f205cbf1c9a209b43d52b34b3afd7",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "The troubleshooting example changes login lingering with sudo and discusses service management. These privileged persistent changes require separate authorization and are not run by library staging."
+        },
+        {
+          "rule": "RA2",
+          "severity": "MEDIUM",
+          "location": {
+            "file": "references/tui-widgets.md",
+            "start_line": 25,
+            "end_line": null,
+            "start_column": 23
+          },
+          "match_fingerprint": "cecaa6fd17442a2ae3ebe21f68d8d56d7913e9e290ca430420de354675acc858",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "The theme/widget instructions write to the active Hermes home and can load code/configuration. Source staging does not perform those writes; profile selection, review of the code, and task-specific authorization precede any activation."
+        },
+        {
+          "rule": "SC2",
+          "severity": "LOW",
+          "location": {
+            "file": "SKILL.md",
+            "start_line": 39,
+            "end_line": null,
+            "start_column": 354
+          },
+          "match_fingerprint": "eb0140d3a216c7fd07924bf8dae6c2c23053ca75f3444fbbaf74508d97352fc9",
+          "disposition": "runtime_sensitive_reference",
+          "reason": "The curl example fetches public official documentation rather than executing it. Network content remains untrusted data, and a later live-doc lookup is distinct from this offline import review."
+        }
+      ],
+      "coverage_exceptions": [
+        {
+          "outcome": "partial",
+          "phase": "static",
+          "reason_code": "static_parse_limit",
+          "message": "A security-relevant expression exceeded a bounded static parser's span limit.",
+          "path": "SKILL.md",
+          "start_line": null,
+          "end_line": null,
+          "fatal": false,
+          "analyzers": [
+            "static_patterns_tool_misuse"
+          ]
+        },
+        {
+          "outcome": "partial",
+          "phase": "static",
+          "reason_code": "static_parse_limit",
+          "message": "A security-relevant expression exceeded a bounded static parser's span limit.",
+          "path": "templates/plugin.js",
+          "start_line": null,
+          "end_line": null,
+          "fatal": false,
+          "analyzers": [
+            "static_patterns_tool_misuse"
+          ]
+        }
+      ],
+      "manual_coverage_review": {
+        "affected_files": [
+          {
+            "path": "SKILL.md",
+            "sha256": "dcdc4b2d232ad415c76e09cc229a2c861f3e1225fd1f1262b33a965ea4732b24",
+            "review_scope": "Full affected-file contextual source review; does not change scanner completeness."
+          },
+          {
+            "path": "templates/plugin.js",
+            "sha256": "a63c8f879756854b45373f5d6b1ae0a7fefcdd4a5af840be8a60d83b64724744",
+            "review_scope": "Full affected-file contextual source review; does not change scanner completeness."
+          }
+        ],
+        "context": "Full review of partial SKILL.md and plugin.js found the documented runtime installer, process-spawning/configuration examples, and a UI template using the Hermes plugin SDK. No source action was executed. Runtime installation, background agents, configuration, services, and disabling approval/redaction remain separately gated."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    },
+    {
+      "path": "skills/research/bounded-agent-research",
+      "package_sha256": "22d79df79f5cd9f5ae7cc1344d67491f2aea6259b79a7ec8e2dd2d026c07fc87",
+      "raw_report_sha256": "bf8c2816cfb43aa57621b0f8af28b50dce8c1c60f1d1928476e737571ac0534f",
+      "raw_report": "/tmp/skillspector-team-imports-20261029/0026-bounded-agent-research.json",
+      "raw_exit_code": 0,
+      "finding_count": 0,
+      "coverage_percent": 100.0,
+      "is_complete": true,
+      "issues": [],
+      "coverage_exceptions": [],
+      "manual_coverage_review": {
+        "affected_files": [],
+        "context": "No incomplete enabled-static coverage in the selected report."
+      },
+      "staging_disposition": "Reviewed source staging permitted as a trial; raw scanner gate remains unchanged. No runtime activation or policy change granted."
+    }
+  ],
+  "finding_counts_after_recovery_adaptation": {
+    "HIGH": 40,
+    "MEDIUM": 50,
+    "LOW": 2
+  },
+  "limitations": [
+    "Raw failures and incomplete coverage remain failures/incomplete; these dispositions are human contextual source-staging review, not a scanner suppression or semantic safety certification.",
+    "A future runtime setup must verify installer/dependency pins, access scope, network/secret handling, target profile, and explicit authority for persistent or destructive operations.",
+    "Only one workflow controller; using-agent-skills is optional and browser MCP/Hermes runtime workflows are excluded from Parallon.",
+    "Package-isolated missing references are destination project examples, application runtime paths, or named peer skills; they do not grant filesystem/credential access."
+  ],
+  "supplemental_manual_findings": [
+    {
+      "package": "skills/engineering/constraint-driven-development",
+      "finding": "Floor guard printed changed source excerpts despite a no-secret-value contract.",
+      "resolution": "Store and print only rule names and paths; no source excerpts. Updated provenance; static rescan completed with unchanged partial coverage.",
+      "verification": [
+        {
+          "case": "source-redaction",
+          "expected_exit": 1,
+          "actual_exit": 1,
+          "synthetic_value_absent": true
+        },
+        {
+          "case": "clean",
+          "expected_exit": 0,
+          "actual_exit": 0,
+          "synthetic_value_absent": true
+        },
+        {
+          "case": "base-unavailable",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "synthetic_value_absent": true
+        }
+      ]
+    },
+    {
+      "package": "skills/engineering/code-review-and-quality",
+      "finding": "Mutation testing instructions did not constrain source edits to an authorized disposable checkout.",
+      "resolution": "Explicit authorization and isolated disposable checkout required; read-only/shared reviews never mutated. Updated provenance and rescanned; raw incomplete diagnostic retained."
+    }
+  ],
+  "reference_only_required_from_this_review": []
+}

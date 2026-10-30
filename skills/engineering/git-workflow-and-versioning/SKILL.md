@@ -177,16 +177,16 @@ Agent starts work
     │
     ├── Makes a change
     │   ├── Test passes? → Commit → Continue
-    │   └── Test fails? → Revert to last commit → Investigate
+    │   └── Test fails? → Preserve changes → Inspect diff → Investigate
     │
     ├── Makes another change
     │   ├── Test passes? → Commit → Continue
-    │   └── Test fails? → Revert to last commit → Investigate
+    │   └── Test fails? → Preserve changes → Inspect diff → Investigate
     │
     └── Feature complete → All commits form a clean history
 ```
 
-This pattern means you never lose more than one increment of work. If an agent goes off the rails, `git reset --hard HEAD` takes you back to the last successful state.
+Commits provide useful comparison points, but uncommitted work still needs protection. If an agent goes off the rails, stop and inspect the current status and diff. Preserve all current changes in a recoverable snapshot or backup, including unrelated work, before recovery. Prefer a reversible corrective patch or a new revert commit when appropriate. Obtain explicit, task-specific user permission before any operation that discards changes or rewrites history; a failed test or an earlier approval does not grant that permission.
 
 ## Change Summaries
 

@@ -161,7 +161,7 @@ Tests reveal intent and coverage:
 - Would the tests catch a regression if the code changed?
 ```
 
-Answer the last question by experiment, not by reading. Invert one condition the change adds (drop a negation, swap `&&` for `||`), run the suite, then restore the file from a copy. A mutation that stays green is a finding: name the test case that is missing. For a project-wide mutation score, see `constraint-driven-development`.
+When mutation testing is explicitly authorized, perform it only in an isolated disposable checkout that preserves the reviewed tree and all existing work. Invert one condition the change adds (drop a negation, swap `&&` for `||`) in that checkout and run the suite. Never mutate or restore files in a read-only review or a shared working tree. If an authorized isolated test is unavailable, explain the coverage concern and mark the mutation experiment as not run. A mutation that stays green is a finding: name the test case that is missing. For a project-wide mutation score, see `constraint-driven-development`.
 
 ### Step 3: Review the Implementation
 

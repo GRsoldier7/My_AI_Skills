@@ -11,3 +11,7 @@ License: MIT; see `LICENSE` in the package root.
 Runtime and host support: Instruction package; use existing approved project tools when the selected workflow requires them.
 
 Importing these instructions does not install tools, enable hooks, register MCP servers, grant access, or activate a service. Source examples remain subordinate to the current task and host policy.
+
+## Review mutation boundary — 2026-10-29
+
+At the pinned upstream revision above, Step 2 prescribes mutating source during review and restoring it from a copy. The local adaptation permits the experiment only when explicitly authorized in an isolated disposable checkout; read-only reviews and shared working trees remain untouched. Otherwise the reviewer reports the coverage concern and labels mutation testing not run. This is a local safety boundary, not a claim that upstream code is malicious.
