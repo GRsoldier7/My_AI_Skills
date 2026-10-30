@@ -120,3 +120,5 @@ One HTML frontend can use live data, but authenticated services may need a hoste
 Acceptance: every requested source has a correct content type, canonical location, domain mapping, platform compatibility and verification status.
 
 Planning baseline: local/remote feature HEAD 41c8e88dd87f95c82aac9c4638fe2eb86d9d7fad; 25 existing profiles validated; 46 pre-existing untracked entries preserved. New runtime and account integrations were not executed during planning. Implementation status and verification belong in the current HANDOFF and implementation report.
+
+Implementation evidence: [Library Expansion Implementation and Sync](<20261029 - My AI Skills - Library Expansion Implementation and Sync.md>).

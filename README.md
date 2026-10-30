@@ -13,7 +13,8 @@
 Start with the [Library Catalog](<docs/20261029 - My AI Skills - Library Catalog.md>)
 and [Platform Delivery Guide](<docs/20261029 - My AI Skills - Platform Delivery Guide.md>).
 The [Expansion Plan](<docs/20261029 - My AI Skills - Library Organization and Expansion Plan.md>)
-records the approved scope. Build selected ChatGPT, Copilot, Codex or Hermes ZIPs
+records the approved scope; the [implementation report](<docs/20261029 - My AI Skills - Library Expansion Implementation and Sync.md>)
+records verified results and remaining runtime limits. Build selected ChatGPT, Copilot, Codex or Hermes ZIPs
 with `scripts/library-delivery.py`; bundles are staged for review, not activated.
 
 Select [domain profiles](platform-configs/skill-sets/README.md) without duplicating

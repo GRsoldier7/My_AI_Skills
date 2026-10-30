@@ -1,0 +1,1201 @@
+{
+  "schema_version": 1,
+  "verified_source_revision": "53c6fc4eff49084bd73117214e56fe71e4c0bd14",
+  "source_tree": "154255b5b157acfed2b6a50a3e89d5105318776d",
+  "canonical_skills": 305,
+  "curated_skills": 149,
+  "profiles": 47,
+  "bundle_definitions": 37,
+  "exports_verified": 124,
+  "tests": {
+    "delivery": 24,
+    "profiles": 35,
+    "installer_clean_checkout": 98,
+    "router": 9,
+    "scanner_gate": 9
+  },
+  "scan": {
+    "packages": 108,
+    "findings": 465,
+    "incomplete": 23,
+    "hash_mismatches": [],
+    "severity": {
+      "HIGH": 156,
+      "MEDIUM": 302,
+      "LOW": 7
+    }
+  },
+  "native_activation": false,
+  "exports": [
+    {
+      "profile": "shared-writing",
+      "platform": "chatgpt",
+      "skills": 1,
+      "files": 9,
+      "archive_sha256": "fab1444f9b95c14c5709e3cec327ae0b3d81d91d8b540408377cb8228ad0450a",
+      "archive": "shared-writing-chatgpt.zip"
+    },
+    {
+      "profile": "shared-writing",
+      "platform": "copilot",
+      "skills": 1,
+      "files": 8,
+      "archive_sha256": "bf9d128bb78a5f10eb32c61c719c10efd4b335a1d63428d430da081a83ffefea",
+      "archive": "shared-writing-copilot.zip"
+    },
+    {
+      "profile": "shared-writing",
+      "platform": "codex",
+      "skills": 1,
+      "files": 8,
+      "archive_sha256": "a802203e194a0d321292a04729e766a45508e4d9692136fd6fd4fec571b11c1f",
+      "archive": "shared-writing-codex.zip"
+    },
+    {
+      "profile": "shared-writing",
+      "platform": "hermes",
+      "skills": 1,
+      "files": 8,
+      "archive_sha256": "ee1fdb84a043e2dc40aeb4641a8c154ca26820a575c1052a0349b2233b572b1c",
+      "archive": "shared-writing-hermes.zip"
+    },
+    {
+      "profile": "design-general",
+      "platform": "chatgpt",
+      "skills": 1,
+      "files": 6,
+      "archive_sha256": "8c1f7b4632f62f6602a27559deb3f1c19d5db1eb3a7e0e06b5b08a1ff7cdf20b",
+      "archive": "design-general-chatgpt.zip"
+    },
+    {
+      "profile": "design-general",
+      "platform": "copilot",
+      "skills": 1,
+      "files": 73,
+      "archive_sha256": "030f083ebc45ed9b4709674694dc244b87e7d5f8e860831261d90131d28a7646",
+      "archive": "design-general-copilot.zip"
+    },
+    {
+      "profile": "design-general",
+      "platform": "codex",
+      "skills": 1,
+      "files": 69,
+      "archive_sha256": "5483a8f9a98be95ca0b2fadf7d85b27aef3858ba06ac2bcc217baaef57bc833d",
+      "archive": "design-general-codex.zip"
+    },
+    {
+      "profile": "design-general",
+      "platform": "hermes",
+      "skills": 1,
+      "files": 64,
+      "archive_sha256": "c203aa069917e0da4de1d775ea83b140398296da82f85bca1e1d7bbfd3c77579",
+      "archive": "design-general-hermes.zip"
+    },
+    {
+      "profile": "design-product-ui",
+      "platform": "chatgpt",
+      "skills": 2,
+      "files": 18,
+      "archive_sha256": "404f7b709df9424e02f16ff3505d361d50a7a3622b1004eae97f155abb24b8ff",
+      "archive": "design-product-ui-chatgpt.zip"
+    },
+    {
+      "profile": "design-product-ui",
+      "platform": "copilot",
+      "skills": 2,
+      "files": 91,
+      "archive_sha256": "53736e1d0211d1387fc111b71496ce04838d35e5fd7d1c66f537eca13d4fcd79",
+      "archive": "design-product-ui-copilot.zip"
+    },
+    {
+      "profile": "design-product-ui",
+      "platform": "codex",
+      "skills": 2,
+      "files": 91,
+      "archive_sha256": "3688acf53d016a49dc7772dc64989b65f4381b0d14d43f8b4d9f64f2d9e677b4",
+      "archive": "design-product-ui-codex.zip"
+    },
+    {
+      "profile": "design-product-ui",
+      "platform": "hermes",
+      "skills": 2,
+      "files": 91,
+      "archive_sha256": "9a20d1f247eae170aa4ac6d39a0f170513568b0625d976249fbf15c2e8a75cf6",
+      "archive": "design-product-ui-hermes.zip"
+    },
+    {
+      "profile": "design-marketing",
+      "platform": "chatgpt",
+      "skills": 1,
+      "files": 5,
+      "archive_sha256": "57a3210755bf05381a72075555dbc9effa81fb2ec07d36bfbf669e5c5c05c73e",
+      "archive": "design-marketing-chatgpt.zip"
+    },
+    {
+      "profile": "design-marketing",
+      "platform": "copilot",
+      "skills": 1,
+      "files": 44,
+      "archive_sha256": "4c30e196fe539451ba82d61856d92eae250bf0373469eed9693119c77cc92e1a",
+      "archive": "design-marketing-copilot.zip"
+    },
+    {
+      "profile": "design-marketing",
+      "platform": "codex",
+      "skills": 1,
+      "files": 44,
+      "archive_sha256": "fd7ff0a1631125cab196b23d69461b2d7c5874137607eaecadc17ae70dd95638",
+      "archive": "design-marketing-codex.zip"
+    },
+    {
+      "profile": "design-marketing",
+      "platform": "hermes",
+      "skills": 1,
+      "files": 44,
+      "archive_sha256": "8551fc505a052baaf9fe3b76bfd9e85c2f3b8777c7f35977722fd94ec12399d5",
+      "archive": "design-marketing-hermes.zip"
+    },
+    {
+      "profile": "design-polish",
+      "platform": "chatgpt",
+      "skills": 3,
+      "files": 16,
+      "archive_sha256": "3f621a9d0b4db99eee3c9c399e6fee5af972468399a93e6925df5b0054a65dc6",
+      "archive": "design-polish-chatgpt.zip"
+    },
+    {
+      "profile": "design-polish",
+      "platform": "copilot",
+      "skills": 3,
+      "files": 15,
+      "archive_sha256": "615cbd7325841af1a24c9a4e970e9c045dea1c3fa9c3ec792ce06ff2a64b267e",
+      "archive": "design-polish-copilot.zip"
+    },
+    {
+      "profile": "design-polish",
+      "platform": "codex",
+      "skills": 3,
+      "files": 15,
+      "archive_sha256": "41846e380af59937ba86a579469ddbea920a26b925d13b5bf4ca8d8181603302",
+      "archive": "design-polish-codex.zip"
+    },
+    {
+      "profile": "design-polish",
+      "platform": "hermes",
+      "skills": 3,
+      "files": 15,
+      "archive_sha256": "77490c10d20b43d54a6e8bcb0eb4e5d91a9c0587b542822806e625e7c03eba05",
+      "archive": "design-polish-hermes.zip"
+    },
+    {
+      "profile": "emil-toolkit",
+      "platform": "chatgpt",
+      "skills": 16,
+      "files": 75,
+      "archive_sha256": "6be04c8e37a8ccfb3845705013945f123a24a884b0eb593d083c5549c66c4de7",
+      "archive": "emil-toolkit-chatgpt.zip"
+    },
+    {
+      "profile": "emil-toolkit",
+      "platform": "copilot",
+      "skills": 16,
+      "files": 74,
+      "archive_sha256": "83e91a208bb192e7051d0d8ca8bdfffe88f38b077cac121c34798977e00effe9",
+      "archive": "emil-toolkit-copilot.zip"
+    },
+    {
+      "profile": "emil-toolkit",
+      "platform": "codex",
+      "skills": 16,
+      "files": 74,
+      "archive_sha256": "62ef7f1d0ad834b85d74b9762929478048a341e390347b1f262fab169ac0a122",
+      "archive": "emil-toolkit-codex.zip"
+    },
+    {
+      "profile": "emil-toolkit",
+      "platform": "hermes",
+      "skills": 16,
+      "files": 74,
+      "archive_sha256": "4d4acfa29a95181e07b05a4a37fe503f5a405f51c36239c9506e48c544faddd2",
+      "archive": "emil-toolkit-hermes.zip"
+    },
+    {
+      "profile": "html-artifacts",
+      "platform": "chatgpt",
+      "skills": 3,
+      "files": 24,
+      "archive_sha256": "efd43abbf2cd1db9abb4b36570179bfe3cceb9a1b63903493b3940f6ccdd76e9",
+      "archive": "html-artifacts-chatgpt.zip"
+    },
+    {
+      "profile": "html-artifacts",
+      "platform": "copilot",
+      "skills": 3,
+      "files": 37,
+      "archive_sha256": "fc6762b256cac6e43357420372f9f3dd4807ea8fb37aeb3e53b7436387bdf2c0",
+      "archive": "html-artifacts-copilot.zip"
+    },
+    {
+      "profile": "html-artifacts",
+      "platform": "codex",
+      "skills": 3,
+      "files": 37,
+      "archive_sha256": "dd214ea30d3d226796417c64940657eeb513810b86dc607cb3811894a59856ac",
+      "archive": "html-artifacts-codex.zip"
+    },
+    {
+      "profile": "html-artifacts",
+      "platform": "hermes",
+      "skills": 3,
+      "files": 37,
+      "archive_sha256": "49c295d741757434aee7a537de5a362203070d7f493b1cc29a3d968ff0eed3ba",
+      "archive": "html-artifacts-hermes.zip"
+    },
+    {
+      "profile": "html-artifacts-offline",
+      "platform": "chatgpt",
+      "skills": 2,
+      "files": 11,
+      "archive_sha256": "f564bbe2b481e5e720678694f1020eae6cd013a2bdf52bb8a8c2e5f4560b6f43",
+      "archive": "html-artifacts-offline-chatgpt.zip"
+    },
+    {
+      "profile": "html-artifacts-offline",
+      "platform": "copilot",
+      "skills": 2,
+      "files": 19,
+      "archive_sha256": "72219c768224ddd59a3690b39b7029702caf3ad84ee9dbc091867515b58fd91c",
+      "archive": "html-artifacts-offline-copilot.zip"
+    },
+    {
+      "profile": "html-artifacts-offline",
+      "platform": "codex",
+      "skills": 2,
+      "files": 19,
+      "archive_sha256": "08d87dc7a2e4b8adb5317a4b99fc6d356e9272e06514f784414b456882f13f99",
+      "archive": "html-artifacts-offline-codex.zip"
+    },
+    {
+      "profile": "html-artifacts-offline",
+      "platform": "hermes",
+      "skills": 2,
+      "files": 19,
+      "archive_sha256": "8ee1f91286732a3839e1ea02f4e1d52f3d74a752fd3d4c71459a9da15a8daa80",
+      "archive": "html-artifacts-offline-hermes.zip"
+    },
+    {
+      "profile": "connected-artifacts",
+      "platform": "chatgpt",
+      "skills": 4,
+      "files": 30,
+      "archive_sha256": "7ae5aba8f5716b89dfc0419f6c268af9d6ff04f25204e69f2b62b38cd4247bd3",
+      "archive": "connected-artifacts-chatgpt.zip"
+    },
+    {
+      "profile": "connected-artifacts",
+      "platform": "copilot",
+      "skills": 4,
+      "files": 43,
+      "archive_sha256": "db8f794e230ad7f7eb630659a37dae84a6947720da127dcb3d2167f86c713d3e",
+      "archive": "connected-artifacts-copilot.zip"
+    },
+    {
+      "profile": "connected-artifacts",
+      "platform": "codex",
+      "skills": 4,
+      "files": 43,
+      "archive_sha256": "995e8e30ec95076df05c8e9088ff1cb505ac17e20df109ec01e02ee9c08467b4",
+      "archive": "connected-artifacts-codex.zip"
+    },
+    {
+      "profile": "connected-artifacts",
+      "platform": "hermes",
+      "skills": 4,
+      "files": 43,
+      "archive_sha256": "4cba748f976d79de7398e1379487f7d55f43c88ffd11e9370f3dde2c1e42fe17",
+      "archive": "connected-artifacts-hermes.zip"
+    },
+    {
+      "profile": "parallon-artifacts",
+      "platform": "chatgpt",
+      "skills": 6,
+      "files": 49,
+      "archive_sha256": "dc5fa0786a71eb170fc9ed12943c81a4893ee03dfe92de5f7e5e4dc0e086fc88",
+      "archive": "parallon-artifacts-chatgpt.zip"
+    },
+    {
+      "profile": "parallon-artifacts",
+      "platform": "copilot",
+      "skills": 6,
+      "files": 62,
+      "archive_sha256": "3e29637a6c07adc7ce9355cc39f883724df9050675bf1d5191ae356ff3447aa5",
+      "archive": "parallon-artifacts-copilot.zip"
+    },
+    {
+      "profile": "reverse-engineering",
+      "platform": "chatgpt",
+      "skills": 1,
+      "files": 5,
+      "archive_sha256": "ae309c9d3ee030998d270f7d15b6786a47f8ab088a3ee8656bbc6faee6246540",
+      "archive": "reverse-engineering-chatgpt.zip"
+    },
+    {
+      "profile": "reverse-engineering",
+      "platform": "copilot",
+      "skills": 1,
+      "files": 13,
+      "archive_sha256": "8d0ee4e22f9a1709f0d5e4509e3ab04c4f1f17297c954589af444919e5fcf816",
+      "archive": "reverse-engineering-copilot.zip"
+    },
+    {
+      "profile": "reverse-engineering",
+      "platform": "codex",
+      "skills": 1,
+      "files": 13,
+      "archive_sha256": "cfe7842c18ab84e62289989c5d6d83f91992520fd51e42ab12612f9a0a7d561f",
+      "archive": "reverse-engineering-codex.zip"
+    },
+    {
+      "profile": "reverse-engineering",
+      "platform": "hermes",
+      "skills": 1,
+      "files": 13,
+      "archive_sha256": "1d7a9815e182a79851e5664dd9b5a14f6f7cc8e78f510df78a995faa55d77052",
+      "archive": "reverse-engineering-hermes.zip"
+    },
+    {
+      "profile": "browser-qa",
+      "platform": "copilot",
+      "skills": 1,
+      "files": 16,
+      "archive_sha256": "f3965bd23e1936358a75eb7c3d761a7a49997ebe0abd014d23203e5a13bfac0b",
+      "archive": "browser-qa-copilot.zip"
+    },
+    {
+      "profile": "browser-qa",
+      "platform": "codex",
+      "skills": 1,
+      "files": 16,
+      "archive_sha256": "f6cd19eebec5ce6fa107f70e62f82c599c16006c9c4ef90cf60331e053c1c6d3",
+      "archive": "browser-qa-codex.zip"
+    },
+    {
+      "profile": "browser-qa",
+      "platform": "hermes",
+      "skills": 1,
+      "files": 16,
+      "archive_sha256": "69f0ff2e63ece594ec77f9d6b6d689ce044c05e970a450aa847739adfd6b1454",
+      "archive": "browser-qa-hermes.zip"
+    },
+    {
+      "profile": "addy-engineering",
+      "platform": "copilot",
+      "skills": 22,
+      "files": 115,
+      "archive_sha256": "0b5daf47aa1abee69cb6025061d0db9d17fa532998c55bd0817a3ee01eaad175",
+      "archive": "addy-engineering-copilot.zip"
+    },
+    {
+      "profile": "addy-engineering",
+      "platform": "codex",
+      "skills": 22,
+      "files": 115,
+      "archive_sha256": "a4dd315f04e776a8de7a1c84ac0771cf435bd05bb4d1a0a4bfd38b9e8289c71a",
+      "archive": "addy-engineering-codex.zip"
+    },
+    {
+      "profile": "addy-engineering",
+      "platform": "hermes",
+      "skills": 22,
+      "files": 115,
+      "archive_sha256": "50e771b74ac80c06032b5471de0b4f2fc93f7e2dfb9914119c5b0b2d9993aaf6",
+      "archive": "addy-engineering-hermes.zip"
+    },
+    {
+      "profile": "addy-controller",
+      "platform": "copilot",
+      "skills": 1,
+      "files": 6,
+      "archive_sha256": "e78019c7f68139a2e62e5bb7c49f701e2a506e3319c83f8612b5a88e63717de6",
+      "archive": "addy-controller-copilot.zip"
+    },
+    {
+      "profile": "addy-controller",
+      "platform": "codex",
+      "skills": 1,
+      "files": 6,
+      "archive_sha256": "4a840b609a20881342b2893d203c72526f242393e01d3d6c493a306358a6dd88",
+      "archive": "addy-controller-codex.zip"
+    },
+    {
+      "profile": "addy-controller",
+      "platform": "hermes",
+      "skills": 1,
+      "files": 6,
+      "archive_sha256": "e12de086579837ca985c96b5102eca84bb9e7c8f4c1f542caee25dd90d5c7cd9",
+      "archive": "addy-controller-hermes.zip"
+    },
+    {
+      "profile": "agent-deep-review",
+      "platform": "copilot",
+      "skills": 1,
+      "files": 6,
+      "archive_sha256": "9f7c10028909723b31a79e07ae52d6f9b74eacc091cff2e4e8c02db9b5e27c1f",
+      "archive": "agent-deep-review-copilot.zip"
+    },
+    {
+      "profile": "agent-deep-review",
+      "platform": "codex",
+      "skills": 1,
+      "files": 6,
+      "archive_sha256": "3f13c66289442de0772b8898b62f4eebc10ed0f1a0b6eb34723584ffe1175ef5",
+      "archive": "agent-deep-review-codex.zip"
+    },
+    {
+      "profile": "agent-deep-review",
+      "platform": "hermes",
+      "skills": 1,
+      "files": 6,
+      "archive_sha256": "23beb9396dacace411a13e221bd97aef4b1c41ddf5bf3a6bfedaa590bb8ad239",
+      "archive": "agent-deep-review-hermes.zip"
+    },
+    {
+      "profile": "agent-team-design",
+      "platform": "copilot",
+      "skills": 5,
+      "files": 128,
+      "archive_sha256": "ea9d155675483527f73df3eb8767c20d625fde0d3cec64b9bf6260a0018d96ef",
+      "archive": "agent-team-design-copilot.zip"
+    },
+    {
+      "profile": "agent-team-design",
+      "platform": "codex",
+      "skills": 5,
+      "files": 124,
+      "archive_sha256": "f4117471757d62bb1a1a83fa80afdd0925dd5e6a3926090420d773f98e674262",
+      "archive": "agent-team-design-codex.zip"
+    },
+    {
+      "profile": "agent-team-design",
+      "platform": "hermes",
+      "skills": 5,
+      "files": 119,
+      "archive_sha256": "4c8096b991e1f9a5fa2738ea0a52b22d082804d63bda594909742fabcfbbce69",
+      "archive": "agent-team-design-hermes.zip"
+    },
+    {
+      "profile": "agent-team-research",
+      "platform": "copilot",
+      "skills": 2,
+      "files": 18,
+      "archive_sha256": "22da73be2d29622973ffacdeba13abad564d0ccb94c2229e3273603384576255",
+      "archive": "agent-team-research-copilot.zip"
+    },
+    {
+      "profile": "agent-team-research",
+      "platform": "codex",
+      "skills": 2,
+      "files": 18,
+      "archive_sha256": "530cd4dfab996af5d57501fb7cc03e74cfd81daf53d5bd3ad90aa2a2ab2b1f5c",
+      "archive": "agent-team-research-codex.zip"
+    },
+    {
+      "profile": "agent-team-research",
+      "platform": "hermes",
+      "skills": 2,
+      "files": 18,
+      "archive_sha256": "4bfadee093b64250517031dac0591ebf7f8cf110e5a062cfd62a5668bfd1df01",
+      "archive": "agent-team-research-hermes.zip"
+    },
+    {
+      "profile": "consulting-web-research",
+      "platform": "copilot",
+      "skills": 15,
+      "files": 52,
+      "archive_sha256": "f8e6d24c948ad13c255938c98bb2dbcdcd982993ec7cf85b9a4be3b8d60347ab",
+      "archive": "consulting-web-research-copilot.zip"
+    },
+    {
+      "profile": "consulting-web-research",
+      "platform": "codex",
+      "skills": 15,
+      "files": 52,
+      "archive_sha256": "dd0c2b7cff092cd8404381b5d3c4cc9092b13e59da83b7bcf4a5a757d72cbd3b",
+      "archive": "consulting-web-research-codex.zip"
+    },
+    {
+      "profile": "consulting-web-research",
+      "platform": "hermes",
+      "skills": 15,
+      "files": 52,
+      "archive_sha256": "6706f8e94b77018ad791b1539d1b28b335c533cef3d6b2dbd235f03965497332",
+      "archive": "consulting-web-research-hermes.zip"
+    },
+    {
+      "profile": "consulting-web-integration",
+      "platform": "copilot",
+      "skills": 7,
+      "files": 34,
+      "archive_sha256": "3d8103b5a5ab9fca680e94f90fda6eac55e1884a7efa43d9ab2c7e79b1c9bf40",
+      "archive": "consulting-web-integration-copilot.zip"
+    },
+    {
+      "profile": "consulting-web-integration",
+      "platform": "codex",
+      "skills": 7,
+      "files": 34,
+      "archive_sha256": "dccf2fab832917f16f0ba5cc2e40babca28375f7e868ab4c904a998a429216a7",
+      "archive": "consulting-web-integration-codex.zip"
+    },
+    {
+      "profile": "consulting-web-integration",
+      "platform": "hermes",
+      "skills": 7,
+      "files": 34,
+      "archive_sha256": "71003472ddcb1ede280c767e1f0777558d97d2fa522654d805657c263227bbe6",
+      "archive": "consulting-web-integration-hermes.zip"
+    },
+    {
+      "profile": "e7-web-research",
+      "platform": "copilot",
+      "skills": 15,
+      "files": 52,
+      "archive_sha256": "3e56845f910fdc626d8f83f5de2d7bced9339ee93435ac42baea1f7ce258bed2",
+      "archive": "e7-web-research-copilot.zip"
+    },
+    {
+      "profile": "e7-web-research",
+      "platform": "codex",
+      "skills": 15,
+      "files": 52,
+      "archive_sha256": "ac2d4178734ca668f1018cf5be0960bcf8d2d85c6c748d3df893fc39c177339c",
+      "archive": "e7-web-research-codex.zip"
+    },
+    {
+      "profile": "e7-web-research",
+      "platform": "hermes",
+      "skills": 15,
+      "files": 52,
+      "archive_sha256": "9096c98d85b75422857014eb0a656ac0602d858dffc910c3c006f55db1f2cce1",
+      "archive": "e7-web-research-hermes.zip"
+    },
+    {
+      "profile": "e7-web-integration",
+      "platform": "copilot",
+      "skills": 7,
+      "files": 34,
+      "archive_sha256": "68b391f6f3bb8ac7011c3de74d3df99d212988cf08c81dbafdbde4571f1ebeac",
+      "archive": "e7-web-integration-copilot.zip"
+    },
+    {
+      "profile": "e7-web-integration",
+      "platform": "codex",
+      "skills": 7,
+      "files": 34,
+      "archive_sha256": "cfa868183af6d78f5c2e939376e80f87825c1c3aebcf148cc4bf51e2130aad8d",
+      "archive": "e7-web-integration-codex.zip"
+    },
+    {
+      "profile": "e7-web-integration",
+      "platform": "hermes",
+      "skills": 7,
+      "files": 34,
+      "archive_sha256": "677b1ee5e24dfa1e31693182512eec8770c8f8185e5c62d85b355ec877cc04c8",
+      "archive": "e7-web-integration-hermes.zip"
+    },
+    {
+      "profile": "skill-maintenance",
+      "platform": "copilot",
+      "skills": 3,
+      "files": 13,
+      "archive_sha256": "77e9c7d3d82f338c0754b166492c327f38d220b2f2a4698bcc63ac6c3a5ac792",
+      "archive": "skill-maintenance-copilot.zip"
+    },
+    {
+      "profile": "skill-maintenance",
+      "platform": "codex",
+      "skills": 3,
+      "files": 13,
+      "archive_sha256": "aaf772bb33db6a8a948d8a8dc5a9c6ffaef5a55b5b9b51e0bafea5b19d82b46c",
+      "archive": "skill-maintenance-codex.zip"
+    },
+    {
+      "profile": "skill-maintenance",
+      "platform": "hermes",
+      "skills": 3,
+      "files": 13,
+      "archive_sha256": "70fe162fddcedbe30b6faad761ae29e4b243cb9cb3ae8717c35427f523f7a2e9",
+      "archive": "skill-maintenance-hermes.zip"
+    },
+    {
+      "profile": "work-copilot-coding",
+      "platform": "copilot",
+      "skills": 17,
+      "files": 118,
+      "archive_sha256": "891c55afabdd952f39ae8e74d033de16fcf8cf0f9dfeb903fe84b72304f17025",
+      "archive": "work-copilot-coding-copilot.zip"
+    },
+    {
+      "profile": "home-coding",
+      "platform": "copilot",
+      "skills": 17,
+      "files": 105,
+      "archive_sha256": "38b564993db804ee1d44f69e91fb1bc8605f262be417608b5245290e4e80d744",
+      "archive": "home-coding-copilot.zip"
+    },
+    {
+      "profile": "home-coding",
+      "platform": "codex",
+      "skills": 17,
+      "files": 105,
+      "archive_sha256": "7033b3745b79cea695acb382da9f85c2b6e0c8c07b9e3c8fd65580953c921baa",
+      "archive": "home-coding-codex.zip"
+    },
+    {
+      "profile": "home-coding",
+      "platform": "hermes",
+      "skills": 17,
+      "files": 105,
+      "archive_sha256": "c6cbdff95b411d0cec0f1fd716d4f663764e1f97f27b29798aa230b121f3fc80",
+      "archive": "home-coding-hermes.zip"
+    },
+    {
+      "profile": "consulting-coding",
+      "platform": "copilot",
+      "skills": 17,
+      "files": 105,
+      "archive_sha256": "6e7b9a6e38f114960e1f7762f5ca2bf884a480c36ba6e60b83992116f2a1ce46",
+      "archive": "consulting-coding-copilot.zip"
+    },
+    {
+      "profile": "consulting-coding",
+      "platform": "codex",
+      "skills": 17,
+      "files": 105,
+      "archive_sha256": "2ca26f590fe14e96bd888a71a00c86093f93c5af169bb0cf200d5e7ef437a370",
+      "archive": "consulting-coding-codex.zip"
+    },
+    {
+      "profile": "consulting-coding",
+      "platform": "hermes",
+      "skills": 17,
+      "files": 105,
+      "archive_sha256": "8a6ed65e9c312f850906f15f1c5e131928498b6e76ff3f0c366b209a3030744e",
+      "archive": "consulting-coding-hermes.zip"
+    },
+    {
+      "profile": "business-coding",
+      "platform": "copilot",
+      "skills": 17,
+      "files": 105,
+      "archive_sha256": "359f295dc4275f900a79144618cba6234adafac185c5dd7dd03454fa65ef60fe",
+      "archive": "business-coding-copilot.zip"
+    },
+    {
+      "profile": "business-coding",
+      "platform": "codex",
+      "skills": 17,
+      "files": 105,
+      "archive_sha256": "ce69bc81a34ca9aff3f6451557b1c2b53cef1c57b9961b07c00a4dc813f21de1",
+      "archive": "business-coding-codex.zip"
+    },
+    {
+      "profile": "business-coding",
+      "platform": "hermes",
+      "skills": 17,
+      "files": 105,
+      "archive_sha256": "515006df99dfd71f14521676894d090ca23f5f22f2aea65942e24a89e1648f15",
+      "archive": "business-coding-hermes.zip"
+    },
+    {
+      "profile": "work-parallon",
+      "platform": "chatgpt",
+      "skills": 13,
+      "files": 62,
+      "archive_sha256": "211a657bf0ce52627377b590ced91754bb29acc572113c15a3fae3df7674f09e",
+      "archive": "work-parallon-chatgpt.zip"
+    },
+    {
+      "profile": "work-parallon",
+      "platform": "copilot",
+      "skills": 13,
+      "files": 64,
+      "archive_sha256": "53cbcf16cc71435b7a2e79d18be5feeda33c6e88f8dcc000344bffc42b61b2c0",
+      "archive": "work-parallon-copilot.zip"
+    },
+    {
+      "profile": "consulting",
+      "platform": "chatgpt",
+      "skills": 13,
+      "files": 59,
+      "archive_sha256": "d2ee767ad4f1ad6afe3456a087ec23b3846120d2481466aa98a4adc2c21425ae",
+      "archive": "consulting-chatgpt.zip"
+    },
+    {
+      "profile": "consulting",
+      "platform": "copilot",
+      "skills": 13,
+      "files": 61,
+      "archive_sha256": "cadc5f86ad899f7f1cab67f7db9c6b6c26dedce70c87020a6b7eb2d4bbaf95c1",
+      "archive": "consulting-copilot.zip"
+    },
+    {
+      "profile": "consulting",
+      "platform": "codex",
+      "skills": 13,
+      "files": 61,
+      "archive_sha256": "998ba4e48630c84d1d2c1afb3a9f99cfe7847e77b17e464bc9a86c95260bef81",
+      "archive": "consulting-codex.zip"
+    },
+    {
+      "profile": "consulting",
+      "platform": "hermes",
+      "skills": 13,
+      "files": 61,
+      "archive_sha256": "25d514810a3190de80cbcc140be55df67eec68b537dc6bcec9ffdc34501f665a",
+      "archive": "consulting-hermes.zip"
+    },
+    {
+      "profile": "e7",
+      "platform": "chatgpt",
+      "skills": 8,
+      "files": 35,
+      "archive_sha256": "75ff82ff30f2b7f4a8441b8e56ffaeeed7e643bb0ef8b23712d883b487dea4bf",
+      "archive": "e7-chatgpt.zip"
+    },
+    {
+      "profile": "e7",
+      "platform": "copilot",
+      "skills": 8,
+      "files": 37,
+      "archive_sha256": "a4ac0148e12f111df9c1b4c93dd5ff65238bb0f6563e9dffbf086c560a81c780",
+      "archive": "e7-copilot.zip"
+    },
+    {
+      "profile": "e7",
+      "platform": "codex",
+      "skills": 8,
+      "files": 37,
+      "archive_sha256": "056ced6035a77a7814e06135b729ec49b9a74dad4684fa684fbae0720be5d888",
+      "archive": "e7-codex.zip"
+    },
+    {
+      "profile": "e7",
+      "platform": "hermes",
+      "skills": 8,
+      "files": 37,
+      "archive_sha256": "464e5933017dd3c664150933d98d4dac37ddc37e2cc857dae7386548fd7eb13f",
+      "archive": "e7-hermes.zip"
+    },
+    {
+      "profile": "home-life",
+      "platform": "chatgpt",
+      "skills": 6,
+      "files": 28,
+      "archive_sha256": "080ea10a50cc60177eeefa4365b6e811109b333489d0f44b1b125f7d282fb915",
+      "archive": "home-life-chatgpt.zip"
+    },
+    {
+      "profile": "home-life",
+      "platform": "copilot",
+      "skills": 6,
+      "files": 30,
+      "archive_sha256": "c5f03aafb205e8a12ea070772a80270e5880179247e5688e55d99376b4eea0b2",
+      "archive": "home-life-copilot.zip"
+    },
+    {
+      "profile": "home-life",
+      "platform": "codex",
+      "skills": 6,
+      "files": 30,
+      "archive_sha256": "8be759f1b3b7ac3d416de6f36687c5c61a4e47bf8631ccd0a5fd030959e3ed30",
+      "archive": "home-life-codex.zip"
+    },
+    {
+      "profile": "home-life",
+      "platform": "hermes",
+      "skills": 6,
+      "files": 30,
+      "archive_sha256": "a937d278895562a20a6745091b04ddcfc1fddafa17bd1f604fac998134a8d0f5",
+      "archive": "home-life-hermes.zip"
+    },
+    {
+      "profile": "continued-learning",
+      "platform": "chatgpt",
+      "skills": 6,
+      "files": 35,
+      "archive_sha256": "d723a53908860b8f04b94c70d9235df6fc75d10ae4ca3b6576f5347c28c3244c",
+      "archive": "continued-learning-chatgpt.zip"
+    },
+    {
+      "profile": "continued-learning",
+      "platform": "copilot",
+      "skills": 6,
+      "files": 37,
+      "archive_sha256": "c990c9ab8932a7c47940780f80ef4b26efaad6d8a068ec64a337ea18c05c9e8c",
+      "archive": "continued-learning-copilot.zip"
+    },
+    {
+      "profile": "continued-learning",
+      "platform": "codex",
+      "skills": 6,
+      "files": 37,
+      "archive_sha256": "43a154be3a08ea23704c656f094f2a946634ad3d1e53d52ff07aded2bd9d65ee",
+      "archive": "continued-learning-codex.zip"
+    },
+    {
+      "profile": "continued-learning",
+      "platform": "hermes",
+      "skills": 6,
+      "files": 37,
+      "archive_sha256": "0b99da5ead7ec520df70641170466631e6a6c072d23dd78ee96a5cafed7daeeb",
+      "archive": "continued-learning-hermes.zip"
+    },
+    {
+      "profile": "productivity",
+      "platform": "chatgpt",
+      "skills": 7,
+      "files": 29,
+      "archive_sha256": "c8e76acf81df43db407fbc1916d6da8e520d3ee84aa001266fb2b85c90b3f463",
+      "archive": "productivity-chatgpt.zip"
+    },
+    {
+      "profile": "productivity",
+      "platform": "copilot",
+      "skills": 7,
+      "files": 28,
+      "archive_sha256": "fb559d3fb8815ea35a5eb93a4b65042f176ca6def52656ab08b5ebdbf207c24f",
+      "archive": "productivity-copilot.zip"
+    },
+    {
+      "profile": "productivity",
+      "platform": "codex",
+      "skills": 7,
+      "files": 28,
+      "archive_sha256": "f1580c6a1d76960a82f883505065d489bf891c65059adee50103f5a48fdcf492",
+      "archive": "productivity-codex.zip"
+    },
+    {
+      "profile": "productivity",
+      "platform": "hermes",
+      "skills": 7,
+      "files": 28,
+      "archive_sha256": "3ebea21d8eec148981fb68b8379148a4898b953883a69e9913d56cbbac58654e",
+      "archive": "productivity-hermes.zip"
+    },
+    {
+      "profile": "faith-personal",
+      "platform": "chatgpt",
+      "skills": 7,
+      "files": 39,
+      "archive_sha256": "8f810ecb1b53e3e7e11b1da65cf4843da6f2f32a02f43d4986fa01ee99db8dee",
+      "archive": "faith-personal-chatgpt.zip"
+    },
+    {
+      "profile": "faith-personal",
+      "platform": "copilot",
+      "skills": 7,
+      "files": 41,
+      "archive_sha256": "3c815ac5f36e61f36d652fc848288ed3a3e27f96a28032459b13a57ae30885f8",
+      "archive": "faith-personal-copilot.zip"
+    },
+    {
+      "profile": "faith-personal",
+      "platform": "codex",
+      "skills": 7,
+      "files": 41,
+      "archive_sha256": "5d6c9ef126e44b6fd42f0d2551c8760b368ff4699f1de2eea58ec41fceb5b26f",
+      "archive": "faith-personal-codex.zip"
+    },
+    {
+      "profile": "faith-personal",
+      "platform": "hermes",
+      "skills": 7,
+      "files": 41,
+      "archive_sha256": "c58baf207d0f677caa12a3d11b4083e630dd3764c22486f80d38d06d238119da",
+      "archive": "faith-personal-hermes.zip"
+    },
+    {
+      "profile": "faith-teaching",
+      "platform": "chatgpt",
+      "skills": 8,
+      "files": 42,
+      "archive_sha256": "4314678a56486b20077a9fbc1d6199bde1177dbf1b02bce4c92920de5c869c54",
+      "archive": "faith-teaching-chatgpt.zip"
+    },
+    {
+      "profile": "faith-teaching",
+      "platform": "copilot",
+      "skills": 8,
+      "files": 44,
+      "archive_sha256": "fdb9fbdd0e09bc8cbd5342dac8153e2c52b71315e4ab5f219f213915a10e86bb",
+      "archive": "faith-teaching-copilot.zip"
+    },
+    {
+      "profile": "faith-teaching",
+      "platform": "codex",
+      "skills": 8,
+      "files": 44,
+      "archive_sha256": "b6524abef5fa51a572e3cfdfd2695a40f4eedf465ce30783a9ed094bb4273180",
+      "archive": "faith-teaching-codex.zip"
+    },
+    {
+      "profile": "faith-teaching",
+      "platform": "hermes",
+      "skills": 8,
+      "files": 44,
+      "archive_sha256": "c77685e3070938b773debdaea6fd7600d8ce859c91e1c557cf5c9abf224c94eb",
+      "archive": "faith-teaching-hermes.zip"
+    },
+    {
+      "profile": "faith-publishing",
+      "platform": "chatgpt",
+      "skills": 7,
+      "files": 38,
+      "archive_sha256": "43867a098b2c3079b4873bc8125ac097c419bc3c8706471cbfc18c1ca418cc33",
+      "archive": "faith-publishing-chatgpt.zip"
+    },
+    {
+      "profile": "faith-publishing",
+      "platform": "copilot",
+      "skills": 7,
+      "files": 40,
+      "archive_sha256": "2171b2078ad9f68030c88ebe4235ba78e2270ce8a67bb2d90ed2744656aea2d2",
+      "archive": "faith-publishing-copilot.zip"
+    },
+    {
+      "profile": "faith-publishing",
+      "platform": "codex",
+      "skills": 7,
+      "files": 40,
+      "archive_sha256": "6caa443c486a46792a530616cc43955a464bcabe250e6f0b7d9c8f18beb476f7",
+      "archive": "faith-publishing-codex.zip"
+    },
+    {
+      "profile": "faith-publishing",
+      "platform": "hermes",
+      "skills": 7,
+      "files": 40,
+      "archive_sha256": "e134f2ff0c8674b1ae6f989e33c378a95e1341c8c7f86782868b184a72906c73",
+      "archive": "faith-publishing-hermes.zip"
+    },
+    {
+      "profile": "faith-learning",
+      "platform": "chatgpt",
+      "skills": 12,
+      "files": 59,
+      "archive_sha256": "851162be3e403ec9bc4bc621be89e863ed3c263749eeeaa222af2a658720ac45",
+      "archive": "faith-learning-chatgpt.zip"
+    },
+    {
+      "profile": "faith-learning",
+      "platform": "copilot",
+      "skills": 12,
+      "files": 61,
+      "archive_sha256": "558d4b4b28fd20b5fe497a9b3c187637f3d99c36e9658f6e01db1837115d3584",
+      "archive": "faith-learning-copilot.zip"
+    },
+    {
+      "profile": "faith-learning",
+      "platform": "codex",
+      "skills": 12,
+      "files": 61,
+      "archive_sha256": "cce1cff55140414f59917d93e1d386152f38638b110fc99096f16cf523d90a69",
+      "archive": "faith-learning-codex.zip"
+    },
+    {
+      "profile": "faith-learning",
+      "platform": "hermes",
+      "skills": 12,
+      "files": 61,
+      "archive_sha256": "afb4caaa48d6a9ceac7b81f0ba152702576e668b6e2acfdfbf029a77027d4f06",
+      "archive": "faith-learning-hermes.zip"
+    },
+    {
+      "profile": "hermes-teams",
+      "platform": "hermes",
+      "skills": 7,
+      "files": 58,
+      "archive_sha256": "4e892e1316217f2d8c0ecfd053bdcc5229a3919115f16ff4f281c6e67ec8a3aa",
+      "archive": "hermes-teams-hermes.zip"
+    }
+  ],
+  "positive_exports_tested": 126,
+  "negative_platform_tests": 2,
+  "selection_verified_revision": "cc50fe01f8fe066ae300463b19b545b45ec352d1",
+  "delivery_config_sha256": "7fa331933381a391c2d93012f845d76be8432b12f93cfc268cc8b9116099dc09",
+  "export_secret_scan": {
+    "raw_findings": 27,
+    "live_credentials": 0,
+    "dispositions": [
+      {
+        "bundle": "connected-artifacts-chatgpt",
+        "file": "skills/connected-html-artifacts/references/live-apis.md",
+        "line": 39,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "connected-artifacts-copilot",
+        "file": ".github/skills/connected-html-artifacts/references/live-apis.md",
+        "line": 37,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "connected-artifacts-hermes",
+        "file": "skills/connected-html-artifacts/references/live-apis.md",
+        "line": 38,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "connected-artifacts-codex",
+        "file": ".agents/skills/connected-html-artifacts/references/live-apis.md",
+        "line": 37,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "consulting-web-integration-codex",
+        "file": ".agents/skills/firecrawl-build-onboarding/references/auth-flow.md",
+        "line": 48,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "consulting-web-integration-codex",
+        "file": ".agents/skills/firecrawl-build/references/auth-and-env.md",
+        "line": 61,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "consulting-web-integration-copilot",
+        "file": ".github/skills/firecrawl-build-onboarding/references/auth-flow.md",
+        "line": 48,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "consulting-web-integration-copilot",
+        "file": ".github/skills/firecrawl-build/references/auth-and-env.md",
+        "line": 61,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "consulting-web-integration-hermes",
+        "file": "skills/firecrawl-build-onboarding/references/auth-flow.md",
+        "line": 49,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "consulting-web-integration-hermes",
+        "file": "skills/firecrawl-build/references/auth-and-env.md",
+        "line": 62,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "design-product-ui-codex",
+        "file": ".agents/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-api.json",
+        "line": 75,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "design-product-ui-copilot",
+        "file": ".github/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-api.json",
+        "line": 77,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "design-product-ui-hermes",
+        "file": "skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-api.json",
+        "line": 81,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "e7-web-integration-hermes",
+        "file": "skills/firecrawl-build-onboarding/references/auth-flow.md",
+        "line": 49,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "e7-web-integration-hermes",
+        "file": "skills/firecrawl-build/references/auth-and-env.md",
+        "line": 62,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "e7-web-integration-copilot",
+        "file": ".github/skills/firecrawl-build-onboarding/references/auth-flow.md",
+        "line": 48,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "e7-web-integration-copilot",
+        "file": ".github/skills/firecrawl-build/references/auth-and-env.md",
+        "line": 61,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "e7-web-integration-codex",
+        "file": ".agents/skills/firecrawl-build-onboarding/references/auth-flow.md",
+        "line": 48,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "e7-web-integration-codex",
+        "file": ".agents/skills/firecrawl-build/references/auth-and-env.md",
+        "line": 61,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "emil-toolkit-chatgpt",
+        "file": "skills/ask-sonner/API.md",
+        "line": 112,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "emil-toolkit-codex",
+        "file": ".agents/skills/ask-sonner/API.md",
+        "line": 110,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "emil-toolkit-copilot",
+        "file": ".github/skills/ask-sonner/API.md",
+        "line": 110,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "emil-toolkit-hermes",
+        "file": "skills/ask-sonner/API.md",
+        "line": 111,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "parallon-artifacts-chatgpt",
+        "file": "skills/connected-html-artifacts/references/live-apis.md",
+        "line": 54,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "parallon-artifacts-copilot",
+        "file": ".github/skills/connected-html-artifacts/references/live-apis.md",
+        "line": 49,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "work-copilot-coding-copilot",
+        "file": ".github/agents/agency-testing-api-tester.agent.md",
+        "line": 97,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      },
+      {
+        "bundle": "work-copilot-coding-copilot",
+        "file": "references/library/agents/agency/testing/testing-api-tester.md",
+        "line": 208,
+        "reason": "Generated SHA-256 digest; recomputed from the exported file and matched exactly."
+      }
+    ]
+  },
+  "notes": [
+    "All126 positive export combinations passed; final Parallon constraint removed Codex/Hermes for work-parallon, leaving124 configured exports. Both excluded targets reject before writing.",
+    "No exported payload changed when these two combinations were removed.",
+    "Clean-checkout installer tests pass98/98. NAS short-name mode deliberately rejects preserved duplicate domain-modeling candidates; canonical profile paths pass.",
+    "Raw SkillSpector gate remains failed; findings/coverage were contextually reviewed. No runtime activation or live data connections."
+  ]
+}
