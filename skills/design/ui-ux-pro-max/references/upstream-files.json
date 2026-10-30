@@ -1,0 +1,599 @@
+{
+  "repository": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+  "revision": "28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+  "source": ".claude/skills/ui-ux-pro-max",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "1e71cbf26660f31903807d099fe902c098fc7e4c",
+      "imported_sha256": "738f69dfa83db5c347c678fb9d90e560877059f0de93a327c39001bff92dc014",
+      "modified": false,
+      "upstream_sha256": "738f69dfa83db5c347c678fb9d90e560877059f0de93a327c39001bff92dc014"
+    },
+    {
+      "path": "SKILL.md",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "upstream_blob_sha1": "41f8e2fd7f8c568228d0b55186ebe3f7b4007377",
+      "imported_sha256": "ea087c341bfb5b23195c7302027268ede86da802554c18a5c4896a6017b439f9",
+      "modified": true,
+      "upstream_sha256": "ea087c341bfb5b23195c7302027268ede86da802554c18a5c4896a6017b439f9"
+    },
+    {
+      "path": "data/app-interface.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/app-interface.csv",
+      "upstream_blob_sha1": "95e328c807a23be02c9c32c736d0fa19109c6076",
+      "imported_sha256": "331e7cf2c0b222d80c566c5f255c63cb339f65bfd02e471a720f28e4864a9f08",
+      "modified": false,
+      "upstream_sha256": "331e7cf2c0b222d80c566c5f255c63cb339f65bfd02e471a720f28e4864a9f08"
+    },
+    {
+      "path": "data/catalog-summary.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/catalog-summary.json",
+      "upstream_blob_sha1": "f911c3ae48fac5863a5a5e210866ec5cabece164",
+      "imported_sha256": "6638da97231c07fb5cef3cd9d3ce483ca7b2f9748980f8c27490eb03968d8894",
+      "modified": false,
+      "upstream_sha256": "6638da97231c07fb5cef3cd9d3ce483ca7b2f9748980f8c27490eb03968d8894"
+    },
+    {
+      "path": "data/charts.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/charts.csv",
+      "upstream_blob_sha1": "c6f4f875fd5b34379f24dbb541539492366a1058",
+      "imported_sha256": "4115cf1120680f2cedef0676cb648f30c7ef4699e2a947535d4113e71ed3b12a",
+      "modified": false,
+      "upstream_sha256": "4115cf1120680f2cedef0676cb648f30c7ef4699e2a947535d4113e71ed3b12a"
+    },
+    {
+      "path": "data/colors.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/colors.csv",
+      "upstream_blob_sha1": "5d2bf7389105f8a824b504b57cc93c00dc1d7e0a",
+      "imported_sha256": "8162429222bce22df62b564085946a30d07cc9722c58d0a3a494bd0d1d00841c",
+      "modified": false,
+      "upstream_sha256": "8162429222bce22df62b564085946a30d07cc9722c58d0a3a494bd0d1d00841c"
+    },
+    {
+      "path": "data/data-provenance.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/data-provenance.json",
+      "upstream_blob_sha1": "e41d2e553bdc7e5a8e6d16f5daab565faf372188",
+      "imported_sha256": "e82fb33ed49375a300e93d9c11ccd1c1493c999e84ee7ee295e527634786e2e0",
+      "modified": false,
+      "upstream_sha256": "e82fb33ed49375a300e93d9c11ccd1c1493c999e84ee7ee295e527634786e2e0"
+    },
+    {
+      "path": "data/google-font-licenses.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/google-font-licenses.json",
+      "upstream_blob_sha1": "3ac2c34e80665bc902e265c52ab6c27b1654524c",
+      "imported_sha256": "35688523f2955795caa1a47c53b83099e60c1708461476f9cc3a050cf3b0148a",
+      "modified": false,
+      "upstream_sha256": "35688523f2955795caa1a47c53b83099e60c1708461476f9cc3a050cf3b0148a"
+    },
+    {
+      "path": "data/google-fonts.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/google-fonts.csv",
+      "upstream_blob_sha1": "d7f87e3e0159b1caba083b9954793d9852256aa0",
+      "imported_sha256": "1c8c3b2ea1faf6a1012da463756def8b3889db33f2226f0343bb4daa80307d03",
+      "modified": false,
+      "upstream_sha256": "1c8c3b2ea1faf6a1012da463756def8b3889db33f2226f0343bb4daa80307d03"
+    },
+    {
+      "path": "data/icons.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/icons.csv",
+      "upstream_blob_sha1": "cfc3f1eccd7e5aee15d8d70f86d8fa17ba737958",
+      "imported_sha256": "50816c6012030178195a16ee481ebf58b47bd985d70e8ec58886cc83f6eddafc",
+      "modified": false,
+      "upstream_sha256": "50816c6012030178195a16ee481ebf58b47bd985d70e8ec58886cc83f6eddafc"
+    },
+    {
+      "path": "data/landing.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/landing.csv",
+      "upstream_blob_sha1": "34858160aa2789c49dca274d48bb116d51dd3f0a",
+      "imported_sha256": "9a2edd3bb676c2a58f00ade7a062e285222d4297bfd847c8d5b056f0dbbf52d0",
+      "modified": false,
+      "upstream_sha256": "9a2edd3bb676c2a58f00ade7a062e285222d4297bfd847c8d5b056f0dbbf52d0"
+    },
+    {
+      "path": "data/motion.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/motion.csv",
+      "upstream_blob_sha1": "8e0ca9ceb0e4cd4832aee60ac74713e1e1830de8",
+      "imported_sha256": "381affe8df8ea1f66fbbda2598827f9f54299107bbe6a1b4e9b68f6b62091ceb",
+      "modified": false,
+      "upstream_sha256": "381affe8df8ea1f66fbbda2598827f9f54299107bbe6a1b4e9b68f6b62091ceb"
+    },
+    {
+      "path": "data/phosphor-icons-upstream.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/phosphor-icons-upstream.json",
+      "upstream_blob_sha1": "ec1d76b8117ccbfdce5df214bf0d993e41a75318",
+      "imported_sha256": "2399325233b277b5c97a80e6a5e8941154f5d057beee4e7613db87c87d700236",
+      "modified": false,
+      "upstream_sha256": "2399325233b277b5c97a80e6a5e8941154f5d057beee4e7613db87c87d700236"
+    },
+    {
+      "path": "data/products.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/products.csv",
+      "upstream_blob_sha1": "9f40f1d1f9743c4a81603076dfbfd115bbb55246",
+      "imported_sha256": "42473f75e8dde5987bdf89ce55d8c168091b80a356cae691dd60247d80720b70",
+      "modified": false,
+      "upstream_sha256": "42473f75e8dde5987bdf89ce55d8c168091b80a356cae691dd60247d80720b70"
+    },
+    {
+      "path": "data/react-performance.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/react-performance.csv",
+      "upstream_blob_sha1": "425a8e76c6b3bae40e8c633ffbf7ad6222c9f73a",
+      "imported_sha256": "3d925802539abac5afeb63ae8aa1960b7229ad271b3a47caed40ab2d97ad0734",
+      "modified": false,
+      "upstream_sha256": "3d925802539abac5afeb63ae8aa1960b7229ad271b3a47caed40ab2d97ad0734"
+    },
+    {
+      "path": "data/stacks/angular.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/angular.csv",
+      "upstream_blob_sha1": "5a1878dbee2b3c55c6468cbb18699b84d1a8c4d2",
+      "imported_sha256": "704be83f2bad30c7e6de01afb113ffa01e0c458762f48b7102f31ba2367b5553",
+      "modified": false,
+      "upstream_sha256": "704be83f2bad30c7e6de01afb113ffa01e0c458762f48b7102f31ba2367b5553"
+    },
+    {
+      "path": "data/stacks/astro.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/astro.csv",
+      "upstream_blob_sha1": "1fd2492420b20a0b311295ab883597fadb8245a6",
+      "imported_sha256": "2c2f55fadaafc05e04cc321c8194a1a28b656e6757fe2ba316f41b16428299c6",
+      "modified": false,
+      "upstream_sha256": "2c2f55fadaafc05e04cc321c8194a1a28b656e6757fe2ba316f41b16428299c6"
+    },
+    {
+      "path": "data/stacks/avalonia.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/avalonia.csv",
+      "upstream_blob_sha1": "c67f4117105865587eda9020c57d8c209f3a929a",
+      "imported_sha256": "442fca14675a020683473e7e49f08abb27b9df0765c80efe54aef61f1a4ac258",
+      "modified": false,
+      "upstream_sha256": "442fca14675a020683473e7e49f08abb27b9df0765c80efe54aef61f1a4ac258"
+    },
+    {
+      "path": "data/stacks/flutter.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/flutter.csv",
+      "upstream_blob_sha1": "731805c4076bd9f2755ca4bd7def5be6f6df7e9c",
+      "imported_sha256": "64dba0ac17349f28bce517a0f5f48c54d9ed2e487ec0c0258303463b382f41a0",
+      "modified": false,
+      "upstream_sha256": "64dba0ac17349f28bce517a0f5f48c54d9ed2e487ec0c0258303463b382f41a0"
+    },
+    {
+      "path": "data/stacks/html-tailwind.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/html-tailwind.csv",
+      "upstream_blob_sha1": "9089eb0fc821ff0c8d135f8ee503be345e8fcb84",
+      "imported_sha256": "d05a581d20af57b8ca0104a6d31d90a07c437d500662a96c3029fc2f9a4678ee",
+      "modified": false,
+      "upstream_sha256": "d05a581d20af57b8ca0104a6d31d90a07c437d500662a96c3029fc2f9a4678ee"
+    },
+    {
+      "path": "data/stacks/javafx.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/javafx.csv",
+      "upstream_blob_sha1": "744bd80f437f12bfb5bb9c84630a58022604675a",
+      "imported_sha256": "2e819b8d5abdd23ad4dae0991650fdb57af497aabd68b37463aa9c442944c869",
+      "modified": false,
+      "upstream_sha256": "2e819b8d5abdd23ad4dae0991650fdb57af497aabd68b37463aa9c442944c869"
+    },
+    {
+      "path": "data/stacks/jetpack-compose.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/jetpack-compose.csv",
+      "upstream_blob_sha1": "8daa0b8f9a2ca3f0f1711664d9d677cd1c38dd9e",
+      "imported_sha256": "699de218b286948eaec7d15767b6e1350ee299167e49bf476d82e3ff58724e0a",
+      "modified": false,
+      "upstream_sha256": "699de218b286948eaec7d15767b6e1350ee299167e49bf476d82e3ff58724e0a"
+    },
+    {
+      "path": "data/stacks/laravel.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/laravel.csv",
+      "upstream_blob_sha1": "ed11b0fba457e02857f996d1542fb0b8e1271756",
+      "imported_sha256": "854ea4daa5fc61292d22235ad33b49ba3fe22423c3de8d3cb03758ffed3b59f9",
+      "modified": false,
+      "upstream_sha256": "854ea4daa5fc61292d22235ad33b49ba3fe22423c3de8d3cb03758ffed3b59f9"
+    },
+    {
+      "path": "data/stacks/nextjs.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/nextjs.csv",
+      "upstream_blob_sha1": "acdaf097dff26ba0d3b22ab4544bf6169c87afd4",
+      "imported_sha256": "ecd2c27b2ea0127d203ae726060efcdd7335b5e83f96b99e4f3befbbfeebd5a4",
+      "modified": false,
+      "upstream_sha256": "ecd2c27b2ea0127d203ae726060efcdd7335b5e83f96b99e4f3befbbfeebd5a4"
+    },
+    {
+      "path": "data/stacks/nuxt-ui.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/nuxt-ui.csv",
+      "upstream_blob_sha1": "e2aaeca45faa8b987bf94010162b14d458811dde",
+      "imported_sha256": "fce682a338cfcdbf35d318d20e5befbe7b5d81b05abc37f87677a6d9cde84dc6",
+      "modified": false,
+      "upstream_sha256": "fce682a338cfcdbf35d318d20e5befbe7b5d81b05abc37f87677a6d9cde84dc6"
+    },
+    {
+      "path": "data/stacks/nuxtjs.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/nuxtjs.csv",
+      "upstream_blob_sha1": "ceab9cf3358d2788af0bd7dc14cb3fab769740d0",
+      "imported_sha256": "3d9b54ed2d151bd9c86e9e5609b8a6f88a00c4c52fa601a30af96c49b2c4d176",
+      "modified": false,
+      "upstream_sha256": "3d9b54ed2d151bd9c86e9e5609b8a6f88a00c4c52fa601a30af96c49b2c4d176"
+    },
+    {
+      "path": "data/stacks/react-native.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/react-native.csv",
+      "upstream_blob_sha1": "a5aea45dc1d0341b11ee42076a86db842d4d2a19",
+      "imported_sha256": "ba31dd9c0c04da6bc02a74448bf121f9c0728ae5ba3b4d47b487778b0a1135b5",
+      "modified": false,
+      "upstream_sha256": "ba31dd9c0c04da6bc02a74448bf121f9c0728ae5ba3b4d47b487778b0a1135b5"
+    },
+    {
+      "path": "data/stacks/react.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/react.csv",
+      "upstream_blob_sha1": "fe8f001e695a978733449e04e99d7135af0f1bf3",
+      "imported_sha256": "4dd176a9787e5c6306b5df94158d75955adcdc6edab41ce5286641a5842303c1",
+      "modified": false,
+      "upstream_sha256": "4dd176a9787e5c6306b5df94158d75955adcdc6edab41ce5286641a5842303c1"
+    },
+    {
+      "path": "data/stacks/shadcn.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/shadcn.csv",
+      "upstream_blob_sha1": "0e8bedf3084e7a40d6310bcd3011c437efcb1700",
+      "imported_sha256": "e56cfde5b74907836ac3582a4779d5b7f3d206a702ab81b8669a1b668c3eeb51",
+      "modified": false,
+      "upstream_sha256": "e56cfde5b74907836ac3582a4779d5b7f3d206a702ab81b8669a1b668c3eeb51"
+    },
+    {
+      "path": "data/stacks/svelte.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/svelte.csv",
+      "upstream_blob_sha1": "51684fe70448e15333cd16207db7da8aea0508e6",
+      "imported_sha256": "f6e379ba802941ba26b01d4ffbe3cd39120f2587659a1d93851c707f66bc13db",
+      "modified": false,
+      "upstream_sha256": "f6e379ba802941ba26b01d4ffbe3cd39120f2587659a1d93851c707f66bc13db"
+    },
+    {
+      "path": "data/stacks/swiftui.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/swiftui.csv",
+      "upstream_blob_sha1": "ea9b95e8922e663b2adf27a7346e2c2f44c7a215",
+      "imported_sha256": "bdd9231ff3ad658f4e7c063e1eb49df2fd09ac8d90631a86df899b39833b9623",
+      "modified": false,
+      "upstream_sha256": "bdd9231ff3ad658f4e7c063e1eb49df2fd09ac8d90631a86df899b39833b9623"
+    },
+    {
+      "path": "data/stacks/threejs.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/threejs.csv",
+      "upstream_blob_sha1": "f62286320038beabbdc5e11e07ca2818d8e959a4",
+      "imported_sha256": "155d583b9c64da0df4b6c6cb060c02eab222505e0734d6353da02c9e2b5d982b",
+      "modified": false,
+      "upstream_sha256": "155d583b9c64da0df4b6c6cb060c02eab222505e0734d6353da02c9e2b5d982b"
+    },
+    {
+      "path": "data/stacks/uno.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/uno.csv",
+      "upstream_blob_sha1": "9cab32326b4ad3a3cf43451a3c24553a41126cc1",
+      "imported_sha256": "a0474363e4225b5367214d5675fd3e075f137026f9500f0d04357882ef4f6d48",
+      "modified": false,
+      "upstream_sha256": "a0474363e4225b5367214d5675fd3e075f137026f9500f0d04357882ef4f6d48"
+    },
+    {
+      "path": "data/stacks/uwp.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/uwp.csv",
+      "upstream_blob_sha1": "04a84ea092a7657fef11e5daa97982be52dc6f59",
+      "imported_sha256": "c409f08c1fbba1f1029f1acaa554e7b4471cc85517a5751c9f2e62465badcd5c",
+      "modified": false,
+      "upstream_sha256": "c409f08c1fbba1f1029f1acaa554e7b4471cc85517a5751c9f2e62465badcd5c"
+    },
+    {
+      "path": "data/stacks/vue.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/vue.csv",
+      "upstream_blob_sha1": "83997c515775170f22b638635aae0a67a46dfc87",
+      "imported_sha256": "b655f1ebb9dff2652d15981f31b1784c8a6d4759efd2815a14f3088257569f95",
+      "modified": false,
+      "upstream_sha256": "b655f1ebb9dff2652d15981f31b1784c8a6d4759efd2815a14f3088257569f95"
+    },
+    {
+      "path": "data/stacks/winui.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/winui.csv",
+      "upstream_blob_sha1": "107ecead11728a83ec0ea10d815a9d1f43a35792",
+      "imported_sha256": "e676dc1c13ee6c205c40b0746f1335150a346c7a49a0616d2545bc3d2c930c85",
+      "modified": false,
+      "upstream_sha256": "e676dc1c13ee6c205c40b0746f1335150a346c7a49a0616d2545bc3d2c930c85"
+    },
+    {
+      "path": "data/stacks/wpf.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/stacks/wpf.csv",
+      "upstream_blob_sha1": "4e88d6750833a74f85ba487cf2b8f4ff6ebd2f4a",
+      "imported_sha256": "9781a9950b20333637b30a02e498b7efca21b618a3eeb8665836f3ac6e974da7",
+      "modified": false,
+      "upstream_sha256": "9781a9950b20333637b30a02e498b7efca21b618a3eeb8665836f3ac6e974da7"
+    },
+    {
+      "path": "data/styles.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/styles.csv",
+      "upstream_blob_sha1": "d1eb2c216e453005ffa8232ffb94491c183afe3c",
+      "imported_sha256": "a93a4d9d7025856575d7b7583bda020be9043013432c5af7c58af9dbdfb206b7",
+      "modified": false,
+      "upstream_sha256": "a93a4d9d7025856575d7b7583bda020be9043013432c5af7c58af9dbdfb206b7"
+    },
+    {
+      "path": "data/typography.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/typography.csv",
+      "upstream_blob_sha1": "70d107d107de30150863c965767320ec33ef29ad",
+      "imported_sha256": "321fc446e89024488ebae96dda93efc4d2307bd8bddb240857ad51364f6782c8",
+      "modified": false,
+      "upstream_sha256": "321fc446e89024488ebae96dda93efc4d2307bd8bddb240857ad51364f6782c8"
+    },
+    {
+      "path": "data/ui-reasoning.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/ui-reasoning.csv",
+      "upstream_blob_sha1": "8931d4c809f8e22ddac00ce612ce0c35f34a59b6",
+      "imported_sha256": "f0774dd741cecdad5eec842034bd6d5e9ea50e9f220a1910069748daa0bb8e9a",
+      "modified": false,
+      "upstream_sha256": "f0774dd741cecdad5eec842034bd6d5e9ea50e9f220a1910069748daa0bb8e9a"
+    },
+    {
+      "path": "data/ux-guidelines.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/data/ux-guidelines.csv",
+      "upstream_blob_sha1": "4e7d52b296537a03513b18b2c3f2b946cc802051",
+      "imported_sha256": "ff81ec613f70ba9fc3fcce52dbe4ae35d44b2079dbe6dc066d2d6e38c28facd5",
+      "modified": false,
+      "upstream_sha256": "ff81ec613f70ba9fc3fcce52dbe4ae35d44b2079dbe6dc066d2d6e38c28facd5"
+    },
+    {
+      "path": "references/pro-rules.md",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/references/pro-rules.md",
+      "upstream_blob_sha1": "b2ce233287e37ec9ca13476c4014b922e9d5a0e9",
+      "imported_sha256": "d28442d61c310b49c054a4ea736f89fb3008beebdbbc38c4b3a540b8f7fadf23",
+      "modified": false,
+      "upstream_sha256": "d28442d61c310b49c054a4ea736f89fb3008beebdbbc38c4b3a540b8f7fadf23"
+    },
+    {
+      "path": "references/quick-reference.md",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/references/quick-reference.md",
+      "upstream_blob_sha1": "7acc7e7540ca6981d878a90aae4455c1638e2385",
+      "imported_sha256": "0609bc7c89dacb40472465d8fc14257b56b2c43439660fc8d6fa3b8c022e1876",
+      "modified": false,
+      "upstream_sha256": "0609bc7c89dacb40472465d8fc14257b56b2c43439660fc8d6fa3b8c022e1876"
+    },
+    {
+      "path": "scripts/core.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/core.py",
+      "upstream_blob_sha1": "80319d689460ae23aaea2309be03319878ec3f2b",
+      "imported_sha256": "dfb34cbca66a704a5bfae48c1ab5f82d2a6573b9509c5accceb3d248715a18f6",
+      "modified": false,
+      "upstream_sha256": "dfb34cbca66a704a5bfae48c1ab5f82d2a6573b9509c5accceb3d248715a18f6"
+    },
+    {
+      "path": "scripts/design_system.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/design_system.py",
+      "upstream_blob_sha1": "d5fe1575f00d839f919603bd09b44fe7e9def4fb",
+      "imported_sha256": "e7d1c94c4b2eada17c5551157668362659ccf9626d34dbd58e68142410f90103",
+      "modified": false,
+      "upstream_sha256": "e7d1c94c4b2eada17c5551157668362659ccf9626d34dbd58e68142410f90103"
+    },
+    {
+      "path": "scripts/reasoning_contract.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/reasoning_contract.py",
+      "upstream_blob_sha1": "63652a666b130c249ea1e2954316f1ac8a5a73d5",
+      "imported_sha256": "b8bac1af82aa280d3e06f00aabaeac4337e632996b07fed874e2b6ee6e9c5913",
+      "modified": false,
+      "upstream_sha256": "b8bac1af82aa280d3e06f00aabaeac4337e632996b07fed874e2b6ee6e9c5913"
+    },
+    {
+      "path": "scripts/search.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/search.py",
+      "upstream_blob_sha1": "5038aa875a0d39f24dea803a4c73b38f8f56915f",
+      "imported_sha256": "d54e648fe0ec2932cac66684220cc17be4bd4b4eba1d23d3195d509d398db374",
+      "modified": false,
+      "upstream_sha256": "d54e648fe0ec2932cac66684220cc17be4bd4b4eba1d23d3195d509d398db374"
+    },
+    {
+      "path": "scripts/tests/fixtures/catalogs/google-api.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-api.json",
+      "upstream_blob_sha1": "eacf1bb4559875808247df711376e8cc47c4f7c4",
+      "imported_sha256": "22d8dc81a7d6827b7e8b64b53e7d184210fb9759e8e294e0d5133c81cc460176",
+      "modified": false,
+      "upstream_sha256": "22d8dc81a7d6827b7e8b64b53e7d184210fb9759e8e294e0d5133c81cc460176"
+    },
+    {
+      "path": "scripts/tests/fixtures/catalogs/google-catalog.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-catalog.json",
+      "upstream_blob_sha1": "4eb89d4d3312b670ef70d44563bf2ffd5cf814bb",
+      "imported_sha256": "c608ad5c4084ebc50a4bbbfb69ea2456c01fd5519c457e18410fffd250ae948f",
+      "modified": false,
+      "upstream_sha256": "c608ad5c4084ebc50a4bbbfb69ea2456c01fd5519c457e18410fffd250ae948f"
+    },
+    {
+      "path": "scripts/tests/fixtures/catalogs/google-existing.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-existing.csv",
+      "upstream_blob_sha1": "83279e0f218e9725b8a14486a558fa10ff134949",
+      "imported_sha256": "4e0761b839dc6b2187a370e82eddc0aed8a7ff10c09e28dd814bb3656dac595b",
+      "modified": false,
+      "upstream_sha256": "4e0761b839dc6b2187a370e82eddc0aed8a7ff10c09e28dd814bb3656dac595b"
+    },
+    {
+      "path": "scripts/tests/fixtures/catalogs/google-metadata.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-metadata.json",
+      "upstream_blob_sha1": "43edcbec14c4a5e68d373eda8466c235f2ee7e9b",
+      "imported_sha256": "30bffc29ae348416a2de2f9c6c418e768e4578f136b0f4bac5d2f70124f2e9ba",
+      "modified": false,
+      "upstream_sha256": "30bffc29ae348416a2de2f9c6c418e768e4578f136b0f4bac5d2f70124f2e9ba"
+    },
+    {
+      "path": "scripts/tests/fixtures/catalogs/google-overrides.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-overrides.json",
+      "upstream_blob_sha1": "162fd1830b08dc1a7b8b891f92f16dbb8b7015f2",
+      "imported_sha256": "6243a48a4619986768c4628e2d0c98ff195beba71ba9be5df8f0c52fc6d90c0b",
+      "modified": false,
+      "upstream_sha256": "6243a48a4619986768c4628e2d0c98ff195beba71ba9be5df8f0c52fc6d90c0b"
+    },
+    {
+      "path": "scripts/tests/fixtures/catalogs/icons-curated.csv",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/icons-curated.csv",
+      "upstream_blob_sha1": "3171bfc7a0a6b3b36745b4f7f0c7743f0afad953",
+      "imported_sha256": "68362c9a700c13b96f000784a0198c1c7e117a7088a01c85744e44233038fe9d",
+      "modified": false,
+      "upstream_sha256": "68362c9a700c13b96f000784a0198c1c7e117a7088a01c85744e44233038fe9d"
+    },
+    {
+      "path": "scripts/tests/fixtures/catalogs/phosphor-core.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-core.json",
+      "upstream_blob_sha1": "be0edd337f2c731af41b8a745d37089172c5dc60",
+      "imported_sha256": "ae4d0bb076240824e1b643c2270d1f8cc0952a69502ec1e622b7dedd85b930bb",
+      "modified": false,
+      "upstream_sha256": "ae4d0bb076240824e1b643c2270d1f8cc0952a69502ec1e622b7dedd85b930bb"
+    },
+    {
+      "path": "scripts/tests/fixtures/catalogs/phosphor-package.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-package.json",
+      "upstream_blob_sha1": "ad9e6ef4b835e65a6c0bd0ad9d11f0517fd718c1",
+      "imported_sha256": "500588c757d6de03e3d7e69b27a8b8b1f88ccf6bb0333e4c1e9b0d6a4f112475",
+      "modified": false,
+      "upstream_sha256": "500588c757d6de03e3d7e69b27a8b8b1f88ccf6bb0333e4c1e9b0d6a4f112475"
+    },
+    {
+      "path": "scripts/tests/fixtures/catalogs/phosphor-react-exports.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-exports.json",
+      "upstream_blob_sha1": "4a0b4587ce9876acac1904831ea774bbf8c69edf",
+      "imported_sha256": "d79f2ee0afdbc2f87776733e145df3538a16a25d7c2fba0056bb48295dad0ded",
+      "modified": false,
+      "upstream_sha256": "d79f2ee0afdbc2f87776733e145df3538a16a25d7c2fba0056bb48295dad0ded"
+    },
+    {
+      "path": "scripts/tests/fixtures/catalogs/phosphor-react-package.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-package.json",
+      "upstream_blob_sha1": "a0db183da61e63f3a8f9e3fbfba7405144f41c1e",
+      "imported_sha256": "1c57a1d76bcc0cdd3632d4c18b9c0e79576b4591df39831c9607e5d0eb4f2cec",
+      "modified": false,
+      "upstream_sha256": "1c57a1d76bcc0cdd3632d4c18b9c0e79576b4591df39831c9607e5d0eb4f2cec"
+    },
+    {
+      "path": "scripts/tests/fixtures/relevance-baseline.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/relevance-baseline.json",
+      "upstream_blob_sha1": "0894a44cc154a01d3b2d624a66c30e7ac3e1a3d5",
+      "imported_sha256": "0df200fc54c1cb97a52d6775e7f501509163cea8f8b73fd7268429bc1f835afe",
+      "modified": false,
+      "upstream_sha256": "0df200fc54c1cb97a52d6775e7f501509163cea8f8b73fd7268429bc1f835afe"
+    },
+    {
+      "path": "scripts/tests/fixtures/relevance-cases.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/relevance-cases.json",
+      "upstream_blob_sha1": "a1fbb87835bda252ba8ae7f15e7090cee580cb42",
+      "imported_sha256": "e77d36eebbf6ddc2860946a02cdb659351da6c09f2688f1ed30939a418099646",
+      "modified": false,
+      "upstream_sha256": "e77d36eebbf6ddc2860946a02cdb659351da6c09f2688f1ed30939a418099646"
+    },
+    {
+      "path": "scripts/tests/fixtures/relevance-thresholds.json",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/relevance-thresholds.json",
+      "upstream_blob_sha1": "1f90e9891fa96bcf9f27db54bcc4bc1eb41328a7",
+      "imported_sha256": "1fbe8623fe3e49c8d828139bca9df69043746e488e8bf09d93dfb9cbc31f5cef",
+      "modified": false,
+      "upstream_sha256": "1fbe8623fe3e49c8d828139bca9df69043746e488e8bf09d93dfb9cbc31f5cef"
+    },
+    {
+      "path": "scripts/tests/test_catalog_refresh.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py",
+      "upstream_blob_sha1": "8379cc3a224bb9f3dca2a3ebd561cd92b7e05ae4",
+      "imported_sha256": "3e2ca5d12702318f641ae62d0c14f22a3bcc84d84e79b863c0e947d475604adb",
+      "modified": false,
+      "upstream_sha256": "3e2ca5d12702318f641ae62d0c14f22a3bcc84d84e79b863c0e947d475604adb"
+    },
+    {
+      "path": "scripts/tests/test_catalog_summary_line_endings.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_catalog_summary_line_endings.py",
+      "upstream_blob_sha1": "056c8e5e7d8ba69c87c31c8ad7bcd32ca3d7223c",
+      "imported_sha256": "fa6ff09f0ec2c99013588c77397f5082dddebe8f467e94c5f8378ec9595f4989",
+      "modified": false,
+      "upstream_sha256": "fa6ff09f0ec2c99013588c77397f5082dddebe8f467e94c5f8378ec9595f4989"
+    },
+    {
+      "path": "scripts/tests/test_core.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_core.py",
+      "upstream_blob_sha1": "b30c0ae54c25f38ec91b37a56cda04426b2510a9",
+      "imported_sha256": "3527fe2f4b852f69f07c17ddc0d615d9a6e025c924e45a33985579a94a8d2118",
+      "modified": false,
+      "upstream_sha256": "3527fe2f4b852f69f07c17ddc0d615d9a6e025c924e45a33985579a94a8d2118"
+    },
+    {
+      "path": "scripts/tests/test_core_data_quality.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_core_data_quality.py",
+      "upstream_blob_sha1": "6d36c79b1f9f8c68c4b02f86a09c5e5f9ba410fe",
+      "imported_sha256": "3ffc6b4905c9ea26d7ac4527ab154d153584231aee71b2ae4bd017977fa09cc5",
+      "modified": false,
+      "upstream_sha256": "3ffc6b4905c9ea26d7ac4527ab154d153584231aee71b2ae4bd017977fa09cc5"
+    },
+    {
+      "path": "scripts/tests/test_data_contracts.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_data_contracts.py",
+      "upstream_blob_sha1": "312dc383b3f6548d7200e928c192673a907b5016",
+      "imported_sha256": "0360d6e10080c0bca214f2b0bbad582ba50702a542ce21013351aca54938df3a",
+      "modified": false,
+      "upstream_sha256": "0360d6e10080c0bca214f2b0bbad582ba50702a542ce21013351aca54938df3a"
+    },
+    {
+      "path": "scripts/tests/test_design_system_mode.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_design_system_mode.py",
+      "upstream_blob_sha1": "44c80c1caa159058a7a5858284ea269bcb561449",
+      "imported_sha256": "95ad2c154349f7021f55a558f8dcdd71df1a24fcf531a4364a8e49526a0865ef",
+      "modified": false,
+      "upstream_sha256": "95ad2c154349f7021f55a558f8dcdd71df1a24fcf531a4364a8e49526a0865ef"
+    },
+    {
+      "path": "scripts/tests/test_design_system_stack.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_design_system_stack.py",
+      "upstream_blob_sha1": "50f0080300b56f4891014d878edddb781b36d7de",
+      "imported_sha256": "83d09ffe8cfbf7b265f362129f061dfe8e5e167ce5db43adaead197cabc9ca38",
+      "modified": false,
+      "upstream_sha256": "83d09ffe8cfbf7b265f362129f061dfe8e5e167ce5db43adaead197cabc9ca38"
+    },
+    {
+      "path": "scripts/tests/test_native_desktop_stack_freshness.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_native_desktop_stack_freshness.py",
+      "upstream_blob_sha1": "79e07f4f5f9c88025506cb3d7bb5aad01dbbd339",
+      "imported_sha256": "3942845712b9a829323cd3568511483135f2a8c7cd79ccf61679da4b0f624dbb",
+      "modified": false,
+      "upstream_sha256": "3942845712b9a829323cd3568511483135f2a8c7cd79ccf61679da4b0f624dbb"
+    },
+    {
+      "path": "scripts/tests/test_relevance_evaluator.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_relevance_evaluator.py",
+      "upstream_blob_sha1": "ed158e2d4e39a342090b29435dee25bcf5c4444f",
+      "imported_sha256": "2fe56a4d6fe5fff15ff592274b0eeaba925146cefea6c0fa29d8f1b77c9aca1f",
+      "modified": false,
+      "upstream_sha256": "2fe56a4d6fe5fff15ff592274b0eeaba925146cefea6c0fa29d8f1b77c9aca1f"
+    },
+    {
+      "path": "scripts/tests/test_skill_script_paths.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_skill_script_paths.py",
+      "upstream_blob_sha1": "36514964d7ea6edcadc169e0d713c18b1cc0bb09",
+      "imported_sha256": "7cec24b94be771bc60bc84f8993e614bb16d4047930e1dd3d3bed91628311d44",
+      "modified": false,
+      "upstream_sha256": "7cec24b94be771bc60bc84f8993e614bb16d4047930e1dd3d3bed91628311d44"
+    },
+    {
+      "path": "scripts/tests/test_style_taxonomy.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_style_taxonomy.py",
+      "upstream_blob_sha1": "09ec131ea6d609e21aaf81327a2e3ffe1ea59d4c",
+      "imported_sha256": "cd14d0092e8a454d213aa104b53e4e70ba698491fa00fde9fdec5ca8a3d70011",
+      "modified": false,
+      "upstream_sha256": "cd14d0092e8a454d213aa104b53e4e70ba698491fa00fde9fdec5ca8a3d70011"
+    },
+    {
+      "path": "scripts/tests/test_text_layout_resilience.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_text_layout_resilience.py",
+      "upstream_blob_sha1": "8db3b873f958b93906abb8f4e4d6ef75a344c76e",
+      "imported_sha256": "b51d32ee8a15505b87cb81957fb2d1b385e041e8beb4463c311d236bfd29ebd4",
+      "modified": false,
+      "upstream_sha256": "b51d32ee8a15505b87cb81957fb2d1b385e041e8beb4463c311d236bfd29ebd4"
+    },
+    {
+      "path": "scripts/tests/test_web_stack_freshness.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_web_stack_freshness.py",
+      "upstream_blob_sha1": "2d4dc307dd7c5467dbc746e0c226d56880b06554",
+      "imported_sha256": "cba3dd79b3bd7ed9479e8cd0e7efb0594d998160bc712f9865fb0ab6e29dda5a",
+      "modified": false,
+      "upstream_sha256": "cba3dd79b3bd7ed9479e8cd0e7efb0594d998160bc712f9865fb0ab6e29dda5a"
+    },
+    {
+      "path": "scripts/validate_data.py",
+      "upstream_path": ".claude/skills/ui-ux-pro-max/scripts/validate_data.py",
+      "upstream_blob_sha1": "8b6c7941f6ad3e51cb9d412b11185133e7763001",
+      "imported_sha256": "a599aa256049cf30954d1f164721b99e453eb7e4cb8241bcab2d5573e6cf58b8",
+      "modified": false,
+      "upstream_sha256": "a599aa256049cf30954d1f164721b99e453eb7e4cb8241bcab2d5573e6cf58b8"
+    }
+  ]
+}

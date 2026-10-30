@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/emilkowalski/skills",
+  "revision": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+  "source": "skills/find-animation-opportunities",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "57b46f1fd11dc62351ea548104a88aa3f659c11b",
+      "imported_sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b",
+      "modified": false,
+      "upstream_sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b"
+    },
+    {
+      "path": "SKILL.md",
+      "upstream_path": "skills/find-animation-opportunities/SKILL.md",
+      "upstream_blob_sha1": "d3b030fbca9abad9220a032f72d425c6b7fa2de8",
+      "imported_sha256": "d52a377819b84a71930f0c822cfe2849f40301605a2d5c7eccbfa3b257700df2",
+      "modified": false,
+      "upstream_sha256": "d52a377819b84a71930f0c822cfe2849f40301605a2d5c7eccbfa3b257700df2"
+    }
+  ]
+}

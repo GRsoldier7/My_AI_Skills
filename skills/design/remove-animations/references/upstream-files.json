@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/emilkowalski/skills",
+  "revision": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+  "source": "skills/remove-animations",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "57b46f1fd11dc62351ea548104a88aa3f659c11b",
+      "imported_sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b",
+      "modified": false,
+      "upstream_sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b"
+    },
+    {
+      "path": "SKILL.md",
+      "upstream_path": "skills/remove-animations/SKILL.md",
+      "upstream_blob_sha1": "100b7b7666f7d09c69a75ebb793e30e607058e77",
+      "imported_sha256": "dea95b7a7ef81cba312c7f70a3c5c67d7e06a287cb16b16d2f90f2b1fb0afff9",
+      "modified": false,
+      "upstream_sha256": "dea95b7a7ef81cba312c7f70a3c5c67d7e06a287cb16b16d2f90f2b1fb0afff9"
+    }
+  ]
+}

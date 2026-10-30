@@ -1,0 +1,79 @@
+{
+  "repository": "https://github.com/joshuadavidthomas/agent-skills",
+  "revision": "516dee7a422b90937b2958d11c03694154ab9c09",
+  "source": "html-artifacts",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "74d5cc2c1435df5d011d78a0c511da90700b90de",
+      "imported_sha256": "3137c31bb3dff5e35c8b2fc4ad2086104ea8277e34e1414e19eaf2587732254b",
+      "modified": false,
+      "upstream_sha256": "3137c31bb3dff5e35c8b2fc4ad2086104ea8277e34e1414e19eaf2587732254b"
+    },
+    {
+      "path": "README.md",
+      "upstream_path": "html-artifacts/README.md",
+      "upstream_blob_sha1": "88cda26fc65ce7004a82a79798e44096e49b24a9",
+      "imported_sha256": "304e48bc279c78f8ad929f0d11cca9ef865fbc92d79a797c49c001f78ed48925",
+      "modified": false,
+      "upstream_sha256": "304e48bc279c78f8ad929f0d11cca9ef865fbc92d79a797c49c001f78ed48925"
+    },
+    {
+      "path": "SKILL.md",
+      "upstream_path": "html-artifacts/SKILL.md",
+      "upstream_blob_sha1": "649206d0fa6213b99c7ff13026704fc5c8d84810",
+      "imported_sha256": "e9a635525f302157b0b3ac8b339c27bb457c977fbaa966c22fa5ca8eca95e710",
+      "modified": true,
+      "upstream_sha256": "e9a635525f302157b0b3ac8b339c27bb457c977fbaa966c22fa5ca8eca95e710"
+    },
+    {
+      "path": "assets/artifact-components.css",
+      "upstream_path": "html-artifacts/assets/artifact-components.css",
+      "upstream_blob_sha1": "957ddeb70ea4693b40e9261b4a986824c7e105e8",
+      "imported_sha256": "eda6d2ee073d8dbf77b0156c339660cb8d996b168dfdcabd3489aba2c767816d",
+      "modified": false,
+      "upstream_sha256": "eda6d2ee073d8dbf77b0156c339660cb8d996b168dfdcabd3489aba2c767816d"
+    },
+    {
+      "path": "references/component-contracts.md",
+      "upstream_path": "html-artifacts/references/component-contracts.md",
+      "upstream_blob_sha1": "c1fa0b1ef450972a9b8b3518792216dfc5e37ec7",
+      "imported_sha256": "a01af41dd129ad0272db70f2c4c6b337c12dc94b2adb7a4f93ccd2d25e9579db",
+      "modified": false,
+      "upstream_sha256": "a01af41dd129ad0272db70f2c4c6b337c12dc94b2adb7a4f93ccd2d25e9579db"
+    },
+    {
+      "path": "references/content-patterns.md",
+      "upstream_path": "html-artifacts/references/content-patterns.md",
+      "upstream_blob_sha1": "2e52df3496f79cf9e2e74c06f8b5ff7b70d3340b",
+      "imported_sha256": "5893877d8ef5dacc75f16b9c7b78ba5f564f7207bbdd290e242e10284a52adfc",
+      "modified": false,
+      "upstream_sha256": "5893877d8ef5dacc75f16b9c7b78ba5f564f7207bbdd290e242e10284a52adfc"
+    },
+    {
+      "path": "references/quality-and-validation.md",
+      "upstream_path": "html-artifacts/references/quality-and-validation.md",
+      "upstream_blob_sha1": "64e1485cdf764e587121e92bf914fec0dd6f4c15",
+      "imported_sha256": "a15884958ca24efc4ab9cbdd358467a167d0848e34985253fc32f46eda2e0093",
+      "modified": false,
+      "upstream_sha256": "a15884958ca24efc4ab9cbdd358467a167d0848e34985253fc32f46eda2e0093"
+    },
+    {
+      "path": "references/research-basis.md",
+      "upstream_path": "html-artifacts/references/research-basis.md",
+      "upstream_blob_sha1": "9f37adead8bb0406e1ed8a1dd32a57bf2f21a541",
+      "imported_sha256": "b939f907b5fbe2a5ab0306cd4d0dc7262183ea0970f4460dc95ef3362bd227fc",
+      "modified": false,
+      "upstream_sha256": "b939f907b5fbe2a5ab0306cd4d0dc7262183ea0970f4460dc95ef3362bd227fc"
+    },
+    {
+      "path": "scripts/inline-components.py",
+      "upstream_path": "html-artifacts/scripts/inline-components.py",
+      "upstream_blob_sha1": "40fab569a76fcd51233dfbe4047a4f9371b81bc5",
+      "imported_sha256": "898f98b284c04bb138adde27edc150b8638fcfd71f82987d3790bc8fdbae4ab3",
+      "modified": false,
+      "upstream_sha256": "898f98b284c04bb138adde27edc150b8638fcfd71f82987d3790bc8fdbae4ab3"
+    }
+  ]
+}

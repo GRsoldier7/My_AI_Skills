@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/emilkowalski/skills",
+  "revision": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+  "source": "skills/pick-ui-library",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "57b46f1fd11dc62351ea548104a88aa3f659c11b",
+      "imported_sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b",
+      "modified": false,
+      "upstream_sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b"
+    },
+    {
+      "path": "SKILL.md",
+      "upstream_path": "skills/pick-ui-library/SKILL.md",
+      "upstream_blob_sha1": "5e0028e988b88d2a88a019fdc978b4732243e467",
+      "imported_sha256": "675fdce308683256ed617351a9b74d23457a5fbd0a562d9831b9c764b8c5e682",
+      "modified": false,
+      "upstream_sha256": "675fdce308683256ed617351a9b74d23457a5fbd0a562d9831b9c764b8c5e682"
+    }
+  ]
+}

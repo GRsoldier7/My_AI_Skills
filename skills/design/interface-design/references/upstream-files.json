@@ -1,0 +1,55 @@
+{
+  "repository": "https://github.com/Dammyjay93/interface-design",
+  "revision": "2f9be3206855bcb2d1d0af262c8bae25cba6658d",
+  "source": ".claude/skills/interface-design",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "fe236841aef0a6abe04284f0cfcb3630e7393725",
+      "imported_sha256": "54c405ef24e71634b73c994133d028e7a96d1906f42615366296d6583dcaba8f",
+      "modified": false,
+      "upstream_sha256": "54c405ef24e71634b73c994133d028e7a96d1906f42615366296d6583dcaba8f"
+    },
+    {
+      "path": "SKILL.md",
+      "upstream_path": ".claude/skills/interface-design/SKILL.md",
+      "upstream_blob_sha1": "92e1df4eb5ca30923149c60f142db7ebeaaad334",
+      "imported_sha256": "720b31a31276e899fbe3006a33cbfeaceb77a73ba4c27b80d29afd38c8b7b208",
+      "modified": true,
+      "upstream_sha256": "720b31a31276e899fbe3006a33cbfeaceb77a73ba4c27b80d29afd38c8b7b208"
+    },
+    {
+      "path": "agents/openai.yaml",
+      "upstream_path": ".claude/skills/interface-design/agents/openai.yaml",
+      "upstream_blob_sha1": "69138eaaf2083d18e130d6742be141491bc60275",
+      "imported_sha256": "752d0810d593b5cc88b34ea8e0c101b50d0ec1c4c8091be369544f73f3a2ea2e",
+      "modified": false,
+      "upstream_sha256": "752d0810d593b5cc88b34ea8e0c101b50d0ec1c4c8091be369544f73f3a2ea2e"
+    },
+    {
+      "path": "reference/examples/system-precision.md",
+      "upstream_path": "reference/examples/system-precision.md",
+      "upstream_blob_sha1": "cbe7b8d13034e84f61f66881854f18841dfe0e5e",
+      "imported_sha256": "9fcf8381011d749c8d4d08c8f2779db32a3395d7132ff7e4877ebbd9632bda2f",
+      "modified": false,
+      "upstream_sha256": "9fcf8381011d749c8d4d08c8f2779db32a3395d7132ff7e4877ebbd9632bda2f"
+    },
+    {
+      "path": "reference/examples/system-warmth.md",
+      "upstream_path": "reference/examples/system-warmth.md",
+      "upstream_blob_sha1": "c3253fab41f7b27021f596fb4a38c1416439c8cd",
+      "imported_sha256": "c0c38c3075fa8b0bcbeb2d72098219d348825b6cabc3d8723b3d4c7c6c392fd5",
+      "modified": false,
+      "upstream_sha256": "c0c38c3075fa8b0bcbeb2d72098219d348825b6cabc3d8723b3d4c7c6c392fd5"
+    },
+    {
+      "path": "reference/system-template.md",
+      "upstream_path": "reference/system-template.md",
+      "upstream_blob_sha1": "80860d93d66fe70c3a9912d9d20efb4394782aa5",
+      "imported_sha256": "d76b413d43abb064746c3e16ced8b56046f7e73da14b2064db7377fee63d4856",
+      "modified": false,
+      "upstream_sha256": "d76b413d43abb064746c3e16ced8b56046f7e73da14b2064db7377fee63d4856"
+    }
+  ]
+}

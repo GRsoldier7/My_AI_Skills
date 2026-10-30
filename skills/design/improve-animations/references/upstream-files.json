@@ -1,0 +1,39 @@
+{
+  "repository": "https://github.com/emilkowalski/skills",
+  "revision": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+  "source": "skills/improve-animations",
+  "files": [
+    {
+      "path": "AUDIT.md",
+      "upstream_path": "skills/improve-animations/AUDIT.md",
+      "upstream_blob_sha1": "94056154e532d695b8792ea67d701625b4f43b6e",
+      "imported_sha256": "551c8473e20e5f4774680bc24d45e1c68e50992582720905c6b077756b7b5a55",
+      "modified": false,
+      "upstream_sha256": "551c8473e20e5f4774680bc24d45e1c68e50992582720905c6b077756b7b5a55"
+    },
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "57b46f1fd11dc62351ea548104a88aa3f659c11b",
+      "imported_sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b",
+      "modified": false,
+      "upstream_sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b"
+    },
+    {
+      "path": "PLAN-TEMPLATE.md",
+      "upstream_path": "skills/improve-animations/PLAN-TEMPLATE.md",
+      "upstream_blob_sha1": "239026b91f8032df191dde2085fd796b8c116d91",
+      "imported_sha256": "0a08ac8e23fd2082d7ffb86aeed7b789de77328c3cf874b16f1a755f2ef0a6ad",
+      "modified": false,
+      "upstream_sha256": "0a08ac8e23fd2082d7ffb86aeed7b789de77328c3cf874b16f1a755f2ef0a6ad"
+    },
+    {
+      "path": "SKILL.md",
+      "upstream_path": "skills/improve-animations/SKILL.md",
+      "upstream_blob_sha1": "d6e77f37272329af0cc36f9eeedbe5226e86ce63",
+      "imported_sha256": "73962447464433476343e2c12cd08ab39cc99a9e5f3c118c5fb54ed897574ef6",
+      "modified": false,
+      "upstream_sha256": "73962447464433476343e2c12cd08ab39cc99a9e5f3c118c5fb54ed897574ef6"
+    }
+  ]
+}

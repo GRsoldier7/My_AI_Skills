@@ -1,0 +1,327 @@
+{
+  "repository": "https://github.com/Leonxlnx/taste-skill",
+  "revision": "12af471f627f866411b4bd785b19646d3672784c",
+  "source": "skills/taste-skill",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "48a2f6640b81ff8eca9ce7f6a96337692713ef5b",
+      "imported_sha256": "4575a543ab88dad12ccea7d97e563d0bce5b448b06072e65d3264497dad326df",
+      "modified": false,
+      "upstream_sha256": "4575a543ab88dad12ccea7d97e563d0bce5b448b06072e65d3264497dad326df"
+    },
+    {
+      "path": "README.md",
+      "upstream_path": "skills/taste-skill/README.md",
+      "upstream_blob_sha1": "a98ba126ce373ba5e639560d8628834d5fa43347",
+      "imported_sha256": "5e33fd716b3e1ffaca9340f645d44c193f9b446107fa67f0cce498d33025672c",
+      "modified": false,
+      "upstream_sha256": "5e33fd716b3e1ffaca9340f645d44c193f9b446107fa67f0cce498d33025672c"
+    },
+    {
+      "path": "SKILL.md",
+      "upstream_path": "skills/taste-skill/SKILL.md",
+      "upstream_blob_sha1": "d8444f13b76be100b3b088dfdae738e85288d6b6",
+      "imported_sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4",
+      "modified": false,
+      "upstream_sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4"
+    },
+    {
+      "path": "assets/app.css",
+      "upstream_path": "skills/taste-skill/assets/app.css",
+      "upstream_blob_sha1": "865e4ed4804556aaff51897d22bf0c1bcbee9549",
+      "imported_sha256": "16518c3a999fb81b2698137f1f743128c189272e8b1d411c4b02598c6755b67f",
+      "modified": false,
+      "upstream_sha256": "16518c3a999fb81b2698137f1f743128c189272e8b1d411c4b02598c6755b67f"
+    },
+    {
+      "path": "assets/base.css",
+      "upstream_path": "skills/taste-skill/assets/base.css",
+      "upstream_blob_sha1": "75915d3b1ea8780090a365eabfb5c4b697cc6e86",
+      "imported_sha256": "aa6ea21613c79e06e06dea3d33200c78590c89b0346bb976ec07947bb45ceafa",
+      "modified": false,
+      "upstream_sha256": "aa6ea21613c79e06e06dea3d33200c78590c89b0346bb976ec07947bb45ceafa"
+    },
+    {
+      "path": "assets/base.js",
+      "upstream_path": "skills/taste-skill/assets/base.js",
+      "upstream_blob_sha1": "86ec0afacba394f64db238c44b8e7b980f2383b3",
+      "imported_sha256": "8d50416125596b84c0083d5d5ffba09add57db4b06cbf0eedac2d4999b7653bc",
+      "modified": false,
+      "upstream_sha256": "8d50416125596b84c0083d5d5ffba09add57db4b06cbf0eedac2d4999b7653bc"
+    },
+    {
+      "path": "assets/charts.js",
+      "upstream_path": "skills/taste-skill/assets/charts.js",
+      "upstream_blob_sha1": "8060404d133089930638804830e192218436eaa7",
+      "imported_sha256": "a7e916594729576b7c7e37048a68508a3243fe8fbc9654775cd245232e9f8100",
+      "modified": false,
+      "upstream_sha256": "a7e916594729576b7c7e37048a68508a3243fe8fbc9654775cd245232e9f8100"
+    },
+    {
+      "path": "assets/scenes/stage.css",
+      "upstream_path": "skills/taste-skill/assets/scenes/stage.css",
+      "upstream_blob_sha1": "190763d3c1661e7a602bec21fce952dece67bf15",
+      "imported_sha256": "b5c587dac45ac6fcc34ae7cb4aa2b3e43797b2ef5d71fd32b48483bda3fca3e0",
+      "modified": false,
+      "upstream_sha256": "b5c587dac45ac6fcc34ae7cb4aa2b3e43797b2ef5d71fd32b48483bda3fca3e0"
+    },
+    {
+      "path": "assets/scenes/stage.js",
+      "upstream_path": "skills/taste-skill/assets/scenes/stage.js",
+      "upstream_blob_sha1": "315b1d9d2ec4b160979a904b13488ea7179b48e9",
+      "imported_sha256": "9ce782a94406e6a230c49ca5f87e56aff9d436da3f56416b1659421f8976bc2b",
+      "modified": false,
+      "upstream_sha256": "9ce782a94406e6a230c49ca5f87e56aff9d436da3f56416b1659421f8976bc2b"
+    },
+    {
+      "path": "evals/evals.json",
+      "upstream_path": "skills/taste-skill/evals/evals.json",
+      "upstream_blob_sha1": "f6d598008f22d980d135a863a7a151609822bb3f",
+      "imported_sha256": "df0ee2a248cd5445c0e1600eb095dc0d43dd312f5b4bb4316a78471ae0d22a74",
+      "modified": false,
+      "upstream_sha256": "df0ee2a248cd5445c0e1600eb095dc0d43dd312f5b4bb4316a78471ae0d22a74"
+    },
+    {
+      "path": "library/app.json",
+      "upstream_path": "skills/taste-skill/library/app.json",
+      "upstream_blob_sha1": "c06fb45f8bb6b09398f19ba35b2f71ae2363a310",
+      "imported_sha256": "3678ccbe1e8d05feff6d4f07fa16a0d610aefeea5e697e842a876713ba763cf5",
+      "modified": false,
+      "upstream_sha256": "3678ccbe1e8d05feff6d4f07fa16a0d610aefeea5e697e842a876713ba763cf5"
+    },
+    {
+      "path": "library/directions.json",
+      "upstream_path": "skills/taste-skill/library/directions.json",
+      "upstream_blob_sha1": "f7f82e1a921e7009da7ce6f88410d2c8a94cf214",
+      "imported_sha256": "d71e3824af33a92d9e1ca543e17f80baa5b7a30c815df5125cfe3300a14892c1",
+      "modified": false,
+      "upstream_sha256": "d71e3824af33a92d9e1ca543e17f80baa5b7a30c815df5125cfe3300a14892c1"
+    },
+    {
+      "path": "library/heroes.json",
+      "upstream_path": "skills/taste-skill/library/heroes.json",
+      "upstream_blob_sha1": "74227d956a049f548d99f7b420ccc6218ae3c40e",
+      "imported_sha256": "98d5e01104412a5fb27936f9c686f3bc0a5f76ce0793186d3de46b982c65b172",
+      "modified": false,
+      "upstream_sha256": "98d5e01104412a5fb27936f9c686f3bc0a5f76ce0793186d3de46b982c65b172"
+    },
+    {
+      "path": "library/motions.json",
+      "upstream_path": "skills/taste-skill/library/motions.json",
+      "upstream_blob_sha1": "ff3818f561f338b15dbe1ff45620729ef0ff8d3b",
+      "imported_sha256": "51815dd09a823c829897f99ed9ea7dc5c35bd305ac989b8a0632ea6d42a3f08b",
+      "modified": false,
+      "upstream_sha256": "51815dd09a823c829897f99ed9ea7dc5c35bd305ac989b8a0632ea6d42a3f08b"
+    },
+    {
+      "path": "library/palettes.json",
+      "upstream_path": "skills/taste-skill/library/palettes.json",
+      "upstream_blob_sha1": "9de29b16db9c9f57b977dd38648a47f866572e54",
+      "imported_sha256": "a14be9f45baba848c53436f4aa44eb4f1925ad3e232c5d1dcddf4f565661a525",
+      "modified": false,
+      "upstream_sha256": "a14be9f45baba848c53436f4aa44eb4f1925ad3e232c5d1dcddf4f565661a525"
+    },
+    {
+      "path": "library/photos.json",
+      "upstream_path": "skills/taste-skill/library/photos.json",
+      "upstream_blob_sha1": "f403b772d3d6ae11ef07cfe44514fb019d918820",
+      "imported_sha256": "8fc3b76bca90f44675bd99d99bb4ce95b0756c6c5d4141b7e917d11d90e61520",
+      "modified": false,
+      "upstream_sha256": "8fc3b76bca90f44675bd99d99bb4ce95b0756c6c5d4141b7e917d11d90e61520"
+    },
+    {
+      "path": "library/sections.json",
+      "upstream_path": "skills/taste-skill/library/sections.json",
+      "upstream_blob_sha1": "042b8ab18ef1aa6e67a6f0f2c171fa9357528623",
+      "imported_sha256": "7c2c8a470a22501176948661f803434db8c542a511281752c717252de80c1ad8",
+      "modified": false,
+      "upstream_sha256": "7c2c8a470a22501176948661f803434db8c542a511281752c717252de80c1ad8"
+    },
+    {
+      "path": "library/sites.json",
+      "upstream_path": "skills/taste-skill/library/sites.json",
+      "upstream_blob_sha1": "ef070e3ccdf5cb9c388bab1fd0aacb0371cba413",
+      "imported_sha256": "a2bc4d0cff8ebff481f0dfd4879c106d5e1e16cb3122f9ab3702184a5e1f3502",
+      "modified": false,
+      "upstream_sha256": "a2bc4d0cff8ebff481f0dfd4879c106d5e1e16cb3122f9ab3702184a5e1f3502"
+    },
+    {
+      "path": "library/type.json",
+      "upstream_path": "skills/taste-skill/library/type.json",
+      "upstream_blob_sha1": "f2a9e6ee47774029dd50fa2856cf963d4e69352f",
+      "imported_sha256": "dbabf41a468775cf6cc5ea5f3c898b0663293822e167b72b02feba1ef03ebf37",
+      "modified": false,
+      "upstream_sha256": "dbabf41a468775cf6cc5ea5f3c898b0663293822e167b72b02feba1ef03ebf37"
+    },
+    {
+      "path": "references/app-screens.md",
+      "upstream_path": "skills/taste-skill/references/app-screens.md",
+      "upstream_blob_sha1": "784439ed799484a98958764a5bf3ede2a1d25296",
+      "imported_sha256": "55e937ec30de605b53a11310b446f328a3ce7403de24fff008920a00be1a5ed4",
+      "modified": false,
+      "upstream_sha256": "55e937ec30de605b53a11310b446f328a3ce7403de24fff008920a00be1a5ed4"
+    },
+    {
+      "path": "references/colour.md",
+      "upstream_path": "skills/taste-skill/references/colour.md",
+      "upstream_blob_sha1": "a20a810fa1f080414035a5e0fdc5002977e56ab2",
+      "imported_sha256": "6556bcc7eed48b7bc2d0d281c28bf57c1b75e94d7ca0bde49f5d9df8c6a09351",
+      "modified": false,
+      "upstream_sha256": "6556bcc7eed48b7bc2d0d281c28bf57c1b75e94d7ca0bde49f5d9df8c6a09351"
+    },
+    {
+      "path": "references/copy.md",
+      "upstream_path": "skills/taste-skill/references/copy.md",
+      "upstream_blob_sha1": "69f20af2bff6d40cc07d4dcadaa45440ced550bf",
+      "imported_sha256": "676edbe75d5f3cfd8a793010ea9f730525ae074b231a674c2426264d3398262e",
+      "modified": false,
+      "upstream_sha256": "676edbe75d5f3cfd8a793010ea9f730525ae074b231a674c2426264d3398262e"
+    },
+    {
+      "path": "references/critique.md",
+      "upstream_path": "skills/taste-skill/references/critique.md",
+      "upstream_blob_sha1": "1989a85c83232e86aec66baf733a843947392b37",
+      "imported_sha256": "9c2f4392674530b3f02ac529fba53d82ab37b85f401c4c1989fbe98d6217f0b4",
+      "modified": false,
+      "upstream_sha256": "9c2f4392674530b3f02ac529fba53d82ab37b85f401c4c1989fbe98d6217f0b4"
+    },
+    {
+      "path": "references/imagery.md",
+      "upstream_path": "skills/taste-skill/references/imagery.md",
+      "upstream_blob_sha1": "ddd88d7a31dd3a5d7f4675ead4524f34d037f665",
+      "imported_sha256": "518def6b2c643b295e13e66b09b66f2e3fc1421d3cf6c7dbb1dc749097ad2ad9",
+      "modified": false,
+      "upstream_sha256": "518def6b2c643b295e13e66b09b66f2e3fc1421d3cf6c7dbb1dc749097ad2ad9"
+    },
+    {
+      "path": "references/layout.md",
+      "upstream_path": "skills/taste-skill/references/layout.md",
+      "upstream_blob_sha1": "dae26af173b4b60f96291f816700f390ffd8e37e",
+      "imported_sha256": "40080640719b07737afb94a8868afef87767a1ab4892814d9b6882e2d283453b",
+      "modified": false,
+      "upstream_sha256": "40080640719b07737afb94a8868afef87767a1ab4892814d9b6882e2d283453b"
+    },
+    {
+      "path": "references/motion.md",
+      "upstream_path": "skills/taste-skill/references/motion.md",
+      "upstream_blob_sha1": "c8f649d4fa45c369c53ce375a00d2f125182f181",
+      "imported_sha256": "79f94d8469898d2bf6186c198ad86ddf691a67c6536eaec36a4ec101285d9a37",
+      "modified": false,
+      "upstream_sha256": "79f94d8469898d2bf6186c198ad86ddf691a67c6536eaec36a4ec101285d9a37"
+    },
+    {
+      "path": "references/research.md",
+      "upstream_path": "skills/taste-skill/references/research.md",
+      "upstream_blob_sha1": "c38364af48f9e95dc90a2e6b47ae75ffdc24731e",
+      "imported_sha256": "83433646a352cae588591e05bc0a75fe1deadff55ede8851bc8dd5dd483adfc5",
+      "modified": false,
+      "upstream_sha256": "83433646a352cae588591e05bc0a75fe1deadff55ede8851bc8dd5dd483adfc5"
+    },
+    {
+      "path": "references/scenes.md",
+      "upstream_path": "skills/taste-skill/references/scenes.md",
+      "upstream_blob_sha1": "c2c568b5f1d18128658b28a273e90028fc22bb30",
+      "imported_sha256": "733ac7258a1a28f2f6ae8205bc36ba66c563594ad0a2e2f829c5eaaba3199a61",
+      "modified": false,
+      "upstream_sha256": "733ac7258a1a28f2f6ae8205bc36ba66c563594ad0a2e2f829c5eaaba3199a61"
+    },
+    {
+      "path": "references/tells.md",
+      "upstream_path": "skills/taste-skill/references/tells.md",
+      "upstream_blob_sha1": "9cfa4a89e466eb6df81b7a1b776421c378aad840",
+      "imported_sha256": "8e6de4411c43d3108f832b3f33bb1a2a838148a72b92a176df893b67d99a0da9",
+      "modified": false,
+      "upstream_sha256": "8e6de4411c43d3108f832b3f33bb1a2a838148a72b92a176df893b67d99a0da9"
+    },
+    {
+      "path": "references/type.md",
+      "upstream_path": "skills/taste-skill/references/type.md",
+      "upstream_blob_sha1": "c1552b700e9bebb2fedf79f82c875615d0f876ac",
+      "imported_sha256": "6353ff1d0ce2f9913628c88fbcb7dad3cc3877e61196848bce99e33a17d20611",
+      "modified": false,
+      "upstream_sha256": "6353ff1d0ce2f9913628c88fbcb7dad3cc3877e61196848bce99e33a17d20611"
+    },
+    {
+      "path": "scripts/assets.mjs",
+      "upstream_path": "skills/taste-skill/scripts/assets.mjs",
+      "upstream_blob_sha1": "4f9c5b1c1fcc5a821685c5cea35f326bcf15d75b",
+      "imported_sha256": "b4b4b99b5634735f5a0b4213169cda5240ee6bbed8ed8042ad1bcf2b6607c1fa",
+      "modified": false,
+      "upstream_sha256": "b4b4b99b5634735f5a0b4213169cda5240ee6bbed8ed8042ad1bcf2b6607c1fa"
+    },
+    {
+      "path": "scripts/draw.mjs",
+      "upstream_path": "skills/taste-skill/scripts/draw.mjs",
+      "upstream_blob_sha1": "6db3d89422057902457c97643c13f4b351d1459b",
+      "imported_sha256": "6c2047d207d2400d3b099956dfe2ac306203b614246e66bc8760212a7f797dbf",
+      "modified": false,
+      "upstream_sha256": "6c2047d207d2400d3b099956dfe2ac306203b614246e66bc8760212a7f797dbf"
+    },
+    {
+      "path": "scripts/inspect.mjs",
+      "upstream_path": "skills/taste-skill/scripts/inspect.mjs",
+      "upstream_blob_sha1": "f1790ca0f1a7c26221455c4e1e91e69e16363dff",
+      "imported_sha256": "c0d7366f789b3f594787b37a525d1d7096104a499aac8a97ae04b405046cf02c",
+      "modified": false,
+      "upstream_sha256": "c0d7366f789b3f594787b37a525d1d7096104a499aac8a97ae04b405046cf02c"
+    },
+    {
+      "path": "scripts/lib/app-draw.mjs",
+      "upstream_path": "skills/taste-skill/scripts/lib/app-draw.mjs",
+      "upstream_blob_sha1": "e246a38f15d4f3b163a3d3aa5378c71462a4c24f",
+      "imported_sha256": "aa0802d341d19b53ec14ec21746e428be49a8ec3ed7b30253194105fc18a8df6",
+      "modified": false,
+      "upstream_sha256": "aa0802d341d19b53ec14ec21746e428be49a8ec3ed7b30253194105fc18a8df6"
+    },
+    {
+      "path": "scripts/lib/cdp.mjs",
+      "upstream_path": "skills/taste-skill/scripts/lib/cdp.mjs",
+      "upstream_blob_sha1": "03ef99c144923d0905ffc6222189bc8901836f4a",
+      "imported_sha256": "320fb75c6454a97b88458e5c33559a1188042aa0041bd5eff53455900236c88a",
+      "modified": false,
+      "upstream_sha256": "320fb75c6454a97b88458e5c33559a1188042aa0041bd5eff53455900236c88a"
+    },
+    {
+      "path": "scripts/lib/inspection-files.mjs",
+      "upstream_path": "skills/taste-skill/scripts/lib/inspection-files.mjs",
+      "upstream_blob_sha1": "d375fcb6b1db149eb11b9ccde3d2f485060b51ca",
+      "imported_sha256": "5635c0d5fbe0f5bd012e58534bcd554ff7440a4e5c724a61a61c476c7f42e918",
+      "modified": false,
+      "upstream_sha256": "5635c0d5fbe0f5bd012e58534bcd554ff7440a4e5c724a61a61c476c7f42e918"
+    },
+    {
+      "path": "scripts/lib/probe.mjs",
+      "upstream_path": "skills/taste-skill/scripts/lib/probe.mjs",
+      "upstream_blob_sha1": "d45372bc2f594e2ab674889646ca6fc846cec6b8",
+      "imported_sha256": "a5a17df891e438f55f196d8233601c3c79c873755f442c1ac5c3568de4e6bb48",
+      "modified": false,
+      "upstream_sha256": "a5a17df891e438f55f196d8233601c3c79c873755f442c1ac5c3568de4e6bb48"
+    },
+    {
+      "path": "scripts/lib/rules.mjs",
+      "upstream_path": "skills/taste-skill/scripts/lib/rules.mjs",
+      "upstream_blob_sha1": "daf22a9cd2fe19339796f406aca6aa9a24872a96",
+      "imported_sha256": "8244aa9f53e77a59a562410310414e6b1a0f0cf002ce8f5aa792740b7f0149bf",
+      "modified": false,
+      "upstream_sha256": "8244aa9f53e77a59a562410310414e6b1a0f0cf002ce8f5aa792740b7f0149bf"
+    },
+    {
+      "path": "scripts/lint.mjs",
+      "upstream_path": "skills/taste-skill/scripts/lint.mjs",
+      "upstream_blob_sha1": "9277761d18222e5fc75c85ed79aa032f3d086598",
+      "imported_sha256": "05f2fae2f56fc051b539cdbacb43a6f78fbbfb9644bb74aa11be472ff12dcaf5",
+      "modified": false,
+      "upstream_sha256": "05f2fae2f56fc051b539cdbacb43a6f78fbbfb9644bb74aa11be472ff12dcaf5"
+    },
+    {
+      "path": "scripts/scenes.mjs",
+      "upstream_path": "skills/taste-skill/scripts/scenes.mjs",
+      "upstream_blob_sha1": "7bbde8e6bdf27859af0d54db1e1b2756de3a7d56",
+      "imported_sha256": "234ec582e2b841457c33033feeeba8535f9ac285495a74d08dc533a1566c90d5",
+      "modified": false,
+      "upstream_sha256": "234ec582e2b841457c33033feeeba8535f9ac285495a74d08dc533a1566c90d5"
+    }
+  ]
+}

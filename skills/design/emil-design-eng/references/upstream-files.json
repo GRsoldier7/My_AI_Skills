@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/emilkowalski/skills",
+  "revision": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+  "source": "skills/emil-design-eng",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "57b46f1fd11dc62351ea548104a88aa3f659c11b",
+      "imported_sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b",
+      "modified": false,
+      "upstream_sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b"
+    },
+    {
+      "path": "SKILL.md",
+      "upstream_path": "skills/emil-design-eng/SKILL.md",
+      "upstream_blob_sha1": "62ce902af8dd32c590ea7203e9ab2edb1d6ef81a",
+      "imported_sha256": "ffbe68e6007fb42cb8149f089b400a1ca007d59ba23e8948e2be4476f3175939",
+      "modified": false,
+      "upstream_sha256": "ffbe68e6007fb42cb8149f089b400a1ca007d59ba23e8948e2be4476f3175939"
+    }
+  ]
+}

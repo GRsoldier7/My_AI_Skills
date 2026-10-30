@@ -1,0 +1,31 @@
+{
+  "repository": "https://github.com/Dammyjay93/interface-design",
+  "revision": "2f9be3206855bcb2d1d0af262c8bae25cba6658d",
+  "source": ".claude/commands",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "fe236841aef0a6abe04284f0cfcb3630e7393725",
+      "imported_sha256": "54c405ef24e71634b73c994133d028e7a96d1906f42615366296d6583dcaba8f",
+      "modified": false,
+      "upstream_sha256": "54c405ef24e71634b73c994133d028e7a96d1906f42615366296d6583dcaba8f"
+    },
+    {
+      "path": "design-deslop.prompt.md",
+      "upstream_path": ".claude/commands/design-deslop.md",
+      "upstream_blob_sha1": "3703666fa1e287b348d58564b7c27e3d13ba769e",
+      "imported_sha256": "46e8a7ead38c6ec08093fc8f734d742088e9f7b2225dc4ee938ddc930be316af",
+      "modified": true,
+      "upstream_sha256": "46e8a7ead38c6ec08093fc8f734d742088e9f7b2225dc4ee938ddc930be316af"
+    },
+    {
+      "path": "design-review.prompt.md",
+      "upstream_path": ".claude/commands/design-review.md",
+      "upstream_blob_sha1": "6c2459d46a62f56dc91ab7a07bea584597c0c06d",
+      "imported_sha256": "dfa72fb496107a20174f45b1e7b3651c5214b4bd61276ba4b9d723a6e1a5362f",
+      "modified": true,
+      "upstream_sha256": "dfa72fb496107a20174f45b1e7b3651c5214b4bd61276ba4b9d723a6e1a5362f"
+    }
+  ]
+}

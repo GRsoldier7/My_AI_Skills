@@ -1,0 +1,119 @@
+{
+  "repository": "https://github.com/dogum/html-artifacts",
+  "revision": "d54982f5da13392481f122b533b4ab9a8b2dc3d9",
+  "source": "skills/html-artifacts",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "b25667c2ed881010b9b1322d8dfa9ce9e7322b8b",
+      "imported_sha256": "4abe53ec57be5e8b102607a30a6fcba7a5d994f78d7b10d445b62f20e46a80d7",
+      "modified": false,
+      "upstream_sha256": "4abe53ec57be5e8b102607a30a6fcba7a5d994f78d7b10d445b62f20e46a80d7"
+    },
+    {
+      "path": "SKILL.md",
+      "upstream_path": "skills/html-artifacts/SKILL.md",
+      "upstream_blob_sha1": "b2fbe7d7a81dd85196d1c71548bfd46ef682c087",
+      "imported_sha256": "b0dc26229461e939b8c859d2de44feaa6f9006fc7c5be21d74f754ec392ef59f",
+      "modified": true,
+      "upstream_sha256": "b0dc26229461e939b8c859d2de44feaa6f9006fc7c5be21d74f754ec392ef59f"
+    },
+    {
+      "path": "references/accessibility-and-print.md",
+      "upstream_path": "skills/html-artifacts/references/accessibility-and-print.md",
+      "upstream_blob_sha1": "740d4a186faa7120ed2d88a892bbed080d81a3cf",
+      "imported_sha256": "fe8188b0d2e7310fd38fdd1a2fd0a38d527c9a7ffc775dcf4ad343cac2733556",
+      "modified": false,
+      "upstream_sha256": "fe8188b0d2e7310fd38fdd1a2fd0a38d527c9a7ffc775dcf4ad343cac2733556"
+    },
+    {
+      "path": "references/code-review-and-pr.md",
+      "upstream_path": "skills/html-artifacts/references/code-review-and-pr.md",
+      "upstream_blob_sha1": "70fb69c91f0da036aba8b4da4d2bd2c69285c1ef",
+      "imported_sha256": "50ceee37918c45181a0ad140793cd3734d4d981854672d782dc4bbebfc86140e",
+      "modified": false,
+      "upstream_sha256": "50ceee37918c45181a0ad140793cd3734d4d981854672d782dc4bbebfc86140e"
+    },
+    {
+      "path": "references/custom-editors.md",
+      "upstream_path": "skills/html-artifacts/references/custom-editors.md",
+      "upstream_blob_sha1": "f379a6ec9b496b6be6204b0246bafe4e686ccece",
+      "imported_sha256": "763b4db5e5c9c33e466bf2bce621f374118e1180d52e4600142689ac55348bda",
+      "modified": false,
+      "upstream_sha256": "763b4db5e5c9c33e466bf2bce621f374118e1180d52e4600142689ac55348bda"
+    },
+    {
+      "path": "references/data-and-charts.md",
+      "upstream_path": "skills/html-artifacts/references/data-and-charts.md",
+      "upstream_blob_sha1": "4eda9ffe5970598b407b0c4eaac7f2ef8e66808c",
+      "imported_sha256": "8d7e4566a8f9690f013dc2979d87ec8d06ebdcec4616023bf4b9654aeef13fb9",
+      "modified": false,
+      "upstream_sha256": "8d7e4566a8f9690f013dc2979d87ec8d06ebdcec4616023bf4b9654aeef13fb9"
+    },
+    {
+      "path": "references/decks.md",
+      "upstream_path": "skills/html-artifacts/references/decks.md",
+      "upstream_blob_sha1": "a34b29dbcc1ccf767b200461c142e68ebf231c91",
+      "imported_sha256": "64b67362b4b8cbf7160511d25fa5f49fd796a989b9d65cc0dac7bc409fafcffd",
+      "modified": false,
+      "upstream_sha256": "64b67362b4b8cbf7160511d25fa5f49fd796a989b9d65cc0dac7bc409fafcffd"
+    },
+    {
+      "path": "references/design-and-prototypes.md",
+      "upstream_path": "skills/html-artifacts/references/design-and-prototypes.md",
+      "upstream_blob_sha1": "c1a3bdbbc7f1813922f91a56c90ecc17e0745e40",
+      "imported_sha256": "60cca318b17f21d8e9d318260259e553f51c7e5e909ff04829a227bf74b4065c",
+      "modified": false,
+      "upstream_sha256": "60cca318b17f21d8e9d318260259e553f51c7e5e909ff04829a227bf74b4065c"
+    },
+    {
+      "path": "references/diagrams-and-illustrations.md",
+      "upstream_path": "skills/html-artifacts/references/diagrams-and-illustrations.md",
+      "upstream_blob_sha1": "a9a3b346a407cd66a0928b50e652b942cbc58059",
+      "imported_sha256": "e98cf6164adea3beef93e1819e083e36b5d0706000f1caa1839ff974e79a40a1",
+      "modified": false,
+      "upstream_sha256": "e98cf6164adea3beef93e1819e083e36b5d0706000f1caa1839ff974e79a40a1"
+    },
+    {
+      "path": "references/exploration-and-planning.md",
+      "upstream_path": "skills/html-artifacts/references/exploration-and-planning.md",
+      "upstream_blob_sha1": "688c7435c7042c6b26b29bfd956c101dbab462b2",
+      "imported_sha256": "5720e1a3bd1a886658414a733e899262b89e6f078eec915f6c722036842ac7eb",
+      "modified": false,
+      "upstream_sha256": "5720e1a3bd1a886658414a733e899262b89e6f078eec915f6c722036842ac7eb"
+    },
+    {
+      "path": "references/harness-mechanics.md",
+      "upstream_path": "skills/html-artifacts/references/harness-mechanics.md",
+      "upstream_blob_sha1": "119cf1eb082e95bfa0c32cae9acdf437f14144e2",
+      "imported_sha256": "3d0ec26f35bb584e053b653e1b37456e9dab65541f439da8d5f2711a5fca7988",
+      "modified": false,
+      "upstream_sha256": "3d0ec26f35bb584e053b653e1b37456e9dab65541f439da8d5f2711a5fca7988"
+    },
+    {
+      "path": "references/matching-your-style.md",
+      "upstream_path": "skills/html-artifacts/references/matching-your-style.md",
+      "upstream_blob_sha1": "0f5030deaab5688c0d9c437dde097bed15a6ea4c",
+      "imported_sha256": "9afade7682e3cb9999491d1394a2a07526d623041577a541119ddafac3a695c9",
+      "modified": false,
+      "upstream_sha256": "9afade7682e3cb9999491d1394a2a07526d623041577a541119ddafac3a695c9"
+    },
+    {
+      "path": "references/reports-and-research.md",
+      "upstream_path": "skills/html-artifacts/references/reports-and-research.md",
+      "upstream_blob_sha1": "644a6b23629bd3507198e5b38d34e788c249479a",
+      "imported_sha256": "007cc2e26590320cc9b4c6b47e226ada35023dc0ceaf8c11631910c00a8fd77d",
+      "modified": false,
+      "upstream_sha256": "007cc2e26590320cc9b4c6b47e226ada35023dc0ceaf8c11631910c00a8fd77d"
+    },
+    {
+      "path": "references/verify-before-delivering.md",
+      "upstream_path": "skills/html-artifacts/references/verify-before-delivering.md",
+      "upstream_blob_sha1": "d66176c42063797380b157804021558fa28b5006",
+      "imported_sha256": "205a157feda5ff91dcfd51882d40f476a636ec524c793ee99ea70ef4005f0158",
+      "modified": false,
+      "upstream_sha256": "205a157feda5ff91dcfd51882d40f476a636ec524c793ee99ea70ef4005f0158"
+    }
+  ]
+}

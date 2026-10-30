@@ -1,0 +1,55 @@
+{
+  "repository": "https://github.com/pbakaus/impeccable",
+  "revision": "02523aec3e4c4580102d996d1b6a71fbe062e03f",
+  "source": ".github/agents",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "bb3f6d23b1f8025514a62a12b51b47d73e3c9aa9",
+      "imported_sha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812",
+      "modified": false,
+      "upstream_sha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812"
+    },
+    {
+      "path": "NOTICE.md",
+      "upstream_path": "NOTICE.md",
+      "upstream_blob_sha1": "0468271c904ae334cfaf27da6f8df3d5f419a1f0",
+      "imported_sha256": "c60a093c2845fd9fb82f9c6f742ece31f379f8190b535309d32d66c45ccffdcb",
+      "modified": false,
+      "upstream_sha256": "c60a093c2845fd9fb82f9c6f742ece31f379f8190b535309d32d66c45ccffdcb"
+    },
+    {
+      "path": "impeccable-asset-producer.agent.md",
+      "upstream_path": ".github/agents/impeccable-asset-producer.agent.md",
+      "upstream_blob_sha1": "da029d9f845a608edee567903ac83c498b35b383",
+      "imported_sha256": "8dab701971a57cac89d4cb3f49a8d82875914b6999b617a8847c132d31cb8c08",
+      "modified": true,
+      "upstream_sha256": "8dab701971a57cac89d4cb3f49a8d82875914b6999b617a8847c132d31cb8c08"
+    },
+    {
+      "path": "impeccable-documenter.agent.md",
+      "upstream_path": ".github/agents/impeccable-documenter.agent.md",
+      "upstream_blob_sha1": "941a08028857b447270317453a6a6713f9e2e4e7",
+      "imported_sha256": "4fb6d2fcc8afaf827a7377ddd604725264fd83be871e2d35062e9d1939144404",
+      "modified": false,
+      "upstream_sha256": "4fb6d2fcc8afaf827a7377ddd604725264fd83be871e2d35062e9d1939144404"
+    },
+    {
+      "path": "impeccable-finish-reviewer.agent.md",
+      "upstream_path": ".github/agents/impeccable-finish-reviewer.agent.md",
+      "upstream_blob_sha1": "25d20fe6931f0033b4ac526a8d09acac44d44529",
+      "imported_sha256": "6559a8717aed153690e349d1f3b6ba5b3c240b7da5dee03d1233ffad38021549",
+      "modified": false,
+      "upstream_sha256": "6559a8717aed153690e349d1f3b6ba5b3c240b7da5dee03d1233ffad38021549"
+    },
+    {
+      "path": "impeccable-manual-edit-applier.agent.md",
+      "upstream_path": ".github/agents/impeccable-manual-edit-applier.agent.md",
+      "upstream_blob_sha1": "aecdb3f6929512227824f1c608c5b5354ef0aee6",
+      "imported_sha256": "16eea0b1948b0b4cd603fb68f02696835124c57bb740791790872e9fefae6d2a",
+      "modified": false,
+      "upstream_sha256": "16eea0b1948b0b4cd603fb68f02696835124c57bb740791790872e9fefae6d2a"
+    }
+  ]
+}

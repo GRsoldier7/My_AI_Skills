@@ -1,0 +1,103 @@
+{
+  "repository": "https://github.com/microsoft/playwright-cli",
+  "revision": "b85c7a736bb473bf55b584e54a09ffa698d6d871",
+  "source": "skills/playwright-cli",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "cefe596afef12e19a8e5e923f1a04c7da3188760",
+      "imported_sha256": "9a7110fc2d2f964038e5dc49128f908f29f47a574c961cba16085914e879cbda",
+      "modified": false,
+      "upstream_sha256": "9a7110fc2d2f964038e5dc49128f908f29f47a574c961cba16085914e879cbda"
+    },
+    {
+      "path": "SKILL.md",
+      "upstream_path": "skills/playwright-cli/SKILL.md",
+      "upstream_blob_sha1": "0a75c909eb7c8d93d9f81954b1b6dc5165c963f4",
+      "imported_sha256": "9bba755285a4c9ad72a4a41b9c7baef6fb516d329c0b44ed0573715f4479b906",
+      "modified": true,
+      "upstream_sha256": "9bba755285a4c9ad72a4a41b9c7baef6fb516d329c0b44ed0573715f4479b906"
+    },
+    {
+      "path": "references/element-attributes.md",
+      "upstream_path": "skills/playwright-cli/references/element-attributes.md",
+      "upstream_blob_sha1": "4e9fa6b99103bbe4e1262c37a9c4a664dfe1dbd5",
+      "imported_sha256": "bf19aa4671e0a50a0fefa9c790f39124e803060eefe395042b723c29fcb7faa2",
+      "modified": false,
+      "upstream_sha256": "bf19aa4671e0a50a0fefa9c790f39124e803060eefe395042b723c29fcb7faa2"
+    },
+    {
+      "path": "references/playwright-tests.md",
+      "upstream_path": "skills/playwright-cli/references/playwright-tests.md",
+      "upstream_blob_sha1": "bec2ec90e4adbc6ed56f06ab19c34916ce7f736b",
+      "imported_sha256": "c5b0719fef2cfdff50bd744051b2f9afc119775db4b48e9b2882c1cf3886797c",
+      "modified": true,
+      "upstream_sha256": "c5b0719fef2cfdff50bd744051b2f9afc119775db4b48e9b2882c1cf3886797c"
+    },
+    {
+      "path": "references/pr-attachments.md",
+      "upstream_path": "skills/playwright-cli/references/pr-attachments.md",
+      "upstream_blob_sha1": "91663b58bccf34b1cd2790ef8ae335d45b3d99df",
+      "imported_sha256": "24b118e74598be72e73e24fe223d295b9099c85b1860a7c8f6e5690c9038fa2a",
+      "modified": true,
+      "upstream_sha256": "24b118e74598be72e73e24fe223d295b9099c85b1860a7c8f6e5690c9038fa2a"
+    },
+    {
+      "path": "references/request-mocking.md",
+      "upstream_path": "skills/playwright-cli/references/request-mocking.md",
+      "upstream_blob_sha1": "9005fda67dfc4af13848fd9ebedee08420aeec97",
+      "imported_sha256": "54e801c9663fc2b6d68ceb058cb1c360724c2499f42acc7852a68e83e5b5f37c",
+      "modified": false,
+      "upstream_sha256": "54e801c9663fc2b6d68ceb058cb1c360724c2499f42acc7852a68e83e5b5f37c"
+    },
+    {
+      "path": "references/running-code.md",
+      "upstream_path": "skills/playwright-cli/references/running-code.md",
+      "upstream_blob_sha1": "5bf7e8cfb52112da2ecd9600631fa8365fbb90f1",
+      "imported_sha256": "3029569ed6ddaeffc0b87badde967efdc2973b1677f078830098146eb3b78ebe",
+      "modified": false,
+      "upstream_sha256": "3029569ed6ddaeffc0b87badde967efdc2973b1677f078830098146eb3b78ebe"
+    },
+    {
+      "path": "references/session-management.md",
+      "upstream_path": "skills/playwright-cli/references/session-management.md",
+      "upstream_blob_sha1": "eb1bde35d9ce619d5cd939384d656e5c91310ebd",
+      "imported_sha256": "a4f16271f95d3eec7bc56e659d8adbb8f6ad7d603a6fa15efdcdd071a50c6ce3",
+      "modified": false,
+      "upstream_sha256": "a4f16271f95d3eec7bc56e659d8adbb8f6ad7d603a6fa15efdcdd071a50c6ce3"
+    },
+    {
+      "path": "references/storage-state.md",
+      "upstream_path": "skills/playwright-cli/references/storage-state.md",
+      "upstream_blob_sha1": "bb5021a09097127c051eaad83a262ff755e62971",
+      "imported_sha256": "9ac47f9ae4a1aedcd2077f8ac9ab1ba6bee1962cb83ff51adcd36fb6d83b5ec6",
+      "modified": false,
+      "upstream_sha256": "9ac47f9ae4a1aedcd2077f8ac9ab1ba6bee1962cb83ff51adcd36fb6d83b5ec6"
+    },
+    {
+      "path": "references/test-generation.md",
+      "upstream_path": "skills/playwright-cli/references/test-generation.md",
+      "upstream_blob_sha1": "33ae38be7b16027df11a963b5cd35af0677cf492",
+      "imported_sha256": "27ecb11ef647999bd7486695bb1aacc3682097e6bb5742804cb6c8769c2b5364",
+      "modified": true,
+      "upstream_sha256": "27ecb11ef647999bd7486695bb1aacc3682097e6bb5742804cb6c8769c2b5364"
+    },
+    {
+      "path": "references/tracing.md",
+      "upstream_path": "skills/playwright-cli/references/tracing.md",
+      "upstream_blob_sha1": "51b8d30489a66c5f4d1b559cd68a41267e92831e",
+      "imported_sha256": "ef73e71bee792e341df9cd4f60529c929ade48b538ac76e033f4f20843e8dbda",
+      "modified": false,
+      "upstream_sha256": "ef73e71bee792e341df9cd4f60529c929ade48b538ac76e033f4f20843e8dbda"
+    },
+    {
+      "path": "references/video-recording.md",
+      "upstream_path": "skills/playwright-cli/references/video-recording.md",
+      "upstream_blob_sha1": "f0b528ab1a70f2e8d5a828862a3dd89b8644239b",
+      "imported_sha256": "1c800b897824cb54394c34265d8ebffdbb530adfc8d612c5d798b667a1799f48",
+      "modified": false,
+      "upstream_sha256": "1c800b897824cb54394c34265d8ebffdbb530adfc8d612c5d798b667a1799f48"
+    }
+  ]
+}

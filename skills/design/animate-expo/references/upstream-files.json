@@ -1,0 +1,31 @@
+{
+  "repository": "https://github.com/emilkowalski/skills",
+  "revision": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+  "source": "skills/animate-expo",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "upstream_blob_sha1": "57b46f1fd11dc62351ea548104a88aa3f659c11b",
+      "imported_sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b",
+      "modified": false,
+      "upstream_sha256": "4ff5bdb7887ec1435c9cab0e8d1a7caee704d894d65c2a008ccc68b1cc2f260b"
+    },
+    {
+      "path": "RECIPES.md",
+      "upstream_path": "skills/animate-expo/RECIPES.md",
+      "upstream_blob_sha1": "a02e6b80f9dec86f196590f2f7a4fe3310ea1cb4",
+      "imported_sha256": "1193cb71334da2e2341778dd92bec9ac79d989cb07fd55d661f324ed5871e718",
+      "modified": false,
+      "upstream_sha256": "1193cb71334da2e2341778dd92bec9ac79d989cb07fd55d661f324ed5871e718"
+    },
+    {
+      "path": "SKILL.md",
+      "upstream_path": "skills/animate-expo/SKILL.md",
+      "upstream_blob_sha1": "78b39e1d22e8c3c15be96ccebe04bf39792f3455",
+      "imported_sha256": "9a01a91701e6563c67677dde6b66ab30f066a5341d42c21a90ba51d99679274a",
+      "modified": false,
+      "upstream_sha256": "9a01a91701e6563c67677dde6b66ab30f066a5341d42c21a90ba51d99679274a"
+    }
+  ]
+}

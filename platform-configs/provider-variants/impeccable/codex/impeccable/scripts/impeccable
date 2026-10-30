@@ -1,0 +1,24 @@
+#!/bin/sh
+# Local library adaptation: explicit approved engine only; never download or install.
+set -eu
+if [ -n "${IMPECCABLE_LIBRARY_LAUNCH:-}" ]; then
+  echo "impeccable: recursive launcher refused" >&2
+  exit 126
+fi
+case "${IMPECCABLE_BIN:-}" in
+  /*) ;;
+  *) echo "impeccable: set IMPECCABLE_BIN to an approved absolute engine path; use manual context fallback otherwise" >&2; exit 127 ;;
+esac
+if [ ! -f "$IMPECCABLE_BIN" ] || [ ! -x "$IMPECCABLE_BIN" ]; then
+  echo "impeccable: approved engine is unavailable; no download attempted" >&2
+  exit 127
+fi
+case "${1:-}" in
+  install|update|hooks|pin) echo "impeccable: installation, updates, hooks and shortcut management are outside this library launcher" >&2; exit 126 ;;
+esac
+dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+IMPECCABLE_SKILL_DIR=$(CDPATH= cd -- "$dir/.." && pwd)
+IMPECCABLE_SELF=$0
+IMPECCABLE_LIBRARY_LAUNCH=1
+export IMPECCABLE_SKILL_DIR IMPECCABLE_SELF IMPECCABLE_LIBRARY_LAUNCH
+exec "$IMPECCABLE_BIN" "$@"
