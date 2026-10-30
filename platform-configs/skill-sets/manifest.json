@@ -1766,7 +1766,7 @@
         "receipt": "references/upstream-files.json",
         "version": "2.1.5"
       },
-      "package_sha256": "f8bf250d9a330d65420d0224186e052a0f117a0d4211f58ad9c72dc88d8aab26",
+      "package_sha256": "22645bf70f91cb072a870e5527c55bed90c7650c325ae3ee887a35ad9aa9e1c7",
       "description": "tasteskill v2, the anti-slop frontend skill. Art direction for websites, distilled from a study of 247 curated gallery sites (One Page Love, Awwwards Sites of the Day). Deals researched directions (idea, composition, type, palette, photographs, section blueprints) from a library, enforces a strict no-slop house style with a real-browser inspector, and runs a look-and-fix loop on screenshots. Use this whenever you build, design, redesign, restyle, polish or review a landing page, marketing site, portfolio, product page, one-pager, hero or any public-facing web page, in any stack (HTML/CSS, React, Next.js, Vue, Svelte, Astro, Tailwind) — also when the user says a page looks generic, templated, \"AI-made\", sloppy, or asks to make it look designed, premium, award-level or less like every other site. Also for app screens: dashboards, admin and analytics views, settings, inboxes and other screens people work in, with their own run and rules.",
       "domains": [
         "parallon",
@@ -1785,7 +1785,9 @@
       "runtime": {
         "requirements": [
           "Approved Node 22+",
-          "Installed approved Chrome, Edge or Chromium for rendering/inspection"
+          "Installed approved Chrome, Edge or Chromium for rendering/inspection",
+          "Dedicated task-local TASTE_SKILL_TMP; automatic stale-profile sweep must not use shared/system temporary base",
+          "Employer approval of upstream --enable-unsafe-swiftshader browser flag before activation"
         ],
         "network": "assets.mjs searches/downloads public image collections; selected URLs are visible to those services. Never include private material in queries.",
         "verified": "Node syntax and relative imports checked; no browser launched or asset service contacted."
@@ -2824,11 +2826,11 @@
         "path": "skills/playwright-cli",
         "license": "Apache-2.0",
         "license_path": "LICENSE",
-        "local_changes": "Removed unrestricted allowed-tools declaration and runtime bootstrap. Require approved preinstalled CLI/browser with NO_UPDATE_NOTIFIER=1; all fallback npx commands use --no-install. Existing project testing only; explicit session/privacy boundaries. Full references retained.",
+        "local_changes": "Removed unrestricted allowed-tools declaration and runtime bootstrap. Require approved preinstalled CLI/browser with NO_UPDATE_NOTIFIER=1; all fallback npx commands use --no-install. Existing project testing only; explicit session/privacy boundaries. Full references retained. Repository Git text attributes normalize the upstream license from CRLF to LF without changing its text.",
         "receipt": "references/upstream-files.json",
         "version": "0.1.22"
       },
-      "package_sha256": "98c8787e9cd867bea372d19cd7b330d088f199bd3317e4d0b818588b1fba58a0",
+      "package_sha256": "92f81d956dfd016873fd5aaa80be65eace6a67d4631dcc18b16abd4a8e6f94eb",
       "description": "Automate browser interactions, test web pages and work with Playwright tests.",
       "domains": [
         "parallon",

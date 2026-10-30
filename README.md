@@ -29,7 +29,7 @@ this compiler; its work is preserved in the local backup. Empty core policy,
 router-managed lifecycle and blocked profiles remain in `reference_profiles`.
 
 
-A library of **231 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. Curated profiles select shared canonical skills; project-router owns lifecycle selection and master-orchestrator serves explicit catalog discovery.
+A library of **305 canonical skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. Curated profiles select shared canonical skills; project-router owns lifecycle selection and master-orchestrator serves explicit catalog discovery.
 
 The library supports **five AI platforms**: Claude Code (slash commands), Google Antigravity / Gemini CLI, OpenAI Codex, Cursor, and ChatGPT. A dedicated **`skill-builder` meta-skill** manages the creation, auditing, and continuous improvement of all skills using a 5-module pipeline and a 10-dimension quality rubric.
 
