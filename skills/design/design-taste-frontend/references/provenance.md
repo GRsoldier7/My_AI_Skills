@@ -21,3 +21,5 @@ Requirements: Approved Node 22+; Installed approved Chrome, Edge or Chromium for
 assets.mjs searches/downloads public image collections; selected URLs are visible to those services. Never include private material in queries.
 
 Node syntax and relative imports checked; no browser launched or asset service contacted.
+
+Receiving-host review requirements: set `TASTE_SKILL_TMP` to a dedicated task-local directory before any browser script; the CDP helper sweeps abandoned `ad-chrome-*` directories in that base using its owner-file check. Never point it at a shared/system temporary base. Review the helper's `--enable-unsafe-swiftshader` flag under employer browser policy before activation. Browser screenshots, local profile cleanup and public image-service requests have not been exercised here.

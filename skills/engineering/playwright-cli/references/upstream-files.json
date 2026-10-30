@@ -9,7 +9,9 @@
       "upstream_blob_sha1": "cefe596afef12e19a8e5e923f1a04c7da3188760",
       "imported_sha256": "9a7110fc2d2f964038e5dc49128f908f29f47a574c961cba16085914e879cbda",
       "modified": false,
-      "upstream_sha256": "9a7110fc2d2f964038e5dc49128f908f29f47a574c961cba16085914e879cbda"
+      "upstream_sha256": "9a7110fc2d2f964038e5dc49128f908f29f47a574c961cba16085914e879cbda",
+      "repository_normalization": "Git text attributes normalize upstream CRLF to LF; license text unchanged",
+      "repository_sha256": "c16f8dcf1a368b83be78d826ea23de4079fe1b4469a0ab9ee20563f37ff3d44b"
     },
     {
       "path": "SKILL.md",

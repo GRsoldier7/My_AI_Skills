@@ -8,7 +8,7 @@ Imported 2026-10-29 from [microsoft/playwright-cli](https://github.com/microsoft
 
 ## Local changes
 
-Removed unrestricted allowed-tools declaration and runtime bootstrap. Require approved preinstalled CLI/browser with NO_UPDATE_NOTIFIER=1; all fallback npx commands use --no-install. Existing project testing only; explicit session/privacy boundaries. Full references retained.
+Removed unrestricted allowed-tools declaration and runtime bootstrap. Require approved preinstalled CLI/browser with NO_UPDATE_NOTIFIER=1; all fallback npx commands use --no-install. Existing project testing only; explicit session/privacy boundaries. Full references retained. Repository Git text attributes normalize the upstream license from CRLF to LF without changing its text.
 
 [Original file receipt](upstream-files.json) maps every imported file to its source path, upstream Git blob, and pre-adaptation SHA-256 (imported_sha256). Unchanged bytes were checked against that Git blob. Adapted-file originals were fetched at the pin and checked against the receipt, allowing the explicitly recorded archive CRLF conversion for Windows launchers. Generated provenance is separate from upstream material.
 
