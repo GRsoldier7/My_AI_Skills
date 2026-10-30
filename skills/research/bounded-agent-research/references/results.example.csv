@@ -1,0 +1,5 @@
+trial,candidate,baseline,evaluation_sha256,status,score,duration_seconds,compute_cost,evidence
+0,baseline,synthetic-baseline,synthetic-fixed-eval,success,4,1,0,synthetic-only
+1,candidate-a,synthetic-baseline,synthetic-fixed-eval,success,2,1,0,synthetic-only
+2,candidate-b,synthetic-baseline,synthetic-fixed-eval,timeout,,10,0,synthetic-only
+3,candidate-c,synthetic-baseline,changed,invalid,,0,0,immutable-evaluation-changed

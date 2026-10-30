@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "activation": "manual-selection-only",
+  "controller": "existing Hermes coordinator",
+  "defaults": {
+    "preload_roster": false,
+    "enable_hooks": false,
+    "register_mcp": false
+  },
+  "ecc": [
+    "agents/hermes/ecc-planner.md",
+    "agents/hermes/ecc-architect.md",
+    "agents/hermes/ecc-code-reviewer.md",
+    "agents/hermes/ecc-security-reviewer.md"
+  ],
+  "addy": [
+    "agents/addyosmani/code-reviewer.md",
+    "agents/addyosmani/security-auditor.md",
+    "agents/addyosmani/test-engineer.md",
+    "agents/addyosmani/web-performance-auditor.md"
+  ],
+  "agency_candidates": [
+    {
+      "source": "agents/agency/design/design-ux-architect.md",
+      "copilot_file": "agency-design-ux-architect.agent.md"
+    },
+    {
+      "source": "agents/agency/engineering/engineering-frontend-developer.md",
+      "copilot_file": "agency-engineering-frontend-developer.agent.md"
+    },
+    {
+      "source": "agents/agency/engineering/engineering-data-engineer.md",
+      "copilot_file": "agency-engineering-data-engineer.agent.md"
+    },
+    {
+      "source": "agents/agency/testing/testing-accessibility-auditor.md",
+      "copilot_file": "agency-testing-accessibility-auditor.agent.md"
+    },
+    {
+      "source": "agents/agency/testing/testing-api-tester.md",
+      "copilot_file": "agency-testing-api-tester.agent.md"
+    },
+    {
+      "source": "agents/agency/testing/testing-reality-checker.md",
+      "copilot_file": "agency-testing-reality-checker.agent.md"
+    }
+  ],
+  "excluded_from_parallon": [
+    "browser-testing-with-devtools",
+    "using-agent-skills",
+    "hermes-agent"
+  ],
+  "optional_controller": "using-agent-skills",
+  "optional_deep_review": "doubt-driven-development"
+}

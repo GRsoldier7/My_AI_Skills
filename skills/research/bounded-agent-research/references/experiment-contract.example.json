@@ -1,0 +1,26 @@
+{
+  "synthetic_example_only": true,
+  "question": "Compare three harmless candidate transformations",
+  "baseline_revision": "synthetic-baseline",
+  "allowed_candidate_paths": [
+    "candidate.txt"
+  ],
+  "immutable_evaluation": {
+    "files": [
+      "fixture-input.txt",
+      "evaluate.py"
+    ],
+    "sha256": "record actual file hashes before execution",
+    "command": "approved local evaluator supplied by the task",
+    "metric": "error_count",
+    "direction": "minimize"
+  },
+  "limits": {
+    "max_trials": 3,
+    "total_wall_clock_seconds": 60,
+    "per_trial_seconds": 10,
+    "max_compute_cost": 0,
+    "network_allowed": false
+  },
+  "promotion": "separate-reviewed-change"
+}

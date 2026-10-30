@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/karpathy/autoresearch",
+  "revision": "228791fb499afffb54b46200aca536f79142f117",
+  "license_declaration": "MIT (README)",
+  "standalone_license_file": false,
+  "mode": "reference-only; runtime not vendored",
+  "upstream_runtime": [
+    "NVIDIA GPU",
+    "Python >=3.10",
+    "uv",
+    "training dependencies and data acquisition"
+  ],
+  "adaptation": "skills/research/bounded-agent-research"
+}
