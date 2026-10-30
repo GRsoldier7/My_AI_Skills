@@ -42,7 +42,7 @@ Generated from the curated skill manifest, artifact inventory and delivery confi
 | shared-writing | chatgpt, copilot, codex, hermes | Writing refinement available across every domain. |
 | skill-maintenance | copilot, codex, hermes | Library maintenance with isolated static gate and separately authorized semantic scanning. |
 | work-copilot-coding | copilot | Coding-only selection; private domain context remains external. |
-| work-parallon | chatgpt, copilot, codex, hermes | Selected work parallon capabilities; private domain context stays external. |
+| work-parallon | chatgpt, copilot | Selected work parallon capabilities; private domain context stays external. |
 
 ## Aarons Latest
 
