@@ -25,6 +25,9 @@ The library supports **five AI platforms**: Claude Code (slash commands), Google
 
 ---
 
+See the [optional design set](platform-configs/skill-sets/design.md) for the reviewed
+Impeccable, Taste Skill and UI/UX Pro Max integration and separate Chrome DevTools MCP setup.
+
 ## Quick Start
 
 ```bash

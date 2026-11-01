@@ -4,6 +4,9 @@ This repository is the only source for skills. Each device installs a **small gl
 scope; every other skill in `skills/` stays out of sessions until you install it by name. Nothing here
 copies skills between projects by hand.
 
+The optional [design set](design.md) has separate source pins and intake status.
+It is additive and does not change `global.txt`.
+
 ## What is installed where
 
 | Mechanism | Skills | Claude Code | Codex | Install model |

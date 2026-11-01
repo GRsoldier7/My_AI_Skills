@@ -39,7 +39,10 @@
     "skills/aarons-latest/grill-me",
     "skills/aarons-latest/grilling",
     "skills/aarons-latest/grill-with-docs",
-    "skills/aarons-latest/teach"
+    "skills/aarons-latest/teach",
+    "skills/design/impeccable",
+    "skills/design/design-taste-frontend",
+    "skills/design/ui-ux-pro-max"
   ],
   "max_age_days": 90,
   "stale_tokens": [
