@@ -23,7 +23,9 @@ The smoke client negotiated only its fixture directory as an MCP root. It did no
 use unrestricted paths, connect to a personal profile, or change browser settings.
 
 Global config/guidance backups are under `~/.local/share/my-ai-design-tools/backups/`.
-All unrelated parsed configuration values were verified equal to their backups.
+All unrelated parsed configuration values matched their backups immediately after
+registration. Fresh Claude verification subsequently refreshed only its migration
+counter and feature-cache metadata; unrelated MCP server definitions remain unchanged.
 The existing network-volume repository and analytics work were not modified.
 
 Validation: 178 package files verified against pins/hashes; no missing local
@@ -43,3 +45,7 @@ Use a new Codex/Claude session to pick up the global guidance and MCP registrati
 This does not automatically add live MCP tools to an already-running parent chat.
 No merge is authorized or performed. GitHub publication is reported by the final
 verified commit/PR links, not inferred from these local installation checks.
+
+Git whitespace checking flags existing trailing spaces/blank lines in byte-identical
+upstream reference and Python files. These were deliberately preserved for exact
+provenance. The authored integration files pass the whitespace check.
