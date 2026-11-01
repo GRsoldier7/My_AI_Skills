@@ -30,3 +30,7 @@ Official skill: NVIDIA/SkillSpector commit `6d0b7c849949cab9181e57798247f89e48ce
 The existing homelab runtime 2.2.3 scanned only the exact official skill package and harmless fixture with `--no-llm`, an empty HOME, cleared credentials and tracing disabled. Skill score: 2/100, SAFE; four LOW EA3 matches in Apache license wording at lines 27, 32, 55 and 160, reviewed as non-executable legal text. Fixture: 0/100, no findings. The older scanner has no analysis-completeness field; this is not proof of full modern coverage. Raw reports are preserved under `tooling/security/skillspector/reviews/20261101/`.
 
 No Linux/Bubblewrap runtime was available for this task, so the imported 2.12.0 isolation gate was unit-tested but not run end to end. No scanner/runtime/global configuration was installed or upgraded. The existing other checkout remains untouched.
+
+## False-positive handling
+
+The repository gate now separates raw detection from an exact-source review policy. [Policy decisions and regression coverage](../../tooling/security/skillspector/README.md#finding-review-policy) explain ALLOW, REVIEW, BLOCK and ERROR. Known reviewed wording can cease blocking only when its exact finding and complete package hashes match and scan coverage is complete. Unknown behavior and incomplete checks cannot silently pass. Raw reports and scanner severities remain unchanged; no global scanner or platform approval rules were changed.

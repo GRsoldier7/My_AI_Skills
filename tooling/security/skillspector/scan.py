@@ -16,6 +16,8 @@ import sys
 import tempfile
 import time
 
+from review_policy import decide, load_reviews, tree_hash
+
 HERE = Path(__file__).resolve().parent
 REVISION = "54921c8c7c23008c8af2328d5ab492a904b6ece4"
 SOURCE = f"https://github.com/NVIDIA/SkillSpector/archive/{REVISION}.zip"
@@ -113,7 +115,8 @@ def enumerate_packages(args: argparse.Namespace) -> list[Path]:
     return paths
 
 
-def run_one(venv: Path, package: Path, destination: Path, timeout: int, probe=False) -> dict:
+def run_one(venv: Path, package: Path, destination: Path, timeout: int, probe=False, package_key=None) -> dict:
+    scanned_tree = tree_hash(package)
     parent_net = os.readlink("/proc/self/ns/net")
     with tempfile.TemporaryDirectory(prefix="skillspector-output-") as directory:
         temporary = Path(directory)
@@ -130,7 +133,8 @@ def run_one(venv: Path, package: Path, destination: Path, timeout: int, probe=Fa
             evidence[k] for k in ["input_read_only", "home_empty", "network_unreachable", "credential_environment_empty"]
         ):
             raise ValueError("Isolation probe failed; scanner result rejected")
-        result = {"isolation": evidence, "exit_code": process.returncode}
+        result = {"isolation": evidence, "exit_code": process.returncode,
+                  "raw_scanner_exit": process.returncode, "input_sha256": scanned_tree}
         if not probe:
             report_path = temporary / "report.json"
             if not report_path.is_file() or report_path.stat().st_size > LIMIT_BYTES:
@@ -146,8 +150,11 @@ def run_one(venv: Path, package: Path, destination: Path, timeout: int, probe=Fa
                            "finding_count": len(issues), "coverage": completeness,
                            "scan_mode": "static-only", "llm_used": False,
                            "recommendation": report.get("risk_assessment", {}).get("recommendation")})
-            if issues or completeness.get("is_complete") is not True or report.get("execution_successful") is not True:
-                result["exit_code"] = 1
+            result['raw_gate_passed'] = (process.returncode == 0 and not issues
+                and completeness.get('is_complete') is True and report.get('execution_successful') is True)
+            result['policy'] = decide(report, package, package_key, scanned_tree,
+                                      process.returncode, load_reviews())
+            result['exit_code'] = 0 if result['policy']['decision'] == 'ALLOW' else 1
         return result
 
 
@@ -181,13 +188,16 @@ def main() -> int:
         for index, package in enumerate(packages):
             try:
                 result = run_one(args.venv, package, args.output_dir / f"{index:04d}-{package.name}.json",
-                                 args.timeout, probe=args.check_isolation)
+                                 args.timeout, probe=args.check_isolation,
+                                 package_key=package.relative_to(args.repo_root).as_posix() if package.is_relative_to(args.repo_root) else None)
             except (ValueError, OSError, subprocess.TimeoutExpired, json.JSONDecodeError) as error:
                 result = {"exit_code": 1, "error": str(error)}
             result["package"] = receipt["planned_packages"][index]
             receipt["package_results"].append(result)
             print(json.dumps({"package": result["package"], "exit_code": result["exit_code"],
-                              "finding_count": result.get("finding_count")} ), flush=True)
+                              "finding_count": result.get("finding_count"),
+                              "policy_decision": result.get("policy", {}).get("decision", "ERROR" if "error" in result else None)} ), flush=True)
+        receipt["raw_gate_passed"] = all(r.get("raw_gate_passed", r["exit_code"] == 0) for r in receipt["package_results"])
         receipt["gate_passed"] = all(r["exit_code"] == 0 for r in receipt["package_results"])
     except (ValueError, OSError, subprocess.TimeoutExpired, json.JSONDecodeError) as error:
         receipt["error"] = str(error)

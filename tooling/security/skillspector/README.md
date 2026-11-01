@@ -29,7 +29,7 @@ python3 tooling/security/skillspector/scan.py \
 
 The package JSON may be a list of repository-relative paths or an object with `skills`/`packages` records containing `path`. Repeated `--package skills/category/name` arguments also work. `--check-isolation` tests the sandbox without running a scan. There is deliberately no unsandboxed fallback.
 
-The receipt lists every planned package, report hash, exit code, issue count, actual coverage, LLM-use evidence and isolation results. A failing package does not skip later packages. Nonzero exit, missing/malformed report, active findings or incomplete coverage fails the gate. Review each JSON `issues` entry and `analysis_completeness`; do not suppress findings or change flags to produce a passing result. Any later manual disposition belongs in the integration review record and does not turn the raw gate green.
+The receipt lists every planned package, report hash, exit code, issue count, actual coverage, LLM-use evidence and isolation results. A failing package does not skip later packages. Raw scanner exit, findings and completeness remain intact. A separate exact-source policy decides whether the repository gate passes; see the policy table below. Review each JSON `issues` entry and `analysis_completeness`; do not suppress findings or change flags to produce a passing result. A reviewed disposition never changes the raw scan or `raw_gate_passed`; it can make the separate policy pass only when enabled coverage is complete and every finding has an exact reviewed match.
 
 ## Isolation and coverage limits
 
@@ -58,3 +58,32 @@ The harmless fixture should return exit 0/no findings with complete enabled loca
 The byte-identical NVIDIA `skill-inspector` skill is separately pinned and licensed under `skills/security/skill-inspector`. See [installation and use](../../../platform-configs/skill-sets/skill-inspector.md). `integration.json` records both pins, source lineage and hashes. `verify_import.py` checks those recorded bytes; it does not run a scanner or approve intake.
 
 The scanner source archive SHA-256 is recorded in `integration.json`. The existing dependency lock pins versions, not all wheel hashes; use a trusted package index and validate the dedicated environment. Do not describe this as a hermetic or artifact-hash-locked build.
+
+## Finding review policy
+
+`scan.py` now calls `review_policy.py` after retaining the raw report. A finding alone no longer automatically fails the policy. The worker still uses `--fail-on-findings --fail-on-incomplete`; upstream code, flags, rule severities and raw reports are unchanged.
+
+| Policy decision | Condition | Repository gate |
+| --- | --- | --- |
+| ALLOW | Complete successful enabled static scan, unchanged input, no unresolved findings | Exit 0; still no automatic installation |
+| REVIEW | Unresolved LOW/MEDIUM findings, incomplete/unknown coverage, missing source binding or unexplained nonzero exit | Nonzero; review required, not a claim of maliciousness |
+| BLOCK | Any unresolved HIGH/CRITICAL finding | Nonzero; investigate and apply existing approval rules |
+| ERROR | Execution failure, malformed evidence, unexpected LLM use or failed isolation | Nonzero; never a clean result |
+
+Every result retains `raw_scanner_exit`, `raw_gate_passed`, the unmodified report/hash, input-tree hash, policy decision, reviewed/unresolved finding indexes and rationale. The receipt keeps both `raw_gate_passed` and the policy-based `gate_passed`. Neither changing the numeric score nor placing text in a Markdown code block grants an exception.
+
+`reviewed-findings.json` is the repository-owned review registry. Its 16 initial entries cover specific Apache license matches, a prohibition on overwriting, ordinary Python return statements, image-loading `--no-check`, physical keychain illustrations and a wave's “curl.” Each entry binds package path, the entire package tree hash, file path/hash, rule ID and exact finding fingerprint (severity, location, matched text and snippet), plus reviewer and rationale. Changing any input file, adding a file or changing a finding invalidates the match. A new scanner's changed findings require fresh review. There is no vendor, filename, keyword or rule-wide allowlist. The registry is trusted reviewed repository configuration, never loaded from the candidate package; changing it requires the same source review as code.
+
+Source review distinguishes the image-loading flag from real TLS bypass. It does not exempt the package's other network/download behavior. Negated overwrite/audio examples are exercised in policy tests; a generic “do not” phrase is not automatically trusted. Credential access, exfiltration, destructive execution, privilege changes, security bypasses and uncertain material behavior remain blocked or review-required unless a separate appropriately scoped owner decision is obtained. This layer does not implement runtime-risk acceptance, automatic installs, global hooks or platform approval-rule changes.
+
+Run focused validation:
+
+```sh
+python3 tooling/security/skillspector/test_policy.py
+python3 tooling/security/skillspector/test_gate.py
+python3 tooling/security/skillspector/verify_import.py
+```
+
+The policy suite uses clearly synthetic reports for decision-boundary tests, tests every real reviewed exception against current source bytes, and simulates the gate/report interface. It does not claim those synthetic findings prove scanner detection. A separate real static scan of the inert `evals/skill-security/unsafe` fixture produced eight findings (including CRITICAL credential-access findings), score 100, and remains BLOCK under the policy. No fixture instructions execute. Its raw report is retained alongside prior reports.
+
+Old 2.2.3 reports lack completeness evidence: even after exact findings are explained, they remain REVIEW (or BLOCK for unresolved high findings), not retroactively ALLOW. The pinned 2.12.0 Linux isolation runtime remains untested end to end here; the integration path is covered by a simulated subprocess test. Existing homelab `/root/bin/skill-scan` behavior and platform approval rules were not modified.
