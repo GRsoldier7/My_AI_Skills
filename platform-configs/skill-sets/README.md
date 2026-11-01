@@ -257,3 +257,7 @@ are marked) and must be removed by hand.
   in `~/.codex/config.toml` ([docs](https://developers.openai.com/codex/skills); untested here).
 - Both tools cap skill descriptions (Claude Code about 1% of the context window, Codex about 2%, per their
   docs; not measured here), so keep model-invoked entries in `global.txt` few and their descriptions short.
+
+## NVIDIA Skill Inspector
+
+Optional [official review skill and pinned scanner setup](skill-inspector.md). This addition preserves the existing security intake gates and leaves `global.txt` unchanged.

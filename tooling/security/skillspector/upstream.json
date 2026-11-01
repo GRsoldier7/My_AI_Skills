@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/NVIDIA/SkillSpector",
+  "revision": "54921c8c7c23008c8af2328d5ab492a904b6ece4",
+  "version": "2.12.0",
+  "license": "Apache-2.0",
+  "python": ">=3.12,<3.16",
+  "mode": "static-only",
+  "cloud_provider": null,
+  "mcp": false
+}
