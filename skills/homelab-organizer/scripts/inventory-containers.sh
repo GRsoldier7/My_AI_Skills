@@ -94,10 +94,26 @@ if [[ -d "$HOMELAB_LXC_DOC" || -d "$HOMELAB_VM_DOC" ]]; then
   # Folder convention — primary signal. Track LXC and VM separately for accurate drift.
   documented_lxc_ids=$(ls -d "$HOMELAB_LXC_DOC"/*/ 2>/dev/null | xargs -n1 -r basename | grep -oE '^[0-9]{2,3}' | sort -u)
   documented_vm_ids=$(ls -d "$HOMELAB_VM_DOC"/*/ 2>/dev/null | xargs -n1 -r basename | grep -oE '^[0-9]{2,3}' | sort -u)
-  # Content grep — secondary; require explicit prefix to avoid matching "100MB" etc
-  content_ids=$(find "$HOMELAB_LXC_DOC" "$HOMELAB_CT_DOC" "$HOMELAB_VM_DOC" -maxdepth 3 -type f \( -name '*.md' -o -name '*.yaml' \) 2>/dev/null \
-    | xargs -r grep -hoE '(CT|VM|VMID)[[:space:]]+#?[0-9]{2,3}|^id:[[:space:]]*[0-9]{2,3}' 2>/dev/null \
-    | grep -oE '[0-9]{2,3}' | sort -u)
+  # Content grep — secondary. Only a line that names the guest as its subject counts: a markdown heading
+  # outside code fences, or a yaml id: key. Prose is a cross-reference ("proxy is NPM (CT 150)" in another
+  # guest's README masked an undocumented guest), and a fenced "# ..." is a shell comment. So is one 4 spaces
+  # or a tab in (an indented code block); a heading sits at most 3 spaces in. Fences close as in check-links.sh.
+  # The explicit CT/VM prefix avoids matching "100MB" etc
+  content_ids=$(
+    {
+      find "$HOMELAB_LXC_DOC" "$HOMELAB_CT_DOC" "$HOMELAB_VM_DOC" -maxdepth 3 -type f -name '*.md' -print0 2>/dev/null \
+        | xargs -0 -r awk '
+          FNR == 1 { open = "" }
+          { s = $0; sub(/^[[:space:]]+/, "", s); c = substr(s, 1, 1) }
+          (c == "`" || c == "~") && match(s, "^" c "+") && RLENGTH >= 3 {
+            if (!open) { if (!(c == "`" && index(substr(s, RLENGTH + 1), "`"))) { open = c; len = RLENGTH; next } }
+            else if (c == open && RLENGTH >= len && substr(s, RLENGTH + 1) ~ /^[[:space:]]*$/) { open = ""; next }
+          }
+          !open && $0 ~ /^ ? ? ?#/ && match(s, /^#+[[:space:]]/) && RLENGTH <= 7' 2>/dev/null
+      find "$HOMELAB_LXC_DOC" "$HOMELAB_CT_DOC" "$HOMELAB_VM_DOC" -maxdepth 3 -type f -name '*.yaml' -print0 2>/dev/null \
+        | xargs -0 -r grep -hE '^id:[[:space:]]*[0-9]' 2>/dev/null
+    } | grep -oE '(CT|VM|VMID)[[:space:]]+#?[0-9]{2,3}|^id:[[:space:]]*[0-9]{2,3}' \
+      | grep -oE '[0-9]{2,3}' | sort -u)
   documented_ids=$(printf '%s\n%s\n%s\n' "$documented_lxc_ids" "$documented_vm_ids" "$content_ids" | sort -u)
 fi
 # Real IDs split by type

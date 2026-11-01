@@ -9,8 +9,27 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 - SkillSpector gate (host `/root/bin/skill-scan`): rounds 1-5 were last verified on 2026-09-28 (`aaron/fp-tuning` @ `7293f4c`). Current host state has not been rechecked.
 - 2026-10-03: cross-tool skill sets. `scripts/install-skills.sh` links `platform-configs/skill-sets/global.txt` into Claude Code and Codex; four mattpocock skills vendored. Guide and index: `platform-configs/skill-sets/README.md`.
 - 2026-10-14: homelab-organizer class-C fixes merged and 14 skill descriptions trimmed on local `main`; push to origin pending.
+- 2026-11-01: homelab-organizer S2 scanner patch committed on `fix/organizer-scanners-s2`, which carries `46ca4c3` (#25). Peer-node mode (S3) is approved and not built.
 
 ## Log
+
+### 2026-11-01 — homelab-organizer S2 scanner patch (built from 2026-10-23)
+
+**Done**
+- Branch `fix/organizer-scanners-s2` off `46ca4c3` (#25: the container probe printed `0` twice for a fully patched container), in a worktree outside the repo.
+- `check-links.sh`: percent-decoding (printable ASCII only); `file://` targets (local forms resolve, other hosts are skipped); one level of balanced parentheses in a link destination; each link reported once; inline code spans and the organizer's own report dir are not link sources.
+- `inventory-containers.sh`: a guest counts as documented by a markdown heading outside code fences or a yaml `id:` key. Prose cross-references no longer mask an undocumented guest.
+- `scan-files.sh`: `__init__.py` is a package marker; 0-byte files are held and never deduplicated; a cited or in-use duplicate is held; credential-shaped content is held, and only the match is recorded. LXC mount points and each running guest's cron and unit files are in-use sources: a failed guest dump is listed in `ct_refs_unreadable`, and a failed `pct list` stops the scan. Every proposed row lists the files its quarantine would orphan (`would_orphan`). The two guest seams must name readable files.
+- `audit-procedure.md` and `safety-rules.md` match; the schema blocks are pinned by the existing doc-schema tests.
+
+**Verified**
+- `test_scanners.py` 96/96 (62 before; each new test watched failing first, apart from one guard). Mutation check at 92 tests (2026-10-24): 21/21 deliberate breakages caught; not re-run on the last 4 tests. ruff and pyright clean; `bash -n` clean on every script.
+- Review: Fable designed it; codex reviewed the six design decisions, then the full diff and four follow-up deltas. Every BLOCKER it raised is fixed and re-confirmed. Declined with reasons: JSON-escaping of fixed signal names; full CommonMark code-span parsing (link findings only).
+- A fresh codex pass on the whole diff (2026-11-01) found three more defects, all fixed test-first: a quoted passphrase holding spaces passed the credential gate (the wider rule newly holds 0 of 221 proposed rows on the owner's tree); a link in a plain double-backtick span was reported; a heading indented up to 3 spaces did not document a guest. It also changed the landing order, so the live checkout moves last, after every gate.
+- Read-only runs on the owner's tree: link findings 142 → 82 with no new rows; drift reports one guest that prose had masked; 30 cited copies left the proposed DUPLICATE bucket; a script run by a guest's timer is now held automatically.
+
+**Open**
+- Deferred to S3: peer-node inventory mode. Its design was approved on 2026-11-01 (the owner delegated the call to the design lead), including read-only ssh to the peer. It is kept in the owner's homelab spec (§11), not here, and is built after this branch lands. Backlog: over-common basenames (`README.md`, `CLAUDE.md`) held only by coincidental mentions; the host-side unit list lacks the package unit dirs.
 
 ### 2026-10-14 — homelab-organizer class-C fixes merged; 14 skill descriptions trimmed
 
