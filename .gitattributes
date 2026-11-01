@@ -1,0 +1,5 @@
+# Scripts and skill-set lists keep LF endings on every OS: bash cannot run a CRLF script, and a
+# default Git for Windows clone (core.autocrlf=true) would otherwise check them out CRLF.
+*.sh text eol=lf
+*.py text eol=lf
+*.txt text eol=lf

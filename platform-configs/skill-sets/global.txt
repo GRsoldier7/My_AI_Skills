@@ -3,9 +3,11 @@
 # Keep this list small: every model-invocable skill here costs context in every session.
 # Anything else in skills/ stays available on demand: ./scripts/install-skills.sh <name>
 #
-# Do not list skills/aarons-latest/* here. Codex and ChatGPT get those from
-# scripts/project-router.py (copies; it refuses symlinked targets), and two installers
-# must never manage the same skill name. See platform-configs/skill-sets/README.md.
+# Do not list the project-router skills (the SKILLS tuple in scripts/project-router.py) here.
+# Codex and ChatGPT get those from scripts/project-router.py (copies; it refuses symlinked
+# targets), and two installers must never manage the same skill name; the installer skips them
+# on the Codex side. Other skills/aarons-latest/* (vendored grill-me, grilling, grill-with-docs,
+# teach) install normally. See platform-configs/skill-sets/README.md.
 
 # Third-party, vendored byte-identical at a pinned commit (provenance: platform-configs/skill-sets/README.md)
 skills/engineering/setup-matt-pocock-skills

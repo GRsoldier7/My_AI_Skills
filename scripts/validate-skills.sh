@@ -18,7 +18,7 @@ SKILLS_DIR="$REPO_DIR/skills"
 # so the house-convention checks (name = dir, metadata block and fields, house sections) are
 # skipped for them. Broader than lint-skills.py, which skips only name and metadata checks; the
 # extra skips are WARN-only house-style rules. Patterns use fnmatch semantics: `*` spans `/`.
-VENDORED_PATTERNS="$(python3 -c 'import json, sys; print("\n".join(json.load(open(sys.argv[1])).get("vendored_paths", [])))' "$SCRIPT_DIR/lint-config.json")"
+VENDORED_PATTERNS="$(python3 -c 'import json, sys; print("\n".join(json.load(open(sys.argv[1])).get("vendored_paths", [])))' "$SCRIPT_DIR/lint-config.json" | tr -d '\r')"  # tr: Windows python3 writes CRLF to pipes
 is_vendored() {
     local rel="${1#"$REPO_DIR"/}" pat
     while IFS= read -r pat; do

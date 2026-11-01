@@ -36,7 +36,7 @@ I'm Aaron DeYoung — AI consultant, entrepreneur, and builder. I help companies
 
 ## The Skill Library
 
-This CLAUDE.md works in concert with a library of **57 specialist skills** organized in `skills/`. Each skill is a deep-domain expert. Skills compose — `master-orchestrator` routes every request to the optimal skill chain.
+This CLAUDE.md works in concert with a library of **191 specialist skills** organized in `skills/`. Each skill is a deep-domain expert. Skills compose — `master-orchestrator` routes every request to the optimal skill chain.
 
 ### Auto-Routing (Non-Negotiable)
 

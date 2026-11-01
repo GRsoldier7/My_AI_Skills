@@ -37,9 +37,10 @@ from typing import Any
 # Constants
 # ---------------------------------------------------------------------------
 
-SKILLS_ROOT = Path("/root/My_AI_Skills/skills")
+REPO_DIR = Path(__file__).resolve().parent.parent  # repo root wherever the clone lives
+SKILLS_ROOT = REPO_DIR / "skills"
 TARGET_SKILL = SKILLS_ROOT / "core" / "master-orchestrator" / "SKILL.md"
-BACKUP_DIR = Path("/root/My_AI_Skills/.backup")
+BACKUP_DIR = REPO_DIR / ".backup"
 BACKUP_FILE = BACKUP_DIR / "master-orchestrator-pre-autogen.md"
 
 START_MARKER = "<!-- AUTO-GENERATED-REGISTRY:START -->"

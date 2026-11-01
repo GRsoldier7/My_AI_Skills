@@ -1,0 +1,4 @@
+interface:
+  display_name: "Discount Codes"
+  short_description: "Find legitimate discounts with clear verification"
+  default_prompt: "Use $discount-codes to find the best supported discounts for this website, with an optional product."

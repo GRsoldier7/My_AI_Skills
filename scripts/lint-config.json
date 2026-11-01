@@ -35,7 +35,11 @@
     "skills/engineering/to-spec",
     "skills/engineering/to-tickets",
     "skills/engineering/setup-matt-pocock-skills",
-    "skills/engineering/domain-modeling"
+    "skills/engineering/domain-modeling",
+    "skills/aarons-latest/grill-me",
+    "skills/aarons-latest/grilling",
+    "skills/aarons-latest/grill-with-docs",
+    "skills/aarons-latest/teach"
   ],
   "max_age_days": 90,
   "stale_tokens": [
