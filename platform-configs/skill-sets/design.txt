@@ -1,0 +1,4 @@
+# Additive design skills. Install with --set; do not prune other sets.
+skills/design/impeccable
+skills/design/design-taste-frontend
+skills/design/ui-ux-pro-max

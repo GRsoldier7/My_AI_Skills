@@ -1,0 +1,2 @@
+# Optional NVIDIA skill review workflow; does not install the scanner runtime.
+skills/security/skill-inspector

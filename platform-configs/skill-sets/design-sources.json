@@ -1,0 +1,1109 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-01",
+  "packages": [
+    {
+      "name": "impeccable",
+      "path": "skills/design/impeccable",
+      "repository": "https://github.com/pbakaus/impeccable.git",
+      "commit": "e89e3ada3e875a89ac2c5d33d11e65ebef6fe285",
+      "version": "4.8.0",
+      "upstream_path": ".agents/skills/impeccable",
+      "adaptations": [],
+      "files": [
+        {
+          "path": "SKILL.md",
+          "source_path": ".agents/skills/impeccable/SKILL.md",
+          "upstream_sha256": "fab04b31f946573b00a8559db1fc070f8ea5825254d491c2b13156e5661a86d7",
+          "sha256": "fab04b31f946573b00a8559db1fc070f8ea5825254d491c2b13156e5661a86d7"
+        },
+        {
+          "path": "UPSTREAM_LICENSE",
+          "source_path": "LICENSE",
+          "upstream_sha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812",
+          "sha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812"
+        },
+        {
+          "path": "agents/impeccable_asset_producer.toml",
+          "source_path": ".agents/skills/impeccable/agents/impeccable_asset_producer.toml",
+          "upstream_sha256": "4dbdb0cfdc2466961da6b22d200f3ec7bf8bb47c27448a2e6e3c03cdbf589831",
+          "sha256": "4dbdb0cfdc2466961da6b22d200f3ec7bf8bb47c27448a2e6e3c03cdbf589831"
+        },
+        {
+          "path": "agents/impeccable_documenter.toml",
+          "source_path": ".agents/skills/impeccable/agents/impeccable_documenter.toml",
+          "upstream_sha256": "e7778229d8f31433fc11e29dd2caac8e85281e27ea5c9410474703bb0185100f",
+          "sha256": "e7778229d8f31433fc11e29dd2caac8e85281e27ea5c9410474703bb0185100f"
+        },
+        {
+          "path": "agents/impeccable_finish_reviewer.toml",
+          "source_path": ".agents/skills/impeccable/agents/impeccable_finish_reviewer.toml",
+          "upstream_sha256": "1b80232e22d52b06a7278b9ca1f24f871a181c62cd91f4b18728807e7cf49dbd",
+          "sha256": "1b80232e22d52b06a7278b9ca1f24f871a181c62cd91f4b18728807e7cf49dbd"
+        },
+        {
+          "path": "agents/impeccable_manual_edit_applier.toml",
+          "source_path": ".agents/skills/impeccable/agents/impeccable_manual_edit_applier.toml",
+          "upstream_sha256": "4b01f4eb8a49fb00bc88248735c3b5442beb1791ec71d98e6d203f268a24010b",
+          "sha256": "4b01f4eb8a49fb00bc88248735c3b5442beb1791ec71d98e6d203f268a24010b"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "source_path": ".agents/skills/impeccable/agents/openai.yaml",
+          "upstream_sha256": "ce9967ad70f99cf04456f3347c266723c2fbbb600267d10a822b7cd20562c321",
+          "sha256": "ce9967ad70f99cf04456f3347c266723c2fbbb600267d10a822b7cd20562c321"
+        },
+        {
+          "path": "reference/adapt.md",
+          "source_path": ".agents/skills/impeccable/reference/adapt.md",
+          "upstream_sha256": "9807cdc112b8bcbdeff9cd2516cda4d07129f1d47f29df4d57645344f34950c1",
+          "sha256": "9807cdc112b8bcbdeff9cd2516cda4d07129f1d47f29df4d57645344f34950c1"
+        },
+        {
+          "path": "reference/adapt.native.md",
+          "source_path": ".agents/skills/impeccable/reference/adapt.native.md",
+          "upstream_sha256": "2455a2613e1fa29b986521c73cbad9424ccda70ef6cbe505779dbca5e16272a2",
+          "sha256": "2455a2613e1fa29b986521c73cbad9424ccda70ef6cbe505779dbca5e16272a2"
+        },
+        {
+          "path": "reference/android.md",
+          "source_path": ".agents/skills/impeccable/reference/android.md",
+          "upstream_sha256": "43780abcf10ac12a569d98001ae38af2b337727a0f7ce66268246ac1d54b5d34",
+          "sha256": "43780abcf10ac12a569d98001ae38af2b337727a0f7ce66268246ac1d54b5d34"
+        },
+        {
+          "path": "reference/animate.md",
+          "source_path": ".agents/skills/impeccable/reference/animate.md",
+          "upstream_sha256": "d658c48ffbe0031e8e3b318996cad6ceafe29e40aa50d5bb25e4bf1d6839dc7c",
+          "sha256": "d658c48ffbe0031e8e3b318996cad6ceafe29e40aa50d5bb25e4bf1d6839dc7c"
+        },
+        {
+          "path": "reference/audit.md",
+          "source_path": ".agents/skills/impeccable/reference/audit.md",
+          "upstream_sha256": "5ba9e3a090fc4c4d212c8cbfa5a48f7454ceb10fa81a284b4a7b4e8351ece2f1",
+          "sha256": "5ba9e3a090fc4c4d212c8cbfa5a48f7454ceb10fa81a284b4a7b4e8351ece2f1"
+        },
+        {
+          "path": "reference/audit.native.md",
+          "source_path": ".agents/skills/impeccable/reference/audit.native.md",
+          "upstream_sha256": "2898eff507738f9102107809e671df3e69f889dee30073030fe96fb2483d8ea3",
+          "sha256": "2898eff507738f9102107809e671df3e69f889dee30073030fe96fb2483d8ea3"
+        },
+        {
+          "path": "reference/bolder.md",
+          "source_path": ".agents/skills/impeccable/reference/bolder.md",
+          "upstream_sha256": "05b78fb0595e4d5afbf5f17470c84e89cf82f205fea3a6e9b6d8d779b7c4aab1",
+          "sha256": "05b78fb0595e4d5afbf5f17470c84e89cf82f205fea3a6e9b6d8d779b7c4aab1"
+        },
+        {
+          "path": "reference/clarify.md",
+          "source_path": ".agents/skills/impeccable/reference/clarify.md",
+          "upstream_sha256": "173dd66abe65633910dcb04a51f40d6ff2a793f87088f022a02fc4cad24dd133",
+          "sha256": "173dd66abe65633910dcb04a51f40d6ff2a793f87088f022a02fc4cad24dd133"
+        },
+        {
+          "path": "reference/colorize.md",
+          "source_path": ".agents/skills/impeccable/reference/colorize.md",
+          "upstream_sha256": "bc5f71f1129d0f2c310d913d07c8dc609a1d25644121bd78c308f42d52a0b9e9",
+          "sha256": "bc5f71f1129d0f2c310d913d07c8dc609a1d25644121bd78c308f42d52a0b9e9"
+        },
+        {
+          "path": "reference/component-review.md",
+          "source_path": ".agents/skills/impeccable/reference/component-review.md",
+          "upstream_sha256": "10489e5265e49a4ef2737cd0e674c149ed41e1f703efe922e53ea3c91e833427",
+          "sha256": "10489e5265e49a4ef2737cd0e674c149ed41e1f703efe922e53ea3c91e833427"
+        },
+        {
+          "path": "reference/craft-floor.md",
+          "source_path": ".agents/skills/impeccable/reference/craft-floor.md",
+          "upstream_sha256": "808a50e0e6c74617a07b0eaf7fd80f58d8e48a13f48e47c658c7534b1724e5c2",
+          "sha256": "808a50e0e6c74617a07b0eaf7fd80f58d8e48a13f48e47c658c7534b1724e5c2"
+        },
+        {
+          "path": "reference/craft.md",
+          "source_path": ".agents/skills/impeccable/reference/craft.md",
+          "upstream_sha256": "9205e222bc6565b37fb504ceec93233c2d2a456802b69d16e6b1c44723907c4c",
+          "sha256": "9205e222bc6565b37fb504ceec93233c2d2a456802b69d16e6b1c44723907c4c"
+        },
+        {
+          "path": "reference/critique.md",
+          "source_path": ".agents/skills/impeccable/reference/critique.md",
+          "upstream_sha256": "c210c9506877c6c8d88880a337fddd95d4315daf70ed6bc631ee6520481f1a0c",
+          "sha256": "c210c9506877c6c8d88880a337fddd95d4315daf70ed6bc631ee6520481f1a0c"
+        },
+        {
+          "path": "reference/degraded/asset-producer.md",
+          "source_path": ".agents/skills/impeccable/reference/degraded/asset-producer.md",
+          "upstream_sha256": "cf726ce0c7dd1005078fbf560745d4114afe363319648cc9de42d1536370d117",
+          "sha256": "cf726ce0c7dd1005078fbf560745d4114afe363319648cc9de42d1536370d117"
+        },
+        {
+          "path": "reference/degraded/documenter.md",
+          "source_path": ".agents/skills/impeccable/reference/degraded/documenter.md",
+          "upstream_sha256": "17b6328d809c86622789dcbe1bb1b12ec8937118ef6aa4b37bfd9130d79a205c",
+          "sha256": "17b6328d809c86622789dcbe1bb1b12ec8937118ef6aa4b37bfd9130d79a205c"
+        },
+        {
+          "path": "reference/degraded/finish-reviewer.md",
+          "source_path": ".agents/skills/impeccable/reference/degraded/finish-reviewer.md",
+          "upstream_sha256": "3e6cb6f54c2a4796940ce81b0cc3e9c1cfc2eed6445146088e6405a40cb44347",
+          "sha256": "3e6cb6f54c2a4796940ce81b0cc3e9c1cfc2eed6445146088e6405a40cb44347"
+        },
+        {
+          "path": "reference/degraded/manual-edit-applier.md",
+          "source_path": ".agents/skills/impeccable/reference/degraded/manual-edit-applier.md",
+          "upstream_sha256": "357b19acc7ef688c337a4f020633a49db23c84620b13636f9ff20d3ab934df1a",
+          "sha256": "357b19acc7ef688c337a4f020633a49db23c84620b13636f9ff20d3ab934df1a"
+        },
+        {
+          "path": "reference/delight.md",
+          "source_path": ".agents/skills/impeccable/reference/delight.md",
+          "upstream_sha256": "098a891028ce59c212b747d3c70468dd750aff7053a703d1336045ed31e0da7c",
+          "sha256": "098a891028ce59c212b747d3c70468dd750aff7053a703d1336045ed31e0da7c"
+        },
+        {
+          "path": "reference/distill.md",
+          "source_path": ".agents/skills/impeccable/reference/distill.md",
+          "upstream_sha256": "8b9283510e38f0d190652f300ea0793acfb5a514b38b991fdc0a289bade83391",
+          "sha256": "8b9283510e38f0d190652f300ea0793acfb5a514b38b991fdc0a289bade83391"
+        },
+        {
+          "path": "reference/doctor.md",
+          "source_path": ".agents/skills/impeccable/reference/doctor.md",
+          "upstream_sha256": "33aff200de6f76a74b333d7ae4f7d2f4fc2a0da4c1a57264567d88eb8f33b52b",
+          "sha256": "33aff200de6f76a74b333d7ae4f7d2f4fc2a0da4c1a57264567d88eb8f33b52b"
+        },
+        {
+          "path": "reference/document.md",
+          "source_path": ".agents/skills/impeccable/reference/document.md",
+          "upstream_sha256": "7e7e97388cac7b5af7afa5b6fec19a6576c89ce6a998c973cb007b8e5494a8c9",
+          "sha256": "7e7e97388cac7b5af7afa5b6fec19a6576c89ce6a998c973cb007b8e5494a8c9"
+        },
+        {
+          "path": "reference/extract.md",
+          "source_path": ".agents/skills/impeccable/reference/extract.md",
+          "upstream_sha256": "5477ae97189e5c1236cee71a25a5ae50014429a5a2e6da28355c8021a6cdeddd",
+          "sha256": "5477ae97189e5c1236cee71a25a5ae50014429a5a2e6da28355c8021a6cdeddd"
+        },
+        {
+          "path": "reference/generate.md",
+          "source_path": ".agents/skills/impeccable/reference/generate.md",
+          "upstream_sha256": "11385badfb532196cec249e73bac2b7f58ada033ed8c4b02b9f0d64ddb46f0dc",
+          "sha256": "11385badfb532196cec249e73bac2b7f58ada033ed8c4b02b9f0d64ddb46f0dc"
+        },
+        {
+          "path": "reference/harden.md",
+          "source_path": ".agents/skills/impeccable/reference/harden.md",
+          "upstream_sha256": "4167eb7fc456cdfe09ff0ac2dbcb5e59cee57e590137aab6cc8ec08aafb6d775",
+          "sha256": "4167eb7fc456cdfe09ff0ac2dbcb5e59cee57e590137aab6cc8ec08aafb6d775"
+        },
+        {
+          "path": "reference/hooks.md",
+          "source_path": ".agents/skills/impeccable/reference/hooks.md",
+          "upstream_sha256": "ed38f149e04740707942465a2b2c75851b773fd52a2b52132c2a8e7f4b07f9dc",
+          "sha256": "ed38f149e04740707942465a2b2c75851b773fd52a2b52132c2a8e7f4b07f9dc"
+        },
+        {
+          "path": "reference/init.md",
+          "source_path": ".agents/skills/impeccable/reference/init.md",
+          "upstream_sha256": "51349b3a32c7f907102dd680d8e2df9da27082caf46ee15c673be7ce14a5363b",
+          "sha256": "51349b3a32c7f907102dd680d8e2df9da27082caf46ee15c673be7ce14a5363b"
+        },
+        {
+          "path": "reference/ios.md",
+          "source_path": ".agents/skills/impeccable/reference/ios.md",
+          "upstream_sha256": "40c87038b5f75147a5952a96237acf312a327bf70c1bcd8e0a5f064625ae9668",
+          "sha256": "40c87038b5f75147a5952a96237acf312a327bf70c1bcd8e0a5f064625ae9668"
+        },
+        {
+          "path": "reference/layout.md",
+          "source_path": ".agents/skills/impeccable/reference/layout.md",
+          "upstream_sha256": "0bc7d7971b3edf2acd0580e847458dc6d84129d90715b452799ace3bed815c7c",
+          "sha256": "0bc7d7971b3edf2acd0580e847458dc6d84129d90715b452799ace3bed815c7c"
+        },
+        {
+          "path": "reference/live-setup.md",
+          "source_path": ".agents/skills/impeccable/reference/live-setup.md",
+          "upstream_sha256": "2b5b2fbf5f658f34ea1997fb1aeebe01604d05187f75c6a4f1f55a5bc78520a4",
+          "sha256": "2b5b2fbf5f658f34ea1997fb1aeebe01604d05187f75c6a4f1f55a5bc78520a4"
+        },
+        {
+          "path": "reference/live.md",
+          "source_path": ".agents/skills/impeccable/reference/live.md",
+          "upstream_sha256": "8735aa99406752a1d4bf903051ee9e9e6e3be1f4821c044b1f63d2a0556a6935",
+          "sha256": "8735aa99406752a1d4bf903051ee9e9e6e3be1f4821c044b1f63d2a0556a6935"
+        },
+        {
+          "path": "reference/mode-operate.md",
+          "source_path": ".agents/skills/impeccable/reference/mode-operate.md",
+          "upstream_sha256": "7a52dd7a94ee75f6ae89542c86a1b6e1d306812b16e0d9dbf12d4acad44d148b",
+          "sha256": "7a52dd7a94ee75f6ae89542c86a1b6e1d306812b16e0d9dbf12d4acad44d148b"
+        },
+        {
+          "path": "reference/mode-persuade.md",
+          "source_path": ".agents/skills/impeccable/reference/mode-persuade.md",
+          "upstream_sha256": "21e78c8a77badb3f83290cd4577ed3b24bd4dd3b57136d7da75733d4f3ee9ac0",
+          "sha256": "21e78c8a77badb3f83290cd4577ed3b24bd4dd3b57136d7da75733d4f3ee9ac0"
+        },
+        {
+          "path": "reference/mode-read.md",
+          "source_path": ".agents/skills/impeccable/reference/mode-read.md",
+          "upstream_sha256": "a569989e6a3d6453b4c45e9474e162a15cc54e11732ac6baa7990a6e7cccc0b5",
+          "sha256": "a569989e6a3d6453b4c45e9474e162a15cc54e11732ac6baa7990a6e7cccc0b5"
+        },
+        {
+          "path": "reference/new-work.md",
+          "source_path": ".agents/skills/impeccable/reference/new-work.md",
+          "upstream_sha256": "4d9410bf9dfdb0890769a2f45e634be809392ac293abd91ee9553e8eabb18fe5",
+          "sha256": "4d9410bf9dfdb0890769a2f45e634be809392ac293abd91ee9553e8eabb18fe5"
+        },
+        {
+          "path": "reference/onboard.md",
+          "source_path": ".agents/skills/impeccable/reference/onboard.md",
+          "upstream_sha256": "a2b8fd01ea12139b39b3285393f805bb8c326e11b2234dbff4c26c17b4e9c280",
+          "sha256": "a2b8fd01ea12139b39b3285393f805bb8c326e11b2234dbff4c26c17b4e9c280"
+        },
+        {
+          "path": "reference/operate.md",
+          "source_path": ".agents/skills/impeccable/reference/operate.md",
+          "upstream_sha256": "a9d2203acd45ca33a13d5c68b02b23ed512425ac15f0e8438318ed124b43729d",
+          "sha256": "a9d2203acd45ca33a13d5c68b02b23ed512425ac15f0e8438318ed124b43729d"
+        },
+        {
+          "path": "reference/optimize.md",
+          "source_path": ".agents/skills/impeccable/reference/optimize.md",
+          "upstream_sha256": "092c85e5a644e6e528aaff0f341ee1ed57e012c195162fef0a5fc97605f9bb73",
+          "sha256": "092c85e5a644e6e528aaff0f341ee1ed57e012c195162fef0a5fc97605f9bb73"
+        },
+        {
+          "path": "reference/overdrive.md",
+          "source_path": ".agents/skills/impeccable/reference/overdrive.md",
+          "upstream_sha256": "0a0d4ae6eea720c6d6e1c073fc77192d7c2100f78a44d9a8d262ddf22270cf4d",
+          "sha256": "0a0d4ae6eea720c6d6e1c073fc77192d7c2100f78a44d9a8d262ddf22270cf4d"
+        },
+        {
+          "path": "reference/polish.md",
+          "source_path": ".agents/skills/impeccable/reference/polish.md",
+          "upstream_sha256": "81666fc7f783b4e3514db6554e713dc0479bd9cdedb06e93d15f8b579aae869a",
+          "sha256": "81666fc7f783b4e3514db6554e713dc0479bd9cdedb06e93d15f8b579aae869a"
+        },
+        {
+          "path": "reference/quieter.md",
+          "source_path": ".agents/skills/impeccable/reference/quieter.md",
+          "upstream_sha256": "9e03b55c6bbdd4acba28cfa9c3b74ba1a4448cdbd35a7200990ab460c6eecaa0",
+          "sha256": "9e03b55c6bbdd4acba28cfa9c3b74ba1a4448cdbd35a7200990ab460c6eecaa0"
+        },
+        {
+          "path": "reference/region-map.md",
+          "source_path": ".agents/skills/impeccable/reference/region-map.md",
+          "upstream_sha256": "778cedc9199b407d3e23fa1041e38d548b00b1101a33517aa2a2eb299f9d0edc",
+          "sha256": "778cedc9199b407d3e23fa1041e38d548b00b1101a33517aa2a2eb299f9d0edc"
+        },
+        {
+          "path": "reference/routing.md",
+          "source_path": ".agents/skills/impeccable/reference/routing.md",
+          "upstream_sha256": "77ae09542fbc10aa4e8b119d6fd19359908a47c13c30068d6a150bfdb50e3e10",
+          "sha256": "77ae09542fbc10aa4e8b119d6fd19359908a47c13c30068d6a150bfdb50e3e10"
+        },
+        {
+          "path": "reference/shape.md",
+          "source_path": ".agents/skills/impeccable/reference/shape.md",
+          "upstream_sha256": "a55f016c046cb6a27c55bd7f346375aeb506a755c4fbca19a5f92dbd42309c23",
+          "sha256": "a55f016c046cb6a27c55bd7f346375aeb506a755c4fbca19a5f92dbd42309c23"
+        },
+        {
+          "path": "reference/typeset.md",
+          "source_path": ".agents/skills/impeccable/reference/typeset.md",
+          "upstream_sha256": "c26c5b4524f3ccb650ed0680c10c25fd18083f8ebfd00a54c4d983c4747aab70",
+          "sha256": "c26c5b4524f3ccb650ed0680c10c25fd18083f8ebfd00a54c4d983c4747aab70"
+        },
+        {
+          "path": "reference/visualize.md",
+          "source_path": ".agents/skills/impeccable/reference/visualize.md",
+          "upstream_sha256": "0c431d0dafbcac7ae8bde70ffa622f9ee542c44ec12e14b48bb44b269bef67eb",
+          "sha256": "0c431d0dafbcac7ae8bde70ffa622f9ee542c44ec12e14b48bb44b269bef67eb"
+        },
+        {
+          "path": "scripts/VERSION",
+          "source_path": ".agents/skills/impeccable/scripts/VERSION",
+          "upstream_sha256": "447836d46f39c5900faf74ad6a6554b8e1fafeca1f78de0416d5f05c6e09a080",
+          "sha256": "447836d46f39c5900faf74ad6a6554b8e1fafeca1f78de0416d5f05c6e09a080"
+        },
+        {
+          "path": "scripts/command-metadata.json",
+          "source_path": ".agents/skills/impeccable/scripts/command-metadata.json",
+          "upstream_sha256": "c6dcbeed7f13152205ca022c8f24d08683770835083f0a7325261c1c2d5f215c",
+          "sha256": "c6dcbeed7f13152205ca022c8f24d08683770835083f0a7325261c1c2d5f215c"
+        },
+        {
+          "path": "scripts/data/font-index-failures.json",
+          "source_path": ".agents/skills/impeccable/scripts/data/font-index-failures.json",
+          "upstream_sha256": "835f19a0a3812f3652dd6979a2ce5597f654fd01f26e1b420b92d5f42b997ce4",
+          "sha256": "835f19a0a3812f3652dd6979a2ce5597f654fd01f26e1b420b92d5f42b997ce4"
+        },
+        {
+          "path": "scripts/data/font-index.json",
+          "source_path": ".agents/skills/impeccable/scripts/data/font-index.json",
+          "upstream_sha256": "47edbdfaf27073c47033d1ac7dfee881be49e2dcbda7671d1157300481dde6da",
+          "sha256": "47edbdfaf27073c47033d1ac7dfee881be49e2dcbda7671d1157300481dde6da"
+        },
+        {
+          "path": "scripts/engine-checksums.txt",
+          "source_path": ".agents/skills/impeccable/scripts/engine-checksums.txt",
+          "upstream_sha256": "2f0235179cbc515d7c7ec71a9a08283d0cb88a5238d35ffa5a5f42122e78fe35",
+          "sha256": "2f0235179cbc515d7c7ec71a9a08283d0cb88a5238d35ffa5a5f42122e78fe35"
+        },
+        {
+          "path": "scripts/impeccable",
+          "source_path": ".agents/skills/impeccable/scripts/impeccable",
+          "upstream_sha256": "137173707b882616104b9d621b53bea37f135de09461add3301b9fcb3d7de461",
+          "sha256": "137173707b882616104b9d621b53bea37f135de09461add3301b9fcb3d7de461"
+        },
+        {
+          "path": "scripts/impeccable.cmd",
+          "source_path": ".agents/skills/impeccable/scripts/impeccable.cmd",
+          "upstream_sha256": "96a9281207f81c6974a552b9538cdd3ac7d5005a3baf7eeddeb3556f86cae9a6",
+          "sha256": "96a9281207f81c6974a552b9538cdd3ac7d5005a3baf7eeddeb3556f86cae9a6"
+        },
+        {
+          "path": "scripts/live-browser-dom.js",
+          "source_path": ".agents/skills/impeccable/scripts/live-browser-dom.js",
+          "upstream_sha256": "4b379aff87ce0f485008a2b6a0dc711d00a869f5cf0ec2459279d6364fbf0c9e",
+          "sha256": "4b379aff87ce0f485008a2b6a0dc711d00a869f5cf0ec2459279d6364fbf0c9e"
+        },
+        {
+          "path": "scripts/live-browser-ignores.js",
+          "source_path": ".agents/skills/impeccable/scripts/live-browser-ignores.js",
+          "upstream_sha256": "ba8905ab865fde5162e34fc17eb80eba26cc990b319b14a6eed6ca89fd491897",
+          "sha256": "ba8905ab865fde5162e34fc17eb80eba26cc990b319b14a6eed6ca89fd491897"
+        },
+        {
+          "path": "scripts/live-browser-session.js",
+          "source_path": ".agents/skills/impeccable/scripts/live-browser-session.js",
+          "upstream_sha256": "e042339a54d4521fc47555b602013ed5b51410ec9d7d8878d99a526f5f237f68",
+          "sha256": "e042339a54d4521fc47555b602013ed5b51410ec9d7d8878d99a526f5f237f68"
+        },
+        {
+          "path": "scripts/live-browser.js",
+          "source_path": ".agents/skills/impeccable/scripts/live-browser.js",
+          "upstream_sha256": "3beaec74d362b64fd32656b22e3bd09f3b983ed2b3068625475dbe46b6867ed9",
+          "sha256": "3beaec74d362b64fd32656b22e3bd09f3b983ed2b3068625475dbe46b6867ed9"
+        },
+        {
+          "path": "scripts/modern-screenshot.umd.js",
+          "source_path": ".agents/skills/impeccable/scripts/modern-screenshot.umd.js",
+          "upstream_sha256": "bb36665889124a0b6e15f16045265737449c3bdcf2712cdb08af3cfa01563e2b",
+          "sha256": "bb36665889124a0b6e15f16045265737449c3bdcf2712cdb08af3cfa01563e2b"
+        }
+      ]
+    },
+    {
+      "name": "design-taste-frontend",
+      "path": "skills/design/design-taste-frontend",
+      "repository": "https://github.com/Leonxlnx/taste-skill.git",
+      "commit": "12af471f627f866411b4bd785b19646d3672784c",
+      "version": "2.1.5",
+      "upstream_path": "skills/taste-skill",
+      "adaptations": [],
+      "files": [
+        {
+          "path": "README.md",
+          "source_path": "skills/taste-skill/README.md",
+          "upstream_sha256": "5e33fd716b3e1ffaca9340f645d44c193f9b446107fa67f0cce498d33025672c",
+          "sha256": "5e33fd716b3e1ffaca9340f645d44c193f9b446107fa67f0cce498d33025672c"
+        },
+        {
+          "path": "SKILL.md",
+          "source_path": "skills/taste-skill/SKILL.md",
+          "upstream_sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4",
+          "sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4"
+        },
+        {
+          "path": "UPSTREAM_LICENSE",
+          "source_path": "LICENSE",
+          "upstream_sha256": "4575a543ab88dad12ccea7d97e563d0bce5b448b06072e65d3264497dad326df",
+          "sha256": "4575a543ab88dad12ccea7d97e563d0bce5b448b06072e65d3264497dad326df"
+        },
+        {
+          "path": "assets/app.css",
+          "source_path": "skills/taste-skill/assets/app.css",
+          "upstream_sha256": "16518c3a999fb81b2698137f1f743128c189272e8b1d411c4b02598c6755b67f",
+          "sha256": "16518c3a999fb81b2698137f1f743128c189272e8b1d411c4b02598c6755b67f"
+        },
+        {
+          "path": "assets/base.css",
+          "source_path": "skills/taste-skill/assets/base.css",
+          "upstream_sha256": "aa6ea21613c79e06e06dea3d33200c78590c89b0346bb976ec07947bb45ceafa",
+          "sha256": "aa6ea21613c79e06e06dea3d33200c78590c89b0346bb976ec07947bb45ceafa"
+        },
+        {
+          "path": "assets/base.js",
+          "source_path": "skills/taste-skill/assets/base.js",
+          "upstream_sha256": "8d50416125596b84c0083d5d5ffba09add57db4b06cbf0eedac2d4999b7653bc",
+          "sha256": "8d50416125596b84c0083d5d5ffba09add57db4b06cbf0eedac2d4999b7653bc"
+        },
+        {
+          "path": "assets/charts.js",
+          "source_path": "skills/taste-skill/assets/charts.js",
+          "upstream_sha256": "a7e916594729576b7c7e37048a68508a3243fe8fbc9654775cd245232e9f8100",
+          "sha256": "a7e916594729576b7c7e37048a68508a3243fe8fbc9654775cd245232e9f8100"
+        },
+        {
+          "path": "assets/scenes/stage.css",
+          "source_path": "skills/taste-skill/assets/scenes/stage.css",
+          "upstream_sha256": "b5c587dac45ac6fcc34ae7cb4aa2b3e43797b2ef5d71fd32b48483bda3fca3e0",
+          "sha256": "b5c587dac45ac6fcc34ae7cb4aa2b3e43797b2ef5d71fd32b48483bda3fca3e0"
+        },
+        {
+          "path": "assets/scenes/stage.js",
+          "source_path": "skills/taste-skill/assets/scenes/stage.js",
+          "upstream_sha256": "9ce782a94406e6a230c49ca5f87e56aff9d436da3f56416b1659421f8976bc2b",
+          "sha256": "9ce782a94406e6a230c49ca5f87e56aff9d436da3f56416b1659421f8976bc2b"
+        },
+        {
+          "path": "evals/evals.json",
+          "source_path": "skills/taste-skill/evals/evals.json",
+          "upstream_sha256": "df0ee2a248cd5445c0e1600eb095dc0d43dd312f5b4bb4316a78471ae0d22a74",
+          "sha256": "df0ee2a248cd5445c0e1600eb095dc0d43dd312f5b4bb4316a78471ae0d22a74"
+        },
+        {
+          "path": "library/app.json",
+          "source_path": "skills/taste-skill/library/app.json",
+          "upstream_sha256": "3678ccbe1e8d05feff6d4f07fa16a0d610aefeea5e697e842a876713ba763cf5",
+          "sha256": "3678ccbe1e8d05feff6d4f07fa16a0d610aefeea5e697e842a876713ba763cf5"
+        },
+        {
+          "path": "library/directions.json",
+          "source_path": "skills/taste-skill/library/directions.json",
+          "upstream_sha256": "d71e3824af33a92d9e1ca543e17f80baa5b7a30c815df5125cfe3300a14892c1",
+          "sha256": "d71e3824af33a92d9e1ca543e17f80baa5b7a30c815df5125cfe3300a14892c1"
+        },
+        {
+          "path": "library/heroes.json",
+          "source_path": "skills/taste-skill/library/heroes.json",
+          "upstream_sha256": "98d5e01104412a5fb27936f9c686f3bc0a5f76ce0793186d3de46b982c65b172",
+          "sha256": "98d5e01104412a5fb27936f9c686f3bc0a5f76ce0793186d3de46b982c65b172"
+        },
+        {
+          "path": "library/motions.json",
+          "source_path": "skills/taste-skill/library/motions.json",
+          "upstream_sha256": "51815dd09a823c829897f99ed9ea7dc5c35bd305ac989b8a0632ea6d42a3f08b",
+          "sha256": "51815dd09a823c829897f99ed9ea7dc5c35bd305ac989b8a0632ea6d42a3f08b"
+        },
+        {
+          "path": "library/palettes.json",
+          "source_path": "skills/taste-skill/library/palettes.json",
+          "upstream_sha256": "a14be9f45baba848c53436f4aa44eb4f1925ad3e232c5d1dcddf4f565661a525",
+          "sha256": "a14be9f45baba848c53436f4aa44eb4f1925ad3e232c5d1dcddf4f565661a525"
+        },
+        {
+          "path": "library/photos.json",
+          "source_path": "skills/taste-skill/library/photos.json",
+          "upstream_sha256": "8fc3b76bca90f44675bd99d99bb4ce95b0756c6c5d4141b7e917d11d90e61520",
+          "sha256": "8fc3b76bca90f44675bd99d99bb4ce95b0756c6c5d4141b7e917d11d90e61520"
+        },
+        {
+          "path": "library/sections.json",
+          "source_path": "skills/taste-skill/library/sections.json",
+          "upstream_sha256": "7c2c8a470a22501176948661f803434db8c542a511281752c717252de80c1ad8",
+          "sha256": "7c2c8a470a22501176948661f803434db8c542a511281752c717252de80c1ad8"
+        },
+        {
+          "path": "library/sites.json",
+          "source_path": "skills/taste-skill/library/sites.json",
+          "upstream_sha256": "a2bc4d0cff8ebff481f0dfd4879c106d5e1e16cb3122f9ab3702184a5e1f3502",
+          "sha256": "a2bc4d0cff8ebff481f0dfd4879c106d5e1e16cb3122f9ab3702184a5e1f3502"
+        },
+        {
+          "path": "library/type.json",
+          "source_path": "skills/taste-skill/library/type.json",
+          "upstream_sha256": "dbabf41a468775cf6cc5ea5f3c898b0663293822e167b72b02feba1ef03ebf37",
+          "sha256": "dbabf41a468775cf6cc5ea5f3c898b0663293822e167b72b02feba1ef03ebf37"
+        },
+        {
+          "path": "references/app-screens.md",
+          "source_path": "skills/taste-skill/references/app-screens.md",
+          "upstream_sha256": "55e937ec30de605b53a11310b446f328a3ce7403de24fff008920a00be1a5ed4",
+          "sha256": "55e937ec30de605b53a11310b446f328a3ce7403de24fff008920a00be1a5ed4"
+        },
+        {
+          "path": "references/colour.md",
+          "source_path": "skills/taste-skill/references/colour.md",
+          "upstream_sha256": "6556bcc7eed48b7bc2d0d281c28bf57c1b75e94d7ca0bde49f5d9df8c6a09351",
+          "sha256": "6556bcc7eed48b7bc2d0d281c28bf57c1b75e94d7ca0bde49f5d9df8c6a09351"
+        },
+        {
+          "path": "references/copy.md",
+          "source_path": "skills/taste-skill/references/copy.md",
+          "upstream_sha256": "676edbe75d5f3cfd8a793010ea9f730525ae074b231a674c2426264d3398262e",
+          "sha256": "676edbe75d5f3cfd8a793010ea9f730525ae074b231a674c2426264d3398262e"
+        },
+        {
+          "path": "references/critique.md",
+          "source_path": "skills/taste-skill/references/critique.md",
+          "upstream_sha256": "9c2f4392674530b3f02ac529fba53d82ab37b85f401c4c1989fbe98d6217f0b4",
+          "sha256": "9c2f4392674530b3f02ac529fba53d82ab37b85f401c4c1989fbe98d6217f0b4"
+        },
+        {
+          "path": "references/imagery.md",
+          "source_path": "skills/taste-skill/references/imagery.md",
+          "upstream_sha256": "518def6b2c643b295e13e66b09b66f2e3fc1421d3cf6c7dbb1dc749097ad2ad9",
+          "sha256": "518def6b2c643b295e13e66b09b66f2e3fc1421d3cf6c7dbb1dc749097ad2ad9"
+        },
+        {
+          "path": "references/layout.md",
+          "source_path": "skills/taste-skill/references/layout.md",
+          "upstream_sha256": "40080640719b07737afb94a8868afef87767a1ab4892814d9b6882e2d283453b",
+          "sha256": "40080640719b07737afb94a8868afef87767a1ab4892814d9b6882e2d283453b"
+        },
+        {
+          "path": "references/motion.md",
+          "source_path": "skills/taste-skill/references/motion.md",
+          "upstream_sha256": "79f94d8469898d2bf6186c198ad86ddf691a67c6536eaec36a4ec101285d9a37",
+          "sha256": "79f94d8469898d2bf6186c198ad86ddf691a67c6536eaec36a4ec101285d9a37"
+        },
+        {
+          "path": "references/research.md",
+          "source_path": "skills/taste-skill/references/research.md",
+          "upstream_sha256": "83433646a352cae588591e05bc0a75fe1deadff55ede8851bc8dd5dd483adfc5",
+          "sha256": "83433646a352cae588591e05bc0a75fe1deadff55ede8851bc8dd5dd483adfc5"
+        },
+        {
+          "path": "references/scenes.md",
+          "source_path": "skills/taste-skill/references/scenes.md",
+          "upstream_sha256": "733ac7258a1a28f2f6ae8205bc36ba66c563594ad0a2e2f829c5eaaba3199a61",
+          "sha256": "733ac7258a1a28f2f6ae8205bc36ba66c563594ad0a2e2f829c5eaaba3199a61"
+        },
+        {
+          "path": "references/tells.md",
+          "source_path": "skills/taste-skill/references/tells.md",
+          "upstream_sha256": "8e6de4411c43d3108f832b3f33bb1a2a838148a72b92a176df893b67d99a0da9",
+          "sha256": "8e6de4411c43d3108f832b3f33bb1a2a838148a72b92a176df893b67d99a0da9"
+        },
+        {
+          "path": "references/type.md",
+          "source_path": "skills/taste-skill/references/type.md",
+          "upstream_sha256": "6353ff1d0ce2f9913628c88fbcb7dad3cc3877e61196848bce99e33a17d20611",
+          "sha256": "6353ff1d0ce2f9913628c88fbcb7dad3cc3877e61196848bce99e33a17d20611"
+        },
+        {
+          "path": "scripts/assets.mjs",
+          "source_path": "skills/taste-skill/scripts/assets.mjs",
+          "upstream_sha256": "b4b4b99b5634735f5a0b4213169cda5240ee6bbed8ed8042ad1bcf2b6607c1fa",
+          "sha256": "b4b4b99b5634735f5a0b4213169cda5240ee6bbed8ed8042ad1bcf2b6607c1fa"
+        },
+        {
+          "path": "scripts/draw.mjs",
+          "source_path": "skills/taste-skill/scripts/draw.mjs",
+          "upstream_sha256": "6c2047d207d2400d3b099956dfe2ac306203b614246e66bc8760212a7f797dbf",
+          "sha256": "6c2047d207d2400d3b099956dfe2ac306203b614246e66bc8760212a7f797dbf"
+        },
+        {
+          "path": "scripts/inspect.mjs",
+          "source_path": "skills/taste-skill/scripts/inspect.mjs",
+          "upstream_sha256": "c0d7366f789b3f594787b37a525d1d7096104a499aac8a97ae04b405046cf02c",
+          "sha256": "c0d7366f789b3f594787b37a525d1d7096104a499aac8a97ae04b405046cf02c"
+        },
+        {
+          "path": "scripts/lib/app-draw.mjs",
+          "source_path": "skills/taste-skill/scripts/lib/app-draw.mjs",
+          "upstream_sha256": "aa0802d341d19b53ec14ec21746e428be49a8ec3ed7b30253194105fc18a8df6",
+          "sha256": "aa0802d341d19b53ec14ec21746e428be49a8ec3ed7b30253194105fc18a8df6"
+        },
+        {
+          "path": "scripts/lib/cdp.mjs",
+          "source_path": "skills/taste-skill/scripts/lib/cdp.mjs",
+          "upstream_sha256": "320fb75c6454a97b88458e5c33559a1188042aa0041bd5eff53455900236c88a",
+          "sha256": "320fb75c6454a97b88458e5c33559a1188042aa0041bd5eff53455900236c88a"
+        },
+        {
+          "path": "scripts/lib/inspection-files.mjs",
+          "source_path": "skills/taste-skill/scripts/lib/inspection-files.mjs",
+          "upstream_sha256": "5635c0d5fbe0f5bd012e58534bcd554ff7440a4e5c724a61a61c476c7f42e918",
+          "sha256": "5635c0d5fbe0f5bd012e58534bcd554ff7440a4e5c724a61a61c476c7f42e918"
+        },
+        {
+          "path": "scripts/lib/probe.mjs",
+          "source_path": "skills/taste-skill/scripts/lib/probe.mjs",
+          "upstream_sha256": "a5a17df891e438f55f196d8233601c3c79c873755f442c1ac5c3568de4e6bb48",
+          "sha256": "a5a17df891e438f55f196d8233601c3c79c873755f442c1ac5c3568de4e6bb48"
+        },
+        {
+          "path": "scripts/lib/rules.mjs",
+          "source_path": "skills/taste-skill/scripts/lib/rules.mjs",
+          "upstream_sha256": "8244aa9f53e77a59a562410310414e6b1a0f0cf002ce8f5aa792740b7f0149bf",
+          "sha256": "8244aa9f53e77a59a562410310414e6b1a0f0cf002ce8f5aa792740b7f0149bf"
+        },
+        {
+          "path": "scripts/lint.mjs",
+          "source_path": "skills/taste-skill/scripts/lint.mjs",
+          "upstream_sha256": "05f2fae2f56fc051b539cdbacb43a6f78fbbfb9644bb74aa11be472ff12dcaf5",
+          "sha256": "05f2fae2f56fc051b539cdbacb43a6f78fbbfb9644bb74aa11be472ff12dcaf5"
+        },
+        {
+          "path": "scripts/scenes.mjs",
+          "source_path": "skills/taste-skill/scripts/scenes.mjs",
+          "upstream_sha256": "234ec582e2b841457c33033feeeba8535f9ac285495a74d08dc533a1566c90d5",
+          "sha256": "234ec582e2b841457c33033feeeba8535f9ac285495a74d08dc533a1566c90d5"
+        }
+      ]
+    },
+    {
+      "name": "ui-ux-pro-max",
+      "path": "skills/design/ui-ux-pro-max",
+      "repository": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+      "commit": "3a13158ff1f32156cbe144108de48eda2ecaed9a",
+      "version": "2.5.0 (CLI)",
+      "upstream_path": ".claude/skills/ui-ux-pro-max",
+      "adaptations": [
+        "SKILL.md: plugin-root commands replaced with absolute skill-base-dir placeholder and resolution guidance. All code/data unchanged."
+      ],
+      "files": [
+        {
+          "path": "SKILL.md",
+          "source_path": ".claude/skills/ui-ux-pro-max/SKILL.md",
+          "upstream_sha256": "ea087c341bfb5b23195c7302027268ede86da802554c18a5c4896a6017b439f9",
+          "sha256": "6c9d5bd2fa77415f518700ace27fbbbf706d35015878538413e5b906d3786b34"
+        },
+        {
+          "path": "UPSTREAM_LICENSE",
+          "source_path": "LICENSE",
+          "upstream_sha256": "738f69dfa83db5c347c678fb9d90e560877059f0de93a327c39001bff92dc014",
+          "sha256": "738f69dfa83db5c347c678fb9d90e560877059f0de93a327c39001bff92dc014"
+        },
+        {
+          "path": "data/app-interface.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/app-interface.csv",
+          "upstream_sha256": "331e7cf2c0b222d80c566c5f255c63cb339f65bfd02e471a720f28e4864a9f08",
+          "sha256": "331e7cf2c0b222d80c566c5f255c63cb339f65bfd02e471a720f28e4864a9f08"
+        },
+        {
+          "path": "data/catalog-summary.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/catalog-summary.json",
+          "upstream_sha256": "4ca9ee8697984ed678a69a3bfbb788fb7f826d564f22cae5d094df8879517217",
+          "sha256": "4ca9ee8697984ed678a69a3bfbb788fb7f826d564f22cae5d094df8879517217"
+        },
+        {
+          "path": "data/charts.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/charts.csv",
+          "upstream_sha256": "4115cf1120680f2cedef0676cb648f30c7ef4699e2a947535d4113e71ed3b12a",
+          "sha256": "4115cf1120680f2cedef0676cb648f30c7ef4699e2a947535d4113e71ed3b12a"
+        },
+        {
+          "path": "data/colors.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/colors.csv",
+          "upstream_sha256": "8162429222bce22df62b564085946a30d07cc9722c58d0a3a494bd0d1d00841c",
+          "sha256": "8162429222bce22df62b564085946a30d07cc9722c58d0a3a494bd0d1d00841c"
+        },
+        {
+          "path": "data/data-provenance.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/data-provenance.json",
+          "upstream_sha256": "e82fb33ed49375a300e93d9c11ccd1c1493c999e84ee7ee295e527634786e2e0",
+          "sha256": "e82fb33ed49375a300e93d9c11ccd1c1493c999e84ee7ee295e527634786e2e0"
+        },
+        {
+          "path": "data/google-font-licenses.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/google-font-licenses.json",
+          "upstream_sha256": "35688523f2955795caa1a47c53b83099e60c1708461476f9cc3a050cf3b0148a",
+          "sha256": "35688523f2955795caa1a47c53b83099e60c1708461476f9cc3a050cf3b0148a"
+        },
+        {
+          "path": "data/google-fonts.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/google-fonts.csv",
+          "upstream_sha256": "1c8c3b2ea1faf6a1012da463756def8b3889db33f2226f0343bb4daa80307d03",
+          "sha256": "1c8c3b2ea1faf6a1012da463756def8b3889db33f2226f0343bb4daa80307d03"
+        },
+        {
+          "path": "data/icons.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/icons.csv",
+          "upstream_sha256": "50816c6012030178195a16ee481ebf58b47bd985d70e8ec58886cc83f6eddafc",
+          "sha256": "50816c6012030178195a16ee481ebf58b47bd985d70e8ec58886cc83f6eddafc"
+        },
+        {
+          "path": "data/landing.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/landing.csv",
+          "upstream_sha256": "9a2edd3bb676c2a58f00ade7a062e285222d4297bfd847c8d5b056f0dbbf52d0",
+          "sha256": "9a2edd3bb676c2a58f00ade7a062e285222d4297bfd847c8d5b056f0dbbf52d0"
+        },
+        {
+          "path": "data/motion.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/motion.csv",
+          "upstream_sha256": "381affe8df8ea1f66fbbda2598827f9f54299107bbe6a1b4e9b68f6b62091ceb",
+          "sha256": "381affe8df8ea1f66fbbda2598827f9f54299107bbe6a1b4e9b68f6b62091ceb"
+        },
+        {
+          "path": "data/phosphor-icons-upstream.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/phosphor-icons-upstream.json",
+          "upstream_sha256": "2399325233b277b5c97a80e6a5e8941154f5d057beee4e7613db87c87d700236",
+          "sha256": "2399325233b277b5c97a80e6a5e8941154f5d057beee4e7613db87c87d700236"
+        },
+        {
+          "path": "data/products.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/products.csv",
+          "upstream_sha256": "42473f75e8dde5987bdf89ce55d8c168091b80a356cae691dd60247d80720b70",
+          "sha256": "42473f75e8dde5987bdf89ce55d8c168091b80a356cae691dd60247d80720b70"
+        },
+        {
+          "path": "data/react-performance.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/react-performance.csv",
+          "upstream_sha256": "3d925802539abac5afeb63ae8aa1960b7229ad271b3a47caed40ab2d97ad0734",
+          "sha256": "3d925802539abac5afeb63ae8aa1960b7229ad271b3a47caed40ab2d97ad0734"
+        },
+        {
+          "path": "data/stacks/angular.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/angular.csv",
+          "upstream_sha256": "704be83f2bad30c7e6de01afb113ffa01e0c458762f48b7102f31ba2367b5553",
+          "sha256": "704be83f2bad30c7e6de01afb113ffa01e0c458762f48b7102f31ba2367b5553"
+        },
+        {
+          "path": "data/stacks/astro.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/astro.csv",
+          "upstream_sha256": "2c2f55fadaafc05e04cc321c8194a1a28b656e6757fe2ba316f41b16428299c6",
+          "sha256": "2c2f55fadaafc05e04cc321c8194a1a28b656e6757fe2ba316f41b16428299c6"
+        },
+        {
+          "path": "data/stacks/avalonia.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/avalonia.csv",
+          "upstream_sha256": "442fca14675a020683473e7e49f08abb27b9df0765c80efe54aef61f1a4ac258",
+          "sha256": "442fca14675a020683473e7e49f08abb27b9df0765c80efe54aef61f1a4ac258"
+        },
+        {
+          "path": "data/stacks/flutter.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/flutter.csv",
+          "upstream_sha256": "64dba0ac17349f28bce517a0f5f48c54d9ed2e487ec0c0258303463b382f41a0",
+          "sha256": "64dba0ac17349f28bce517a0f5f48c54d9ed2e487ec0c0258303463b382f41a0"
+        },
+        {
+          "path": "data/stacks/html-tailwind.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/html-tailwind.csv",
+          "upstream_sha256": "d05a581d20af57b8ca0104a6d31d90a07c437d500662a96c3029fc2f9a4678ee",
+          "sha256": "d05a581d20af57b8ca0104a6d31d90a07c437d500662a96c3029fc2f9a4678ee"
+        },
+        {
+          "path": "data/stacks/javafx.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/javafx.csv",
+          "upstream_sha256": "2e819b8d5abdd23ad4dae0991650fdb57af497aabd68b37463aa9c442944c869",
+          "sha256": "2e819b8d5abdd23ad4dae0991650fdb57af497aabd68b37463aa9c442944c869"
+        },
+        {
+          "path": "data/stacks/jetpack-compose.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/jetpack-compose.csv",
+          "upstream_sha256": "699de218b286948eaec7d15767b6e1350ee299167e49bf476d82e3ff58724e0a",
+          "sha256": "699de218b286948eaec7d15767b6e1350ee299167e49bf476d82e3ff58724e0a"
+        },
+        {
+          "path": "data/stacks/laravel.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/laravel.csv",
+          "upstream_sha256": "854ea4daa5fc61292d22235ad33b49ba3fe22423c3de8d3cb03758ffed3b59f9",
+          "sha256": "854ea4daa5fc61292d22235ad33b49ba3fe22423c3de8d3cb03758ffed3b59f9"
+        },
+        {
+          "path": "data/stacks/nextjs.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/nextjs.csv",
+          "upstream_sha256": "ecd2c27b2ea0127d203ae726060efcdd7335b5e83f96b99e4f3befbbfeebd5a4",
+          "sha256": "ecd2c27b2ea0127d203ae726060efcdd7335b5e83f96b99e4f3befbbfeebd5a4"
+        },
+        {
+          "path": "data/stacks/nuxt-ui.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/nuxt-ui.csv",
+          "upstream_sha256": "9c0179d559abe39ad63b958b54cb29c82be1dd20706430476096ea8967bfa328",
+          "sha256": "9c0179d559abe39ad63b958b54cb29c82be1dd20706430476096ea8967bfa328"
+        },
+        {
+          "path": "data/stacks/nuxtjs.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/nuxtjs.csv",
+          "upstream_sha256": "3d9b54ed2d151bd9c86e9e5609b8a6f88a00c4c52fa601a30af96c49b2c4d176",
+          "sha256": "3d9b54ed2d151bd9c86e9e5609b8a6f88a00c4c52fa601a30af96c49b2c4d176"
+        },
+        {
+          "path": "data/stacks/react-native.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/react-native.csv",
+          "upstream_sha256": "ba31dd9c0c04da6bc02a74448bf121f9c0728ae5ba3b4d47b487778b0a1135b5",
+          "sha256": "ba31dd9c0c04da6bc02a74448bf121f9c0728ae5ba3b4d47b487778b0a1135b5"
+        },
+        {
+          "path": "data/stacks/react.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/react.csv",
+          "upstream_sha256": "4dd176a9787e5c6306b5df94158d75955adcdc6edab41ce5286641a5842303c1",
+          "sha256": "4dd176a9787e5c6306b5df94158d75955adcdc6edab41ce5286641a5842303c1"
+        },
+        {
+          "path": "data/stacks/shadcn.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/shadcn.csv",
+          "upstream_sha256": "e56cfde5b74907836ac3582a4779d5b7f3d206a702ab81b8669a1b668c3eeb51",
+          "sha256": "e56cfde5b74907836ac3582a4779d5b7f3d206a702ab81b8669a1b668c3eeb51"
+        },
+        {
+          "path": "data/stacks/svelte.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/svelte.csv",
+          "upstream_sha256": "f6e379ba802941ba26b01d4ffbe3cd39120f2587659a1d93851c707f66bc13db",
+          "sha256": "f6e379ba802941ba26b01d4ffbe3cd39120f2587659a1d93851c707f66bc13db"
+        },
+        {
+          "path": "data/stacks/swiftui.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/swiftui.csv",
+          "upstream_sha256": "bdd9231ff3ad658f4e7c063e1eb49df2fd09ac8d90631a86df899b39833b9623",
+          "sha256": "bdd9231ff3ad658f4e7c063e1eb49df2fd09ac8d90631a86df899b39833b9623"
+        },
+        {
+          "path": "data/stacks/threejs.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/threejs.csv",
+          "upstream_sha256": "155d583b9c64da0df4b6c6cb060c02eab222505e0734d6353da02c9e2b5d982b",
+          "sha256": "155d583b9c64da0df4b6c6cb060c02eab222505e0734d6353da02c9e2b5d982b"
+        },
+        {
+          "path": "data/stacks/uno.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/uno.csv",
+          "upstream_sha256": "a0474363e4225b5367214d5675fd3e075f137026f9500f0d04357882ef4f6d48",
+          "sha256": "a0474363e4225b5367214d5675fd3e075f137026f9500f0d04357882ef4f6d48"
+        },
+        {
+          "path": "data/stacks/uwp.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/uwp.csv",
+          "upstream_sha256": "c409f08c1fbba1f1029f1acaa554e7b4471cc85517a5751c9f2e62465badcd5c",
+          "sha256": "c409f08c1fbba1f1029f1acaa554e7b4471cc85517a5751c9f2e62465badcd5c"
+        },
+        {
+          "path": "data/stacks/vue.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/vue.csv",
+          "upstream_sha256": "b655f1ebb9dff2652d15981f31b1784c8a6d4759efd2815a14f3088257569f95",
+          "sha256": "b655f1ebb9dff2652d15981f31b1784c8a6d4759efd2815a14f3088257569f95"
+        },
+        {
+          "path": "data/stacks/winui.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/winui.csv",
+          "upstream_sha256": "e676dc1c13ee6c205c40b0746f1335150a346c7a49a0616d2545bc3d2c930c85",
+          "sha256": "e676dc1c13ee6c205c40b0746f1335150a346c7a49a0616d2545bc3d2c930c85"
+        },
+        {
+          "path": "data/stacks/wpf.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/stacks/wpf.csv",
+          "upstream_sha256": "9781a9950b20333637b30a02e498b7efca21b618a3eeb8665836f3ac6e974da7",
+          "sha256": "9781a9950b20333637b30a02e498b7efca21b618a3eeb8665836f3ac6e974da7"
+        },
+        {
+          "path": "data/styles.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/styles.csv",
+          "upstream_sha256": "a93a4d9d7025856575d7b7583bda020be9043013432c5af7c58af9dbdfb206b7",
+          "sha256": "a93a4d9d7025856575d7b7583bda020be9043013432c5af7c58af9dbdfb206b7"
+        },
+        {
+          "path": "data/typography.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/typography.csv",
+          "upstream_sha256": "321fc446e89024488ebae96dda93efc4d2307bd8bddb240857ad51364f6782c8",
+          "sha256": "321fc446e89024488ebae96dda93efc4d2307bd8bddb240857ad51364f6782c8"
+        },
+        {
+          "path": "data/ui-reasoning.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/ui-reasoning.csv",
+          "upstream_sha256": "f0774dd741cecdad5eec842034bd6d5e9ea50e9f220a1910069748daa0bb8e9a",
+          "sha256": "f0774dd741cecdad5eec842034bd6d5e9ea50e9f220a1910069748daa0bb8e9a"
+        },
+        {
+          "path": "data/ux-guidelines.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/data/ux-guidelines.csv",
+          "upstream_sha256": "ff81ec613f70ba9fc3fcce52dbe4ae35d44b2079dbe6dc066d2d6e38c28facd5",
+          "sha256": "ff81ec613f70ba9fc3fcce52dbe4ae35d44b2079dbe6dc066d2d6e38c28facd5"
+        },
+        {
+          "path": "references/pro-rules.md",
+          "source_path": ".claude/skills/ui-ux-pro-max/references/pro-rules.md",
+          "upstream_sha256": "d28442d61c310b49c054a4ea736f89fb3008beebdbbc38c4b3a540b8f7fadf23",
+          "sha256": "d28442d61c310b49c054a4ea736f89fb3008beebdbbc38c4b3a540b8f7fadf23"
+        },
+        {
+          "path": "references/quick-reference.md",
+          "source_path": ".claude/skills/ui-ux-pro-max/references/quick-reference.md",
+          "upstream_sha256": "0609bc7c89dacb40472465d8fc14257b56b2c43439660fc8d6fa3b8c022e1876",
+          "sha256": "0609bc7c89dacb40472465d8fc14257b56b2c43439660fc8d6fa3b8c022e1876"
+        },
+        {
+          "path": "scripts/core.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/core.py",
+          "upstream_sha256": "7a4a109c200ab363c0e0fd9a5545f03dc665d5e15e4ab28fef893d5663cd30b4",
+          "sha256": "7a4a109c200ab363c0e0fd9a5545f03dc665d5e15e4ab28fef893d5663cd30b4"
+        },
+        {
+          "path": "scripts/design_system.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/design_system.py",
+          "upstream_sha256": "e7d1c94c4b2eada17c5551157668362659ccf9626d34dbd58e68142410f90103",
+          "sha256": "e7d1c94c4b2eada17c5551157668362659ccf9626d34dbd58e68142410f90103"
+        },
+        {
+          "path": "scripts/reasoning_contract.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/reasoning_contract.py",
+          "upstream_sha256": "b8bac1af82aa280d3e06f00aabaeac4337e632996b07fed874e2b6ee6e9c5913",
+          "sha256": "b8bac1af82aa280d3e06f00aabaeac4337e632996b07fed874e2b6ee6e9c5913"
+        },
+        {
+          "path": "scripts/search.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/search.py",
+          "upstream_sha256": "d6aeb52ed42b158cb0c1bb47c9ef931f3bb4daf413bcf2390320b13f887e69fd",
+          "sha256": "d6aeb52ed42b158cb0c1bb47c9ef931f3bb4daf413bcf2390320b13f887e69fd"
+        },
+        {
+          "path": "scripts/tests/fixtures/catalogs/google-api.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-api.json",
+          "upstream_sha256": "22d8dc81a7d6827b7e8b64b53e7d184210fb9759e8e294e0d5133c81cc460176",
+          "sha256": "22d8dc81a7d6827b7e8b64b53e7d184210fb9759e8e294e0d5133c81cc460176"
+        },
+        {
+          "path": "scripts/tests/fixtures/catalogs/google-catalog.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-catalog.json",
+          "upstream_sha256": "c608ad5c4084ebc50a4bbbfb69ea2456c01fd5519c457e18410fffd250ae948f",
+          "sha256": "c608ad5c4084ebc50a4bbbfb69ea2456c01fd5519c457e18410fffd250ae948f"
+        },
+        {
+          "path": "scripts/tests/fixtures/catalogs/google-existing.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-existing.csv",
+          "upstream_sha256": "4e0761b839dc6b2187a370e82eddc0aed8a7ff10c09e28dd814bb3656dac595b",
+          "sha256": "4e0761b839dc6b2187a370e82eddc0aed8a7ff10c09e28dd814bb3656dac595b"
+        },
+        {
+          "path": "scripts/tests/fixtures/catalogs/google-metadata.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-metadata.json",
+          "upstream_sha256": "30bffc29ae348416a2de2f9c6c418e768e4578f136b0f4bac5d2f70124f2e9ba",
+          "sha256": "30bffc29ae348416a2de2f9c6c418e768e4578f136b0f4bac5d2f70124f2e9ba"
+        },
+        {
+          "path": "scripts/tests/fixtures/catalogs/google-overrides.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-overrides.json",
+          "upstream_sha256": "6243a48a4619986768c4628e2d0c98ff195beba71ba9be5df8f0c52fc6d90c0b",
+          "sha256": "6243a48a4619986768c4628e2d0c98ff195beba71ba9be5df8f0c52fc6d90c0b"
+        },
+        {
+          "path": "scripts/tests/fixtures/catalogs/icons-curated.csv",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/icons-curated.csv",
+          "upstream_sha256": "68362c9a700c13b96f000784a0198c1c7e117a7088a01c85744e44233038fe9d",
+          "sha256": "68362c9a700c13b96f000784a0198c1c7e117a7088a01c85744e44233038fe9d"
+        },
+        {
+          "path": "scripts/tests/fixtures/catalogs/phosphor-core.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-core.json",
+          "upstream_sha256": "ae4d0bb076240824e1b643c2270d1f8cc0952a69502ec1e622b7dedd85b930bb",
+          "sha256": "ae4d0bb076240824e1b643c2270d1f8cc0952a69502ec1e622b7dedd85b930bb"
+        },
+        {
+          "path": "scripts/tests/fixtures/catalogs/phosphor-package.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-package.json",
+          "upstream_sha256": "500588c757d6de03e3d7e69b27a8b8b1f88ccf6bb0333e4c1e9b0d6a4f112475",
+          "sha256": "500588c757d6de03e3d7e69b27a8b8b1f88ccf6bb0333e4c1e9b0d6a4f112475"
+        },
+        {
+          "path": "scripts/tests/fixtures/catalogs/phosphor-react-exports.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-exports.json",
+          "upstream_sha256": "d79f2ee0afdbc2f87776733e145df3538a16a25d7c2fba0056bb48295dad0ded",
+          "sha256": "d79f2ee0afdbc2f87776733e145df3538a16a25d7c2fba0056bb48295dad0ded"
+        },
+        {
+          "path": "scripts/tests/fixtures/catalogs/phosphor-react-package.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-package.json",
+          "upstream_sha256": "1c57a1d76bcc0cdd3632d4c18b9c0e79576b4591df39831c9607e5d0eb4f2cec",
+          "sha256": "1c57a1d76bcc0cdd3632d4c18b9c0e79576b4591df39831c9607e5d0eb4f2cec"
+        },
+        {
+          "path": "scripts/tests/fixtures/relevance-baseline.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/relevance-baseline.json",
+          "upstream_sha256": "0df200fc54c1cb97a52d6775e7f501509163cea8f8b73fd7268429bc1f835afe",
+          "sha256": "0df200fc54c1cb97a52d6775e7f501509163cea8f8b73fd7268429bc1f835afe"
+        },
+        {
+          "path": "scripts/tests/fixtures/relevance-cases.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/relevance-cases.json",
+          "upstream_sha256": "e77d36eebbf6ddc2860946a02cdb659351da6c09f2688f1ed30939a418099646",
+          "sha256": "e77d36eebbf6ddc2860946a02cdb659351da6c09f2688f1ed30939a418099646"
+        },
+        {
+          "path": "scripts/tests/fixtures/relevance-thresholds.json",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/fixtures/relevance-thresholds.json",
+          "upstream_sha256": "82f1983ee205bbc536357b0456d4b385470e6653048cb6a704be9b2b4e6d8ef2",
+          "sha256": "82f1983ee205bbc536357b0456d4b385470e6653048cb6a704be9b2b4e6d8ef2"
+        },
+        {
+          "path": "scripts/tests/test_catalog_refresh.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py",
+          "upstream_sha256": "3e2ca5d12702318f641ae62d0c14f22a3bcc84d84e79b863c0e947d475604adb",
+          "sha256": "3e2ca5d12702318f641ae62d0c14f22a3bcc84d84e79b863c0e947d475604adb"
+        },
+        {
+          "path": "scripts/tests/test_catalog_summary_line_endings.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_catalog_summary_line_endings.py",
+          "upstream_sha256": "fa6ff09f0ec2c99013588c77397f5082dddebe8f467e94c5f8378ec9595f4989",
+          "sha256": "fa6ff09f0ec2c99013588c77397f5082dddebe8f467e94c5f8378ec9595f4989"
+        },
+        {
+          "path": "scripts/tests/test_core.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_core.py",
+          "upstream_sha256": "3527fe2f4b852f69f07c17ddc0d615d9a6e025c924e45a33985579a94a8d2118",
+          "sha256": "3527fe2f4b852f69f07c17ddc0d615d9a6e025c924e45a33985579a94a8d2118"
+        },
+        {
+          "path": "scripts/tests/test_core_data_quality.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_core_data_quality.py",
+          "upstream_sha256": "3ffc6b4905c9ea26d7ac4527ab154d153584231aee71b2ae4bd017977fa09cc5",
+          "sha256": "3ffc6b4905c9ea26d7ac4527ab154d153584231aee71b2ae4bd017977fa09cc5"
+        },
+        {
+          "path": "scripts/tests/test_data_contracts.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_data_contracts.py",
+          "upstream_sha256": "0360d6e10080c0bca214f2b0bbad582ba50702a542ce21013351aca54938df3a",
+          "sha256": "0360d6e10080c0bca214f2b0bbad582ba50702a542ce21013351aca54938df3a"
+        },
+        {
+          "path": "scripts/tests/test_design_system_mode.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_design_system_mode.py",
+          "upstream_sha256": "95ad2c154349f7021f55a558f8dcdd71df1a24fcf531a4364a8e49526a0865ef",
+          "sha256": "95ad2c154349f7021f55a558f8dcdd71df1a24fcf531a4364a8e49526a0865ef"
+        },
+        {
+          "path": "scripts/tests/test_design_system_stack.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_design_system_stack.py",
+          "upstream_sha256": "83d09ffe8cfbf7b265f362129f061dfe8e5e167ce5db43adaead197cabc9ca38",
+          "sha256": "83d09ffe8cfbf7b265f362129f061dfe8e5e167ce5db43adaead197cabc9ca38"
+        },
+        {
+          "path": "scripts/tests/test_native_desktop_stack_freshness.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_native_desktop_stack_freshness.py",
+          "upstream_sha256": "3942845712b9a829323cd3568511483135f2a8c7cd79ccf61679da4b0f624dbb",
+          "sha256": "3942845712b9a829323cd3568511483135f2a8c7cd79ccf61679da4b0f624dbb"
+        },
+        {
+          "path": "scripts/tests/test_relevance_evaluator.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_relevance_evaluator.py",
+          "upstream_sha256": "2fe56a4d6fe5fff15ff592274b0eeaba925146cefea6c0fa29d8f1b77c9aca1f",
+          "sha256": "2fe56a4d6fe5fff15ff592274b0eeaba925146cefea6c0fa29d8f1b77c9aca1f"
+        },
+        {
+          "path": "scripts/tests/test_skill_script_paths.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_skill_script_paths.py",
+          "upstream_sha256": "7cec24b94be771bc60bc84f8993e614bb16d4047930e1dd3d3bed91628311d44",
+          "sha256": "7cec24b94be771bc60bc84f8993e614bb16d4047930e1dd3d3bed91628311d44"
+        },
+        {
+          "path": "scripts/tests/test_style_taxonomy.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_style_taxonomy.py",
+          "upstream_sha256": "cd14d0092e8a454d213aa104b53e4e70ba698491fa00fde9fdec5ca8a3d70011",
+          "sha256": "cd14d0092e8a454d213aa104b53e4e70ba698491fa00fde9fdec5ca8a3d70011"
+        },
+        {
+          "path": "scripts/tests/test_text_layout_resilience.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_text_layout_resilience.py",
+          "upstream_sha256": "b51d32ee8a15505b87cb81957fb2d1b385e041e8beb4463c311d236bfd29ebd4",
+          "sha256": "b51d32ee8a15505b87cb81957fb2d1b385e041e8beb4463c311d236bfd29ebd4"
+        },
+        {
+          "path": "scripts/tests/test_web_stack_freshness.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/tests/test_web_stack_freshness.py",
+          "upstream_sha256": "83a6d597410f442441cdb17d0913be151404a608ada6a2487dd2bfe2fbf31e5d",
+          "sha256": "83a6d597410f442441cdb17d0913be151404a608ada6a2487dd2bfe2fbf31e5d"
+        },
+        {
+          "path": "scripts/validate_data.py",
+          "source_path": ".claude/skills/ui-ux-pro-max/scripts/validate_data.py",
+          "upstream_sha256": "a599aa256049cf30954d1f164721b99e453eb7e4cb8241bcab2d5573e6cf58b8",
+          "sha256": "a599aa256049cf30954d1f164721b99e453eb7e4cb8241bcab2d5573e6cf58b8"
+        }
+      ]
+    }
+  ]
+}

@@ -25,6 +25,12 @@ The library supports **five AI platforms**: Claude Code (slash commands), Google
 
 ---
 
+See the [optional design set](platform-configs/skill-sets/design.md) for the reviewed
+Impeccable, Taste Skill and UI/UX Pro Max integration and separate Chrome DevTools MCP setup.
+
+See [NVIDIA SkillSpector / Skill Inspector](platform-configs/skill-sets/skill-inspector.md)
+for the optional official review skill and pinned static scanner setup.
+
 ## Quick Start
 
 ```bash

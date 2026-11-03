@@ -1,0 +1,74 @@
+{
+  "review_date": "2026-11-01",
+  "global_installation_performed": true,
+  "exact_scanner_input_files_verified": 178,
+  "reports": [
+    {
+      "component": "impeccable",
+      "report_sha256": "dafda5b24f5f1206e9e483a7fef72f4e0516a9acdb2231375d38fa4171de00ec",
+      "risk": {
+        "score": 50,
+        "severity": "MEDIUM",
+        "recommendation": "CAUTION"
+      },
+      "findings": 29,
+      "scanner_version": "2.2.3",
+      "llm_requested": false,
+      "disposition": "accepted_after_source_review_and_owner_proceed_authorization"
+    },
+    {
+      "component": "design-taste-frontend",
+      "report_sha256": "663b6541133f05363b914e5cac4f09f195f42b97f77766c8e9067e4f66bdb56e",
+      "risk": {
+        "score": 76,
+        "severity": "HIGH",
+        "recommendation": "DO_NOT_INSTALL"
+      },
+      "findings": 63,
+      "scanner_version": "2.2.3",
+      "llm_requested": false,
+      "disposition": "accepted_after_source_review_and_owner_proceed_authorization"
+    },
+    {
+      "component": "ui-ux-pro-max",
+      "report_sha256": "ad8f14a07784128dbfa1970589d2c61a14effdf538e2a7f50899f9912ea60dfe",
+      "risk": {
+        "score": 50,
+        "severity": "MEDIUM",
+        "recommendation": "CAUTION"
+      },
+      "findings": 52,
+      "scanner_version": "2.2.3",
+      "llm_requested": false,
+      "disposition": "accepted_after_source_review_and_owner_proceed_authorization"
+    },
+    {
+      "component": "mcp",
+      "report_sha256": "59b8bd159bcea0fdf9ac9024cea170316a31a023b1bd6e935d03bc55496b0105",
+      "risk": {
+        "score": 100,
+        "severity": "CRITICAL",
+        "recommendation": "DO_NOT_INSTALL"
+      },
+      "findings": 166,
+      "scanner_version": "2.2.3",
+      "llm_requested": false,
+      "disposition": "accepted_after_source_review_and_owner_proceed_authorization",
+      "correction": "CVE-2023-54404 rejected by CNA on 2026-10-28; raw scanner score preserved, not an active CVE assessment"
+    }
+  ],
+  "owner_authorization": "Approve pushing forward with them, after notice of scanner review",
+  "verification": {
+    "installer_tests": 98,
+    "project_router_tests": 9,
+    "focused_lint_findings": 0,
+    "host_skill_discovery": [
+      "codex",
+      "claude"
+    ],
+    "mcp_tools": 32,
+    "mcp_local_interaction_and_screenshot": "passed",
+    "taste_inspection": "runtime passed; plain fixture yielded 5 design failures and 3 warnings, not suppressed"
+  },
+  "scope": "Local intake and installation receipt; GitHub publication is verified separately"
+}
