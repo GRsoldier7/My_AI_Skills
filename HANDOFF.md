@@ -2,9 +2,9 @@
 
 Running session log for this repo. Newest entry first. Append; never rewrite history. No secrets.
 
-## Current state (2026-10-17)
+## Current state (2026-11-01)
 
-- Library: 191 skills in the master-orchestrator registry, regenerated 2026-10-17 from a complete Windows checkout. README and CLAUDE.md counts match it.
+- Library: 195 skills in the master-orchestrator registry, regenerated 2026-11-01 by the pre-commit hook during the S2 merge. README and CLAUDE.md still say 191; they have been out of date since the skills added after 2026-10-17.
 - Vendored mattpocock skills are all at `49dd158d1076134a641b33efb035946536778336` (to-spec is identical at that commit): `setup-matt-pocock-skills`, `to-spec`, `to-tickets`, `domain-modeling` in `skills/engineering/`; `grill-me`, `grilling`, `grill-with-docs`, `teach` in `skills/aarons-latest/`. Provenance and scan results: `platform-configs/skill-sets/README.md`.
 - `scripts/install-skills.sh` skips only the project-router skills on the Codex side, read from `SKILLS` in `scripts/project-router.py` with Python's parser (fails closed; see the rev 9 entry below); other `skills/aarons-latest/*` install for both tools. Test suite: 98/98 on Linux (homelab, 2026-10-17). Before rev 9, 56/57 on Windows under `MSYS=winsymlinks:nativestrict`; T14 (relative link survives `--prune`) failed there with the unmodified installer too, a pre-existing MSYS `readlink` difference.
 - Device setup guide (`platform-configs/skill-sets/README.md`) covers every skill: `global.txt` is the set for both tools; Aaron's 7 go into Claude Code by name and into Codex from `scripts/project-router.py`; `grill-me`, `grilling`, `grill-with-docs`, `teach` and `projectplan-roadmap` go into both tools by name. Setup adds `--global-guidance` and the `continuing-alm-work` `skillOverrides` entry; the Verify table checks each part.
@@ -12,8 +12,27 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 - `scripts/lint-skills.py`, `scripts/validate-skills.sh` and `scripts/generate-skill-registry.py` run from any clone location and on Windows (hardcoded `/root/My_AI_Skills` paths and a CRLF trap removed 2026-10-17).
 - SkillSpector gate (host `/root/bin/skill-scan`): rounds 1-5 last verified 2026-09-28; current host state not rechecked.
 - `continuing-alm-work` is the owner's nine-file v2.0.0 package (2026-09-30).
+- 2026-11-01: homelab-organizer S2 scanner patch committed on `fix/organizer-scanners-s2`, which carries `46ca4c3` (#25). Peer-node mode (S3) is approved and not built.
 
 ## Log
+
+### 2026-11-01 — homelab-organizer S2 scanner patch (built from 2026-10-23)
+
+**Done**
+- Branch `fix/organizer-scanners-s2` off `46ca4c3` (#25: the container probe printed `0` twice for a fully patched container), in a worktree outside the repo.
+- `check-links.sh`: percent-decoding (printable ASCII only); `file://` targets (local forms resolve, other hosts are skipped); one level of balanced parentheses in a link destination; each link reported once; inline code spans and the organizer's own report dir are not link sources.
+- `inventory-containers.sh`: a guest counts as documented by a markdown heading outside code fences or a yaml `id:` key. Prose cross-references no longer mask an undocumented guest.
+- `scan-files.sh`: `__init__.py` is a package marker; 0-byte files are held and never deduplicated; a cited or in-use duplicate is held; credential-shaped content is held, and only the match is recorded. LXC mount points and each running guest's cron and unit files are in-use sources: a failed guest dump is listed in `ct_refs_unreadable`, and a failed `pct list` stops the scan. Every proposed row lists the files its quarantine would orphan (`would_orphan`). The two guest seams must name readable files.
+- `audit-procedure.md` and `safety-rules.md` match; the schema blocks are pinned by the existing doc-schema tests.
+
+**Verified**
+- `test_scanners.py` 96/96 (62 before; each new test watched failing first, apart from one guard). Mutation check at 92 tests (2026-10-24): 21/21 deliberate breakages caught; not re-run on the last 4 tests. ruff and pyright clean; `bash -n` clean on every script.
+- Review: Fable designed it; codex reviewed the six design decisions, then the full diff and four follow-up deltas. Every BLOCKER it raised is fixed and re-confirmed. Declined with reasons: JSON-escaping of fixed signal names; full CommonMark code-span parsing (link findings only).
+- A fresh codex pass on the whole diff (2026-11-01) found three more defects, all fixed test-first: a quoted passphrase holding spaces passed the credential gate (the wider rule newly holds 0 of 221 proposed rows on the owner's tree); a link in a plain double-backtick span was reported; a heading indented up to 3 spaces did not document a guest. It also changed the landing order, so the live checkout moves last, after every gate.
+- Read-only runs on the owner's tree: link findings 142 → 82 with no new rows; drift reports one guest that prose had masked; 30 cited copies left the proposed DUPLICATE bucket; a script run by a guest's timer is now held automatically.
+
+**Open**
+- Deferred to S3: peer-node inventory mode. Its design was approved on 2026-11-01 (the owner delegated the call to the design lead), including read-only ssh to the peer. It is kept in the owner's homelab spec (§11), not here, and is built after this branch lands. Backlog: over-common basenames (`README.md`, `CLAUDE.md`) held only by coincidental mentions; the host-side unit list lacks the package unit dirs.
 
 ### 2026-10-17 — re-synced setup-matt-pocock-skills and to-tickets to `49dd158d`
 
@@ -64,7 +83,8 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 - Vendored `grill-me` and `grilling` byte-identical from mattpocock/skills @ `49dd158d1076134a641b33efb035946536778336` (`skills/productivity/*`) into `skills/aarons-latest/`, each with the upstream MIT `LICENSE`. `grill-me` is a one-line wrapper that calls `grilling`, so both are required.
 - Placed in `aarons-latest` at the owner's request (not `engineering/` like the 2026-10-03 vendored set). `scripts/project-router.py` uses a fixed seven-skill list, so the Codex/ChatGPT plugin build is unaffected. Added both to `vendored_paths`; updated the catalog README, the aarons-latest README and the skill-sets provenance table.
 - Installed on the Windows device: `./scripts/install-skills.sh --tool claude --apply grill-me grilling` made real symlinks in `~/.claude/skills` (run under `MSYS=winsymlinks:nativestrict`; PowerShell reports `SymbolicLink`). Claude Code listed `grilling` live in the same session.
-- Fixed two Windows-only gate bugs found while validating: `scripts/validate-skills.sh` now strips CR from the `python3` pattern list (the Store python3 writes CRLF to pipes, so every `vendored_paths` entry but the last carried a `` and never matched); `scripts/lint-skills.py` derives `REPO_DIR` from its own location instead of the hardcoded `/root/My_AI_Skills`, and resolves `--files` paths before `relative_to`. Neither changes results on the homelab.
+- Fixed two Windows-only gate bugs found while validating: `scripts/validate-skills.sh` now strips CR from the `python3` pattern list (the Store python3 writes CRLF to pipes, so every `vendored_paths` entry but the last carried a `
+` and never matched); `scripts/lint-skills.py` derives `REPO_DIR` from its own location instead of the hardcoded `/root/My_AI_Skills`, and resolves `--files` paths before `relative_to`. Neither changes results on the homelab.
 
 - Same session, second commit: vendored `grill-with-docs` (same upstream commit, `skills/engineering/grill-with-docs`) into `aarons-latest`. It calls `grilling` and `domain-modeling`; `domain-modeling` (vendored 2026-10-03 at `c55ee46`) was not installed on the Windows device, so it was linked at the same time.
 - Re-synced `skills/engineering/domain-modeling` from `c55ee46` to `49dd158d` (byte-identical; upstream renamed `CONTEXT.md`/`CONTEXT-FORMAT.md` to `GLOSSARY.md`/`GLOSSARY-FORMAT.md`). Needed because `grill-with-docs` at `49dd158d` pairs with that version. `setup-matt-pocock-skills` stays at `c55ee46`; see Open.
