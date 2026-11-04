@@ -1,0 +1,42 @@
+name: Analytics skill pilot
+
+on:
+  pull_request:
+    paths: ['skills/**', 'scripts/**', 'platform-configs/skill-sets/**', '.gitattributes', '.github/workflows/analytics-skills.yml']
+  push:
+    branches: [main]
+    paths: ['skills/**', 'scripts/**', 'platform-configs/skill-sets/**', '.gitattributes', '.github/workflows/analytics-skills.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-pilot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Check curated package hashes and generated profiles
+        run: python3 scripts/skill-sets.py
+      - name: Profile selection and isolated installation regressions
+        run: python3 scripts/test-skill-sets.py
+      - name: Synthetic retention calculations
+        run: python3 scripts/test-analytics-fixtures.py
+      - name: Preserve seven-skill router distribution
+        run: env -u CODEX_HOME python3 scripts/test-project-router.py
+      - name: Existing installer regressions
+        run: bash scripts/test-install-skills.sh
+      - name: Lint changed skills
+        run: >-
+          python3 scripts/lint-skills.py --files
+          skills/analytics/bi-metric-contract/SKILL.md
+          skills/analytics/bigquery-review/SKILL.md
+          skills/core/knowledge-synthesis/SKILL.md
+          skills/core/skill-builder/SKILL.md
+          skills/core/skill-sentinel/SKILL.md
+          skills/core/master-orchestrator/SKILL.md
+          skills/engineering/data-analytics-engine/SKILL.md
+          skills/microsoft/power-bi/SKILL.md
+          skills/product/pm-sql-queries/SKILL.md
+          skills/product/pm-sprint-plan/SKILL.md

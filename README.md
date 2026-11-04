@@ -1,6 +1,6 @@
 # Aaron's AI Skill Library
 
-A library of **191 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. A **master-orchestrator** skill routes every request to the optimal skill chain automatically.
+A library of **198 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. Curated profiles select shared canonical skills; project-router owns lifecycle selection and master-orchestrator serves explicit catalog discovery.
 
 The library supports **five AI platforms**: Claude Code (slash commands), Google Antigravity / Gemini CLI, OpenAI Codex, Cursor, and ChatGPT. A dedicated **`skill-builder` meta-skill** manages the creation, auditing, and continuous improvement of all skills using a 5-module pipeline and a 10-dimension quality rubric.
 
@@ -24,6 +24,14 @@ The library supports **five AI platforms**: Claude Code (slash commands), Google
 9. [Shared Content Fragments](#shared-content-fragments)
 
 ---
+
+## Analytics pilot
+
+Use [curated install sets](platform-configs/skill-sets/README.md#curated-pilot-profiles)
+for analytics, work-parallon, consulting and skill maintenance. New capabilities
+are bi-metric-contract, bigquery-review and knowledge-synthesis, all in trial.
+The [architecture plan](docs/20261025%20-%20My%20AI%20Skills%20-%20Architecture%20and%20Delivery%20Plan.md)
+records the existing SK-01 through SK-09 tasks and this scoped implementation.
 
 ## Quick Start
 

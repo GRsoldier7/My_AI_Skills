@@ -3,10 +3,10 @@ name: skill-builder
 description: Design, audit, and improve Agent Skills: SKILL.md structure, trigger wording, progressive disclosure, reference layout. Trigger: create a skill, improve this SKILL.md, why isn't my skill firing.
 metadata:
   author: aaron-deyoung
-  version: "1.0"
+  version: "1.1.0"
   domain-category: core
   adjacent-skills: prompt-amplifier, portable-ai-instructions, polychronos-team
-  last-reviewed: "2026-03-15"
+  last-reviewed: "2026-10-26"
   review-trigger: "Agent Skills spec update, new Claude major version, 3+ user-reported quality failures"
   capability-assumptions:
     - "No external tools required beyond standard Claude Code tools"
@@ -31,6 +31,13 @@ Use this skill when you need to:
 Do NOT use when you just want to activate a skill and use it — load that skill directly instead.
 
 ---
+
+## Curated intake and promotion
+
+Apply the [intake contract](references/intake.md) to new or changed packages.
+Record provenance and deliberate adaptations in the curated manifest. Keep
+unproven additions in trial; neither a scanner nor three successful examples
+certifies production readiness.
 
 ## The 5-Module Pipeline
 
@@ -172,7 +179,7 @@ write specific revision instructions before proceeding. Do not finalize until al
 Every finalized skill must include:
 
 **In metadata:**
-- `version: "1.0"` (or current version)
+- `version: "1.1.0"` (or current version)
 - `last-reviewed: "YYYY-MM-DD"`
 - `review-trigger: "<specific condition>"` — be precise. "API deprecation" is not precise.
   "GitHub Actions caching API v3 deprecation" is precise.

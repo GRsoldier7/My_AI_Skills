@@ -19,6 +19,17 @@ instructions transparently. Never claim a native invocation occurred.
 
 ## Maintain the integration
 
+- Curated analytics pilot selection/provenance lives in
+  `platform-configs/skill-sets/manifest.json`. Run `python3 scripts/skill-sets.py`
+  to verify packages and generated sets. Review changes before explicitly using
+  `--write --refresh-hashes`; never silently bless changed upstream content.
+- The pilot sets opt into trial skills; they are not installed globally by default.
+  Generic profile names do not grant access or hold employer/client context.
+  Keep `.claude/skills/` candidates separate until their provenance is reconciled.
+- Deliberate local adaptations of `pm-sql-queries` and `pm-sprint-plan` retain
+  original names/licenses and record their upstream baseline under each package's
+  `references/provenance.md`. Do not overwrite those changes in an upstream resync.
+
 - Edit canonical skills, not generated plugin copies. Preserve user changes,
   approval gates, existing task identifiers, and required reference files.
 - Build the portable private plugin with `python scripts/project-router.py build`.
