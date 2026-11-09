@@ -14,3 +14,6 @@ skills/engineering/setup-matt-pocock-skills
 skills/engineering/to-spec
 skills/engineering/to-tickets
 skills/engineering/domain-modeling
+
+# Aaron's own, required on every device by the "Second brain" block in ~/.claude/CLAUDE.md
+skills/aarons-latest/2nd-brain

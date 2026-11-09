@@ -15,6 +15,21 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 
 ## Log
 
+### 2026-11-08 — 2nd-brain v2.0.0 (PR #5)
+
+**Done**
+- Rewrote `skills/aarons-latest/2nd-brain` (Fable). The trigger now covers every domain. The skill has four modes (Brief, Answer, Capture, Task), each with a call budget. It writes with `doNotOverwrite`/etag checks, reads every write back, and falls back to a labeled UNSAVED DRAFT when a write fails. `references/vault-map.md` holds the verified folder map, the routing table, the never-write list and the templates. Added a README row and a `global.txt` entry.
+- Privacy pass before publishing (this repo is public): removed client names, the employer name and the name of a vault note that holds credentials; the map now has a generic credential rule instead.
+
+**Verified**
+- Vault facts come from live Activepieces S3 listings and reads (read-only), 2026-11-08.
+- `PYTHONUTF8=1 python scripts/lint-skills.py --files skills/aarons-latest/2nd-brain/SKILL.md`: 0 findings. `validate-skills.sh --category aarons-latest`: 2nd-brain 13/13; the category's 3 failures predate this change (discount-codes, research_adaptive).
+
+**Open**
+- Owner decisions listed in `references/vault-map.md` ("Open decisions"): where the Knowledge Library lives, the shape of the capture inlet, and missing money/tax and job-search folders.
+- Memory strategy (vault vs Hermes DB) has a Fable recommendation awaiting the owner's decision. If he adopts it, Capture gains a hermes-mem pointer step and Brief gains a `vault_note` search step once the vault index exists.
+- Full-repo `lint-skills.py` crashes on Windows cp1252 without `PYTHONUTF8=1`. This predates the change.
+
 ### 2026-10-17 — re-synced setup-matt-pocock-skills and to-tickets to `49dd158d`
 
 **Done**
