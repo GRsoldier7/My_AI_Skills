@@ -20,6 +20,7 @@ one justified workflow; this table is not a pipeline to execute in full.
 | [discount-codes](discount-codes/SKILL.md) | Find legitimate website or product discounts, compare actual costs, and label verification evidence. |
 | [research_adaptive](research_adaptive/SKILL.md) | Research questions and compare options through broad discovery, verified evidence, and concise recommendations. |
 | [deep-search](deep-search/SKILL.md) | Discover and rank the best options for a specific goal using deep research, weighted 0-100 scores, verified evidence, and concise next steps. |
+| [2nd-brain](2nd-brain/SKILL.md) | Brief from, answer from, and capture durable domain knowledge into the MinIO-backed Obsidian Second Brain via Activepieces S3; evergreen notes only, never session state. |
 
 `grill-me`, `grilling`, `grill-with-docs` and `teach` are third-party (MIT, byte-identical to upstream at a pinned commit; provenance in
 [platform-configs/skill-sets/README.md](../../platform-configs/skill-sets/README.md#provenance-third-party-vendored)).
