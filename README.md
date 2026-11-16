@@ -1,6 +1,6 @@
 # Aaron's AI Skill Library
 
-A library of **231 AI specialist skills** (222 portable; counts in `registry/skills.json`) and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. A **master-orchestrator** skill routes every request to the optimal skill chain automatically.
+A library of **191 AI specialist skills** and cross-platform configuration files for AI-assisted development, business strategy, faith, health, and life optimization. Each skill is a deep-domain expert that activates on demand — bringing genius-level specialist knowledge into any AI conversation. A **master-orchestrator** skill routes every request to the optimal skill chain automatically.
 
 The library supports **five AI platforms**: Claude Code (slash commands), Google Antigravity / Gemini CLI, OpenAI Codex, Cursor, and ChatGPT. A dedicated **`skill-builder` meta-skill** manages the creation, auditing, and continuous improvement of all skills using a 5-module pipeline and a 10-dimension quality rubric.
 
