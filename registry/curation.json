@@ -1,0 +1,346 @@
+{
+  "_comment": "Hand-maintained curation. scripts/generate-skill-registry.py --registry reads this file plus every SKILL.md and writes registry/skills.json and the generated block in each agents/<agent>.md. --check enforces the caps. Rules: CONTRIBUTING.md.",
+  "caps": {
+    "core_per_domain_max": 12,
+    "agent_index_max": 12,
+    "global_install_max": 5,
+    "library_soft_cap": 240,
+    "intake_per_run_max": 3
+  },
+  "domains": {
+    "core": {
+      "purpose": "Cross-cutting agent behavior, verification, prompts, skill authoring",
+      "core_cap": 10
+    },
+    "engineering": {
+      "purpose": "Software delivery, git, review, MCP, infra-adjacent engineering",
+      "core_cap": 12
+    },
+    "growth": {
+      "purpose": "Marketing, SEO, content, positioning, sales communication",
+      "core_cap": 12
+    },
+    "strategy": {
+      "purpose": "Consulting, business planning, decisions, proposals, discovery",
+      "core_cap": 10
+    },
+    "product": {
+      "purpose": "Product management frameworks and discovery (PM library)",
+      "core_cap": 10
+    },
+    "microsoft": {
+      "purpose": "Power Platform and M365 delivery",
+      "core_cap": 8
+    },
+    "faith": {
+      "purpose": "Faith and family life integration",
+      "core_cap": 3
+    },
+    "legal-financial": {
+      "purpose": "Tax, finance, renewals, legal drafting",
+      "core_cap": 5
+    },
+    "tech": {
+      "purpose": "Misc tech utilities (transcription, slides, model APIs)",
+      "core_cap": 3
+    },
+    "govcon": {
+      "purpose": "Federal capture, proposals, compliance for small-business GovCon",
+      "core_cap": 6
+    },
+    "seo": {
+      "purpose": "Technical, local, schema and AI-search SEO for Aaron's sites",
+      "core_cap": 8
+    },
+    "homelab-ops": {
+      "purpose": "Homelab alerting, runbooks, decision records, ops hygiene",
+      "core_cap": 5
+    },
+    "aarons-latest": {
+      "purpose": "Aaron's project lifecycle workflows (project-router owns 7)",
+      "core_cap": 7
+    },
+    "homelab-organizer": {
+      "purpose": "Single skill at category level (kept for open PR #3)",
+      "core_cap": 1
+    }
+  },
+  "core": {
+    "core": [
+      "anti-hallucination",
+      "master-orchestrator",
+      "prompt-master",
+      "skill-builder",
+      "find-skills",
+      "skill-creator",
+      "session-optimizer",
+      "output-quality-no-slop",
+      "agent-run-forensics",
+      "weekly-open-loops-review"
+    ],
+    "engineering": [
+      "ce-plan",
+      "ce-work",
+      "ce-debug",
+      "ce-review",
+      "code-review",
+      "git-commit",
+      "git-commit-push-pr",
+      "mcp-server-builder",
+      "n8n-workflow-architect",
+      "app-security-architect",
+      "docker-infrastructure",
+      "testing-strategy"
+    ],
+    "growth": [
+      "marketing-strategist",
+      "copywriting-conversion",
+      "content-marketing-machine",
+      "professional-communicator",
+      "sales-closer",
+      "personal-brand-builder"
+    ],
+    "strategy": [
+      "consulting-operations",
+      "consulting-tiered-proposal-sow",
+      "discovery-call-prep",
+      "decision-toolkit",
+      "business-plan-architect",
+      "lead-research-brief",
+      "pricing-strategist",
+      "financial-model-architect",
+      "go-to-market-engine"
+    ],
+    "govcon": [
+      "govcon-bid-no-bid-screening",
+      "govcon-proposal-compliance-matrix",
+      "cmmc-nist-800-171-readiness"
+    ],
+    "seo": [
+      "technical-seo-baseline",
+      "local-seo-audit",
+      "schema-markup-jsonld",
+      "seo-content-brief-aeo",
+      "ai-search-visibility",
+      "seo-agentic"
+    ],
+    "homelab-ops": [
+      "alerting-observability-design",
+      "homelab-decision-record",
+      "homelab-runbook-generator"
+    ],
+    "product": [
+      "pm-create-prd",
+      "pm-prioritize-features",
+      "pm-competitor-analysis",
+      "pm-ideal-customer-profile",
+      "pm-lean-canvas",
+      "pm-user-stories",
+      "pm-pre-mortem",
+      "pm-product-strategy"
+    ],
+    "microsoft": [
+      "power-automate",
+      "power-platform-admin",
+      "m365-integration",
+      "sharepoint",
+      "power-apps",
+      "power-bi"
+    ],
+    "faith": [
+      "faith-life-integration",
+      "bible-study-theologian"
+    ],
+    "legal-financial": [
+      "startup-tax-strategist",
+      "renewals-and-alerts-tracker"
+    ],
+    "tech": [
+      "openrouter"
+    ],
+    "aarons-latest": [
+      "project-router",
+      "2nd-brain",
+      "projectplan-builder",
+      "projectplan-roadmap",
+      "grill-me"
+    ]
+  },
+  "review": {
+    "skills/core/wrapitup": "Likely duplicate of wrapup; merge or retire",
+    "skills/aarons-latest/grilling": "Overlaps grill-me; vendored, pinned; confirm redundancy",
+    "skills/core/apex-mode": "Empty description; unclear trigger and purpose",
+    "skills/core/fact-checker": "Empty description; overlaps anti-hallucination",
+    "skills/core/skill-sentinel": "Overlaps skill-builder and new skill-creator",
+    "skills/core/skill-amplifier": "Overlaps skill-builder; consolidate after skill-creator",
+    "skills/core/polychronos-team": "Empty description; overlaps parallel-execution-strategist",
+    "skills/core/knowledge-management": "Overlaps personal-productivity and obsidian architects",
+    "skills/engineering/obsidian-vault-architect": "Three obsidian architect skills likely overlap",
+    "skills/engineering/lfg": "Overlaps ce-work/ce-plan; autonomous-workflow risk",
+    "skills/engineering/data-analytics-engine": "Empty description; unclear scope",
+    "skills/strategy/business-genius": "Empty description; overlaps business-plan-architect",
+    "skills/core/organize-project": "Overlaps directory-cleanup and file-organizer"
+  },
+  "deprecated": {},
+  "agents": {
+    "muse": {
+      "title": "Muse",
+      "purpose": "Chief-of-staff index: vault memory, planning, faith/life integration, research, verification; personal-first, nothing wholesale.",
+      "skills": [
+        "2nd-brain",
+        "alm",
+        "weekly-open-loops-review",
+        "personal-productivity",
+        "faith-life-integration",
+        "bible-study-theologian",
+        "grill-me",
+        "projectplan-builder",
+        "anti-hallucination",
+        "prompt-master",
+        "research_adaptive",
+        "deep-search"
+      ]
+    },
+    "grok-bot": {
+      "title": "Grok Bot",
+      "purpose": "Fenced box skills listed first, plus portable GovCon, SEO, homelab and consulting skills specialists pull by name.",
+      "skills": [
+        "evidence-before-claims",
+        "skill-scout",
+        "skill-and-prompt-evals",
+        "kaizen-evolution",
+        "chief-of-staff-intake-routing",
+        "govcon-sources-sought-response",
+        "govcon-bid-no-bid-screening",
+        "govcon-proposal-compliance-matrix",
+        "technical-seo-baseline",
+        "local-seo-audit",
+        "homelab-decision-record",
+        "consulting-tiered-proposal-sow"
+      ]
+    },
+    "dot": {
+      "title": "Dot (OpenAI ChatGPT dots)",
+      "purpose": "Work-facing: client communication, consulting deliverables, M365/Power Platform, PRDs, research; no personal or homelab skills.",
+      "skills": [
+        "anti-hallucination",
+        "professional-communicator",
+        "consulting-tiered-proposal-sow",
+        "discovery-call-prep",
+        "lead-research-brief",
+        "pm-create-prd",
+        "power-automate",
+        "m365-integration",
+        "sharepoint",
+        "decision-toolkit",
+        "output-quality-no-slop",
+        "research_adaptive"
+      ]
+    },
+    "duet": {
+      "title": "Duet",
+      "purpose": "CLI harness index: coding workflow, skill authoring, MCP building, verification; metadata-only prompt so keep descriptions sharp.",
+      "skills": [
+        "skill-builder",
+        "skill-creator",
+        "find-skills",
+        "using-superpowers",
+        "master-orchestrator",
+        "ce-plan",
+        "ce-work",
+        "ce-debug",
+        "ce-review",
+        "git-commit-push-pr",
+        "mcp-server-builder",
+        "anti-hallucination"
+      ]
+    },
+    "nod": {
+      "title": "Nod (n8n Labs)",
+      "purpose": "Personal-admin extras beyond its 27 built-ins: errands, renewals, research, transcription, tax; avoid engineering skills.",
+      "skills": [
+        "personal-productivity",
+        "weekly-open-loops-review",
+        "deep-search",
+        "research_adaptive",
+        "renewals-and-alerts-tracker",
+        "discount-codes",
+        "audio-transcriber",
+        "teach",
+        "professional-communicator",
+        "startup-tax-strategist",
+        "life-os-designer",
+        "prompt-master"
+      ]
+    }
+  },
+  "fenced": {
+    "grok-bot": {
+      "path": "agents/grok-bot/skills",
+      "portable": false,
+      "restore_to": "/home/box/agent-data/workflows"
+    }
+  },
+  "box_mirror": [
+    "agent-run-forensics",
+    "ai-search-visibility",
+    "alerting-observability-design",
+    "api-first-heavy-work",
+    "bot-prompt-tuning",
+    "bot-team-review",
+    "bot-usage-cost-optimizer",
+    "chief-of-staff-intake-routing",
+    "cmmc-nist-800-171-readiness",
+    "consulting-tiered-proposal-sow",
+    "discovery-call-prep",
+    "evidence-before-claims",
+    "govcon-bid-no-bid-screening",
+    "govcon-proposal-compliance-matrix",
+    "govcon-sources-sought-response",
+    "homelab-decision-record",
+    "homelab-runbook-generator",
+    "kaizen-evolution",
+    "lead-research-brief",
+    "local-seo-audit",
+    "local-seo-team-project",
+    "obsidian-second-brain-wiki",
+    "outcome-effect-closeout",
+    "output-quality-no-slop",
+    "renewals-and-alerts-tracker",
+    "schema-markup-jsonld",
+    "seo-content-brief-aeo",
+    "skill-and-prompt-evals",
+    "skill-scout",
+    "technical-seo-baseline",
+    "weekly-open-loops-review"
+  ],
+  "third_party": {
+    "skills/core/skill-creator": {
+      "upstream": "https://github.com/anthropics/skills",
+      "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "upstream_path": "skills/skill-creator",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE.txt",
+      "imported": "2026-11-16",
+      "files": "all (byte-identical)"
+    },
+    "skills/seo/seo-agentic": {
+      "upstream": "https://github.com/AgriciDaniel/claude-seo",
+      "commit": "468ed5b0d9e3249394783710e54abb02837e326b",
+      "upstream_path": "skills/seo-agentic",
+      "license": "MIT",
+      "license_file": "LICENSE.txt",
+      "imported": "2026-11-16",
+      "files": "all (byte-identical); helper scripts stay in the claude-seo plugin, so standalone use is reference mode"
+    },
+    "skills/core/unlazy": {
+      "upstream": "https://github.com/Leonxlnx/unlazy",
+      "commit": "16671491f6679ad9378f52604d3bc2415b4120c7",
+      "upstream_path": ".",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "imported": "2026-11-16",
+      "files": "SKILL.md, LICENSE, agents/, references/, scripts/, templates/ (byte-identical); repo tests/ and research/ not copied"
+    }
+  }
+}

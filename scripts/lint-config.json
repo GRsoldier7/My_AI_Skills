@@ -39,7 +39,10 @@
     "skills/aarons-latest/grill-me",
     "skills/aarons-latest/grilling",
     "skills/aarons-latest/grill-with-docs",
-    "skills/aarons-latest/teach"
+    "skills/aarons-latest/teach",
+    "skills/core/skill-creator",
+    "skills/core/unlazy",
+    "skills/seo/seo-agentic"
   ],
   "max_age_days": 90,
   "stale_tokens": [
