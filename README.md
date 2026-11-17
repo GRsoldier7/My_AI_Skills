@@ -554,7 +554,7 @@ I have a deal with a Fortune 500 ops team stuck at procurement. Here's the situa
 
 ## Repository Structure
 
-Skill counts come from `registry/skills.json`, which is generated. The library has 231 skills: 222 portable and 9 fenced.
+Skill counts come from `registry/skills.json`, which is generated. The library has 233 skills: 224 portable and 9 fenced.
 
 ```text
 .
