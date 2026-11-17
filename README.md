@@ -6,6 +6,19 @@ The library supports **five AI platforms**: Claude Code (slash commands), Google
 
 ---
 
+## Start here
+
+Pick the path that matches what you need.
+
+- Find skills for your agent: open its index in `agents/` (`muse.md`, `grok-bot.md`, `dot.md`, `duet.md`, `nod.md`). Each lists at most 12 curated skills. See `agents/README.md` for how each agent loads them.
+- Browse by topic: portable skills live in domain folders at `skills/<domain>/<skill>/SKILL.md`.
+- Look up any skill: `registry/skills.json` lists every skill with its domain, status, and platforms. `registry/README.md` explains the registry.
+- Grok Bot team skills: the 9 fenced skills are in `agents/grok-bot/skills/`. They are not portable and depend on the Grok Bot box. See `agents/grok-bot/README.md`.
+- Updated an old install: skills moved out of `skills/grok-bot-team/`. See [MOVED.md](MOVED.md) for the destination table and the device fix steps.
+- Add or change a skill: see [CONTRIBUTING.md](CONTRIBUTING.md) for caps, intake rules, and the check commands.
+
+Load skills on demand. Never install the whole library.
+
 ## Table of Contents
 
 1. [Quick Start](#quick-start)
@@ -541,121 +554,46 @@ I have a deal with a Fortune 500 ops team stuck at procurement. Here's the situa
 
 ## Repository Structure
 
-```
-aaron-skill-library/
-├── README.md                          # This file
-├── CLAUDE.md                          # Master Claude Code project instructions
-├── .gitignore
-│
-├── skills/                            # All 228 skills, organized by category
-│   ├── aarons-latest/                 # Aaron's Latest Skills — newest additions (13)
-│   │   ├── project-router/            # Pick the next project workflow from evidence
-│   │   ├── clean-project/             # Lifecycle/security/usage audit, approved cleanup
-│   │   ├── alm/                       # Manual-only /alm lifecycle driver, plan to production
-│   │   ├── continuing-alm-work/       # Resume interrupted plans from last verified state
-│   │   ├── directory-cleanup/         # Safe cleanup, archiving and structure maintenance
-│   │   ├── grill-me/                  # /grill-me entry point (vendored, mattpocock/skills)
-│   │   ├── grilling/                  # Relentless design interview primitive (vendored)
-│   │   ├── grill-with-docs/           # Interview + GLOSSARY/ADR paper trail (vendored)
-│   │   ├── teach/                     # Multi-session tutoring workspace (vendored)
-│   │   ├── projectplan-builder/       # First delivery plan for an idea, feature or codebase
-│   │   ├── projectplan-rescope/       # Rescope or rescue an existing plan
-│   │   ├── projectplan-roadmap/       # Save a plan as a dated, prescriptive roadmap file
-│   │   └── workbetter/                # Execute or resume a plan with verification and drift checks
-│   │
-│   ├── core/                          # Orchestration & meta-skills (4)
-│   │   ├── skill-builder/             # Meta-skill: creates + audits all other skills
-│   │   │   ├── SKILL.md
-│   │   │   └── references/
-│   │   │       ├── skill-template.md
-│   │   │       ├── quality-rubric.md
-│   │   │       ├── domain-brief-template.md
-│   │   │       └── library-audit-2026-03-15.md
-│   │   ├── polychronos-team/
-│   │   │   ├── SKILL.md
-│   │   │   └── references/
-│   │   │       ├── strategic-agents.md
-│   │   │       ├── architecture-agents.md
-│   │   │       └── implementation-agents.md
-│   │   ├── prompt-amplifier/
-│   │   └── portable-ai-instructions/
-│   │
-│   ├── strategy/                      # Business & market advisory (8)
-│   │   ├── business-genius/           # Orchestrator → routes to all 15 specialist sub-skills
-│   │   ├── entrepreneurial-os/
-│   │   ├── ai-agentic-specialist/
-│   │   ├── market-intelligence/
-│   │   ├── business-plan-architect/
-│   │   ├── pricing-strategist/
-│   │   ├── financial-model-architect/
-│   │   └── go-to-market-engine/
-│   │
-│   ├── growth/                        # Marketing, sales & growth (8)
-│   │   ├── marketing-strategist/
-│   │   ├── copywriting-conversion/
-│   │   ├── content-marketing-machine/
-│   │   ├── social-media-architect/
-│   │   ├── growth-hacking-engine/
-│   │   ├── personal-brand-builder/
-│   │   ├── sales-closer/
-│   │   └── community-builder/
-│   │
-│   ├── product/                       # Product & infrastructure (5)
-│   │   ├── micro-saas-builder/
-│   │   ├── ai-business-optimizer/
-│   │   ├── biohacking-data-pipeline/
-│   │   ├── brand-website-strategy/
-│   │   └── cloud-migration-playbook/
-│   │
-│   ├── engineering/                   # Software engineering (3)
-│   │   ├── code-review/
-│   │   ├── database-design/
-│   │   └── testing-strategy/
-│   │
-│   └── microsoft/                     # Microsoft Power Platform (8)
-│       ├── README.md
-│       ├── power-bi/
-│       ├── power-apps/
-│       ├── power-automate/
-│       ├── sharepoint/
-│       ├── copilot-studio/
-│       ├── power-platform-admin/
-│       ├── microsoft-dataverse/
-│       └── m365-integration/
-│
-├── platform-configs/                  # Per-tool instruction file templates
-│   ├── shared/                        # DRY source of truth (edit once, applies everywhere)
-│   │   ├── identity.md                # Who Aaron is, current projects
-│   │   ├── tech-stack.md              # Python/FastAPI/PostgreSQL/GCP stack
-│   │   ├── conventions.md             # Coding conventions, operating principles
-│   │   └── blast-protocol.md          # B.L.A.S.T. workflow and task tier classification
-│   ├── claude/
-│   │   └── CLAUDE.md.template         # Template for Claude Code project instructions
-│   ├── codex/
-│   │   └── AGENTS.md.template         # Template for Codex CLI (self-contained)
-│   ├── gemini/
-│   │   └── GEMINI.md.template         # Template for Antigravity (Polychronos team inline)
-│   ├── cursor/
-│   │   └── cursorrules.template       # Template for Cursor IDE
-│   └── chatgpt/
-│       ├── custom-instructions.md     # ChatGPT Custom Instructions content
-│       └── custom-gpts/
-│           ├── polychronos-builder.md
-│           ├── business-strategist.md
-│           └── ai-advisor.md
-│
-├── scripts/
-│   ├── register-commands.sh           # Register all skills as Claude Code global slash commands
-│   ├── deploy.sh                      # Deploy platform configs + skills to a project
-│   └── validate-skills.sh             # Validate all SKILL.md files (YAML + quality checks)
-│
+Skill counts come from `registry/skills.json`, which is generated. The library has 231 skills: 222 portable and 9 fenced.
+
+```text
+.
+├── skills/                    portable skills: skills/<domain>/<skill>/SKILL.md
+│   ├── aarons-latest/         17  project lifecycle workflows
+│   ├── core/                  33  agent behavior, verification, prompts, skill authoring
+│   ├── engineering/           47
+│   ├── faith/                  3
+│   ├── govcon/                 3  federal capture, proposals, CMMC
+│   ├── growth/                 9  marketing, content, sales
+│   ├── homelab-ops/            3  alerting, runbooks, decision records
+│   ├── homelab-organizer/      1
+│   ├── legal-financial/        2
+│   ├── microsoft/              8  Power Platform, M365
+│   ├── product/               73  PM frameworks
+│   ├── seo/                    7  technical, local, schema, AI-search, agent-readiness
+│   ├── strategy/              13  consulting, proposals, discovery, business planning
+│   ├── tech/                   3
+│   └── grok-bot-team/             compatibility symlinks only
+├── agents/                    one index per agent, plus the fenced folder
+│   ├── muse.md
+│   ├── grok-bot.md
+│   ├── dot.md
+│   ├── duet.md
+│   ├── nod.md
+│   └── grok-bot/skills/        9  fenced Grok Bot-only skills
+├── registry/                  curation.json, skills.json, moved.json
+├── platform-configs/          per-platform configs, including skill-sets/global.txt
+├── scripts/                   installers, generator, lint and validation
+├── audits/
 ├── evals/
-│   └── evals.json                     # Skill evaluation test cases
-│
 └── .claude/
-    └── commands/
-        └── list-skills.md             # /list-skills — show full catalog in any conversation
 ```
+
+Notes:
+
+- `aarons-latest` skills: `project-router.py` hash-copies 7 of them.
+- `skills/grok-bot-team/` holds only compatibility symlinks. They stay at least 90 days (until 2027-02-16). See `MOVED.md`.
+- `agents/grok-bot/skills/` sits outside `skills/` so installers never load it.
 
 ---
 

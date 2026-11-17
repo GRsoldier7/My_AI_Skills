@@ -182,15 +182,24 @@ validate_skill() {
 }
 
 # Run validation
-search_dir="$SKILLS_DIR"
-[[ -n "$CATEGORY" ]] && search_dir="$SKILLS_DIR/$CATEGORY"
+# find does not follow symlinks, so the compatibility links left at moved skills'
+# old paths (registry/moved.json) are skipped. Fenced platform-only skills live
+# outside skills/: `--category grok-bot` validates them; a full run includes them.
+FENCED_DIR="$REPO_DIR/agents/grok-bot/skills"
+search_dirs=("$SKILLS_DIR")
+[[ -d "$FENCED_DIR" ]] && search_dirs+=("$FENCED_DIR")
+if [[ "$CATEGORY" == "grok-bot" ]]; then
+    search_dirs=("$FENCED_DIR")
+elif [[ -n "$CATEGORY" ]]; then
+    search_dirs=("$SKILLS_DIR/$CATEGORY")
+fi
 
-echo "Validating skills in $search_dir..."
+echo "Validating skills in ${search_dirs[*]}..."
 echo ""
 
 while IFS= read -r skill_file; do
     validate_skill "$skill_file"
-done < <(find "$search_dir" -name "SKILL.md" -type f | sort)
+done < <(find "${search_dirs[@]}" -name "SKILL.md" -type f | sort)
 
 # Summary
 echo ""

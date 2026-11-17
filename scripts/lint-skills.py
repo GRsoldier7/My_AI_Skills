@@ -46,8 +46,28 @@ DEFAULT_CONFIG = REPO_DIR / "scripts" / "lint-config.json"
 # Categories that contain SKILL.md children (vs. homelab-organizer which IS a skill)
 CATEGORY_DIRS = {
     "core", "engineering", "faith", "growth", "legal-financial",
-    "microsoft", "product", "strategy",
+    "microsoft", "product", "strategy", "govcon", "seo", "homelab-ops",
 }
+
+# Fenced, platform-only skill folders outside skills/ (registry/curation.json "fenced").
+# `--category grok-bot` lints them; a full run includes them.
+FENCED_DIRS = {"grok-bot": REPO_DIR / "agents" / "grok-bot" / "skills"}
+
+
+def _under_symlink(path: Path, root: Path) -> bool:
+    """Skip compatibility symlinks left at moved skills' old paths (registry/moved.json)."""
+    cur = root
+    for part in path.relative_to(root).parts[:-1]:
+        cur = cur / part
+        if cur.is_symlink():
+            return True
+    return False
+
+
+def _skill_files(root: Path) -> list[Path]:
+    if not root.is_dir():
+        return []
+    return sorted(p for p in root.rglob("SKILL.md") if p.is_file() and not _under_symlink(p, root))
 
 # Severity ranking for sorting/exit code
 SEV_RANK = {"FAIL": 0, "WARN": 1, "INFO": 2}
@@ -160,13 +180,14 @@ def parse_simple_yaml(fm: str) -> dict:
 
 def discover_skills(category: str | None = None) -> list[Path]:
     """Find every SKILL.md under skills/. Optionally filtered by category."""
+    if category in FENCED_DIRS:
+        return _skill_files(FENCED_DIRS[category])
     if category:
-        root = SKILLS_DIR / category
-    else:
-        root = SKILLS_DIR
-    if not root.exists():
-        return []
-    return sorted(p for p in root.rglob("SKILL.md") if p.is_file())
+        return _skill_files(SKILLS_DIR / category)
+    found = _skill_files(SKILLS_DIR)
+    for root in FENCED_DIRS.values():
+        found += _skill_files(root)
+    return sorted(found)
 
 
 def is_vendored(skill_path: Path, patterns: list[str]) -> bool:
@@ -195,7 +216,7 @@ def build_skill_index() -> tuple[set[str], dict[str, list[str]]]:
     collision map back and surface it as its own finding.
     """
     owners: dict[str, list[str]] = {}
-    for p in SKILLS_DIR.rglob("SKILL.md"):
+    for p in discover_skills():
         tokens = {p.parent.name}
         fm_text, _ = extract_frontmatter(p.read_text(encoding="utf-8", errors="replace"))
         if fm_text:
@@ -381,6 +402,8 @@ SKILL_REF_ALLOWLIST = {
     # external plugin skills + user-level skills referenced for plugin-overlap routing
     "karpathy-guidelines", "pytest-async-testing-patterns",
     "docker-compose-production", "n8n-mcp",
+    # sibling skills of the claude-seo plugin, named by the vendored skills/seo/seo-agentic
+    "seo-ecommerce", "seo-technical",
     # issue-tracker triage labels used by the vendored mattpocock engineering skills
     "needs-triage", "needs-info", "ready-for-agent", "ready-for-human",
 }
