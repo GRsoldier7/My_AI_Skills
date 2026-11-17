@@ -27,7 +27,7 @@ All changes reach `main` through a pull request. Do not push directly or force-p
 | Core skills per domain | The domain's `core_cap` (max 12) |
 | Skills in an agent index | 12 |
 | Global install set | 5 (`platform-configs/skill-sets/global.txt`) |
-| Library soft cap | 240 (231 today) |
+| Library soft cap | 240 (233 today) |
 | Intake adds per scout run | 3 |
 
 ## Add your own skill
