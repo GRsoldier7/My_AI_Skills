@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "scope": "Curated advisory pilot; not an exhaustive inventory or target installation receipt",
+  "status_vocabulary": [
+    "trial",
+    "active",
+    "reference",
+    "deprecated"
+  ],
+  "skills": [
+    {
+      "id": "data-analytics-engine",
+      "name": "data-analytics-engine",
+      "path": "skills/engineering/data-analytics-engine",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-26",
+      "allowed_use": "advisory; live operations require separately verified host permissions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "d6dd254107d28b7ce501cbc384aebc32ce4a8c95",
+        "license": "owner-authored terms unspecified"
+      },
+      "package_sha256": "280d7e00a0f6ea7a06ad3c5ae1ddbef0059d961d65b2f8118647ad6c1d658648"
+    },
+    {
+      "id": "power-bi",
+      "name": "power-bi",
+      "path": "skills/microsoft/power-bi",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-26",
+      "allowed_use": "advisory; live operations require separately verified host permissions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "d6dd254107d28b7ce501cbc384aebc32ce4a8c95",
+        "license": "owner-authored terms unspecified",
+        "references": [
+          {
+            "repository": "https://github.com/microsoft/skills-for-fabric",
+            "revision": "bc42aaf734771bf752c1d7082dd91e5a6ca72b9f",
+            "path": "skills/semantic-model-authoring",
+            "license": "MIT",
+            "mode": "reference; upstream package not vendored or installed"
+          }
+        ]
+      },
+      "package_sha256": "63a9be0dce0cd01bb739a196dbd2612182c12c095e9c56721972aa62933d4e7c"
+    },
+    {
+      "id": "sql-queries",
+      "name": "sql-queries",
+      "path": "skills/product/pm-sql-queries",
+      "aliases": [
+        "pm-sql-queries"
+      ],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-26",
+      "allowed_use": "advisory; live operations require separately verified host permissions",
+      "provenance": {
+        "kind": "local-adaptation",
+        "repository": "https://github.com/phuryn/pm-skills",
+        "revision": "07b34f64ee828df08953f505b7f747aef85ae7c6",
+        "path": "pm-data-analytics/skills/sql-queries",
+        "upstream_blob": "7780d95a33f2a493a4a8e66d6b523aa089ef97ed",
+        "license": "MIT",
+        "license_path": "LICENSE",
+        "local_changes": "Mandatory evidence contract; readiness/persistence wording; see references/provenance.md"
+      },
+      "package_sha256": "8b39772302b36456b355d54aec57e10cdaf8b94f3948f31044b2cb0ea54837c3"
+    },
+    {
+      "id": "bi-metric-contract",
+      "name": "bi-metric-contract",
+      "path": "skills/analytics/bi-metric-contract",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-26",
+      "allowed_use": "advisory; live operations require separately verified host permissions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "d6dd254107d28b7ce501cbc384aebc32ce4a8c95",
+        "license": "owner-authored terms unspecified"
+      },
+      "package_sha256": "2661ee49f75932211db7a41ab1a497cc298e4b82b69a1db2b82579f02084feee"
+    },
+    {
+      "id": "bigquery-review",
+      "name": "bigquery-review",
+      "path": "skills/analytics/bigquery-review",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-26",
+      "allowed_use": "advisory; live operations require separately verified host permissions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "d6dd254107d28b7ce501cbc384aebc32ce4a8c95",
+        "license": "owner-authored terms unspecified",
+        "references": [
+          {
+            "repository": "https://github.com/google/skills",
+            "revision": "cb11ad82ada424d1a004c3dfec106b6fab1188e1",
+            "path": "skills/cloud/bigquery-optimization",
+            "license": "Apache-2.0",
+            "mode": "reference; upstream package not vendored or installed"
+          }
+        ]
+      },
+      "package_sha256": "84ed188f17ff5c4d8647137bb0ac93c12108d1ae978fce3cbaa824dcc077ed81"
+    },
+    {
+      "id": "knowledge-synthesis",
+      "name": "knowledge-synthesis",
+      "path": "skills/core/knowledge-synthesis",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-26",
+      "allowed_use": "advisory; live operations require separately verified host permissions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "d6dd254107d28b7ce501cbc384aebc32ce4a8c95",
+        "license": "owner-authored terms unspecified",
+        "references": [
+          {
+            "repository": "https://github.com/anthropics/knowledge-work-plugins",
+            "revision": "33d3dea41a341b341d4f5da2e8801ae0c89be2b8",
+            "path": "enterprise-search/skills/knowledge-synthesis",
+            "license": "Apache-2.0",
+            "mode": "reference; upstream package not vendored or installed"
+          }
+        ]
+      },
+      "package_sha256": "ddc40b911f811c60ebaaa57e93f3bc6dcf64db750e60166206fc8c45b1ca7c1f"
+    },
+    {
+      "id": "sprint-plan",
+      "name": "sprint-plan",
+      "path": "skills/product/pm-sprint-plan",
+      "aliases": [
+        "pm-sprint-plan"
+      ],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-26",
+      "allowed_use": "advisory; live operations require separately verified host permissions",
+      "provenance": {
+        "kind": "local-adaptation",
+        "repository": "https://github.com/phuryn/pm-skills",
+        "revision": "07b34f64ee828df08953f505b7f747aef85ae7c6",
+        "path": "pm-execution/skills/sprint-plan",
+        "upstream_blob": "05c49f8c1806e95c3681536cd0e48ca3f2c4d07c",
+        "license": "MIT",
+        "license_path": "LICENSE",
+        "local_changes": "Mandatory evidence contract; readiness/persistence wording; see references/provenance.md"
+      },
+      "package_sha256": "981ff16012d6b4729ab72bb076ada6ed7f61d2ac466a8da3f240fdfeca7279ad"
+    },
+    {
+      "id": "professional-communicator",
+      "name": "professional-communicator",
+      "path": "skills/growth/professional-communicator",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-26",
+      "allowed_use": "advisory; live operations require separately verified host permissions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "d6dd254107d28b7ce501cbc384aebc32ce4a8c95",
+        "license": "owner-authored terms unspecified"
+      },
+      "package_sha256": "e163c52bb4a5e6d7ce9eaebd75e5ef1c9d57efdbd679d19de02c827395f7b760"
+    },
+    {
+      "id": "consulting-operations",
+      "name": "consulting-operations",
+      "path": "skills/strategy/consulting-operations",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-26",
+      "allowed_use": "advisory; live operations require separately verified host permissions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "d6dd254107d28b7ce501cbc384aebc32ce4a8c95",
+        "license": "owner-authored terms unspecified"
+      },
+      "package_sha256": "e943982a213834f2d3d13003248e66b39f4804c0be1b3b43ead482d70a487509"
+    },
+    {
+      "id": "skill-builder",
+      "name": "skill-builder",
+      "path": "skills/core/skill-builder",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-26",
+      "allowed_use": "advisory; live operations require separately verified host permissions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "d6dd254107d28b7ce501cbc384aebc32ce4a8c95",
+        "license": "owner-authored terms unspecified"
+      },
+      "package_sha256": "a1d0a9e0d63abe8988887c3d299ce7f1ef575faf04a0648c25cb2d29d6601bc4"
+    },
+    {
+      "id": "skill-sentinel",
+      "name": "skill-sentinel",
+      "path": "skills/core/skill-sentinel",
+      "aliases": [],
+      "status": "trial",
+      "dependencies": [],
+      "owner": "repository-owner",
+      "reviewed_on": "2026-10-26",
+      "allowed_use": "advisory; live operations require separately verified host permissions",
+      "provenance": {
+        "kind": "owner-authored",
+        "repository_baseline": "d6dd254107d28b7ce501cbc384aebc32ce4a8c95",
+        "license": "owner-authored terms unspecified",
+        "note": "Existing source-repo claim EvolutionUnleashed/skill-sentinel is retained; exact upstream equivalence not established. Trial only."
+      },
+      "package_sha256": "cfe9998d4c9f25cd48a4f7a10c123a6472833d879c78672b062d9bb89c1174fa"
+    }
+  ],
+  "profiles": {
+    "analytics": {
+      "skills": [
+        "data-analytics-engine",
+        "power-bi",
+        "sql-queries",
+        "bi-metric-contract",
+        "bigquery-review"
+      ],
+      "includes": [],
+      "allow_trial": true
+    },
+    "work-parallon": {
+      "skills": [
+        "knowledge-synthesis",
+        "sprint-plan",
+        "professional-communicator"
+      ],
+      "includes": [
+        "analytics"
+      ],
+      "allow_trial": true
+    },
+    "consulting": {
+      "skills": [
+        "consulting-operations",
+        "knowledge-synthesis"
+      ],
+      "includes": [
+        "analytics"
+      ],
+      "allow_trial": true
+    },
+    "maintainer": {
+      "skills": [
+        "skill-builder",
+        "skill-sentinel"
+      ],
+      "includes": [],
+      "allow_trial": true
+    }
+  }
+}

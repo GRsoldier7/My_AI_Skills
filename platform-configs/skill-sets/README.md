@@ -43,8 +43,8 @@ Agent Skills frontmatter fields.
 
 ## Provenance (third-party, vendored)
 
-Files are byte-identical to upstream at the pinned commit; each skill directory also carries the
-upstream `LICENSE` (MIT). Never edit vendored files; control exposure per machine instead (see
+The unmodified vendored entries below are byte-identical to upstream at the pinned commit; each skill directory also carries the
+upstream `LICENSE` (MIT). Keep those entries byte-identical; deliberate local adaptations are recorded separately below. Control exposure per machine instead (see
 [Keeping context lean](#keeping-context-lean)).
 
 | Skill | Upstream | Commit | Upstream path | Upstream files | Security scan (SkillSpector, static; 2026-10-03 unless a later date is given) |
@@ -254,3 +254,103 @@ are marked) and must be removed by hand.
   in `~/.codex/config.toml` ([docs](https://developers.openai.com/codex/skills); untested here).
 - Both tools cap skill descriptions (Claude Code about 1% of the context window, Codex about 2%, per their
   docs; not measured here), so keep model-invoked entries in `global.txt` few and their descriptions short.
+
+## Curated profile operation
+
+The curated manifest covers only the selected pilot packages, not the entire
+source library. The legacy generated master registry remains the full canonical
+catalog. The 44 Claude-specific definitions are an additional source population,
+not assumed duplicates or generated outputs.
+
+The named profiles opt into trial packages. They are not added to global.txt
+and do not grant tools, accounts or data access. The work-parallon set is generic;
+actual employer definitions stay in employer-approved storage. Use a fresh
+scoped workspace/session when changing client or domain.
+
+Validate after a source change:
+~~~bash
+python3 scripts/skill-sets.py
+~~~
+After reviewing package changes, explicitly refresh hashes and regenerate:
+~~~bash
+python3 scripts/skill-sets.py --write --refresh-hashes
+~~~
+Preview a selected profile with the existing installer:
+~~~bash
+bash scripts/install-skills.sh --project /path/to/approved-workspace --set platform-configs/skill-sets/analytics.txt
+~~~
+The target directory must already exist. Dry-run exit 3 means changes are pending;
+0 means in sync; 1 or 2 indicates an error. Repeat with --apply only for an
+authorized target, then rerun without --apply to confirm In sync.
+
+Install multiple required profiles as a deduplicated union; the consulting and
+work-parallon profiles already include analytics. Do not use --prune on a subset
+of profiles: it can remove links belonging to other sets. No new installer owns
+the seven project-router packages.
+
+For account skills/plugins, native discovery and updates require a separate
+supported export/upload and actual-host verification. A repo push does not
+install an account plugin. Check unmanaged/global/plugin identities on the
+target for collisions before claiming isolation; manifest validation covers
+only its selected canonical packages.
+
+### Deliberate local adaptations
+
+The two phuryn packages pm-sql-queries and pm-sprint-plan now intentionally differ
+from upstream: added validation/capacity contracts and removed unconditional
+readiness/persistence claims. Each package records the exact matching upstream
+baseline in references/provenance.md and retains the upstream MIT LICENSE.
+Their declared names remain sql-queries and sprint-plan; folder-name aliases
+are explicit in the manifest. An upstream sync must preserve/review local changes.
+
+Google BigQuery and Anthropic synthesis sources inform concise owner-authored
+advisory adaptations. Their exact source revisions and upstream licenses are
+recorded in the packages and manifest; upstream installers, servers and broad
+permissions are not imported. Licensing for owner-authored repository content
+remains unspecified until the owner chooses terms.
+
+### Maintenance and recovery
+
+Keep the prior reviewed Git commit and manifest. Revert a reviewed change on a
+branch to restore source procedures, hashes and set files together; compare
+managed links before applying any restoration. Do not reset/clean a dirty
+device checkout. Other devices and uploaded account packages require their own
+verified update/rollback. Review meaningful upstream changes and due trials;
+do not auto-activate new upstream main.
+
+The new package hash uses exact bytes. .gitattributes now fixes LF endings for
+Markdown, JSON, YAML, SQL and both license filenames as well as script/text rules, so fresh
+Windows, macOS and Linux checkouts can compute the same content hash.
+
+The generator reserves global.txt and refuses collisions with other unmanaged
+set files before writing. Removing or renaming a profile requires explicit
+retirement of its old generator-owned .txt file: checks report orphaned files
+and preserve them for review. Use a scoped reviewed Git removal for an obsolete
+generated set, then regenerate. No automatic deletion or target pruning occurs.
+
+<!-- CURATED-SETS:START -->
+## Curated pilot profiles
+
+Generated from `manifest.json`. All trial profiles require deliberate selection; `global.txt` is unchanged.
+
+| Profile | Packages | Trial | Selection |
+|---|---:|---:|---|
+| [analytics](analytics.txt) | 5 | 5 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review |
+| [consulting](consulting.txt) | 7 | 7 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review, consulting-operations, knowledge-synthesis |
+| [maintainer](maintainer.txt) | 2 | 2 | skill-builder, skill-sentinel |
+| [work-parallon](work-parallon.txt) | 8 | 8 | data-analytics-engine, power-bi, sql-queries, bi-metric-contract, bigquery-review, knowledge-synthesis, sprint-plan, professional-communicator |
+
+| Skill | Canonical path | Status |
+|---|---|---|
+| bi-metric-contract | skills/analytics/bi-metric-contract | trial |
+| bigquery-review | skills/analytics/bigquery-review | trial |
+| consulting-operations | skills/strategy/consulting-operations | trial |
+| data-analytics-engine | skills/engineering/data-analytics-engine | trial |
+| knowledge-synthesis | skills/core/knowledge-synthesis | trial |
+| power-bi | skills/microsoft/power-bi | trial |
+| professional-communicator | skills/growth/professional-communicator | trial |
+| skill-builder | skills/core/skill-builder | trial |
+| skill-sentinel | skills/core/skill-sentinel | trial |
+| sprint-plan | skills/product/pm-sprint-plan | trial |
+| sql-queries | skills/product/pm-sql-queries | trial |
+<!-- CURATED-SETS:END -->

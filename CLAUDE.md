@@ -36,28 +36,29 @@ I'm Aaron DeYoung — AI consultant, entrepreneur, and builder. I help companies
 
 ## The Skill Library
 
-This CLAUDE.md works in concert with a library of **191 specialist skills** organized in `skills/`. Each skill is a deep-domain expert. Skills compose — `master-orchestrator` routes every request to the optimal skill chain.
+This CLAUDE.md works in concert with a library of **198 specialist skills** organized in `skills/`. Each skill is a deep-domain expert. Skills compose through curated profiles and one task-appropriate execution owner.
 
-### Auto-Routing (Non-Negotiable)
+### Routing and curated profiles
 
-For EVERY non-trivial request, invoke `master-orchestrator` first. It identifies which skills apply and chains them in the right order. This is the single highest-leverage behavior — it ensures the full library is used, not just the obvious skill.
+AGENTS.md owns project lifecycle routing: project-router selects one appropriate
+workflow and transfers control. Use existing canonical specialists directly for
+bounded domain tasks. Use master-orchestrator only for explicit skill discovery;
+standalone questions need no controller.
 
-**Always-on meta-layer with explicit precedence chain** (resolves the "always-on pile-up"):
+Select a small curated set from platform-configs/skill-sets/manifest.json.
+The analytics, work-parallon and consulting selections share canonical packages;
+maintainer is for skill intake. Trial profiles are explicit pilot selections,
+not production certification or permission to access employer/client data.
 
-1. **`prompt-amplifier`** — wraps INPUT silently before routing
-2. **`master-orchestrator`** — routes to domain skills
-3. **`best-practice-router`** (plugin) — defers to or augments master-orchestrator's chain
-4. **`polychronos-team`** — invoked BY master-orchestrator only when task is T2+ multi-specialist
-5. **`anti-hallucination`** — always-on quality gate at OUTPUT (confidence tiers, re-grounding)
-6. **`session-optimizer`** — activates at 40%+ context fill for proactive management
-
-Do NOT auto-invoke `polychronos-team` directly — it is a sub-router that master-orchestrator decides to engage. Avoids the four-router collision where prompt-amplifier, master-orchestrator, polychronos-team, and best-practice-router all claim "every request".
+Load relevant quality checks when the task requires them. Do not automatically
+stack prompt-amplifier, master-orchestrator, best-practice-router, polychronos-team
+or other controllers. An active execution owner keeps ownership.
 
 ### Core (`skills/core/`) — 11 skills
-- **master-orchestrator** — Routes every request to optimal skill chain. Invoke first.
+- **master-orchestrator** — Explicit catalog/domain discovery; lifecycle work uses project-router.
 - **skill-amplifier** — 8-pass optimization of any SKILL.md to peak performance.
 - **anti-hallucination** — Context drift prevention, confidence tiers (VERIFIED→UNKNOWN), re-grounding.
-- **prompt-amplifier** — Always-on prompt optimization (silent + show modes).
+- **prompt-amplifier** — Optional prompt optimization when requested.
 - **parallel-execution-strategist** — Agent decomposition, fan-out patterns, worktree isolation, token optimization.
 - **session-optimizer** — Context window management, compaction strategy, hook patterns, session architecture.
 - **knowledge-management** — PKM architecture (PARA), documentation standards, cross-system sync.
@@ -117,9 +118,9 @@ Do NOT auto-invoke `polychronos-team` directly — it is a sub-router that maste
 ### Microsoft Power Platform (`skills/microsoft/`) — 8 skills
 - **power-bi**, **power-apps**, **power-automate**, **sharepoint**, **copilot-studio**, **power-platform-admin**, **microsoft-dataverse**, **m365-integration**
 
-## BLAST Protocol (For All Non-Trivial Work)
+## BLAST Reference (When Selected)
 
-**B — Blueprint:** Ask discovery questions. Define schemas and contracts. Halt until confirmed.
+**B — Blueprint:** Resolve decision-changing unknowns and define required contracts; use approvals already supplied.
 **L — Link:** Verify integrations and credentials with minimal tests before full implementation.
 **A — Architect:** Design before building. SOPs before code. Update the doc before updating the code.
 **S — Stylize:** Polish for production quality. Code review. Documentation review. Usability validation.

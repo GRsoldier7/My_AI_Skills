@@ -4,10 +4,10 @@ description: |
   Security scanner for AI skills and Claude commands. Detects 8 threat categories before any skill is deployed or trusted. Use before adding any new skill from an external repo, before loading a SKILL.md from an unknown source, or when auditing existing skills in .claude/commands/. Trigger phrases: "scan this skill", "is this skill safe", "audit this command", "check this for prompt injection", "security review this skill", "vet this skill".
 metadata:
   author: aaron-deyoung
-  version: "1.0"
+  version: "1.1.0"
   domain-category: core
   source-repo: EvolutionUnleashed/skill-sentinel
-  last-reviewed: "2026-04-08"
+  last-reviewed: "2026-10-26"
 ---
 
 # Skill Sentinel — Security Scanner
@@ -24,6 +24,13 @@ metadata:
 | T6 | **Privilege Escalation** | Instructions to modify system permissions, write to protected paths, modify other skills |
 | T7 | **Supply Chain** | `source-repo` pointing to unverified forks, version pinning removed, auto-update hooks |
 | T8 | **Social Engineering** | Urgency framing ("you MUST"), authority spoofing ("as Anthropic instructs"), consent bypassing |
+
+## Curated intake and promotion
+
+Apply the [intake contract](references/intake.md) to new or changed packages.
+Record provenance and deliberate adaptations in the curated manifest. Keep
+unproven additions in trial; neither a scanner nor three successful examples
+certifies production readiness.
 
 ## Scan Protocol
 

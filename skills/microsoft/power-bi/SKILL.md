@@ -16,10 +16,10 @@ description: >
   Editor web.
 metadata:
   author: aaron-deyoung
-  version: "1.0"
+  version: "1.1.0"
   domain-category: microsoft
   adjacent-skills: microsoft-dataverse, power-platform-admin, sharepoint
-  last-reviewed: "2026-03-15"
+  last-reviewed: "2026-10-26"
   review-trigger: "Power BI major feature release, DAX language update, Microsoft Fabric Direct Lake changes"
   capability-assumptions:
     - "Microsoft 365 tenant with appropriate licenses"
@@ -31,6 +31,14 @@ metadata:
 ---
 
 # Power BI — Savant-Level Skill
+
+## Review and validation contract
+
+For model/measure changes, apply [semantic review](references/semantic-review.md)
+before authoring. Use a supplied metric contract; if its semantics are missing,
+draft one before claiming correctness. Metadata-only/offline review remains
+available when no model tool exists. Real model edits, refreshes and deployments
+require separately scoped authorization and actual permitted tools.
 
 ## Philosophy
 
@@ -110,10 +118,7 @@ CALCULATE(
 ```dax
 // Last non-blank balance
 Current Balance =
-CALCULATE(
-    LASTNONBLANK('Date'[Date], [Balance Amount]),
-    ALLSELECTED('Date'[Date])
-)
+LASTNONBLANKVALUE('Date'[Date], [Balance Amount])
 
 // Proper snapshot pattern
 Headcount =
@@ -209,7 +214,7 @@ IF(TotalRevenue > 0, Margin, BLANK())
 
 ### Performance Rules
 1. **Fold everything possible** — keep transformations in the "foldable zone" (before any non-foldable step)
-2. **Check query folding**: Right-click step → "View Native Query". If grayed out, folding broke.
+2. **Check query folding**: Right-click step → "View Native Query". An unavailable option alone does not prove folding stopped; use source-supported indicators, query plans or diagnostics.
 3. **Common fold-breakers**: Table.AddColumn with custom functions, Table.Buffer, most List operations
 4. **Filter early, select columns early** — reduce data volume before complex transforms
 

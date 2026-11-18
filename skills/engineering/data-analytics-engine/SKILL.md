@@ -19,10 +19,10 @@ description: |
   - `power-bi` — Power BI enterprise dashboard work specifically
 metadata:
   author: aaron-deyoung
-  version: "1.0"
+  version: "1.1.0"
   domain-category: engineering
   adjacent-skills: database-design, power-bi, financial-model-architect, market-intelligence
-  last-reviewed: "2026-03-21"
+  last-reviewed: "2026-10-26"
   review-trigger: "New analytics tools, library updates, user reports incorrect analysis patterns"
   capability-assumptions:
     - "Python with pandas, numpy, matplotlib/plotly available"
@@ -33,6 +33,15 @@ metadata:
     - "If no database access: work with CSV/JSON files the user provides"
   degradation-mode: "graceful"
 ---
+
+## Evidence contract
+
+For analytics and SQL work, apply the [query contract](references/query-contract.md).
+Use supplied or approved scoped data; treat all examples below as candidates
+requiring the declared dialect, metric meaning, coverage, and validation.
+A successful syntax check is separate from a correct business result.
+Use bi-metric-contract for unresolved KPI semantics and bigquery-review for
+GoogleSQL cost/job diagnosis when those capabilities are available.
 
 ## Composability Contract
 - Input expects: data question, dataset, report request, or dashboard design need
@@ -65,9 +74,9 @@ print(df.head(10))             # sample rows
 ```
 
 ### Step 3: Clean and Prepare
-- Handle missing values: drop, fill (mean/median/mode), or flag
+- Profile missing values; propose an explicitly justified treatment before changing data
 - Fix data types: dates as datetime, categories as categorical
-- Remove duplicates: `df.drop_duplicates(subset=['key_column'])`
+- Report duplicate keys; deduplicate only under the agreed business rule
 - Validate ranges: are values within expected bounds?
 
 ### Step 4: Analyze
@@ -107,26 +116,14 @@ ORDER BY 1;
 ```
 
 ### Cohort Analysis
-```sql
--- User retention by signup month
-WITH user_cohort AS (
-    SELECT user_id, DATE_TRUNC('month', created_at) AS cohort_month
-    FROM users
-),
-activity AS (
-    SELECT user_id, DATE_TRUNC('month', activity_date) AS active_month
-    FROM user_activity
-)
-SELECT
-    uc.cohort_month,
-    EXTRACT(MONTH FROM AGE(a.active_month, uc.cohort_month)) AS months_since_signup,
-    COUNT(DISTINCT a.user_id) AS active_users,
-    COUNT(DISTINCT a.user_id)::FLOAT / COUNT(DISTINCT uc.user_id) AS retention_rate
-FROM user_cohort uc
-JOIN activity a ON uc.user_id = a.user_id
-GROUP BY 1, 2
-ORDER BY 1, 2;
-```
+
+Use the executable [cohort calculation](references/cohort-retention.sql) and
+[query contract](references/query-contract.md). Normalize acquisition/activity
+timestamps to business-calendar month indices first; provide explicit complete
+reporting periods. The denominator is the fixed original cohort, including
+inactive users. Ten original users and two retained users means 20%, not 100%.
+Complete empty periods are zero; incomplete periods remain unknown. Full month
+indices preserve offsets beyond twelve months.
 
 ### Funnel Analysis
 ```sql

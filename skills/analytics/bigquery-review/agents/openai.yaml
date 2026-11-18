@@ -1,0 +1,4 @@
+interface:
+  display_name: "BigQuery Review"
+  short_description: "Review GoogleSQL correctness, costs and slow jobs"
+  default_prompt: "Use $bigquery-review to review this GoogleSQL and the available job evidence."
