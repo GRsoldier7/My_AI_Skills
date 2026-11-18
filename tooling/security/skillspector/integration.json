@@ -1,0 +1,190 @@
+{
+  "official_skill": {
+    "repository": "https://github.com/NVIDIA/SkillSpector",
+    "commit": "6d0b7c849949cab9181e57798247f89e48ce5d6a",
+    "source_path": "skills/skill-inspector",
+    "license": "Apache-2.0",
+    "adaptations": []
+  },
+  "scanner": {
+    "repository": "https://github.com/NVIDIA/SkillSpector",
+    "revision": "54921c8c7c23008c8af2328d5ab492a904b6ece4",
+    "version": "2.12.0",
+    "license": "Apache-2.0",
+    "python": ">=3.12,<3.16",
+    "mode": "static-only",
+    "cloud_provider": null,
+    "mcp": false
+  },
+  "reused_tooling": {
+    "repository": "https://github.com/GRsoldier7/My_AI_Skills",
+    "commit": "918022c92b25fe8bb3bb2d12ee3f43bbcc2e260a",
+    "branch": "codex/skills-library-imports-20261029",
+    "adaptations": [
+      "README documents the single fixture and actual current validation limits.",
+      "test_gate.py resolves macOS temporary directory aliases in test setup; production gate unchanged.",
+      "scan.py preserves raw evidence and calls a separate exact-source false-positive policy; no scanner rule or flag changes."
+    ]
+  },
+  "scanner_source_archive_sha256": "92a78e6f1b249e54f4e7e5a245e3b7df96f5f2c6b89d6193fedb3aea6d08340a",
+  "files": [
+    {
+      "path": "evals/skill-security/benign/SKILL.md",
+      "sha256": "5e22c619f85fa32ff10d766d7ef33b1a37c9b12c127447b72dba7cc418170c23",
+      "prior_branch_sha256": "5e22c619f85fa32ff10d766d7ef33b1a37c9b12c127447b72dba7cc418170c23"
+    },
+    {
+      "path": "platform-configs/skill-sets/skill-inspector.md",
+      "sha256": "5586f1089d52e8bd04395f8778a058b538cc6314fcbca9629669f478ff7ecd80",
+      "before_policy_sha256": "699d19b4972ce1015952521b8bef9738f93853310cfe86932d63116840c05aa3"
+    },
+    {
+      "path": "platform-configs/skill-sets/skill-inspector.txt",
+      "sha256": "f51e6badd5450550701e64325f5965d8eaf50a98ae47bff6797da59068a2fe47"
+    },
+    {
+      "path": "skills/security/skill-inspector/LICENSE",
+      "sha256": "9f8785b47596b2993a17a3fa8d747ae63126a2c5e80a9e77195a907273d71839",
+      "source_path": "LICENSE",
+      "upstream_sha256": "9f8785b47596b2993a17a3fa8d747ae63126a2c5e80a9e77195a907273d71839"
+    },
+    {
+      "path": "skills/security/skill-inspector/SKILL.md",
+      "sha256": "1acc220016936ba68f7b9083c19575a8866c9cf74c251d689285a0d9fbe2a067",
+      "source_path": "skills/skill-inspector/SKILL.md",
+      "upstream_sha256": "1acc220016936ba68f7b9083c19575a8866c9cf74c251d689285a0d9fbe2a067"
+    },
+    {
+      "path": "tooling/security/skillspector/LICENSE",
+      "sha256": "9f8785b47596b2993a17a3fa8d747ae63126a2c5e80a9e77195a907273d71839",
+      "prior_branch_sha256": "9f8785b47596b2993a17a3fa8d747ae63126a2c5e80a9e77195a907273d71839"
+    },
+    {
+      "path": "tooling/security/skillspector/README.md",
+      "sha256": "8e0b840b127d927d43016dc35f78f1a42c6328a8f3f99e3323a0c0131e3d5731",
+      "prior_branch_sha256": "7504f73b3b4c72c4b7b201fe51d3e32c28144f5106df07dbed113dee3c8f9647",
+      "before_policy_sha256": "0d51aa247b8a3f5a78f7eddc380e78e805bcbbcc09926f5246cc269dafa3e005"
+    },
+    {
+      "path": "tooling/security/skillspector/requirements.lock",
+      "sha256": "a8992d9ee11035544335fa5b82d3b4ec6eafbea508cd5e49feee6c009792fc4c",
+      "prior_branch_sha256": "a8992d9ee11035544335fa5b82d3b4ec6eafbea508cd5e49feee6c009792fc4c"
+    },
+    {
+      "path": "tooling/security/skillspector/scan.py",
+      "sha256": "0277b989b98c5b14c39435958134a479a7f0b60ba5e3427f1f3fb4154ba28e0b",
+      "prior_branch_sha256": "9734f664be5b3bb73602e12dd45082360069c198ff85a625536407fefb5cfd9b",
+      "before_policy_sha256": "9734f664be5b3bb73602e12dd45082360069c198ff85a625536407fefb5cfd9b"
+    },
+    {
+      "path": "tooling/security/skillspector/test_gate.py",
+      "sha256": "0c74b7e9819ae92650e8aa63f35acafef26974172147909b1b7f11bffd315e6b",
+      "prior_branch_sha256": "3375f72179391303af9c7afc0609cd8feb8e2051e22cee7fec5779a988c18e2e"
+    },
+    {
+      "path": "tooling/security/skillspector/upstream.json",
+      "sha256": "44b35249b56e3c9ccdefa927cdfecc4eefc10f480887c1ff57e460d05238b3ff",
+      "prior_branch_sha256": "44b35249b56e3c9ccdefa927cdfecc4eefc10f480887c1ff57e460d05238b3ff"
+    },
+    {
+      "path": "tooling/security/skillspector/worker.py",
+      "sha256": "4f44369d7fc5b00bc69bbcbf96594bf5f2c94461e17d8cfa9c45e1946bbe0dc5",
+      "prior_branch_sha256": "4f44369d7fc5b00bc69bbcbf96594bf5f2c94461e17d8cfa9c45e1946bbe0dc5"
+    },
+    {
+      "path": "tooling/security/skillspector/reviews/20261101/benign.json",
+      "sha256": "47e451ec92d53eb3c4b2db10820204e57dc7c0a9e0bf01bf12bb80c24da52a91"
+    },
+    {
+      "path": "tooling/security/skillspector/reviews/20261101/skill-inspector.json",
+      "sha256": "dd93e40b54bca5c837657df200905dbf66b6c964a260a945c20205702e4ddd6c"
+    },
+    {
+      "path": "tooling/security/skillspector/review_policy.py",
+      "sha256": "cdb3d20f4e196b3ec8e6a37951e057da54eb517f825135cf17c2e79eb2a79f61"
+    },
+    {
+      "path": "tooling/security/skillspector/reviewed-findings.json",
+      "sha256": "6e801f95b831011b5fe0a8a987ea4bc25cb191e5338dd5cbc35ec1146e7709d3"
+    },
+    {
+      "path": "tooling/security/skillspector/test_policy.py",
+      "sha256": "bff7d480a71da482c4464960519056602960a61130764a01b77357d794e73a67"
+    },
+    {
+      "path": "tooling/security/skillspector/reviews/20261101/unsafe.json",
+      "sha256": "cffc80e6e7dd4986915ef4bb1ab0636cc7bc6955bcc5214cb3bad3d7db8ab24e"
+    },
+    {
+      "path": "evals/skill-security/unsafe/SKILL.md",
+      "sha256": "110a8d5bb2fa86083397470bcb87ee18afcf6d68dcac0ca935dc362c1c6e4e86"
+    }
+  ],
+  "validation": {
+    "date": "2026-11-01",
+    "official_source_bytes": "2 files matched pinned Git blobs",
+    "gate_unit_tests": {
+      "passed": 9,
+      "failed": 0
+    },
+    "installer_tests": {
+      "passed": 98,
+      "failed": 0
+    },
+    "project_router_tests": {
+      "passed": 9,
+      "failed": 0
+    },
+    "focused_skill_lint_findings": 0,
+    "installer_preview": "2 optional links pending; not applied",
+    "full_validation_existing_failures": 4,
+    "full_lint_existing_failures": 7,
+    "scan_runtime_version": "2.2.3",
+    "scan_llm_requested": false,
+    "official_skill_score": 2,
+    "official_skill_findings": "4 LOW EA3 matches in Apache license lines 27, 32, 55, 160; non-executable legal wording",
+    "benign_fixture_score": 0,
+    "benign_fixture_findings": 0,
+    "limitations": [
+      "Pinned 2.12.0 gate not run end to end; Linux Bubblewrap unavailable on tested hosts.",
+      "Existing scanner 2.2.3 has no completeness field.",
+      "No new runtime or global skill installation performed.",
+      "Dependency lock pins versions; not all package artifact hashes."
+    ]
+  },
+  "policy_validation": {
+    "date": "2026-11-01",
+    "reviewed_exception_count": 16,
+    "raw_reports_unchanged": true,
+    "scanner_version_used_for_unsafe_fixture": "2.2.3",
+    "unsafe_fixture_score": 100,
+    "unsafe_fixture_findings": 8,
+    "unsafe_fixture_policy": "BLOCK",
+    "llm_requested": false,
+    "runtime_limit": "2.12.0 Linux isolation not run end to end; policy gate tested with simulated subprocess.",
+    "policy_tests_passed": 22,
+    "gate_tests_passed": 9,
+    "installer_tests_passed": 98,
+    "project_router_tests_passed": 9,
+    "focused_skill_lint_findings": 0,
+    "design_package_files_verified": 178,
+    "prior_full_report_replay": {
+      "impeccable": {
+        "decision": "REVIEW",
+        "reviewed": 5,
+        "unresolved": 24
+      },
+      "design-taste-frontend": {
+        "decision": "REVIEW",
+        "reviewed": 5,
+        "unresolved": 58
+      },
+      "ui-ux-pro-max": {
+        "decision": "REVIEW",
+        "reviewed": 2,
+        "unresolved": 50
+      }
+    },
+    "replay_limit": "Historic reports lack modern completion evidence; replay does not authorize automatic installation or replace prior owner intake decisions."
+  }
+}

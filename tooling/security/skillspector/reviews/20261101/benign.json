@@ -1,0 +1,28 @@
+{
+  "skill": {
+    "name": "calibration-summary",
+    "source": "/tmp/skillspector-addition-20261101-lY9lLD/evals/skill-security/benign",
+    "scanned_at": "2026-11-01T19:09:58.419033+00:00"
+  },
+  "risk_assessment": {
+    "score": 0,
+    "severity": "LOW",
+    "recommendation": "SAFE"
+  },
+  "components": [
+    {
+      "path": "SKILL.md",
+      "type": "markdown",
+      "lines": 6,
+      "executable": false,
+      "size_bytes": 251
+    }
+  ],
+  "issues": [],
+  "metadata": {
+    "has_executable_scripts": false,
+    "skillspector_version": "2.2.3",
+    "llm_requested": false,
+    "llm_available": false
+  }
+}

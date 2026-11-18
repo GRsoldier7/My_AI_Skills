@@ -1,0 +1,9 @@
+# Reviewed pinned example. Merge this table; do not replace existing config.
+[mcp_servers.chrome-devtools]
+enabled = true
+command = "npx"
+args = ["-y", "chrome-devtools-mcp@1.12.0", "--isolated", "--headless", "--no-usage-statistics", "--no-performance-crux"]
+startup_timeout_sec = 60
+
+[mcp_servers.chrome-devtools.env]
+CHROME_DEVTOOLS_MCP_NO_UPDATE_CHECKS = "1"

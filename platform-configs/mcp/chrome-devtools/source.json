@@ -1,0 +1,18 @@
+{
+  "repository": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+  "commit": "8d009e854f8aa55b1ec31628e836d4d4731b8ec8",
+  "npm_package": "chrome-devtools-mcp",
+  "npm_version": "1.12.0",
+  "npm_integrity": "sha512-lAGpH0zXT1ZdaPefP1KK/MvxwihOlu7VGQ7p4wbhD9OhN17vUC4KWk/ImUYR9DE4s+7r4r0ySV4xr2OkTa7ZMA==",
+  "npm_shasum": "daddaeb64a7bc030482314bd2003b028ee141d70",
+  "tarball_sha256": "4aade3167c3e781c797d6109ed603a0ca5b8cb363a289e2eaacaa9b0c5d2a360",
+  "license": "Apache-2.0",
+  "reviewed_on": "2026-11-01",
+  "bundled_zod": "4.6.5",
+  "source_lockfile_zod": "4.6.7",
+  "activation_status": "installed_and_smoke_tested_on_owner_mac",
+  "advisory": "https://osv.dev/vulnerability/CVE-2023-54404",
+  "advisory_status": "REJECTED",
+  "advisory_rejected_at": "2026-10-28T21:17:22.423Z",
+  "primary_advisory": "https://cveawg.mitre.org/api/cve/CVE-2023-54404"
+}

@@ -1,0 +1,485 @@
+{
+  "schema_version": 1,
+  "exceptions": [
+    {
+      "review_id": "design-20261101-impeccable-3",
+      "package": "skills/design/impeccable",
+      "tree_sha256": "e8bbf53d57b5de0f0fd0989593c6d4f51349a61ab27c8da8da4de9bb3af33803",
+      "file": "UPSTREAM_LICENSE",
+      "file_sha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812",
+      "rule": "EA3",
+      "finding_sha256": "48c6da2ab1ee23d65afa99c2f9c7465c0ca176ac046708a57046ea487bd7658c",
+      "disposition": "false_positive",
+      "rationale": "Apache legal scope wording; not executable behavior.",
+      "reviewed_by": "source review in requested false-positive tuning; prior design intake review",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "EA3",
+        "category": "Excessive Agency",
+        "pattern": "Scope Creep",
+        "severity": "LOW",
+        "confidence": 0.7,
+        "location": {
+          "file": "UPSTREAM_LICENSE",
+          "start_line": 27,
+          "end_line": null
+        },
+        "finding": "not limited to",
+        "explanation": "Skill's behavior or capabilities extend beyond its stated purpose. Scope creep allows an agent to perform actions unrelated to its documented functionality, increasing the attack surface.",
+        "remediation": "Limit the skill's scope to its documented purpose. Remove instructions that enable the agent to perform actions outside its stated functionality.",
+        "code_snippet": "      exercising permissions granted by this License.\n\n      \"Source\" form shall mean the preferred form for making modifications,\n      including but not limited to software source code, documentation\n      source, and configuration files.\n\n      \"Object\" form shall mean any form resulting from mechanical",
+        "intent": null
+      }
+    },
+    {
+      "review_id": "design-20261101-impeccable-4",
+      "package": "skills/design/impeccable",
+      "tree_sha256": "e8bbf53d57b5de0f0fd0989593c6d4f51349a61ab27c8da8da4de9bb3af33803",
+      "file": "UPSTREAM_LICENSE",
+      "file_sha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812",
+      "rule": "EA3",
+      "finding_sha256": "dce8bc62faa3d4b32aff3faa5dcbb3583b592510a944fed7350a3b180236c24f",
+      "disposition": "false_positive",
+      "rationale": "Apache legal scope wording; not executable behavior.",
+      "reviewed_by": "source review in requested false-positive tuning; prior design intake review",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "EA3",
+        "category": "Excessive Agency",
+        "pattern": "Scope Creep",
+        "severity": "LOW",
+        "confidence": 0.7,
+        "location": {
+          "file": "UPSTREAM_LICENSE",
+          "start_line": 32,
+          "end_line": null
+        },
+        "finding": "not limited to",
+        "explanation": "Skill's behavior or capabilities extend beyond its stated purpose. Scope creep allows an agent to perform actions unrelated to its documented functionality, increasing the attack surface.",
+        "remediation": "Limit the skill's scope to its documented purpose. Remove instructions that enable the agent to perform actions outside its stated functionality.",
+        "code_snippet": "\n      \"Object\" form shall mean any form resulting from mechanical\n      transformation or translation of a Source form, including but\n      not limited to compiled object code, generated documentation,\n      and conversions to other media types.\n\n      \"Work\" shall mean the work of authorship, whether in Source or",
+        "intent": null
+      }
+    },
+    {
+      "review_id": "design-20261101-impeccable-5",
+      "package": "skills/design/impeccable",
+      "tree_sha256": "e8bbf53d57b5de0f0fd0989593c6d4f51349a61ab27c8da8da4de9bb3af33803",
+      "file": "UPSTREAM_LICENSE",
+      "file_sha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812",
+      "rule": "EA3",
+      "finding_sha256": "58b9e8e752cb2e53afaa9bc39b640340762b04944d4c7ed2bc9e033284ab2b27",
+      "disposition": "false_positive",
+      "rationale": "Apache legal scope wording; not executable behavior.",
+      "reviewed_by": "source review in requested false-positive tuning; prior design intake review",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "EA3",
+        "category": "Excessive Agency",
+        "pattern": "Scope Creep",
+        "severity": "LOW",
+        "confidence": 0.7,
+        "location": {
+          "file": "UPSTREAM_LICENSE",
+          "start_line": 56,
+          "end_line": null
+        },
+        "finding": "not limited to",
+        "explanation": "Skill's behavior or capabilities extend beyond its stated purpose. Scope creep allows an agent to perform actions unrelated to its documented functionality, increasing the attack surface.",
+        "remediation": "Limit the skill's scope to its documented purpose. Remove instructions that enable the agent to perform actions outside its stated functionality.",
+        "code_snippet": "      behalf of the copyright owner. For the purposes of this definition,\n      \"submitted\" means any form of electronic, verbal, or written\n      communication sent to the Licensor or its representatives, including\n      but not limited to communication on electronic mailing lists, source\n      code control systems, and issue tracking systems that are managed by,\n      or on behalf of, the Licensor for the purpose of discussing and\n      improving the Work, but excluding communication that is conspicuously",
+        "intent": null
+      }
+    },
+    {
+      "review_id": "design-20261101-impeccable-6",
+      "package": "skills/design/impeccable",
+      "tree_sha256": "e8bbf53d57b5de0f0fd0989593c6d4f51349a61ab27c8da8da4de9bb3af33803",
+      "file": "UPSTREAM_LICENSE",
+      "file_sha256": "02bb8c3b4e70190e3986c0404ad2fd8d639b4f534252d82379cc1b502b6d1812",
+      "rule": "EA3",
+      "finding_sha256": "f262c353cba2ee2bd2166c14c5c3e50884ce468e2f564faa92816fae21eaff9a",
+      "disposition": "false_positive",
+      "rationale": "Apache legal scope wording; not executable behavior.",
+      "reviewed_by": "source review in requested false-positive tuning; prior design intake review",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "EA3",
+        "category": "Excessive Agency",
+        "pattern": "Scope Creep",
+        "severity": "LOW",
+        "confidence": 0.7,
+        "location": {
+          "file": "UPSTREAM_LICENSE",
+          "start_line": 161,
+          "end_line": null
+        },
+        "finding": "not limited to",
+        "explanation": "Skill's behavior or capabilities extend beyond its stated purpose. Scope creep allows an agent to perform actions unrelated to its documented functionality, increasing the attack surface.",
+        "remediation": "Limit the skill's scope to its documented purpose. Remove instructions that enable the agent to perform actions outside its stated functionality.",
+        "code_snippet": "      liable to You for damages, including any direct, indirect, special,\n      incidental, or consequential damages of any character arising as a\n      result of this License or out of the use or inability to use the\n      Work (including but not limited to damages for loss of goodwill,\n      work stoppage, computer failure or malfunction, or any and all\n      other commercial damages or losses), even if such Contributor\n      has been advised of the possibility of such damages.",
+        "intent": null
+      }
+    },
+    {
+      "review_id": "design-20261101-impeccable-19",
+      "package": "skills/design/impeccable",
+      "tree_sha256": "e8bbf53d57b5de0f0fd0989593c6d4f51349a61ab27c8da8da4de9bb3af33803",
+      "file": "reference/document.md",
+      "file_sha256": "7e7e97388cac7b5af7afa5b6fec19a6576c89ce6a998c973cb007b8e5494a8c9",
+      "rule": "EA2",
+      "finding_sha256": "3097327e8ecffd2aaee39cdaf6b643d59ce328fce15bc376cc093ab0525ad082",
+      "disposition": "false_positive",
+      "rationale": "The instruction prohibits overwriting an existing DESIGN.md without asking; it does not authorize overwriting.",
+      "reviewed_by": "source review in requested false-positive tuning; prior design intake review",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "EA2",
+        "category": "Excessive Agency",
+        "pattern": "Autonomous Decision Making",
+        "severity": "LOW",
+        "confidence": 0.75,
+        "location": {
+          "file": "reference/document.md",
+          "start_line": 411,
+          "end_line": null
+        },
+        "finding": "without asking",
+        "explanation": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation.",
+        "remediation": "Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+        "code_snippet": "- Don't paste raw CSS class names. Translate to descriptive language.\n- Don't extract every token. Stop at what's actually reused; one-offs pollute the system.\n- Don't invent components that don't exist. If the project only has buttons and cards, only document those.\n- Don't overwrite an existing DESIGN.md without asking.\n- Don't duplicate content from PRODUCT.md. DESIGN.md is strictly visual.\n- Don't replace canonical sections with near-synonyms. Put layout and responsive behavior in `Layout`; put motion with the affected world or component.\n- Don't rename sections even slightly. \"Colors\" not \"Color Palette & Roles\". \"Typography\" not \"Typography Rules\". Tooling parsing depends on exact headers.",
+        "intent": "context-tuned MEDIUM->LOW (negated/defensive)"
+      }
+    },
+    {
+      "review_id": "design-20261101-design-taste-frontend-56",
+      "package": "skills/design/design-taste-frontend",
+      "tree_sha256": "27c1ca35ccdff3f019c0794da76bf377f532c92f40bb253a3418f28983b1021d",
+      "file": "library/sites.json",
+      "file_sha256": "a2bc4d0cff8ebff481f0dfd4879c106d5e1e16cb3122f9ab3702184a5e1f3502",
+      "rule": "PE3",
+      "finding_sha256": "06eeef08007f5f68edb4560dd3267cbbf0bc236dc68fd29388aa5e5c56ce58a2",
+      "disposition": "false_positive",
+      "rationale": "JSON art direction describes physical keychain charms, not credential-store access.",
+      "reviewed_by": "source review in requested false-positive tuning; prior design intake review",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "PE3",
+        "category": "Privilege Escalation",
+        "pattern": "Credential Access",
+        "severity": "MEDIUM",
+        "confidence": 0.7,
+        "location": {
+          "file": "library/sites.json",
+          "start_line": 2664,
+          "end_line": null
+        },
+        "finding": "keychain",
+        "explanation": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts.",
+        "remediation": "Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+        "code_snippet": "  \"source\": \"Awwwards Site of the Day\",\n  \"kind\": \"saas\",\n  \"score\": 7.6,\n  \"idea\": \"A video editor presented as a bunch of collectable objects: 3D keychain charms in the hero and squircle effect tiles that behave like app icons everywhere else.\",\n  \"mood\": [\n   \"playful\",\n   \"glossy\",",
+        "intent": "context-tuned HIGH->MEDIUM (documentation)"
+      }
+    },
+    {
+      "review_id": "design-20261101-design-taste-frontend-57",
+      "package": "skills/design/design-taste-frontend",
+      "tree_sha256": "27c1ca35ccdff3f019c0794da76bf377f532c92f40bb253a3418f28983b1021d",
+      "file": "library/sites.json",
+      "file_sha256": "a2bc4d0cff8ebff481f0dfd4879c106d5e1e16cb3122f9ab3702184a5e1f3502",
+      "rule": "PE3",
+      "finding_sha256": "d51fae7f763f88ff724cb77ef3b821dcfd7a782ba42df74298538f6de17d933c",
+      "disposition": "false_positive",
+      "rationale": "JSON hero illustration describes physical keychain charms, not credential-store access.",
+      "reviewed_by": "source review in requested false-positive tuning; prior design intake review",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "PE3",
+        "category": "Privilege Escalation",
+        "pattern": "Credential Access",
+        "severity": "MEDIUM",
+        "confidence": 0.7,
+        "location": {
+          "file": "library/sites.json",
+          "start_line": 2673,
+          "end_line": null
+        },
+        "finding": "keychain",
+        "explanation": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts.",
+        "remediation": "Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+        "code_snippet": "   \"tactile\"\n  ],\n  \"archetype\": \"other: hanging-object-above-centred-statement\",\n  \"hero\": \"Soft grey vertical gradient, darker at the top, fading to near-white. Two floating light-grey rounded capsules form the nav: the left holds the script logo, five links and a kebab; the right holds Login and a black button. A 3D bunch of keychain charms (orange carabiner, black letter keycap, chrome ring, magenta disc, steel key, green script tag) hangs from the top edge at centre, overlapping the nav and stopping just above the headline. The headline is one centred line at 7.5vw in regular-weight grotesk spanning 75% of the width, with a 24px sub-line and a black rounded-rectangle button beneath. The bottom 35% is empty.\",\n  \"type\": \"DieGrotesk regular at 107px for the one-line headline, near-zero tracking, mixed case; the same face at 24px and 16px below, so a 4.5x then 1.5x step. ABC Diatype for tiny labels inside product panels. The logo is brush-script lettering used as an image.\",\n  \"colour\": \"#e8e8e8 #f5f5f5 #1e1e1e #0a0909 #ff3fd8 #19e319 \u2014 Grey-to-white ground with black type and black product panels. Saturated colour (magenta, green, orange, holographic pastels) appears only on 3D objects, effect tiles and the footer wordmark.\",\n  \"imagery\": \"Live 3D charms with chrome and plastic materials; black editor UI panels with 24px radius; many small squircle video tiles showing halftone, glitch and type-poster effects; a full-width extruded script wordmark.\",",
+        "intent": "context-tuned HIGH->MEDIUM (documentation)"
+      }
+    },
+    {
+      "review_id": "design-20261101-design-taste-frontend-60",
+      "package": "skills/design/design-taste-frontend",
+      "tree_sha256": "27c1ca35ccdff3f019c0794da76bf377f532c92f40bb253a3418f28983b1021d",
+      "file": "library/photos.json",
+      "file_sha256": "8fc3b76bca90f44675bd99d99bb4ce95b0756c6c5d4141b7e917d11d90e61520",
+      "rule": "TM1",
+      "finding_sha256": "02e128214c347d669dbded5540ad4619a05d464c0ee8e49ae18041ca326088ac",
+      "disposition": "false_positive",
+      "rationale": "The word curl describes a breaking wave in an image alt string; no shell command is executed.",
+      "reviewed_by": "source review in requested false-positive tuning; prior design intake review",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "TM1",
+        "category": "Tool Misuse",
+        "pattern": "Tool Parameter Abuse",
+        "severity": "MEDIUM",
+        "confidence": 0.6,
+        "location": {
+          "file": "library/photos.json",
+          "start_line": 2632,
+          "end_line": null
+        },
+        "finding": "curl of a breaking teal wave\",\n     \"tone\": \"mid\",\n     \"colours\": [\n      \"teal\",\n      \"sea green\",\n      \"white\"\n     ],\n     \"mono\": false,\n     \"calm\": \"none\",\n     \"quality\": 4,\n     \"ratio\": 1.",
+        "explanation": "Tool parameters are crafted to achieve unintended or unsafe behavior. Parameter abuse can bypass intended safety checks (e.g. shell=True, --force, dangerous glob patterns).",
+        "remediation": "Validate all tool parameters against an allowlist. Reject dangerous parameter values (shell=True, --force, -rf /) and use safe defaults.",
+        "code_snippet": "    },\n    {\n     \"id\": 846,\n     \"alt\": \"Inside the curl of a breaking teal wave\",\n     \"tone\": \"mid\",\n     \"colours\": [\n      \"teal\",",
+        "intent": "context-tuned HIGH->MEDIUM (documentation)"
+      }
+    },
+    {
+      "review_id": "design-20261101-design-taste-frontend-61",
+      "package": "skills/design/design-taste-frontend",
+      "tree_sha256": "27c1ca35ccdff3f019c0794da76bf377f532c92f40bb253a3418f28983b1021d",
+      "file": "scripts/assets.mjs",
+      "file_sha256": "b4b4b99b5634735f5a0b4213169cda5240ee6bbed8ed8042ad1bcf2b6607c1fa",
+      "rule": "TM1",
+      "finding_sha256": "fb5dd70b514d988063e7b8c899aaf932c9515bbb0c95d1589a4196eedf6aaba3",
+      "disposition": "false_positive",
+      "rationale": "assets.mjs sets check: !args[no-check] at line 145; this skips image-load validation, not TLS verification or a security sandbox. Network image retrieval remains an independently reviewable capability.",
+      "reviewed_by": "source review in requested false-positive tuning; prior design intake review",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "TM1",
+        "category": "Tool Misuse",
+        "pattern": "Tool Parameter Abuse",
+        "severity": "HIGH",
+        "confidence": 0.75,
+        "location": {
+          "file": "scripts/assets.mjs",
+          "start_line": 15,
+          "end_line": null
+        },
+        "finding": "--no-check",
+        "explanation": "Tool parameters are crafted to achieve unintended or unsafe behavior. Parameter abuse can bypass intended safety checks (e.g. shell=True, --force, dangerous glob patterns).",
+        "remediation": "Validate all tool parameters against an allowlist. Reject dangerous parameter values (shell=True, --force, -rf /) and use safe defaults.",
+        "code_snippet": "//        [--source all|openverse|commons|aic|met|museums]    one or several, comma-separated\n//        [--license safe|pd|all|cc0,pd,by,by-sa,...]        safe = CC0, public domain, CC BY, CC BY-SA\n//        [--orientation landscape|portrait|square]  [--min-width 1000]  [--width 1920]  [--limit 5]\n//        [--no-check]                              skip checking that each image loads (faster)\n//        [--json]                                  machine-readable results\n//   node assets.mjs \"<query>\" --video              search for real footage instead (same options, plus\n//        [--res 720]                               the largest rendition to pick, by its short side",
+        "intent": null
+      }
+    },
+    {
+      "review_id": "design-20261101-design-taste-frontend-62",
+      "package": "skills/design/design-taste-frontend",
+      "tree_sha256": "27c1ca35ccdff3f019c0794da76bf377f532c92f40bb253a3418f28983b1021d",
+      "file": "scripts/assets.mjs",
+      "file_sha256": "b4b4b99b5634735f5a0b4213169cda5240ee6bbed8ed8042ad1bcf2b6607c1fa",
+      "rule": "TM1",
+      "finding_sha256": "3cc19deb3b081835fd2874e8c554ed82b7d4425101938517d85f0bb1f06d2ce8",
+      "disposition": "false_positive",
+      "rationale": "assets.mjs sets check: !args[no-check] at line 145; this skips image-load validation, not TLS verification or a security sandbox. Network image retrieval remains an independently reviewable capability.",
+      "reviewed_by": "source review in requested false-positive tuning; prior design intake review",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "TM1",
+        "category": "Tool Misuse",
+        "pattern": "Tool Parameter Abuse",
+        "severity": "HIGH",
+        "confidence": 0.75,
+        "location": {
+          "file": "scripts/assets.mjs",
+          "start_line": 63,
+          "end_line": null
+        },
+        "finding": "--no-check",
+        "explanation": "Tool parameters are crafted to achieve unintended or unsafe behavior. Parameter abuse can bypass intended safety checks (e.g. shell=True, --force, dangerous glob patterns).",
+        "remediation": "Validate all tool parameters against an allowlist. Reject dangerous parameter values (shell=True, --force, -rf /) and use safe defaults.",
+        "code_snippet": "      --min-width <px>       smallest acceptable full width, default 1000\n      --width <px>           width of the image URL to use or download, default 1920\n      --limit <n>            results per source, default 5 (at most 20)\n      --no-check             do not check that every image loads (faster, less reliable)\n      --json                 machine-readable results\n  ${CMD} \"<query>\" --video [options]   real footage: Wikimedia Commons, Internet Archive, NASA\n      --source all|commons|archive|nasa",
+        "intent": null
+      }
+    },
+    {
+      "review_id": "design-20261101-ui-ux-pro-max-49",
+      "package": "skills/design/ui-ux-pro-max",
+      "tree_sha256": "9843aecade036752ac1d0319bf8f4262dd62ddc93c6d82a84991b6804e2fa264",
+      "file": "scripts/design_system.py",
+      "file_sha256": "e7d1c94c4b2eada17c5551157668362659ccf9626d34dbd58e68142410f90103",
+      "rule": "P6",
+      "finding_sha256": "a5df2001f65816824dbd1a4547dac45c2a305eb84116214aed34399992daf61f",
+      "disposition": "false_positive",
+      "rationale": "Ordinary Python return of a matched reasoning-data row; not an instruction to reveal hidden rules.",
+      "reviewed_by": "source review in requested false-positive tuning; prior design intake review",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "P6",
+        "category": "System Prompt Leakage",
+        "pattern": "Direct Prompt Extraction",
+        "severity": "MEDIUM",
+        "confidence": 0.85,
+        "location": {
+          "file": "scripts/design_system.py",
+          "start_line": 387,
+          "end_line": null
+        },
+        "finding": "return rule",
+        "explanation": "Skill contains instructions that could directly expose system prompts, internal rules, or hidden instructions to users or external parties.",
+        "remediation": "Remove any instructions that reveal, print, or output system prompts or internal rules. System instructions should never be exposed to end users.",
+        "code_snippet": "        category_lower = category.strip().casefold()\n        for rule in self.reasoning_data:\n            if rule.get(\"UI_Category\", \"\").strip().casefold() == category_lower:\n                return rule\n        return {}\n\n    def _apply_reasoning(self, category: str, query: str) -> dict:",
+        "intent": "context-tuned HIGH->MEDIUM (sensitive-data mention, no exfil sink in bundle)"
+      }
+    },
+    {
+      "review_id": "design-20261101-ui-ux-pro-max-50",
+      "package": "skills/design/ui-ux-pro-max",
+      "tree_sha256": "9843aecade036752ac1d0319bf8f4262dd62ddc93c6d82a84991b6804e2fa264",
+      "file": "scripts/reasoning_contract.py",
+      "file_sha256": "b8bac1af82aa280d3e06f00aabaeac4337e632996b07fed874e2b6ee6e9c5913",
+      "rule": "P6",
+      "finding_sha256": "1c7eb4a699696f23ba2984fde3b1aa0901dd767d00015360510afebcea207c78",
+      "disposition": "false_positive",
+      "rationale": "Ordinary Python return of validated reasoning rows; not an instruction to reveal hidden rules.",
+      "reviewed_by": "source review in requested false-positive tuning; prior design intake review",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "P6",
+        "category": "System Prompt Leakage",
+        "pattern": "Direct Prompt Extraction",
+        "severity": "MEDIUM",
+        "confidence": 0.85,
+        "location": {
+          "file": "scripts/reasoning_contract.py",
+          "start_line": 84,
+          "end_line": null
+        },
+        "finding": "return rules",
+        "explanation": "Skill contains instructions that could directly expose system prompts, internal rules, or hidden instructions to users or external parties.",
+        "remediation": "Remove any instructions that reveal, print, or output system prompts or internal rules. System instructions should never be exposed to end users.",
+        "code_snippet": "            _validate_action(action)\n        if len(actions) != len(set(actions)):\n            raise ValueError(\"{} contains duplicate actions\".format(condition))\n    return rules\n\n\ndef _validate_action(action):",
+        "intent": "context-tuned HIGH->MEDIUM (sensitive-data mention, no exfil sink in bundle)"
+      }
+    },
+    {
+      "review_id": "inspector-license-20261101-0",
+      "package": "skills/security/skill-inspector",
+      "tree_sha256": "503bbf172097117a100affb5688239b90f6a90d1c6fe7ca2eec9497b2ab0ce15",
+      "file": "LICENSE",
+      "file_sha256": "9f8785b47596b2993a17a3fa8d747ae63126a2c5e80a9e77195a907273d71839",
+      "rule": "EA3",
+      "finding_sha256": "cf8887aa7e7496fc38eaa872ff9dbfe937332f6c5b9bfb3d0ad6507b57001c1f",
+      "disposition": "false_positive",
+      "rationale": "Apache legal scope wording; not executable behavior.",
+      "reviewed_by": "source review in requested false-positive tuning",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "EA3",
+        "category": "Excessive Agency",
+        "pattern": "Scope Creep",
+        "severity": "LOW",
+        "confidence": 0.7,
+        "location": {
+          "file": "LICENSE",
+          "start_line": 27,
+          "end_line": null
+        },
+        "finding": "not limited to",
+        "explanation": "Skill's behavior or capabilities extend beyond its stated purpose. Scope creep allows an agent to perform actions unrelated to its documented functionality, increasing the attack surface.",
+        "remediation": "Limit the skill's scope to its documented purpose. Remove instructions that enable the agent to perform actions outside its stated functionality.",
+        "code_snippet": "      exercising permissions granted by this License.\n\n      \"Source\" form shall mean the preferred form for making modifications,\n      including but not limited to software source code, documentation\n      source, and configuration files.\n\n      \"Object\" form shall mean any form resulting from mechanical",
+        "intent": null
+      }
+    },
+    {
+      "review_id": "inspector-license-20261101-1",
+      "package": "skills/security/skill-inspector",
+      "tree_sha256": "503bbf172097117a100affb5688239b90f6a90d1c6fe7ca2eec9497b2ab0ce15",
+      "file": "LICENSE",
+      "file_sha256": "9f8785b47596b2993a17a3fa8d747ae63126a2c5e80a9e77195a907273d71839",
+      "rule": "EA3",
+      "finding_sha256": "633de0b617fc6528872fa3e0287958c3a52cc217151e1578d06700a70283e522",
+      "disposition": "false_positive",
+      "rationale": "Apache legal scope wording; not executable behavior.",
+      "reviewed_by": "source review in requested false-positive tuning",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "EA3",
+        "category": "Excessive Agency",
+        "pattern": "Scope Creep",
+        "severity": "LOW",
+        "confidence": 0.7,
+        "location": {
+          "file": "LICENSE",
+          "start_line": 32,
+          "end_line": null
+        },
+        "finding": "not limited to",
+        "explanation": "Skill's behavior or capabilities extend beyond its stated purpose. Scope creep allows an agent to perform actions unrelated to its documented functionality, increasing the attack surface.",
+        "remediation": "Limit the skill's scope to its documented purpose. Remove instructions that enable the agent to perform actions outside its stated functionality.",
+        "code_snippet": "\n      \"Object\" form shall mean any form resulting from mechanical\n      transformation or translation of a Source form, including but\n      not limited to compiled object code, generated documentation,\n      and conversions to other media types.\n\n      \"Work\" shall mean the work of authorship, whether in Source or",
+        "intent": null
+      }
+    },
+    {
+      "review_id": "inspector-license-20261101-2",
+      "package": "skills/security/skill-inspector",
+      "tree_sha256": "503bbf172097117a100affb5688239b90f6a90d1c6fe7ca2eec9497b2ab0ce15",
+      "file": "LICENSE",
+      "file_sha256": "9f8785b47596b2993a17a3fa8d747ae63126a2c5e80a9e77195a907273d71839",
+      "rule": "EA3",
+      "finding_sha256": "19e3f54ef7e1b7927b179ee644f585bfd580e1838453577c1dfe233899bc06a7",
+      "disposition": "false_positive",
+      "rationale": "Apache legal scope wording; not executable behavior.",
+      "reviewed_by": "source review in requested false-positive tuning",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "EA3",
+        "category": "Excessive Agency",
+        "pattern": "Scope Creep",
+        "severity": "LOW",
+        "confidence": 0.7,
+        "location": {
+          "file": "LICENSE",
+          "start_line": 55,
+          "end_line": null
+        },
+        "finding": "not limited to",
+        "explanation": "Skill's behavior or capabilities extend beyond its stated purpose. Scope creep allows an agent to perform actions unrelated to its documented functionality, increasing the attack surface.",
+        "remediation": "Limit the skill's scope to its documented purpose. Remove instructions that enable the agent to perform actions outside its stated functionality.",
+        "code_snippet": "      or by an individual or Legal Entity authorized to submit on behalf of\n      the copyright owner. For the purposes of this definition, \"submitted\"\n      means any form of electronic, verbal, or written communication sent\n      to the Licensor or its representatives, including but not limited to\n      communication on electronic mailing lists, source code control systems,\n      and issue tracking systems that are managed by, or on behalf of, the\n      Licensor for the purpose of discussing and improving the Work, but",
+        "intent": null
+      }
+    },
+    {
+      "review_id": "inspector-license-20261101-3",
+      "package": "skills/security/skill-inspector",
+      "tree_sha256": "503bbf172097117a100affb5688239b90f6a90d1c6fe7ca2eec9497b2ab0ce15",
+      "file": "LICENSE",
+      "file_sha256": "9f8785b47596b2993a17a3fa8d747ae63126a2c5e80a9e77195a907273d71839",
+      "rule": "EA3",
+      "finding_sha256": "4ce3762362759bb3fe517de3df5582ba03be924de4401d673efb9e02a0029cc6",
+      "disposition": "false_positive",
+      "rationale": "Apache legal scope wording; not executable behavior.",
+      "reviewed_by": "source review in requested false-positive tuning",
+      "evidence_scanner_version": "2.2.3",
+      "issue": {
+        "id": "EA3",
+        "category": "Excessive Agency",
+        "pattern": "Scope Creep",
+        "severity": "LOW",
+        "confidence": 0.7,
+        "location": {
+          "file": "LICENSE",
+          "start_line": 160,
+          "end_line": null
+        },
+        "finding": "not limited to",
+        "explanation": "Skill's behavior or capabilities extend beyond its stated purpose. Scope creep allows an agent to perform actions unrelated to its documented functionality, increasing the attack surface.",
+        "remediation": "Limit the skill's scope to its documented purpose. Remove instructions that enable the agent to perform actions outside its stated functionality.",
+        "code_snippet": "      liable to You for damages, including any direct, indirect, special,\n      incidental, or consequential damages of any character arising as a\n      result of this License or out of the use or inability to use the\n      Work (including but not limited to damages for loss of goodwill,\n      work stoppage, computer failure or malfunction, or any and all\n      other commercial damages or losses), even if such Contributor\n      has been advised of the possibility of such damages.",
+        "intent": null
+      }
+    }
+  ]
+}
