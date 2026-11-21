@@ -489,6 +489,7 @@ def _read_compat_link(path: Path) -> str:
 
 def _resolve_compat_path(parent: Path, path: PurePosixPath) -> Path:
     active_links: set[Path] = set()
+    mount_point = getattr(stat, "IO_REPARSE_TAG_MOUNT_POINT", None)
 
     def resolve(current: Path, parts: tuple[str, ...]) -> Path:
         for part in parts:
@@ -502,7 +503,7 @@ def _resolve_compat_path(parent: Path, path: PurePosixPath) -> Path:
 
             candidate = current / part
             info = candidate.lstat()
-            junction = getattr(info, "st_reparse_tag", 0) == stat.IO_REPARSE_TAG_MOUNT_POINT
+            junction = mount_point is not None and getattr(info, "st_reparse_tag", None) == mount_point
             if not stat.S_ISLNK(info.st_mode) and not junction:
                 current = candidate
                 continue

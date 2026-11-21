@@ -42,7 +42,7 @@
     },
     "work-bi": {
       "purpose": "Workplace BI and analytics validation.",
-      "context": "Use only synthetic examples or input approved for the current work workspace. Deliver instructions, suggested DAX or queries, expected results and manual checks. Assume no API, Actions, connector, model access, query execution or transfer to a personal tool. Treat tenant actions in source examples as procedures for an authorized operator.",
+      "context": "Use the organization-approved ChatGPT Enterprise or GitHub Copilot workspace. Use synthetic examples or input approved for that workspace. These limits apply to the source workflows below. Deliver instructions, suggested DAX or queries, expected results and manual checks. Assume no API, Actions, connector, model access, query execution or transfer to a personal tool. Treat tenant actions in source examples as procedures for an authorized operator.",
       "example": "Two synthetic groups have rates 1/2 and 2/8. Explain the total and propose a DAX test with expected results.",
       "platforms": [
         "chatgpt",

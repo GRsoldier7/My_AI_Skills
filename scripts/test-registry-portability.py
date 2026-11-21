@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import subprocess
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -68,6 +69,12 @@ class RegistryPortabilityTests(unittest.TestCase):
     def test_exact_tracked_placeholder_is_a_compatibility_link(self):
         self.checkout_placeholder()
         self.assertEqual(self.failures(), [])
+
+    def test_placeholder_works_without_windows_stat_constants(self):
+        self.checkout_placeholder()
+        portable_stat = SimpleNamespace(S_ISLNK=REGISTRY.stat.S_ISLNK)
+        with patch.object(REGISTRY, "stat", portable_stat):
+            self.assertEqual(self.failures(), [])
 
     def test_ordinary_tracked_file_is_not_a_compatibility_link(self):
         self.link.write_bytes(self.target)

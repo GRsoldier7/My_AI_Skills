@@ -15,7 +15,7 @@ Run `python scripts/check-library.py` from a complete Git checkout with Python a
 
 | Check | Result from the Windows review |
 | --- | --- |
-| Registry portability | 15 regression tests passed. The base checkout had 32 false failures with Git for Windows placeholders. The revised check passed for all 32 placeholders and again for all 32 native links. It rejects altered or escaping targets. |
+| Registry portability | The regression suite covers native paths and tracked placeholder files. The base checkout had 32 false failures with Git for Windows placeholders. The revised check passed for all 32 placeholders and again for all 32 native links. It rejects altered or escaping targets. |
 | Registry and discovery | Current registry and agent tables matched. Zero registry failures and 12 potential-overlap warnings. The overlaps are review leads. |
 | Project guidance | Five tool templates matched shared source. Tests covered preview, preserved existing instructions, repeated application, linked paths, and Git line-ending behavior for text and binary resources. |
 | Router distribution | Nine packaging and installation tests passed in disposable homes. They exercise the existing seven-skill distribution. |
@@ -25,10 +25,10 @@ Run `python scripts/check-library.py` from a complete Git checkout with Python a
 
 The raw lint command is `python scripts/lint-skills.py --json`. The two outstanding calls moved `git-commit-push-pr` out of the engineering defaults and the Duet index. Use `git-commit` for ordinary commits and `ce-pr-description` with supplied evidence. Preserve the pinned upstream source while evaluating a replacement or upstream revision.
 
-The repository includes a read-only-permission CI configuration for Ubuntu, macOS and Windows. Linux adds the existing shell installer tests. Consult the pull request's checks for hosted run results. This report's local test results were produced on Windows. Native ChatGPT, Copilot, Claude, Codex, Muse and Hermes behavior, private account configuration and human time savings have separate acceptance tests.
+The repository includes a read-only-permission CI configuration for Ubuntu, macOS and Windows. Linux adds the existing shell installer tests. See the [pull request checks](https://github.com/GRsoldier7/My_AI_Skills/pull/10/checks) for hosted results. This report's local test results were produced on Windows. Native ChatGPT, Copilot, Claude, Codex, Muse and Hermes behavior, private account configuration and human time savings have separate acceptance tests.
 
 ## Release and next use
 
-The wider historical import branch remains a source of candidates. Promote a candidate only if it improves a recurring job over an existing selection and carries the required rights, inputs and examples. The attachment's repository-centered architecture is implemented through Git-owned skills, private context and simple tool exports. A gateway or managed service can run an approved workflow later. Neither needs a new server, subscription or role in this release.
+The wider historical import branch remains a source of candidates. Promote a candidate only if it improves a recurring job over an existing selection and carries the required rights, inputs and examples. Git holds the reusable skills, each private project owns its context, and each selection can be exported as plain files. A gateway or managed service can run an approved workflow later. Neither needs a new server, subscription or role in this release.
 
 For the first week, time a personal study, a synthetic BI review and a client-neutral scope draft. Record initial preparation minutes, material corrections and the source checks that passed. For a later automation pilot, choose one existing workflow, keep its source and flow export, and test handling of missing input before scheduling it. Keep the previous known-good pack or Git revision for rollback.
