@@ -1,0 +1,3 @@
+skills/faith/bible-study-theologian
+skills/faith/bible-study-publisher
+skills/faith/social-media-apologetics

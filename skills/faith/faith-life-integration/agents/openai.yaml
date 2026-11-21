@@ -1,0 +1,4 @@
+interface:
+  display_name: "Faith and Life Integration"
+  short_description: "Biblical decisions and sustainable discipleship rhythms"
+  default_prompt: "Use $faith-life-integration to build a realistic weekly discipleship rhythm grounded in Scripture."

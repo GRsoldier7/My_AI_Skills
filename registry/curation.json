@@ -85,7 +85,6 @@
       "ce-review",
       "code-review",
       "git-commit",
-      "git-commit-push-pr",
       "mcp-server-builder",
       "n8n-workflow-architect",
       "app-security-architect",
@@ -167,18 +166,19 @@
     ]
   },
   "review": {
+    "skills/engineering/git-commit-push-pr": "The optional capture path names ce-demo-reel, which this library does not ship. Use git-commit and ce-pr-description with supplied evidence.",
     "skills/core/wrapitup": "Likely duplicate of wrapup; merge or retire",
     "skills/aarons-latest/grilling": "Overlaps grill-me; vendored, pinned; confirm redundancy",
-    "skills/core/apex-mode": "Empty description; unclear trigger and purpose",
-    "skills/core/fact-checker": "Empty description; overlaps anti-hallucination",
+    "skills/core/apex-mode": "Broad maximum-stack trigger needs an explicit bounded use case before default use.",
+    "skills/core/fact-checker": "Compare the verification workflow with anti-hallucination before promoting either.",
     "skills/core/skill-sentinel": "Overlaps skill-builder and new skill-creator",
     "skills/core/skill-amplifier": "Overlaps skill-builder; consolidate after skill-creator",
-    "skills/core/polychronos-team": "Empty description; overlaps parallel-execution-strategist",
+    "skills/core/polychronos-team": "Broad team trigger overlaps parallel-execution-strategist and the existing project router.",
     "skills/core/knowledge-management": "Overlaps personal-productivity and obsidian architects",
     "skills/engineering/obsidian-vault-architect": "Three obsidian architect skills likely overlap",
     "skills/engineering/lfg": "Overlaps ce-work/ce-plan; autonomous-workflow risk",
-    "skills/engineering/data-analytics-engine": "Empty description; unclear scope",
-    "skills/strategy/business-genius": "Empty description; overlaps business-plan-architect",
+    "skills/engineering/data-analytics-engine": "Review the reporting scope and external plugin dependencies before selecting it by default.",
+    "skills/strategy/business-genius": "Strategic diagnosis overlaps business-plan-architect. Check which workflow owns the decision.",
     "skills/core/organize-project": "Overlaps directory-cleanup and file-organizer"
   },
   "deprecated": {},
@@ -250,7 +250,7 @@
         "ce-work",
         "ce-debug",
         "ce-review",
-        "git-commit-push-pr",
+        "git-commit",
         "mcp-server-builder",
         "anti-hallucination"
       ]

@@ -368,7 +368,6 @@ The "dataset" is now officially a **semantic model**. Key implications:
 For extended patterns, read these files from `references/`:
 - `references/dax-patterns-advanced.md` — Complex DAX scenarios (basket analysis, ABC, budget allocation, parent-child hierarchies)
 - `references/power-query-patterns.md` — M code recipes for common ETL scenarios
-- `references/fabric-integration.md` — Fabric lakehouse, Direct Lake, notebooks + PBI integration
 
 ---
 

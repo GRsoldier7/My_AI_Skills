@@ -1,0 +1,39 @@
+name: Skill library checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    env:
+      PYTHONUTF8: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.13"
+      - name: Check registry, packages, project guidance and recommended skills
+        run: python -B scripts/check-library.py
+      - name: Exercise the shell installer in temporary directories
+        if: runner.os == 'Linux'
+        run: bash scripts/test-install-skills.sh
+      - name: Validate the faith domain and shell entry points
+        if: runner.os == 'Linux'
+        run: |
+          bash scripts/validate-skills.sh --category faith
+          bash -n scripts/deploy.sh
+          bash -n scripts/build-bundle.sh

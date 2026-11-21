@@ -17,7 +17,7 @@ All changes reach `main` through a pull request. Do not push directly or force-p
 | --- | --- |
 | `core` | Default pick for the domain. |
 | `optional` | Load by name when the task needs it. |
-| `review` | Flagged for overlap, thin content, or an empty description. Decide keep, merge, or retire. |
+| `review` | Flagged for overlap, unsupported dependencies, unclear use or thin content. Read the reason before trialing. |
 | `deprecated` | Kept for one window, then removed only with Aaron's yes. |
 
 ## Caps
@@ -27,7 +27,7 @@ All changes reach `main` through a pull request. Do not push directly or force-p
 | Core skills per domain | The domain's `core_cap` (max 12) |
 | Skills in an agent index | 12 |
 | Global install set | 5 (`platform-configs/skill-sets/global.txt`) |
-| Library soft cap | 240 (233 today) |
+| Library soft cap | 240 (current totals in the generated registry) |
 | Intake adds per scout run | 3 |
 
 ## Add your own skill
@@ -64,15 +64,16 @@ Compatibility symlinks stay at least 90 days (until 2027-02-16). Remove them onl
 
 ## Checks
 
-Run these in order before every pull request:
+After curation changes regenerate from the entire checkout. Then run the portable release check. Python 3.10 or newer and Git are required.
 
-```bash
-python3 scripts/generate-skill-registry.py --registry
-python3 scripts/generate-skill-registry.py --check
-python3 scripts/lint-skills.py
-./scripts/validate-skills.sh
-./scripts/test-install-skills.sh
+```sh
+python scripts/generate-skill-registry.py --registry
+python scripts/check-library.py
 ```
+
+On Linux, also run `bash scripts/test-install-skills.sh` and `bash scripts/validate-skills.sh --category faith`. Run `python scripts/lint-skills.py --json` for the raw audit. The release check prints its findings count and fails on unexpected failures. Two references to an optional external capture skill in the pinned, review-status `git-commit-push-pr` are documented in the [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verification%20Report.md). Verify the dependency or select the simpler commit skill when trialing that package.
+
+The master selector reads the same registry and returns one owner. The generator's legacy `--inject` option refreshes the canonical registry and agent tables. `--dry-run` checks their freshness. For a curated profile, edit its existing text set and review its allowed hosts, referenced resources, and an example task. Outside the repository, keep one private context per project or client.
 
 `--check` fails on:
 

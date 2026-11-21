@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "profiles": {
+    "faith-personal": {
+      "purpose": "Personal Bible study, prayer and everyday discipleship.",
+      "context": "Study the passage in context. Keep prayer, journal entries and family details in the user's private workspace. Offer one concrete next step that fits the request.",
+      "example": "Use Psalm 13 to help me pray through a long wait. Give me a question I can carry into today.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "faith-teaching": {
+      "purpose": "Small-group facilitation and Sunday school preparation.",
+      "context": "Choose one teaching workflow for the group's age, experience and available time. Use anonymous situations and the shared Scripture foundation. Bring the leader a draft for review.",
+      "example": "Plan a 20-minute discussion of James 1:19–22. Include a way to hear quieter members.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "faith-publishing": {
+      "purpose": "Public Bible-study drafts and respectful apologetics replies.",
+      "context": "Use the passage and material cleared for a public audience. Keep personal prayer and third-party details private. Give the author a draft for review before any public use.",
+      "example": "Draft a short public study from Psalm 13 and give its passage reference. Leave private notes out.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "work-bi": {
+      "purpose": "Workplace BI and analytics validation.",
+      "context": "Use only synthetic examples or input approved for the current work workspace. Deliver instructions, suggested DAX or queries, expected results and manual checks. Assume no API, Actions, connector, model access, query execution or transfer to a personal tool. Treat tenant actions in source examples as procedures for an authorized operator.",
+      "example": "Two synthetic groups have rates 1/2 and 2/8. Explain the total and propose a DAX test with expected results.",
+      "platforms": [
+        "chatgpt",
+        "copilot"
+      ]
+    },
+    "consulting": {
+      "purpose": "Discovery and proposals for a single consulting engagement.",
+      "context": "Work within one client's private project and identity. Use only that project's approved notes and public facts. Label unknowns and commercial assumptions. Return drafts for the owner to review before any message, price commitment or signature.",
+      "example": "Turn an anonymized discovery brief into three scope options with assumptions and open questions.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "business-web": {
+      "purpose": "Website SEO baselines and content briefs.",
+      "context": "Use supplied page text, crawl results or approved public evidence. The source's seo_baseline.py, closeout agent and host-specific run directories are outside this reading pack. Work from supplied measurements, label missing evidence, and deliver a draft checklist or content brief. A site change or publication requires the site owner's review.",
+      "example": "Prioritize three fixes from the supplied title tags and crawl summary. State how each improvement would be checked.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "govcon": {
+      "purpose": "Government solicitation screening and proposal compliance.",
+      "context": "Use public solicitation excerpts and material approved for this bidder. Match each requirement to a section and owner. Flag missing terms and amendments. Return administrative drafts for review before any representation, signature or submission.",
+      "example": "Turn this public excerpt into a bid decision and compliance rows with section citations.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "home": {
+      "purpose": "Household priorities and weekly planning.",
+      "context": "Use the time blocks and commitments supplied for this session. Keep household details in the private home project. Give the user a realistic next action and leave calendar changes to the owner.",
+      "example": "I have two evening commitments and a free half hour. Help me decide what to do this week.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "deep-research": {
+      "purpose": "Evidence-based comparison and selection.",
+      "context": "Use sources accessible in the current project. Label unavailable evidence and provisional results. Keep the research within the user's time budget. Purchases, outreach and installations require a separate decision.",
+      "example": "Compare three approaches against my constraints and identify the evidence most likely to change the decision.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    }
+  },
+  "resources": {
+    "skills/aarons-latest/deep-search": [],
+    "skills/core/personal-productivity": [],
+    "skills/engineering/validate-data": [
+      "LICENSE"
+    ],
+    "skills/faith/bible-study-publisher": [
+      "agents/openai.yaml",
+      "references/content-formats.md"
+    ],
+    "skills/faith/bible-study-theologian": [
+      "agents/openai.yaml",
+      "references/faith-foundation.md",
+      "references/research-methods.md",
+      "references/sources-and-permissions.md",
+      "references/study-brief.md"
+    ],
+    "skills/faith/faith-life-integration": [
+      "agents/openai.yaml",
+      "references/decision-framework.md",
+      "references/memory-and-habits.md"
+    ],
+    "skills/faith/group-study-leader": [
+      "agents/openai.yaml",
+      "references/facilitation-and-continuity.md"
+    ],
+    "skills/faith/prayer-and-reflection": [
+      "agents/openai.yaml",
+      "references/private-journal.md"
+    ],
+    "skills/faith/social-media-apologetics": [
+      "agents/openai.yaml",
+      "references/reply-methods.md"
+    ],
+    "skills/faith/sunday-school-teacher": [
+      "agents/openai.yaml",
+      "references/curriculum-patterns.md",
+      "references/family-session-patterns.md"
+    ],
+    "skills/govcon/govcon-bid-no-bid-screening": [],
+    "skills/govcon/govcon-proposal-compliance-matrix": [],
+    "skills/microsoft/power-bi": [
+      "references/dax-patterns-advanced.md",
+      "references/power-query-patterns.md"
+    ],
+    "skills/seo/seo-content-brief-aeo": [],
+    "skills/seo/technical-seo-baseline": [],
+    "skills/strategy/consulting-tiered-proposal-sow": [],
+    "skills/strategy/discovery-call-prep": []
+  },
+  "shared_documents": {
+    "skills/CONNECTORS.md": [
+      "skills/engineering/validate-data"
+    ],
+    "skills/THIRD-PARTY-NOTICES.md": [
+      "skills/govcon/govcon-bid-no-bid-screening",
+      "skills/govcon/govcon-proposal-compliance-matrix",
+      "skills/seo/seo-content-brief-aeo",
+      "skills/seo/technical-seo-baseline",
+      "skills/strategy/consulting-tiered-proposal-sow",
+      "skills/strategy/discovery-call-prep"
+    ]
+  }
+}

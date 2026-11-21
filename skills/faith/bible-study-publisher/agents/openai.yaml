@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bible Study Publisher"
+  short_description: "Turn verified studies into clear public content"
+  default_prompt: "Use $bible-study-publisher to turn this study into a faithful Facebook post."

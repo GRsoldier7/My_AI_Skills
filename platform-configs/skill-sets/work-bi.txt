@@ -1,0 +1,3 @@
+# Instructions-only workplace pack. Use skill-picks.py export with chatgpt or copilot.
+skills/microsoft/power-bi
+skills/engineering/validate-data
