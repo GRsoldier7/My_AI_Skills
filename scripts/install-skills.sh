@@ -59,6 +59,12 @@ if [[ -n "$NAMES" ]]; then
     done
 else
     [[ -f "$SET_FILE" ]] || { echo "ERROR: set file not found: $SET_FILE" >&2; exit 1; }
+    for work_set in "$REPO_DIR"/platform-configs/skill-sets/work-*.txt; do
+        if [[ "$SET_FILE" -ef "$work_set" ]]; then
+            echo "Use python scripts/skill-picks.py export for this manual workplace profile (chatgpt or copilot)." >&2
+            exit 2
+        fi
+    done
     ENTRIES="$(sed -e 's/#.*//' -e 's/^[[:space:]]*//' -e 's|^\./||' -e 's/[[:space:]]*$//' -e 's|/*$||' "$SET_FILE" | grep -v '^$' || true)"
 fi
 [[ -n "$ENTRIES" ]] || { echo "ERROR: no skills to install (the set lists none)" >&2; exit 1; }

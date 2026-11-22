@@ -7,7 +7,7 @@
 #       agents from a shell script, so this prints the prompt template the
 #       user can paste into a Claude Code session for the deep pass.
 #
-# Outputs land in /root/My_AI_Skills/audits/YYYY-MM-DD-HHMM/.
+# Outputs land in this checkout under audits/YYYY-MM-DD-HHMM/.
 # Compares against the previous audit and exits non-zero if NEW failing
 # rules appear (so this is safe to run from CI / pre-commit).
 #
@@ -84,7 +84,7 @@ In a Claude Code session, dispatch 5 parallel Task() calls (one per group):
 ## Per-agent prompt (template)
 
 ```
-You are auditing the My_AI_Skills sub-library at /root/My_AI_Skills/skills/<CATEGORY>/.
+You are auditing the My_AI_Skills sub-library at skills/<CATEGORY>/ in the current repository.
 
 For EACH SKILL.md in that category, evaluate against these axes:
 

@@ -32,6 +32,10 @@ metadata:
 
 # Power Automate — Savant-Level Skill
 
+## Enterprise work pack
+
+Use the [cloud flow design and failure review](references/work-flows.md) for a work-pack request. Return a flow design draft.
+
 ## Philosophy
 
 Power Automate mastery = **expressions over dynamic content**, **error handling by default** (not afterthought), **child flows for reuse**, and **solution-aware from the start**. The difference between amateur and expert flows is error handling and maintainability.
@@ -465,3 +469,5 @@ the queue with explicit rate limiting and delays between calls.
 - `power-apps` — app button clicks and form submissions trigger instant cloud flows
 - `sharepoint` — SharePoint list item events are the most common automation trigger
 - `power-platform-admin` — DLP policies constrain which connectors flows can use
+
+For a controlled release, follow the [solution export, import and first-user checks](references/work-solution-release.md).

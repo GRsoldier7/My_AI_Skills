@@ -1,0 +1,365 @@
+{
+  "schema": 1,
+  "profiles": {
+    "faith-personal": {
+      "purpose": "Personal Bible study, prayer and everyday discipleship.",
+      "context": "Study the passage in context. Keep prayer, journal entries and family details in the user's private workspace. Offer one concrete next step that fits the request.",
+      "example": "Use Psalm 13 to help me pray through a long wait. Give me a question I can carry into today.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "faith-teaching": {
+      "purpose": "Small-group facilitation and Sunday school preparation.",
+      "context": "Choose one teaching workflow for the group's age, experience and available time. Use anonymous situations and the shared Scripture foundation. Bring the leader a draft for review.",
+      "example": "Plan a 20-minute discussion of James 1:19–22. Include a way to hear quieter members.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "faith-publishing": {
+      "purpose": "Public Bible-study drafts and respectful apologetics replies.",
+      "context": "Use the passage and material cleared for a public audience. Keep personal prayer and third-party details private. Give the author a draft for review before any public use.",
+      "example": "Draft a short public study from Psalm 13 and give its passage reference. Leave private notes out.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "work-bi": {
+      "purpose": "Workplace BI and analytics validation.",
+      "context": "Use the organization-approved ChatGPT Enterprise or GitHub Copilot workspace. Use synthetic examples or input approved for that workspace. These limits apply to the source workflows below. Deliver instructions, suggested DAX or queries, expected results and manual checks. Assume no API, Actions, connector, model access, query execution or transfer to a personal tool. Treat tenant actions in source examples as procedures for an authorized operator.",
+      "example": "Two synthetic groups have rates 1/2 and 2/8. Explain the total and propose a DAX test with expected results.",
+      "platforms": [
+        "chatgpt",
+        "copilot"
+      ],
+      "reading": [
+        "skills/microsoft/power-bi/references/work-bi.md",
+        "skills/engineering/validate-data/SKILL.md"
+      ]
+    },
+    "consulting": {
+      "purpose": "Discovery and proposals for a single consulting engagement.",
+      "context": "Work within one client's private project and identity. Use only that project's approved notes and public facts. Label unknowns and commercial assumptions. Return drafts for the owner to review before any message, price commitment or signature.",
+      "example": "Turn an anonymized discovery brief into three scope options with assumptions and open questions.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "business-web": {
+      "purpose": "Website SEO baselines and content briefs.",
+      "context": "Use supplied page text, crawl results or approved public evidence. The source's seo_baseline.py, closeout agent and host-specific run directories are outside this reading pack. Work from supplied measurements, label missing evidence, and deliver a draft checklist or content brief. A site change or publication requires the site owner's review.",
+      "example": "Prioritize three fixes from the supplied title tags and crawl summary. State how each improvement would be checked.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "govcon": {
+      "purpose": "Government solicitation screening and proposal compliance.",
+      "context": "Use public solicitation excerpts and material approved for this bidder. Match each requirement to a section and owner. Flag missing terms and amendments. Return administrative drafts for review before any representation, signature or submission.",
+      "example": "Turn this public excerpt into a bid decision and compliance rows with section citations.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "home": {
+      "purpose": "Household priorities and weekly planning.",
+      "context": "Use the time blocks and commitments supplied for this session. Keep household details in the private home project. Give the user a realistic next action and leave calendar changes to the owner.",
+      "example": "I have two evening commitments and a free half hour. Help me decide what to do this week.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "deep-research": {
+      "purpose": "Evidence-based comparison and selection.",
+      "context": "Use sources accessible in the current project. Label unavailable evidence and provisional results. Keep the research within the user's time budget. Purchases, outreach and installations require a separate decision.",
+      "example": "Compare three approaches against my constraints and identify the evidence most likely to change the decision.",
+      "platforms": [
+        "chatgpt",
+        "copilot",
+        "claude",
+        "codex",
+        "muse",
+        "hermes"
+      ]
+    },
+    "work-code": {
+      "purpose": "Write or review a Python, T-SQL, PowerShell or general code change for analytics.",
+      "example": "Review a transform with a replayed row. Give the smallest patch and tests for unchanged, empty and conflicting input.",
+      "context": "Work in the approved ChatGPT Enterprise or GitHub Copilot workspace with synthetic or organization-approved inputs. Draft and evaluate instructions or code. Assume no API, Actions, tenant access, installation or execution. Name the operator check for any live dependency.",
+      "platforms": [
+        "chatgpt",
+        "copilot"
+      ],
+      "reading": [
+        "skills/engineering/analytics-code-workbench/SKILL.md",
+        "skills/engineering/analytics-code-workbench/references/python.md",
+        "skills/engineering/analytics-code-workbench/references/tsql.md",
+        "skills/engineering/analytics-code-workbench/references/powershell.md"
+      ]
+    },
+    "work-ai": {
+      "purpose": "Evaluate and improve prompts, reusable skills and plugin routing.",
+      "example": "A weekly report prompt invents the target when it is missing. Revise it and test direct, implied and near-miss requests.",
+      "context": "Work in the approved ChatGPT Enterprise or GitHub Copilot workspace with synthetic or organization-approved inputs. Draft and evaluate instructions or code. Assume no API, Actions, tenant access, installation or execution. Name the operator check for any live dependency.",
+      "platforms": [
+        "chatgpt",
+        "copilot"
+      ],
+      "reading": [
+        "skills/core/work-instruction-review/SKILL.md",
+        "skills/core/work-instruction-review/references/prompt-review.md",
+        "skills/core/work-instruction-review/references/skill-evaluation.md",
+        "skills/core/work-instruction-review/references/plugin-evaluation.md"
+      ]
+    },
+    "work-apps-flows": {
+      "purpose": "Export, import and rehearse a managed solution containing a Power Apps canvas app or Power Automate cloud flow.",
+      "example": "Prepare the same managed app-and-flow ZIP for clean QA install, upgrade and production promotion. Give target bindings and an ordinary user's first-run test.",
+      "context": "Work in the approved ChatGPT Enterprise or GitHub Copilot workspace with synthetic or organization-approved inputs. Draft and evaluate instructions or code. Assume no API, Actions, tenant access, installation or execution. Name the operator check for any live dependency.",
+      "platforms": [
+        "chatgpt",
+        "copilot"
+      ],
+      "reading": [
+        "skills/microsoft/power-automate/references/work-solution-release.md",
+        "skills/microsoft/power-apps/references/work-canvas.md",
+        "skills/microsoft/power-automate/references/work-flows.md"
+      ]
+    },
+    "work-collaboration": {
+      "purpose": "Organize work through SharePoint, Loop and OneNote.",
+      "example": "Design a decision log with an accountable owner, a due date and one durable approved reference.",
+      "context": "Work in the approved ChatGPT Enterprise or GitHub Copilot workspace with synthetic or organization-approved inputs. Draft and evaluate instructions or code. Assume no API, Actions, tenant access, installation or execution. Name the operator check for any live dependency.",
+      "platforms": [
+        "chatgpt",
+        "copilot"
+      ],
+      "reading": [
+        "skills/microsoft/sharepoint/references/work-sharepoint.md",
+        "skills/microsoft/m365-integration/references/work-loop.md",
+        "skills/microsoft/m365-integration/references/work-onenote.md"
+      ]
+    },
+    "work-copilot": {
+      "purpose": "Choose and test GitHub Copilot, Microsoft 365 Copilot or Copilot Studio for a work task.",
+      "example": "Choose a surface to review a code change, summarize approved notes or design an agent. Show the expected fallback.",
+      "context": "Work in the approved ChatGPT Enterprise or GitHub Copilot workspace with synthetic or organization-approved inputs. Draft and evaluate instructions or code. Assume no API, Actions, tenant access, installation or execution. Name the operator check for any live dependency.",
+      "platforms": [
+        "chatgpt",
+        "copilot"
+      ],
+      "reading": [
+        "skills/microsoft/copilot-studio/references/work-copilot.md"
+      ]
+    },
+    "work-web-artifacts": {
+      "purpose": "Create accessible, offline HTML artifacts or plan the right internal web host.",
+      "example": "Build an offline operations brief showing 1/2, 2/8 and 0/0. Reconcile totals and test it with a keyboard.",
+      "context": "Work in the approved ChatGPT Enterprise or GitHub Copilot workspace with synthetic or organization-approved inputs. Draft and evaluate instructions or code. Assume no API, Actions, tenant access, installation or execution. Name the operator check for any live dependency.",
+      "platforms": [
+        "chatgpt",
+        "copilot"
+      ],
+      "reading": [
+        "skills/engineering/enterprise-web-artifacts/SKILL.md",
+        "skills/engineering/enterprise-web-artifacts/references/delivery.md",
+        "skills/engineering/enterprise-web-artifacts/references/artifact-quality.md"
+      ]
+    },
+    "work-gcp": {
+      "purpose": "Design BigQuery analytics and diagnose cost, access and freshness across Google Cloud.",
+      "example": "A partitioned report scans too much data. Give a dry-run plan, an on-demand scan ceiling, and the checks for a stale refresh.",
+      "context": "Work in the approved ChatGPT Enterprise or GitHub Copilot workspace with synthetic or organization-approved inputs. Draft and evaluate instructions or code. Assume no API, Actions, tenant access, installation or execution. Name the operator check for any live dependency.",
+      "platforms": [
+        "chatgpt",
+        "copilot"
+      ],
+      "reading": [
+        "skills/engineering/analytics-code-workbench/references/google-cloud.md"
+      ]
+    },
+    "work-chatgpt": {
+      "purpose": "Create instructions, improve a skill or plugin, and design work Projects and Space pages.",
+      "example": "Design a BI weekly-brief Space, a reusable drafting skill and a test for a missing target. Return a private Markdown draft.",
+      "context": "Work in the approved ChatGPT Enterprise or GitHub Copilot workspace with synthetic or organization-approved inputs. Draft and evaluate instructions or code. Assume no API, Actions, tenant access, installation or execution. Name the operator check for any live dependency.",
+      "platforms": [
+        "chatgpt",
+        "copilot"
+      ],
+      "reading": [
+        "skills/core/work-instruction-review/references/chatgpt-spaces.md",
+        "skills/core/work-instruction-review/references/skill-evaluation.md",
+        "skills/core/work-instruction-review/references/plugin-evaluation.md"
+      ]
+    },
+    "work-read-brief": {
+      "purpose": "Turn authorized Outlook mail, calendar and SharePoint reads into a cited daily or meeting brief.",
+      "example": "Compare a suggested time in an email, the actual calendar occurrence and the approved SharePoint checklist. Cite each result and flag partial coverage.",
+      "context": "Use only the work account's already approved read features for each source, if exposed on this host. Otherwise use approved excerpts or synthetic examples. GitHub Copilot receives supplied sanitized context unless a work reader was verified separately. Deliver the brief in chat. Leave sending, scheduling, file changes, permissions and sharing to the owner.",
+      "platforms": [
+        "chatgpt",
+        "copilot"
+      ],
+      "reading": [
+        "skills/microsoft/m365-integration/references/work-read-brief.md"
+      ]
+    }
+  },
+  "resources": {
+    "skills/aarons-latest/deep-search": [],
+    "skills/core/personal-productivity": [],
+    "skills/core/work-instruction-review": [
+      "LICENSE-github.txt",
+      "references/chatgpt-spaces.md",
+      "references/copilot-prompt-format.md",
+      "references/plugin-evaluation.md",
+      "references/prompt-review.md",
+      "references/skill-evaluation.md"
+    ],
+    "skills/engineering/analytics-code-workbench": [
+      "LICENSE-github.txt",
+      "LICENSE-google.txt",
+      "LICENSE-python-testing.txt",
+      "references/google-cloud.md",
+      "references/google-sql-optimization.md",
+      "references/powershell-copilot.md",
+      "references/powershell.md",
+      "references/python-testing/guide.md",
+      "references/python-testing/references/advanced-patterns.md",
+      "references/python-testing/references/details.md",
+      "references/python.md",
+      "references/tsql-copilot.md",
+      "references/tsql.md"
+    ],
+    "skills/engineering/enterprise-web-artifacts": [
+      "LICENSE-anthropic.txt",
+      "assets/operations-brief.html",
+      "references/artifact-quality.md",
+      "references/delivery.md",
+      "references/design-direction.md"
+    ],
+    "skills/engineering/validate-data": [
+      "LICENSE"
+    ],
+    "skills/faith/bible-study-publisher": [
+      "agents/openai.yaml",
+      "references/content-formats.md"
+    ],
+    "skills/faith/bible-study-theologian": [
+      "agents/openai.yaml",
+      "references/faith-foundation.md",
+      "references/research-methods.md",
+      "references/sources-and-permissions.md",
+      "references/study-brief.md"
+    ],
+    "skills/faith/faith-life-integration": [
+      "agents/openai.yaml",
+      "references/decision-framework.md",
+      "references/memory-and-habits.md"
+    ],
+    "skills/faith/group-study-leader": [
+      "agents/openai.yaml",
+      "references/facilitation-and-continuity.md"
+    ],
+    "skills/faith/prayer-and-reflection": [
+      "agents/openai.yaml",
+      "references/private-journal.md"
+    ],
+    "skills/faith/social-media-apologetics": [
+      "agents/openai.yaml",
+      "references/reply-methods.md"
+    ],
+    "skills/faith/sunday-school-teacher": [
+      "agents/openai.yaml",
+      "references/curriculum-patterns.md",
+      "references/family-session-patterns.md"
+    ],
+    "skills/govcon/govcon-bid-no-bid-screening": [],
+    "skills/govcon/govcon-proposal-compliance-matrix": [],
+    "skills/microsoft/copilot-studio": [
+      "references/work-copilot.md"
+    ],
+    "skills/microsoft/m365-integration": [
+      "LICENSE-workiq-notices.txt",
+      "LICENSE-workiq.txt",
+      "references/upstream-outlook-calendar.md",
+      "references/upstream-outlook-mail.md",
+      "references/upstream-sharepoint-search.md",
+      "references/work-loop.md",
+      "references/work-onenote.md",
+      "references/work-read-brief.md"
+    ],
+    "skills/microsoft/power-apps": [
+      "references/work-canvas.md"
+    ],
+    "skills/microsoft/power-automate": [
+      "references/work-flows.md",
+      "references/work-solution-release.md",
+      "scripts/check-solution.py"
+    ],
+    "skills/microsoft/power-bi": [
+      "LICENSE-fabric.txt",
+      "references/dax-patterns-advanced.md",
+      "references/fabric-dax-guidelines.md",
+      "references/fabric-metadata-discovery.md",
+      "references/power-query-patterns.md",
+      "references/work-bi.md"
+    ],
+    "skills/microsoft/sharepoint": [
+      "references/work-sharepoint.md"
+    ],
+    "skills/seo/seo-content-brief-aeo": [],
+    "skills/seo/technical-seo-baseline": [],
+    "skills/strategy/consulting-tiered-proposal-sow": [],
+    "skills/strategy/discovery-call-prep": []
+  },
+  "shared_documents": {
+    "skills/CONNECTORS.md": [
+      "skills/engineering/validate-data"
+    ],
+    "skills/THIRD-PARTY-NOTICES.md": [
+      "skills/govcon/govcon-bid-no-bid-screening",
+      "skills/govcon/govcon-proposal-compliance-matrix",
+      "skills/seo/seo-content-brief-aeo",
+      "skills/seo/technical-seo-baseline",
+      "skills/strategy/consulting-tiered-proposal-sow",
+      "skills/strategy/discovery-call-prep"
+    ]
+  }
+}

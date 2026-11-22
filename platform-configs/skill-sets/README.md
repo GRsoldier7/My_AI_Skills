@@ -4,6 +4,8 @@ This repository is the only source for skills. Each device installs a **small gl
 scope; every other skill in `skills/` stays out of sessions until you install it by name. Nothing here
 copies skills between projects by hand.
 
+Work profiles use the manual exporter in an approved ChatGPT Enterprise or GitHub Copilot workspace. Run `python scripts/skill-picks.py list --platform chatgpt` from the repository root and choose a work profile. The [enterprise work guide](../../docs/20261121%20-%20My%20AI%20Skills%20-%20Enterprise%20Work%20Skills.md) covers all ten and the release workflow.
+
 ## What is installed where
 
 | Mechanism | Skills | Claude Code | Codex | Install model |
@@ -31,8 +33,9 @@ Aaron's homelab already loads 50+ symlinked skills). Codex 0.145.0 reads `~/.age
 | [to-spec](../../skills/engineering/to-spec/SKILL.md) | Turn the current conversation into a spec and publish it to the tracker, without re-interviewing | Discovery is done and the decisions are already in the conversation | Manual: `/to-spec`, `$to-spec` | Setup has run. Publishing to GitHub/GitLab is outward-facing; the local-markdown tracker keeps it in the repo |
 | [to-tickets](../../skills/engineering/to-tickets/SKILL.md) | Break a plan, spec or conversation into tracer-bullet vertical tickets with blocking edges; you approve the breakdown before anything is published | A spec or plan is approved | Manual: `/to-tickets`, `$to-tickets` | Setup has run; same tracker note as `to-spec` |
 | [domain-modeling](../../skills/engineering/domain-modeling/SKILL.md) | Keep a `GLOSSARY.md` glossary and ADRs so code and conversations use one domain language | Discussing terminology, editing `GLOSSARY.md`, recording an ADR | Automatic (model-invoked) | None. It names ADRs `docs/adr/0001-<slug>.md`; on Aaron's homelab the doc-naming guard refuses that name inside `workspace/docs` and `hermes-deploy/docs`, so name ADRs `YYYYMMDD - Project - Description.md` there |
+| [2nd-brain](../../skills/aarons-latest/2nd-brain/SKILL.md) | Retrieve or capture durable context in the authorized private workspace | When the relevant vault connection is available | Select by name | Verify the intended account, project and write permission before capture |
 
-All four work in Claude Code and Codex: each ships `agents/openai.yaml`, and the three manual-only
+The four Matt Pocock packages work in Claude Code and Codex: each ships `agents/openai.yaml`, and the three manual-only
 skills set both `disable-model-invocation: true` and `allow_implicit_invocation: false`.
 
 Aaron's 7 project skills are installed per device, not from `global.txt`: Claude Code by name
@@ -122,9 +125,7 @@ context in every session. `grill-me` and `grill-with-docs` call `grilling`; `gri
 `domain-modeling` (global set). `--prune` removes every by-name link, so re-run both by-name commands after
 any prune.
 
-Then restart Codex. Claude Code picks up new skills without a restart. The installers work from any
-clone path; `lint-skills.py`, `generate-skill-registry.py` and `build-bundle.sh` still assume
-`/root/My_AI_Skills`.
+Then restart Codex. Claude Code picks up new skills without a restart. The installers, linter, registry generator and legacy reference builder locate this checkout relative to their scripts.
 
 Windows: Aaron's Windows device ran `install-skills.sh` itself under Git Bash with `MSYS=winsymlinks:nativestrict`
 set (2026-10-17; real symlinks), which is the preferred path. Creating symlinks needs Developer Mode or an
@@ -167,10 +168,7 @@ git pull --ff-only
 python3 scripts/project-router.py install --global-guidance   # preview; reconcile reported differences, then --apply --global-guidance
 ```
 
-A clone made before `.gitattributes` existed (2026-10-17) with `core.autocrlf=true`, the Git for Windows
-default, can keep CRLF copies of the scripts (bash then fails with `$'\r': command not found`). Check with
-`git ls-files --eol scripts/install-skills.sh`: `w/lf` is fine; `w/crlf` needs one refresh. Commit or stash
-local work first, then run `git rm -r -q --cached . && git reset --hard` (this refresh is untested here).
+On an older Windows clone, check the installer with `git ls-files --eol scripts/install-skills.sh`. A working-copy result of `w/lf` is ready to use. If you see `w/crlf` and Bash reports a carriage-return error, make a fresh side-by-side checkout in an unused directory. Run the installer preview from that checkout and review the proposed paths. Preserve the earlier directory and its local edits.
 
 With a custom `CODEX_HOME`, drop `--global-guidance` (see setup). A device set up before this guide also
 needs the `skillOverrides` entry from [Set up a new device](#set-up-a-new-device).

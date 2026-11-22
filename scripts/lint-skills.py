@@ -3,11 +3,11 @@
 lint-skills.py — Catch the categories of issues found in the 2026-05-09 audit
 so they don't return.
 
-Scans /root/My_AI_Skills/skills/**/SKILL.md for:
+Scans canonical SKILL.md files in this checkout for:
   * Missing/empty frontmatter fields (name, description, metadata.{version,
     domain-category, last-reviewed})
   * `last-reviewed` older than --max-age days (default 90)
-  * Stale tokens defined in lint-config.json (claude-opus-4-6, 192.168.1.240, etc.)
+  * Stale tokens defined in lint-config.json
   * Phantom skill references — backticked tokens that look like skill names but
     don't match any directory under skills/
   * Windows-only paths in description sections (Scripts/activate, %USERPROFILE%, Z:/)
@@ -67,7 +67,10 @@ def _under_symlink(path: Path, root: Path) -> bool:
 def _skill_files(root: Path) -> list[Path]:
     if not root.is_dir():
         return []
-    return sorted(p for p in root.rglob("SKILL.md") if p.is_file() and not _under_symlink(p, root))
+    return sorted(
+        (p for p in root.rglob("SKILL.md") if p.name == "SKILL.md" and p.is_file() and not _under_symlink(p, root)),
+        key=lambda path: path.as_posix(),
+    )
 
 # Severity ranking for sorting/exit code
 SEV_RANK = {"FAIL": 0, "WARN": 1, "INFO": 2}
@@ -466,6 +469,12 @@ EXAMPLE_BEFORE_RE = re.compile(
 def lint_phantom_refs(skill_path: Path, lines: list[str], known_skills: set[str]) -> list[Finding]:
     findings: list[Finding] = []
     skill_name = skill_path.parent.name
+    # The vendored compound workflow declares this fully qualified subagent below
+    # its dispatch instruction. Keep explicit skill references checked everywhere.
+    compound_agent = (
+        skill_path.as_posix().endswith("/engineering/ce-compound/SKILL.md")
+        and any("`compound-engineering:research:session-historian`" in line for line in lines)
+    )
     seen: set[tuple[str, int]] = set()  # dedupe per (token, line)
     for i, line in enumerate(lines, 1):
         for m in SKILL_REF_PATTERN.finditer(line):
@@ -487,6 +496,10 @@ def lint_phantom_refs(skill_path: Path, lines: list[str], known_skills: set[str]
             after = line[m.end():].lower()
             before_tail, after_head = before[-48:], after[:48]
 
+            if (compound_agent and tok == "session-historian"
+                    and re.search(r"\bdispatch\s+$", before_tail)
+                    and re.match(r"^\s+in foreground\b", after_head)):
+                continue
             if EXCLUDE_AFTER_RE.match(after_head):
                 continue
             if not (
@@ -608,8 +621,12 @@ def main(argv: list[str] | None = None) -> int:
     today = date.today()
     known_skills, alias_collisions = build_skill_index()
 
-    if args.files:
-        skill_paths = [Path(p) for p in args.files if Path(p).name == "SKILL.md" and Path(p).is_file()]
+    if args.files is not None:
+        skill_paths = [Path(p) for p in args.files if Path(p).name == "SKILL.md"]
+        missing = [p for p in skill_paths if not p.is_file()]
+        if missing:
+            print("Missing requested SKILL.md: " + ", ".join(map(str, missing)), file=sys.stderr)
+            return 2
     else:
         skill_paths = discover_skills(args.category)
 
@@ -642,4 +659,7 @@ def main(argv: list[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
+    # Preserve native console encoding while making redirected legacy terminals usable.
+    sys.stdout.reconfigure(errors="backslashreplace")
+    sys.stderr.reconfigure(errors="backslashreplace")
     sys.exit(main())

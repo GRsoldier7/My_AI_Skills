@@ -32,6 +32,10 @@ metadata:
 
 # Power BI — Savant-Level Skill
 
+## Enterprise work pack
+
+Use the [Power BI model, measure and refresh review](references/work-bi.md) for work-pack requests involving governed models, DAX, Power Query, access or performance.
+
 ## Philosophy
 
 Power BI mastery requires three pillars: **data modeling** (the foundation), **DAX** (the engine), and **report design** (the delivery). Most problems stem from modeling mistakes. Always fix the model before writing complex DAX.
@@ -368,7 +372,6 @@ The "dataset" is now officially a **semantic model**. Key implications:
 For extended patterns, read these files from `references/`:
 - `references/dax-patterns-advanced.md` — Complex DAX scenarios (basket analysis, ABC, budget allocation, parent-child hierarchies)
 - `references/power-query-patterns.md` — M code recipes for common ETL scenarios
-- `references/fabric-integration.md` — Fabric lakehouse, Direct Lake, notebooks + PBI integration
 
 ---
 

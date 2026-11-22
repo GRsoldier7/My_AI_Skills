@@ -1,9 +1,11 @@
 """Installer/package regression tests. These do not test agent routing behavior."""
 import importlib.util
 import json
+import os
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 import zipfile
 
 SPEC = importlib.util.spec_from_file_location('project_router', Path(__file__).with_name('project-router.py'))
@@ -17,6 +19,10 @@ class RouterDistributionTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.home = self.root / 'home'
         self.home.mkdir()
+        # An external Codex session must not influence a disposable test home.
+        settings = patch.dict(os.environ, {'CODEX_HOME': str(self.home / '.codex')})
+        settings.start()
+        self.addCleanup(settings.stop)
         self.source = Path(__file__).resolve().parents[1]
         self.files = M.runtime_files(self.source)
 

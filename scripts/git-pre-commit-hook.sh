@@ -2,9 +2,9 @@
 # Git pre-commit hook template for My_AI_Skills.
 #
 # Install:
-#   cp /root/My_AI_Skills/scripts/git-pre-commit-hook.sh \
-#      /root/My_AI_Skills/.git/hooks/pre-commit
-#   chmod +x /root/My_AI_Skills/.git/hooks/pre-commit
+#   cp scripts/git-pre-commit-hook.sh \
+#      .git/hooks/pre-commit
+#   chmod +x .git/hooks/pre-commit
 #
 # Or use the .pre-commit-config.yaml at the repo root with:
 #   pip install pre-commit && pre-commit install

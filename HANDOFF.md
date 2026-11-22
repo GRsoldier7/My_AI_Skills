@@ -2,7 +2,17 @@
 
 Running session log for this repo. Newest entry first. Append; never rewrite history. No secrets.
 
-## Current state (2026-10-17)
+## Enterprise work packs (2026-11-21)
+
+Start at the [enterprise work guide](docs/20261121%20-%20My%20AI%20Skills%20-%20Enterprise%20Work%20Skills.md). The registry contains 240 packages. The selector has 18 profiles and 68 supported manual profile/host combinations, including ten workplace profiles for ChatGPT Enterprise and GitHub Copilot. The work brief can use an already-approved reader or supplied excerpts. The app and flow release pack includes an offline managed-ZIP preflight, target binding checks and an ordinary-user acceptance record. A live clean QA install, upgrade and runtime smoke test remain release-specific.
+
+## Earlier library checkpoint (2026-11-21)
+
+Resume from the [Quick Start](docs/20261121%20-%20My%20AI%20Skills%20-%20Quick%20Start.md). The sole catalog contains 237 canonical skills. The nine focused sets point to the source packages. Use `python scripts/skill-picks.py inspect faith-personal` to see a first selection and `python scripts/check-library.py` to validate a complete checkout.
+
+The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verification%20Report.md) records portability, the 50 manual pack combinations, two acknowledged capture-dependency findings, and the limit of the faith trials. The next user-owned trial is one private study and one approved synthetic work BI request. Record elapsed preparation and corrections before changing the picks. The [dated plan](docs/20261121%20-%20My%20AI%20Skills%20-%20Library%20Polish%20Plan.md) explains recovery and intake.
+
+## Previous state (2026-10-17)
 
 - Library: 191 skills in the master-orchestrator registry, regenerated 2026-10-17 from a complete Windows checkout. README and CLAUDE.md counts match it.
 - Vendored mattpocock skills are all at `49dd158d1076134a641b33efb035946536778336` (to-spec is identical at that commit): `setup-matt-pocock-skills`, `to-spec`, `to-tickets`, `domain-modeling` in `skills/engineering/`; `grill-me`, `grilling`, `grill-with-docs`, `teach` in `skills/aarons-latest/`. Provenance and scan results: `platform-configs/skill-sets/README.md`.

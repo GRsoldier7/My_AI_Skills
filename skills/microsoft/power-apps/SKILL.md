@@ -31,6 +31,10 @@ metadata:
 
 # Power Apps — Savant-Level Skill
 
+## Enterprise work pack
+
+Use the [canvas design and Power Fx review](references/work-canvas.md) for a work-pack request. Return a design draft.
+
 ## Philosophy
 
 Power Apps mastery means knowing **when to use Canvas vs Model-Driven**, understanding **delegation as a hard constraint** (not a warning to ignore), designing **component-first for reuse**, and treating apps as **solution-aware artifacts** from day one.

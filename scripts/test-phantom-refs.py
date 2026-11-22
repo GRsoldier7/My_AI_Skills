@@ -102,6 +102,18 @@ def main() -> int:
         if hits:
             failures.append(f"FALSE POSITIVE: {line!r} -> {sorted(hits)}")
 
+    declared = "Dispatched as `compound-engineering:research:session-historian`"
+    dispatch = "Then dispatch `session-historian` in foreground; invoke `missing-skill`."
+    compound = Path("skills/engineering/ce-compound/SKILL.md")
+    for path, lines, wanted in [
+        (compound, [declared, dispatch], {"missing-skill"}),
+        (compound, [dispatch], {"session-historian", "missing-skill"}),
+        (Path("skills/core/other/SKILL.md"), [declared, dispatch], {"session-historian", "missing-skill"}),
+        (compound, [declared, "Use the `session-historian` skill."], {"session-historian"}),
+    ]:
+        actual = {f.rule.split(":", 1)[1] for f in mod.lint_phantom_refs(path, lines, KNOWN)}
+        if actual != wanted:
+            failures.append(f"Typed subagent regression: {actual} != {wanted}")
     print(f"MUST_FLAG={len(MUST_FLAG)}  MUST_SKIP={len(MUST_SKIP)}  failures={len(failures)}")
     for f in failures:
         print("  " + f)

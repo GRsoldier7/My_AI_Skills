@@ -1,0 +1,4 @@
+skills/faith/bible-study-theologian
+skills/faith/group-study-leader
+skills/faith/sunday-school-teacher
+skills/faith/prayer-and-reflection
