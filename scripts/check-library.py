@@ -47,7 +47,7 @@ def main():
         ("generate-skill-registry.py", "--check"), ("test-registry-portability.py",),
         ("project-guidance.py", "check"), ("test-project-guidance.py",),
         ("test-phantom-refs.py",), ("test-project-router.py",),
-        ("test-skill-picks.py",), ("lint-skills.py", "--category", "faith"),
+        ("test-skill-picks.py",), ("test-work-skills.py",), ("test-solution-preflight.py",), ("lint-skills.py", "--category", "faith"),
     ]
     failed = []
     for args in checks:

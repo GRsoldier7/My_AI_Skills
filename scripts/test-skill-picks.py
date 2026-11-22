@@ -18,7 +18,9 @@ ROOT = picks.ROOT
 SIZES = {
     "faith-personal": 3, "faith-teaching": 4, "faith-publishing": 3,
     "work-bi": 2, "consulting": 2, "business-web": 2, "govcon": 2,
-    "home": 1, "deep-research": 1,
+    "home": 1, "deep-research": 1, "work-code": 1, "work-ai": 1, "work-chatgpt": 1,
+    "work-apps-flows": 2, "work-collaboration": 2, "work-copilot": 1,
+    "work-web-artifacts": 1, "work-gcp": 1, "work-read-brief": 1,
 }
 FOUNDATION = "skills/faith/bible-study-theologian/references/faith-foundation.md"
 
@@ -33,7 +35,7 @@ class SkillPicksTests(unittest.TestCase):
     def copy_selected(self, profile):
         fixture = self.temp / "checkout"
         _, entries = picks.select(ROOT, self.catalog, profile)
-        sources = ["registry/skills.json", f"{picks.SETS}/profiles.json", f"{picks.SETS}/{profile}.txt",
+        sources = ["registry/curation.json", "registry/skills.json", f"{picks.SETS}/profiles.json", f"{picks.SETS}/{profile}.txt",
                    *picks.shared_documents(self.catalog[0], entries)]
         for source in sources:
             (fixture / source).parent.mkdir(parents=True, exist_ok=True)
@@ -49,7 +51,7 @@ class SkillPicksTests(unittest.TestCase):
         for profile, count in SIZES.items():
             settings, entries = picks.select(ROOT, catalog, profile)
             self.assertEqual(len(entries), count)
-            expected = {"chatgpt", "copilot"} if profile == "work-bi" else set(picks.HOSTS)
+            expected = {"chatgpt", "copilot"} if profile.startswith("work-") else set(picks.HOSTS)
             self.assertEqual(set(settings["platforms"]), expected)
             for host in sorted(expected):
                 with self.subTest(profile=profile, host=host):
@@ -71,14 +73,21 @@ class SkillPicksTests(unittest.TestCase):
                             self.assertEqual((ROOT / path).read_bytes(), content)
                     reading = (target / "INSTRUCTIONS.md").read_text(encoding="utf-8")
                     self.assertIn(settings["context"], reading)
-                    for row in entries:
-                        self.assertIn(f"## Source section: {row['path']}/SKILL.md", reading)
+                    expected_sections = settings.get("reading", [row["path"] + "/SKILL.md" for row in entries])
+                    for path in expected_sections:
+                        self.assertIn(f"## Source section: {path}", reading)
+                    if "reading" in settings:
+                        sections = [line.removeprefix("## Source section: ") for line in reading.splitlines()
+                                    if line.startswith("## Source section: ")]
+                        self.assertEqual(sections, expected_sections)
+                        self.assertNotIn("microsoft teams", reading.lower())
                     if profile.startswith("faith-"):
                         self.assertIn(FOUNDATION, receipt)
                         self.assertIn(f"## Source section: {FOUNDATION}", reading)
                     if profile == "work-bi":
                         self.assertIn("skills/CONNECTORS.md", receipt)
                         self.assertIn("skills/engineering/validate-data/LICENSE", receipt)
+                        self.assertIn("TERMS AND CONDITIONS FOR USE", (target / "skills/engineering/validate-data/LICENSE").read_text(encoding="utf-8"))
                         self.assertIn("TERMS AND CONDITIONS FOR USE", reading)
                         self.assertIn("Two synthetic groups", reading)
                     if profile in ("business-web", "consulting", "govcon"):
@@ -87,7 +96,7 @@ class SkillPicksTests(unittest.TestCase):
                     if profile == "business-web":
                         self.assertIn("supplied measurements", reading)
                     pairs += 1
-        self.assertEqual(pairs, 50)
+        self.assertEqual(pairs, 68)
         for name in ("faith-personal", "work-bi"):
             first = self.temp / f"{name}-chatgpt"
             expected = picks.assemble(ROOT, catalog, name, "chatgpt")
@@ -158,6 +167,28 @@ class SkillPicksTests(unittest.TestCase):
         manifest["resources"]["skills/microsoft/power-bi"].append("../private.md")
         with self.assertRaisesRegex(ValueError, "resource"):
             picks.select(ROOT, (manifest, self.catalog[1]), "work-bi")
+
+    def test_focused_reading_and_work_host_boundaries(self):
+        for profile, settings in self.catalog[0]["profiles"].items():
+            if not profile.startswith("work-"):
+                continue
+            manifest = deepcopy(self.catalog[0])
+            del manifest["profiles"][profile]["reading"]
+            with self.assertRaisesRegex(ValueError, "Missing focused reading"):
+                picks.select(ROOT, (manifest, self.catalog[1]), profile)
+            for host in ("claude", "codex", "muse", "hermes"):
+                with self.subTest(profile=profile, host=host), self.assertRaisesRegex(ValueError, "Unsupported platform"):
+                    picks.assemble(ROOT, self.catalog, profile, host)
+            for reading in ([], "SKILL.md", [2], ["../private.md"], ["skills/core/other/SKILL.md"],
+                            settings["reading"] + [settings["reading"][0]]):
+                manifest = deepcopy(self.catalog[0])
+                manifest["profiles"][profile]["reading"] = reading
+                with self.subTest(profile=profile, reading=reading), self.assertRaises(ValueError):
+                    picks.select(ROOT, (manifest, self.catalog[1]), profile)
+        manifest = deepcopy(self.catalog[0])
+        manifest["profiles"]["work-apps-flows"]["reading"] = [p for p in manifest["profiles"]["work-apps-flows"]["reading"] if "/power-apps/" not in p]
+        with self.assertRaisesRegex(ValueError, "Missing focused reading"):
+            picks.select(ROOT, (manifest, self.catalog[1]), "work-apps-flows")
 
     def test_existing_linked_and_traversing_targets_are_preserved(self):
         target = self.temp / "existing"

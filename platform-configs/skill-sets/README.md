@@ -4,6 +4,8 @@ This repository is the only source for skills. Each device installs a **small gl
 scope; every other skill in `skills/` stays out of sessions until you install it by name. Nothing here
 copies skills between projects by hand.
 
+Work profiles use the manual exporter in an approved ChatGPT Enterprise or GitHub Copilot workspace. Run `python scripts/skill-picks.py list --platform chatgpt` from the repository root and choose a work profile. The [enterprise work guide](../../docs/20261121%20-%20My%20AI%20Skills%20-%20Enterprise%20Work%20Skills.md) covers all ten and the release workflow.
+
 ## What is installed where
 
 | Mechanism | Skills | Claude Code | Codex | Install model |

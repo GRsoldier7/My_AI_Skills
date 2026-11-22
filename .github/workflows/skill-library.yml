@@ -28,6 +28,9 @@ jobs:
           python-version: "3.13"
       - name: Check registry, packages, project guidance and recommended skills
         run: python -B scripts/check-library.py
+      - name: Test the offline operations brief in Chrome
+        if: runner.os == 'Linux'
+        run: python -B scripts/test-work-artifact-browser.py
       - name: Exercise the shell installer in temporary directories
         if: runner.os == 'Linux'
         run: bash scripts/test-install-skills.sh

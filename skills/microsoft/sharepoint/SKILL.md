@@ -32,6 +32,10 @@ metadata:
 
 # SharePoint — Savant-Level Skill
 
+## Enterprise work pack
+
+Use the [SharePoint site, library and list review](references/work-sharepoint.md) for work-pack requests involving read-only evidence or proposed designs.
+
 ## Philosophy
 
 SharePoint mastery = **information architecture first** (before building anything), **hub sites for governance** (not site collection hierarchy), **metadata over folders** (always), and **Graph API as the future** (PnP PowerShell for admin, Graph for apps).

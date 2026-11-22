@@ -35,6 +35,12 @@ C=skills/engineering/domain-modeling
 printf '%s\n# comment\n\n  %s  \n' "$A" "$B" > "$T/set.txt"
 mkdir -p "$T/elsewhere"
 
+# The published work profiles belong to the work-host exporter.
+for work_set in "$REPO_DIR"/platform-configs/skill-sets/work-*.txt; do
+    run "$T/work-host" --set "$work_set" --apply
+    check "manual profile $(basename "$work_set") directs users to the exporter" rc_is 2
+done
+check "blocked workplace installs leave the destination untouched" absent "$T/work-host"
 # T1-T3: dry run, apply, idempotence
 H="$T/h1"; mkdir -p "$H"
 run "$H" --set "$T/set.txt"

@@ -2,7 +2,11 @@
 
 Running session log for this repo. Newest entry first. Append; never rewrite history. No secrets.
 
-## Current state (2026-11-21)
+## Enterprise work packs (2026-11-21)
+
+Start at the [enterprise work guide](docs/20261121%20-%20My%20AI%20Skills%20-%20Enterprise%20Work%20Skills.md). The registry contains 240 packages. The selector has 18 profiles and 68 supported manual profile/host combinations, including ten workplace profiles for ChatGPT Enterprise and GitHub Copilot. The work brief can use an already-approved reader or supplied excerpts. The app and flow release pack includes an offline managed-ZIP preflight, target binding checks and an ordinary-user acceptance record. A live clean QA install, upgrade and runtime smoke test remain release-specific.
+
+## Earlier library checkpoint (2026-11-21)
 
 Resume from the [Quick Start](docs/20261121%20-%20My%20AI%20Skills%20-%20Quick%20Start.md). The sole catalog contains 237 canonical skills. The nine focused sets point to the source packages. Use `python scripts/skill-picks.py inspect faith-personal` to see a first selection and `python scripts/check-library.py` to validate a complete checkout.
 

@@ -360,5 +360,112 @@
       "imported": "2026-11-16",
       "files": "SKILL.md (byte-identical); LICENSE copied from the data plugin (data/LICENSE)"
     }
+  },
+  "reference_sources": {
+    "skills/engineering/analytics-code-workbench/references/powershell-copilot.md": {
+      "source": "https://github.com/github/awesome-copilot/blob/f10fdb8b2660ce85c98f220b2f1ca24653768a5c/instructions/powershell.instructions.md",
+      "blob": "10857284748448625d043e1f59b6f6a7968c4946",
+      "license": "MIT"
+    },
+    "skills/engineering/analytics-code-workbench/references/tsql-copilot.md": {
+      "source": "https://github.com/github/awesome-copilot/blob/f10fdb8b2660ce85c98f220b2f1ca24653768a5c/instructions/sql-server-safe-tsql.instructions.md",
+      "blob": "0476f678d6a11b74ab554531c47ffa7959b4294d",
+      "license": "MIT"
+    },
+    "skills/engineering/analytics-code-workbench/LICENSE-github.txt": {
+      "source": "https://github.com/github/awesome-copilot/blob/f10fdb8b2660ce85c98f220b2f1ca24653768a5c/LICENSE",
+      "blob": "89bc5e962c9944cdb050887062afdaaf89be504a",
+      "license": "MIT"
+    },
+    "skills/engineering/analytics-code-workbench/references/python-testing/guide.md": {
+      "source": "https://github.com/wshobson/agents/blob/0f73766f80b0b5eb6aa9faaa2fdf90df85a6793f/plugins/python-development/skills/python-testing-patterns/SKILL.md",
+      "blob": "4fe8a4245c55e9e79e70b5f75ab387e2349f91dc",
+      "license": "MIT"
+    },
+    "skills/engineering/analytics-code-workbench/references/python-testing/references/advanced-patterns.md": {
+      "source": "https://github.com/wshobson/agents/blob/0f73766f80b0b5eb6aa9faaa2fdf90df85a6793f/plugins/python-development/skills/python-testing-patterns/references/advanced-patterns.md",
+      "blob": "da186a91e60c44339a28ddb3b6ce478b7d23af64",
+      "license": "MIT"
+    },
+    "skills/engineering/analytics-code-workbench/references/python-testing/references/details.md": {
+      "source": "https://github.com/wshobson/agents/blob/0f73766f80b0b5eb6aa9faaa2fdf90df85a6793f/plugins/python-development/skills/python-testing-patterns/references/details.md",
+      "blob": "bf296f1634742776817e8cfbb5800927b72855d2",
+      "license": "MIT"
+    },
+    "skills/engineering/analytics-code-workbench/LICENSE-python-testing.txt": {
+      "source": "https://github.com/wshobson/agents/blob/0f73766f80b0b5eb6aa9faaa2fdf90df85a6793f/LICENSE",
+      "blob": "326f0a55c96e672fedf9d807ca043c00df05ba0e",
+      "license": "MIT"
+    },
+    "skills/core/work-instruction-review/references/copilot-prompt-format.md": {
+      "source": "https://github.com/github/awesome-copilot/blob/f10fdb8b2660ce85c98f220b2f1ca24653768a5c/instructions/prompt.instructions.md",
+      "blob": "4a36551b156711600e91caacac8994f63cff6831",
+      "license": "MIT"
+    },
+    "skills/core/work-instruction-review/LICENSE-github.txt": {
+      "source": "https://github.com/github/awesome-copilot/blob/f10fdb8b2660ce85c98f220b2f1ca24653768a5c/LICENSE",
+      "blob": "89bc5e962c9944cdb050887062afdaaf89be504a",
+      "license": "MIT"
+    },
+    "skills/engineering/enterprise-web-artifacts/references/design-direction.md": {
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/frontend-design/SKILL.md",
+      "blob": "a5333457c414d20d625f307df945842c0952ecc3",
+      "license": "Apache-2.0"
+    },
+    "skills/engineering/enterprise-web-artifacts/LICENSE-anthropic.txt": {
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/frontend-design/LICENSE.txt",
+      "blob": "f433b1a53f5b830a205fd2df78e2b34974656c7b",
+      "license": "Apache-2.0"
+    },
+    "skills/engineering/analytics-code-workbench/references/google-sql-optimization.md": {
+      "source": "https://github.com/google/skills/blob/4bb21ebfa085f6307d5d62bc21765e1d3433f11d/skills/cloud/bigquery-optimization/references/sql_optimization.md",
+      "blob": "933960290de9fa7cdf9e0325b49d112326743b42",
+      "license": "Apache-2.0"
+    },
+    "skills/engineering/analytics-code-workbench/LICENSE-google.txt": {
+      "source": "https://github.com/google/skills/blob/4bb21ebfa085f6307d5d62bc21765e1d3433f11d/LICENSE",
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "license": "Apache-2.0"
+    },
+    "skills/microsoft/power-bi/references/fabric-metadata-discovery.md": {
+      "source": "https://github.com/microsoft/skills-for-fabric/blob/540c3c58abc804c2715c6632026784f04b342388/skills/semantic-model-authoring/references/metadata-discovery.md",
+      "blob": "bc4b6d626480eddcb03f20dbd36f2cdeca05b42d",
+      "license": "MIT"
+    },
+    "skills/microsoft/power-bi/references/fabric-dax-guidelines.md": {
+      "source": "https://github.com/microsoft/skills-for-fabric/blob/540c3c58abc804c2715c6632026784f04b342388/skills/semantic-model-authoring/references/dax-guidelines.md",
+      "blob": "ef82b872d21767251e6d5c1bf545582f2bee6e75",
+      "license": "MIT"
+    },
+    "skills/microsoft/power-bi/LICENSE-fabric.txt": {
+      "source": "https://github.com/microsoft/skills-for-fabric/blob/540c3c58abc804c2715c6632026784f04b342388/LICENSE",
+      "blob": "e9dbbcbb2c9794c69191c57f20db3e682cd029bb",
+      "license": "MIT"
+    },
+    "skills/microsoft/m365-integration/references/upstream-outlook-mail.md": {
+      "source": "https://github.com/microsoft/work-iq/blob/206072a88695f14000fc72cddcd5f2f40871ba01/plugins/workiq/skills/workiq/references/mail-read-work-iq.md",
+      "blob": "46f3ad353800fb7d569de546447a8076b780d253",
+      "license": "MIT"
+    },
+    "skills/microsoft/m365-integration/references/upstream-outlook-calendar.md": {
+      "source": "https://github.com/microsoft/work-iq/blob/206072a88695f14000fc72cddcd5f2f40871ba01/plugins/workiq/skills/workiq/references/calendar-read-work-iq.md",
+      "blob": "bb9776c5b93be60520ad5053e169a098d541b8a3",
+      "license": "MIT"
+    },
+    "skills/microsoft/m365-integration/references/upstream-sharepoint-search.md": {
+      "source": "https://github.com/microsoft/work-iq/blob/206072a88695f14000fc72cddcd5f2f40871ba01/plugins/workiq/skills/workiq/references/sharepoint-search-work-iq.md",
+      "blob": "9310baf9d261f7c9810b959c67b7ebb5be828043",
+      "license": "MIT"
+    },
+    "skills/microsoft/m365-integration/LICENSE-workiq.txt": {
+      "source": "https://github.com/microsoft/work-iq/blob/206072a88695f14000fc72cddcd5f2f40871ba01/LICENSE",
+      "blob": "9d4e548e66bb96f73ff6a1c8724b3284608e217d",
+      "license": "MIT"
+    },
+    "skills/microsoft/m365-integration/LICENSE-workiq-notices.txt": {
+      "source": "https://github.com/microsoft/work-iq/blob/206072a88695f14000fc72cddcd5f2f40871ba01/NOTICES.TXT",
+      "blob": "6a494bc4ab9519b3c192ad028597a7cb6be1e70d",
+      "license": "MIT"
+    }
   }
 }

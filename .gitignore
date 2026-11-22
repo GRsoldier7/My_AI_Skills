@@ -13,3 +13,5 @@ node_modules/
 platform-configs/claude/mcp/
 mcp_settings.json
 mcp_settings.*.json
+# Private work profiles and generated local packs
+/Work/

@@ -25,7 +25,9 @@ HOSTS = {
 }
 PUBLIC_DOCUMENTS = {"skills/CONNECTORS.md", "skills/THIRD-PARTY-NOTICES.md"}
 PACKAGE = re.compile(r"skills/[a-z0-9]+(?:-[a-z0-9]+)*/[a-z0-9]+(?:-[a-z0-9]+)*")
-RESOURCE = re.compile(r"(?:agents/openai\.yaml|references/[a-z0-9]+(?:-[a-z0-9]+)*\.md|LICENSE(?:\.txt)?)")
+SLUG = r"[a-z0-9]+(?:-[a-z0-9]+)*"
+RESOURCE = re.compile(rf"(?:agents/openai\.yaml|references/(?:{SLUG}/)*{SLUG}\.md|"
+                      rf"LICENSE(?:-{SLUG})?(?:\.txt)?|assets/operations-brief\.html|scripts/check-solution\.py)")
 LINK = re.compile(r"\[([^\]\n]+)\]\(([^()\s]+)\)")
 FIELDS = {"purpose", "context", "example", "platforms"}
 
@@ -69,12 +71,12 @@ def select(root, catalog, profile):
     if not isinstance(profile, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", profile) or profile not in manifest["profiles"]:
         raise ValueError(f"Unknown profile: {profile}")
     settings = manifest["profiles"][profile]
-    if (not isinstance(settings, dict) or set(settings) != FIELDS or
+    if (not isinstance(settings, dict) or set(settings) not in (FIELDS, FIELDS | {"reading"}) or
             not all(isinstance(settings[key], str) and settings[key].strip() for key in ("purpose", "context", "example"))):
         raise ValueError(f"Invalid purpose, context or example for {profile}")
     hosts = settings["platforms"]
     if (not isinstance(hosts, list) or not hosts or any(not isinstance(host, str) or host not in HOSTS for host in hosts)
-            or len(set(hosts)) != len(hosts) or (profile == "work-bi" and set(hosts) - {"chatgpt", "copilot"})):
+            or len(set(hosts)) != len(hosts) or (profile.startswith("work-") and set(hosts) - {"chatgpt", "copilot"})):
         raise ValueError(f"Invalid receiving platforms for {profile}")
     entries = []
     lines = read_source(root, f"{SETS}/{profile}.txt").decode("utf-8").splitlines()
@@ -100,6 +102,23 @@ def select(root, catalog, profile):
         if not read_source(root, f"{path}/SKILL.md"):
             raise ValueError(f"Empty skill source: {path}")
         entries.append(row)
+    if profile.startswith("work-") and "reading" not in settings:
+        raise ValueError(f"Missing focused reading for {profile}")
+    if "reading" in settings:
+        reading = settings["reading"]
+        if (not isinstance(reading, list) or not reading or any(not isinstance(p, str) for p in reading)
+                or len(set(reading)) != len(reading)):
+            raise ValueError(f"Invalid focused reading list for {profile}")
+        permitted = set()
+        for row in entries:
+            package = row["path"]
+            sections = {f"{package}/{item}" for item in ["SKILL.md", *manifest["resources"][package]]
+                        if item.endswith(".md")}
+            if not sections.intersection(reading):
+                raise ValueError(f"Missing focused reading for {package}")
+            permitted.update(sections)
+        if not set(reading) <= permitted:
+            raise ValueError(f"Unreviewed focused reading for {profile}")
     return settings, entries
 
 
@@ -110,7 +129,7 @@ def package_files(root, row, extras):
     allowed = {"SKILL.md", *extras}
     # Walk only explicit directories. A private overlay, a new resource or a link
     # is a reason to review the package before copying any part of it.
-    folders = {Path(item).parent.as_posix() for item in allowed}
+    folders = {parent.as_posix() for item in allowed for parent in Path(item).parents}
     actual = set()
     for folder in sorted(folders):
         parent = base / folder
@@ -182,9 +201,16 @@ def assemble(root, catalog, profile, host):
         "The current project determines which information and actions are authorized.",
     ]
     example = "Example task\n\n> " + settings["example"]
-    readme = intro + ["## First use", "Open [INSTRUCTIONS.md](INSTRUCTIONS.md) for the self-contained reading copy. "
-                      "It includes the workflows and the text of their shared references. For a shorter prompt, "
-                      "use one workflow and its required sections. The canonical package files are also provided.",
+    focused = settings.get("reading")
+    if focused:
+        workflow_links = [f"- [{path.rsplit('/', 1)[-1]}]({path})" for path in focused]
+    first_use = ("Open [INSTRUCTIONS.md](INSTRUCTIONS.md) for the focused work instructions. "
+                 "The package folders keep the reviewed originals, references and any licenses for optional reading."
+                 if focused else
+                 "Open [INSTRUCTIONS.md](INSTRUCTIONS.md) for the self-contained reading copy. "
+                 "It includes the workflows and the text of their shared references. For a shorter prompt, "
+                 "use one workflow and its required sections. The canonical package files are also provided.")
+    readme = intro + ["## First use", first_use,
                       example, "## Source entry points", "\n".join(workflow_links),
                       "## Verification", "SHA256SUMS identifies the exact bytes of each exported file. "
                       "This local export prepares material for manual use. Native activation, "
@@ -192,11 +218,25 @@ def assemble(root, catalog, profile, host):
     reading = intro + [example, "## Contents", "\n".join(workflow_links)]
     references = sorted(p for p in files if p.endswith(".md") and p not in entrypoints
                         and p != "skills/THIRD-PARTY-NOTICES.md")
-    for path in [*entrypoints, *references]:
+    for path in (focused or [*entrypoints, *references]):
         reading.extend([f"## Source section: {path}", reading_text(path, files[path], files)])
+    embedded_vendors = {row["path"] for row in entries if row.get("origin") == "vendored"
+                        and any(section.startswith(row["path"] + "/") for section in (focused or []))}
     for path in sorted(files):
         if path == "skills/THIRD-PARTY-NOTICES.md" or path.rsplit("/", 1)[-1].startswith("LICENSE"):
-            reading.extend([f"## Attribution and license: {path}", files[path].decode("utf-8").strip()])
+            if focused:
+                readme.append(f"Included attribution and license: [{path}]({path}).")
+            if not focused or path.rsplit("/", 1)[0] in embedded_vendors:
+                reading.extend([f"## Attribution and license: {path}", files[path].decode("utf-8").strip()])
+    if focused:
+        curation = json.loads(read_source(root, "registry/curation.json"), object_pairs_hook=unique_keys)
+        originals = [f"- [{path}]({path}) · [pinned original]({record['source']}) ({record['license']})"
+                     for path, record in sorted(curation["reference_sources"].items())
+                     if path in files and path.endswith(".md")]
+        if originals:
+            readme.extend(["## Optional upstream references",
+                           "Use the pinned original for upstream cross-references. "
+                           "These references do not activate tools or authorize actions.", "\n".join(originals)])
     if "skills/THIRD-PARTY-NOTICES.md" in files:
         readme.append("See the [third-party notices](skills/THIRD-PARTY-NOTICES.md) for attributions and license text.")
     files["README.md"] = ("\n\n".join(readme) + "\n").encode()

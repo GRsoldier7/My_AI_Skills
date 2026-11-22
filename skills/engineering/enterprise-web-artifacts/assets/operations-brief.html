@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Completion by area | Operations brief</title>
+<style>
+:root { color-scheme: light; --ink: #172b35; --accent: #086353; --muted: #4a5e64; --line: #c8d6d3; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f5f7f5; color: var(--ink); font: 1rem/1.55 "Segoe UI", system-ui, sans-serif; }
+main { width: min(100%, 50rem); margin: 2rem auto; padding: clamp(1rem, 5vw, 3rem); background: white; border-top: .42rem solid var(--accent); }
+header { padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+h1, h2, p { margin: .2rem 0 .55rem; }
+h1 { font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.1; letter-spacing: -.035em; }
+h2 { font-size: 1.2rem; }
+.meta, footer { color: var(--muted); font-size: .9rem; }
+.controls { margin: 1.5rem 0; }
+label { font-weight: 650; margin-right: .5rem; }
+select { font: inherit; padding: .4rem .7rem; color: var(--ink); border: 1px solid var(--muted); border-radius: .3rem; background: white; }
+:focus-visible { outline: 3px solid #0554a2; outline-offset: 3px; }
+.summary { margin: 1rem 0 1.8rem; padding: 1rem 1.3rem; background: #eaf4ef; border-left: .3rem solid var(--accent); }
+#rate { display: block; font: 650 clamp(2rem, 8vw, 3.6rem)/1.16 "Segoe UI", system-ui, sans-serif; color: var(--accent); }
+.nums, td, #rate { font-variant-numeric: tabular-nums; }
+table { width: 100%; border-collapse: collapse; }
+caption { text-align: left; font-weight: 650; font-size: 1.12rem; padding: 0 0 .5rem; }
+th, td { padding: .5rem .35rem; border-bottom: 1px solid var(--line); text-align: right; }
+thead th { color: var(--muted); font-size: .9rem; }
+tr > :first-child { text-align: left; }
+footer { margin-top: 1.3rem; }
+[hidden] { display: none !important; }
+@media (max-width: 28rem) { main { margin: 0; } th, td { padding: .45rem .17rem; } thead th { font-size: .78rem; } }
+@media print { body, main { color: black; background: white; } main { margin: 0; width: 100%; } .controls { display: none; } .summary, tr { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<main>
+<header><p class="meta">Operations brief · Synthetic example</p><h1>Completion by area</h1>
+<p>How many eligible requests were completed during the reporting week?</p>
+<p class="meta">Period November 9–15, 2026 · Data through November 15, 23:59 UTC</p></header>
+<div class="controls" id="controls" hidden><label for="area">Reporting area</label>
+<select id="area"><option value="all">All areas</option><option value="A">Area A</option><option value="B">Area B</option><option value="C">Area C</option></select></div>
+<section class="summary" aria-labelledby="scope">
+<h2 id="scope">All areas</h2>
+<p role="status" aria-live="polite" aria-atomic="true"><strong id="rate">30%</strong>
+<span id="counts" class="nums">3 completed · 10 eligible</span></p>
+</section>
+<table><caption>Request counts and completion rates</caption>
+<thead><tr><th scope="col">Area</th><th scope="col">Completed</th><th scope="col">Eligible</th><th scope="col">Rate</th></tr></thead>
+<tbody>
+<tr data-area="A"><th scope="row">Area A</th><td>1</td><td>2</td><td>50%</td></tr>
+<tr data-area="B"><th scope="row">Area B</th><td>2</td><td>8</td><td>25%</td></tr>
+<tr data-area="C"><th scope="row">Area C</th><td>0</td><td>0</td><td>—</td></tr>
+</tbody></table>
+<footer>Rate = completed ÷ eligible in the selected rows. A dash means there were no eligible requests.</footer>
+</main>
+<script>
+"use strict";
+const picker = document.getElementById("area");
+const rows = Array.from(document.querySelectorAll("tbody tr"));
+const format = new Intl.NumberFormat("en", { style: "percent", maximumFractionDigits: 1 });
+function updateBrief() {
+  let completed = 0;
+  let eligible = 0;
+  for (const row of rows) {
+    row.hidden = picker.value !== "all" && picker.value !== row.dataset.area;
+    if (!row.hidden) {
+      completed += Number(row.cells[1].textContent);
+      eligible += Number(row.cells[2].textContent);
+    }
+  }
+  document.getElementById("scope").textContent = picker.selectedOptions[0].textContent;
+  document.getElementById("rate").textContent = eligible ? format.format(completed / eligible) : "No eligible requests";
+  document.getElementById("counts").textContent = completed + " completed · " + eligible + " eligible";
+}
+picker.addEventListener("change", updateBrief);
+updateBrief();
+document.getElementById("controls").hidden = false;
+</script>
+</body></html>

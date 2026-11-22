@@ -1,0 +1,9 @@
+# ChatGPT plugin and tool optimization
+
+Identify the surface first. A Custom GPT has instructions and possibly knowledge or Actions. A workspace plugin can package reusable skills or tools. A tool-backed integration also needs its actual tool contracts and approved runtime. Ask for the description, redacted manifest or tool schema, and one failure. For an instructions-only workspace, deliver the revised text, a draft schema if requested and an operator test plan.
+
+For each exposed tool, review the action name, ownership, input types, required versus optional fields, enums, return shape and user-visible failure states. Name the source or scope that distinguishes overlapping tools. Keep read operations distinct from writes. A write should identify the target, preview the effect and use the host's supported confirmation mechanism. Document authentication or permission requirements separately. Avoid adding a tool to solve a wording problem.
+
+**Golden set.** For a hypothetical read-only report finder, “find the report by its exact name” and “where can I see yesterday's volumes?” are positive discovery cases. “Explain what a completion rate is” should use ordinary chat. “Update that report” must not call a read tool as a writer. Also test ambiguous report name, missing scope and denied access. Expected behavior is to clarify, name the missing input or report the denial. Fabricated records or claimed writes fail the release.
+
+For the same cases, compare baseline and candidate tool selection, argument validity, response grounding, unnecessary calls and time or tokens if measured. Save expected vs actual by case, include a fresh holdout, and retain the previous version for rollback. An Enterprise manual review verifies copy and expected routing. Live discovery and permissions require the target workspace. [OpenAI plugin metadata guide](https://developers.openai.com/plugins/guides/optimize-metadata)

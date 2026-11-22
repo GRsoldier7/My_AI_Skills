@@ -12,7 +12,7 @@ python scripts/skill-picks.py inspect faith-personal
 python scripts/skill-picks.py export faith-personal --platform chatgpt --output ./faith-study-pack
 ```
 
-Open the new pack's README for the receiving tool and try one real task. The export writes to a new local folder. For work BI in an approved chat, choose `work-bi`. For separate client engagements, export `consulting` into each client's own project. [Quick Start and example prompts](docs/20261121%20-%20My%20AI%20Skills%20-%20Quick%20Start.md)
+Open the new pack's README for the receiving tool and try one real task. The export writes to a new local folder. For BI, BigQuery, Outlook and SharePoint reads, ChatGPT authoring, code, Power Platform or HTML, use the [enterprise work pack guide](docs/20261121%20-%20My%20AI%20Skills%20-%20Enterprise%20Work%20Skills.md). For separate client engagements, export `consulting` into each client's own project. [Quick Start and example prompts](docs/20261121%20-%20My%20AI%20Skills%20-%20Quick%20Start.md)
 
 | I want to… | Start here |
 | --- | --- |
