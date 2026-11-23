@@ -36,7 +36,11 @@ If any of these are true, the file is in-use even if mtime+ref criteria say othe
 - File path mentioned in `MEMORY.md`, `MEMORY_INDEX.md`, `CLAUDE.md`, `LESSONS_LEARNED.md`, `SELF_HEALING.md`
 - File path mentioned in any `.planning/*/PLAN.md` or `STATE.md`
 - File path appears in any active runbook under `/root/homelab/docs/runbooks/`
-- File path referenced from a systemd unit, cron entry, or container service definition (LXC `pct config` mount points, included scripts)
+- File path referenced from a systemd unit or cron entry: on the host, or by basename in a running guest's crontabs, cron dirs, unit files and drop-ins in the admin and package unit dirs (one read-only `pct exec` per guest, path tokens only)
+- File, or its directory, bound into a guest by an LXC mount point (`mpN:` / `lxc.mount.entry:` host path)
+- File is `__init__.py`: a package marker, referenced by the import system, never by name
+- File is empty (0 bytes): there is no content to judge, and its existence may be the point (a marker, a placeholder config)
+- File content is credential-shaped (a private-key block, a known token prefix, a literal assigned to a password/secret/token/key name). Quarantine would copy the secret into the archive, which is pushed to another node. The scanner records only that it matched, never the text. A heuristic: a short bare default slips past it
 - File is the target of any symlink in tracked roots
 - **File extension is `.service`, `.socket`, `.timer`, `.target`, `.path`, `.mount` — anywhere.** Systemd units are referenced via `systemctl enable`, not by other files. Old mtime is the norm; old systemd unit ≠ stale.
 - File is on the "passive infrastructure" list: `Caddyfile`, `nginx.conf`, `httpd.conf`, `postgresql.conf`, `redis.conf`, `crontab`, `cron.d/*`, `cron.daily/*` — referenced by daemons, not by other files.

@@ -17,7 +17,7 @@ done
 # A seam left exported in the operator's shell narrows the walk or the in-use sources — the
 # false-SAFE direction — so every run that uses one says so. Read before any default is assigned
 overrides=()
-for v in ORGANIZER_ROOTS ORGANIZER_SYMLINK_DIRS ORGANIZER_DIR ORGANIZER_INUSE_FILES ORGANIZER_INUSE_DIRS ORGANIZER_SYS_REF_FILES; do
+for v in ORGANIZER_ROOTS ORGANIZER_SYMLINK_DIRS ORGANIZER_DIR ORGANIZER_INUSE_FILES ORGANIZER_INUSE_DIRS ORGANIZER_SYS_REF_FILES ORGANIZER_CT_REF_FILES ORGANIZER_CT_CONFIG_FILES; do
   [[ -n "${!v:-}" ]] && overrides+=("$v")
 done
 [[ "${SCAN_ROOT_TOP:-1}" != 1 ]] && overrides+=("SCAN_ROOT_TOP=$SCAN_ROOT_TOP")
@@ -25,6 +25,17 @@ done
 [[ "$STALE_DAYS" != 90 ]] && overrides+=("STALE_DAYS=$STALE_DAYS")
 [[ "$SAFE_DAYS" != 7 ]] && overrides+=("SAFE_DAYS=$SAFE_DAYS")
 if (( ${#overrides[@]} )); then echo "scan-files.sh: override active: ${overrides[*]}" >&2; fi
+# The guest seams replace a safety signal outright: one naming a missing file would drop every guest ref
+# and mount without a trace beyond the notice above, so an unreadable one stops the scan. -d '': the whole
+# value, split on any whitespace, exactly as the readers below take it (a plain read stops at a newline).
+# Fed NUL-terminated so read ends on its delimiter and returns 0, not 1 at EOF
+for v in ORGANIZER_CT_REF_FILES ORGANIZER_CT_CONFIG_FILES; do
+  [[ -n "${!v:-}" ]] || continue
+  read -ra seam_files -d '' < <(printf '%s\0' "${!v}")
+  for sf in "${seam_files[@]}"; do
+    [[ -f "$sf" && -r "$sf" ]] || { echo "scan-files.sh: $v names an unreadable file ($sf): scan stopped" >&2; exit 2; }
+  done
+done
 
 ROOTS=(
   "/root/homelab"
@@ -99,6 +110,13 @@ walk_file_list() {
     ! -name '*.env' ! -name '*.pem' ! -name '*.key' ! -name '*.kdbx' ! -name '*.gpg' ! -name '*.asc' ! -name '*.p12' ! -name '*.pfx' 2>/dev/null
 }
 
+# Absolute paths named in cron/unit text: bare tokens, plus whole quoted or backslash-escaped paths, so a
+# script whose name holds a space is named in full. Tokens only, never whole lines (Environment= may hold secrets)
+read -r UNIT_PATH_RE <<'RE'
+"/[^"]+"|'/[^']+'|/([A-Za-z0-9_./@+-]|\\ )+
+RE
+unit_paths() { grep -oE -- "$UNIT_PATH_RE" | sed -E "s/^[\"']//; s/[\"']\$//; s/\\\\ / /g"; }
+
 # Build reference index: filename -> list of files mentioning it
 build_ref_index() {
   while IFS= read -r f; do
@@ -113,6 +131,11 @@ build_ref_index() {
   # Basenames come from every walked file; reference SOURCES exclude the organizer's own output
   grep -v "^$ORGANIZER_DIR/" "$TMP/refs_input.txt" > "$TMP/ref_sources.txt"
   xargs -d '\n' -r grep -HoFf "$TMP/basenames.txt" < "$TMP/ref_sources.txt" 2>/dev/null > "$INDEX_FILE"
+  # Basenames cited by exactly one source: quarantining that source leaves them unreferenced (#27).
+  # Split at the LAST ":" — a source path may hold one, a basename rarely does
+  awk '{ if (!match($0, /:[^:]*$/)) next; src = substr($0, 1, RSTART - 1); b = substr($0, RSTART + 1)
+         if (!((b, src) in seen)) { seen[b, src] = 1; n[b]++; one[b] = src } }
+       END { for (b in n) if (n[b] == 1) print b "\t" one[b] }' "$INDEX_FILE" > "$TMP/sole_citer.tsv"
 
   # Python modules are referenced by module name, never by "foo.py". The names after `import`
   # are optional so `from pkg.mod import (` still yields pkg + mod
@@ -132,7 +155,32 @@ build_ref_index() {
       cat /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/* /etc/cron.hourly/* /etc/cron.daily/* /etc/cron.weekly/* /etc/cron.monthly/* 2>/dev/null
       cat /etc/systemd/system/*.service /etc/systemd/system/*.timer /etc/systemd/system/*.path /etc/systemd/system/*.d/*.conf 2>/dev/null
     fi
-  } | grep -oE '/[A-Za-z0-9_./@+-]+' > "$TMP/sys_refs.txt"
+  } | unit_paths > "$TMP/sys_refs.txt"
+  # Guest side (safety-rules.md: container service definitions). A repo script copied into a guest and
+  # run there names only the copy's path, so each RUNNING guest's crontabs, cron dirs and every unit file
+  # and drop-in (admin and package unit dirs) are read too: path tokens only, as above, and never into
+  # link_dirs (a guest's /root is not the host's). A guest whose dump fails is listed in
+  # ct_refs_unreadable; a failed listing stops the scan — neither may read as "names nothing"
+  : > "$TMP/ct_unreadable.txt"
+  ct_live=0
+  if [[ -z "${ORGANIZER_CT_REF_FILES:-}" ]] && command -v pct >/dev/null 2>&1; then
+    pct list > "$TMP/pct_list.txt" 2>/dev/null \
+      || { echo "scan-files.sh: pct list failed, so no guest's cron/unit refs can be read: scan stopped" >&2; exit 3; }
+    ct_live=1
+  fi
+  {
+    if [[ -n "${ORGANIZER_CT_REF_FILES:-}" ]]; then
+      read -ra ct_ref_files -d '' < <(printf '%s\0' "$ORGANIZER_CT_REF_FILES")
+      cat "${ct_ref_files[@]}" 2>/dev/null
+    elif (( ct_live )); then
+      while read -r id status _; do
+        [[ "$id" =~ ^[0-9]+$ && "$status" == running ]] || continue
+        # stdin from /dev/null: this loop reads the listing on stdin, and exec must not drain it
+        timeout 20 pct exec "$id" -- sh -c 'cat /etc/crontab /etc/cron.d/* /etc/cron.hourly/* /etc/cron.daily/* /etc/cron.weekly/* /etc/cron.monthly/* /var/spool/cron/* /var/spool/cron/crontabs/* /etc/systemd/system/* /etc/systemd/system/*/* /lib/systemd/system/* /lib/systemd/system/*/* /usr/lib/systemd/system/* /usr/lib/systemd/system/*/* 2>/dev/null; exit 0' </dev/null 2>/dev/null \
+          || echo "$id" >> "$TMP/ct_unreadable.txt"
+      done < "$TMP/pct_list.txt"
+    fi
+  } | unit_paths >> "$TMP/sys_refs.txt"
   # Symlinks inside the roots, plus the homes that link INTO them (~/.claude/skills -> My_AI_Skills)
   {
     for root in "${ROOTS[@]}"; do
@@ -146,6 +194,26 @@ build_ref_index() {
   cat "$TMP/link_targets.txt" >> "$TMP/sys_refs.txt"
   # A linked DIRECTORY makes everything under it live
   while IFS= read -r t; do [[ -d "$t" ]] && echo "$t"; done < "$TMP/link_targets.txt" > "$TMP/link_dirs.txt"
+  # LXC mount points bind a host dir or a single host file into a guest (safety-rules.md: container
+  # service definitions), so the bound path is live there. Host paths only: a volume-backed mp
+  # (storage:vm-N-disk-M) names none. The seam stands in for /etc/pve/lxc/*.conf
+  {
+    if [[ -n "${ORGANIZER_CT_CONFIG_FILES:-}" ]]; then
+      read -ra ct_config_files -d '' < <(printf '%s\0' "$ORGANIZER_CT_CONFIG_FILES")
+      cat "${ct_config_files[@]}" 2>/dev/null
+    else
+      cat /etc/pve/lxc/*.conf 2>/dev/null
+    fi
+  } | sed -nE 's#^(mp[0-9]+|lxc\.mount\.entry):[[:space:]]*(/[^,[:space:]]*).*#\2#p' \
+    | while IFS= read -r m; do realpath -m -- "$m"; done | sort -u > "$TMP/ct_mounts.txt"
+  # Held is the safe direction, but a bind covering a whole scan root holds everything under it, and an
+  # audit that proposes nothing has to say why. Canonical paths, so a bind of / or of <dir>/. still counts
+  while IFS= read -r m; do
+    for root in "${ROOTS[@]}"; do
+      croot=$(realpath -m -- "$root")
+      [[ "$m" == / || "$croot" == "$m" || "$croot" == "$m"/* ]] && echo "scan-files.sh: CT mount $m covers scan root $root: everything under it reads in use" >&2
+    done
+  done < "$TMP/ct_mounts.txt"
 }
 
 all_files=$(walk_file_list)
@@ -163,6 +231,9 @@ count_refs() {
 check_inuse() {
   local path="$1" base
   base=$(basename "$path")
+  # A package marker is referenced by the import system, never by name — and __init__.py is kept out
+  # of the ref index as over-common, so by name it could only ever read as unreferenced
+  [[ "$base" == __init__.py ]] && { echo "package_marker"; return; }
   # Systemd units anywhere — referenced via systemctl, not by other files
   case "$base" in
     *.service|*.socket|*.timer|*.target|*.path|*.mount) echo "systemd_unit"; return ;;
@@ -182,6 +253,14 @@ check_inuse() {
   while IFS= read -r d; do
     [[ "$path" == "$d"/* ]] && { echo "inside_symlinked_dir"; return; }
   done < "$TMP/link_dirs.txt"
+  # Mount sources are canonical, but find emits paths under a root as given (a root may sit below a symlink)
+  if [[ -s "$TMP/ct_mounts.txt" ]]; then
+    local cpath
+    cpath=$(realpath -m -- "$path")
+    while IFS= read -r d; do
+      [[ "$d" == / || "$cpath" == "$d" || "$cpath" == "$d"/* ]] && { echo "ct_mount"; return; }
+    done < "$TMP/ct_mounts.txt"
+  fi
   for f in "${INUSE_FILES[@]}"; do
     [[ -f "$f" ]] || continue
     grep -qF -- "$base" "$f" 2>/dev/null && { echo "mentioned_in_$(basename "$f")"; return; }
@@ -215,6 +294,22 @@ safe_q=(); watchlist=(); dated_hist=(); duplicates=()
 declare -A hash_seen
 # ISO dates anywhere, or the house "YYYYMMDD - Description" prefix
 DATED_RE='([0-9]{4}-[0-9]{2}-[0-9]{2}|^[0-9]{8} - )'
+# Credential SHAPES, not names (names are pruned at walk time): a PEM private-key block, well-known token
+# prefixes and a JWT (case-sensitive), and, case-insensitively, a password/secret/token/key assignment
+# whose value is a literal: quoted and 8+ chars (spaces allowed, a passphrase has them), or bare, 12+ token
+# chars, ending at a separator (so a call result, token = make_token(x), is not one). A reference ($VAR,
+# <placeholder>, {{ tmpl }}, %var%) is not a literal. A heuristic, not a secret scanner: a short bare default
+# (password: changeme) passes
+read -r CRED_SHAPE_RE <<'RE'
+-----BEGIN [A-Z ]*PRIVATE KEY-----|(^|[^A-Za-z0-9])(AKIA|ASIA)[0-9A-Z]{16}|(^|[^A-Za-z0-9])sk[-_][A-Za-z0-9_-]{20,}|(^|[^A-Za-z0-9])gh[pousr]_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{22,}|(^|[^A-Za-z0-9])xox[abpr]-[0-9A-Za-z-]{10,}|AIza[0-9A-Za-z_-]{35}|eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}
+RE
+read -r CRED_ASSIGN_RE <<'RE'
+(password|passwd|pwd|secret|token|api[_-]?key|apikey|private[_-]?key|access[_-]?key|secret[_-]?key)s?["'`]?[[:space:]]*[=:][[:space:]]*(["'`][^"'`$<{%]{8,}["'`]|[A-Za-z0-9+/=_@#!^*-]{12,}([[:space:],;]|$))
+RE
+# basename -> its only citing file (#27); proposed rows collect the files they would orphan
+declare -A sole_citer orphans_of
+while IFS=$'\t' read -r b src; do sole_citer[$b]=$src; done < "$TMP/sole_citer.tsv"
+safe_paths=(); dated_paths=(); dup_paths=()
 # Paths go into JSON by interpolation — one quote or backslash in a filename made the whole file unparseable
 json_esc() { local s=${1//\\/\\\\}; printf '%s' "${s//\"/\\\"}"; }
 total_scanned=0
@@ -250,29 +345,73 @@ while IFS= read -r f; do
     is_dated=true
   fi
 
-  # Duplicate detection — refs + in-use travel with the entry so a cited copy is never proposed
   jf=$(json_esc "$f")
+  entry="{\"path\":\"$jf\",\"mtime_days\":$mtime_days,\"size\":$size,\"hash\":\"$hash\",\"refs\":$refs,\"in_use_signals\":\"$inuse\""
+  reason=""
+  (( refs > 0 )) && reason="${reason}has_inbound_refs;"
+  [[ -n "$inuse" ]] && reason="${reason}${inuse};"
+  # Credential-shaped content is never proposed, and never printed: the match is an exit status. Gated
+  # before dedup, so a same-content copy cannot surface as a DUPLICATE of a held file either
+  if (( size > 0 )) && { grep -qE -- "$CRED_SHAPE_RE" "$f" || grep -qiE -- "$CRED_ASSIGN_RE" "$f"; } 2>/dev/null; then
+    watchlist+=("$entry,\"reason\":\"${reason}credential_shaped;\"}")
+    continue
+  fi
+  # Zero bytes carry no evidence: every empty file is hash-equal, so dedup is meaningless, and an empty
+  # file may be a marker (__init__.py, a placeholder config) whose existence is the point
+  if (( size == 0 )); then
+    watchlist+=("$entry,\"reason\":\"${reason}zero_byte;\"}")
+    continue
+  fi
+  # Held only by refs, all from one file: quarantining that file would orphan this one (#27)
+  if (( refs > 0 )) && [[ -z "$inuse" ]]; then
+    src=${sole_citer[$base]:-}
+    [[ -n "$src" && "$src" != "$f" ]] && orphans_of[$src]+="\"$jf\","
+  fi
+
+  # Duplicate detection — refs + in-use travel with the entry so a cited copy is never proposed
   if [[ -n "${hash_seen[$hash]:-}" ]]; then
+    # DUPLICATE is a proposed bucket: a cited or in-use copy is held like any other cited file (#30)
+    if (( refs > 0 )) || [[ -n "$inuse" ]]; then
+      watchlist+=("$entry,\"reason\":\"${reason}duplicate;\"}")
+      continue
+    fi
     duplicates+=("{\"path\":\"$jf\",\"duplicate_of\":\"${hash_seen[$hash]}\",\"hash\":\"$hash\",\"mtime_days\":$mtime_days,\"size\":$size,\"refs\":$refs,\"in_use_signals\":\"$inuse\"}")
+    dup_paths+=("$f")
     continue
   fi
   hash_seen[$hash]="$jf"
 
   # Categorize
-  entry="{\"path\":\"$jf\",\"mtime_days\":$mtime_days,\"size\":$size,\"hash\":\"$hash\",\"refs\":$refs,\"in_use_signals\":\"$inuse\""
   if (( refs == 0 )) && [[ -z "$inuse" ]]; then
     if [[ "$is_dated" == "true" ]]; then
       dated_hist+=("$entry,\"reason\":\"dated_artifact_no_refs\"}")
+      dated_paths+=("$f")
     else
       safe_q+=("$entry,\"reason\":\"mtime_gt_${STALE_DAYS}d_no_refs\"}")
+      safe_paths+=("$f")
     fi
   else
-    reason=""
-    (( refs > 0 )) && reason="${reason}has_inbound_refs;"
-    [[ -n "$inuse" ]] && reason="${reason}${inuse};"
     watchlist+=("$entry,\"reason\":\"$reason\"}")
   fi
 done <<< "$all_files"
+
+# Every proposed row names the files its quarantine would leave unreferenced (#27)
+with_orphans() {
+  local -n rows=$1 paths=$2
+  local i o
+  for i in "${!rows[@]}"; do
+    o=${orphans_of[${paths[$i]}]:-}
+    rows[$i]="${rows[$i]%\}},\"would_orphan\":[${o%,}]}"
+  done
+}
+with_orphans safe_q safe_paths
+with_orphans dated_hist dated_paths
+with_orphans duplicates dup_paths
+
+ct_unreadable=$(sort -un "$TMP/ct_unreadable.txt" | paste -sd, -)
+if [[ -n "$ct_unreadable" ]]; then
+  echo "scan-files.sh: guest cron/unit dump failed for CT ${ct_unreadable//,/, CT }: scripts those guests run are NOT protected, check them by hand" >&2
+fi
 
 # Emit JSON
 join_arr() {
@@ -284,6 +423,7 @@ cat <<JSON
 {
   "audit_date": "$(date +%Y-%m-%d)",
   "totals": {"scanned": $total_scanned, "skipped_floor": $total_skipped_floor, "candidates_safe_quarantine": ${#safe_q[@]}, "candidates_watchlist": ${#watchlist[@]}, "candidates_dated": ${#dated_hist[@]}, "candidates_duplicates": ${#duplicates[@]}},
+  "ct_refs_unreadable": [$( [[ -n "$ct_unreadable" ]] && printf '"%s"' "${ct_unreadable//,/\",\"}" )],
   "categorized": {
     "SAFE_QUARANTINE": [$(join_arr "${safe_q[@]:-}")],
     "WATCHLIST": [$(join_arr "${watchlist[@]:-}")],

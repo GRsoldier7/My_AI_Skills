@@ -57,6 +57,9 @@ class ScannerCase(unittest.TestCase):
         # Stands in for operator memory, runbook dirs and the cron/systemd homes: no test reads the live ones
         self.sys = Path(self._tmp.name) / 'sys'
         (self.sys / 'inuse').mkdir(parents=True)
+        # The guest seams must name readable files (an unreadable one stops the scan), so they start empty
+        for seam in ('ct-refs', 'ct-config'):
+            (self.sys / seam).touch()
 
     def tearDown(self) -> None:
         self._tmp.cleanup()
@@ -67,6 +70,9 @@ class ScannerCase(unittest.TestCase):
                'ORGANIZER_SYMLINK_DIRS': str(self.linkhome),
                'ORGANIZER_INUSE_FILES': str(self.sys / 'MEMORY.md'), 'ORGANIZER_INUSE_DIRS': str(self.sys / 'inuse'),
                'ORGANIZER_SYS_REF_FILES': str(self.sys / 'cron'),
+               # Fixture files stand in for the guests' unit/cron dumps and for /etc/pve/lxc/*.conf: without
+               # them every scan in this suite would pct exec the live guests of the host it runs on
+               'ORGANIZER_CT_REF_FILES': str(self.sys / 'ct-refs'), 'ORGANIZER_CT_CONFIG_FILES': str(self.sys / 'ct-config'),
                # Pinned to the defaults so a floor exported in the operator's shell cannot move a fixture's bucket
                'STALE_DAYS': '90', 'SAFE_DAYS': '7', **env_extra}
         proc = subprocess.run(['bash', str(SCRIPTS / name)], capture_output=True, text=True,
@@ -77,8 +83,8 @@ class ScannerCase(unittest.TestCase):
         except json.JSONDecodeError:
             return proc.returncode, None
 
-    def scan(self, roots: list[Path] | None = None) -> dict:
-        rc, data = self.run_script('scan-files.sh', roots)
+    def scan(self, roots: list[Path] | None = None, **env_extra: str) -> dict:
+        rc, data = self.run_script('scan-files.sh', roots, **env_extra)
         self.assertEqual(rc, 0)
         if data is None:
             self.fail('scan-files.sh did not emit valid JSON')
@@ -89,6 +95,19 @@ class ScannerCase(unittest.TestCase):
             if any(e and e['path'] == str(path) for e in entries):
                 return name
         return None
+
+    def entry_in(self, data: dict, bucket: str, path: Path) -> dict:
+        """The row for `path`, failing the test when the file landed in any other bucket."""
+        self.assertEqual(self.bucket_of(data, path), bucket)
+        return next(e for e in data['categorized'][bucket] if e and e['path'] == str(path))
+
+    def stub_path(self, name: str, body: str) -> str:
+        """PATH with an executable fixture `name` first, so the script under test never reaches the real one."""
+        bindir = Path(self._tmp.name) / 'bin'
+        bindir.mkdir(exist_ok=True)
+        (bindir / name).write_text(body)
+        (bindir / name).chmod(0o755)
+        return f'{bindir}:{os.environ["PATH"]}'
 
 
 class ScanFilesTest(ScannerCase):
@@ -210,7 +229,8 @@ class ScanFilesTest(ScannerCase):
         # false-SAFE direction — so every run that uses one must say so
         self.scan()
         for var in ('ORGANIZER_ROOTS', 'ORGANIZER_SYMLINK_DIRS', 'ORGANIZER_DIR', 'ORGANIZER_INUSE_FILES',
-                    'ORGANIZER_INUSE_DIRS', 'ORGANIZER_SYS_REF_FILES', 'SCAN_ROOT_TOP=0'):
+                    'ORGANIZER_INUSE_DIRS', 'ORGANIZER_SYS_REF_FILES', 'ORGANIZER_CT_REF_FILES',
+                    'ORGANIZER_CT_CONFIG_FILES', 'SCAN_ROOT_TOP=0'):
             with self.subTest(var):
                 self.assertIn(var, self.last_stderr)
 
@@ -256,6 +276,217 @@ class ScanFilesTest(ScannerCase):
             with self.subTest(bucket):
                 documented = schema['categorized'][bucket] or schema['categorized']['SAFE_QUARANTINE']
                 self.assertEqual(entry_keys(entries), entry_keys(documented))
+
+    def test_package_marker_is_in_use(self) -> None:
+        # #28: __init__.py is kept out of the ref index as over-common, so by name it always read as
+        # unreferenced, and a non-empty 90-day-old marker in a live package went SAFE
+        marker = write(self.root / 'pkg' / '__init__.py', '__version__ = "1"\n')
+        self.assertEqual(self.entry_in(self.scan(), 'WATCHLIST', marker)['in_use_signals'], 'package_marker')
+
+    def test_zero_byte_files_are_never_duplicates_or_safe(self) -> None:
+        # #23: every empty file is hash-equal, so unrelated empties came out as DUPLICATE pairs and the
+        # first-seen one SAFE. An empty file carries no evidence either way: hold it, and keep any signal
+        empties = {write(self.root / 'a' / 'zq-empty.md', ''): 'zero_byte;',
+                   write(self.root / 'b' / 'zq-other-empty.md', ''): 'zero_byte;',
+                   write(self.root / 'pkg' / '__init__.py', ''): 'package_marker;zero_byte;'}
+        data = self.scan()
+        self.assertEqual([d for d in data['categorized']['DUPLICATE'] if d], [])
+        for path, reason in empties.items():
+            with self.subTest(path.name):
+                self.assertEqual(self.entry_in(data, 'WATCHLIST', path)['reason'], reason)
+
+    def test_credential_shaped_content_is_never_proposed(self) -> None:
+        # A script with a hardcoded secret sat in SAFE_QUARANTINE, and the archive is pushed to another node,
+        # so quarantine would spread it. Shapes are assembled at runtime so none lands in this public repo
+        pem = '-----BEGIN ' + 'RSA PRIVATE' + ' KEY-----'
+        cloud = 'AK' + 'IA' + 'EXAMPLEKEY012345'
+        pw = 'hunter2' + 'hunter2'
+        bare = 'zqbare' + 'value0123'
+        cases = {
+            'pem block in a conf': (self.root / 'zq-tls.conf', f'cert\n{pem}\nMIIB\n'),
+            'cloud key in yaml': (self.root / 'zq-cloud.yaml', f'access: {cloud}\n'),
+            'quoted password in a script': (self.root / 'zq-deploy.sh', f'#!/bin/sh\nDB_PASSWORD="{pw}"\n'),
+            'json token field': (self.root / 'zq-app.json', '{"token": "' + 'tok' * 5 + '"}\n'),
+            'bare key before a separator': (self.root / 'zq-env.sh', f'export API_KEY={bare}; run\n'),
+        }
+        paths = {name: write(p, text) for name, (p, text) in cases.items()}
+        copy = write(self.root / 'copy' / 'zq-deploy.sh', cases['quoted password in a script'][1])
+        data = self.scan()
+        for name, p in paths.items():
+            with self.subTest(name):
+                self.assertIn('credential_shaped;', self.entry_in(data, 'WATCHLIST', p)['reason'])
+        # A same-content copy must not surface as a DUPLICATE of a held file
+        self.assertEqual(self.bucket_of(data, copy), 'WATCHLIST')
+        # Flag only: the matched text never reaches stdout or stderr
+        for value in (pem, cloud, pw, bare):
+            self.assertNotIn(value, json.dumps(data) + self.last_stderr)
+
+    def test_reference_style_values_are_not_credential_shaped(self) -> None:
+        # The gate must not hold a reference ($VAR, <placeholder>, a lookup) or a call result assigned to a
+        # token-named variable, or it quietly holds most of the tree
+        code = write(self.root / 'zq-settings.py', 'PASSWORD = settings.lookup("DB_PASSWORD")\nTOKEN_BUDGET = 200000\n'
+                                                   'token = generate_access_token(user)\nself.token = tokenizer_for_model(name)\n')
+        shell = write(self.root / 'zq-run.sh', '#!/bin/sh\nPASSWORD="$DB_PASSWORD"\nAPI_KEY=${API_KEY:-<your-key>}\n')
+        data = self.scan()
+        for f in (code, shell):
+            with self.subTest(f.name):
+                self.assertEqual(self.bucket_of(data, f), 'SAFE_QUARANTINE')
+
+    def test_quoted_passphrase_with_spaces_is_credential_shaped(self) -> None:
+        # The quoted-value class excluded whitespace, so a passphrase of several words went SAFE and could
+        # be copied into the archive
+        phrase = write(self.root / 'zq-phrase.conf', 'password = "' + 'correct horse ' + 'battery staple"\n')
+        self.assertIn('credential_shaped;', self.entry_in(self.scan(), 'WATCHLIST', phrase)['reason'])
+
+    def test_file_under_ct_mount_point_is_in_use(self) -> None:
+        # #26: safety-rules.md promises container mount points as an in-use signal. A bound host dir or a
+        # single bound file is live inside the guest; a volume-backed mp names no host path and binds nothing
+        bound = write(self.root / 'shared' / 'zq-bound.conf', 'k=v\n')
+        single = write(self.root / 'zq-single-bind.sh', '#!/bin/sh\n')
+        plain = write(self.root / 'zq-unbound.md')
+        write(self.sys / 'ct-config', f'arch: amd64\nmp0: {self.root / "shared"},mp=/data\n'
+                                      f'lxc.mount.entry: {single} usr/local/bin/zq none bind,create=file\n'
+                                      'mp1: local-lvm:vm-999-disk-1,mp=/vol\n')
+        data = self.scan()
+        for f in (bound, single):
+            with self.subTest(f.name):
+                self.assertEqual(self.entry_in(data, 'WATCHLIST', f)['in_use_signals'], 'ct_mount')
+        self.assertEqual(self.bucket_of(data, plain), 'SAFE_QUARANTINE')
+
+    def test_ct_mount_of_host_root_or_dotted_path_still_binds(self) -> None:
+        # #26 review: the mount parser needed a character after "/", so a bind of host / was dropped whole,
+        # and a non-canonical source (<dir>/.) never prefix-matched the files under it
+        for name, source in (('host root', '/'), ('dotted dir', f'{self.root / "shared"}/.')):
+            with self.subTest(name):
+                f = write(self.root / 'shared' / 'zq-under-mount.md')
+                write(self.sys / 'ct-config', f'mp0: {source},mp=/host,ro=1\n')
+                self.assertEqual(self.entry_in(self.scan(), 'WATCHLIST', f)['in_use_signals'], 'ct_mount')
+
+    def test_ct_mount_matches_a_root_reached_through_a_symlink(self) -> None:
+        # #26 review: the mount source is canonical but find emits paths under the root as given, so a root
+        # reached through a symlinked ancestor never prefix-matched its own canonical mount
+        real = Path(self._tmp.name) / 'real'
+        f = write(real / 'sub' / 'zq-mounted.md')
+        (Path(self._tmp.name) / 'link').symlink_to(real)
+        write(self.sys / 'ct-config', f'mp0: {real / "sub"},mp=/data\n')
+        data = self.scan([Path(self._tmp.name) / 'link' / 'sub'])
+        walked = Path(self._tmp.name) / 'link' / 'sub' / f.name
+        self.assertEqual(self.entry_in(data, 'WATCHLIST', walked)['in_use_signals'], 'ct_mount')
+
+    def test_unreadable_safety_seam_stops_the_scan(self) -> None:
+        # #26 review: a guest seam naming a missing file silently dropped every guest ref; the stderr notice
+        # did not stop the phase, so a guest-run script could still go SAFE
+        for seam in ('ORGANIZER_CT_REF_FILES', 'ORGANIZER_CT_CONFIG_FILES'):
+            # A second path after a newline was neither checked nor read
+            for value in (str(self.sys / 'zq-missing'), f'{self.sys / "ct-refs"}\n{self.sys / "zq-missing"}'):
+                with self.subTest(seam=seam, value=value):
+                    rc, data = self.run_script('scan-files.sh', **{seam: value})
+                    self.assertNotEqual(rc, 0)
+                    self.assertIsNone(data)
+                    self.assertIn(seam, self.last_stderr)
+
+    def test_ct_mount_covering_a_scan_root_is_announced(self) -> None:
+        # #26: a bind of a whole scan root makes every file under it read in use. Held is the safe
+        # direction, but an audit that silently proposes nothing has gone blind without saying so
+        write(self.sys / 'ct-config', f'mp0: {self.root},mp=/host\n')
+        self.scan()
+        self.assertIn(str(self.root), self.last_stderr)
+
+    def test_file_named_by_ct_unit_is_in_use(self) -> None:
+        # #26: a repo script copied into a guest and run there by a timer read as SAFE; the guest's unit
+        # names only the copy's path, so its basename is the signal
+        job = write(self.root / 'deploy' / 'zq-ct-backup.sh', '#!/bin/sh\n')
+        write(self.sys / 'ct-refs', '[Service]\nExecStart=/root/zq-ct-backup.sh\n')
+        self.assertEqual(self.bucket_of(self.scan(), job), 'WATCHLIST')
+
+    def test_in_ct_path_never_makes_a_host_tree_live(self) -> None:
+        # #26 guard: a guest's paths are the guest's. WorkingDirectory=<dir> inside a guest must not mark
+        # everything under the host's same-named dir in use, or the organizer goes blind
+        plain = write(self.root / 'zq-plain-stale.md')
+        write(self.sys / 'ct-refs', f'[Service]\nWorkingDirectory={self.root}\n')
+        self.assertEqual(self.bucket_of(self.scan(), plain), 'SAFE_QUARANTINE')
+
+    def test_guest_units_and_drop_ins_are_read_from_running_cts(self) -> None:
+        # #26, live branch against a stub pct: a script named only by a unit drop-in inside a running guest
+        # is in use. The stopped guest is never exec'd (the stub refuses it, which would list it unreadable)
+        job = write(self.root / 'deploy' / 'zq-dropin-job.sh', '#!/bin/sh\n')
+        guest = Path(self._tmp.name) / 'guest'
+        write(guest / 'etc' / 'systemd' / 'system' / 'zq.service.d' / 'override.conf',
+              '[Service]\nExecStart=/root/zq-dropin-job.sh\n')
+        data = self.scan(ORGANIZER_CT_REF_FILES='', GUEST_ROOT=str(guest), PATH=self.stub_path('pct', GUEST_PCT_STUB))
+        self.assertEqual(self.entry_in(data, 'WATCHLIST', job)['in_use_signals'], 'cron_systemd_or_symlink_ref')
+        self.assertEqual(data['ct_refs_unreadable'], [])
+
+    def test_guest_units_outside_etc_system_are_read(self) -> None:
+        # #26 review: the dump read only /etc/systemd/system *.service/*.timer/*.path and drop-ins, so a unit
+        # in the package unit dir, or a socket hook, still left the script it runs SAFE
+        cases = {
+            'package unit dir': ('usr/lib/systemd/system/zq-pkg.service', 'ExecStart=/root/zq-usrlib-job.sh\n', 'zq-usrlib-job.sh'),
+            'socket unit': ('etc/systemd/system/zq.socket', 'ExecStartPre=/root/zq-socket-hook.sh\n', 'zq-socket-hook.sh'),
+            'cron.daily script': ('etc/cron.daily/zq-daily', '#!/bin/sh\n/root/zq-daily-step.sh\n', 'zq-daily-step.sh'),
+            'package unit drop-in': ('usr/lib/systemd/system/zq-pkg.service.d/override.conf',
+                                     'ExecStart=/root/zq-pkg-dropin.sh\n', 'zq-pkg-dropin.sh'),
+        }
+        guest = Path(self._tmp.name) / 'guest'
+        jobs = {name: write(self.root / 'deploy' / script, f'#!/bin/sh\n# {name}\n') for name, (_, _, script) in cases.items()}
+        for rel, text, _ in cases.values():
+            write(guest / rel, text)
+        data = self.scan(ORGANIZER_CT_REF_FILES='', GUEST_ROOT=str(guest), PATH=self.stub_path('pct', GUEST_PCT_STUB))
+        for name, job in jobs.items():
+            with self.subTest(name):
+                self.assertEqual(self.entry_in(data, 'WATCHLIST', job)['in_use_signals'], 'cron_systemd_or_symlink_ref')
+
+    def test_failed_guest_listing_stops_the_scan(self) -> None:
+        # #26 review: a failed `pct list` read as "no guests", so no guest was asked and every script they run
+        # could go SAFE. Without a listing there is no safe result, so the scan stops instead of emitting one
+        rc, data = self.run_script('scan-files.sh', ORGANIZER_CT_REF_FILES='', PATH=self.stub_path('pct', GUEST_PCT_LIST_FAILS_STUB))
+        self.assertNotEqual(rc, 0)
+        self.assertIsNone(data)
+        self.assertIn('pct list', self.last_stderr)
+
+    def test_path_with_spaces_is_named_in_full(self) -> None:
+        # #26 review: path tokens stopped at the first space, so ExecStart="/root/zq guest backup.sh" named
+        # only /root/zq. Quoted and backslash-escaped paths are taken whole, on the host and in a guest
+        for seam in ('cron', 'ct-refs'):
+            with self.subTest(seam):
+                quoted = write(self.root / f'zq {seam} quoted job.sh', f'#!/bin/sh\n# {seam} q\n')
+                escaped = write(self.root / f'zq {seam} escaped job.sh', f'#!/bin/sh\n# {seam} e\n')
+                write(self.sys / seam, f'ExecStart="/root/{quoted.name}"\nExecStartPost=/root/zq\\ {seam}\\ escaped\\ job.sh\n')
+                data = self.scan()
+                for f in (quoted, escaped):
+                    self.assertEqual(self.entry_in(data, 'WATCHLIST', f)['in_use_signals'], 'cron_systemd_or_symlink_ref')
+                (self.sys / seam).unlink()
+
+    def test_unreadable_guest_is_reported(self) -> None:
+        # #26: a guest whose dump fails leaves the scripts it runs unprotected. That must show in the data and
+        # on stderr, never read as "this guest names nothing"
+        data = self.scan(ORGANIZER_CT_REF_FILES='', PATH=self.stub_path('pct', GUEST_PCT_FAIL_STUB))
+        self.assertEqual(data['ct_refs_unreadable'], ['101'])
+        self.assertIn('CT 101', self.last_stderr)
+
+    def test_cited_duplicate_is_never_proposed(self) -> None:
+        # #30: DUPLICATE is a proposed bucket, but a copy entered it without the refs/in-use check every other
+        # proposal gets, so only a triage rule stood between a cited copy and quarantine
+        copies = [write(self.root / d / 'zq-dup-cited.md', 'same\n') for d in ('a', 'b')]
+        write(self.root / 'zq-dup-citer.md', 'see zq-dup-cited.md\n', old=False)
+        data = self.scan()
+        self.assertEqual([d for d in data['categorized']['DUPLICATE'] if d], [])
+        reasons = sorted(self.entry_in(data, 'WATCHLIST', c)['reason'] for c in copies)
+        self.assertEqual(reasons, ['has_inbound_refs;', 'has_inbound_refs;duplicate;'])
+
+    def test_proposal_names_the_files_it_would_orphan(self) -> None:
+        # #27: quarantining X dropped to 0 the refs of files only X cited, so they surfaced as new SAFE next
+        # run with no trail. The approver now sees them on X's own row before approving X
+        parent = write(self.root / 'zq-orphan-parent.md', 'see zq-orphan-child.md\n')
+        child = write(self.root / 'zq-orphan-child.md')
+        self.assertEqual(self.entry_in(self.scan(), 'SAFE_QUARANTINE', parent)['would_orphan'], [str(child)])
+
+    def test_second_citer_clears_would_orphan(self) -> None:
+        # #27 guard: a file that another live file still cites is not orphaned by the proposal
+        parent = write(self.root / 'zq-orphan-parent.md', 'see zq-orphan-child.md\n')
+        write(self.root / 'zq-orphan-child.md')
+        write(self.root / 'zq-other-citer.md', 'also zq-orphan-child.md\n', old=False)
+        self.assertEqual(self.entry_in(self.scan(), 'SAFE_QUARANTINE', parent)['would_orphan'], [])
 
 
 class CheckLinksTest(ScannerCase):
@@ -314,8 +545,70 @@ class CheckLinksTest(ScannerCase):
         self.assertEqual(self.links().get('unclosed_fences'), [])
 
     def test_active_root_override_is_announced(self) -> None:
+        # ORGANIZER_DIR narrows the walk too (#24): exported by mistake it hides a whole tree's links
         self.links()
-        self.assertIn('ORGANIZER_ROOTS', self.last_stderr)
+        for var in ('ORGANIZER_ROOTS', 'ORGANIZER_DIR'):
+            with self.subTest(var):
+                self.assertIn(var, self.last_stderr)
+
+    def test_percent_encoded_target_is_decoded(self) -> None:
+        # #19: only %20 was decoded, so a target holding %28 %29 %2B (either case) read as missing
+        write(self.root / 'zq (x) + y.md')
+        write(self.root / 'doc.md', 'see [a](zq%20%28x%29%20%2B%20y.md) [b](zq%20%28x%29%20%2b%20y.md)\n')
+        self.assertEqual(self.broken_targets(), [])
+
+    def test_decoder_leaves_bare_percent_and_nul_alone(self) -> None:
+        # #19: a bare % (no two hex digits after it) and %00 (a NUL fits no path) stay literal, a target's
+        # own backslash is never re-read as an escape, and the row reports the target as written
+        write(self.root / 'zq 100% done.md')
+        write(self.root / 'doc.md', 'see [a](zq%20100%%20done.md) [b](zq%00.md) [c](zq\\_x.md)\n')
+        self.assertEqual(self.broken_targets(), ['zq%00.md', 'zq\\_x.md'])
+
+    def test_decoded_control_and_non_ascii_bytes_stay_literal(self) -> None:
+        # #19 review: decoding %0A or %FF put a raw newline or an invalid UTF-8 byte into the "resolved" field,
+        # and the whole links.json stopped parsing. Only printable ASCII is decoded; the rest stays as written
+        write(self.root / 'doc.md', '[a](zq%0Aname.md) [b](zq%FFname.md) [c](zq%7Fdel.md)\n')
+        self.assertEqual(self.broken_targets(), ['zq%0Aname.md', 'zq%FFname.md', 'zq%7Fdel.md'])
+
+    def test_file_url_target_resolves_locally(self) -> None:
+        # #20: file:///abs had the .md's directory prepended, so every file:// link read as missing.
+        # file:///abs, file:/abs and file://localhost/abs are local; any other authority is a remote
+        # host, skipped like https
+        real = write(self.root / 'zq-real.md')
+        nope = self.root / 'zq-nope.md'
+        write(self.root / 'sub' / 'doc.md', f'[a](file://{real}) [b](file://localhost{real}) [c](file:{real}) '
+                                            f'[d](file://{nope}) [e](file://203.0.113.9{real})\n')
+        self.assertEqual(self.broken_targets(), [f'file://{nope}'])
+
+    def test_balanced_parens_in_target(self) -> None:
+        # #21: the link regex stopped at the first ")", so "(Mid).md" lost its tail and read as missing;
+        # a missing target is reported whole
+        write(self.root / 'zq (Mid).md')
+        write(self.root / 'doc.md', 'see [a](zq%20(Mid).md) and [b](zq%20(Nope).md)\n')
+        self.assertEqual(self.broken_targets(), ['zq%20(Nope).md'])
+
+    def test_each_link_is_reported_once(self) -> None:
+        # #21: the post-match strip ran through the first ")" on the line, not the end of the match, so a
+        # ")" before a link re-scanned it and its row came out twice, inflating the raw counts
+        write(self.root / 'doc.md', '(see) [x](zq-gone.md)\n[a](zq-a.md) text) [b](zq-b.md)\n')
+        self.assertEqual(sorted(self.broken_targets()), ['zq-a.md', 'zq-b.md', 'zq-gone.md'])
+
+    def test_organizer_reports_are_not_link_sources(self) -> None:
+        # #24: the organizer's own reports quote every broken link they found, so each finding was
+        # re-reported from the report forever (scan-files.sh excludes the same dir as a ref source)
+        write(self.organizer / 'AUDIT-old.md', 'see [x](./zq-reported.md)\n')
+        self.assertNotIn('./zq-reported.md', self.broken_targets())
+
+    def test_link_in_inline_code_is_ignored(self) -> None:
+        # #24: only fenced blocks were skipped, so a row quoting `[x](./nope.md)` as inline code was a
+        # finding. CommonMark: a code span binds before a link. The real link on the line still counts
+        write(self.root / 'doc.md', '| row | `[x](./zq-inline.md)` |\n[y](./zq-real-missing.md) `` `[z](./zq-double.md)` ``\n')
+        self.assertEqual(self.broken_targets(), ['./zq-real-missing.md'])
+
+    def test_link_in_plain_double_backtick_span_is_ignored(self) -> None:
+        # #24: pairing backticks singly read each `` as an empty span, which left the link inside exposed
+        write(self.root / 'doc.md', '``[x](./zq-double-plain.md)`` and [y](./zq-real-missing.md)\n')
+        self.assertEqual(self.broken_targets(), ['./zq-real-missing.md'])
 
     def test_backslash_in_link_keeps_json_valid(self) -> None:
         # F4: markdown-escaped "\_" in a broken link target produced an illegal JSON escape
@@ -372,20 +665,51 @@ case "$1" in
   config) printf 'name: vm-b\\nmemory: 2048\\n' ;;
 esac
 """
+# Running CT whose `pct exec` runs the probe on this host, against an apt that lists nothing upgradable
+PCT_RUNNING_STUB = """#!/bin/sh
+case "$1" in
+  list) printf 'VMID       Status     Lock         Name\\n101        running                 ct-a\\n' ;;
+  status) echo 'status: running' ;;
+  config) printf 'hostname: ct-a\\nmemory: 512\\n' ;;
+  exec) shift 3; exec "$@" ;;
+esac
+"""
+APT_NONE_UPGRADABLE_STUB = "#!/bin/sh\necho 'Listing... Done'\n"
+# One running and one stopped guest. `pct exec` runs the scanner's real guest command with each top-level
+# path (/etc /var /lib /usr, space-anchored so /usr/lib is rewritten once) moved under $GUEST_ROOT, so the
+# command's own file list is exercised and nothing on this host is read
+GUEST_PCT_STUB = """#!/bin/sh
+case "$1" in
+  list) printf 'VMID       Status     Lock         Name\\n101        running                 ct-a\\n102        stopped                 ct-b\\n' ;;
+  exec) [ "$2" = 101 ] || exit 7
+        shift 3; [ "$1" = sh ] && [ "$2" = -c ] || exit 9
+        exec sh -c "$(printf '%s' "$3" | sed "s# /etc/# $GUEST_ROOT/etc/#g; s# /var/# $GUEST_ROOT/var/#g; s# /lib/# $GUEST_ROOT/lib/#g; s# /usr/# $GUEST_ROOT/usr/#g")" ;;
+esac
+"""
+GUEST_PCT_LIST_FAILS_STUB = "#!/bin/sh\n[ \"$1\" = list ] && exit 1\nexit 0\n"
+GUEST_PCT_FAIL_STUB = """#!/bin/sh
+case "$1" in
+  list) printf 'VMID       Status     Lock         Name\\n101        running                 ct-a\\n' ;;
+  exec) exit 1 ;;
+esac
+"""
 
 
 class InventoryContainersTest(unittest.TestCase):
     # Stubbed pct/qm: CT 101 has no doc; VM 110's doc sits in lxc/ (misfiled); vms/ is empty
-    def inventory(self) -> dict:
+    def inventory(self, pct_stub: str = PCT_STUB, docs: dict[str, str] | None = None) -> dict:
         with tempfile.TemporaryDirectory() as tmp:
             stubs = Path(tmp) / 'bin'
             stubs.mkdir()
-            for name, body in (('pct', PCT_STUB), ('qm', QM_STUB), ('hostname', '#!/bin/sh\necho node-a\n')):
+            for name, body in (('pct', pct_stub), ('qm', QM_STUB), ('hostname', '#!/bin/sh\necho node-a\n'),
+                               ('apt', APT_NONE_UPGRADABLE_STUB)):
                 (stubs / name).write_text(body)
                 (stubs / name).chmod(0o755)
             (Path(tmp) / 'lxc' / '110-misfiled').mkdir(parents=True)
             (Path(tmp) / 'vms').mkdir()
             (Path(tmp) / 'containers').mkdir()
+            for rel, text in (docs or {}).items():
+                write(Path(tmp) / rel, text)
             env = {**os.environ, 'PATH': f'{stubs}:{os.environ["PATH"]}', 'STATE_FILE': f'{tmp}/state.yaml',
                    'HOMELAB_LXC_DOC': f'{tmp}/lxc', 'HOMELAB_VM_DOC': f'{tmp}/vms', 'HOMELAB_CT_DOC': f'{tmp}/containers'}
             proc = subprocess.run(['bash', str(SCRIPTS / 'inventory-containers.sh')], capture_output=True,
@@ -413,6 +737,49 @@ class InventoryContainersTest(unittest.TestCase):
         # Unclustered nodes: a peer node's guest doc folder read as orphaned here, and only a hand check on
         # the peer stopped the archive. The scope has to travel in the data, not only in prose
         self.assertEqual(self.inventory()['drift_summary']['checked_nodes'], ['node-a'])
+
+    def test_fully_patched_ct_keeps_json_valid(self) -> None:
+        # #25: grep -c prints 0 AND exits 1 on no match, so `|| echo 0` emitted "0\n0" and broke the whole
+        # file the first time a CT had nothing to upgrade (2026-10-23)
+        ct = next(c for c in self.inventory(PCT_RUNNING_STUB)['containers'] if c['id'] == '101')
+        self.assertEqual(ct['probe']['pkgs_outdated'], 0)
+
+    def test_prose_mention_does_not_document_a_guest(self) -> None:
+        # #22: any "CT <id>" mention counted as documentation, so a guest named only in another guest's
+        # README as a cross-reference read as documented
+        docs = {'containers/zq-other/README.md': '# Other (CT 150)\n\nUpstream proxy is NPM (CT 101).\n'}
+        self.assertIn('101', self.inventory(docs=docs)['drift_summary']['undocumented_lxc'])
+
+    def test_fenced_comment_does_not_document_a_guest(self) -> None:
+        # #22: a shell comment inside a code fence looks like a heading line, and a live README had one
+        # naming a guest ("# Run with ... (matches CT <id> production)")
+        for fence in ('```', '~~~'):
+            with self.subTest(fence):
+                docs = {'containers/zq-proj/README.md': f'# Proj\n{fence}bash\n# Matches CT 101 production\n{fence}\n'}
+                self.assertIn('101', self.inventory(docs=docs)['drift_summary']['undocumented_lxc'])
+
+    def test_heading_mention_documents_a_guest(self) -> None:
+        # #22 control: a heading naming the guest (any level, any line) or a yaml id: key still documents it
+        cases = {
+            'title line': {'containers/zq-ct-a/README.md': '# Ct-a (CT 101)\n'},
+            'later section': {'containers/zq-proj/README.md': '# Proj\n' + 'text\n' * 60 + '## Production Deployment (CT 101)\n'},
+            'yaml id': {'containers/zq-ct-a/ct.yaml': 'id: 101\nname: ct-a\n'},
+        }
+        for name, docs in cases.items():
+            with self.subTest(name):
+                self.assertNotIn('101', self.inventory(docs=docs)['drift_summary']['undocumented_lxc'])
+
+    def test_indented_heading_documents_a_guest(self) -> None:
+        # #22: CommonMark allows a heading up to 3 spaces in, but the match ran on the unstripped line
+        docs = {'containers/zq-proj/README.md': '# Proj\n\n   ## Production (CT 101)\n'}
+        self.assertNotIn('101', self.inventory(docs=docs)['drift_summary']['undocumented_lxc'])
+
+    def test_four_space_indent_is_not_a_heading(self) -> None:
+        # #22 guard: 4 spaces or a tab is an indented code block, so its "# ..." is a shell comment
+        for indent in ('    ', '\t'):
+            with self.subTest(repr(indent)):
+                docs = {'containers/zq-proj/README.md': f'# Proj\n\n{indent}# Matches CT 101 production\n'}
+                self.assertIn('101', self.inventory(docs=docs)['drift_summary']['undocumented_lxc'])
 
     def test_doc_schema_matches_emit(self) -> None:
         # The doc promised current/baseline_delta/drift per guest; the script emits none of them

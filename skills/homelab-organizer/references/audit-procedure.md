@@ -21,7 +21,7 @@ The script does:
 2. Per guest: `pct status` / `qm status`, plus from `pct config` / `qm config` the memory, rootfs size and hostname (`hostname:` for LXC, `name:` for VMs)
 3. Per running LXC, one bundled read-only `pct exec <id> -- bash -c '<probe>'` returning `uptime`, `disk_root_pct`, `log_files_24h`, `services_up` (first 20 running units, comma-separated) and `pkgs_outdated`. VMs and stopped CTs get `"probe": {}`
 4. Drift detection against the doc folders:
-   - Guest with no `lxc/<id>-*` / `vms/<id>-*` folder and no `CT <id>` / `VM <id>` / `id: <id>` mention in the `lxc/`, `containers/` or `vms/` docs → `undocumented_lxc` / `undocumented_vm`
+   - Guest with no `lxc/<id>-*` / `vms/<id>-*` folder, no markdown heading naming it (`# … CT <id>`, any level, outside code fences) and no yaml `id: <id>` key in the `lxc/`, `containers/` or `vms/` docs (maxdepth 3) → `undocumented_lxc` / `undocumented_vm`. A prose mention is a cross-reference and does not document a guest
    - Doc exists but no guest with that ID on any node in `drift_summary.checked_nodes` → `orphaned_doc`. Drift is node-local: the script queries only the host it runs on. Before any D action (archive a doc folder) is proposed, each `orphaned_docs` ID must be shown absent on every node NOT in `checked_nodes`, and that check recorded in the report; an ID found elsewhere is `misfiled`, not orphaned
    - An `lxc/` folder for a VM ID, or a `vms/` folder for an LXC ID → `naming_mismatches`
 
@@ -67,20 +67,25 @@ The script does:
    - dated artifact (basename holds a `YYYY-MM-DD` date anywhere or starts with the house `YYYYMMDD - ` prefix; decides the bucket, not emitted)
    - `hash` (sha256 of the content, first 12 hex chars, for dedup)
 4. Categorize. Thresholds are `STALE_DAYS` (default 90) and `SAFE_DAYS` (default 7; files modified more recently are floor-skipped). A non-default value is announced on stderr; a non-integer aborts the scan. `quarantine.sh` keeps its own fixed 7-day floor; a lowered `SAFE_DAYS` only widens the scan, never the move:
+   - credential-shaped content (`safety-rules.md` §"In-use signals") → `WATCHLIST`, reason `credential_shaped;`. Only the match is recorded, never the text. Checked before dedup, so a copy of a held file is held too
+   - a 0-byte file → `WATCHLIST`, reason `zero_byte;`. Every empty file is hash-equal, so it never enters dedup
    - `mtime_days > STALE_DAYS AND refs == 0 AND in_use_signals == ""` → `SAFE_QUARANTINE` (reason `mtime_gt_<STALE_DAYS>d_no_refs`), or `DATED_HISTORICAL` when dated (reason `dated_artifact_no_refs`)
    - `mtime_days > STALE_DAYS AND (refs > 0 OR in_use_signals != "")` → `WATCHLIST` (reason lists `has_inbound_refs;` and/or the signal)
-   - a stale file whose `hash` matches one already seen → `DUPLICATE`; the first-seen copy stays in its own bucket. Duplicates carry `refs` + `in_use_signals` — never propose a cited copy
+   - a stale file whose `hash` matches one already seen → `DUPLICATE` when it has no refs and no in-use signal; a cited or in-use copy goes to `WATCHLIST` with `duplicate;` added to its reason. The first-seen copy stays in its own bucket
+5. Every proposed row (`SAFE_QUARANTINE`, `DATED_HISTORICAL`, `DUPLICATE`) carries `would_orphan`: stale files held only by refs, all from this one file. Quarantining it leaves them unreferenced, so they surface as SAFE next run. Show them with the row so the approver decides on the set
+6. `ct_refs_unreadable` lists running guests whose cron/unit dump failed (also announced on stderr). A script copied into one of them reads as unused here: check those guests by hand before proposing any `.sh`/`.py`. A failed `pct list` stops the scan (exit 3) instead of emitting a result
 
 Output `files.json` schema:
 ```json
 {
   "audit_date": "2026-05-09",
   "totals": {"scanned": 8421, "skipped_floor": 1203, "candidates_safe_quarantine": 47, "candidates_watchlist": 310, "candidates_dated": 4, "candidates_duplicates": 12},
+  "ct_refs_unreadable": [],
   "categorized": {
-    "SAFE_QUARANTINE": [{"path": "...", "mtime_days": 120, "size": 1024, "hash": "abc123def456", "refs": 0, "in_use_signals": "", "reason": "mtime_gt_90d_no_refs"}],
+    "SAFE_QUARANTINE": [{"path": "...", "mtime_days": 120, "size": 1024, "hash": "abc123def456", "refs": 0, "in_use_signals": "", "reason": "mtime_gt_90d_no_refs", "would_orphan": ["..."]}],
     "WATCHLIST": [{"path": "...", "mtime_days": 95, "size": 512, "hash": "0f1e2d3c4b5a", "refs": 2, "in_use_signals": "mentioned_in_runbooks", "reason": "has_inbound_refs;mentioned_in_runbooks;"}],
     "DATED_HISTORICAL": [],
-    "DUPLICATE": [{"path": "...", "duplicate_of": "...", "hash": "abc123def456", "mtime_days": 200, "size": 1024, "refs": 0, "in_use_signals": ""}]
+    "DUPLICATE": [{"path": "...", "duplicate_of": "...", "hash": "abc123def456", "mtime_days": 200, "size": 1024, "refs": 0, "in_use_signals": "", "would_orphan": []}]
   }
 }
 ```
@@ -90,7 +95,7 @@ Output `files.json` schema:
 Run `scripts/check-links.sh > "$AUDIT_DIR/links.json"`.
 
 The script does:
-1. Markdown link checker — for every `.md` in tracked roots, extract `[text](path)` patterns. For each path that's relative and not a URL, check existence. Lines inside ``` / ~~~ fences are skipped; a fence still open at end of file hides every later link, so it is listed in `unclosed_fences` (opener line) — review those files by hand.
+1. Markdown link checker — for every `.md` in tracked roots, extract `[text](path)` patterns (a path may hold one level of balanced parens) and check that each local target exists. Anchors, `http(s)://`, `mailto:` and `file://<other host>/…` are skipped; `file:///abs`, `file:/abs` and `file://localhost/abs` are local paths. `%XX` escapes for printable ASCII are decoded before the check (any other byte stays as written), and the row reports the target as written. Inline code spans and lines inside ``` / ~~~ fences are not links; a fence still open at end of file hides every later link, so it is listed in `unclosed_fences` (opener line) — review those files by hand. `docs/organizer/` is not walked: its reports quote the links they flag.
 2. Symlink checker — `find <tracked roots> -type l ! -exec test -e {} \;` → list dangling symlinks.
 3. Shell source checker — for every `.sh`, grep for `source <path>` and `. <path>`. Verify each.
 4. Python import checker — **not implemented.** `broken_imports` is emitted as `null` so a report never presents it as a clean result.
@@ -117,7 +122,7 @@ Sections in order:
 2. **Summary counts** — at-a-glance numbers (stale found, broken links, drift items, watchlist size)
 3. **Trend** — pull last 12 entries from `state.yaml: audit_history`. Show whether stale-file count is accelerating, holding, or shrinking. One-paragraph diagnosis.
 4. **Container drift** — every entry from `containers.json: drift_summary`. Per-container: delta from baseline, services added/removed, disk growth. Render `checked_nodes` beside `orphaned_docs`; while a peer node exists that is not in `checked_nodes`, a D action stays blocked until the Phase A peer check is on record.
-5. **Stale files (proposed action)** — `SAFE_QUARANTINE` + `DATED_HISTORICAL` + `DUPLICATE`. Each row: path, mtime, hash, reason, **proposed quarantine path**, **restore command**.
+5. **Stale files (proposed action)** — `SAFE_QUARANTINE` + `DATED_HISTORICAL` + `DUPLICATE`. Each row: path, mtime, hash, reason, **proposed quarantine path**, **restore command**, and its `would_orphan` files. A non-empty `ct_refs_unreadable` goes above the table.
 6. **Watchlist** — `WATCHLIST` entries. No proposed action. Listed for transparency.
 7. **Broken links** — by category (md, symlinks, sources, imports). Each: file:line, target, suggested fix (when obvious).
 8. **What I deliberately did NOT touch and why** — counts of hard-skip applications by reason. The negative space.
