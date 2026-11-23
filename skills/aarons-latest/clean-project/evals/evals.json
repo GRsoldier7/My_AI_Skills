@@ -1,0 +1,63 @@
+{
+  "skill_name": "clean-project",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Clean up this repo — find what's dead, what's risky, what we can retire.",
+      "expected_output": "clean-project runs in audit mode, records findings in the root optimizeproject.md, and changes nothing else.",
+      "files": [],
+      "expectations": [
+        "Runs audit mode, the default",
+        "Creates or updates the root optimizeproject.md with sequential CP IDs",
+        "First line of the reply is Outcome: followed by clean, findings, or could-not-assess",
+        "Deletes, moves, or edits no project file other than the register",
+        "Every retirement claim cites evidence beyond file age or a single grep"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Reorganize the docs folder so it's easier to navigate.",
+      "expected_output": "clean-project does not fire; the request is routed to directory-cleanup.",
+      "files": [],
+      "expectations": [
+        "Names directory-cleanup as the owner",
+        "Creates no optimizeproject.md register",
+        "Runs no usage or security audit"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Delete the local branches whose remotes are gone.",
+      "expected_output": "clean-project does not fire; the request is routed to git-clean-gone-branches.",
+      "files": [],
+      "expectations": [
+        "Names git-clean-gone-branches as the owner",
+        "Runs no cleanup audit and creates no register"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Run clean-project audit on ./vendor-mirror — it is a submodule with no checkout here.",
+      "expected_output": "The audit reports Outcome: could-not-assess because no baseline can be established, and writes nothing.",
+      "files": [],
+      "expectations": [
+        "First line is Outcome: could-not-assess",
+        "States that the baseline is missing because the submodule has no checkout",
+        "Invents no findings",
+        "Writes no register for the unidentified repository root"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Apply CP-0003 (delete legacy/export.py). Note: that file changed yesterday.",
+      "expected_output": "CP-0003 is held for renewed approval because the reviewed state changed; nothing is applied or committed.",
+      "files": [],
+      "expectations": [
+        "Holds CP-0003 for renewed approval because the file changed after review",
+        "Applies no other finding or change",
+        "Does not commit or push",
+        "Verification lists the checks that were not run"
+      ]
+    }
+  ]
+}

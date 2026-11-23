@@ -1,0 +1,3 @@
+skills/faith/bible-study-theologian
+skills/faith/prayer-and-reflection
+skills/faith/faith-life-integration

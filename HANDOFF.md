@@ -2,9 +2,19 @@
 
 Running session log for this repo. Newest entry first. Append; never rewrite history. No secrets.
 
-## Current state (2026-11-01)
+## Enterprise work packs (2026-11-21)
 
-- Library: 195 skills in the master-orchestrator registry, regenerated 2026-11-01 by the pre-commit hook during the S2 merge. README and CLAUDE.md still say 191; they have been out of date since the skills added after 2026-10-17.
+Start at the [enterprise work guide](docs/20261121%20-%20My%20AI%20Skills%20-%20Enterprise%20Work%20Skills.md). The registry contains 240 packages. The selector has 18 profiles and 68 supported manual profile/host combinations, including ten workplace profiles for ChatGPT Enterprise and GitHub Copilot. The work brief can use an already-approved reader or supplied excerpts. The app and flow release pack includes an offline managed-ZIP preflight, target binding checks and an ordinary-user acceptance record. A live clean QA install, upgrade and runtime smoke test remain release-specific.
+
+## Earlier library checkpoint (2026-11-21)
+
+Resume from the [Quick Start](docs/20261121%20-%20My%20AI%20Skills%20-%20Quick%20Start.md). The sole catalog contains 237 canonical skills. The nine focused sets point to the source packages. Use `python scripts/skill-picks.py inspect faith-personal` to see a first selection and `python scripts/check-library.py` to validate a complete checkout.
+
+The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verification%20Report.md) records portability, the 50 manual pack combinations, two acknowledged capture-dependency findings, and the limit of the faith trials. The next user-owned trial is one private study and one approved synthetic work BI request. Record elapsed preparation and corrections before changing the picks. The [dated plan](docs/20261121%20-%20My%20AI%20Skills%20-%20Library%20Polish%20Plan.md) explains recovery and intake.
+
+## Previous state (2026-10-17)
+
+- Library: 191 skills in the master-orchestrator registry, regenerated 2026-10-17 from a complete Windows checkout. README and CLAUDE.md counts match it.
 - Vendored mattpocock skills are all at `49dd158d1076134a641b33efb035946536778336` (to-spec is identical at that commit): `setup-matt-pocock-skills`, `to-spec`, `to-tickets`, `domain-modeling` in `skills/engineering/`; `grill-me`, `grilling`, `grill-with-docs`, `teach` in `skills/aarons-latest/`. Provenance and scan results: `platform-configs/skill-sets/README.md`.
 - `scripts/install-skills.sh` skips only the project-router skills on the Codex side, read from `SKILLS` in `scripts/project-router.py` with Python's parser (fails closed; see the rev 9 entry below); other `skills/aarons-latest/*` install for both tools. Test suite: 98/98 on Linux (homelab, 2026-10-17). Before rev 9, 56/57 on Windows under `MSYS=winsymlinks:nativestrict`; T14 (relative link survives `--prune`) failed there with the unmodified installer too, a pre-existing MSYS `readlink` difference.
 - Device setup guide (`platform-configs/skill-sets/README.md`) covers every skill: `global.txt` is the set for both tools; Aaron's 7 go into Claude Code by name and into Codex from `scripts/project-router.py`; `grill-me`, `grilling`, `grill-with-docs`, `teach` and `projectplan-roadmap` go into both tools by name. Setup adds `--global-guidance` and the `continuing-alm-work` `skillOverrides` entry; the Verify table checks each part.
@@ -12,9 +22,23 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 - `scripts/lint-skills.py`, `scripts/validate-skills.sh` and `scripts/generate-skill-registry.py` run from any clone location and on Windows (hardcoded `/root/My_AI_Skills` paths and a CRLF trap removed 2026-10-17).
 - SkillSpector gate (host `/root/bin/skill-scan`): rounds 1-5 last verified 2026-09-28; current host state not rechecked.
 - `continuing-alm-work` is the owner's nine-file v2.0.0 package (2026-09-30).
-- 2026-11-01: homelab-organizer S2 scanner patch committed on `fix/organizer-scanners-s2`, which carries `46ca4c3` (#25). Peer-node mode (S3) is approved and not built.
 
 ## Log
+
+### 2026-11-08 — 2nd-brain v2.0.0 (PR #5)
+
+**Done**
+- Rewrote `skills/aarons-latest/2nd-brain` (Fable). The trigger now covers every domain. The skill has four modes (Brief, Answer, Capture, Task), each with a call budget. It writes with `doNotOverwrite`/etag checks, reads every write back, and falls back to a labeled UNSAVED DRAFT when a write fails. `references/vault-map.md` holds the verified folder map, the routing table, the never-write list and the templates. Added a README row and a `global.txt` entry.
+- Privacy pass before publishing (this repo is public): removed client names, the employer name and the name of a vault note that holds credentials; the map now has a generic credential rule instead.
+
+**Verified**
+- Vault facts come from live Activepieces S3 listings and reads (read-only), 2026-11-08.
+- `PYTHONUTF8=1 python scripts/lint-skills.py --files skills/aarons-latest/2nd-brain/SKILL.md`: 0 findings. `validate-skills.sh --category aarons-latest`: 2nd-brain 13/13; the category's 3 failures predate this change (discount-codes, research_adaptive).
+
+**Open**
+- Owner decisions listed in `references/vault-map.md` ("Open decisions"): where the Knowledge Library lives, the shape of the capture inlet, and missing money/tax and job-search folders.
+- Memory strategy (vault vs Hermes DB) has a Fable recommendation awaiting the owner's decision. If he adopts it, Capture gains a hermes-mem pointer step and Brief gains a `vault_note` search step once the vault index exists.
+- Full-repo `lint-skills.py` crashes on Windows cp1252 without `PYTHONUTF8=1`. This predates the change.
 
 ### 2026-11-01 — homelab-organizer S2 scanner patch (built from 2026-10-23)
 
@@ -83,8 +107,7 @@ Running session log for this repo. Newest entry first. Append; never rewrite his
 - Vendored `grill-me` and `grilling` byte-identical from mattpocock/skills @ `49dd158d1076134a641b33efb035946536778336` (`skills/productivity/*`) into `skills/aarons-latest/`, each with the upstream MIT `LICENSE`. `grill-me` is a one-line wrapper that calls `grilling`, so both are required.
 - Placed in `aarons-latest` at the owner's request (not `engineering/` like the 2026-10-03 vendored set). `scripts/project-router.py` uses a fixed seven-skill list, so the Codex/ChatGPT plugin build is unaffected. Added both to `vendored_paths`; updated the catalog README, the aarons-latest README and the skill-sets provenance table.
 - Installed on the Windows device: `./scripts/install-skills.sh --tool claude --apply grill-me grilling` made real symlinks in `~/.claude/skills` (run under `MSYS=winsymlinks:nativestrict`; PowerShell reports `SymbolicLink`). Claude Code listed `grilling` live in the same session.
-- Fixed two Windows-only gate bugs found while validating: `scripts/validate-skills.sh` now strips CR from the `python3` pattern list (the Store python3 writes CRLF to pipes, so every `vendored_paths` entry but the last carried a `
-` and never matched); `scripts/lint-skills.py` derives `REPO_DIR` from its own location instead of the hardcoded `/root/My_AI_Skills`, and resolves `--files` paths before `relative_to`. Neither changes results on the homelab.
+- Fixed two Windows-only gate bugs found while validating: `scripts/validate-skills.sh` now strips CR from the `python3` pattern list (the Store python3 writes CRLF to pipes, so every `vendored_paths` entry but the last carried a `` and never matched); `scripts/lint-skills.py` derives `REPO_DIR` from its own location instead of the hardcoded `/root/My_AI_Skills`, and resolves `--files` paths before `relative_to`. Neither changes results on the homelab.
 
 - Same session, second commit: vendored `grill-with-docs` (same upstream commit, `skills/engineering/grill-with-docs`) into `aarons-latest`. It calls `grilling` and `domain-modeling`; `domain-modeling` (vendored 2026-10-03 at `c55ee46`) was not installed on the Windows device, so it was linked at the same time.
 - Re-synced `skills/engineering/domain-modeling` from `c55ee46` to `49dd158d` (byte-identical; upstream renamed `CONTEXT.md`/`CONTEXT-FORMAT.md` to `GLOSSARY.md`/`GLOSSARY-FORMAT.md`). Needed because `grill-with-docs` at `49dd158d` pairs with that version. `setup-matt-pocock-skills` stays at `c55ee46`; see Open.

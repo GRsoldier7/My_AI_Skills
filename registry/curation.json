@@ -1,0 +1,471 @@
+{
+  "_comment": "Hand-maintained curation. scripts/generate-skill-registry.py --registry reads this file plus every SKILL.md and writes registry/skills.json and the generated block in each agents/<agent>.md. --check enforces the caps. Rules: CONTRIBUTING.md.",
+  "caps": {
+    "core_per_domain_max": 12,
+    "agent_index_max": 12,
+    "global_install_max": 5,
+    "library_soft_cap": 240,
+    "intake_per_run_max": 3
+  },
+  "domains": {
+    "core": {
+      "purpose": "Cross-cutting agent behavior, verification, prompts, skill authoring",
+      "core_cap": 10
+    },
+    "engineering": {
+      "purpose": "Software delivery, git, review, MCP, infra-adjacent engineering",
+      "core_cap": 12
+    },
+    "growth": {
+      "purpose": "Marketing, SEO, content, positioning, sales communication",
+      "core_cap": 12
+    },
+    "strategy": {
+      "purpose": "Consulting, business planning, decisions, proposals, discovery",
+      "core_cap": 10
+    },
+    "product": {
+      "purpose": "Product management frameworks and discovery (PM library)",
+      "core_cap": 10
+    },
+    "microsoft": {
+      "purpose": "Power Platform and M365 delivery",
+      "core_cap": 8
+    },
+    "faith": {
+      "purpose": "Faith and family life integration",
+      "core_cap": 3
+    },
+    "legal-financial": {
+      "purpose": "Tax, finance, renewals, legal drafting",
+      "core_cap": 5
+    },
+    "tech": {
+      "purpose": "Misc tech utilities (transcription, slides, model APIs)",
+      "core_cap": 3
+    },
+    "govcon": {
+      "purpose": "Federal capture, proposals, compliance for small-business GovCon",
+      "core_cap": 6
+    },
+    "seo": {
+      "purpose": "Technical, local, schema and AI-search SEO for Aaron's sites",
+      "core_cap": 8
+    },
+    "homelab-ops": {
+      "purpose": "Homelab alerting, runbooks, decision records, ops hygiene",
+      "core_cap": 5
+    },
+    "aarons-latest": {
+      "purpose": "Aaron's project lifecycle workflows (project-router owns 7)",
+      "core_cap": 7
+    },
+    "homelab-organizer": {
+      "purpose": "Single skill at category level (kept for open PR #3)",
+      "core_cap": 1
+    }
+  },
+  "core": {
+    "core": [
+      "anti-hallucination",
+      "master-orchestrator",
+      "prompt-master",
+      "skill-builder",
+      "find-skills",
+      "skill-creator",
+      "session-optimizer",
+      "output-quality-no-slop",
+      "agent-run-forensics",
+      "weekly-open-loops-review"
+    ],
+    "engineering": [
+      "ce-plan",
+      "ce-work",
+      "ce-debug",
+      "ce-review",
+      "code-review",
+      "git-commit",
+      "mcp-server-builder",
+      "n8n-workflow-architect",
+      "app-security-architect",
+      "docker-infrastructure",
+      "testing-strategy"
+    ],
+    "growth": [
+      "marketing-strategist",
+      "copywriting-conversion",
+      "content-marketing-machine",
+      "professional-communicator",
+      "sales-closer",
+      "personal-brand-builder"
+    ],
+    "strategy": [
+      "consulting-operations",
+      "consulting-tiered-proposal-sow",
+      "discovery-call-prep",
+      "decision-toolkit",
+      "business-plan-architect",
+      "lead-research-brief",
+      "pricing-strategist",
+      "financial-model-architect",
+      "go-to-market-engine"
+    ],
+    "govcon": [
+      "govcon-bid-no-bid-screening",
+      "govcon-proposal-compliance-matrix",
+      "cmmc-nist-800-171-readiness"
+    ],
+    "seo": [
+      "technical-seo-baseline",
+      "local-seo-audit",
+      "schema-markup-jsonld",
+      "seo-content-brief-aeo",
+      "ai-search-visibility",
+      "seo-agentic"
+    ],
+    "homelab-ops": [
+      "alerting-observability-design",
+      "homelab-decision-record",
+      "homelab-runbook-generator"
+    ],
+    "product": [
+      "pm-create-prd",
+      "pm-prioritize-features",
+      "pm-competitor-analysis",
+      "pm-ideal-customer-profile",
+      "pm-lean-canvas",
+      "pm-user-stories",
+      "pm-pre-mortem",
+      "pm-product-strategy"
+    ],
+    "microsoft": [
+      "power-automate",
+      "power-platform-admin",
+      "m365-integration",
+      "sharepoint",
+      "power-apps",
+      "power-bi"
+    ],
+    "faith": [
+      "faith-life-integration",
+      "bible-study-theologian"
+    ],
+    "legal-financial": [
+      "startup-tax-strategist",
+      "renewals-and-alerts-tracker"
+    ],
+    "tech": [
+      "openrouter"
+    ],
+    "aarons-latest": [
+      "project-router",
+      "2nd-brain",
+      "projectplan-builder",
+      "projectplan-roadmap",
+      "grill-me"
+    ]
+  },
+  "review": {
+    "skills/engineering/git-commit-push-pr": "The optional capture path names ce-demo-reel, which this library does not ship. Use git-commit and ce-pr-description with supplied evidence.",
+    "skills/core/wrapitup": "Likely duplicate of wrapup; merge or retire",
+    "skills/aarons-latest/grilling": "Overlaps grill-me; vendored, pinned; confirm redundancy",
+    "skills/core/apex-mode": "Broad maximum-stack trigger needs an explicit bounded use case before default use.",
+    "skills/core/fact-checker": "Compare the verification workflow with anti-hallucination before promoting either.",
+    "skills/core/skill-sentinel": "Overlaps skill-builder and new skill-creator",
+    "skills/core/skill-amplifier": "Overlaps skill-builder; consolidate after skill-creator",
+    "skills/core/polychronos-team": "Broad team trigger overlaps parallel-execution-strategist and the existing project router.",
+    "skills/core/knowledge-management": "Overlaps personal-productivity and obsidian architects",
+    "skills/engineering/obsidian-vault-architect": "Three obsidian architect skills likely overlap",
+    "skills/engineering/lfg": "Overlaps ce-work/ce-plan; autonomous-workflow risk",
+    "skills/engineering/data-analytics-engine": "Review the reporting scope and external plugin dependencies before selecting it by default.",
+    "skills/strategy/business-genius": "Strategic diagnosis overlaps business-plan-architect. Check which workflow owns the decision.",
+    "skills/core/organize-project": "Overlaps directory-cleanup and file-organizer"
+  },
+  "deprecated": {},
+  "agents": {
+    "muse": {
+      "title": "Muse",
+      "purpose": "Chief-of-staff index: vault memory, planning, faith/life integration, research, verification; personal-first, nothing wholesale.",
+      "skills": [
+        "2nd-brain",
+        "alm",
+        "weekly-open-loops-review",
+        "personal-productivity",
+        "faith-life-integration",
+        "bible-study-theologian",
+        "grill-me",
+        "projectplan-builder",
+        "anti-hallucination",
+        "prompt-master",
+        "research_adaptive",
+        "deep-search"
+      ]
+    },
+    "grok-bot": {
+      "title": "Grok Bot",
+      "purpose": "Fenced box skills listed first, plus portable GovCon, SEO, homelab and consulting skills specialists pull by name.",
+      "skills": [
+        "evidence-before-claims",
+        "skill-scout",
+        "skill-and-prompt-evals",
+        "kaizen-evolution",
+        "chief-of-staff-intake-routing",
+        "govcon-sources-sought-response",
+        "govcon-bid-no-bid-screening",
+        "govcon-proposal-compliance-matrix",
+        "technical-seo-baseline",
+        "local-seo-audit",
+        "homelab-decision-record",
+        "consulting-tiered-proposal-sow"
+      ]
+    },
+    "dot": {
+      "title": "Dot (OpenAI ChatGPT dots)",
+      "purpose": "Work-facing: client communication, consulting deliverables, M365/Power Platform, PRDs, research; no personal or homelab skills.",
+      "skills": [
+        "anti-hallucination",
+        "professional-communicator",
+        "consulting-tiered-proposal-sow",
+        "discovery-call-prep",
+        "lead-research-brief",
+        "pm-create-prd",
+        "power-automate",
+        "m365-integration",
+        "sharepoint",
+        "decision-toolkit",
+        "output-quality-no-slop",
+        "research_adaptive"
+      ]
+    },
+    "duet": {
+      "title": "Duet",
+      "purpose": "CLI harness index: coding workflow, skill authoring, MCP building, verification; metadata-only prompt so keep descriptions sharp.",
+      "skills": [
+        "skill-builder",
+        "skill-creator",
+        "find-skills",
+        "using-superpowers",
+        "master-orchestrator",
+        "ce-plan",
+        "ce-work",
+        "ce-debug",
+        "ce-review",
+        "git-commit",
+        "mcp-server-builder",
+        "anti-hallucination"
+      ]
+    },
+    "nod": {
+      "title": "Nod (n8n Labs)",
+      "purpose": "Personal-admin extras beyond its 27 built-ins: errands, renewals, research, transcription, tax; avoid engineering skills.",
+      "skills": [
+        "personal-productivity",
+        "weekly-open-loops-review",
+        "deep-search",
+        "research_adaptive",
+        "renewals-and-alerts-tracker",
+        "discount-codes",
+        "audio-transcriber",
+        "teach",
+        "professional-communicator",
+        "startup-tax-strategist",
+        "life-os-designer",
+        "prompt-master"
+      ]
+    }
+  },
+  "fenced": {
+    "grok-bot": {
+      "path": "agents/grok-bot/skills",
+      "portable": false,
+      "restore_to": "/home/box/agent-data/workflows"
+    }
+  },
+  "box_mirror": [
+    "agent-run-forensics",
+    "ai-search-visibility",
+    "alerting-observability-design",
+    "api-first-heavy-work",
+    "bot-prompt-tuning",
+    "bot-team-review",
+    "bot-usage-cost-optimizer",
+    "chief-of-staff-intake-routing",
+    "cmmc-nist-800-171-readiness",
+    "consulting-tiered-proposal-sow",
+    "discovery-call-prep",
+    "evidence-before-claims",
+    "govcon-bid-no-bid-screening",
+    "govcon-proposal-compliance-matrix",
+    "govcon-sources-sought-response",
+    "homelab-decision-record",
+    "homelab-runbook-generator",
+    "kaizen-evolution",
+    "lead-research-brief",
+    "local-seo-audit",
+    "local-seo-team-project",
+    "obsidian-second-brain-wiki",
+    "outcome-effect-closeout",
+    "output-quality-no-slop",
+    "renewals-and-alerts-tracker",
+    "schema-markup-jsonld",
+    "seo-content-brief-aeo",
+    "skill-and-prompt-evals",
+    "skill-scout",
+    "technical-seo-baseline",
+    "weekly-open-loops-review"
+  ],
+  "third_party": {
+    "skills/core/skill-creator": {
+      "upstream": "https://github.com/anthropics/skills",
+      "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "upstream_path": "skills/skill-creator",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE.txt",
+      "imported": "2026-11-16",
+      "files": "all (byte-identical)"
+    },
+    "skills/seo/seo-agentic": {
+      "upstream": "https://github.com/AgriciDaniel/claude-seo",
+      "commit": "468ed5b0d9e3249394783710e54abb02837e326b",
+      "upstream_path": "skills/seo-agentic",
+      "license": "MIT",
+      "license_file": "LICENSE.txt",
+      "imported": "2026-11-16",
+      "files": "all (byte-identical); helper scripts stay in the claude-seo plugin, so standalone use is reference mode"
+    },
+    "skills/core/unlazy": {
+      "upstream": "https://github.com/Leonxlnx/unlazy",
+      "commit": "16671491f6679ad9378f52604d3bc2415b4120c7",
+      "upstream_path": ".",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "imported": "2026-11-16",
+      "files": "SKILL.md, LICENSE, agents/, references/, scripts/, templates/ (byte-identical); repo tests/ and research/ not copied"
+    },
+    "skills/core/agent-regression-evals": {
+      "upstream": "https://github.com/alirezarezvani/claude-skills",
+      "commit": "4680893d91f2aee6f77ca1519fd1b86b7a104c87",
+      "upstream_path": "engineering/agent-regression-evals/skills/agent-regression-evals",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "imported": "2026-11-16",
+      "files": "all files in the skill folder (byte-identical); LICENSE copied from the repo root; plugin wrapper (.claude-plugin, agents/, commands/) not copied"
+    },
+    "skills/engineering/validate-data": {
+      "upstream": "https://github.com/anthropics/knowledge-work-plugins",
+      "commit": "e91a134584eb798bac7fb0379358006a2b63b965",
+      "upstream_path": "data/skills/validate-data",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE",
+      "imported": "2026-11-16",
+      "files": "SKILL.md (byte-identical); LICENSE copied from the data plugin (data/LICENSE)"
+    }
+  },
+  "reference_sources": {
+    "skills/engineering/analytics-code-workbench/references/powershell-copilot.md": {
+      "source": "https://github.com/github/awesome-copilot/blob/f10fdb8b2660ce85c98f220b2f1ca24653768a5c/instructions/powershell.instructions.md",
+      "blob": "10857284748448625d043e1f59b6f6a7968c4946",
+      "license": "MIT"
+    },
+    "skills/engineering/analytics-code-workbench/references/tsql-copilot.md": {
+      "source": "https://github.com/github/awesome-copilot/blob/f10fdb8b2660ce85c98f220b2f1ca24653768a5c/instructions/sql-server-safe-tsql.instructions.md",
+      "blob": "0476f678d6a11b74ab554531c47ffa7959b4294d",
+      "license": "MIT"
+    },
+    "skills/engineering/analytics-code-workbench/LICENSE-github.txt": {
+      "source": "https://github.com/github/awesome-copilot/blob/f10fdb8b2660ce85c98f220b2f1ca24653768a5c/LICENSE",
+      "blob": "89bc5e962c9944cdb050887062afdaaf89be504a",
+      "license": "MIT"
+    },
+    "skills/engineering/analytics-code-workbench/references/python-testing/guide.md": {
+      "source": "https://github.com/wshobson/agents/blob/0f73766f80b0b5eb6aa9faaa2fdf90df85a6793f/plugins/python-development/skills/python-testing-patterns/SKILL.md",
+      "blob": "4fe8a4245c55e9e79e70b5f75ab387e2349f91dc",
+      "license": "MIT"
+    },
+    "skills/engineering/analytics-code-workbench/references/python-testing/references/advanced-patterns.md": {
+      "source": "https://github.com/wshobson/agents/blob/0f73766f80b0b5eb6aa9faaa2fdf90df85a6793f/plugins/python-development/skills/python-testing-patterns/references/advanced-patterns.md",
+      "blob": "da186a91e60c44339a28ddb3b6ce478b7d23af64",
+      "license": "MIT"
+    },
+    "skills/engineering/analytics-code-workbench/references/python-testing/references/details.md": {
+      "source": "https://github.com/wshobson/agents/blob/0f73766f80b0b5eb6aa9faaa2fdf90df85a6793f/plugins/python-development/skills/python-testing-patterns/references/details.md",
+      "blob": "bf296f1634742776817e8cfbb5800927b72855d2",
+      "license": "MIT"
+    },
+    "skills/engineering/analytics-code-workbench/LICENSE-python-testing.txt": {
+      "source": "https://github.com/wshobson/agents/blob/0f73766f80b0b5eb6aa9faaa2fdf90df85a6793f/LICENSE",
+      "blob": "326f0a55c96e672fedf9d807ca043c00df05ba0e",
+      "license": "MIT"
+    },
+    "skills/core/work-instruction-review/references/copilot-prompt-format.md": {
+      "source": "https://github.com/github/awesome-copilot/blob/f10fdb8b2660ce85c98f220b2f1ca24653768a5c/instructions/prompt.instructions.md",
+      "blob": "4a36551b156711600e91caacac8994f63cff6831",
+      "license": "MIT"
+    },
+    "skills/core/work-instruction-review/LICENSE-github.txt": {
+      "source": "https://github.com/github/awesome-copilot/blob/f10fdb8b2660ce85c98f220b2f1ca24653768a5c/LICENSE",
+      "blob": "89bc5e962c9944cdb050887062afdaaf89be504a",
+      "license": "MIT"
+    },
+    "skills/engineering/enterprise-web-artifacts/references/design-direction.md": {
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/frontend-design/SKILL.md",
+      "blob": "a5333457c414d20d625f307df945842c0952ecc3",
+      "license": "Apache-2.0"
+    },
+    "skills/engineering/enterprise-web-artifacts/LICENSE-anthropic.txt": {
+      "source": "https://github.com/anthropics/skills/blob/e4bb5d960d87126ff3b3a8af1a104b7db67560ba/skills/frontend-design/LICENSE.txt",
+      "blob": "f433b1a53f5b830a205fd2df78e2b34974656c7b",
+      "license": "Apache-2.0"
+    },
+    "skills/engineering/analytics-code-workbench/references/google-sql-optimization.md": {
+      "source": "https://github.com/google/skills/blob/4bb21ebfa085f6307d5d62bc21765e1d3433f11d/skills/cloud/bigquery-optimization/references/sql_optimization.md",
+      "blob": "933960290de9fa7cdf9e0325b49d112326743b42",
+      "license": "Apache-2.0"
+    },
+    "skills/engineering/analytics-code-workbench/LICENSE-google.txt": {
+      "source": "https://github.com/google/skills/blob/4bb21ebfa085f6307d5d62bc21765e1d3433f11d/LICENSE",
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "license": "Apache-2.0"
+    },
+    "skills/microsoft/power-bi/references/fabric-metadata-discovery.md": {
+      "source": "https://github.com/microsoft/skills-for-fabric/blob/540c3c58abc804c2715c6632026784f04b342388/skills/semantic-model-authoring/references/metadata-discovery.md",
+      "blob": "bc4b6d626480eddcb03f20dbd36f2cdeca05b42d",
+      "license": "MIT"
+    },
+    "skills/microsoft/power-bi/references/fabric-dax-guidelines.md": {
+      "source": "https://github.com/microsoft/skills-for-fabric/blob/540c3c58abc804c2715c6632026784f04b342388/skills/semantic-model-authoring/references/dax-guidelines.md",
+      "blob": "ef82b872d21767251e6d5c1bf545582f2bee6e75",
+      "license": "MIT"
+    },
+    "skills/microsoft/power-bi/LICENSE-fabric.txt": {
+      "source": "https://github.com/microsoft/skills-for-fabric/blob/540c3c58abc804c2715c6632026784f04b342388/LICENSE",
+      "blob": "e9dbbcbb2c9794c69191c57f20db3e682cd029bb",
+      "license": "MIT"
+    },
+    "skills/microsoft/m365-integration/references/upstream-outlook-mail.md": {
+      "source": "https://github.com/microsoft/work-iq/blob/206072a88695f14000fc72cddcd5f2f40871ba01/plugins/workiq/skills/workiq/references/mail-read-work-iq.md",
+      "blob": "46f3ad353800fb7d569de546447a8076b780d253",
+      "license": "MIT"
+    },
+    "skills/microsoft/m365-integration/references/upstream-outlook-calendar.md": {
+      "source": "https://github.com/microsoft/work-iq/blob/206072a88695f14000fc72cddcd5f2f40871ba01/plugins/workiq/skills/workiq/references/calendar-read-work-iq.md",
+      "blob": "bb9776c5b93be60520ad5053e169a098d541b8a3",
+      "license": "MIT"
+    },
+    "skills/microsoft/m365-integration/references/upstream-sharepoint-search.md": {
+      "source": "https://github.com/microsoft/work-iq/blob/206072a88695f14000fc72cddcd5f2f40871ba01/plugins/workiq/skills/workiq/references/sharepoint-search-work-iq.md",
+      "blob": "9310baf9d261f7c9810b959c67b7ebb5be828043",
+      "license": "MIT"
+    },
+    "skills/microsoft/m365-integration/LICENSE-workiq.txt": {
+      "source": "https://github.com/microsoft/work-iq/blob/206072a88695f14000fc72cddcd5f2f40871ba01/LICENSE",
+      "blob": "9d4e548e66bb96f73ff6a1c8724b3284608e217d",
+      "license": "MIT"
+    },
+    "skills/microsoft/m365-integration/LICENSE-workiq-notices.txt": {
+      "source": "https://github.com/microsoft/work-iq/blob/206072a88695f14000fc72cddcd5f2f40871ba01/NOTICES.TXT",
+      "blob": "6a494bc4ab9519b3c192ad028597a7cb6be1e70d",
+      "license": "MIT"
+    }
+  }
+}

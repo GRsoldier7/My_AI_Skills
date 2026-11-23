@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prayer and Reflection"
+  short_description: "Scripture-grounded prayer and honest reflection"
+  default_prompt: "Use $prayer-and-reflection to guide an honest prayer and brief reflection for what I am facing today."

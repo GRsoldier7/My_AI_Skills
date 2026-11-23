@@ -3,11 +3,11 @@
 lint-skills.py — Catch the categories of issues found in the 2026-05-09 audit
 so they don't return.
 
-Scans /root/My_AI_Skills/skills/**/SKILL.md for:
+Scans canonical SKILL.md files in this checkout for:
   * Missing/empty frontmatter fields (name, description, metadata.{version,
     domain-category, last-reviewed})
   * `last-reviewed` older than --max-age days (default 90)
-  * Stale tokens defined in lint-config.json (claude-opus-4-6, 192.168.1.240, etc.)
+  * Stale tokens defined in lint-config.json
   * Phantom skill references — backticked tokens that look like skill names but
     don't match any directory under skills/
   * Windows-only paths in description sections (Scripts/activate, %USERPROFILE%, Z:/)
@@ -46,8 +46,31 @@ DEFAULT_CONFIG = REPO_DIR / "scripts" / "lint-config.json"
 # Categories that contain SKILL.md children (vs. homelab-organizer which IS a skill)
 CATEGORY_DIRS = {
     "core", "engineering", "faith", "growth", "legal-financial",
-    "microsoft", "product", "strategy",
+    "microsoft", "product", "strategy", "govcon", "seo", "homelab-ops",
 }
+
+# Fenced, platform-only skill folders outside skills/ (registry/curation.json "fenced").
+# `--category grok-bot` lints them; a full run includes them.
+FENCED_DIRS = {"grok-bot": REPO_DIR / "agents" / "grok-bot" / "skills"}
+
+
+def _under_symlink(path: Path, root: Path) -> bool:
+    """Skip compatibility symlinks left at moved skills' old paths (registry/moved.json)."""
+    cur = root
+    for part in path.relative_to(root).parts[:-1]:
+        cur = cur / part
+        if cur.is_symlink():
+            return True
+    return False
+
+
+def _skill_files(root: Path) -> list[Path]:
+    if not root.is_dir():
+        return []
+    return sorted(
+        (p for p in root.rglob("SKILL.md") if p.name == "SKILL.md" and p.is_file() and not _under_symlink(p, root)),
+        key=lambda path: path.as_posix(),
+    )
 
 # Severity ranking for sorting/exit code
 SEV_RANK = {"FAIL": 0, "WARN": 1, "INFO": 2}
@@ -160,13 +183,14 @@ def parse_simple_yaml(fm: str) -> dict:
 
 def discover_skills(category: str | None = None) -> list[Path]:
     """Find every SKILL.md under skills/. Optionally filtered by category."""
+    if category in FENCED_DIRS:
+        return _skill_files(FENCED_DIRS[category])
     if category:
-        root = SKILLS_DIR / category
-    else:
-        root = SKILLS_DIR
-    if not root.exists():
-        return []
-    return sorted(p for p in root.rglob("SKILL.md") if p.is_file())
+        return _skill_files(SKILLS_DIR / category)
+    found = _skill_files(SKILLS_DIR)
+    for root in FENCED_DIRS.values():
+        found += _skill_files(root)
+    return sorted(found)
 
 
 def is_vendored(skill_path: Path, patterns: list[str]) -> bool:
@@ -195,7 +219,7 @@ def build_skill_index() -> tuple[set[str], dict[str, list[str]]]:
     collision map back and surface it as its own finding.
     """
     owners: dict[str, list[str]] = {}
-    for p in SKILLS_DIR.rglob("SKILL.md"):
+    for p in discover_skills():
         tokens = {p.parent.name}
         fm_text, _ = extract_frontmatter(p.read_text(encoding="utf-8", errors="replace"))
         if fm_text:
@@ -381,6 +405,8 @@ SKILL_REF_ALLOWLIST = {
     # external plugin skills + user-level skills referenced for plugin-overlap routing
     "karpathy-guidelines", "pytest-async-testing-patterns",
     "docker-compose-production", "n8n-mcp",
+    # sibling skills of the claude-seo plugin, named by the vendored skills/seo/seo-agentic
+    "seo-ecommerce", "seo-technical",
     # issue-tracker triage labels used by the vendored mattpocock engineering skills
     "needs-triage", "needs-info", "ready-for-agent", "ready-for-human",
 }
@@ -443,6 +469,12 @@ EXAMPLE_BEFORE_RE = re.compile(
 def lint_phantom_refs(skill_path: Path, lines: list[str], known_skills: set[str]) -> list[Finding]:
     findings: list[Finding] = []
     skill_name = skill_path.parent.name
+    # The vendored compound workflow declares this fully qualified subagent below
+    # its dispatch instruction. Keep explicit skill references checked everywhere.
+    compound_agent = (
+        skill_path.as_posix().endswith("/engineering/ce-compound/SKILL.md")
+        and any("`compound-engineering:research:session-historian`" in line for line in lines)
+    )
     seen: set[tuple[str, int]] = set()  # dedupe per (token, line)
     for i, line in enumerate(lines, 1):
         for m in SKILL_REF_PATTERN.finditer(line):
@@ -464,6 +496,10 @@ def lint_phantom_refs(skill_path: Path, lines: list[str], known_skills: set[str]
             after = line[m.end():].lower()
             before_tail, after_head = before[-48:], after[:48]
 
+            if (compound_agent and tok == "session-historian"
+                    and re.search(r"\bdispatch\s+$", before_tail)
+                    and re.match(r"^\s+in foreground\b", after_head)):
+                continue
             if EXCLUDE_AFTER_RE.match(after_head):
                 continue
             if not (
@@ -585,8 +621,12 @@ def main(argv: list[str] | None = None) -> int:
     today = date.today()
     known_skills, alias_collisions = build_skill_index()
 
-    if args.files:
-        skill_paths = [Path(p) for p in args.files if Path(p).name == "SKILL.md" and Path(p).is_file()]
+    if args.files is not None:
+        skill_paths = [Path(p) for p in args.files if Path(p).name == "SKILL.md"]
+        missing = [p for p in skill_paths if not p.is_file()]
+        if missing:
+            print("Missing requested SKILL.md: " + ", ".join(map(str, missing)), file=sys.stderr)
+            return 2
     else:
         skill_paths = discover_skills(args.category)
 
@@ -619,4 +659,7 @@ def main(argv: list[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
+    # Preserve native console encoding while making redirected legacy terminals usable.
+    sys.stdout.reconfigure(errors="backslashreplace")
+    sys.stderr.reconfigure(errors="backslashreplace")
     sys.exit(main())

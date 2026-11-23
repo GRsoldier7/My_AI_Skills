@@ -1,6 +1,10 @@
 ---
 name: discount-codes
 description: Find usable website/product discounts through recent community reports, creator campaigns, coupon services, and official offers; verify eligibility and actual savings.
+metadata:
+  version: "1.0.0"
+  domain-category: aarons-latest
+  last-reviewed: "2026-11-21"
 ---
 
 # Discount Codes

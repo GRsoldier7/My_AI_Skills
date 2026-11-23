@@ -31,6 +31,10 @@ metadata:
 
 # Microsoft 365 Integration — Savant-Level Skill
 
+## Enterprise work pack
+
+For a work-pack request, select the [read-only Outlook and SharePoint brief](references/work-read-brief.md), [Loop decision and action tracker](references/work-loop.md) or [OneNote meeting record and runbook draft](references/work-onenote.md).
+
 ## Philosophy
 
 M365 integration mastery = **Graph API as the single unified endpoint**, **MSAL for all auth** (never raw OAuth), **least-privilege permissions**, and **webhooks + change notifications for reactive patterns** (not polling).

@@ -1,6 +1,5 @@
 #!/bin/bash
-# Build packed markdown bundles of all SKILL.md files (for uploading the library
-# as reference material to an LLM workspace; not a memory layer).
+# Build legacy Markdown reference extracts. Use skill-picks.py for complete selected packages.
 #
 # Produces 3 files in OUT_DIR:
 #   01_skills_core_engineering_faith_homelab_legal.md  (~280K)
@@ -11,8 +10,8 @@
 
 set -euo pipefail
 
-REPO="/root/My_AI_Skills"
-OUT_DIR="/root/My_AI_Skills/.bundle-cache"
+REPO="$(cd "$(dirname "$0")/.." && pwd)"
+OUT_DIR="$REPO/.bundle-cache"
 DATE=$(date +%Y-%m-%d)
 
 mkdir -p "$OUT_DIR"
@@ -26,7 +25,7 @@ write_bundle() {
     {
         echo "# $title"
         echo ""
-        echo "> Generated $DATE from $REPO"
+        echo "> Generated $DATE from the My_AI_Skills checkout"
         echo ""
         for cat in "${categories[@]}"; do
             for skill_md in "$REPO/skills/$cat"/*/SKILL.md "$REPO/skills/$cat/SKILL.md"; do
@@ -58,7 +57,7 @@ write_bundle "$OUT_DIR/02_skills_growth_microsoft_product_strategy.md" \
 {
     echo "# My_AI_Skills — Top-Level Documentation"
     echo ""
-    echo "> Generated $DATE from $REPO"
+    echo "> Generated $DATE from the My_AI_Skills checkout"
     echo ""
     echo "Repo: https://github.com/GRsoldier7/My_AI_Skills"
     echo ""

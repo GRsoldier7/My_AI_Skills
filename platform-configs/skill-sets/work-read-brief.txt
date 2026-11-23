@@ -1,0 +1,2 @@
+# Manual workplace set. Use skill-picks.py export.
+skills/microsoft/m365-integration

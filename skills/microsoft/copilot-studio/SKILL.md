@@ -31,6 +31,10 @@ metadata:
 
 # Copilot Studio — Savant-Level Skill
 
+## Enterprise work pack
+
+Use the [Copilot product selection and agent design](references/work-copilot.md) for work-pack requests about coding assistance, productivity licensing or a proposed Studio agent.
+
 ## Philosophy
 
 Copilot Studio mastery = **generative AI + deterministic topics** as a hybrid (not one or the other), **proper entity extraction for slot filling**, **graceful escalation paths**, and **analytics-driven iteration**. The best bots feel conversational but have guardrails.
