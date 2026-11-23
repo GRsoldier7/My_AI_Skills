@@ -5,7 +5,14 @@
 #   or:  restore.sh --by-original <original_path>
 set -uo pipefail
 
-ARCHIVE_ROOT="${ARCHIVE_ROOT:-/root/homelab/.archive}"
+# Public-repo placeholder roots. Export the real paths on the host; do not commit them.
+HOMELAB_ROOT="${HOMELAB_ROOT:-/path/to/homelab}"
+PROJECT_ROOT="${PROJECT_ROOT:-/path/to/projects}"
+SKILLS_ROOT="${SKILLS_ROOT:-/path/to/My_AI_Skills}"
+CLAUDE_ROOT="${CLAUDE_ROOT:-/path/to/.claude}"
+
+
+ARCHIVE_ROOT="${ARCHIVE_ROOT:-${HOMELAB_ROOT}/.archive}"
 
 usage() {
   cat <<EOF

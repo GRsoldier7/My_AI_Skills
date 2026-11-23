@@ -3,8 +3,15 @@
 # Phase D (REPORT.md) and Phase E (approval) are handled by the skill (Claude), not this script.
 set -uo pipefail
 
+# Public-repo placeholder roots. Export the real paths on the host; do not commit them.
+HOMELAB_ROOT="${HOMELAB_ROOT:-/path/to/homelab}"
+PROJECT_ROOT="${PROJECT_ROOT:-/path/to/projects}"
+SKILLS_ROOT="${SKILLS_ROOT:-/path/to/My_AI_Skills}"
+CLAUDE_ROOT="${CLAUDE_ROOT:-/path/to/.claude}"
+
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ORGANIZER_DIR="${ORGANIZER_DIR:-/root/homelab/docs/organizer}"
+ORGANIZER_DIR="${ORGANIZER_DIR:-${HOMELAB_ROOT}/docs/organizer}"
 AUDIT_DATE="$(date +%Y-%m-%d)"
 export AUDIT_DIR="$ORGANIZER_DIR/AUDIT-$AUDIT_DATE"
 

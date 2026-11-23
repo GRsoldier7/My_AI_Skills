@@ -56,7 +56,7 @@ Spec of record: `~/.claude/handoffs/20261005 - Handoff - alm unified lifecycle s
 `evals/evals.json` (18 evals, skill-creator schema) · this file.
 
 **Premises verified before the decisions that rest on them (2026-10-05).**
-- `My_AI_Skills/scripts/lint-skills.py` hard-codes `REPO_DIR = Path("/root/My_AI_Skills")` (line 42)
+- `My_AI_Skills/scripts/lint-skills.py` hard-codes `REPO_DIR = Path("$SKILLS_ROOT")` (line 42)
   and FAILs backticked non-repo skill names as `phantom-ref` (line 492) → repo placement would fail lint.
 - `scripts/project-router.py` ships an explicit 7-name `SKILLS` tuple, asserted by
   `test_seven_complete_skills` → a new repo dir is not auto-shipped to Codex.

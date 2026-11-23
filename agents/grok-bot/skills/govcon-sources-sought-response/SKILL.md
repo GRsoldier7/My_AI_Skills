@@ -12,7 +12,7 @@ metadata:
 ---
 # GovCon Sources Sought Response
 
-Firm baseline (do not exceed): new single-owner SDVOSB, active SAM registration, no federal past performance, no employees, no contract vehicles. Answer honestly from that baseline.
+Firm baseline (do not exceed): use only the operator-provided firm profile (registration, certifications, past performance, headcount, and contract vehicles). Do not invent facts or exceed that baseline.
 
 ## Inputs
 Notice text and attachments; the verified firm facts file; the govcon-bid-no-bid-screening result (must be SHAPE or better). If any is missing, mark [REQUIRED] and stop.

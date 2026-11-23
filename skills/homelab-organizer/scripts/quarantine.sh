@@ -3,7 +3,14 @@
 # Never deletes, never overwrites an archived copy. Idempotent. Refuses any path that hits the hard-skip floor.
 set -uo pipefail
 
-ARCHIVE_ROOT="${ARCHIVE_ROOT:-/root/homelab/.archive}"
+# Public-repo placeholder roots. Export the real paths on the host; do not commit them.
+HOMELAB_ROOT="${HOMELAB_ROOT:-/path/to/homelab}"
+PROJECT_ROOT="${PROJECT_ROOT:-/path/to/projects}"
+SKILLS_ROOT="${SKILLS_ROOT:-/path/to/My_AI_Skills}"
+CLAUDE_ROOT="${CLAUDE_ROOT:-/path/to/.claude}"
+
+
+ARCHIVE_ROOT="${ARCHIVE_ROOT:-${HOMELAB_ROOT}/.archive}"
 AUDIT_DATE="${AUDIT_DATE:-$(date +%Y-%m-%d)}"
 ARCHIVE_DIR="$ARCHIVE_ROOT/$AUDIT_DATE"
 MANIFEST="$ARCHIVE_DIR/MANIFEST.md"
@@ -16,7 +23,7 @@ floor_check() {
   case "$p" in
     /etc/*|/usr/*|/sys/*|/proc/*|/boot/*|/var/lib/docker/*|/var/lib/lxc/*) return 1 ;;
     */.git/*|*/.git) return 1 ;;
-    /root/.claude/settings*.json) return 1 ;;
+    ${CLAUDE_ROOT}/settings*.json) return 1 ;;
     /root/.ssh/*|/etc/ssh/*) return 1 ;;
     "$ARCHIVE_ROOT"/*) return 1 ;;
   esac
@@ -52,7 +59,7 @@ quarantine_one() {
   ensure_manifest_header
 
   # Compute archive path: preserve the source's leading directory tree under ARCHIVE_DIR
-  # e.g., /root/homelab/scratch/foo.md → $ARCHIVE_DIR/root/homelab/scratch/foo.md
+  # e.g., ${HOMELAB_ROOT}/scratch/foo.md → $ARCHIVE_DIR${HOMELAB_ROOT}/scratch/foo.md
   local rel="${src#/}"
   local dst="$ARCHIVE_DIR/$rel"
   # An earlier quarantine of this path on the same date holds the slot; mv would replace that copy

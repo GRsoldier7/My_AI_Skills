@@ -67,12 +67,6 @@
       "fix": "Update to claude-opus-4-7 unless legacy reference."
     },
     {
-      "token": "192.168.1.240",
-      "severity": "FAIL",
-      "reason": "Stale homelab IP — this host was renumbered.",
-      "fix": "Replace with the current Proxmox host address. Do not commit real LAN addresses to this repo; use RFC 5737 (192.0.2.0/24) in examples."
-    },
-    {
       "token": "Cowork",
       "severity": "WARN",
       "reason": "'Cowork' was renamed — confirm correct branding.",

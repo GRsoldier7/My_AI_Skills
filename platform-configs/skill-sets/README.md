@@ -209,7 +209,7 @@ are marked) and must be removed by hand.
    CRLF, the committed copy is not byte-identical, so say so in its provenance row.
 3. Add the directory to `scripts/lint-config.json` `vendored_paths`. That marks it third-party for the
    validator, the linter and the security scan.
-4. Scan the exact bytes before installing anywhere: on Aaron's homelab, `/root/bin/skill-scan <dir>`.
+4. Scan the exact bytes before installing anywhere: on Aaron's homelab, `[redacted-path]/bin/skill-scan <dir>`.
    ALLOW proceeds; NOTIFY needs the findings read and an explicit opt-in; BLOCK means do not vendor.
    Re-scan whenever upstream changes (trust on first use is not trust forever).
 5. Add a provenance row above. Add the skill to `global.txt` only if it must load everywhere; prefer

@@ -1,6 +1,6 @@
 ---
 name: 2nd-brain
-description: Read from and write to Aaron's MinIO-backed Obsidian Second Brain (bucket obsidian-vault, Activepieces S3 connection "Obsidian Minio Self Hosted") for durable domain knowledge, insights, ideas and decisions in any domain he works in, such as AI consulting and Power Platform, Echelon Seven GovCon, homelab and the Hermes agent fleet, the YouTube-to-NotebookLM pipeline, biohacking, tax, faith and Bible study, family, job search. Use at the start of substantive work in a domain, when a durable insight, decision, contact, deadline or reusable procedure emerges, or on "check my second brain", "what do I know about X", "what did I decide about", "save this to my vault / 2nd brain / Obsidian", "file this", "add a task to my master list". SKIP for session state, handoffs and lessons (HANDOFF.md and the Agent memory DB own those), trivial or transient turns, raw tool output, and anything secret.
+description: Read from and write to Aaron's MinIO-backed Obsidian Second Brain (bucket [redacted-bucket], Activepieces S3 connection "[redacted-connection]") for durable domain knowledge, insights, ideas and decisions in any domain he works in, such as AI consulting and Power Platform, [redacted-business] GovCon, homelab and the Hermes agent fleet, the YouTube-to-NotebookLM pipeline, biohacking, tax, faith and Bible study, family, job search. Use at the start of substantive work in a domain, when a durable insight, decision, contact, deadline or reusable procedure emerges, or on "check my second brain", "what do I know about X", "what did I decide about", "save this to my vault / 2nd brain / Obsidian", "file this", "add a task to my master list". SKIP for session state, handoffs and lessons (HANDOFF.md and the Agent memory DB own those), trivial or transient turns, raw tool output, and anything secret.
 metadata:
   author: Aaron
   version: "2.0.0"
@@ -27,7 +27,7 @@ conflicting guidance against current evidence.
 
 - Load tools: ToolSearch `select:mcp__claude_ai_Activepieces__ap_run_action`.
   Call with `pieceName` `@activepieces/piece-amazon-s3` and
-  `connectionExternalId` `2XVIv9EVizvNEHgye0QBb`. Bucket root is the vault root
+  `connectionExternalId` `[redacted-id]`. Bucket root is the vault root
   (no `Homelab/` prefix). The bucket is versioned; every read returns a
   `versionId` and `etag`.
 - Actions: `amazon_s3_list_files` (`prefix`, `listFoldersSeparately`,

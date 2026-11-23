@@ -19,8 +19,8 @@ The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verificatio
 - `scripts/install-skills.sh` skips only the project-router skills on the Codex side, read from `SKILLS` in `scripts/project-router.py` with Python's parser (fails closed; see the rev 9 entry below); other `skills/aarons-latest/*` install for both tools. Test suite: 98/98 on Linux (homelab, 2026-10-17). Before rev 9, 56/57 on Windows under `MSYS=winsymlinks:nativestrict`; T14 (relative link survives `--prune`) failed there with the unmodified installer too, a pre-existing MSYS `readlink` difference.
 - Device setup guide (`platform-configs/skill-sets/README.md`) covers every skill: `global.txt` is the set for both tools; Aaron's 7 go into Claude Code by name and into Codex from `scripts/project-router.py`; `grill-me`, `grilling`, `grill-with-docs`, `teach` and `projectplan-roadmap` go into both tools by name. Setup adds `--global-guidance` and the `continuing-alm-work` `skillOverrides` entry; the Verify table checks each part.
 - Windows desktop (2026-10-17, before rev 9): global set plus `domain-modeling`, `grill-me`, `grilling`, `grill-with-docs`, `teach` linked for Claude Code and Codex. Other devices: `git pull`, then follow "Set up a new device" in the guide.
-- `scripts/lint-skills.py`, `scripts/validate-skills.sh` and `scripts/generate-skill-registry.py` run from any clone location and on Windows (hardcoded `/root/My_AI_Skills` paths and a CRLF trap removed 2026-10-17).
-- SkillSpector gate (host `/root/bin/skill-scan`): rounds 1-5 last verified 2026-09-28; current host state not rechecked.
+- `scripts/lint-skills.py`, `scripts/validate-skills.sh` and `scripts/generate-skill-registry.py` run from any clone location and on Windows (hardcoded `$SKILLS_ROOT` paths and a CRLF trap removed 2026-10-17).
+- SkillSpector gate (host `[redacted-path]/bin/skill-scan`): rounds 1-5 last verified 2026-09-28; current host state not rechecked.
 - `continuing-alm-work` is the owner's nine-file v2.0.0 package (2026-09-30).
 
 ## Log
@@ -67,7 +67,7 @@ The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verificatio
 
 **Verified**
 - sha256: setup 8/8, to-tickets 3/3, to-spec 3/3 files match upstream (LICENSE unchanged between pins).
-- `/root/bin/skill-scan`: setup ALLOW 2/100; to-tickets NOTIFY 27/100, the same two findings as before (TM2 `SKILL.md:40` ticket-sequencing prose; EA3 `LICENSE:16` MIT warranty text), reviewed again as false positives.
+- `[redacted-path]/bin/skill-scan`: setup ALLOW 2/100; to-tickets NOTIFY 27/100, the same two findings as before (TM2 `SKILL.md:40` ticket-sequencing prose; EA3 `LICENSE:16` MIT warranty text), reviewed again as false positives.
 
 **Open**
 - Not pushed to origin (local `main` only).
@@ -99,7 +99,7 @@ The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verificatio
 - All ten skills resolve as symlinks into this clone (`~/.claude/skills/<name>/SKILL.md`); `CONTEXT.md` now appears in the README only where it describes the rename.
 
 **Open**
-- The desktop re-synced setup-matt-pocock-skills and to-tickets to `49dd158d` in parallel with `c9f537c` (the third commit in the entry below; identical files) and scanned them with `/root/bin/skill-scan`: setup ALLOW 2/100; to-tickets NOTIFY 27/100 (TM2 `SKILL.md:40`, EA3 `LICENSE:16`, both reviewed as false positives). The provenance table keeps the Windows results (SAFE 0/100, CAUTION 25/100). The two scans disagree and have not been reconciled.
+- The desktop re-synced setup-matt-pocock-skills and to-tickets to `49dd158d` in parallel with `c9f537c` (the third commit in the entry below; identical files) and scanned them with `[redacted-path]/bin/skill-scan`: setup ALLOW 2/100; to-tickets NOTIFY 27/100 (TM2 `SKILL.md:40`, EA3 `LICENSE:16`, both reviewed as false positives). The provenance table keeps the Windows results (SAFE 0/100, CAUTION 25/100). The two scans disagree and have not been reconciled.
 
 ### 2026-10-17 — Vendor mattpocock grill-me + grilling into aarons-latest
 
@@ -107,12 +107,13 @@ The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verificatio
 - Vendored `grill-me` and `grilling` byte-identical from mattpocock/skills @ `49dd158d1076134a641b33efb035946536778336` (`skills/productivity/*`) into `skills/aarons-latest/`, each with the upstream MIT `LICENSE`. `grill-me` is a one-line wrapper that calls `grilling`, so both are required.
 - Placed in `aarons-latest` at the owner's request (not `engineering/` like the 2026-10-03 vendored set). `scripts/project-router.py` uses a fixed seven-skill list, so the Codex/ChatGPT plugin build is unaffected. Added both to `vendored_paths`; updated the catalog README, the aarons-latest README and the skill-sets provenance table.
 - Installed on the Windows device: `./scripts/install-skills.sh --tool claude --apply grill-me grilling` made real symlinks in `~/.claude/skills` (run under `MSYS=winsymlinks:nativestrict`; PowerShell reports `SymbolicLink`). Claude Code listed `grilling` live in the same session.
-- Fixed two Windows-only gate bugs found while validating: `scripts/validate-skills.sh` now strips CR from the `python3` pattern list (the Store python3 writes CRLF to pipes, so every `vendored_paths` entry but the last carried a `` and never matched); `scripts/lint-skills.py` derives `REPO_DIR` from its own location instead of the hardcoded `/root/My_AI_Skills`, and resolves `--files` paths before `relative_to`. Neither changes results on the homelab.
+- Fixed two Windows-only gate bugs found while validating: `scripts/validate-skills.sh` now strips CR from the `python3` pattern list (the Store python3 writes CRLF to pipes, so every `vendored_paths` entry but the last carried a `
+` and never matched); `scripts/lint-skills.py` derives `REPO_DIR` from its own location instead of the hardcoded `$SKILLS_ROOT`, and resolves `--files` paths before `relative_to`. Neither changes results on the homelab.
 
 - Same session, second commit: vendored `grill-with-docs` (same upstream commit, `skills/engineering/grill-with-docs`) into `aarons-latest`. It calls `grilling` and `domain-modeling`; `domain-modeling` (vendored 2026-10-03 at `c55ee46`) was not installed on the Windows device, so it was linked at the same time.
 - Re-synced `skills/engineering/domain-modeling` from `c55ee46` to `49dd158d` (byte-identical; upstream renamed `CONTEXT.md`/`CONTEXT-FORMAT.md` to `GLOSSARY.md`/`GLOSSARY-FORMAT.md`). Needed because `grill-with-docs` at `49dd158d` pairs with that version. `setup-matt-pocock-skills` stays at `c55ee46`; see Open.
 - Vendored `teach` (`skills/productivity/teach`, 6 files, SAFE 0/100) into `aarons-latest` at the owner's request. Standalone; manual `/teach <topic>`.
-- Third commit (loose ends, owner-requested): re-synced `setup-matt-pocock-skills` (7 files, SAFE 0/100) and `to-tickets` (2 files, CAUTION 25/100, same TM2 false positive as 2026-10-03) to `49dd158d`, so no vendored mattpocock skill mentions `CONTEXT.md` any more; `to-spec` is unchanged upstream. `scripts/install-skills.sh` now skips only the project-router skills on the Codex side (read from `SKILLS` in `scripts/project-router.py`) instead of all of `skills/aarons-latest/*`, so the vendored grill/teach skills install for Codex too (new test T22). `scripts/generate-skill-registry.py` lost its hardcoded `/root/My_AI_Skills` paths and the registry was regenerated from this complete checkout. README and CLAUDE.md skill counts now match the registry total. This Windows device also got the global set and the new skills linked for Codex.
+- Third commit (loose ends, owner-requested): re-synced `setup-matt-pocock-skills` (7 files, SAFE 0/100) and `to-tickets` (2 files, CAUTION 25/100, same TM2 false positive as 2026-10-03) to `49dd158d`, so no vendored mattpocock skill mentions `CONTEXT.md` any more; `to-spec` is unchanged upstream. `scripts/install-skills.sh` now skips only the project-router skills on the Codex side (read from `SKILLS` in `scripts/project-router.py`) instead of all of `skills/aarons-latest/*`, so the vendored grill/teach skills install for Codex too (new test T22). `scripts/generate-skill-registry.py` lost its hardcoded `$SKILLS_ROOT` paths and the registry was regenerated from this complete checkout. README and CLAUDE.md skill counts now match the registry total. This Windows device also got the global set and the new skills linked for Codex.
 
 **Verified**
 - All vendored files match upstream sha256 (grill-me 3, grilling 3, grill-with-docs 3, teach 7, domain-modeling 5). grill-with-docs and teach SAFE 0/100. SkillSpector static: grill-me SAFE 0/100; grilling SAFE 10/100, one EA2 finding reviewed as a false positive (fact-finding prose; the skill requires user confirmation before acting).
@@ -171,8 +172,8 @@ The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verificatio
 **Done**
 - Round 5, Windows commit `f19e121` on `aaron/fp-tuning` in `~/.claude/tools/skillspector`. It closes the three bypasses from Fable's round-4 review and adds that review's follow-ups. Each bypass line is now a regression test that fails on round 4.
 - A second Fable review of round 5 said deploy. Its three small consistency items were taken before the commit.
-- Deployed rounds 4+5 to the host gate engine with `/root/.cache/skillspector-deploy-tuning.sh`, after a dry run in a detached worktree. Do not re-run the script: its patches are already on the branch.
-- Updated the gate doc status (`/root/.claude/skills/skill-scan/SKILL.md`, uncommitted in `/root` like the earlier edits), `/skillspector` v1.5.0, DB row `decision:hermes:skillspector-fp-tuning`, and a new lesson `lesson:hermes:census-exemption-before-tightening`.
+- Deployed rounds 4+5 to the host gate engine with `[redacted-path]/.cache/skillspector-deploy-tuning.sh`, after a dry run in a detached worktree. Do not re-run the script: its patches are already on the branch.
+- Updated the gate doc status (`$CLAUDE_ROOT/skills/skill-scan/SKILL.md`, uncommitted in `/root` like the earlier edits), `/skillspector` v1.5.0, DB row `decision:hermes:skillspector-fp-tuning`, and a new lesson `lesson:hermes:census-exemption-before-tightening`.
 
 **Verified**
 - `pytest -q`: 777 passed on Windows and on the host. Ruff clean.
@@ -187,7 +188,7 @@ The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verificatio
 ### 2026-09-28 — Round 3 overfit and rolled back; round 4 built and reviewed, not deployed; Fable follow-ups applied
 
 **Done**
-- Applied Fable's follow-ups on the host (owner: "apply them"). Backups are in `/root/.cache/*.bak-20260927` and `*.bak-20260928`.
+- Applied Fable's follow-ups on the host (owner: "apply them"). Backups are in `[redacted-path]/.cache/*.bak-20260927` and `*.bak-20260928`.
   - `agents/security-auditor.md` lines 27 and 37 now say "(scope: `skill-scan` §Scope)".
   - `CLAUDE.md` §DELEGATE now says "(third-party; scope in `skill-scan` §Scope)".
   - Superseded the stale host memory notes: `skillspector-fp-tuning-2026-09-27.md`, `feedback-owner-authored-skills-skip-security-scan.md`, and index lines 7 and 28. Ingest reported `failed=0`.
@@ -209,24 +210,24 @@ The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verificatio
 - The round-4 patch applies cleanly to the host's `aaron/fp-tuning` (checked in a throwaway worktree). The live engine is untouched: `main @ a5092dd`, clean.
 
 **Open**
-- Fable's round-4 review (`/root/.cache/skillspector-r4-review-20260928.md`) found three bypasses of the new exemptions. None scores below stock, but each defeats the escalation:
+- Fable's round-4 review (`[redacted-path]/.cache/skillspector-r4-review-20260928.md`) found three bypasses of the new exemptions. None scores below stock, but each defeats the escalation:
   1. a closed quote or `#` earlier on the line;
   2. a U+1F3F4 prefix that hides a tag-character run;
   3. GET or httpx sends that the send check misses.
-- Next: fix all three as round 5 (item 1 has exact code in the review). Rerun the suite and the corpus. Then deploy both patches with `bash /root/.cache/skillspector-deploy-tuning.sh <r4.patch> <r5.patch>`.
+- Next: fix all three as round 5 (item 1 has exact code in the review). Rerun the suite and the corpus. Then deploy both patches with `bash [redacted-path]/.cache/skillspector-deploy-tuning.sh <r4.patch> <r5.patch>`.
 - 13 of the 45 fixtures score ALLOW on both stock and tuned, which static rules cannot see. Whether to add an LLM triage pass is back with the owner.
 - `continuing-alm-work-v2.0.0.zip` is still missing. This time also searched all of `C:\Users\Admin` and `agents/TEMP`, which holds only `context-checkpoint-skill-v1.0.0.zip`.
 
 ### 2026-09-27 (later) — Gate doc per Fable, stricter tuning invariant, scan time limit; caw zip still missing
 
 **Done**
-- The owner ordered "follow Fable's recommendations" for the host gate doc, and Fable (read-only review) wrote the text. Applied verbatim to `/root/workspace/claude-skills/skill-scan/SKILL.md`:
+- The owner ordered "follow Fable's recommendations" for the host gate doc, and Fable (read-only review) wrote the text. Applied verbatim to `[redacted-path]/workspace/claude-skills/skill-scan/SKILL.md`:
   - a provenance-scoped **Scope** section: owner-authored means his repo remote **and** not in `vendored_paths`, or his own in-session hand-over; vendored third-party packs stay scanned; the wrapper keeps no exemption path;
   - a fail-closed time-limit bullet and paragraph;
   - an engine-branch section.
-  - Only measured figures were filled in. Backup: `/root/.cache/skill-scan-SKILL.md.bak-20260927`.
+  - Only measured figures were filled in. Backup: `[redacted-path]/.cache/skill-scan-SKILL.md.bak-20260927`.
 - SkillSpector round 3 (`27afe8d` Windows, `e20c601` host) adopts Fable's invariant. In SKILL.md and the files it names, only agency-language rules can be discounted as negated, never attack syntax, which closes the "Do not skip: `rm -rf ~`" evasion. Tool-misuse rules on one line now count once.
-- `/root/bin/skill-scan` gained a scan time limit: `SKILL_SCAN_TIMEOUT_SECS`, default 600, 1-7200, invalid values fall back to the default, and rc 124 means BLOCK. 5 new gate tests. Backups: `/root/.cache/skill-scan.bak-20260927` and `test_skill_scan.sh.bak-20260927`.
+- `[redacted-path]/bin/skill-scan` gained a scan time limit: `SKILL_SCAN_TIMEOUT_SECS`, default 600, 1-7200, invalid values fall back to the default, and rc 124 means BLOCK. 5 new gate tests. Backups: `[redacted-path]/.cache/skill-scan.bak-20260927` and `test_skill_scan.sh.bak-20260927`.
 - The Windows `/skillspector` skill (v1.3.0) carries Fable's scope note and the current figures; the literal payload strings were removed from its own text.
 
 **Verified**
@@ -237,9 +238,9 @@ The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verificatio
   - 15 benign → 10 ALLOW, 5 NOTIFY, 0 BLOCK.
 
 **Open**
-- `continuing-alm-work-v2.0.0.zip` (SHA-256 `97bced21…`, 36,588 bytes) is not on disk. Searched `%TEMP%`, `C:\temp`, `C:\tmp`, OneDriveTemp, Downloads, Desktop, `Z:`/NAS, `G:`, `S:` and the host's `/root/.cache/TEMP` (which holds only `context-checkpoint`). The build report shows it was made in a remote sandbox (`/mnt/data/...`). The owner needs to download it again or give the path.
+- `continuing-alm-work-v2.0.0.zip` (SHA-256 `97bced21…`, 36,588 bytes) is not on disk. Searched `%TEMP%`, `C:\temp`, `C:\tmp`, OneDriveTemp, Downloads, Desktop, `Z:`/NAS, `G:`, `S:` and the host's `[redacted-path]/.cache/TEMP` (which holds only `context-checkpoint`). The build report shows it was made in a remote sandbox (`/mnt/data/...`). The owner needs to download it again or give the path.
 - Fable's follow-ups for the owner (not applied):
-  - add "(scope: `skill-scan` §Scope)" to `/root/.claude/agents/security-auditor.md` lines 27/37 and to `/root/.claude/CLAUDE.md` §5;
+  - add "(scope: `skill-scan` §Scope)" to `$CLAUDE_ROOT/agents/security-auditor.md` lines 27/37 and to `$CLAUDE_ROOT/CLAUDE.md` §5;
   - supersede the stale host memory row `skillspector-fp-tuning-2026-09-27.md`, which still says no live change was made.
 
 ### 2026-09-27 — Library synced to the Windows global skill dir; NotebookLM artifacts-only; SkillSpector gate tuned
@@ -254,10 +255,10 @@ The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verificatio
   - `wrapup` 3.0 delegates to `wrapitup`, and `wrapitup` is added: owner-authored, but previously installed only globally.
   - NotebookLM-as-memory lines are dropped from `homelab-organizer`, `ai-business-optimizer` and `entrepreneurial-os`.
   - Registry regenerated (176 → 180). README "Aaron's Latest Skills" now lists all 4 skills in that category.
-- Tuned SkillSpector: branch `aaron/fp-tuning` (`69b2256` + `316ebdd`) in `~/.claude/tools/skillspector` **and** in the host gate engine `/root/.cache/agent-repos/SkillSpector`, which is used by `/root/bin/skill-scan`.
+- Tuned SkillSpector: branch `aaron/fp-tuning` (`69b2256` + `316ebdd`) in `~/.claude/tools/skillspector` **and** in the host gate engine `[redacted-path]/.cache/agent-repos/SkillSpector`, which is used by `[redacted-path]/bin/skill-scan`.
   - On 314 installed third-party skills, stock BLOCKs 84 and tuned BLOCKs 0 (269 ALLOW, 45 NOTIFY). No skill scores higher than stock.
   - The `/skillspector` skill (v1.2.0) documents the rules.
-- Correction to the 2026-09-26 entry: the host has no `/root/My_AI_Skills` clone any more, so there is nothing to pull there.
+- Correction to the 2026-09-26 entry: the host has no `$SKILLS_ROOT` clone any more, so there is nothing to pull there.
 
 **Verified**
 - Repo vs global: 180/180 identical. Lint: 0 FAIL (the 4 WARNs are old `last-reviewed` dates on files that only lost a NotebookLM line).
@@ -268,7 +269,7 @@ The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verificatio
 
 **Open**
 - `continuing-alm-work` still has only 4 of its 17 files; it needs `continuing-alm-work-v2.0.0.zip` (see the 2026-09-26 entry).
-- The host gate doc `/root/workspace/claude-skills/skill-scan/SKILL.md` was **not** edited. The auto-mode classifier denied adding the owner rule ("never scan the owner's own skills") and the engine-tuning notes to a security gate's instructions. The owner decides whether to add them. The unmodified backup is at `/root/.cache/skill-scan-SKILL.md.bak-20260927`.
+- The host gate doc `[redacted-path]/workspace/claude-skills/skill-scan/SKILL.md` was **not** edited. The auto-mode classifier denied adding the owner rule ("never scan the owner's own skills") and the engine-tuning notes to a security gate's instructions. The owner decides whether to add them. The unmodified backup is at `[redacted-path]/.cache/skill-scan-SKILL.md.bak-20260927`.
 - `skill-scan` has no scan timeout. A 1.4 GB monorepo (the `gstack` root) scans for many minutes. Optional hardening: wrap the scanner call in `timeout` (rc 124 already fails closed).
 - The tuning exists only as local branches on the two machines; NVIDIA upstream is not pushable. After an upstream pull, rebase and rerun both suites (steps in `/skillspector`).
 
@@ -289,4 +290,4 @@ The [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verificatio
 **Open**
 - The package is incomplete. Only 4 of the 17 files in `continuing-alm-work-v2.0.0.zip` were provided. Missing: `CHANGELOG.md`, `MAINTENANCE.md`, `assets/execution-state-template.md`, `references/` (`state-and-evidence.md`, `execution-routing.md`, `verification-and-safety.md`, `checkpoints-and-skill-candidates.md`), `scripts/` (`capture_project_state.py`, `validate_package.py`), `evals/README.md`, and `tests/` (3 files). `SKILL.md` links to the references, the template and the capture script, so until they land the skill runs on its built-in fallbacks.
 - To complete it: get the zip and check its SHA-256 against the build report (`97bced219108d78674d34feed82ede0329cac76c8546b2a341d70058d2efeaa2`). Scan `scripts/` with SkillSpector, because `allowed-tools` pre-approves `capture_project_state.py`. Extract over both copies, then re-add the two metadata lines, since the zip's `SKILL.md` lacks them. Run `python -m unittest discover -s tests` inside the skill folder, then commit.
-- The host clone (`/root/My_AI_Skills`) needs a `git pull` to pick this up.
+- The host clone (`$SKILLS_ROOT`) needs a `git pull` to pick this up.

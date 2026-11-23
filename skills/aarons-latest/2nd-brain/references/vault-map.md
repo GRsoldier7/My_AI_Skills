@@ -1,7 +1,7 @@
 # Vault map and routing (verified 2026-11-08)
 
-Source of truth for where things live in bucket `obsidian-vault` (Activepieces
-connection "Obsidian Minio Self Hosted", externalId `2XVIv9EVizvNEHgye0QBb`).
+Source of truth for where things live in bucket `[redacted-bucket]` (Activepieces
+connection "[redacted-connection]", externalId `[redacted-id]`).
 Every path below was seen in a live listing on 2026-11-08 unless marked
 **unverified** or **ghost**. "Ghost" means the folder appears in a
 `listFoldersSeparately` listing but a flat listing of the prefix returns zero
@@ -14,7 +14,7 @@ before relying on a ghost.
 |---|---|---|
 | `000_Master Dashboard/` | Dataview dashboards and hubs: `Mission Control.md`, `North Star.md`, `Needle Movers.md`, per-area dashboards, `Agent Review.md` | No (read for context only) |
 | `00_Inbox/` | Single capture inlet: `YYYY-MM-DD.md`, created by the first write of that day. Also automation-owned files (see never-write) | Append to today's dated file only |
-| `10_Active Projects/` | Project hubs. Live: `Active Business/` (Echelon Seven GovCon Hub, Opportunity Log), `Active Personal/` (`!!! MASTER TASK LIST.md`, MY_MENTOR notes, `A.I. & Vibe Coding & Prompting/` with AI, Agents, Prompts, YouTube2Sheets subfolders, `Task Archive.md`). `Active Consulting/` exists and is empty. `Power Platform/` and top-level `A.I. & Vibe Coding & Prompting/` are ghosts | Yes |
+| `10_Active Projects/` | Project hubs. Live: `Active Business/` ([redacted-business] GovCon Hub, Opportunity Log), `Active Personal/` (`!!! MASTER TASK LIST.md`, MY_MENTOR notes, `A.I. & Vibe Coding & Prompting/` with AI, Agents, Prompts, YouTube2Sheets subfolders, `Task Archive.md`). `Active Consulting/` exists and is empty. `Power Platform/` and top-level `A.I. & Vibe Coding & Prompting/` are ghosts | Yes |
 | `20_Domains (Life and Work)/` | Life-domain notes. Live: `Personal/` (dated article captures), `Personal/Homelab/` (service directory note), `Personal/Business Ideas & Projects/`. `Career/` (employer and consulting subfolders per ADR-002) and `2026 Goals/` are ghosts; their content is under `_Archive/` | Yes |
 | `30_Knowledge Library/` | Ghost tree: `AI & Automation/`, `Bible Studies & Notes/`, `Biohacking/`, `Skills & Development/`, `Topics/` all list zero keys | Open decision, see below |
 | `_Archive/30_Knowledge Library/` | The real knowledge notes today (19 keys verified in `Bible Studies & Notes/` alone: Genealogy of Jesus, Prayers, Archeology, False Gods). Same five subfolders as above. `_Archive/20_Domains (Life and Work)/` holds the archived Career and Personal notes; `_Archive/05_Templates/` holds Templater templates | Read; write only after Aaron decides |
@@ -28,7 +28,7 @@ before relying on a ghost.
 
 | Domain / insight | Folder and note pattern | Lane |
 |---|---|---|
-| Echelon Seven, GovCon, SAM, VetCert, offers, buyers | `10_Active Projects/Active Business/Echelon Seven - GovCon Hub.md` (status, positioning, plan); opportunities in `Echelon Seven - Opportunity Log.md`; new hubs as `Echelon Seven - <Topic>.md` | shared |
+| [redacted-business], GovCon, SAM, VetCert, offers, buyers | `10_Active Projects/Active Business/[redacted-business] - GovCon Hub.md` (status, positioning, plan); opportunities in `[redacted-business] - Opportunity Log.md`; new hubs as `[redacted-business] - <Topic>.md` | shared |
 | Consulting clients and training engagements | `10_Active Projects/Active Consulting/<Client> - <Topic>.md` (folder exists, empty) | shared |
 | AI, agents, prompting, Claude Code, Hermes, MY_MENTOR, skills | `10_Active Projects/Active Personal/A.I. & Vibe Coding & Prompting/<Area>/<Title>.md`; dated references as `10_Active Projects/Active Personal/YYYYMMDD - <Project> - <Topic>.md` | shared |
 | Power Platform, Power BI, day-job work | `10_Active Projects/Power Platform/` (ghost) or `20_Domains (Life and Work)/Career/<employer>/` (ghost, ADR-002). **Unverified**: list first; if both empty, create in `10_Active Projects/Power Platform/` and tell Aaron | shared |
@@ -45,7 +45,7 @@ before relying on a ghost.
 | Action or commitment | `10_Active Projects/Active Personal/!!! MASTER TASK LIST.md`, canonical task line, under the fitting section | per content |
 | What an agent did in the vault | `98_Agents/Log/YYYY-MM.md`, one appended entry | shared |
 
-Areas for `[area:: ]`: `faith`, `family`, `business` (Echelon Seven),
+Areas for `[area:: ]`: `faith`, `family`, `business` ([redacted-business]),
 `consulting` (client work), `work` (day job), `health`, `home`,
 `personal`. Lowercase; Dataview matching is case-sensitive.
 

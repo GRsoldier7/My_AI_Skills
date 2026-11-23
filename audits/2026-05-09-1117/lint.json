@@ -5,7 +5,7 @@
     {
       "severity": "FAIL",
       "skill": "homelab-organizer",
-      "file": "/root/My_AI_Skills/skills/homelab-organizer/SKILL.md",
+      "file": "$SKILLS_ROOT/skills/homelab-organizer/SKILL.md",
       "line": 1,
       "rule": "metadata-missing",
       "message": "metadata block missing.",

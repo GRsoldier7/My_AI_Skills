@@ -1,14 +1,14 @@
 ---
 name: yt-knowledge
 description: |
-  How to query Aaron's YouTube knowledge DB (Echelon DB2) — supplements, protocols,
+  How to query Aaron's YouTube knowledge DB (lab DB2) — supplements, protocols,
   claims, guests, comments, evidence, video moments. Canonical schema map and
   copy-paste SQL patterns so agents use verified query shapes instead of
   spelunking 70+ tables (verify columns first when deviating from the patterns).
 
   EXPLICIT TRIGGER on: "knowledge DB", "what did <person/channel> say about",
   "find every protocol/supplement mention", "video moments", "timestamp deep link",
-  "Echelon DB2 query", "search transcripts", "supplement consensus", "guest
+  "lab DB2 query", "search transcripts", "supplement consensus", "guest
   appearances", "which videos mention", "dosage recommendations across channels",
   "evidence-backed vs bro-science", "commenter reports".
 
@@ -22,11 +22,11 @@ metadata:
   last-reviewed: "2026-07-17"
   review-trigger: "P4 verbs LIVE + row-counts de-staled 2026-07-17 (spine 131k entities / 6.4k videos; long-form >3500w windowing adds deep-timestamp moments). Next: refresh when canonicalization merges land (entity_aliases grows past 544) or a health domain joins the spine"
   capability-assumptions:
-    - "MCP postgres-echelon-db2-ro (read-only) registered in Claude Code"
-    - "DB2 = 192.0.2.12:5433/postgres (Supabase CT105)"
+    - "MCP postgres-lab-db2-ro (read-only) registered in Claude Code"
+    - "DB2 = 192.0.2.12:5433/postgres (Supabase [redacted-ct])"
     - "Semantic search needs LAN API (agents cannot generate embeddings via MCP)"
   fallback-patterns:
-    - "If RO MCP absent: STOP and register postgres-echelon-db2-ro (wrapper in ~/.config/claude-mcp/) — do NOT fall back to the unrestricted admin MCP for Q&A"
+    - "If RO MCP absent: STOP and register postgres-lab-db2-ro (wrapper in ~/.config/claude-mcp/) — do NOT fall back to the unrestricted admin MCP for Q&A"
     - "If column doubt: verify with list_objects/describe before complex joins"
   degradation-mode: "graceful"
 ---
@@ -44,8 +44,8 @@ metadata:
 
 | Fact | Value |
 |---|---|
-| MCP server | `postgres-echelon-db2-ro` (read-only role `echelon_ro`) — use for ALL agent queries |
-| Admin MCP | `postgres-echelon-db2` (unrestricted R/W) — ops sessions only, never for agent Q&A |
+| MCP server | `postgres-lab-db2-ro` (read-only role `lab_ro`) — use for ALL agent queries |
+| Admin MCP | `postgres-lab-db2` (unrestricted R/W) — ops sessions only, never for agent Q&A |
 | Physical DB | `192.0.2.12:5433/postgres` — ONE database, four schemas that matter |
 | Schema map | `public` = extraction entities + masters + marts + scraped_videos/fact_videos · `core` = transcripts/chunks + evidence (pubmed/trials/safety/scores) · `ops` = pipeline state (extraction_status) · `analytics` = (reserved) |
 | Row-count anchors (2026-07-17) | anchored-entity spine 131k current entities / 6.4k videos (faith/biz/dev/trade) · core.transcript_chunks 486k (HNSW + FTS valid) · core.video_transcripts 25.5k · extracted_supplements 12.0k · extracted_claims 43.1k · entity_aliases 544 |
@@ -162,7 +162,7 @@ spine domains (faith/biz/dev/trade) → `find_moments(<entity>, <domain>)` retur
 
 ## Semantic Access (agents cannot embed via MCP)
 
-1. **LAN API** (embedding handled server-side, TTL-cached): `curl -s -X POST http://192.0.2.10/search -H "X-API-Key: $ECHELON_API_KEY" -H 'Content-Type: application/json' -d '{"query":"<text>","search_type":"transcripts","match_count":10}'` — post-P4 also `POST /moments`.
+1. **LAN API** (embedding handled server-side, TTL-cached): `curl -s -X POST http://192.0.2.10/search -H "X-API-Key: $LAB_API_KEY" -H 'Content-Type: application/json' -d '{"query":"<text>","search_type":"transcripts","match_count":10}'` — post-P4 also `POST /moments`.
 2. **Stored-embedding self-join** (pure SQL, no embedding call) — claim-to-claim similarity:
 ```sql
 WITH seed AS (

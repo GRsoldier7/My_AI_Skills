@@ -7,7 +7,7 @@ These rules are the **floor** for every operating mode. They are not configurabl
 Never read, write, move, or quarantine anything matching these:
 
 - `.git/` — git internals
-- `/root/.claude/settings*.json` — Claude Code config
+- `$CLAUDE_ROOT/settings*.json` — Claude Code config
 - `~/.ssh/`, `/etc/ssh/` — SSH keys
 - `/etc/`, `/usr/`, `/var/lib/` (outside container projects), `/sys/`, `/proc/`, `/boot/` — system paths
 - Files modified within last **7 days** (regardless of refs)
@@ -15,7 +15,7 @@ Never read, write, move, or quarantine anything matching these:
 - Anything matching `pattern_rules: always-skip` in `state.yaml`
 - Any path in `allow_list` in `state.yaml`
 - **Any path containing `/credentials/`, `/secrets/`, `/keys/`** — credentials class. Even duplicates may be intentional copies for different services. Never propose action.
-- **`/root/` dotfiles with system meaning**: `/root/.forward`, `/root/.lesshst`, `/root/.selected_editor`, `/root/.bash_history`, `/root/.Xauthority`, `/root/.viminfo`, `/root/.python_history`, `/root/.cache/*`, `/root/.local/*`. Old mtime is normal — these are passive system files.
+- **`/root/` dotfiles with system meaning**: `/root/.forward`, `/root/.lesshst`, `/root/.selected_editor`, `/root/.bash_history`, `/root/.Xauthority`, `/root/.viminfo`, `/root/.python_history`, `[redacted-path]/.cache/*`, `/root/.local/*`. Old mtime is normal — these are passive system files.
 
 ## Hard-skip default (skipped without `--unsafe`, but overridable)
 
@@ -35,7 +35,7 @@ If any of these are true, the file is in-use even if mtime+ref criteria say othe
 
 - File path mentioned in `MEMORY.md`, `MEMORY_INDEX.md`, `CLAUDE.md`, `LESSONS_LEARNED.md`, `SELF_HEALING.md`
 - File path mentioned in any `.planning/*/PLAN.md` or `STATE.md`
-- File path appears in any active runbook under `/root/homelab/docs/runbooks/`
+- File path appears in any active runbook under `$HOMELAB_ROOT/docs/runbooks/`
 - File path referenced from a systemd unit or cron entry: on the host, or by basename in a running guest's crontabs, cron dirs, unit files and drop-ins in the admin and package unit dirs (one read-only `pct exec` per guest, path tokens only)
 - File, or its directory, bound into a guest by an LXC mount point (`mpN:` / `lxc.mount.entry:` host path)
 - File is `__init__.py`: a package marker, referenced by the import system, never by name

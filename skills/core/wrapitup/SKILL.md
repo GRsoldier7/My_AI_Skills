@@ -73,8 +73,8 @@ Save anything non-obvious to memory: decisions and their reasons, environment fa
 the hard way, and traps that cost time. Do not save what the code or git history already says.
 
 **Memory means the ADR-0034 `memory_vectors` Agent memory DB** — one table every project and
-node reads, scoped by `project`. Write it with `hermes-mem` on agent-pve-01 (from Windows:
-`ssh root@agent-pve-01 '/root/bin/hermes-mem write ...'`):
+node reads, scoped by `project`. Write it with `hermes-mem` on [redacted-host] (from Windows:
+`ssh root@[redacted-host] '[redacted-path]/bin/hermes-mem write ...'`):
 
 - `--project <kebab-project>` (reuse the name `hermes-mem projects` already lists),
   `--kind decision|state|lesson|note`, `--topics`, `--importance`, `--agent claude-code`.
@@ -83,7 +83,7 @@ node reads, scoped by `project`. Write it with `hermes-mem` on agent-pve-01 (fro
   verb**; pick ref-ids once.
 - Confirm with `hermes-mem recent --project <p> -n 3`.
 
-Hermes/ATB only: curated files in `/root/hermes-deploy/lessons_learned/*` or
+Hermes/ATB only: curated files in `[redacted-path]/hermes-deploy/lessons_learned/*` or
 `self_healing/playbooks` also ingest via `hermes-memory-ingest.timer` (stamped `project=hermes`,
 stem ≤ 80 chars, require `failed=0` in the ingest log). If the host is unreachable, list the
 pending facts in `HANDOFF.md` and say so; never claim a DB write you did not make.

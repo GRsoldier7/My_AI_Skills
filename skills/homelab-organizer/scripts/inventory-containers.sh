@@ -3,11 +3,18 @@
 # Outputs JSON to stdout. Safe to run on Proxmox (uses pct/qm; falls back gracefully).
 set -uo pipefail
 
-AUDIT_DIR="${AUDIT_DIR:-/root/homelab/docs/organizer/AUDIT-$(date +%Y-%m-%d)}"
-STATE_FILE="${STATE_FILE:-/root/homelab/docs/organizer/state.yaml}"
-HOMELAB_LXC_DOC="${HOMELAB_LXC_DOC:-/root/homelab/lxc}"
-HOMELAB_CT_DOC="${HOMELAB_CT_DOC:-/root/homelab/containers}"
-HOMELAB_VM_DOC="${HOMELAB_VM_DOC:-/root/homelab/vms}"
+# Public-repo placeholder roots. Export the real paths on the host; do not commit them.
+HOMELAB_ROOT="${HOMELAB_ROOT:-/path/to/homelab}"
+PROJECT_ROOT="${PROJECT_ROOT:-/path/to/projects}"
+SKILLS_ROOT="${SKILLS_ROOT:-/path/to/My_AI_Skills}"
+CLAUDE_ROOT="${CLAUDE_ROOT:-/path/to/.claude}"
+
+
+AUDIT_DIR="${AUDIT_DIR:-${HOMELAB_ROOT}/docs/organizer/AUDIT-$(date +%Y-%m-%d)}"
+STATE_FILE="${STATE_FILE:-${HOMELAB_ROOT}/docs/organizer/state.yaml}"
+HOMELAB_LXC_DOC="${HOMELAB_LXC_DOC:-${HOMELAB_ROOT}/lxc}"
+HOMELAB_CT_DOC="${HOMELAB_CT_DOC:-${HOMELAB_ROOT}/containers}"
+HOMELAB_VM_DOC="${HOMELAB_VM_DOC:-${HOMELAB_ROOT}/vms}"
 
 have() { command -v "$1" >/dev/null 2>&1; }
 
@@ -86,7 +93,7 @@ if have qm; then
 fi
 
 # Drift detection — compare to docs
-# Primary signal: folder-name convention `<id>-<name>` in /root/homelab/lxc/
+# Primary signal: folder-name convention `<id>-<name>` in ${HOMELAB_ROOT}/lxc/
 # Secondary signal: explicit "CT N" / "VM N" mentions in doc content
 declare -a undocumented_lxc undocumented_vm orphaned naming_mismatch
 documented_ids=""

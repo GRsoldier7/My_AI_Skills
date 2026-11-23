@@ -1,12 +1,12 @@
 # homelab-organizer state — example
-# Copy to /root/homelab/docs/organizer/state.yaml and edit as needed.
+# Copy to $HOMELAB_ROOT/docs/organizer/state.yaml and edit as needed.
 # This file is human-readable and hand-editable. The skill respects manual edits.
 
 # Paths or globs the user has marked "leave alone forever".
 # Format: glob followed by a comment with confirmation date.
 allow_list: []
-  # - /root/homelab/docs/runbooks/maintenance/*  # confirmed 2026-05-09
-  # - /root/nlm_login_v2.sh
+  # - $HOMELAB_ROOT/docs/runbooks/maintenance/*  # confirmed 2026-05-09
+  # - [redacted-path]/nlm_login_v2.sh
 
 # Paths or globs to flag aggressively even when other criteria don't trigger.
 block_list: []

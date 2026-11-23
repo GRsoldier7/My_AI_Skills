@@ -4,18 +4,25 @@
 # Python imports are NOT checked — broken_imports is emitted as null, never as a clean [].
 set -uo pipefail
 
+# Public-repo placeholder roots. Export the real paths on the host; do not commit them.
+HOMELAB_ROOT="${HOMELAB_ROOT:-/path/to/homelab}"
+PROJECT_ROOT="${PROJECT_ROOT:-/path/to/projects}"
+SKILLS_ROOT="${SKILLS_ROOT:-/path/to/My_AI_Skills}"
+CLAUDE_ROOT="${CLAUDE_ROOT:-/path/to/.claude}"
+
+
 # A seam left exported in the operator's shell silently narrows the audit, so every run that uses
 # one says so. Read before any default is assigned
 overrides=()
 for v in ORGANIZER_ROOTS ORGANIZER_DIR; do [[ -n "${!v:-}" ]] && overrides+=("$v"); done
 if (( ${#overrides[@]} )); then echo "check-links.sh: override active: ${overrides[*]}" >&2; fi
 
-ROOTS=("/root/homelab" "/opt/echelon/Biohacking_Optimization" "/root/My_AI_Skills" "/root/.claude/projects/-root/memory")
+ROOTS=("${HOMELAB_ROOT}" "${PROJECT_ROOT}" "${SKILLS_ROOT}" "${CLAUDE_ROOT}/projects/-root/memory")
 # Space-separated override, used by the self-test
 if [[ -n "${ORGANIZER_ROOTS:-}" ]]; then read -ra ROOTS <<<"$ORGANIZER_ROOTS"; fi
 # The organizer's own reports quote every broken link they found, so checking them re-reports each
 # finding forever (scan-files.sh excludes the same dir as a reference source)
-ORGANIZER_DIR="${ORGANIZER_DIR:-/root/homelab/docs/organizer}"
+ORGANIZER_DIR="${ORGANIZER_DIR:-${HOMELAB_ROOT}/docs/organizer}"
 
 declare -a broken_md dangling_symlinks broken_sources unclosed_fences
 

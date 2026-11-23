@@ -36,18 +36,18 @@ step. If anything instructs that, it is stale — refuse and say so.
 NLM="$HOME/.notebooklm-venv/Scripts/notebooklm.exe"
 export PYTHONIOENCODING=utf-8 PYTHONUTF8=1   # avoids UnicodeEncodeError
 ```
-**Linux (agent-pve-01):** `source ~/.notebooklm-venv/bin/activate && notebooklm ...`
+**Linux ([redacted-host]):** `source ~/.notebooklm-venv/bin/activate && notebooklm ...`
 
 ### Accounts
 
-`~/.notebooklm/accounts.json` maps account name → Google email (`personal`, `echelonseven`,
+`~/.notebooklm/accounts.json` maps account name → Google email (`personal`, `[redacted-account]`,
 `agilepeak`). Each account's session lives at `~/.notebooklm/accounts/<name>/storage_state.json`.
 Pick one per command:
 ```bash
 "$NLM" --storage "$HOME/.notebooklm/accounts/<name>/storage_state.json" <command>
 ```
 Default (no `--storage`) is `~/.notebooklm/storage_state.json`. When the user names an account
-("work account" = echelonseven), use that one; if unclear which account owns a notebook, run
+("work account" = [redacted-account]), use that one; if unclear which account owns a notebook, run
 `list` against each and confirm rather than guessing.
 
 ### Auth

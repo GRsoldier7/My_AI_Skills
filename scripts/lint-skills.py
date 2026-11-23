@@ -8,6 +8,7 @@ Scans canonical SKILL.md files in this checkout for:
     domain-category, last-reviewed})
   * `last-reviewed` older than --max-age days (default 90)
   * Stale tokens defined in lint-config.json
+  * Private RFC 1918 or Tailscale CGNAT addresses (use RFC 5737 documentation IPs in examples)
   * Phantom skill references — backticked tokens that look like skill names but
     don't match any directory under skills/
   * Windows-only paths in description sections (Scripts/activate, %USERPROFILE%, Z:/)
@@ -340,6 +341,33 @@ def lint_stale_tokens(skill_path: Path, lines: list[str], cfg: dict) -> list[Fin
     return findings
 
 
+
+# RFC 1918 and Tailscale CGNAT (100.64/10). Documentation ranges (RFC 5737) are not matched.
+PRIVATE_OR_CGNAT_IP_RE = re.compile(
+    r"\b(?:"
+    r"10\.(?:\d{1,3}\.){2}\d{1,3}"
+    r"|192\.168\.\d{1,3}\.\d{1,3}"
+    r"|172\.(?:1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}"
+    r"|100\.(?:6[4-9]|[7-9]\d|1[01]\d|12[0-7])\.\d{1,3}\.\d{1,3}"
+    r")\b"
+)
+
+
+def lint_private_ips(skill_path: Path, lines: list[str]) -> list[Finding]:
+    """Fail if a skill example or body contains a real private or tailnet address."""
+    findings: list[Finding] = []
+    skill_name = skill_path.parent.name
+    for i, line in enumerate(lines, 1):
+        if PRIVATE_OR_CGNAT_IP_RE.search(line):
+            findings.append(Finding(
+                "FAIL", skill_name, str(skill_path), i,
+                "private-ip",
+                f"Private or tailnet IP on line {i}. Do not commit real lab addresses.",
+                fix="Replace with an RFC 5737 documentation address (192.0.2.0/24, 198.51.100.0/24, or 203.0.113.0/24) or a placeholder such as [redacted-tailnet-ip].",
+            ))
+    return findings
+
+
 def lint_deprecated_apis(skill_path: Path, lines: list[str], cfg: dict) -> list[Finding]:
     findings: list[Finding] = []
     skill_name = skill_path.parent.name
@@ -552,6 +580,7 @@ def lint_one(skill_path: Path, cfg: dict, known_skills: set[str], today: date,
     findings.extend(lint_frontmatter(skill_path, fm, cfg.get("required_metadata_fields", []), vendored))
     findings.extend(lint_last_reviewed(skill_path, fm, max_age_days, today))
     findings.extend(lint_stale_tokens(skill_path, lines, cfg))
+    findings.extend(lint_private_ips(skill_path, lines))
     findings.extend(lint_deprecated_apis(skill_path, lines, cfg))
     findings.extend(lint_windows_paths(skill_path, fm_text, fm_end, cfg))
     findings.extend(lint_phantom_refs(skill_path, lines, known_skills))
