@@ -215,7 +215,7 @@ After generating all requested files, verify:
 Based on the user's profile, pre-populate these defaults when generating new project files:
 
 ```yaml
-owner: Aaron DeYoung
+owner: Aaron
 stack_preferences:
   language: Python 3.12+
   database: PostgreSQL (Cloud SQL on GCP)

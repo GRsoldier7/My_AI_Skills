@@ -6,10 +6,10 @@ This file is loaded only when running a full audit (`/homelab-organizer` with no
 
 Before any phase:
 
-1. Verify `/root/homelab/docs/organizer/` exists. If not, create it.
+1. Verify `$HOMELAB_ROOT/docs/organizer/` exists. If not, create it.
 2. Load `state.yaml`. If missing, copy from `state.example.yaml`. Mark `first_run: true` in memory.
 3. Load `references/safety-rules.md`. The hard-skip floor + default list are now active.
-4. Set `AUDIT_DATE=$(date +%Y-%m-%d)`. Set `AUDIT_DIR=/root/homelab/docs/organizer/AUDIT-$AUDIT_DATE`.
+4. Set `AUDIT_DATE=$(date +%Y-%m-%d)`. Set `AUDIT_DIR=$HOMELAB_ROOT/docs/organizer/AUDIT-$AUDIT_DATE`.
 5. `mkdir -p "$AUDIT_DIR"`. Subsequent intermediate JSONs write here.
 
 ## Phase A — Container audit
@@ -130,7 +130,7 @@ Sections in order:
 10. **Auto-restored allow-list entries** — files the user `mv`'d back from `.archive/`. These are auto-added to `allow_list` with a comment.
 11. **Approval gate** — explicit list of categories awaiting y/n.
 
-Write to `/root/homelab/docs/organizer/AUDIT-YYYY-MM-DD.md`.
+Write to `$HOMELAB_ROOT/docs/organizer/AUDIT-YYYY-MM-DD.md`.
 
 ## Phase E — Approval gate
 
@@ -148,18 +148,18 @@ Approve all / approve per category / approve per item / decline
 
 For each approved bucket:
 - Feed the approved paths to `scripts/quarantine.sh` on stdin, one per line, optionally `<path> | <reason>`. It takes no flags; the date comes from the environment: `AUDIT_DATE="$AUDIT_DATE" scripts/quarantine.sh < approved.txt`. The separator is ` | ` with a space on each side; a bare `|` is part of the path. A path already archived under the same date is refused, never overwritten.
-- It appends each move, with a paste-safe restore command, to `/root/homelab/.archive/$AUDIT_DATE/MANIFEST.md`
+- It appends each move, with a paste-safe restore command, to `$HOMELAB_ROOT/.archive/$AUDIT_DATE/MANIFEST.md`
 - Update `state.yaml: decision_log`
-- Append to `/root/homelab/docs/memory/ORGANIZATION_LOG.md`
+- Append to `$HOMELAB_ROOT/docs/memory/ORGANIZATION_LOG.md`
 
 After all approvals processed:
 - Append `audit_history` entry to `state.yaml` (counts, status)
-- Append one-line entry to `/root/homelab/docs/memory/MEMORY_INDEX.md` linking to the AUDIT report
+- Append one-line entry to `$HOMELAB_ROOT/docs/memory/MEMORY_INDEX.md` linking to the AUDIT report
 
 Final report to user:
 ```
-Quarantined: N files → /root/homelab/.archive/YYYY-MM-DD/
-Manifest: /root/homelab/.archive/YYYY-MM-DD/MANIFEST.md
+Quarantined: N files → $HOMELAB_ROOT/.archive/YYYY-MM-DD/
+Manifest: $HOMELAB_ROOT/.archive/YYYY-MM-DD/MANIFEST.md
 state.yaml updated: <fields>
 Memory updated: ORGANIZATION_LOG.md, MEMORY_INDEX.md
 ```

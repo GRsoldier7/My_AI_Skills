@@ -4,7 +4,14 @@
 # Outputs JSON to stdout.
 set -uo pipefail
 
-AUDIT_DIR="${AUDIT_DIR:-/root/homelab/docs/organizer/AUDIT-$(date +%Y-%m-%d)}"
+# Public-repo placeholder roots. Export the real paths on the host; do not commit them.
+HOMELAB_ROOT="${HOMELAB_ROOT:-/path/to/homelab}"
+PROJECT_ROOT="${PROJECT_ROOT:-/path/to/projects}"
+SKILLS_ROOT="${SKILLS_ROOT:-/path/to/My_AI_Skills}"
+CLAUDE_ROOT="${CLAUDE_ROOT:-/path/to/.claude}"
+
+
+AUDIT_DIR="${AUDIT_DIR:-${HOMELAB_ROOT}/docs/organizer/AUDIT-$(date +%Y-%m-%d)}"
 STALE_DAYS="${STALE_DAYS:-90}"
 SAFE_DAYS="${SAFE_DAYS:-7}"   # never act on anything modified within N days
 # A non-integer made the (( )) age tests error out, which reads as false: the floors stopped
@@ -38,23 +45,23 @@ for v in ORGANIZER_CT_REF_FILES ORGANIZER_CT_CONFIG_FILES; do
 done
 
 ROOTS=(
-  "/root/homelab"
-  "/opt/echelon/Biohacking_Optimization"
-  "/root/.claude/sessions"
-  "/root/.claude/todos"
-  "/root/.claude/file-history"
-  "/root/My_AI_Skills"
+  "${HOMELAB_ROOT}"
+  "${PROJECT_ROOT}"
+  "${CLAUDE_ROOT}/sessions"
+  "${CLAUDE_ROOT}/todos"
+  "${CLAUDE_ROOT}/file-history"
+  "${SKILLS_ROOT}"
 )
 # Space-separated override, used by the self-test
 if [[ -n "${ORGANIZER_ROOTS:-}" ]]; then read -ra ROOTS <<<"$ORGANIZER_ROOTS"; fi
 # /root top-level scratch (depth-1 only) handled specially below
 SCAN_ROOT_TOP="${SCAN_ROOT_TOP:-1}"
 # Prior AUDIT-*/files.json lists every candidate path; indexing it gives each stale file a fake ref
-ORGANIZER_DIR="${ORGANIZER_DIR:-/root/homelab/docs/organizer}"
+ORGANIZER_DIR="${ORGANIZER_DIR:-${HOMELAB_ROOT}/docs/organizer}"
 # Upstream code checked out inside a tracked root — never ours to quarantine
-VENDORED_PATHS=("/root/homelab/containers/home-assistant/external" "/root/homelab/projects/caveman")
+VENDORED_PATHS=("${HOMELAB_ROOT}/containers/home-assistant/external" "${HOMELAB_ROOT}/projects/caveman")
 # Depth-1 symlink homes OUTSIDE the roots whose targets are live (space-separated override for the self-test)
-read -ra SYMLINK_DIRS <<<"${ORGANIZER_SYMLINK_DIRS:-/root/.claude/skills /root/.claude/commands /root/.claude/hooks /root}"
+read -ra SYMLINK_DIRS <<<"${ORGANIZER_SYMLINK_DIRS:-${CLAUDE_ROOT}/skills ${CLAUDE_ROOT}/commands ${CLAUDE_ROOT}/hooks /root}"
 
 # Hard-skip patterns — pruned during walk
 PRUNE_NAMES=(.git .planning .venv venv node_modules __pycache__ target dist build .archive backups)
@@ -62,16 +69,16 @@ PRUNE_REGEX=$(IFS='|'; echo "${PRUNE_NAMES[*]}")
 
 # In-use signal sources — we grep these for filename mentions
 INUSE_FILES=(
-  "/root/.claude/projects/-root/memory/MEMORY.md"
-  "/root/homelab/docs/memory/MEMORY_INDEX.md"
-  "/root/homelab/docs/memory/LESSONS_LEARNED.md"
-  "/root/homelab/docs/memory/SELF_HEALING.md"
-  "/root/homelab/CLAUDE.md"
-  "/root/My_AI_Skills/CLAUDE.md"
-  "/root/.claude/CLAUDE.md"
+  "${CLAUDE_ROOT}/projects/-root/memory/MEMORY.md"
+  "${HOMELAB_ROOT}/docs/memory/MEMORY_INDEX.md"
+  "${HOMELAB_ROOT}/docs/memory/LESSONS_LEARNED.md"
+  "${HOMELAB_ROOT}/docs/memory/SELF_HEALING.md"
+  "${HOMELAB_ROOT}/CLAUDE.md"
+  "${SKILLS_ROOT}/CLAUDE.md"
+  "${CLAUDE_ROOT}/CLAUDE.md"
   "/root/AGENTS.md"
 )
-INUSE_DIRS=("/root/homelab/docs/runbooks" "/root/homelab/docs/living" "/root/.claude/projects/-root/memory")
+INUSE_DIRS=("${HOMELAB_ROOT}/docs/runbooks" "${HOMELAB_ROOT}/docs/living" "${CLAUDE_ROOT}/projects/-root/memory")
 # Space-separated overrides, used by the self-test so it never reads live operator memory
 if [[ -n "${ORGANIZER_INUSE_FILES:-}" ]]; then read -ra INUSE_FILES <<<"$ORGANIZER_INUSE_FILES"; fi
 if [[ -n "${ORGANIZER_INUSE_DIRS:-}" ]]; then read -ra INUSE_DIRS <<<"$ORGANIZER_INUSE_DIRS"; fi

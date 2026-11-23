@@ -1,7 +1,7 @@
 ---
 name: yt-pipeline-ops
 description: |
-  Operate, debug, and re-run Aaron's Echelon YouTube pipeline — transcripts,
+  Operate, debug, and re-run Aaron's lab YouTube pipeline — transcripts,
   entity extraction, embeddings, comments, evidence, dbt marts, schema governance,
   Temple Protocol export. The cron map, log paths, re-run recipes, and hard rules
   that keep the 36-day-silent-failure incident from recurring.
@@ -21,12 +21,12 @@ metadata:
   last-reviewed: "2026-07-04"
   review-trigger: "P1 collector unification, P2 tier router lands, yt2pg cron retirement"
   capability-assumptions:
-    - "Runs on pve1 (192.0.2.10) as root; repo at /opt/echelon/Biohacking_Optimization"
-    - "DB1 = 192.0.2.13:5432/youtube_videos (CT203); DB2 = 192.0.2.12:5433/postgres (CT105)"
-    - "Cron = root crontab on pve1, NOT systemd timers"
+    - "Runs on [redacted-host] (192.0.2.10) as root; repo at $PROJECT_ROOT"
+    - "DB1 = 192.0.2.13:5432/youtube_videos ([redacted-ct]); DB2 = 192.0.2.12:5433/postgres ([redacted-ct])"
+    - "Cron = root crontab on [redacted-host], NOT systemd timers"
   fallback-patterns:
     - "If a check script is missing: consult docs/ROADMAP_2026-06-05_data_platform.md before improvising"
-    - "If DB creds fail: source /opt/echelon/Biohacking_Optimization/.env (override=False discipline)"
+    - "If DB creds fail: source $PROJECT_ROOT/.env (override=False discipline)"
   degradation-mode: "strict — never bypass governance gates"
 ---
 
@@ -44,29 +44,29 @@ metadata:
 1. **Any DDL on DB1/DB2** → update `scripts/cron/schema_expectations.sh` in the SAME change-set, deployed within the same hour (drift check fires hourly at :15 via `schema_drift_check.sh`).
 2. **Freezing/retiring any feed** → update `scripts/cron/data_freshness_check.sh` (e.g. `:73` watches DB1 `video_transcripts.created_at`) + parity scope in the same change-set.
 3. **New pipeline stage** → emit `pipeline_events` via `scripts/cron/emit_pipeline_event.py`; pipeline name must exist in `pipeline_logger.py` KNOWN_PIPELINES (`:36-37`) AND dbt `sources.yml` accepted_values.
-4. **No `load_dotenv(override=True)`** with default APP_ENV on Echelon scripts (.env overlay trap).
+4. **No `load_dotenv(override=True)`** with default APP_ENV on the pipeline scripts (.env overlay trap).
 5. **Unqualified DDL lands in `core`** (role search_path). Always schema-qualify.
 
-## Cron Map (root crontab on pve1, verified 2026-07-04)
+## Cron Map (root crontab on [redacted-host], verified 2026-07-04)
 
 Times are SERVER-LOCAL **America/Chicago** (verified via timedatectl) — NOT UTC. No CRON_TZ set.
 
 | Local (CT) | Job | Log |
 |---|---|---|
-| 01:00 | YT metadata sync `/opt/YouTube2Sheets/scripts/run_youtube_sync.sh` | /var/log/youtube_sync.log |
-| 01:30 | DB2 backup `backup_db.sh` · 02:15 DB1 backup `backup_db1.sh` | /var/log/echelon_backup.log |
-| 02:00, 22:00 | Echelon transcripts + embeddings `run_transcripts_scheduled.sh` | /var/log/echelon_transcripts.log |
+| 01:00 | YT metadata sync `[redacted-path]/YouTube2Sheets/scripts/run_youtube_sync.sh` | /var/log/youtube_sync.log |
+| 01:30 | DB2 backup `backup_db.sh` · 02:15 DB1 backup `backup_db1.sh` | /var/log/pipeline_backup.log |
+| 02:00, 22:00 | Pipeline transcripts + embeddings `run_transcripts_scheduled.sh` | /var/log/pipeline_transcripts.log |
 | 02:30, 03:00, 12:00, 21:00 | yt2pg transcript collectors (DB1) — RETIRE after P1 soak | /var/log/yt2pg_transcripts.log |
-| 04:00 | Extraction `run_extraction_scheduled.sh --topics $HEALTH_TOPICS --batch-per-topic 100` | /var/log/echelon_extraction.log |
+| 04:00 | Extraction `run_extraction_scheduled.sh --topics $HEALTH_TOPICS --batch-per-topic 100` | /var/log/pipeline_extraction.log |
 | 04:30 | Parity check `05b_parity_check_wrapper.sh` | (wrapper-managed) |
-| 05:00 / 06:00 | Comments collect / analyze | /var/log/echelon_comments.log, echelon_analyze_comments.log |
-| 06:00 | Evidence scores `refresh_evidence_scores.sh` | /var/log/echelon_evidence_scores.log |
-| 07:00 | Daily status report | /var/log/echelon_daily_status.log |
+| 05:00 / 06:00 | Comments collect / analyze | /var/log/pipeline_comments.log, pipeline_analyze_comments.log |
+| 06:00 | Evidence scores `refresh_evidence_scores.sh` | /var/log/pipeline_evidence_scores.log |
+| 07:00 | Daily status report | /var/log/pipeline_daily_status.log |
 | 07:30 | dbt build `run_dbt_build.sh` (4h timeout, keepalive guards) | (script-managed) |
-| every 30m | `embeddings_watchdog.sh` + `sync_db1_to_db2.sh` (FDW metadata only — NO transcripts) | /var/log/echelon_embeddings.log, echelon_db1_to_db2_sync.log |
-| hourly :15 | `schema_drift_check.sh` | /var/log/echelon_schema_drift.log |
-| every 4h :45 | `data_freshness_check.sh` | /var/log/echelon_freshness.log |
-| Sun 02:00 / 08:00 / 19:00 | Evidence ingest / coverage report / junction population | /var/log/echelon_evidence_ingest.log etc |
+| every 30m | `embeddings_watchdog.sh` + `sync_db1_to_db2.sh` (FDW metadata only — NO transcripts) | /var/log/pipeline_embeddings.log, pipeline_db1_to_db2_sync.log |
+| hourly :15 | `schema_drift_check.sh` | /var/log/pipeline_schema_drift.log |
+| every 4h :45 | `data_freshness_check.sh` | /var/log/pipeline_freshness.log |
+| Sun 02:00 / 08:00 / 19:00 | Evidence ingest / coverage report / junction population | /var/log/pipeline_evidence_ingest.log etc |
 
 ## Status Queries (DB2 unless noted)
 
@@ -101,8 +101,8 @@ Ops dashboard table: `public.mart_video_intelligence` (pipeline_state, extractio
 
 **Preflight (EVERY manual run):** (1) confirm target — `.env` points at DB2 `.130:5433`, no APP_ENV overlay; (2) check no cron instance is running (`pgrep -f <script>` + lock files in /tmp); (3) state batch scope explicitly (`--topics`/`--limit`) — never unbounded; (4) capture output to a log file; (5) after: verify via `pipeline_events` + the status queries above. Aaron confirms before any run that mutates >100 rows.
 
-- **Extraction batch (manual)**: `cd /opt/echelon/Biohacking_Optimization && .venv/bin/python scripts/ExtractIntelligence.py --topics Biohacking --batch-per-topic 50` (respects skip-if-processed at `ExtractIntelligence.py:413`; post-P3 use `--force` + `extraction_run_id` for supersede re-runs).
-- **Transcripts (Echelon canonical)**: `scripts/cron/run_transcripts_scheduled.sh` or `TranscriptCollector.py` directly; post-P1 `--refresh-timings` mode backfills chunks for `chunked_at IS NULL`.
+- **Extraction batch (manual)**: `cd $PROJECT_ROOT && .venv/bin/python scripts/ExtractIntelligence.py --topics Biohacking --batch-per-topic 50` (respects skip-if-processed at `ExtractIntelligence.py:413`; post-P3 use `--force` + `extraction_run_id` for supersede re-runs).
+- **Transcripts (canonical)**: `scripts/cron/run_transcripts_scheduled.sh` or `TranscriptCollector.py` directly; post-P1 `--refresh-timings` mode backfills chunks for `chunked_at IS NULL`.
 - **Embeddings backlog**: `scripts/cron/embeddings_watchdog.sh` (idempotent; clears pending across video_transcripts/extracted_claims/comment_insights — chunks post-P1).
 - **Consensus**: `scripts/cron/refresh_consensus.sh` — run after ANY bulk extraction change (double-count guard).
 - **dbt**: `scripts/cron/run_dbt_build.sh` (full) — models + tests. Never raw `dbt build` without its PGOPTIONS/keepalive guards (dbt-hang incident 2026-05-19).
@@ -111,7 +111,7 @@ Ops dashboard table: `public.mart_video_intelligence` (pipeline_state, extractio
 
 ## 2.0 Additions (update this section with concrete commands as each phase SHIPS; spec: docs/superpowers/specs/2026-07-04-yt-knowledge-db-2.0-design.md)
 
-- Tier-router debug (post-P2): probe `curl -m2 http://100.112.192.78:11434/api/tags`; `pipeline_events` `stage='tier_fallback'`.
+- Tier-router debug (post-P2): probe `curl -m2 http://[redacted-tailnet-ip]:11434/api/tags`; `pipeline_events` `stage='tier_fallback'`.
 
 ## Escalation
 

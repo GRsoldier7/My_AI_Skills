@@ -6,10 +6,10 @@ Used when another skill creates or moves files in a tracked root. Cost target: <
 
 Triggered when the calling skill (gsd-execute-phase, gsd-new-project, gsd-add-phase, frontend-design, mcp-server-builder) finishes a write/move and the new path falls under a tracked root:
 
-- `/root/homelab/`
-- `/opt/echelon/Biohacking_Optimization/`
-- `/root/.claude/sessions/`, `/root/.claude/todos/`, `/root/.claude/file-history/`
-- `/root/My_AI_Skills/`
+- `$HOMELAB_ROOT/`
+- `$PROJECT_ROOT/`
+- `$CLAUDE_ROOT/sessions/`, `$CLAUDE_ROOT/todos/`, `$CLAUDE_ROOT/file-history/`
+- `$SKILLS_ROOT/`
 - `/root/` top-level scratch (depth-1 only)
 
 ## The 5 checks
@@ -54,7 +54,7 @@ Flag: `landed in flagged folder <parent> (rule: <rule_action>)`
 
 ### 5. New top-level dir
 
-Is this the first file inside a brand-new top-level directory in a tracked root? (e.g., `/root/homelab/<new-dir>/`)
+Is this the first file inside a brand-new top-level directory in a tracked root? (e.g., `$HOMELAB_ROOT/<new-dir>/`)
 
 Flag: `new top-level dir created: <path>`
 
@@ -70,7 +70,7 @@ If any flag(s):
 ⚠ flag: <comma-separated reasons> — added to watchlist
 ```
 
-Append the flag to `/root/homelab/docs/organizer/watchlist.md` with one line:
+Append the flag to `$HOMELAB_ROOT/docs/organizer/watchlist.md` with one line:
 ```
 YYYY-MM-DDTHH:MM:SS  <new_file_path>  <flag_reasons>
 ```

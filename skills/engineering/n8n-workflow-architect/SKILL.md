@@ -218,7 +218,7 @@ Main workflow fails → Error Trigger → PostgreSQL (store failed payload in de
 n8n 2.x **removed the `executeCommand` node** — workflows can no longer shell out directly. The
 production-proven replacement is a dedicated HTTP sidecar service that n8n calls via the standard
 HTTP Request node. Aaron's reference implementation is **`oho-runner`** (Obsidian Home Orchestrator
-runner) at `/root/homelab/projects/ObsidianHomeOrchestrator/` — running alongside n8n, not inside it.
+runner) at `$HOMELAB_ROOT/projects/ObsidianHomeOrchestrator/` — running alongside n8n, not inside it.
 
 **Pattern:**
 ```

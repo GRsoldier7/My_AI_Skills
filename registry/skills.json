@@ -184,7 +184,7 @@
       "license": "none",
       "version": "2.0.0",
       "manual_only": false,
-      "summary": "Read from and write to Aaron's MinIO-backed Obsidian Second Brain (bucket obsidian-vault, Activepieces S3 connection \"Obsidian Minio Self Hosted\") for durable domain knowledge, insights, ideas and..."
+      "summary": "Read from and write to Aaron's MinIO-backed Obsidian Second Brain (bucket [redacted-bucket], Activepieces S3 connection \"[redacted-connection]\") for durable domain knowledge, insights, ideas and de..."
     },
     {
       "name": "alm",
@@ -1470,7 +1470,7 @@
       "license": "none",
       "version": "1.0",
       "manual_only": false,
-      "summary": "Operate Home Assistant (HAOS VM 100 @ 192.0.2.11) from Claude Code via the ha-mcp MCP server, hass-cli, or the HA REST/WebSocket API."
+      "summary": "Operate Home Assistant (HAOS VM [redacted-vm] @ 192.0.2.11) from Claude Code via the ha-mcp MCP server, hass-cli, or the HA REST/WebSocket API."
     },
     {
       "name": "homelab-life-stack",
@@ -3376,7 +3376,7 @@
       "license": "none",
       "version": "1.0",
       "manual_only": false,
-      "summary": "How to query Aaron's YouTube knowledge DB (Echelon DB2), supplements, protocols, claims, guests, comments, evidence, video moments."
+      "summary": "How to query Aaron's YouTube knowledge DB (lab DB2), supplements, protocols, claims, guests, comments, evidence, video moments."
     },
     {
       "name": "yt-pipeline-ops",
@@ -3391,7 +3391,7 @@
       "license": "none",
       "version": "0.9",
       "manual_only": false,
-      "summary": "Operate, debug, and re-run Aaron's Echelon YouTube pipeline, transcripts, entity extraction, embeddings, comments, evidence, dbt marts, schema governance, Temple Protocol export."
+      "summary": "Operate, debug, and re-run Aaron's lab YouTube pipeline, transcripts, entity extraction, embeddings, comments, evidence, dbt marts, schema governance, Temple Protocol export."
     },
     {
       "name": "ai-search-visibility",

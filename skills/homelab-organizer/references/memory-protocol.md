@@ -6,8 +6,8 @@ This file is loaded after Phase E approval, before final reporting. Its job: kee
 
 | Layer | Path | Purpose | Update frequency |
 |---|---|---|---|
-| Auto-memory | `/root/.claude/projects/-root/memory/` | Cross-session Claude knowledge | Only on structural findings |
-| Project memory | `/root/homelab/docs/memory/` | Homelab-local persistent notes | Every audit |
+| Auto-memory | `$CLAUDE_ROOT/projects/-root/memory/` | Cross-session Claude knowledge | Only on structural findings |
+| Project memory | `$HOMELAB_ROOT/docs/memory/` | Homelab-local persistent notes | Every audit |
 
 ## Auto-memory updates
 
@@ -17,7 +17,7 @@ Update only on **structural** findings. A "structural" finding is one that chang
 
 - Audit detects a new container that has no doc and no entry in `project_homelab.md`. Append a one-liner to that file describing the container.
 - A `pattern_rule` graduates from proposal to approved (3 consistent approvals → user signed off). Append one line: `homelab-organizer learned to <action> files matching <pattern> (confirmed YYYY-MM-DD)`.
-- Audit detects a major reorg (e.g., migrating /root/scratch/* to /root/homelab/scripts/scratch/). Append one line to `MEMORY.md` index pointing to the `ORGANIZATION_LOG.md` entry.
+- Audit detects a major reorg (e.g., migrating [redacted-path]/scratch/* to $HOMELAB_ROOT/scripts/scratch/). Append one line to `MEMORY.md` index pointing to the `ORGANIZATION_LOG.md` entry.
 - A container is decommissioned (was in `container_baselines` but `pct list` no longer shows it). Update `project_homelab.md` to note the decommission.
 
 **Never write to auto-memory:**
@@ -92,7 +92,7 @@ If an audit is re-run on the same day:
 
 After memory updates, the orchestrator does:
 ```bash
-cd /root/homelab
+cd $HOMELAB_ROOT
 git add docs/memory/MEMORY_INDEX.md docs/memory/ORGANIZATION_LOG.md docs/organizer/state.yaml docs/organizer/AUDIT-*.md .archive/*/MANIFEST.md
 git commit -m "chore(organizer): audit YYYY-MM-DD — N quarantined, M links fixed"
 ```

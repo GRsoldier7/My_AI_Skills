@@ -26,7 +26,7 @@ The table below is generated from `registry/curation.json` by `python3 scripts/g
 
 | Skill | Domain | Load it when | Path |
 |---|---|---|---|
-| `2nd-brain` | aarons-latest | Read from and write to Aaron's MinIO-backed Obsidian Second Brain (bucket obsidian-vault, Activepieces S3 connection "Obsidian Minio Self Hosted") for durable domain knowledge, insights, ideas and... | [skills/aarons-latest/2nd-brain/SKILL.md](../skills/aarons-latest/2nd-brain/SKILL.md) |
+| `2nd-brain` | aarons-latest | Read from and write to Aaron's MinIO-backed Obsidian Second Brain (bucket [redacted-bucket], Activepieces S3 connection "[redacted-connection]") for durable domain knowledge, insights, ideas and de... | [skills/aarons-latest/2nd-brain/SKILL.md](../skills/aarons-latest/2nd-brain/SKILL.md) |
 | `alm` | aarons-latest | Aaron's single lifecycle driver for existing project work: drives the plan of record to production, lean and surgical, one verified slice per cycle. | [skills/aarons-latest/alm/SKILL.md](../skills/aarons-latest/alm/SKILL.md) |
 | `weekly-open-loops-review` | core | Use when running a weekly review of commitments: open loops, waiting-for items, stale threads, upcoming deadlines, and decisions not yet logged. | [skills/core/weekly-open-loops-review/SKILL.md](../skills/core/weekly-open-loops-review/SKILL.md) |
 | `personal-productivity` | core | Personal productivity architect for high-output professionals juggling multiple domains. | [skills/core/personal-productivity/SKILL.md](../skills/core/personal-productivity/SKILL.md) |

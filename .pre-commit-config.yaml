@@ -11,7 +11,7 @@ repos:
     hooks:
       - id: lint-skills
         name: Lint changed SKILL.md files
-        entry: /root/My_AI_Skills/scripts/lint-skills.py --files
+        entry: python3 scripts/lint-skills.py --files
         language: system
         files: 'skills/.*/SKILL\.md$'
         pass_filenames: true

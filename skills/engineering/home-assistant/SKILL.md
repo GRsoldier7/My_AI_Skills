@@ -1,7 +1,7 @@
 ---
 name: home-assistant
 description: |
-  Operate Home Assistant (HAOS VM 100 @ 192.0.2.11) from Claude Code via the
+  Operate Home Assistant (HAOS VM [redacted-vm] @ 192.0.2.11) from Claude Code via the
   ha-mcp MCP server, hass-cli, or the HA REST/WebSocket API. Routes between
   tools by task: live device control + automation editing → ha-mcp; scripted
   ops + state dumps + bulk queries → hass-cli; backup/restore + Supervisor
@@ -35,7 +35,7 @@ metadata:
 
 # Home Assistant — Operator Skill
 
-Drives HAOS VM 100 (`haos16.2` / Core 2025.9.3+) at `192.0.2.11:8123`. Tailscale-only off-LAN. Two long-lived tokens segregate blast radius: `homelab-backup` for backups, `claude-mcp` for AI/MCP traffic.
+Drives HAOS VM [redacted-vm] (`[redacted-haos-version]` / Core 2025.9.3+) at `192.0.2.11:8123`. Tailscale-only off-LAN. Two long-lived tokens segregate blast radius: `homelab-backup` for backups, `claude-mcp` for AI/MCP traffic.
 
 ## Tool routing
 
@@ -44,7 +44,7 @@ Drives HAOS VM 100 (`haos16.2` / Core 2025.9.3+) at `192.0.2.11:8123`. Tailscale
 | Control a device / call a service / inspect state | **ha-mcp** MCP server | Structured tool surface (89 tools), reads exposed-entities allow-list |
 | Bulk state dump, entity registry export, scripted ops | **hass-cli** (PyPI `homeassistant-cli`) | CSV/JSON output, easy pipes, low latency |
 | Add-on install/restart/uninstall | **REST `/api/hassio/*`** with `claude-mcp` token | Supervisor endpoints, no CLI parity |
-| Backup / restore | `/api/hassio/backups/*` via [haos-bundle.sh](/root/homelab/scripts/app-backups/haos-bundle.sh) | Native HA snapshot includes config + add-ons + history |
+| Backup / restore | `/api/hassio/backups/*` via [haos-bundle.sh]($HOMELAB_ROOT/scripts/app-backups/haos-bundle.sh) | Native HA snapshot includes config + add-ons + history |
 | Live event tail | **WebSocket** `/api/websocket` | hass-cli's `events watch` wraps this |
 | One-off YAML edit | File Editor add-on **OR** SSH add-on | No API for raw YAML; Supervisor exposes via Web Terminal |
 
@@ -52,11 +52,11 @@ When in doubt: try ha-mcp first; fall back to hass-cli; only hit raw REST for en
 
 ## Secrets & credentials
 
-- Operator break-glass admin login: `/root/homelab/infra/haos-admin.env` (mode 0600). NEVER read into chat, log, or commit. Only used for manual UI tasks (HACS GitHub OAuth, integration setup).
-- Backup token (`homelab-backup`): `/root/homelab/infra/haos-backup.env`. Drives `haos-bundle.sh`.
-- MCP token (`claude-mcp`): `/root/homelab/infra/haos-mcp.env`. Drives ha-mcp Add-on + check-ha-mcp.sh + Claude Code MCP client.
-- Rotation: `/root/homelab/scripts/setup/rotate-haos-tokens.sh` walks the manual flow with atomic rewrite + validation.
-- Leak response: revoke in HA Profile → Security → trash icon, then re-run rotate script. The Stop hook at `/root/.claude/hooks/security-audit.sh` flags `HAOS_ADMIN_PASSWORD=` and `HAOS_TOKEN=eyJ` patterns outside `.env` files.
+- Operator break-glass admin login: `$HOMELAB_ROOT/infra/haos-admin.env` (mode 0600). NEVER read into chat, log, or commit. Only used for manual UI tasks (HACS GitHub OAuth, integration setup).
+- Backup token (`homelab-backup`): `$HOMELAB_ROOT/infra/haos-backup.env`. Drives `haos-bundle.sh`.
+- MCP token (`claude-mcp`): `$HOMELAB_ROOT/infra/haos-mcp.env`. Drives ha-mcp Add-on + check-ha-mcp.sh + Claude Code MCP client.
+- Rotation: `$HOMELAB_ROOT/scripts/setup/rotate-haos-tokens.sh` walks the manual flow with atomic rewrite + validation.
+- Leak response: revoke in HA Profile → Security → trash icon, then re-run rotate script. The Stop hook at `$CLAUDE_ROOT/hooks/security-audit.sh` flags `HAOS_ADMIN_PASSWORD=` and `HAOS_TOKEN=eyJ` patterns outside `.env` files.
 
 ## Common workflows
 
@@ -75,13 +75,13 @@ hass-cli service call light.turn_off --arguments entity_id=light.living_room
 
 ### 3. Trigger a one-off backup
 ```sh
-/root/homelab/scripts/app-backups/haos-bundle.sh
+$HOMELAB_ROOT/scripts/app-backups/haos-bundle.sh
 ```
 Bundles land at `/mnt/pve/synology-backups/dump/`. Daily run is already wired into `app-backups.timer`.
 
 ### 4. Restart an add-on (e.g., ha-mcp)
 ```sh
-. /root/homelab/infra/haos-mcp.env
+. $HOMELAB_ROOT/infra/haos-mcp.env
 curl -fsS -X POST -H "Authorization: Bearer $HAOS_MCP_TOKEN" \
   "$HAOS_URL/api/hassio/addons/homeassistant_ai_ha_mcp/restart"
 ```
@@ -118,13 +118,13 @@ Validate via `ha core check` (in the Supervisor SSH add-on) before reload.
 
 ## Architecture & where things live
 
-- **VM 100** (`haos16.2`, 4 GB RAM, 32 GB disk, 2 cores, vmbr0 bridge, `onboot=1 startup=order=4`)
-- **Backup bundle**: [haos-bundle.sh](/root/homelab/scripts/app-backups/haos-bundle.sh)
+- **VM [redacted-vm]** (`[redacted-haos-version]`, 4 GB RAM, 32 GB disk, 2 cores, vmbr0 bridge, `onboot=1 startup=order=4`)
+- **Backup bundle**: [haos-bundle.sh]($HOMELAB_ROOT/scripts/app-backups/haos-bundle.sh)
 - **PVE-level snapshot**: VMID 100 in `/etc/pve/jobs.cfg` `backup-stateful-daily`
 - **DNS**: AdGuard CT 204 — local rewrites for `ha.lab`
-- **Reverse proxy**: NPM CT 206 — public Cloudflare DNS exists but not wired (Tailscale only)
-- **Tailscale**: HAOS Add-on `core_tailscale` adds VM 100 as a tailnet node
-- **Healthcheck**: `/root/homelab/scripts/checks/check-ha-mcp.sh` + systemd timer (every 5 min)
+- **Reverse proxy**: NPM CT [redacted-ct] — public Cloudflare DNS exists but not wired (Tailscale only)
+- **Tailscale**: HAOS Add-on `core_tailscale` adds VM [redacted-vm] as a tailnet node
+- **Healthcheck**: `$HOMELAB_ROOT/scripts/checks/check-ha-mcp.sh` + systemd timer (every 5 min)
 
 ## What NOT to do
 

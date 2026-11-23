@@ -5,7 +5,7 @@ argument-hint: "[optional: focus or task id | phase override: plan|build|debug|v
 disable-model-invocation: true
 metadata:
   version: "1.1.0"
-  owner: "Aaron DeYoung"
+  owner: "Aaron"
   last-reviewed: "2026-10-26"
   domain-category: aarons-latest
   adjacent-skills: resume-grounded, recommendations, wrapitup

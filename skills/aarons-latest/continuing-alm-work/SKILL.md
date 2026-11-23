@@ -5,7 +5,7 @@ compatibility: Designed for Claude Code projects with access to project files an
 metadata:
   version: "2.0.0"
   updated: "2026-09-30"
-  owner: "Aaron DeYoung"
+  owner: "Aaron"
   domain-category: aarons-latest
   last-reviewed: "2026-09-30"
   adjacent-skills: workbetter, projectplan-rescope

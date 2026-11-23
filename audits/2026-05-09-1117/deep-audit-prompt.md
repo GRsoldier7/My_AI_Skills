@@ -19,7 +19,7 @@ In a Claude Code session, dispatch 5 parallel Task() calls (one per group):
 ## Per-agent prompt (template)
 
 ```
-You are auditing the My_AI_Skills sub-library at /root/My_AI_Skills/skills/<CATEGORY>/.
+You are auditing the My_AI_Skills sub-library at $SKILLS_ROOT/skills/<CATEGORY>/.
 
 For EACH SKILL.md in that category, evaluate against these axes:
 
