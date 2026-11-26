@@ -5,8 +5,8 @@
     "skills": 240,
     "portable": 231,
     "core": 72,
-    "optional": 154,
-    "review": 14
+    "optional": 155,
+    "review": 13
   },
   "caps": {
     "core_per_domain_max": 12,
@@ -1427,22 +1427,6 @@
       "summary": "Create a git commit with a clear, value-communicating message."
     },
     {
-      "name": "git-commit-push-pr",
-      "dir": "git-commit-push-pr",
-      "path": "skills/engineering/git-commit-push-pr",
-      "domain": "engineering",
-      "declared_domain": "",
-      "portable": true,
-      "status": "review",
-      "platforms": [],
-      "origin": "vendored",
-      "license": "none",
-      "version": "",
-      "manual_only": false,
-      "summary": "Commit, push, and open a PR with an adaptive, value-first description.",
-      "review_reason": "The optional capture path names ce-demo-reel, which this library does not ship. Use git-commit and ce-pr-description with supplied evidence."
-    },
-    {
       "name": "git-worktree",
       "dir": "git-worktree",
       "path": "skills/engineering/git-worktree",
@@ -1534,6 +1518,23 @@
       "version": "1.0",
       "manual_only": false,
       "summary": "Design, build, debug, and deploy MCP servers (Python/TypeScript SDK): transport choice, tool schema, auth, testing."
+    },
+    {
+      "name": "n8n-debugging-official",
+      "dir": "n8n-debugging-official",
+      "path": "skills/engineering/n8n-debugging-official",
+      "domain": "engineering",
+      "declared_domain": "",
+      "portable": true,
+      "status": "optional",
+      "platforms": [],
+      "origin": "vendored",
+      "license": "Apache-2.0",
+      "version": "",
+      "manual_only": false,
+      "summary": "Use when an n8n workflow isn't working, errors appear, results don't match what was expected, or the user says \"this isn't working.\" Triggers on errors, unexpected output, \"it's not working\", \"why...",
+      "upstream": "https://github.com/n8n-io/skills",
+      "upstream_commit": "626f50fdf2934116eea2c5469339e03d2d524e83"
     },
     {
       "name": "n8n-workflow-architect",
