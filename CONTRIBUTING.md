@@ -71,7 +71,7 @@ python scripts/generate-skill-registry.py --registry
 python scripts/check-library.py
 ```
 
-On Linux, also run `bash scripts/test-install-skills.sh` and `bash scripts/validate-skills.sh --category faith`. Run `python scripts/lint-skills.py --json` for the raw audit. The release check prints its findings count and fails on unexpected failures. Two references to an optional external capture skill in the pinned, review-status `git-commit-push-pr` are documented in the [verification report](docs/20261121%20-%20My%20AI%20Skills%20-%20Verification%20Report.md). Verify the dependency or select the simpler commit skill when trialing that package.
+On Linux, also run `bash scripts/test-install-skills.sh` and `bash scripts/validate-skills.sh --category faith`. Run `python scripts/lint-skills.py --json` for the raw audit. The release check prints its findings count and fails on unexpected failures.
 
 The master selector reads the same registry and returns one owner. The generator's legacy `--inject` option refreshes the canonical registry and agent tables. `--dry-run` checks their freshness. For a curated profile, edit its existing text set and review its allowed hosts, referenced resources, and an example task. Outside the repository, keep one private context per project or client.
 

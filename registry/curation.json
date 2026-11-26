@@ -166,7 +166,6 @@
     ]
   },
   "review": {
-    "skills/engineering/git-commit-push-pr": "The optional capture path names ce-demo-reel, which this library does not ship. Use git-commit and ce-pr-description with supplied evidence.",
     "skills/core/wrapitup": "Likely duplicate of wrapup; merge or retire",
     "skills/aarons-latest/grilling": "Overlaps grill-me; vendored, pinned; confirm redundancy",
     "skills/core/apex-mode": "Broad maximum-stack trigger needs an explicit bounded use case before default use.",
@@ -359,6 +358,15 @@
       "license_file": "LICENSE",
       "imported": "2026-11-16",
       "files": "SKILL.md (byte-identical); LICENSE copied from the data plugin (data/LICENSE)"
+    },
+    "skills/engineering/n8n-debugging-official": {
+      "upstream": "https://github.com/n8n-io/skills",
+      "commit": "626f50fdf2934116eea2c5469339e03d2d524e83",
+      "upstream_path": "skills/n8n-debugging-official",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE",
+      "imported": "2026-11-26",
+      "files": "all files in the skill folder (byte-identical); LICENSE copied from the repo root"
     }
   },
   "reference_sources": {

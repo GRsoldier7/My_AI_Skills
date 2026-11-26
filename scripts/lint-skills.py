@@ -435,6 +435,11 @@ SKILL_REF_ALLOWLIST = {
     "docker-compose-production", "n8n-mcp",
     # sibling skills of the claude-seo plugin, named by the vendored skills/seo/seo-agentic
     "seo-ecommerce", "seo-technical",
+    # sibling skills of the official n8n plugin, named by the vendored
+    # skills/engineering/n8n-debugging-official (those siblings are not in this library)
+    "n8n-node-configuration-official",
+    "n8n-credentials-and-security-official",
+    "n8n-error-handling-official",
     # issue-tracker triage labels used by the vendored mattpocock engineering skills
     "needs-triage", "needs-info", "ready-for-agent", "ready-for-human",
 }
