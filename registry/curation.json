@@ -172,7 +172,6 @@
     "skills/core/fact-checker": "Compare the verification workflow with anti-hallucination before promoting either.",
     "skills/core/skill-sentinel": "Overlaps skill-builder and new skill-creator",
     "skills/core/skill-amplifier": "Overlaps skill-builder; consolidate after skill-creator",
-    "skills/core/polychronos-team": "Broad team trigger overlaps parallel-execution-strategist and the existing project router.",
     "skills/core/knowledge-management": "Overlaps personal-productivity and obsidian architects",
     "skills/engineering/obsidian-vault-architect": "Three obsidian architect skills likely overlap",
     "skills/engineering/lfg": "Overlaps ce-work/ce-plan; autonomous-workflow risk",
@@ -216,6 +215,31 @@
         "local-seo-audit",
         "homelab-decision-record",
         "consulting-tiered-proposal-sow"
+      ]
+    },
+    "watchdog": {
+      "title": "Watchdog",
+      "purpose": "Grok Bot specialist for silent-failure checks on history ledgers: evidence before claims, run forensics, and history-signal-check.",
+      "skills": [
+        "evidence-before-claims",
+        "agent-run-forensics",
+        "history-signal-check"
+      ]
+    },
+    "hermes-manager": {
+      "title": "Hermes Manager",
+      "purpose": "Grok Bot specialist for Hermes agent prompts, evals, routing policy, and cost per useful run.",
+      "skills": [
+        "agent-regression-evals",
+        "skill-and-prompt-evals",
+        "bot-usage-cost-optimizer"
+      ]
+    },
+    "hermes-ux": {
+      "title": "Hermes UX",
+      "purpose": "Grok Bot specialist for the human-facing Hermes console: closeout, preflight, and vault write-after.",
+      "skills": [
+        "outcome-effect-closeout"
       ]
     },
     "dot": {
@@ -296,6 +320,7 @@
     "govcon-bid-no-bid-screening",
     "govcon-proposal-compliance-matrix",
     "govcon-sources-sought-response",
+    "history-signal-check",
     "homelab-decision-record",
     "homelab-runbook-generator",
     "kaizen-evolution",
@@ -475,5 +500,11 @@
       "blob": "6a494bc4ab9519b3c192ad028597a7cb6be1e70d",
       "license": "MIT"
     }
-  }
+  },
+  "grok_indexes": [
+    "grok-bot",
+    "watchdog",
+    "hermes-manager",
+    "hermes-ux"
+  ]
 }

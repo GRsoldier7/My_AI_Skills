@@ -2,13 +2,14 @@
 name: outcome-effect-closeout
 description: >-
   Use when any bot starts or finishes a job, or when Chief of Staff assembles the
-  weekly Scoreboard: record a baseline before the change, re-measure the same way
-  after, write an `effect` field to the history line, and close with the
-  Shipped/Verified/Effect line.
+  weekly Scoreboard: run the four-question preflight before the first action,
+  record a baseline before the change, re-measure the same way after, write an
+  `effect` field to the history line, close with the Shipped/Verified/Effect
+  line, and write the vault entry (or log skipped/none) after.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   domain-category: grok-bot-team
-  last-reviewed: "2026-11-15"
+  last-reviewed: "2026-11-26"
 ---
 # Outcome-effect closeout
 
@@ -43,3 +44,89 @@ Scoreboard row: <bot> | <latest Effect, freshly measured|reused (date)> | Baseli
 - Never invent metrics, paths, or dates; if the source is unavailable, write `not measured: <reason>`.
 - API-backed fields not yet provisioned read `blocked: D1` (SAM_API_KEY) or `blocked: D2` (GSC service account); do not assume access.
 - Drafts and reports only; no external sends without approval.
+
+## Task preflight
+
+Spend under a minute. Write the block into your working notes before the first action.
+
+```
+Preflight:
+1. Already done? <yes|no> - <how checked>
+2. Access path exists? <yes|no> - <probe used>
+3. Approval in hand? <yes|no|not needed> - <quote, time, card id>
+4. Done-criteria and rollback? <yes|no> - <check and revert step>
+```
+
+Stop on "already done" or on any no. Output one line: `BLOCKER: <question> - <detail>`.
+
+### 1. Already done?
+
+Check your own `history.jsonl`, other bots' lines where relevant, the last week of the vault log, and repo or PR state. If a client deliverable may exist, ask Aaron. Case: 2026-11-16, a bot drafted a written proposal and Aaron replied "I already did this and sent it".
+
+### 2. Access path exists?
+
+Run one read-only probe of the credential, scope, host, or connector permission before building anything. Case: 2026-11-17, a task failed because no root path to the lab hosts existed from the box. Case: 2026-11-16, a bot hit three Cloudflare connector failures (missing `page.read`, missing `page.write`, then 403 code 8000013).
+
+### 3. Approval in hand?
+
+Production deploys, merges, sends, deletes, and public posts each need Aaron's per-action yes, as set in APPROVALS.md. This skill never replaces that file. Quote his exact words, with time and card id if any, in the history line before acting. A past yes for another action does not cover this one. If no gated action is involved, answer "not needed".
+
+### 4. Done-criteria and rollback
+
+Write what confirms success and how to revert, before starting. Example for a deploy: 200 on key URLs, titles and H1, JSON-LD parses, API `OPTIONS` returns 204; rollback is the prior production deployment id.
+
+### Rule of thumb
+
+One question answered "no" costs a line of report. A wrong "yes" costs the task.
+
+## Vault write-after
+
+### Access (hard limits)
+
+- Only the approved vault S3 connection, via the approved S3 piece and its list/read/metadata/upload actions.
+- Allowed actions, nothing else: `list_files`, `read_file`, `get_file_metadata`, `upload_file`. Any other action needs Aaron's yes per action.
+- Never delete a vault file without Aaron's yes per file. No credentials in the vault.
+
+### A. Monthly log entry (append to an existing key)
+
+This is the only case where `doNotOverwrite` is `false`, because the key already exists.
+
+1. Read the current part file and note its etag via `list_files` or `get_file_metadata`. Do not trust a stale pointer in docs; list the log folder and use the current part file.
+2. Build the new content: existing text plus your entry at the end. Never change earlier text.
+3. Re-read the etag immediately before upload. If it changed, abort, re-read, and rebuild.
+4. `upload_file` with `doNotOverwrite: false`.
+5. Read back and confirm your entry is present.
+
+Do not rewrite files over about 18 KB. If the part would exceed that, start the next part as a new key (see B), first line `Continuation of [[<previous-part>]]`.
+
+### B. New notes and new part files (new keys)
+
+Use `upload_file` with `doNotOverwrite: true`, so an existing key is never clobbered. Put deliverables in the existing project folder. Frontmatter and the four-question value test follow `Notes-Standard.md`, read it first. Corrections are new linked superseding notes, never in-place rewrites.
+
+### Foundry exception
+
+Overwrite only its own `98_Agents/Bot-Health-<date>.md` to set `status: superseded` and `updated:`, nothing else.
+
+### Entry format
+
+```
+## YYYY-MM-DD HH:MM CT - <Agent> - <topic> [<kind>]
+- Date: YYYY-MM-DD HH:MM CT
+- Agent: <Agent>
+- Topic: <topic>
+- What: <one sentence>
+- Outcome: <result>
+- Confidence: <verified|likely|unverified>
+- Supersedes: <note path or none>
+- Cost: <USD or tokens>
+- Links: <[[wikilinks]] or repo paths>
+- Next: <action or none>
+```
+
+### Record it
+
+Set the `vault` field on every `history.jsonl` line: `read`, `wrote`, `read+wrote`, `skipped: <reason>`, or `none` when the vault was not touched. Never leave it out. Trivial or no-op tasks write nothing and log `skipped: <reason>`. The nightly health check flags a bot with substantive tasks and no vault reads or writes as drifting.
+
+### Credit
+
+Aaron's My_AI_Skills `skills/aarons-latest/2nd-brain` v2.0.0: read at most 3 notes, re-read before upload and abort if the etag changed, read back, one log entry per piece of work.
