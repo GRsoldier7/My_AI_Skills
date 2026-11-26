@@ -593,6 +593,7 @@ def registry_checks(entries: list[dict[str, Any]], curation: dict[str, Any]) -> 
 
     agent_max = int(caps.get("agent_index_max", 12))
     fenced_agents = set((curation.get("fenced") or {}).keys())
+    grok_indexes = fenced_agents | set(curation.get("grok_indexes") or [])
     for agent, spec in (curation.get("agents") or {}).items():
         lst = spec.get("skills") or []
         if len(lst) > agent_max:
@@ -602,7 +603,7 @@ def registry_checks(entries: list[dict[str, Any]], curation: dict[str, Any]) -> 
         for m in lst:
             if m not in names:
                 fails.append(f"agent index '{agent}': skill '{m}' not found")
-            elif not by_dir[m][0]["portable"] and agent not in fenced_agents:
+            elif not by_dir[m][0]["portable"] and agent not in grok_indexes:
                 fails.append(f"agent index '{agent}' lists fenced skill '{m}'")
         if not (AGENTS_DIR / f"{agent}.md").is_file():
             fails.append(f"agents/{agent}.md missing")

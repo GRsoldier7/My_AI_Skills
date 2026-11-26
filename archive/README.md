@@ -9,3 +9,11 @@ The retired skill now lives at archive/git-commit-push-pr/ (moved from skills/en
 Reason it was on the review list: its optional capture path names ce-demo-reel, which this library does not ship. Prefer git-commit and ce-pr-description with supplied evidence.
 
 To restore it, move the folder back under skills/engineering/, put it back on the review or optional list and vendored_paths, and regenerate the registry.
+
+On 2026-11-26 Aaron approved retiring core/polychronos-team in the same pull request that added history-signal-check, to stay at the library soft cap of 240.
+
+The retired skill now lives at archive/polychronos-team/ (moved from skills/core/polychronos-team/). It is not in registry/curation.json review or deprecated lists, because those lists require a SKILL.md under a live library path.
+
+Reason it was on the review list: broad team trigger overlaps parallel-execution-strategist and the existing project router. No agent index listed it.
+
+To restore it, move the folder back under skills/core/, put it back on the review or optional list, and regenerate the registry.

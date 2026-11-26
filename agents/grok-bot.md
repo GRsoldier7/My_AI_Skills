@@ -47,6 +47,6 @@ Fenced Grok Bot-only skills (not portable):
 |---|---|---|
 | `api-first-heavy-work` | Use when the task is to draft, analyze, research, write code, refactor, review architecture, build, or fix something: route that heavy work through the owner's own API keys, never through a Grok Ta... | [agents/grok-bot/skills/api-first-heavy-work/SKILL.md](../agents/grok-bot/skills/api-first-heavy-work/SKILL.md) |
 | `bot-team-review` | Use when asked to review, audit, or check in on a team of Grok Bots: inspect each bot's purpose and recent work, catch duplicate ownership or gaps, and propose changes for approval. | [agents/grok-bot/skills/bot-team-review/SKILL.md](../agents/grok-bot/skills/bot-team-review/SKILL.md) |
-| `outcome-effect-closeout` | Use when any bot starts or finishes a job, or when Chief of Staff assembles the weekly Scoreboard: record a baseline before the change, re-measure the same way after, write an `effect` field to the... | [agents/grok-bot/skills/outcome-effect-closeout/SKILL.md](../agents/grok-bot/skills/outcome-effect-closeout/SKILL.md) |
+| `outcome-effect-closeout` | Use when any bot starts or finishes a job, or when Chief of Staff assembles the weekly Scoreboard: run the four-question preflight before the first action, record a baseline before the change, re-m... | [agents/grok-bot/skills/outcome-effect-closeout/SKILL.md](../agents/grok-bot/skills/outcome-effect-closeout/SKILL.md) |
 
 <!-- agent-index:end -->

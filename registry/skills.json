@@ -5,8 +5,8 @@
     "skills": 240,
     "portable": 231,
     "core": 72,
-    "optional": 155,
-    "review": 13
+    "optional": 156,
+    "review": 12
   },
   "caps": {
     "core_per_domain_max": 12,
@@ -76,7 +76,8 @@
       "portable": false,
       "status": "optional",
       "platforms": [
-        "grok-bot"
+        "grok-bot",
+        "watchdog"
       ],
       "origin": "box-mirror",
       "license": "none",
@@ -127,13 +128,14 @@
       "portable": false,
       "status": "optional",
       "platforms": [
-        "grok-bot"
+        "grok-bot",
+        "hermes-ux"
       ],
       "origin": "box-mirror",
       "license": "none",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "manual_only": false,
-      "summary": "Use when any bot starts or finishes a job, or when Chief of Staff assembles the weekly Scoreboard: record a baseline before the change, re-measure the same way after, write an `effect` field to the..."
+      "summary": "Use when any bot starts or finishes a job, or when Chief of Staff assembles the weekly Scoreboard: run the four-question preflight before the first action, record a baseline before the change, re-m..."
     },
     {
       "name": "skill-and-prompt-evals",
@@ -144,7 +146,8 @@
       "portable": false,
       "status": "optional",
       "platforms": [
-        "grok-bot"
+        "grok-bot",
+        "hermes-manager"
       ],
       "origin": "box-mirror",
       "license": "none",
@@ -452,7 +455,9 @@
       "declared_domain": "",
       "portable": true,
       "status": "optional",
-      "platforms": [],
+      "platforms": [
+        "hermes-manager"
+      ],
       "origin": "vendored",
       "license": "MIT",
       "version": "1.0.0",
@@ -469,7 +474,9 @@
       "declared_domain": "grok-bot-team",
       "portable": true,
       "status": "core",
-      "platforms": [],
+      "platforms": [
+        "watchdog"
+      ],
       "origin": "box-mirror",
       "license": "none",
       "version": "1.0.0",
@@ -534,7 +541,9 @@
       "declared_domain": "grok-bot-team",
       "portable": true,
       "status": "optional",
-      "platforms": [],
+      "platforms": [
+        "hermes-manager"
+      ],
       "origin": "box-mirror",
       "license": "none",
       "version": "1.0.0",
@@ -603,6 +612,23 @@
       "version": "",
       "manual_only": false,
       "summary": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities."
+    },
+    {
+      "name": "history-signal-check",
+      "dir": "history-signal-check",
+      "path": "skills/core/history-signal-check",
+      "domain": "core",
+      "declared_domain": "grok-bot-team",
+      "portable": true,
+      "status": "optional",
+      "platforms": [
+        "watchdog"
+      ],
+      "origin": "box-mirror",
+      "license": "none",
+      "version": "1.0.0",
+      "manual_only": false,
+      "summary": "Use when running a daily or weekly read-only check of bot history.jsonl ledgers to detect silent failures: error rate, missed schedules, zero tokens, missing fields, vault loop gaps, usage spikes,..."
     },
     {
       "name": "humanizer",
@@ -749,22 +775,6 @@
       "version": "1.0",
       "manual_only": false,
       "summary": "Personal productivity architect for high-output professionals juggling multiple domains."
-    },
-    {
-      "name": "polychronos-team",
-      "dir": "polychronos-team",
-      "path": "skills/core/polychronos-team",
-      "domain": "core",
-      "declared_domain": "core",
-      "portable": true,
-      "status": "review",
-      "platforms": [],
-      "origin": "library",
-      "license": "none",
-      "version": "1.0",
-      "manual_only": false,
-      "summary": "Activate the Polychronos OS multi-agent orchestration system with the B.L.A.S.T.",
-      "review_reason": "Broad team trigger overlaps parallel-execution-strategist and the existing project router."
     },
     {
       "name": "portable-ai-instructions",
