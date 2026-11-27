@@ -4,9 +4,9 @@
   "totals": {
     "skills": 240,
     "portable": 231,
-    "core": 72,
-    "optional": 156,
-    "review": 12
+    "core": 71,
+    "optional": 162,
+    "review": 7
   },
   "caps": {
     "core_per_domain_max": 12,
@@ -319,22 +319,6 @@
       "summary": "A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go."
     },
     {
-      "name": "grilling",
-      "dir": "grilling",
-      "path": "skills/aarons-latest/grilling",
-      "domain": "aarons-latest",
-      "declared_domain": "",
-      "portable": true,
-      "status": "review",
-      "platforms": [],
-      "origin": "vendored",
-      "license": "MIT",
-      "version": "",
-      "manual_only": false,
-      "summary": "Grill the user relentlessly about a plan, decision, or idea.",
-      "review_reason": "Overlaps grill-me; vendored, pinned; confirm redundancy"
-    },
-    {
       "name": "project-router",
       "dir": "project-router",
       "path": "skills/aarons-latest/project-router",
@@ -501,22 +485,6 @@
       "version": "1.0",
       "manual_only": false,
       "summary": "Verification protocol for factual claims: confirm file paths, APIs, versions, and citations by Read/Grep in THIS session before stating them."
-    },
-    {
-      "name": "apex-mode",
-      "dir": "apex-mode",
-      "path": "skills/core/apex-mode",
-      "domain": "core",
-      "declared_domain": "core",
-      "portable": true,
-      "status": "review",
-      "platforms": [],
-      "origin": "library",
-      "license": "none",
-      "version": "1.0",
-      "manual_only": false,
-      "summary": "Maximum-stack execution mode.",
-      "review_reason": "Broad maximum-stack trigger needs an explicit bounded use case before default use."
     },
     {
       "name": "bot-prompt-tuning",
@@ -709,22 +677,6 @@
       "version": "4.1",
       "manual_only": false,
       "summary": "Generate human artifacts via Google NotebookLM on EXPLICIT request only, podcast, briefing, quiz, flashcards, deck, mind map."
-    },
-    {
-      "name": "organize-project",
-      "dir": "organize-project",
-      "path": "skills/core/organize-project",
-      "domain": "core",
-      "declared_domain": "meta",
-      "portable": true,
-      "status": "review",
-      "platforms": [],
-      "origin": "library",
-      "license": "none",
-      "version": "2.0",
-      "manual_only": false,
-      "summary": "Organizes the current project: reads it deeply, classifies its type, applies best-practice structure, bootstraps short + long-term memory, sets up a lessons-learned + self-healing feedback loop, an...",
-      "review_reason": "Overlaps directory-cleanup and file-organizer"
     },
     {
       "name": "output-quality-no-slop",
@@ -988,22 +940,6 @@
       "version": "1.0.0",
       "manual_only": false,
       "summary": "Improve a work prompt, reusable SKILL.md or ChatGPT plugin specification when outputs drift, activation is unreliable, or instructions are expensive to use."
-    },
-    {
-      "name": "wrapitup",
-      "dir": "wrapitup",
-      "path": "skills/core/wrapitup",
-      "domain": "core",
-      "declared_domain": "core",
-      "portable": true,
-      "status": "review",
-      "platforms": [],
-      "origin": "library",
-      "license": "none",
-      "version": "1.1",
-      "manual_only": false,
-      "summary": "Close out a working session cleanly and produce a handoff another chat can pick up cold.",
-      "review_reason": "Likely duplicate of wrapup; merge or retire"
     },
     {
       "name": "wrapup",
@@ -1482,22 +1418,6 @@
       "summary": "Expert architect for the self-hosted MiniPC homelab stack that powers a life OS, Docker containers, n8n automation, data storage, APIs, and service orchestration running on local hardware."
     },
     {
-      "name": "lfg",
-      "dir": "lfg",
-      "path": "skills/engineering/lfg",
-      "domain": "engineering",
-      "declared_domain": "",
-      "portable": true,
-      "status": "review",
-      "platforms": [],
-      "origin": "vendored",
-      "license": "none",
-      "version": "",
-      "manual_only": true,
-      "summary": "Full autonomous engineering workflow",
-      "review_reason": "Overlaps ce-work/ce-plan; autonomous-workflow risk"
-    },
-    {
       "name": "mcp-builder",
       "dir": "mcp-builder",
       "path": "skills/engineering/mcp-builder",
@@ -1948,6 +1868,23 @@
       "summary": "Use when a government RFP/RFQ arrives and needs a compliance matrix from Sections L, M, and C/PWS, an outline mirroring the evaluation factors, CO questions, and red-team and submission checklists."
     },
     {
+      "name": "claims-guardrail-check",
+      "dir": "claims-guardrail-check",
+      "path": "skills/growth/claims-guardrail-check",
+      "domain": "growth",
+      "declared_domain": "growth",
+      "portable": true,
+      "status": "optional",
+      "platforms": [
+        "growth-architect"
+      ],
+      "origin": "library",
+      "license": "none",
+      "version": "1.0.0",
+      "manual_only": false,
+      "summary": "Use when reviewing any health-adjacent or commercial draft (site copy, offer, lead magnet, email, testimonial, affiliate mention, subscription or billing copy) before it reaches Aaron."
+    },
+    {
       "name": "community-builder",
       "dir": "community-builder",
       "path": "skills/growth/community-builder",
@@ -1961,6 +1898,25 @@
       "version": "1.0",
       "manual_only": false,
       "summary": "Genius-level community strategy covering platform selection (Discord, Circle, Skool, Slack), flywheel design, engagement mechanics, monetization models, community-led growth, and scaling challenges."
+    },
+    {
+      "name": "competitor-value-prop-scan",
+      "dir": "competitor-value-prop-scan",
+      "path": "skills/growth/competitor-value-prop-scan",
+      "domain": "growth",
+      "declared_domain": "growth",
+      "portable": true,
+      "status": "optional",
+      "platforms": [
+        "growth-architect"
+      ],
+      "origin": "vendored",
+      "license": "MIT",
+      "version": "1.0.0",
+      "manual_only": false,
+      "summary": "Use when scanning public competitor pages to extract value propositions, offers, pricing, proof signals, and billing posture, then comparing them to the subject's stated positioning and listing gap...",
+      "upstream": "https://github.com/coreyhaines31/marketingskills",
+      "upstream_commit": "2bf95edb4ebd37198ab7fd18b99ba95c2145ec64"
     },
     {
       "name": "content-marketing-machine",
@@ -2008,6 +1964,25 @@
       "summary": "Genius-level growth engineering covering product-led growth (PLG), viral loops, activation optimization, retention mechanics, A/B testing frameworks, referral programs, and the mathematical models..."
     },
     {
+      "name": "lead-magnet-spec",
+      "dir": "lead-magnet-spec",
+      "path": "skills/growth/lead-magnet-spec",
+      "domain": "growth",
+      "declared_domain": "growth",
+      "portable": true,
+      "status": "optional",
+      "platforms": [
+        "growth-architect"
+      ],
+      "origin": "vendored",
+      "license": "MIT",
+      "version": "1.0.0",
+      "manual_only": false,
+      "summary": "Use when specifying a single lead magnet (format, promise, audience, fulfillment, success metric, and build handoff) as a draft for Aaron.",
+      "upstream": "https://github.com/coreyhaines31/marketingskills",
+      "upstream_commit": "2bf95edb4ebd37198ab7fd18b99ba95c2145ec64"
+    },
+    {
       "name": "marketing-strategist",
       "dir": "marketing-strategist",
       "path": "skills/growth/marketing-strategist",
@@ -2021,6 +1996,25 @@
       "version": "1.0",
       "manual_only": false,
       "summary": "Genius-level full-stack marketing strategy covering brand positioning (April Dunford framework), jobs-to-be-done messaging, channel mix optimization, ICP-driven demand generation, attribution model..."
+    },
+    {
+      "name": "offer-and-pricing-review",
+      "dir": "offer-and-pricing-review",
+      "path": "skills/growth/offer-and-pricing-review",
+      "domain": "growth",
+      "declared_domain": "growth",
+      "portable": true,
+      "status": "optional",
+      "platforms": [
+        "growth-architect"
+      ],
+      "origin": "vendored",
+      "license": "MIT",
+      "version": "1.0.0",
+      "manual_only": false,
+      "summary": "Use when reviewing an existing offer, price, and packaging (TempleProtocol.ai primary; Echelon Seven experiments secondary) and producing a ranked recommendation plus an experiment spec.",
+      "upstream": "https://github.com/coreyhaines31/marketingskills",
+      "upstream_commit": "2bf95edb4ebd37198ab7fd18b99ba95c2145ec64"
     },
     {
       "name": "personal-brand-builder",
@@ -2054,6 +2048,25 @@
       "version": "1.0",
       "manual_only": false,
       "summary": "Expert professional communication coach."
+    },
+    {
+      "name": "retention-loop-design",
+      "dir": "retention-loop-design",
+      "path": "skills/growth/retention-loop-design",
+      "domain": "growth",
+      "declared_domain": "growth",
+      "portable": true,
+      "status": "optional",
+      "platforms": [
+        "growth-architect"
+      ],
+      "origin": "vendored",
+      "license": "MIT",
+      "version": "1.0.0",
+      "manual_only": false,
+      "summary": "Use when designing a retention loop that matches the product's actual promises, including a \"no regular campaigns\" commitment, and producing an experiment spec (trigger, action, reward, reinvestmen...",
+      "upstream": "https://github.com/coreyhaines31/marketingskills",
+      "upstream_commit": "2bf95edb4ebd37198ab7fd18b99ba95c2145ec64"
     },
     {
       "name": "sales-closer",
@@ -3562,6 +3575,23 @@
       "summary": "Genius-level business plan construction engine for founders, investors, and operators."
     },
     {
+      "name": "case-study-draft",
+      "dir": "case-study-draft",
+      "path": "skills/strategy/case-study-draft",
+      "domain": "strategy",
+      "declared_domain": "strategy",
+      "portable": true,
+      "status": "optional",
+      "platforms": [],
+      "origin": "vendored",
+      "license": "MIT",
+      "version": "1.0.0",
+      "manual_only": false,
+      "summary": "Use when drafting a one-page case study or proof asset from a real, approved client engagement for e7-client-growth.",
+      "upstream": "https://github.com/coreyhaines31/marketingskills",
+      "upstream_commit": "2bf95edb4ebd37198ab7fd18b99ba95c2145ec64"
+    },
+    {
       "name": "consulting-operations",
       "dir": "consulting-operations",
       "path": "skills/strategy/consulting-operations",
@@ -3590,7 +3620,7 @@
       ],
       "origin": "box-mirror",
       "license": "none",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "manual_only": false,
       "summary": "Use when drafting a tiered consulting proposal or Statement of Work for automation work (Power Automate, Power BI, agents, dashboards), e.g. Recon/Architect/Commander tiers."
     },
@@ -3704,21 +3734,6 @@
       "version": "1.0",
       "manual_only": false,
       "summary": "Research and analyze business opportunities, market niches, and competitive landscapes to identify the highest-profit ventures."
-    },
-    {
-      "name": "pricing-strategist",
-      "dir": "pricing-strategist",
-      "path": "skills/strategy/pricing-strategist",
-      "domain": "strategy",
-      "declared_domain": "strategy",
-      "portable": true,
-      "status": "core",
-      "platforms": [],
-      "origin": "library",
-      "license": "none",
-      "version": "1.0",
-      "manual_only": false,
-      "summary": "Genius-level pricing strategy covering value-based pricing methodology, packaging psychology, SaaS pricing models, willingness-to-pay research, the $100M Offers value equation, price increase playb..."
     },
     {
       "name": "audio-transcriber",

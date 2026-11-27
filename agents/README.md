@@ -11,6 +11,7 @@ Each agent has one entry-point index in this folder. Each index lists at most 12
 | Watchdog | `agents/watchdog.md` | Grok Bot specialist: silent-failure checks |
 | Hermes Manager | `agents/hermes-manager.md` | Grok Bot specialist: Hermes prompts, evals, cost |
 | Hermes UX | `agents/hermes-ux.md` | Grok Bot specialist: Hermes console closeout |
+| Growth Architect | `agents/growth-architect.md` | Grok Bot specialist: offer, pricing, lead magnets, claims |
 | Dot | `agents/dot.md` | OpenAI ChatGPT dot, an always-on work agent |
 | Duet | `agents/duet.md` | Duet CLI agent harness (identity unconfirmed) |
 | Nod | `agents/nod.md` | n8n Labs personal agent |
@@ -19,7 +20,7 @@ Each agent has one entry-point index in this folder. Each index lists at most 12
 
 - Muse: point it at `agents/muse.md`, or symlink the listed folders into the skills directory its runtime reads. The runtime loader is not confirmed.
 - Grok Bot: skills load on demand from `/home/box/agent-data/workflows`. Restore a fenced skill by copying `agents/grok-bot/skills/<name>/` into that box path (Aaron's yes required for each skill).
-- Watchdog, Hermes Manager, and Hermes UX: same box path and fenced-skill restore rule as Grok Bot. These are Grok specialist indexes (`registry/curation.json` `grok_indexes`) and may list fenced skills.
+- Watchdog, Hermes Manager, Hermes UX, and Growth Architect: same box path and fenced-skill restore rule as Grok Bot. These are Grok specialist indexes (`registry/curation.json` `grok_indexes`) and may list fenced skills.
 - Dot: install the listed skills on the connected computer with `scripts/install-skills.sh` (Codex target).
 - Duet: install the listed skills to `~/.agents/skills` with `scripts/install-skills.sh`. Duet reads that path.
 - Nod: copy only the skills listed in `agents/nod.md` into a self-hosted checkout's `src/runtime/skills/` (restart required).
