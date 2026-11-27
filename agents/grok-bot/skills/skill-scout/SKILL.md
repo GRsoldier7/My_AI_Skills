@@ -16,7 +16,7 @@ Name the bot, the scorecard/history evidence, and the exact job the missing skil
 Search to avoid duplicates. A close match means upgrade or reject, not a second skill.
 - `/home/box/agent-data/workflows/`
 - `/home/box/agent-os/skills/`
-- `/workspace/My_AI_Skills` (including `skills/grok-bot-team/` and `skills/core/find-skills`)
+- `/workspace/My_AI_Skills` (including `skills/grok-bot-team/`, `skills/business/`, and `skills/core/find-skills`)
 - In-flight drafts: `/home/box/agent-os/proposals/skill-drafts-*/`
 
 ### 3. Search Sources (In Order)
