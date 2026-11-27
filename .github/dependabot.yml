@@ -1,0 +1,27 @@
+# Weekly grouped dependency updates (gh-health #2/#8). Security updates still arrive as alerts.
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directories:
+      - "/skills/engineering/mcp-builder/scripts"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Chicago"
+    open-pull-requests-limit: 3
+    groups:
+      pip-minor-patch:
+        update-types: ["minor", "patch"]
+  - package-ecosystem: "github-actions"
+    directories:
+      - "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Chicago"
+    open-pull-requests-limit: 3
+    groups:
+      github-actions-minor-patch:
+        update-types: ["minor", "patch"]
