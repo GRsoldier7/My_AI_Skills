@@ -1,2 +1,2 @@
-skills/govcon/govcon-bid-no-bid-screening
-skills/govcon/govcon-proposal-compliance-matrix
+skills/business/govcon/govcon-bid-no-bid-screening
+skills/business/govcon/govcon-proposal-compliance-matrix

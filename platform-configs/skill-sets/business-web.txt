@@ -1,2 +1,2 @@
-skills/seo/technical-seo-baseline
-skills/seo/seo-content-brief-aeo
+skills/business/seo/technical-seo-baseline
+skills/business/seo/seo-content-brief-aeo

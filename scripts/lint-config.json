@@ -9,7 +9,7 @@
     "skills/core/prompt-master",
     "skills/core/skill-creator",
     "skills/core/unlazy",
-    "skills/seo/seo-agentic",
+    "skills/business/seo/seo-agentic",
     "skills/core/agent-regression-evals",
     "skills/engineering/validate-data",
     "skills/engineering/n8n-debugging-official",
