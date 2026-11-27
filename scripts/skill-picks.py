@@ -24,7 +24,8 @@ HOSTS = {
     "hermes": "Give the intended Hermes session the selected instructions and try the example with that agent's available tools.",
 }
 PUBLIC_DOCUMENTS = {"skills/CONNECTORS.md", "skills/THIRD-PARTY-NOTICES.md"}
-PACKAGE = re.compile(r"skills/[a-z0-9]+(?:-[a-z0-9]+)*/[a-z0-9]+(?:-[a-z0-9]+)*")
+# skills/<domain>/<skill>, or skills/business/<domain>/<skill> for general business skills.
+PACKAGE = re.compile(r"skills/(?:business/)?[a-z0-9]+(?:-[a-z0-9]+)*/[a-z0-9]+(?:-[a-z0-9]+)*")
 SLUG = r"[a-z0-9]+(?:-[a-z0-9]+)*"
 RESOURCE = re.compile(rf"(?:agents/openai\.yaml|references/(?:{SLUG}/)*{SLUG}\.md|"
                       rf"LICENSE(?:-{SLUG})?(?:\.txt)?|assets/operations-brief\.html|scripts/check-solution\.py)")

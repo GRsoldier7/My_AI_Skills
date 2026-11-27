@@ -19,6 +19,7 @@ from typing import Any
 
 REPO_DIR = Path(__file__).resolve().parent.parent  # repo root wherever the clone lives
 SKILLS_ROOT = REPO_DIR / "skills"
+BUSINESS_DIR = "business"  # skills/business/<domain>/<skill>: general business skills
 REGISTRY_DIR = REPO_DIR / "registry"
 CURATION_FILE = REGISTRY_DIR / "curation.json"
 MOVED_FILE = REGISTRY_DIR / "moved.json"
@@ -245,12 +246,16 @@ def is_manual_only(path: Path, fm: dict[str, Any]) -> bool:
 
 def _infer_category_from_path(path: Path) -> str:
     """Fallback: directory layout is skills/<category>/<skill>/SKILL.md
-    (or skills/<skill>/SKILL.md for a top-level skill)."""
+    (or skills/<skill>/SKILL.md for a top-level skill). General business skills
+    live one level deeper, in skills/business/<category>/<skill>/SKILL.md, and keep
+    <category> as their domain so core sets and caps carry over (MOVED.md)."""
     try:
         rel = path.relative_to(SKILLS_ROOT)
     except ValueError:
         return ""
     parts = rel.parts
+    if len(parts) >= 4 and parts[0] == BUSINESS_DIR:
+        return parts[1]
     if len(parts) >= 3:
         return parts[0]
     if len(parts) == 2:

@@ -17,11 +17,11 @@
       "core_cap": 12
     },
     "growth": {
-      "purpose": "Marketing, SEO, content, positioning, sales communication",
+      "purpose": "Marketing, SEO, content, positioning, sales communication (general skills in skills/business/growth)",
       "core_cap": 12
     },
     "strategy": {
-      "purpose": "Consulting, business planning, decisions, proposals, discovery",
+      "purpose": "Consulting, business planning, decisions, proposals, discovery (general skills in skills/business/strategy)",
       "core_cap": 10
     },
     "product": {
@@ -37,7 +37,7 @@
       "core_cap": 3
     },
     "legal-financial": {
-      "purpose": "Tax, finance, renewals, legal drafting",
+      "purpose": "Tax, finance, renewals, legal drafting (business tax in skills/business/legal-financial)",
       "core_cap": 5
     },
     "tech": {
@@ -45,11 +45,11 @@
       "core_cap": 3
     },
     "govcon": {
-      "purpose": "Federal capture, proposals, compliance for small-business GovCon",
+      "purpose": "Federal capture, proposals, compliance for small-business GovCon (skills/business/govcon)",
       "core_cap": 6
     },
     "seo": {
-      "purpose": "Technical, local, schema and AI-search SEO for Aaron's sites",
+      "purpose": "Technical, local, schema and AI-search SEO for Aaron's sites (skills/business/seo)",
       "core_cap": 8
     },
     "homelab-ops": {
@@ -353,7 +353,7 @@
       "imported": "2026-11-16",
       "files": "all (byte-identical)"
     },
-    "skills/seo/seo-agentic": {
+    "skills/business/seo/seo-agentic": {
       "upstream": "https://github.com/AgriciDaniel/claude-seo",
       "commit": "468ed5b0d9e3249394783710e54abb02837e326b",
       "upstream_path": "skills/seo-agentic",
@@ -407,7 +407,7 @@
       "upstream_path": "skills/pricing/SKILL.md; skills/offers/SKILL.md",
       "files": "rewritten SKILL.md (not byte-identical); LICENSE copied from the repo root; attribution and MIT notice in the skill file"
     },
-    "skills/growth/competitor-value-prop-scan": {
+    "skills/business/growth/competitor-value-prop-scan": {
       "upstream": "https://github.com/coreyhaines31/marketingskills",
       "commit": "2bf95edb4ebd37198ab7fd18b99ba95c2145ec64",
       "license": "MIT",
@@ -425,7 +425,7 @@
       "upstream_path": "skills/lead-magnets/SKILL.md",
       "files": "rewritten SKILL.md (not byte-identical); LICENSE copied from the repo root; attribution and MIT notice in the skill file"
     },
-    "skills/growth/retention-loop-design": {
+    "skills/business/growth/retention-loop-design": {
       "upstream": "https://github.com/coreyhaines31/marketingskills",
       "commit": "2bf95edb4ebd37198ab7fd18b99ba95c2145ec64",
       "license": "MIT",
@@ -559,7 +559,7 @@
     "growth-architect"
   ],
   "custom": {
-    "skills/growth/claims-guardrail-check": {
+    "skills/business/growth/claims-guardrail-check": {
       "origin": "custom",
       "imported": "2026-11-26",
       "notes": "Custom FTC/FDA/ROSCA claims checklist drafted for Growth Architect. Not adapted from a named upstream SKILL.md. Legal citations are listed in the skill file."

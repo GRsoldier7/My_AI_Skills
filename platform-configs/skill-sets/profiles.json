@@ -310,8 +310,8 @@
       "references/curriculum-patterns.md",
       "references/family-session-patterns.md"
     ],
-    "skills/govcon/govcon-bid-no-bid-screening": [],
-    "skills/govcon/govcon-proposal-compliance-matrix": [],
+    "skills/business/govcon/govcon-bid-no-bid-screening": [],
+    "skills/business/govcon/govcon-proposal-compliance-matrix": [],
     "skills/microsoft/copilot-studio": [
       "references/work-copilot.md"
     ],
@@ -344,8 +344,8 @@
     "skills/microsoft/sharepoint": [
       "references/work-sharepoint.md"
     ],
-    "skills/seo/seo-content-brief-aeo": [],
-    "skills/seo/technical-seo-baseline": [],
+    "skills/business/seo/seo-content-brief-aeo": [],
+    "skills/business/seo/technical-seo-baseline": [],
     "skills/strategy/consulting-tiered-proposal-sow": [],
     "skills/strategy/discovery-call-prep": []
   },
@@ -354,10 +354,10 @@
       "skills/engineering/validate-data"
     ],
     "skills/THIRD-PARTY-NOTICES.md": [
-      "skills/govcon/govcon-bid-no-bid-screening",
-      "skills/govcon/govcon-proposal-compliance-matrix",
-      "skills/seo/seo-content-brief-aeo",
-      "skills/seo/technical-seo-baseline",
+      "skills/business/govcon/govcon-bid-no-bid-screening",
+      "skills/business/govcon/govcon-proposal-compliance-matrix",
+      "skills/business/seo/seo-content-brief-aeo",
+      "skills/business/seo/technical-seo-baseline",
       "skills/strategy/consulting-tiered-proposal-sow",
       "skills/strategy/discovery-call-prep"
     ]

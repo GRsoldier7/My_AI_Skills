@@ -44,10 +44,11 @@ REPO_DIR = Path(__file__).resolve().parent.parent  # repo root wherever the clon
 SKILLS_DIR = REPO_DIR / "skills"
 DEFAULT_CONFIG = REPO_DIR / "scripts" / "lint-config.json"
 
-# Categories that contain SKILL.md children (vs. homelab-organizer which IS a skill)
+# Categories that contain SKILL.md children (vs. homelab-organizer which IS a skill).
+# "business" holds general business skills one level deeper: skills/business/<domain>/<skill>.
 CATEGORY_DIRS = {
     "core", "engineering", "faith", "growth", "legal-financial",
-    "microsoft", "product", "strategy", "govcon", "seo", "homelab-ops",
+    "microsoft", "product", "strategy", "govcon", "seo", "homelab-ops", "business",
 }
 
 # Fenced, platform-only skill folders outside skills/ (registry/curation.json "fenced").
@@ -433,7 +434,7 @@ SKILL_REF_ALLOWLIST = {
     # external plugin skills + user-level skills referenced for plugin-overlap routing
     "karpathy-guidelines", "pytest-async-testing-patterns",
     "docker-compose-production", "n8n-mcp",
-    # sibling skills of the claude-seo plugin, named by the vendored skills/seo/seo-agentic
+    # sibling skills of the claude-seo plugin, named by the vendored skills/business/seo/seo-agentic
     "seo-ecommerce", "seo-technical",
     # sibling skills of the official n8n plugin, named by the vendored
     # skills/engineering/n8n-debugging-official (those siblings are not in this library)

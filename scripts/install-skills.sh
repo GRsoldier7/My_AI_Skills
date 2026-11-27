@@ -52,7 +52,7 @@ done
 ENTRIES=""
 if [[ -n "$NAMES" ]]; then
     for n in $NAMES; do
-        hits="$(cd "$REPO_DIR" && find skills -maxdepth 3 -path "*/$n/SKILL.md" | sed 's|/SKILL.md$||')"
+        hits="$(cd "$REPO_DIR" && find skills -maxdepth 4 -path "*/$n/SKILL.md" | sed 's|/SKILL.md$||')"
         count="$(grep -c . <<< "$hits" || true)"
         if [[ "$count" -ne 1 ]]; then echo "ERROR: '$n' matches $count skill directories" >&2; exit 1; fi
         ENTRIES="$ENTRIES$hits"$'\n'
